@@ -438,6 +438,7 @@ Program costs = Rewards paid + Tool costs + Management time
 - Friendbuy — E-commerce and subscription
 - GrowSurf — SaaS and tech companies
 - Viral Loops — Template-based campaigns
+- Mention Me - AI powered referral solution
 
 **Built-in options:**
 - Stripe (basic referral tracking)
