@@ -1,0 +1,27 @@
+{
+  "skills": [
+    ".claude/skills/ab-test-setup",
+    ".claude/skills/analytics-tracking",
+    ".claude/skills/competitor-alternatives",
+    ".claude/skills/copy-editing",
+    ".claude/skills/copywriting",
+    ".claude/skills/email-sequence",
+    ".claude/skills/form-cro",
+    ".claude/skills/free-tool-strategy",
+    ".claude/skills/launch-strategy",
+    ".claude/skills/marketing-ideas",
+    ".claude/skills/marketing-psychology",
+    ".claude/skills/onboarding-cro",
+    ".claude/skills/page-cro",
+    ".claude/skills/paid-ads",
+    ".claude/skills/paywall-upgrade-cro",
+    ".claude/skills/popup-cro",
+    ".claude/skills/pricing-strategy",
+    ".claude/skills/programmatic-seo",
+    ".claude/skills/referral-program",
+    ".claude/skills/schema-markup",
+    ".claude/skills/seo-audit",
+    ".claude/skills/signup-flow-cro",
+    ".claude/skills/social-content"
+  ]
+}
