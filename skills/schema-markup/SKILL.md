@@ -1,6 +1,10 @@
 ---
 name: schema-markup
 description: When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions "schema markup," "structured data," "JSON-LD," "rich snippets," "schema.org," "FAQ schema," "product schema," "review schema," or "breadcrumb schema." For broader SEO issues, see seo-audit.
+license: MIT
+metadata:
+  author: "[Corey Haines](https://www.corey.co/?ref=marketingskills)"
+  version: "1.0.0"
 ---
 
 # Schema Markup
@@ -586,6 +590,33 @@ If you need more context:
 3. What data is available to populate the schema?
 4. Is there existing schema on the page?
 5. What's your tech stack for implementation?
+
+---
+
+## References
+
+See [schema-templates.md](references/schema-templates.md) for copy-paste JSON-LD templates with placeholder values for all common schema types.
+
+---
+
+## Scripts
+
+### generate_schema.py
+
+A CLI tool to generate valid JSON-LD schema markup. Located at `scripts/generate_schema.py`.
+
+**Supported schema types**: Article, FAQ, HowTo, Product, LocalBusiness, Breadcrumb, Organization
+
+**Usage examples**:
+```bash
+python scripts/generate_schema.py article --title "My Article" --author "John Doe" --date "2024-01-15"
+python scripts/generate_schema.py faq --questions "Q1?|A1" "Q2?|A2"
+python scripts/generate_schema.py howto --title "How to Do X" --steps "Step 1|Do this" "Step 2|Do that"
+```
+
+**Options**:
+- `--minify`: Output minified JSON
+- `--wrap`: Wrap output in `<script type="application/ld+json">` tag
 
 ---
 

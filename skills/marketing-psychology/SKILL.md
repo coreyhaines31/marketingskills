@@ -1,6 +1,10 @@
 ---
 name: marketing-psychology
 description: "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' or 'consumer behavior.' This skill provides 70+ mental models organized for marketing application."
+license: MIT
+metadata:
+  author: "[Corey Haines](https://www.corey.co/?ref=marketingskills)"
+  version: "1.0.0"
 ---
 
 # Marketing Psychology & Mental Models
