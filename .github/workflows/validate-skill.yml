@@ -1,0 +1,65 @@
+name: Validate Agent Skill
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/SKILL.md"
+  pull_request:
+    branches: [main]
+    paths:
+      - "**/SKILL.md"
+
+concurrency:
+  group: validate-skill-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-slim
+    if: github.event.pull_request.draft != true && github.actor != 'dependabot[bot]'
+    outputs:
+      skills: ${{ steps.changed-skills.outputs.skills }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Get changed skills
+        id: changed-skills
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE=${{ github.event.pull_request.base.sha }}
+            HEAD=${{ github.event.pull_request.head.sha }}
+          else
+            BASE=${{ github.event.before }}
+            HEAD=${{ github.event.after }}
+          fi
+
+          # Find changed SKILL.md files and extract skill directories
+          SKILLS=$(git diff --name-only $BASE $HEAD | \
+            grep 'SKILL.md$' | \
+            xargs -I {} dirname {} | \
+            sort -u | \
+            jq -R -s -c 'split("\n") | map(select(length > 0))')
+
+          echo "skills=$SKILLS" >> $GITHUB_OUTPUT
+          echo "Changed skills: $SKILLS"
+
+  validate:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.skills != '[]'
+    runs-on: ubuntu-slim
+    strategy:
+      fail-fast: false
+      matrix:
+        skill: ${{ fromJson(needs.detect-changes.outputs.skills) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Validate ${{ matrix.skill }}
+        uses: Flash-Brew-Digital/validate-skill@v1
+        with:
+          path: ${{ matrix.skill }}

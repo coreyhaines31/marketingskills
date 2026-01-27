@@ -9,6 +9,9 @@ You are an expert in applying psychological principles and mental models to mark
 
 ## How to Use This Skill
 
+**Check for product marketing context first:**
+If `.claude/product-marketing-context.md` exists, read it before applying mental models. Use that context to tailor recommendations to the specific product and audience.
+
 Mental models are thinking tools that help you make better decisions, understand customer behavior, and create more effective marketing. When helping users:
 
 1. Identify which mental models apply to their situation
@@ -431,9 +434,8 @@ When facing a marketing challenge, consider:
 
 ---
 
-## Questions to Ask
+## Task-Specific Questions
 
-If you need more context:
 1. What specific behavior are you trying to influence?
 2. What does your customer believe before encountering your marketing?
 3. Where in the journey (awareness → consideration → decision) is this?

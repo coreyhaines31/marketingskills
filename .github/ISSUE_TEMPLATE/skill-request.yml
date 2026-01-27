@@ -1,0 +1,74 @@
+name: Skill Request
+description: Request a new marketing skill
+title: "Skill Request: [skill-name]"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new skill! Please fill out the details below.
+
+  - type: input
+    id: skill-name
+    attributes:
+      label: Suggested skill name
+      description: Lowercase, hyphens only (e.g., "landing-page-audit")
+      placeholder: "my-skill-name"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What should this skill do?
+      description: Describe the skill's purpose and capabilities
+      placeholder: "This skill should help with..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: triggers
+    attributes:
+      label: When should it be used?
+      description: What trigger phrases or scenarios should activate this skill?
+      placeholder: |
+        - When the user says "..."
+        - When working on...
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example use cases
+      description: Provide 1-3 specific examples of how you'd use this skill
+      placeholder: |
+        1. I want to...
+        2. Help me...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which category does this skill fit into?
+      options:
+        - CRO (Conversion Rate Optimization)
+        - Copywriting
+        - SEO
+        - Paid Ads
+        - Growth / Strategy
+        - Analytics
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-skills
+    attributes:
+      label: Related existing skills
+      description: Are there existing skills this relates to or differs from?
+      placeholder: "Similar to page-cro but focused on..."
+    validations:
+      required: false

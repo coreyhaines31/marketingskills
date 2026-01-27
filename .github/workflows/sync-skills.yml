@@ -1,0 +1,30 @@
+name: Sync Skills
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: true
+
+      - name: Sync skills
+        run: node .github/scripts/sync-skills.js
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_user_name: Coreybot
+          commit_user_email: coreybot+github-actions[bot]@users.noreply.github.com
+          commit_message: "chore: sync skills with marketplace.json and README"
+          file_pattern: ".claude-plugin/marketplace.json README.md"

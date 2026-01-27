@@ -14,47 +14,51 @@ Skills are markdown files that give AI agents specialized knowledge and workflow
 
 ## Available Skills
 
-| Skill | Description | Triggers |
-|-------|-------------|----------|
-| [ab-test-setup](skills/ab-test-setup/) | Plan and implement A/B tests | "A/B test," "split test," "experiment" |
-| [analytics-tracking](skills/analytics-tracking/) | Set up tracking and measurement | "tracking," "GA4," "GTM," "events" |
-| [competitor-alternatives](skills/competitor-alternatives/) | Competitor comparison and alternative pages | "vs page," "alternative page," "[X] vs [Y]" |
-| [copy-editing](skills/copy-editing/) | Edit and polish existing copy | "edit this copy," "review my copy," "copy sweep" |
-| [copywriting](skills/copywriting/) | Write or improve marketing copy | "write copy," "rewrite," "headlines," "CTA copy" |
-| [email-sequence](skills/email-sequence/) | Build email sequences and drip campaigns | "email sequence," "drip campaign," "nurture" |
-| [form-cro](skills/form-cro/) | Optimize lead capture and contact forms | "form optimization," "lead form," "contact form" |
-| [free-tool-strategy](skills/free-tool-strategy/) | Plan engineering-as-marketing tools | "free tool," "calculator," "lead gen tool" |
-| [launch-strategy](skills/launch-strategy/) | Product launches and feature announcements | "launch," "Product Hunt," "feature release" |
-| [marketing-ideas](skills/marketing-ideas/) | 140 SaaS marketing ideas and strategies | "marketing ideas," "growth ideas," "how to market" |
-| [marketing-psychology](skills/marketing-psychology/) | 70+ mental models for marketing | "psychology," "mental models," "cognitive bias" |
-| [onboarding-cro](skills/onboarding-cro/) | Improve user activation and onboarding | "onboarding," "activation," "first-run experience" |
-| [page-cro](skills/page-cro/) | Conversion optimization for any marketing page | "optimize [page]," "CRO," "page isn't converting" |
-| [paid-ads](skills/paid-ads/) | Create and optimize paid ad campaigns | "PPC," "Google Ads," "Meta ads," "paid media" |
-| [paywall-upgrade-cro](skills/paywall-upgrade-cro/) | In-app paywalls and upgrade screens | "paywall," "upgrade screen," "feature gate" |
-| [popup-cro](skills/popup-cro/) | Create/optimize popups and modals | "popup," "modal," "exit intent" |
-| [pricing-strategy](skills/pricing-strategy/) | Design pricing, packaging, and monetization | "pricing," "tiers," "freemium," "willingness to pay" |
-| [programmatic-seo](skills/programmatic-seo/) | Build SEO pages at scale | "programmatic SEO," "template pages," "pages at scale" |
-| [referral-program](skills/referral-program/) | Design referral and affiliate programs | "referral," "affiliate," "word of mouth," "viral" |
-| [schema-markup](skills/schema-markup/) | Add structured data and rich snippets | "schema," "JSON-LD," "structured data" |
-| [seo-audit](skills/seo-audit/) | Audit technical and on-page SEO | "SEO audit," "technical SEO," "not ranking" |
-| [signup-flow-cro](skills/signup-flow-cro/) | Optimize signup and registration flows | "signup optimization," "registration form" |
-| [social-content](skills/social-content/) | Create and schedule social media content | "LinkedIn post," "Twitter thread," "social media" |
+<!-- SKILLS:START -->
+| Skill | Description |
+|-------|-------------|
+| [ab-test-setup](skills/ab-test-setup/) | When the user wants to plan, design, or implement an A/B test or experiment. Also use when the user mentions "A/B... |
+| [analytics-tracking](skills/analytics-tracking/) | When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions... |
+| [competitor-alternatives](skills/competitor-alternatives/) | When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when... |
+| [content-strategy](skills/content-strategy/) | When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also... |
+| [copy-editing](skills/copy-editing/) | When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this... |
+| [copywriting](skills/copywriting/) | When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,... |
+| [email-sequence](skills/email-sequence/) | When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email... |
+| [form-cro](skills/form-cro/) | When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms,... |
+| [free-tool-strategy](skills/free-tool-strategy/) | When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or... |
+| [launch-strategy](skills/launch-strategy/) | When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user... |
+| [marketing-ideas](skills/marketing-ideas/) | When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the... |
+| [marketing-psychology](skills/marketing-psychology/) | When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when... |
+| [onboarding-cro](skills/onboarding-cro/) | When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also... |
+| [page-cro](skills/page-cro/) | When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing... |
+| [paid-ads](skills/paid-ads/) | When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X,... |
+| [paywall-upgrade-cro](skills/paywall-upgrade-cro/) | When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use... |
+| [popup-cro](skills/popup-cro/) | When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also... |
+| [pricing-strategy](skills/pricing-strategy/) | When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions... |
+| [product-marketing-context](skills/product-marketing-context/) | When the user wants to create or update their product marketing context document. Also use when the user mentions... |
+| [programmatic-seo](skills/programmatic-seo/) | When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions... |
+| [referral-program](skills/referral-program/) | When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy.... |
+| [schema-markup](skills/schema-markup/) | When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user... |
+| [seo-audit](skills/seo-audit/) | When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO... |
+| [signup-flow-cro](skills/signup-flow-cro/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
+| [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
+<!-- SKILLS:END -->
 
 ## Installation
 
 ### Option 1: CLI Install (Recommended)
 
-Use [add-skill](https://github.com/vercel-labs/add-skill) to install skills directly:
+Use [npx skills](https://github.com/vercel-labs/skills) to install skills directly:
 
 ```bash
 # Install all skills
-npx add-skill coreyhaines31/marketingskills
+npx skills add coreyhaines31/marketingskills
 
 # Install specific skills
-npx add-skill coreyhaines31/marketingskills --skill page-cro copywriting
+npx skills add coreyhaines31/marketingskills --skill page-cro copywriting
 
 # List available skills
-npx add-skill coreyhaines31/marketingskills --list
+npx skills add coreyhaines31/marketingskills --list
 ```
 
 This automatically installs to your `.claude/skills/` directory.
@@ -95,6 +99,21 @@ Then reference skills from `.claude/marketingskills/skills/`.
 1. Fork this repository
 2. Customize skills for your specific needs
 3. Clone your fork into your projects
+
+### Option 6: SkillKit (Multi-Agent)
+
+Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across multiple AI agents (Claude Code, Cursor, Copilot, etc.):
+
+```bash
+# Install all skills
+npx skillkit install coreyhaines31/marketingskills
+
+# Install specific skills
+npx skillkit install coreyhaines31/marketingskills --skill page-cro copywriting
+
+# List available skills
+npx skillkit install coreyhaines31/marketingskills --list
+```
 
 ## Usage
 
@@ -166,41 +185,8 @@ You can also invoke skills directly:
 
 Found a way to improve a skill? Have a new skill to suggest? PRs and issues welcome!
 
-**Ideas for contributions:**
-- Improve existing skill instructions or frameworks
-- Add new experiment ideas or best practices
-- Fix typos or clarify confusing sections
-- Suggest new skills (open an issue first to discuss)
-- Add examples or case studies
-
-**How to contribute:**
-1. Fork the repo
-2. Edit the skill file(s)
-3. Submit a PR with a clear description of what you improved
-
-### Skill File Structure
-
-Each skill is a directory containing a `SKILL.md` file:
-
-```
-skills/
-  skill-name/
-    SKILL.md
-```
-
-The `SKILL.md` file follows this format:
-
-```markdown
----
-name: skill-name
-description: One-line description for skill selection
----
-
-# Skill Name
-
-[Full instructions for the AI agent]
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving skills.
 
 ## License
 
-MIT - Use these however you want.
+[MIT](LICENSE) - Use these however you want.

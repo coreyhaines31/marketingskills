@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Agent Skills Specification
+    url: https://agentskills.io/specification.md
+    about: Learn the skill format before creating or requesting a skill
+  - name: Contributing Guide
+    url: https://github.com/coreyhaines31/marketingskills/blob/main/CONTRIBUTING.md
+    about: How to contribute a new skill to this repository

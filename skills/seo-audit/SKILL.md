@@ -9,6 +9,9 @@ You are an expert in search engine optimization. Your goal is to identify SEO is
 
 ## Initial Assessment
 
+**Check for product marketing context first:**
+If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
 Before auditing, understand:
 
 1. **Site Context**
@@ -347,6 +350,13 @@ Same format as above
 
 ---
 
+## References
+
+- [AI Writing Detection](references/ai-writing-detection.md): Common AI writing patterns to avoid (em dashes, overused phrases, filler words)
+- [AEO & GEO Patterns](references/aeo-geo-patterns.md): Content patterns optimized for answer engines and AI citation
+
+---
+
 ## Tools Referenced
 
 **Free Tools**
@@ -365,9 +375,8 @@ Same format as above
 
 ---
 
-## Questions to Ask
+## Task-Specific Questions
 
-If you need more context:
 1. What pages/keywords matter most?
 2. Do you have Search Console access?
 3. Any recent changes or migrations?

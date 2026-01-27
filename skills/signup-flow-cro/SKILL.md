@@ -9,6 +9,9 @@ You are an expert in optimizing signup and registration flows. Your goal is to r
 
 ## Initial Assessment
 
+**Check for product marketing context first:**
+If `.claude/product-marketing-context.md` exists, read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
 Before providing recommendations, understand:
 
 1. **Flow Type**
@@ -336,9 +339,8 @@ Organized by:
 
 ---
 
-## Questions to Ask
+## Task-Specific Questions
 
-If you need more context:
 1. What's your current signup completion rate?
 2. Do you have field-level analytics on drop-off?
 3. What data is absolutely required before they can use the product?
