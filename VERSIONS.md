@@ -29,8 +29,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 1.0.0 | 2026-01-27 |
 | signup-flow-cro | 1.0.0 | 2026-01-27 |
 | social-content | 1.0.0 | 2026-01-27 |
+| manga-short-video | 1.0.0 | 2026-02-02 |
 
 ## Recent Changes
+
+### 2026-02-02
+- Added manga-short-video skill for promoting Japanese manga to North American audiences via short-form video
 
 ### 2026-01-27
 - Initial version tracking added
