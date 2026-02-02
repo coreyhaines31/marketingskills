@@ -14,6 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | form-cro | 1.0.0 | 2026-01-27 |
 | free-tool-strategy | 1.0.0 | 2026-01-27 |
 | launch-strategy | 1.0.0 | 2026-01-27 |
+| manga-promotion-strategy | 1.0.0 | 2026-02-02 |
 | marketing-ideas | 1.0.0 | 2026-01-27 |
 | marketing-psychology | 1.0.0 | 2026-01-27 |
 | onboarding-cro | 1.0.0 | 2026-01-27 |
@@ -31,6 +32,9 @@ Current versions of all skills. Agents can compare against local versions to che
 | social-content | 1.0.0 | 2026-01-27 |
 
 ## Recent Changes
+
+### 2026-02-02
+- Added manga-promotion-strategy skill
 
 ### 2026-01-27
 - Initial version tracking added
