@@ -190,3 +190,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving ski
 ## License
 
 [MIT](LICENSE) - Use these however you want.
+
+## Compatible Agents
+
+These marketing skills work with:
+
+- [Claude Code](https://claude.ai/code) - Anthropic's official CLI
+- [AdaL](https://sylph.ai/adal) - Self-evolving AI coding agent with MCP support
+
