@@ -58,6 +58,7 @@ For each section:
 - Product category (what "shelf" you sit on—how customers search for you)
 - Product type (SaaS, marketplace, e-commerce, service, etc.)
 - Business model and pricing
+- Brand Tagline (optional)
 
 ### 2. Target Audience
 - Target company type (industry, size, stage)
@@ -140,6 +141,7 @@ After gathering information, create `.claude/product-marketing-context.md` with 
 **Product category:**
 **Product type:**
 **Business model:**
+**Brand Tagline:**
 
 ## Target Audience
 **Target companies:**

@@ -42,6 +42,7 @@ Skills are markdown files that give AI agents specialized knowledge and workflow
 | [seo-audit](skills/seo-audit/) | When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO... |
 | [signup-flow-cro](skills/signup-flow-cro/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
 | [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
+| [tagline-generator](skills/tagline-generator/) | When the user needs a brand tagline, slogan, or catchy phrase for their product. Also use when the user... |
 <!-- SKILLS:END -->
 
 ## Installation
@@ -156,6 +157,7 @@ You can also invoke skills directly:
 - `copy-editing` - Edit and polish existing copy
 - `email-sequence` - Automated email flows
 - `social-content` - Social media content
+- `tagline-generator` - Brand taglines and slogans
 
 ### SEO & Discovery
 - `seo-audit` - Technical and on-page SEO

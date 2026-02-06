@@ -249,3 +249,4 @@ For headlines and CTAs, provide 2-3 options:
 - **email-sequence**: For email copywriting
 - **popup-cro**: For popup and modal copy
 - **ab-test-setup**: To test copy variations
+- **tagline-generator**: If the page needs a brand tagline or slogan to accompany headlines
