@@ -275,3 +275,4 @@ Instead of guessing, analyze what's working for top creators in your niche:
 - **launch-strategy**: For coordinating social with launches
 - **email-sequence**: For nurturing social audience via email
 - **marketing-psychology**: For understanding what drives engagement
+- **tagline-generator**: For optimizing profile bios and creating situational slogans for trending content
