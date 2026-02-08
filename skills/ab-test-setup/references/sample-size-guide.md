@@ -2,6 +2,17 @@
 
 Reference for calculating sample sizes and test duration.
 
+## Contents
+- Sample Size Fundamentals (required inputs, what these mean)
+- Sample Size Quick Reference Tables
+- Duration Calculator (formula, examples, minimum duration rules, maximum duration guidelines)
+- Online Calculators
+- Adjusting for Multiple Variants
+- Common Sample Size Mistakes
+- When Sample Size Requirements Are Too High
+- Sequential Testing
+- Quick Decision Framework
+
 ## Sample Size Fundamentals
 
 ### Required Inputs

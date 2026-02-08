@@ -2,6 +2,16 @@
 
 Comprehensive list of A/B tests and experiments for user onboarding and activation.
 
+## Contents
+- Flow Simplification Experiments (reduce friction, step sequencing, progress & motivation)
+- Guided Experience Experiments (product tours, CTA optimization, UI guidance)
+- Personalization Experiments (user segmentation, dynamic content)
+- Quick Wins & Engagement Experiments (time-to-value, motivation mechanics, support & help)
+- Email & Multi-Channel Experiments (onboarding emails, email content, feedback loops)
+- Re-engagement Experiments (stalled user recovery, return experience)
+- Technical & UX Experiments (performance, mobile onboarding, accessibility)
+- Metrics to Track
+
 ## Flow Simplification Experiments
 
 ### Reduce Friction

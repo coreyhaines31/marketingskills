@@ -2,6 +2,15 @@
 
 Detailed guide to each type of marketing tool you can build.
 
+## Contents
+- Calculators
+- Generators
+- Analyzers/Auditors
+- Testers/Validators
+- Libraries/Resources
+- Interactive Educational
+- Tool Concept Examples by Industry (SaaS product, agency/services, e-commerce, developer tools, finance)
+
 ## Calculators
 
 **Best for**: Decisions involving numbers, comparisons, estimates

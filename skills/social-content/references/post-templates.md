@@ -2,6 +2,12 @@
 
 Ready-to-use templates for different platforms and content types.
 
+## Contents
+- LinkedIn Post Templates (The Story Post, The Contrarian Take, The List Post, The How-To)
+- Twitter/X Thread Templates (The Tutorial Thread, The Story Thread, The Breakdown Thread)
+- Instagram Templates (The Carousel Hook, The Reel Script)
+- Hook Formulas (Curiosity Hooks, Story Hooks, Value Hooks, Contrarian Hooks, Social Proof Hooks)
+
 ## LinkedIn Post Templates
 
 ### The Story Post

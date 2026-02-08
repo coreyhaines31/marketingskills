@@ -1,5 +1,14 @@
 # Tier Structure and Packaging
 
+## Contents
+- How Many Tiers?
+- Good-Better-Best Framework
+- Tier Differentiation Strategies
+- Example Tier Structure
+- Packaging for Personas (Identifying Pricing Personas, Persona-Based Packaging)
+- Freemium vs. Free Trial (When to Use Freemium, When to Use Free Trial, Hybrid Approaches)
+- Enterprise Pricing (When to Add Custom Pricing, Enterprise Tier Elements, Enterprise Pricing Strategies)
+
 ## How Many Tiers?
 
 **2 tiers:** Simple, clear choice

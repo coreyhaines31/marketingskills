@@ -2,6 +2,17 @@
 
 Ready-to-use templates for each section of competitor comparison pages.
 
+## Contents
+- TL;DR Summary
+- Paragraph Comparison (Not Just Tables)
+- Feature Comparison Section
+- Pricing Comparison Section
+- Service & Support Comparison
+- Who It's For Section
+- Migration Section
+- Social Proof Section
+- Comparison Table Best Practices (beyond checkmarks, organize by category, include ratings where useful)
+
 ## TL;DR Summary
 
 Start every page with a quick summary for scanners:

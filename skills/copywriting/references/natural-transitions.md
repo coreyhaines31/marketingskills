@@ -6,6 +6,26 @@ Adapted from: University of Manchester Academic Phrasebank (2023), Plain English
 
 ---
 
+## Contents
+- Previewing Content Structure
+- Introducing a New Topic
+- Referring Back
+- Moving Between Sections
+- Indicating Addition
+- Indicating Contrast
+- Indicating Similarity
+- Indicating Cause and Effect
+- Giving Examples
+- Emphasising Key Points
+- Providing Evidence (neutral attribution, expert quotes, supporting claims)
+- Summarising Sections
+- Concluding Content
+- Question-Based Transitions
+- List Introductions
+- Hedging Language
+- Best Practice Guidelines
+- Transitions to Avoid (AI Tells)
+
 ## Previewing Content Structure
 
 Use to orient readers and set expectations:

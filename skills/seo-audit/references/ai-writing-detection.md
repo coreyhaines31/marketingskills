@@ -6,6 +6,16 @@ Sources: Grammarly (2025), Microsoft 365 Life Hacks (2025), GPTHuman (2025), Wal
 
 ---
 
+## Contents
+- Em Dashes: The Primary AI Tell
+- Overused Verbs
+- Overused Adjectives
+- Overused Transitions and Connectors
+- Phrases That Signal AI Writing (Opening Phrases, Transitional Phrases, Concluding Phrases, Structural Patterns)
+- Filler Words and Empty Intensifiers
+- Academic-Specific AI Tells
+- How to Self-Check
+
 ## Em Dashes: The Primary AI Tell
 
 **The em dash (—) has become one of the most reliable markers of AI-generated content.**

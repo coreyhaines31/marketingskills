@@ -1,5 +1,15 @@
 # Email Copy Guidelines
 
+## Contents
+- Structure
+- Formatting
+- Tone
+- Length
+- CTA Buttons vs. Links
+- Personalization (merge fields, dynamic content, triggered emails)
+- Segmentation Strategies (by behavior, by stage, by profile)
+- Testing and Optimization (what to test, how to test, metrics to track)
+
 ## Structure
 
 1. **Hook**: First line grabs attention

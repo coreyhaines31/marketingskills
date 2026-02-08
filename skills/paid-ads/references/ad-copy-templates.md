@@ -2,6 +2,13 @@
 
 Detailed formulas and templates for writing high-converting ad copy.
 
+## Contents
+- Primary Text Formulas (Problem-Agitate-Solve, Before-After-Bridge, Social Proof Lead, Feature-Benefit Bridge, Direct Response)
+- Headline Formulas (For Search Ads, For Social Ads)
+- CTA Variations (Soft CTAs, Hard CTAs, Urgency CTAs, Action-Oriented CTAs)
+- Platform-Specific Copy Guidelines (Google Search Ads, Meta Ads, LinkedIn Ads)
+- Copy Testing Priority
+
 ## Primary Text Formulas
 
 ### Problem-Agitate-Solve (PAS)

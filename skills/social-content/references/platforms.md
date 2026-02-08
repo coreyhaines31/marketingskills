@@ -2,6 +2,13 @@
 
 Detailed strategies for each major social platform.
 
+## Contents
+- LinkedIn
+- Twitter/X
+- Instagram
+- TikTok
+- Facebook
+
 ## LinkedIn
 
 **Best for:** B2B, thought leadership, professional networking, recruiting

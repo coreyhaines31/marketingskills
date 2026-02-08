@@ -2,6 +2,15 @@
 
 A comprehensive guide to lifecycle and campaign emails. Use this as an audit checklist and implementation reference.
 
+## Contents
+- Onboarding Emails (new users series, new customers series, key onboarding step reminder, new user invite)
+- Retention Emails (upgrade to paid, upgrade to higher plan, ask for review, offer support proactively, product usage report, NPS survey, referral program)
+- Billing Emails (switch to annual, failed payment recovery, cancellation survey, upcoming renewal reminder)
+- Usage Emails (daily/weekly/monthly summary, key event or milestone notifications)
+- Win-Back Emails (expired trials, cancelled customers)
+- Campaign Emails (monthly roundup/newsletter, seasonal promotions, product updates, industry news roundup, pricing update)
+- Email Audit Checklist (onboarding, retention, billing, usage, win-back, campaigns)
+
 ## Onboarding Emails
 
 ### New Users Series

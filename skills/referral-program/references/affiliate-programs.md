@@ -2,6 +2,14 @@
 
 Detailed guidance for building and managing affiliate programs.
 
+## Contents
+- Commission Structures
+- Cookie Duration
+- Affiliate Recruitment
+- Affiliate Enablement
+- Tools & Platforms (Referral Program Tools, Affiliate Program Tools, Choosing a Tool)
+- Fraud Prevention (Common Referral Fraud, Prevention Measures)
+
 ## Commission Structures
 
 **Percentage of sale:**

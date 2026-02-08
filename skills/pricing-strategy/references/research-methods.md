@@ -1,5 +1,11 @@
 # Pricing Research Methods
 
+## Contents
+- Van Westendorp Price Sensitivity Meter (The Four Questions, How to Analyze, Survey Tips, Sample Output)
+- MaxDiff Analysis (How It Works, Example Survey Question, Analyzing Results, Using MaxDiff for Packaging)
+- Willingness to Pay Surveys
+- Usage-Value Correlation Analysis
+
 ## Van Westendorp Price Sensitivity Meter
 
 The Van Westendorp survey identifies the acceptable price range for your product.

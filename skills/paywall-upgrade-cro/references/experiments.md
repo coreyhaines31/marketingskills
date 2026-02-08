@@ -2,6 +2,15 @@
 
 Comprehensive list of A/B tests and experiments for paywall optimization.
 
+## Contents
+- Trigger & Timing Experiments (When to Show, Trigger Type)
+- Paywall Design Experiments (Layout & Format, Value Presentation, Visual Elements)
+- Pricing Presentation Experiments (Price Display, Plan Options, Discounts & Offers)
+- Copy & Messaging Experiments (Headlines, CTAs, Objection Handling)
+- Trial & Conversion Experiments (Trial Structure, Trial Expiration, Upgrade Path)
+- Personalization Experiments (Usage-Based, Segment-Specific)
+- Frequency & UX Experiments (Frequency Capping, Dismiss Behavior)
+
 ## Trigger & Timing Experiments
 
 ### When to Show

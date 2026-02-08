@@ -2,6 +2,16 @@
 
 Detailed implementation guide for Google Analytics 4.
 
+## Contents
+- Configuration (data streams, enhanced measurement events, recommended events)
+- Custom Events (gtag.js implementation, Google Tag Manager)
+- Conversions Setup (creating conversions, conversion values)
+- Custom Dimensions and Metrics (when to use, setup steps, examples)
+- Audiences (creating audiences, audience examples)
+- Debugging (DebugView, real-time reports, common issues)
+- Data Quality (filters, cross-domain tracking, session settings)
+- Integration with Google Ads (linking, audience export)
+
 ## Configuration
 
 ### Data Streams

@@ -2,6 +2,12 @@
 
 Detailed templates for common email sequences.
 
+## Contents
+- Welcome Sequence (Post-Signup)
+- Lead Nurture Sequence (Pre-Sale)
+- Re-Engagement Sequence
+- Onboarding Sequence (Product Users)
+
 ## Welcome Sequence (Post-Signup)
 
 **Email 1: Welcome (Immediate)**
