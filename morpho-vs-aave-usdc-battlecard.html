@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morpho vs Aave — USDC Lending Battle Card</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0e1a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .battlecard {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .header h1 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .header h2 {
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .header .subtitle {
+      font-size: 16px;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    /* ── Protocol Titles Row ── */
+    .protocol-row {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 32px;
+      align-items: center;
+    }
+
+    .protocol-title {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .protocol-title .logo-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .protocol-title h3 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .protocol-title.morpho h3 {
+      color: #60a5fa;
+    }
+
+    .protocol-title.aave h3 {
+      color: #a78bfa;
+    }
+
+    .protocol-title .vault-name {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .vs-divider {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    /* ── Comparison Section ── */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    /* ── Yield Comparison ── */
+    .yield-comparison {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 40px;
+    }
+
+    .yield-card {
+      background: #111827;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      border: 1px solid #1e293b;
+      position: relative;
+    }
+
+    .yield-card.morpho {
+      border-color: rgba(96, 165, 250, 0.2);
+    }
+
+    .yield-card.aave {
+      border-color: rgba(167, 139, 250, 0.2);
+    }
+
+    .yield-card .apy-value {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .yield-card.morpho .apy-value {
+      color: #60a5fa;
+    }
+
+    .yield-card.aave .apy-value {
+      color: #a78bfa;
+    }
+
+    .yield-card .apy-label {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .yield-card .yield-detail {
+      font-size: 12px;
+      color: #475569;
+      margin-top: 8px;
+    }
+
+    .yield-card .yield-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .yield-card.morpho .yield-badge {
+      background: rgba(96, 165, 250, 0.1);
+      color: #60a5fa;
+    }
+
+    .yield-card.aave .yield-badge {
+      background: rgba(167, 139, 250, 0.1);
+      color: #a78bfa;
+    }
+
+    .yield-vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .yield-delta {
+      text-align: center;
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.15);
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .yield-delta span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #22c55e;
+    }
+
+    .yield-delta-row {
+      text-align: center;
+      margin-top: -8px;
+      margin-bottom: 32px;
+    }
+
+    /* ── Collateral Exposure ── */
+    .exposure-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .exposure-panel {
+      background: #111827;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #1e293b;
+    }
+
+    .exposure-panel.morpho {
+      border-color: rgba(96, 165, 250, 0.15);
+    }
+
+    .exposure-panel.aave {
+      border-color: rgba(167, 139, 250, 0.15);
+    }
+
+    .exposure-panel .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .exposure-panel .panel-header h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .exposure-panel .panel-header .asset-count {
+      font-size: 12px;
+      color: #64748b;
+      background: #1e293b;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .exposure-divider {
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      padding-top: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* ── Allocation Bar ── */
+    .alloc-bar {
+      height: 12px;
+      border-radius: 6px;
+      background: #1e293b;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .alloc-bar .segment {
+      height: 100%;
+      transition: width 0.6s ease;
+    }
+
+    /* Morpho colors */
+    .alloc-bar .segment.cbbtc { background: #f59e0b; }
+    .alloc-bar .segment.wbtc { background: #f97316; }
+    .alloc-bar .segment.wsteth { background: #3b82f6; }
+    .alloc-bar .segment.weth-m { background: #6366f1; }
+
+    /* Aave colors */
+    .alloc-bar .segment.weth { background: #6366f1; }
+    .alloc-bar .segment.weeth { background: #818cf8; }
+    .alloc-bar .segment.wsteth-a { background: #3b82f6; }
+    .alloc-bar .segment.wbtc-a { background: #f97316; }
+    .alloc-bar .segment.cbbtc-a { background: #f59e0b; }
+    .alloc-bar .segment.usde { background: #ec4899; }
+    .alloc-bar .segment.usdt { background: #22c55e; }
+    .alloc-bar .segment.other { background: #475569; }
+
+    /* ── Asset List ── */
+    .asset-list {
+      list-style: none;
+    }
+
+    .asset-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #1a2235;
+    }
+
+    .asset-item:last-child {
+      border-bottom: none;
+    }
+
+    .asset-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .asset-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .asset-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .asset-type {
+      font-size: 11px;
+      color: #64748b;
+      margin-left: 6px;
+      font-weight: 400;
+    }
+
+    .asset-right {
+      text-align: right;
+    }
+
+    .asset-pct {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .asset-val {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ── Risk Comparison Grid ── */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-top: 40px;
+      align-items: start;
+    }
+
+    .risk-panel {
+      background: #111827;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #1e293b;
+    }
+
+    .risk-panel.morpho { border-color: rgba(96, 165, 250, 0.15); }
+    .risk-panel.aave { border-color: rgba(167, 139, 250, 0.15); }
+
+    .risk-item {
+      margin-bottom: 20px;
+    }
+
+    .risk-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .risk-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .risk-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .risk-divider {
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      padding-top: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* ── Key Insight Box ── */
+    .insight-box {
+      margin-top: 40px;
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.06), rgba(167, 139, 250, 0.06));
+      border: 1px solid rgba(100, 116, 139, 0.15);
+      border-radius: 16px;
+      padding: 28px 32px;
+    }
+
+    .insight-box h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+
+    .insight-list {
+      list-style: none;
+    }
+
+    .insight-list li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+    }
+
+    .insight-list li::before {
+      content: "→";
+      color: #475569;
+      flex-shrink: 0;
+    }
+
+    .insight-list li strong {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* ── Collateral Concentration Chart ── */
+    .concentration-section {
+      margin-top: 40px;
+    }
+
+    .concentration-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .conc-panel {
+      background: #111827;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #1e293b;
+    }
+
+    .conc-panel.morpho { border-color: rgba(96, 165, 250, 0.15); }
+    .conc-panel.aave { border-color: rgba(167, 139, 250, 0.15); }
+
+    .conc-divider {
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      padding-top: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .conc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .conc-header h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .conc-metric {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #1a2235;
+    }
+
+    .conc-metric:last-child { border-bottom: none; }
+
+    .conc-metric .label {
+      font-size: 13px;
+      color: #94a3b8;
+      flex: 1;
+    }
+
+    .conc-metric .value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .tag-green {
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag-yellow {
+      background: rgba(234, 179, 8, 0.1);
+      color: #eab308;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag-red {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #1e293b;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #475569;
+    }
+
+    .footer a {
+      color: #64748b;
+      text-decoration: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .protocol-row,
+      .yield-comparison,
+      .exposure-grid,
+      .risk-grid,
+      .concentration-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .vs-divider,
+      .yield-vs,
+      .exposure-divider,
+      .risk-divider,
+      .conc-divider {
+        display: none;
+      }
+
+      .yield-card .apy-value {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="battlecard">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>USDC Lending Battle Card</h1>
+    <h2>Morpho vs Aave</h2>
+    <p class="subtitle">Collateral Exposure &amp; Yield Comparison — Ethereum Mainnet</p>
+  </div>
+
+  <!-- Protocol Title Row -->
+  <div class="protocol-row">
+    <div class="protocol-title morpho">
+      <div class="logo-label">Curated Vault</div>
+      <h3>Morpho</h3>
+      <div class="vault-name">Steakhouse USDC · Blue Chip</div>
+    </div>
+    <div class="vs-divider">VS</div>
+    <div class="protocol-title aave">
+      <div class="logo-label">Shared Pool</div>
+      <h3>Aave V3</h3>
+      <div class="vault-name">USDC Market · Ethereum</div>
+    </div>
+  </div>
+
+  <!-- ── Section 1: Yield Comparison ── -->
+  <div class="section">
+    <div class="section-title">Supply Yield</div>
+    <div class="yield-comparison">
+      <div class="yield-card morpho">
+        <div class="apy-value">5.87%</div>
+        <div class="apy-label">Net APY</div>
+        <span class="yield-badge">Curator-optimized</span>
+        <div class="yield-detail">~$316M total deposits</div>
+        <div class="yield-detail">25% performance fee (post-fee APY shown)</div>
+      </div>
+      <div class="yield-vs">vs</div>
+      <div class="yield-card aave">
+        <div class="apy-value">4.01%</div>
+        <div class="apy-label">Supply APR</div>
+        <span class="yield-badge">Protocol-rate</span>
+        <div class="yield-detail">~$6.13B total supplied</div>
+        <div class="yield-detail">No performance fee on supply</div>
+      </div>
+    </div>
+    <div class="yield-delta-row">
+      <div class="yield-delta">
+        <span>+1.86% higher yield on Morpho Steakhouse USDC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 2: Collateral Exposure ── -->
+  <div class="section">
+    <div class="section-title">Collateral Exposure — What Backs Your USDC</div>
+    <div class="exposure-grid">
+
+      <!-- Morpho Panel -->
+      <div class="exposure-panel morpho">
+        <div class="panel-header">
+          <h4>Morpho Collateral</h4>
+          <span class="asset-count">4 assets · Isolated markets</span>
+        </div>
+
+        <!-- Allocation bar -->
+        <div class="alloc-bar">
+          <div class="segment cbbtc" style="width: 69%"></div>
+          <div class="segment wbtc" style="width: 25.5%"></div>
+          <div class="segment wsteth" style="width: 5.2%"></div>
+          <div class="segment weth-m" style="width: 0.3%"></div>
+        </div>
+
+        <!-- Asset list -->
+        <ul class="asset-list">
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f59e0b"></span>
+              <span class="asset-name">cbBTC <span class="asset-type">Coinbase BTC</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">69.0%</div>
+              <div class="asset-val">$217.85M</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f97316"></span>
+              <span class="asset-name">WBTC <span class="asset-type">Wrapped BTC</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">25.5%</div>
+              <div class="asset-val">$80.53M</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #3b82f6"></span>
+              <span class="asset-name">wstETH <span class="asset-type">Lido Staked ETH</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">5.2%</div>
+              <div class="asset-val">$16.41M</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #6366f1"></span>
+              <span class="asset-name">WETH <span class="asset-type">Wrapped ETH</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">&lt;0.1%</div>
+              <div class="asset-val">$1.66</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="exposure-divider">vs</div>
+
+      <!-- Aave Panel -->
+      <div class="exposure-panel aave">
+        <div class="panel-header">
+          <h4>Aave Collateral</h4>
+          <span class="asset-count">20+ assets · Shared pool</span>
+        </div>
+
+        <!-- Allocation bar -->
+        <div class="alloc-bar">
+          <div class="segment weth" style="width: 22%"></div>
+          <div class="segment weeth" style="width: 17.3%"></div>
+          <div class="segment wsteth-a" style="width: 13%"></div>
+          <div class="segment usde" style="width: 13.5%"></div>
+          <div class="segment wbtc-a" style="width: 10.1%"></div>
+          <div class="segment usdt" style="width: 7%"></div>
+          <div class="segment cbbtc-a" style="width: 3.3%"></div>
+          <div class="segment other" style="width: 13.8%"></div>
+        </div>
+
+        <!-- Asset list -->
+        <ul class="asset-list">
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #6366f1"></span>
+              <span class="asset-name">WETH <span class="asset-type">Wrapped ETH</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">22.0%</div>
+              <div class="asset-val">$10.73B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #818cf8"></span>
+              <span class="asset-name">weETH <span class="asset-type">EtherFi Restaked ETH</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">17.3%</div>
+              <div class="asset-val">$8.48B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #3b82f6"></span>
+              <span class="asset-name">wstETH <span class="asset-type">Lido Staked ETH</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">13.0%</div>
+              <div class="asset-val">$6.36B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #ec4899"></span>
+              <span class="asset-name">USDe <span class="asset-type">Ethena Synthetic</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">13.5%</div>
+              <div class="asset-val">~$6.6B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f97316"></span>
+              <span class="asset-name">WBTC <span class="asset-type">Wrapped BTC</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">10.1%</div>
+              <div class="asset-val">$4.93B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #22c55e"></span>
+              <span class="asset-name">USDT <span class="asset-type">Tether</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">~7.0%</div>
+              <div class="asset-val">~$3.4B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f59e0b"></span>
+              <span class="asset-name">cbBTC <span class="asset-type">Coinbase BTC</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">3.3%</div>
+              <div class="asset-val">$1.63B</div>
+            </div>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #475569"></span>
+              <span class="asset-name">Other <span class="asset-type">13+ more assets</span></span>
+            </div>
+            <div class="asset-right">
+              <div class="asset-pct">13.8%</div>
+              <div class="asset-val">~$6.7B</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Section 3: Collateral Quality ── -->
+  <div class="section concentration-section">
+    <div class="section-title">Collateral Quality &amp; Risk Profile</div>
+    <div class="concentration-grid">
+
+      <div class="conc-panel morpho">
+        <div class="conc-header">
+          <h4>Morpho Risk Profile</h4>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Blue chip concentration</span>
+          <span class="value">100%</span>
+          <span class="tag-green">Low risk</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">BTC-correlated exposure</span>
+          <span class="value">94.5%</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">ETH-correlated exposure</span>
+          <span class="value">5.5%</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Synthetic / algorithmic</span>
+          <span class="value">0%</span>
+          <span class="tag-green">None</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Market isolation</span>
+          <span class="value">Yes</span>
+          <span class="tag-green">Isolated</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Tail-risk asset exposure</span>
+          <span class="value">0%</span>
+          <span class="tag-green">None</span>
+        </div>
+      </div>
+
+      <div class="conc-divider">vs</div>
+
+      <div class="conc-panel aave">
+        <div class="conc-header">
+          <h4>Aave Risk Profile</h4>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Blue chip concentration</span>
+          <span class="value">~65%</span>
+          <span class="tag-yellow">Mixed</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">BTC-correlated exposure</span>
+          <span class="value">~13.4%</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">ETH-correlated exposure</span>
+          <span class="value">~52.3%</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Synthetic / algorithmic</span>
+          <span class="value">~13.5%</span>
+          <span class="tag-red">USDe</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Market isolation</span>
+          <span class="value">No</span>
+          <span class="tag-yellow">Shared pool</span>
+        </div>
+        <div class="conc-metric">
+          <span class="label">Tail-risk asset exposure</span>
+          <span class="value">~21%</span>
+          <span class="tag-red">Present</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Section 4: Architecture Comparison ── -->
+  <div class="section">
+    <div class="section-title">Architecture &amp; Risk Model</div>
+    <div class="risk-grid">
+
+      <div class="risk-panel morpho">
+        <div class="risk-item">
+          <div class="risk-label">Model</div>
+          <div class="risk-value">Isolated Markets + Curated Vaults</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Curator</div>
+          <div class="risk-value">Steakhouse Financial (2/3 multisig)</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Reallocation</div>
+          <div class="risk-value">Every 15 min (off-chain bot)</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Timelock</div>
+          <div class="risk-value">3 days</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Guardian</div>
+          <div class="risk-value">Aragon DAO — any LP can veto</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Bad Debt Containment</div>
+          <div class="risk-value">Per-market — cannot spread across vault</div>
+        </div>
+      </div>
+
+      <div class="risk-divider">vs</div>
+
+      <div class="risk-panel aave">
+        <div class="risk-item">
+          <div class="risk-label">Model</div>
+          <div class="risk-value">Shared Liquidity Pool</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Governance</div>
+          <div class="risk-value">AAVE DAO token voting</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Rate Model</div>
+          <div class="risk-value">Algorithmic (utilization-based)</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Risk Manager</div>
+          <div class="risk-value">Chaos Labs / Gauntlet</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Guardian</div>
+          <div class="risk-value">Aave Guardian multisig</div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-label">Bad Debt Containment</div>
+          <div class="risk-value">Pool-wide — affects all suppliers</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Key Insights ── -->
+  <div class="insight-box">
+    <h4>Key Takeaways</h4>
+    <ul class="insight-list">
+      <li><strong>Morpho delivers ~46% higher yield</strong> on USDC lending (5.87% vs 4.01%) through curator-optimized market allocation.</li>
+      <li><strong>Morpho's collateral is 100% blue chip</strong> — only BTC and ETH derivatives (cbBTC, WBTC, wstETH, WETH). No synthetic or algorithmic assets.</li>
+      <li><strong>Aave carries ~13.5% USDe (Ethena) exposure</strong> — a synthetic dollar with delta-neutral hedging risk that Chaos Labs has flagged as a potential "liquidity squeeze" concern at $6.6B.</li>
+      <li><strong>Morpho uses isolated markets</strong> — bad debt in one collateral market (e.g., WBTC depeg) cannot infect other markets. In Aave's shared pool, a bad debt event from any collateral type affects all USDC suppliers.</li>
+      <li><strong>Aave has 19x more TVL</strong> ($6.13B vs $316M), offering deeper liquidity but also greater systemic exposure to 20+ collateral types including restaked and synthetic assets.</li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Data sources: Morpho App, Aavescan, Chaos Labs, DefiLlama · Collateral data as visible on-chain · Rates fluctuate in real-time</p>
+  </div>
+
+</div>
+
+</body>
+</html>
