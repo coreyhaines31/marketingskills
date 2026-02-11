@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morpho vs Aave — USDC Lending Comparison</title>
+  <title>Risk Comparison: USDC Yield on Morpho vs on Aave</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -315,7 +315,7 @@
 
   <!-- Header -->
   <div class="header">
-    <h1>Morpho vs Aave &mdash; USDC Lending</h1>
+    <h1>Risk Comparison: USDC Yield on Morpho vs on Aave</h1>
     <p>Yield &amp; collateral comparison on Ethereum Mainnet</p>
   </div>
 
@@ -323,21 +323,18 @@
   <div class="section">
     <div class="section-label">Supply Yield &middot; 7-Day Average</div>
     <div class="yield-row">
-      <div class="yield-card morpho">
+      <a href="https://app.morpho.org/vault?vault=0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB" class="yield-card morpho" style="text-decoration: none; color: inherit; display: block;">
         <div class="protocol-name">Morpho</div>
         <div class="vault-label">Steakhouse USDC</div>
         <div class="apy">5.87%</div>
         <div class="apy-sub">Net APY (post 25% perf. fee)</div>
-      </div>
-      <div class="yield-card aave">
+      </a>
+      <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit; display: block;">
         <div class="protocol-name">Aave V3</div>
         <div class="vault-label">USDC Market</div>
         <div class="apy">4.01%</div>
         <div class="apy-sub">Supply APR</div>
-      </div>
-    </div>
-    <div class="yield-delta-bar">
-      <div class="yield-delta-pill">Morpho yields +1.86% more</div>
+      </a>
     </div>
   </div>
 
