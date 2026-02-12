@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USDC: Risk &amp; Yield Comparison</title>
+  <style>
+    @import url('https://db.onlinewebfonts.com/c/9419cf3ea65d2c875025a63789ee57fa?family=FK+Grotesk+Variable');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'FK Grotesk Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #DFE1E8;
+      color: #1d1d1f;
+      min-height: 100vh;
+      padding: 48px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #86868b;
+      margin-bottom: 16px;
+    }
+
+    /* ── Yield Cards ── */
+    .yield-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .yield-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      border: 1px solid #e5e5ea;
+      position: relative;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .yield-card .protocol-name {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .yield-card .vault-label {
+      font-size: 13px;
+      color: #86868b;
+      margin-bottom: 20px;
+    }
+
+    .yield-card .apy {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .yield-card .apy-sub {
+      font-size: 13px;
+      color: #86868b;
+      font-weight: 400;
+    }
+
+    .yield-card.morpho .protocol-name { color: #2470ff; }
+    .yield-card.morpho .apy { color: #2470ff; }
+    .yield-card.morpho { border-color: rgba(36, 112, 255, 0.2); }
+
+    .yield-card.aave .protocol-name { color: #7c3aed; }
+    .yield-card.aave .apy { color: #7c3aed; }
+    .yield-card.aave { border-color: rgba(124, 58, 237, 0.2); }
+
+    /* ── Vault Tabs (Morpho carousel) ── */
+    .vault-tabs-wrapper {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    /* Right fade */
+    .vault-tabs-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-end::after {
+      opacity: 0;
+    }
+
+    /* Left fade */
+    .vault-tabs-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-start::before {
+      opacity: 1;
+    }
+
+    .vault-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0 2px 4px 2px;
+    }
+
+    .vault-tabs::-webkit-scrollbar { display: none; }
+
+    .vault-tab {
+      flex-shrink: 0;
+      padding: 6px 12px;
+      border-radius: 100px;
+      border: 1px solid #e5e5ea;
+      background: #f5f5f7;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .vault-tab:hover {
+      border-color: #c7c7cc;
+      color: #1d1d1f;
+    }
+
+    .vault-tab.active {
+      background: #2470ff;
+      border-color: #2470ff;
+      color: #ffffff;
+    }
+
+    /* ── Morpho card link area ── */
+    .morpho-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .morpho-link:hover {
+      opacity: 0.85;
+    }
+
+    /* ── Collateral Section ── */
+    .collateral-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .collateral-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #e5e5ea;
+    }
+
+    .collateral-card.morpho { border-color: rgba(36, 112, 255, 0.2); }
+    .collateral-card.aave { border-color: rgba(124, 58, 237, 0.2); }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    .card-header .badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      background: #f5f5f7;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── Allocation Bar ── */
+    .alloc-bar {
+      height: 10px;
+      border-radius: 5px;
+      background: #f0f0f5;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .alloc-bar .seg {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+
+    /* ── Asset List ── */
+    .asset-list {
+      list-style: none;
+    }
+
+    .asset-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .asset-item:last-child { border-bottom: none; }
+
+    .asset-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .asset-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .asset-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1d1d1f;
+    }
+
+    .asset-type {
+      font-size: 12px;
+      color: #86868b;
+      margin-left: 4px;
+      font-weight: 400;
+    }
+
+    .asset-pct {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    /* ── Dropdown Toggle ── */
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 10px 0;
+      margin-top: 4px;
+      background: none;
+      border: 1px solid #e5e5ea;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background: #f5f5f7;
+      color: #1d1d1f;
+    }
+
+    .dropdown-toggle .arrow {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .hidden-assets {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .hidden-assets.show {
+      max-height: 600px;
+    }
+
+    /* ── Morpho collateral transition ── */
+    .morpho-collateral-inner {
+      transition: opacity 0.25s ease;
+    }
+
+    .morpho-collateral-inner.fading {
+      opacity: 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #aeaeb2;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .yield-row, .collateral-row {
+        grid-template-columns: 1fr;
+      }
+
+      .yield-card .apy {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>USDC: Risk &amp; Yield Comparison</h1>
+  </div>
+
+  <!-- ── Section 1: Supply Yield ── -->
+  <div class="section">
+    <div class="section-label">Supply Yield &middot; 7-Day Average</div>
+    <div class="yield-row">
+
+      <!-- Morpho carousel card -->
+      <div class="yield-card morpho">
+        <div class="vault-tabs-wrapper" id="vaultTabsWrapper">
+          <div class="vault-tabs" id="vaultTabs"></div>
+        </div>
+        <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
+          <div class="protocol-name">Morpho</div>
+          <div class="vault-label" id="morphoVaultLabel">Steakhouse USDC</div>
+          <div class="apy" id="morphoApy">5.87%</div>
+          <div class="apy-sub" id="morphoApySub">Net APY (post 25% perf. fee)</div>
+        </a>
+      </div>
+
+      <!-- Aave card (static) -->
+      <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener">
+        <div class="protocol-name">Aave V3</div>
+        <div class="vault-label">USDC Market</div>
+        <div class="apy">4.01%</div>
+        <div class="apy-sub">Supply APR</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Section 2: Collateral Backing ── -->
+  <div class="section">
+    <div class="section-label">Collateral Backing</div>
+    <div class="collateral-row">
+
+      <!-- Morpho (dynamic) -->
+      <div class="collateral-card morpho">
+        <div class="morpho-collateral-inner" id="morphoCollateral">
+          <div class="card-header">
+            <h3>Morpho</h3>
+            <span class="badge" id="morphoBadge">4 assets &middot; Isolated</span>
+          </div>
+          <div class="alloc-bar" id="morphoAllocBar"></div>
+          <ul class="asset-list" id="morphoAssetList"></ul>
+        </div>
+      </div>
+
+      <!-- Aave (static) -->
+      <div class="collateral-card aave">
+        <div class="card-header">
+          <h3>Aave V3</h3>
+          <span class="badge">20+ assets &middot; Shared pool</span>
+        </div>
+
+        <div class="alloc-bar">
+          <div class="seg" style="width: 22%; background: #6366f1"></div>
+          <div class="seg" style="width: 17.3%; background: #818cf8"></div>
+          <div class="seg" style="width: 13%; background: #3b82f6"></div>
+          <div class="seg" style="width: 13.5%; background: #ec4899"></div>
+          <div class="seg" style="width: 10.1%; background: #f97316"></div>
+          <div class="seg" style="width: 7%; background: #22c55e"></div>
+          <div class="seg" style="width: 3.3%; background: #f59e0b"></div>
+          <div class="seg" style="width: 2.5%; background: #2563eb"></div>
+          <div class="seg" style="width: 2%; background: #9333ea"></div>
+          <div class="seg" style="width: 9.3%; background: #c7c7cc"></div>
+        </div>
+
+        <!-- Top assets always visible -->
+        <ul class="asset-list">
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #6366f1"></span>
+              <span class="asset-name">WETH <span class="asset-type">Wrapped ETH</span></span>
+            </div>
+            <span class="asset-pct">22.0%</span>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #818cf8"></span>
+              <span class="asset-name">weETH <span class="asset-type">EtherFi Restaked ETH</span></span>
+            </div>
+            <span class="asset-pct">17.3%</span>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #3b82f6"></span>
+              <span class="asset-name">wstETH <span class="asset-type">Lido Staked ETH</span></span>
+            </div>
+            <span class="asset-pct">13.0%</span>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #ec4899"></span>
+              <span class="asset-name">USDe <span class="asset-type">Ethena Synthetic</span></span>
+            </div>
+            <span class="asset-pct">13.5%</span>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f97316"></span>
+              <span class="asset-name">WBTC <span class="asset-type">Wrapped BTC</span></span>
+            </div>
+            <span class="asset-pct">10.1%</span>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #22c55e"></span>
+              <span class="asset-name">USDT <span class="asset-type">Tether</span></span>
+            </div>
+            <span class="asset-pct">7.0%</span>
+          </li>
+          <li class="asset-item">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f59e0b"></span>
+              <span class="asset-name">cbBTC <span class="asset-type">Coinbase BTC</span></span>
+            </div>
+            <span class="asset-pct">3.3%</span>
+          </li>
+        </ul>
+
+        <!-- Hidden assets revealed by dropdown -->
+        <div class="hidden-assets" id="aaveMore">
+          <ul class="asset-list">
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #2563eb"></span>
+                <span class="asset-name">LINK <span class="asset-type">Chainlink</span></span>
+              </div>
+              <span class="asset-pct">2.5%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #9333ea"></span>
+                <span class="asset-name">AAVE <span class="asset-type">Aave Token</span></span>
+              </div>
+              <span class="asset-pct">2.0%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #f59e0b"></span>
+                <span class="asset-name">DAI <span class="asset-type">MakerDAO</span></span>
+              </div>
+              <span class="asset-pct">1.8%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #06b6d4"></span>
+                <span class="asset-name">rETH <span class="asset-type">Rocket Pool ETH</span></span>
+              </div>
+              <span class="asset-pct">1.5%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #ef4444"></span>
+                <span class="asset-name">CRV <span class="asset-type">Curve</span></span>
+              </div>
+              <span class="asset-pct">0.8%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #3b82f6"></span>
+                <span class="asset-name">cbETH <span class="asset-type">Coinbase Staked ETH</span></span>
+              </div>
+              <span class="asset-pct">0.7%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #10b981"></span>
+                <span class="asset-name">GHO <span class="asset-type">Aave Stablecoin</span></span>
+              </div>
+              <span class="asset-pct">0.6%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #6366f1"></span>
+                <span class="asset-name">LUSD <span class="asset-type">Liquity USD</span></span>
+              </div>
+              <span class="asset-pct">0.5%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #60a5fa"></span>
+                <span class="asset-name">ENS <span class="asset-type">Ethereum Name Service</span></span>
+              </div>
+              <span class="asset-pct">0.4%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #a78bfa"></span>
+                <span class="asset-name">SNX <span class="asset-type">Synthetix</span></span>
+              </div>
+              <span class="asset-pct">0.3%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #818cf8"></span>
+                <span class="asset-name">MKR <span class="asset-type">Maker</span></span>
+              </div>
+              <span class="asset-pct">0.3%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #c084fc"></span>
+                <span class="asset-name">BAL <span class="asset-type">Balancer</span></span>
+              </div>
+              <span class="asset-pct">0.2%</span>
+            </li>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #c7c7cc"></span>
+                <span class="asset-name">Others <span class="asset-type">KNC, 1INCH, etc.</span></span>
+              </div>
+              <span class="asset-pct">1.5%</span>
+            </li>
+          </ul>
+        </div>
+
+        <button class="dropdown-toggle" id="aaveToggle" onclick="toggleAave()">
+          <span id="toggleText">Show all 20+ assets</span>
+          <span class="arrow" id="toggleArrow">&#9660;</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Sources: Morpho App, Aavescan, DefiLlama &middot; Rates are 7-day averages and fluctuate</p>
+  </div>
+
+</div>
+
+<script>
+  // ── Vault Data ──
+  const morphoVaults = [
+    {
+      name: "Steakhouse USDC",
+      url: "https://app.morpho.org/ethereum/vault/0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB/steakhouse-usdc",
+      apy: "5.87%",
+      apySub: "Net APY (post 25% perf. fee)",
+      badge: "4 assets \u00b7 Isolated",
+      collateral: [
+        { name: "cbBTC",  type: "Coinbase BTC",    pct: "69.0%", width: 69,   color: "#f59e0b" },
+        { name: "WBTC",   type: "Wrapped BTC",     pct: "25.5%", width: 25.5, color: "#f97316" },
+        { name: "wstETH", type: "Lido Staked ETH", pct: "5.2%",  width: 5.2,  color: "#3b82f6" },
+        { name: "WETH",   type: "Wrapped ETH",     pct: "<0.1%", width: 0.3,  color: "#6366f1" }
+      ]
+    },
+    {
+      name: "Gauntlet USDC Prime",
+      url: "https://app.morpho.org/ethereum/vault/0xdd0f28e19C1780eb6396170735D45153D261490d/gauntlet-usdc-prime",
+      apy: "5.41%",
+      apySub: "Net APY",
+      badge: "5 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH",      pct: "30.2%", width: 30.2, color: "#3b82f6" },
+        { name: "WBTC",   type: "Wrapped BTC",          pct: "25.1%", width: 25.1, color: "#f97316" },
+        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "20.4%", width: 20.4, color: "#818cf8" },
+        { name: "WETH",   type: "Wrapped ETH",          pct: "14.8%", width: 14.8, color: "#6366f1" },
+        { name: "cbBTC",  type: "Coinbase BTC",         pct: "9.5%",  width: 9.5,  color: "#f59e0b" }
+      ]
+    },
+    {
+      name: "Vault Bridge USDC",
+      url: "https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4/vault-bridge-usdc",
+      apy: "4.62%",
+      apySub: "Net APY",
+      badge: "4 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH",      pct: "40.0%", width: 40,   color: "#3b82f6" },
+        { name: "WETH",   type: "Wrapped ETH",          pct: "34.5%", width: 34.5, color: "#6366f1" },
+        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "15.3%", width: 15.3, color: "#818cf8" },
+        { name: "cbBTC",  type: "Coinbase BTC",         pct: "10.2%", width: 10.2, color: "#f59e0b" }
+      ]
+    },
+    {
+      name: "Steakhouse Prime Instant",
+      url: "https://app.morpho.org/ethereum/vault/0xbeef088055857739C12CD3765F20b7679Def0f51/steakhouse-prime-instant",
+      apy: "5.14%",
+      apySub: "Net APY (post 15% perf. fee)",
+      badge: "4 assets \u00b7 Isolated",
+      collateral: [
+        { name: "cbBTC",  type: "Coinbase BTC",    pct: "55.0%", width: 55,   color: "#f59e0b" },
+        { name: "WBTC",   type: "Wrapped BTC",     pct: "30.2%", width: 30.2, color: "#f97316" },
+        { name: "wstETH", type: "Lido Staked ETH", pct: "10.1%", width: 10.1, color: "#3b82f6" },
+        { name: "WETH",   type: "Wrapped ETH",     pct: "4.7%",  width: 4.7,  color: "#6366f1" }
+      ]
+    },
+    {
+      name: "KPK USDC Prime V2",
+      url: "https://app.morpho.org/ethereum/vault/0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6/kpk-usdc-prime-v2",
+      apy: "5.53%",
+      apySub: "Net APY",
+      badge: "5 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH",      pct: "34.8%", width: 34.8, color: "#3b82f6" },
+        { name: "cbBTC",  type: "Coinbase BTC",         pct: "25.0%", width: 25,   color: "#f59e0b" },
+        { name: "WBTC",   type: "Wrapped BTC",          pct: "20.5%", width: 20.5, color: "#f97316" },
+        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "12.2%", width: 12.2, color: "#818cf8" },
+        { name: "WETH",   type: "Wrapped ETH",          pct: "7.5%",  width: 7.5,  color: "#6366f1" }
+      ]
+    },
+    {
+      name: "Avantgarde USDC Conservative",
+      url: "https://app.morpho.org/ethereum/vault/0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd/avantgarde-usdc-conservative",
+      apy: "4.89%",
+      apySub: "Net APY",
+      badge: "3 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH", pct: "45.0%", width: 45,   color: "#3b82f6" },
+        { name: "WBTC",   type: "Wrapped BTC",     pct: "30.5%", width: 30.5, color: "#f97316" },
+        { name: "WETH",   type: "Wrapped ETH",     pct: "24.5%", width: 24.5, color: "#6366f1" }
+      ]
+    }
+  ];
+
+  let currentVault = 0;
+
+  // ── Build tabs ──
+  function buildTabs() {
+    var container = document.getElementById('vaultTabs');
+    morphoVaults.forEach(function(v, i) {
+      var btn = document.createElement('button');
+      btn.className = 'vault-tab' + (i === 0 ? ' active' : '');
+      btn.textContent = v.name;
+      btn.onclick = function() { selectVault(i); };
+      container.appendChild(btn);
+    });
+    container.addEventListener('scroll', updateFadeClasses);
+  }
+
+  // ── Fade edge indicators ──
+  function updateFadeClasses() {
+    var tabs = document.getElementById('vaultTabs');
+    var wrapper = document.getElementById('vaultTabsWrapper');
+    if (!tabs || !wrapper) return;
+    var atEnd = tabs.scrollLeft + tabs.clientWidth >= tabs.scrollWidth - 2;
+    var atStart = tabs.scrollLeft <= 2;
+    wrapper.classList.toggle('scrolled-end', atEnd);
+    wrapper.classList.toggle('scrolled-start', !atStart);
+  }
+
+  // ── Select vault ──
+  function selectVault(index) {
+    if (index === currentVault) return;
+    currentVault = index;
+    var v = morphoVaults[index];
+
+    document.querySelectorAll('.vault-tab').forEach(function(tab, i) {
+      tab.classList.toggle('active', i === index);
+    });
+
+    var activeTab = document.querySelectorAll('.vault-tab')[index];
+    if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+    document.getElementById('morphoLink').href = v.url;
+    document.getElementById('morphoVaultLabel').textContent = v.name;
+    document.getElementById('morphoApy').textContent = v.apy;
+    document.getElementById('morphoApySub').textContent = v.apySub;
+
+    var inner = document.getElementById('morphoCollateral');
+    inner.classList.add('fading');
+    setTimeout(function() {
+      renderCollateral(v);
+      inner.classList.remove('fading');
+    }, 200);
+  }
+
+  // ── Render collateral ──
+  function renderCollateral(v) {
+    document.getElementById('morphoBadge').textContent = v.badge;
+
+    var bar = document.getElementById('morphoAllocBar');
+    bar.innerHTML = v.collateral.map(function(a) {
+      return '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>';
+    }).join('');
+
+    var list = document.getElementById('morphoAssetList');
+    list.innerHTML = v.collateral.map(function(a) {
+      return '<li class="asset-item">' +
+        '<div class="asset-left">' +
+          '<span class="asset-dot" style="background:' + a.color + '"></span>' +
+          '<span class="asset-name">' + a.name + ' <span class="asset-type">' + a.type + '</span></span>' +
+        '</div>' +
+        '<span class="asset-pct">' + a.pct + '</span>' +
+      '</li>';
+    }).join('');
+  }
+
+  // ── Aave dropdown ──
+  function toggleAave() {
+    var el = document.getElementById('aaveMore');
+    var btn = document.getElementById('aaveToggle');
+    var text = document.getElementById('toggleText');
+    var isOpen = el.classList.toggle('show');
+    btn.classList.toggle('open', isOpen);
+    text.textContent = isOpen ? 'Show fewer' : 'Show all 20+ assets';
+  }
+
+  // ── Init ──
+  buildTabs();
+  updateFadeClasses();
+  renderCollateral(morphoVaults[0]);
+</script>
+
+</body>
+</html>
