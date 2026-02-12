@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Risk Comparison: USDC Yield on Morpho vs on Aave</title>
+  <title>USDC: Risk &amp; Yield Comparison</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://db.onlinewebfonts.com/c/9419cf3ea65d2c875025a63789ee57fa?family=FK+Grotesk+Variable');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'FK Grotesk Variable', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #DFE1E8;
       color: #1d1d1f;
       min-height: 100vh;
@@ -32,13 +32,6 @@
       font-size: 28px;
       font-weight: 700;
       color: #1d1d1f;
-      margin-bottom: 6px;
-    }
-
-    .header p {
-      font-size: 15px;
-      color: #86868b;
-      font-weight: 400;
     }
 
     /* ── Section ── */
@@ -69,6 +62,10 @@
       text-align: center;
       border: 1px solid #e5e5ea;
       position: relative;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .yield-card .protocol-name {
@@ -343,8 +340,7 @@
 
   <!-- Header -->
   <div class="header">
-    <h1>Risk Comparison: USDC Yield on Morpho vs on Aave</h1>
-    <p>Yield &amp; collateral comparison on Ethereum Mainnet</p>
+    <h1>USDC: Risk &amp; Yield Comparison</h1>
   </div>
 
   <!-- ── Section 1: Supply Yield ── -->
@@ -366,7 +362,7 @@
       </div>
 
       <!-- Aave card (static) -->
-      <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit; display: block;" target="_blank" rel="noopener">
+      <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener">
         <div class="protocol-name">Aave V3</div>
         <div class="vault-label">USDC Market</div>
         <div class="apy">4.01%</div>
