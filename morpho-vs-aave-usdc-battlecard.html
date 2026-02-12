@@ -11,7 +11,7 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f5f5f7;
+      background: #DFE1E8;
       color: #1d1d1f;
       min-height: 100vh;
       padding: 48px 20px;
@@ -106,20 +106,58 @@
     .yield-card.aave .apy { color: #7c3aed; }
     .yield-card.aave { border-color: rgba(124, 58, 237, 0.2); }
 
-    .yield-delta-bar {
-      margin-top: 12px;
-      text-align: center;
+    /* ── Vault Tabs (Morpho carousel) ── */
+    .vault-tabs-wrapper {
+      position: relative;
+      margin-bottom: 16px;
     }
 
-    .yield-delta-pill {
-      display: inline-block;
-      background: #ffffff;
-      border: 1px solid #d1fae5;
-      color: #059669;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 20px;
+    .vault-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0 2px 4px 2px;
+    }
+
+    .vault-tabs::-webkit-scrollbar { display: none; }
+
+    .vault-tab {
+      flex-shrink: 0;
+      padding: 6px 12px;
       border-radius: 100px;
+      border: 1px solid #e5e5ea;
+      background: #f5f5f7;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .vault-tab:hover {
+      border-color: #c7c7cc;
+      color: #1d1d1f;
+    }
+
+    .vault-tab.active {
+      background: #2470ff;
+      border-color: #2470ff;
+      color: #ffffff;
+    }
+
+    /* ── Morpho card link area ── */
+    .morpho-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .morpho-link:hover {
+      opacity: 0.85;
     }
 
     /* ── Collateral Section ── */
@@ -171,29 +209,10 @@
       margin-bottom: 20px;
     }
 
-    .alloc-bar .seg { height: 100%; }
-
-    /* Morpho segments */
-    .seg.cbbtc { background: #f59e0b; }
-    .seg.wbtc { background: #f97316; }
-    .seg.wsteth { background: #3b82f6; }
-    .seg.weth-m { background: #6366f1; }
-
-    /* Aave segments */
-    .seg.weth { background: #6366f1; }
-    .seg.weeth { background: #818cf8; }
-    .seg.wsteth-a { background: #3b82f6; }
-    .seg.usde { background: #ec4899; }
-    .seg.wbtc-a { background: #f97316; }
-    .seg.usdt { background: #22c55e; }
-    .seg.cbbtc-a { background: #f59e0b; }
-    .seg.link { background: #2563eb; }
-    .seg.aave-t { background: #9333ea; }
-    .seg.dai { background: #f59e0b; }
-    .seg.reth { background: #06b6d4; }
-    .seg.crv { background: #ef4444; }
-    .seg.cbeth { background: #3b82f6; }
-    .seg.other { background: #c7c7cc; }
+    .alloc-bar .seg {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
 
     /* ── Asset List ── */
     .asset-list {
@@ -286,6 +305,15 @@
       max-height: 600px;
     }
 
+    /* ── Morpho collateral transition ── */
+    .morpho-collateral-inner {
+      transition: opacity 0.25s ease;
+    }
+
+    .morpho-collateral-inner.fading {
+      opacity: 0;
+    }
+
     /* ── Footer ── */
     .footer {
       text-align: center;
@@ -323,13 +351,22 @@
   <div class="section">
     <div class="section-label">Supply Yield &middot; 7-Day Average</div>
     <div class="yield-row">
-      <a href="https://app.morpho.org/vault?vault=0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB" class="yield-card morpho" style="text-decoration: none; color: inherit; display: block;">
-        <div class="protocol-name">Morpho</div>
-        <div class="vault-label">Steakhouse USDC</div>
-        <div class="apy">5.87%</div>
-        <div class="apy-sub">Net APY (post 25% perf. fee)</div>
-      </a>
-      <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit; display: block;">
+
+      <!-- Morpho carousel card -->
+      <div class="yield-card morpho">
+        <div class="vault-tabs-wrapper">
+          <div class="vault-tabs" id="vaultTabs"></div>
+        </div>
+        <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
+          <div class="protocol-name">Morpho</div>
+          <div class="vault-label" id="morphoVaultLabel">Steakhouse USDC</div>
+          <div class="apy" id="morphoApy">5.87%</div>
+          <div class="apy-sub" id="morphoApySub">Net APY</div>
+        </a>
+      </div>
+
+      <!-- Aave card (static) -->
+      <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit; display: block;" target="_blank" rel="noopener">
         <div class="protocol-name">Aave V3</div>
         <div class="vault-label">USDC Market</div>
         <div class="apy">4.01%</div>
@@ -338,58 +375,24 @@
     </div>
   </div>
 
-  <!-- ── Section 2: Collateral Exposure ── -->
+  <!-- ── Section 2: Collateral Backing ── -->
   <div class="section">
-    <div class="section-label">What Backs the USDC Yield</div>
+    <div class="section-label">Collateral Backing</div>
     <div class="collateral-row">
 
-      <!-- Morpho -->
+      <!-- Morpho (dynamic) -->
       <div class="collateral-card morpho">
-        <div class="card-header">
-          <h3>Morpho</h3>
-          <span class="badge">4 assets &middot; Isolated</span>
+        <div class="morpho-collateral-inner" id="morphoCollateral">
+          <div class="card-header">
+            <h3>Morpho</h3>
+            <span class="badge" id="morphoBadge">4 assets &middot; Isolated</span>
+          </div>
+          <div class="alloc-bar" id="morphoAllocBar"></div>
+          <ul class="asset-list" id="morphoAssetList"></ul>
         </div>
-
-        <div class="alloc-bar">
-          <div class="seg cbbtc" style="width: 69%"></div>
-          <div class="seg wbtc" style="width: 25.5%"></div>
-          <div class="seg wsteth" style="width: 5.2%"></div>
-          <div class="seg weth-m" style="width: 0.3%"></div>
-        </div>
-
-        <ul class="asset-list">
-          <li class="asset-item">
-            <div class="asset-left">
-              <span class="asset-dot" style="background: #f59e0b"></span>
-              <span class="asset-name">cbBTC <span class="asset-type">Coinbase BTC</span></span>
-            </div>
-            <span class="asset-pct">69.0%</span>
-          </li>
-          <li class="asset-item">
-            <div class="asset-left">
-              <span class="asset-dot" style="background: #f97316"></span>
-              <span class="asset-name">WBTC <span class="asset-type">Wrapped BTC</span></span>
-            </div>
-            <span class="asset-pct">25.5%</span>
-          </li>
-          <li class="asset-item">
-            <div class="asset-left">
-              <span class="asset-dot" style="background: #3b82f6"></span>
-              <span class="asset-name">wstETH <span class="asset-type">Lido Staked ETH</span></span>
-            </div>
-            <span class="asset-pct">5.2%</span>
-          </li>
-          <li class="asset-item">
-            <div class="asset-left">
-              <span class="asset-dot" style="background: #6366f1"></span>
-              <span class="asset-name">WETH <span class="asset-type">Wrapped ETH</span></span>
-            </div>
-            <span class="asset-pct">&lt;0.1%</span>
-          </li>
-        </ul>
       </div>
 
-      <!-- Aave -->
+      <!-- Aave (static) -->
       <div class="collateral-card aave">
         <div class="card-header">
           <h3>Aave V3</h3>
@@ -397,16 +400,16 @@
         </div>
 
         <div class="alloc-bar">
-          <div class="seg weth" style="width: 22%"></div>
-          <div class="seg weeth" style="width: 17.3%"></div>
-          <div class="seg wsteth-a" style="width: 13%"></div>
-          <div class="seg usde" style="width: 13.5%"></div>
-          <div class="seg wbtc-a" style="width: 10.1%"></div>
-          <div class="seg usdt" style="width: 7%"></div>
-          <div class="seg cbbtc-a" style="width: 3.3%"></div>
-          <div class="seg link" style="width: 2.5%"></div>
-          <div class="seg aave-t" style="width: 2%"></div>
-          <div class="seg other" style="width: 9.3%"></div>
+          <div class="seg" style="width: 22%; background: #6366f1"></div>
+          <div class="seg" style="width: 17.3%; background: #818cf8"></div>
+          <div class="seg" style="width: 13%; background: #3b82f6"></div>
+          <div class="seg" style="width: 13.5%; background: #ec4899"></div>
+          <div class="seg" style="width: 10.1%; background: #f97316"></div>
+          <div class="seg" style="width: 7%; background: #22c55e"></div>
+          <div class="seg" style="width: 3.3%; background: #f59e0b"></div>
+          <div class="seg" style="width: 2.5%; background: #2563eb"></div>
+          <div class="seg" style="width: 2%; background: #9333ea"></div>
+          <div class="seg" style="width: 9.3%; background: #c7c7cc"></div>
         </div>
 
         <!-- Top assets always visible -->
@@ -576,15 +579,171 @@
 </div>
 
 <script>
+  // ── Vault Data ──
+  // Update APY and collateral figures from the Morpho App as rates change.
+  const morphoVaults = [
+    {
+      name: "Steakhouse USDC",
+      url: "https://app.morpho.org/ethereum/vault/0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB/steakhouse-usdc",
+      apy: "5.87%",
+      apySub: "Net APY (post 25% perf. fee)",
+      badge: "4 assets \u00b7 Isolated",
+      collateral: [
+        { name: "cbBTC",  type: "Coinbase BTC",    pct: "69.0%", width: 69,   color: "#f59e0b" },
+        { name: "WBTC",   type: "Wrapped BTC",     pct: "25.5%", width: 25.5, color: "#f97316" },
+        { name: "wstETH", type: "Lido Staked ETH", pct: "5.2%",  width: 5.2,  color: "#3b82f6" },
+        { name: "WETH",   type: "Wrapped ETH",     pct: "<0.1%", width: 0.3,  color: "#6366f1" }
+      ]
+    },
+    {
+      name: "Gauntlet USDC Prime",
+      url: "https://app.morpho.org/ethereum/vault/0xdd0f28e19C1780eb6396170735D45153D261490d/gauntlet-usdc-prime",
+      apy: "5.41%",
+      apySub: "Net APY",
+      badge: "5 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH",      pct: "30.2%", width: 30.2, color: "#3b82f6" },
+        { name: "WBTC",   type: "Wrapped BTC",          pct: "25.1%", width: 25.1, color: "#f97316" },
+        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "20.4%", width: 20.4, color: "#818cf8" },
+        { name: "WETH",   type: "Wrapped ETH",          pct: "14.8%", width: 14.8, color: "#6366f1" },
+        { name: "cbBTC",  type: "Coinbase BTC",         pct: "9.5%",  width: 9.5,  color: "#f59e0b" }
+      ]
+    },
+    {
+      name: "Vault Bridge USDC",
+      url: "https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4/vault-bridge-usdc",
+      apy: "4.62%",
+      apySub: "Net APY",
+      badge: "4 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH",      pct: "40.0%", width: 40,   color: "#3b82f6" },
+        { name: "WETH",   type: "Wrapped ETH",          pct: "34.5%", width: 34.5, color: "#6366f1" },
+        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "15.3%", width: 15.3, color: "#818cf8" },
+        { name: "cbBTC",  type: "Coinbase BTC",         pct: "10.2%", width: 10.2, color: "#f59e0b" }
+      ]
+    },
+    {
+      name: "Steakhouse Prime Instant",
+      url: "https://app.morpho.org/ethereum/vault/0xbeef088055857739C12CD3765F20b7679Def0f51/steakhouse-prime-instant",
+      apy: "5.14%",
+      apySub: "Net APY (post 15% perf. fee)",
+      badge: "4 assets \u00b7 Isolated",
+      collateral: [
+        { name: "cbBTC",  type: "Coinbase BTC",    pct: "55.0%", width: 55,   color: "#f59e0b" },
+        { name: "WBTC",   type: "Wrapped BTC",     pct: "30.2%", width: 30.2, color: "#f97316" },
+        { name: "wstETH", type: "Lido Staked ETH", pct: "10.1%", width: 10.1, color: "#3b82f6" },
+        { name: "WETH",   type: "Wrapped ETH",     pct: "4.7%",  width: 4.7,  color: "#6366f1" }
+      ]
+    },
+    {
+      name: "KPK USDC Prime V2",
+      url: "https://app.morpho.org/ethereum/vault/0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6/kpk-usdc-prime-v2",
+      apy: "5.53%",
+      apySub: "Net APY",
+      badge: "5 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH",      pct: "34.8%", width: 34.8, color: "#3b82f6" },
+        { name: "cbBTC",  type: "Coinbase BTC",         pct: "25.0%", width: 25,   color: "#f59e0b" },
+        { name: "WBTC",   type: "Wrapped BTC",          pct: "20.5%", width: 20.5, color: "#f97316" },
+        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "12.2%", width: 12.2, color: "#818cf8" },
+        { name: "WETH",   type: "Wrapped ETH",          pct: "7.5%",  width: 7.5,  color: "#6366f1" }
+      ]
+    },
+    {
+      name: "Avantgarde USDC Conservative",
+      url: "https://app.morpho.org/ethereum/vault/0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd/avantgarde-usdc-conservative",
+      apy: "4.89%",
+      apySub: "Net APY",
+      badge: "3 assets \u00b7 Isolated",
+      collateral: [
+        { name: "wstETH", type: "Lido Staked ETH", pct: "45.0%", width: 45,   color: "#3b82f6" },
+        { name: "WBTC",   type: "Wrapped BTC",     pct: "30.5%", width: 30.5, color: "#f97316" },
+        { name: "WETH",   type: "Wrapped ETH",     pct: "24.5%", width: 24.5, color: "#6366f1" }
+      ]
+    }
+  ];
+
+  let currentVault = 0;
+
+  // ── Build tabs ──
+  function buildTabs() {
+    const container = document.getElementById('vaultTabs');
+    morphoVaults.forEach((v, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'vault-tab' + (i === 0 ? ' active' : '');
+      btn.textContent = v.name;
+      btn.onclick = () => selectVault(i);
+      container.appendChild(btn);
+    });
+  }
+
+  // ── Select vault ──
+  function selectVault(index) {
+    if (index === currentVault) return;
+    currentVault = index;
+    const v = morphoVaults[index];
+
+    // Update tabs
+    document.querySelectorAll('.vault-tab').forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+    });
+
+    // Scroll active tab into view
+    const activeTab = document.querySelectorAll('.vault-tab')[index];
+    activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+    // Update yield card
+    document.getElementById('morphoLink').href = v.url;
+    document.getElementById('morphoVaultLabel').textContent = v.name;
+    document.getElementById('morphoApy').textContent = v.apy;
+    document.getElementById('morphoApySub').textContent = v.apySub;
+
+    // Animate collateral card
+    const inner = document.getElementById('morphoCollateral');
+    inner.classList.add('fading');
+    setTimeout(() => {
+      renderCollateral(v);
+      inner.classList.remove('fading');
+    }, 200);
+  }
+
+  // ── Render collateral ──
+  function renderCollateral(v) {
+    // Badge
+    document.getElementById('morphoBadge').textContent = v.badge;
+
+    // Allocation bar
+    const bar = document.getElementById('morphoAllocBar');
+    bar.innerHTML = v.collateral.map(a =>
+      '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>'
+    ).join('');
+
+    // Asset list
+    const list = document.getElementById('morphoAssetList');
+    list.innerHTML = v.collateral.map(a =>
+      '<li class="asset-item">' +
+        '<div class="asset-left">' +
+          '<span class="asset-dot" style="background:' + a.color + '"></span>' +
+          '<span class="asset-name">' + a.name + ' <span class="asset-type">' + a.type + '</span></span>' +
+        '</div>' +
+        '<span class="asset-pct">' + a.pct + '</span>' +
+      '</li>'
+    ).join('');
+  }
+
+  // ── Aave dropdown ──
   function toggleAave() {
     const el = document.getElementById('aaveMore');
     const btn = document.getElementById('aaveToggle');
     const text = document.getElementById('toggleText');
-    const arrow = document.getElementById('toggleArrow');
     const isOpen = el.classList.toggle('show');
     btn.classList.toggle('open', isOpen);
     text.textContent = isOpen ? 'Show fewer' : 'Show all 20+ assets';
   }
+
+  // ── Init ──
+  buildTabs();
+  renderCollateral(morphoVaults[0]);
 </script>
 
 </body>
