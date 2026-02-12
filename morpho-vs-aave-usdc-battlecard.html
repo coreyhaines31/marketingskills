@@ -109,6 +109,43 @@
       margin-bottom: 16px;
     }
 
+    /* Right fade */
+    .vault-tabs-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-end::after {
+      opacity: 0;
+    }
+
+    /* Left fade */
+    .vault-tabs-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-start::before {
+      opacity: 1;
+    }
+
     .vault-tabs {
       display: flex;
       gap: 6px;
@@ -350,7 +387,7 @@
 
       <!-- Morpho carousel card -->
       <div class="yield-card morpho">
-        <div class="vault-tabs-wrapper">
+        <div class="vault-tabs-wrapper" id="vaultTabsWrapper">
           <div class="vault-tabs" id="vaultTabs"></div>
         </div>
         <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
@@ -671,6 +708,18 @@
       btn.onclick = () => selectVault(i);
       container.appendChild(btn);
     });
+    container.addEventListener('scroll', updateFadeClasses);
+  }
+
+  // ── Fade edge indicators ──
+  function updateFadeClasses() {
+    const tabs = document.getElementById('vaultTabs');
+    const wrapper = document.getElementById('vaultTabsWrapper');
+    if (!tabs || !wrapper) return;
+    const atEnd = tabs.scrollLeft + tabs.clientWidth >= tabs.scrollWidth - 2;
+    const atStart = tabs.scrollLeft <= 2;
+    wrapper.classList.toggle('scrolled-end', atEnd);
+    wrapper.classList.toggle('scrolled-start', !atStart);
   }
 
   // ── Select vault ──
@@ -739,6 +788,7 @@
 
   // ── Init ──
   buildTabs();
+  updateFadeClasses();
   renderCollateral(morphoVaults[0]);
 </script>
 
