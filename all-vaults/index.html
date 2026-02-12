@@ -588,7 +588,6 @@
             chainId_in: [1]
             assetAddress_in: ["${USDC_ADDRESS}"]
             whitelisted: true
-            totalAssetsUsd_gte: 50000000
           }
         ) {
           items {
@@ -870,8 +869,7 @@
     /* Morpho */
     if (morphoResult.status === 'fulfilled') {
       const raw = morphoResult.value;
-      morphoVaults = raw.map(processVault)
-        .filter(v => v.collateral.length > 0 && v.collateral.length <= 5);
+      morphoVaults = raw.map(processVault);
       morphoOk = true;
 
       buildTabs();
