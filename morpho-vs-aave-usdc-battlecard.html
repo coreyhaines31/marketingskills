@@ -109,6 +109,43 @@
       margin-bottom: 16px;
     }
 
+    /* Right fade */
+    .vault-tabs-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-end::after {
+      opacity: 0;
+    }
+
+    /* Left fade */
+    .vault-tabs-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-start::before {
+      opacity: 1;
+    }
+
     .vault-tabs {
       display: flex;
       gap: 6px;
@@ -345,18 +382,18 @@
 
   <!-- ── Section 1: Supply Yield ── -->
   <div class="section">
-    <div class="section-label">Supply Yield &middot; 7-Day Average</div>
+    <div class="section-label">Supply Yield &middot; Real-Time</div>
     <div class="yield-row">
 
       <!-- Morpho carousel card -->
       <div class="yield-card morpho">
-        <div class="vault-tabs-wrapper">
+        <div class="vault-tabs-wrapper" id="vaultTabsWrapper">
           <div class="vault-tabs" id="vaultTabs"></div>
         </div>
         <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
           <div class="protocol-name">Morpho</div>
-          <div class="vault-label" id="morphoVaultLabel">Steakhouse USDC</div>
-          <div class="apy" id="morphoApy">5.87%</div>
+          <div class="vault-label" id="morphoVaultLabel">Loading&hellip;</div>
+          <div class="apy" id="morphoApy">&mdash;</div>
           <div class="apy-sub" id="morphoApySub">Net APY</div>
         </a>
       </div>
@@ -381,7 +418,7 @@
         <div class="morpho-collateral-inner" id="morphoCollateral">
           <div class="card-header">
             <h3>Morpho</h3>
-            <span class="badge" id="morphoBadge">4 assets &middot; Isolated</span>
+            <span class="badge" id="morphoBadge">&mdash;</span>
           </div>
           <div class="alloc-bar" id="morphoAllocBar"></div>
           <ul class="asset-list" id="morphoAssetList"></ul>
@@ -569,177 +606,230 @@
 
   <!-- Footer -->
   <div class="footer">
-    <p>Sources: Morpho App, Aavescan, DefiLlama &middot; Rates are 7-day averages and fluctuate</p>
+    <p>Morpho APY &amp; allocations fetched live from api.morpho.org &middot; Aave data via Aavescan</p>
   </div>
 
 </div>
 
 <script>
-  // ── Vault Data ──
-  // Update APY and collateral figures from the Morpho App as rates change.
-  const morphoVaults = [
-    {
-      name: "Steakhouse USDC",
-      url: "https://app.morpho.org/ethereum/vault/0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB/steakhouse-usdc",
-      apy: "5.87%",
-      apySub: "Net APY (post 25% perf. fee)",
-      badge: "4 assets \u00b7 Isolated",
-      collateral: [
-        { name: "cbBTC",  type: "Coinbase BTC",    pct: "69.0%", width: 69,   color: "#f59e0b" },
-        { name: "WBTC",   type: "Wrapped BTC",     pct: "25.5%", width: 25.5, color: "#f97316" },
-        { name: "wstETH", type: "Lido Staked ETH", pct: "5.2%",  width: 5.2,  color: "#3b82f6" },
-        { name: "WETH",   type: "Wrapped ETH",     pct: "<0.1%", width: 0.3,  color: "#6366f1" }
-      ]
-    },
-    {
-      name: "Gauntlet USDC Prime",
-      url: "https://app.morpho.org/ethereum/vault/0xdd0f28e19C1780eb6396170735D45153D261490d/gauntlet-usdc-prime",
-      apy: "5.41%",
-      apySub: "Net APY",
-      badge: "5 assets \u00b7 Isolated",
-      collateral: [
-        { name: "wstETH", type: "Lido Staked ETH",      pct: "30.2%", width: 30.2, color: "#3b82f6" },
-        { name: "WBTC",   type: "Wrapped BTC",          pct: "25.1%", width: 25.1, color: "#f97316" },
-        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "20.4%", width: 20.4, color: "#818cf8" },
-        { name: "WETH",   type: "Wrapped ETH",          pct: "14.8%", width: 14.8, color: "#6366f1" },
-        { name: "cbBTC",  type: "Coinbase BTC",         pct: "9.5%",  width: 9.5,  color: "#f59e0b" }
-      ]
-    },
-    {
-      name: "Vault Bridge USDC",
-      url: "https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4/vault-bridge-usdc",
-      apy: "4.62%",
-      apySub: "Net APY",
-      badge: "4 assets \u00b7 Isolated",
-      collateral: [
-        { name: "wstETH", type: "Lido Staked ETH",      pct: "40.0%", width: 40,   color: "#3b82f6" },
-        { name: "WETH",   type: "Wrapped ETH",          pct: "34.5%", width: 34.5, color: "#6366f1" },
-        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "15.3%", width: 15.3, color: "#818cf8" },
-        { name: "cbBTC",  type: "Coinbase BTC",         pct: "10.2%", width: 10.2, color: "#f59e0b" }
-      ]
-    },
-    {
-      name: "Steakhouse Prime Instant",
-      url: "https://app.morpho.org/ethereum/vault/0xbeef088055857739C12CD3765F20b7679Def0f51/steakhouse-prime-instant",
-      apy: "5.14%",
-      apySub: "Net APY (post 15% perf. fee)",
-      badge: "4 assets \u00b7 Isolated",
-      collateral: [
-        { name: "cbBTC",  type: "Coinbase BTC",    pct: "55.0%", width: 55,   color: "#f59e0b" },
-        { name: "WBTC",   type: "Wrapped BTC",     pct: "30.2%", width: 30.2, color: "#f97316" },
-        { name: "wstETH", type: "Lido Staked ETH", pct: "10.1%", width: 10.1, color: "#3b82f6" },
-        { name: "WETH",   type: "Wrapped ETH",     pct: "4.7%",  width: 4.7,  color: "#6366f1" }
-      ]
-    },
-    {
-      name: "KPK USDC Prime V2",
-      url: "https://app.morpho.org/ethereum/vault/0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6/kpk-usdc-prime-v2",
-      apy: "5.53%",
-      apySub: "Net APY",
-      badge: "5 assets \u00b7 Isolated",
-      collateral: [
-        { name: "wstETH", type: "Lido Staked ETH",      pct: "34.8%", width: 34.8, color: "#3b82f6" },
-        { name: "cbBTC",  type: "Coinbase BTC",         pct: "25.0%", width: 25,   color: "#f59e0b" },
-        { name: "WBTC",   type: "Wrapped BTC",          pct: "20.5%", width: 20.5, color: "#f97316" },
-        { name: "weETH",  type: "EtherFi Restaked ETH", pct: "12.2%", width: 12.2, color: "#818cf8" },
-        { name: "WETH",   type: "Wrapped ETH",          pct: "7.5%",  width: 7.5,  color: "#6366f1" }
-      ]
-    },
-    {
-      name: "Avantgarde USDC Conservative",
-      url: "https://app.morpho.org/ethereum/vault/0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd/avantgarde-usdc-conservative",
-      apy: "4.89%",
-      apySub: "Net APY",
-      badge: "3 assets \u00b7 Isolated",
-      collateral: [
-        { name: "wstETH", type: "Lido Staked ETH", pct: "45.0%", width: 45,   color: "#3b82f6" },
-        { name: "WBTC",   type: "Wrapped BTC",     pct: "30.5%", width: 30.5, color: "#f97316" },
-        { name: "WETH",   type: "Wrapped ETH",     pct: "24.5%", width: 24.5, color: "#6366f1" }
-      ]
-    }
+  // ── Morpho GraphQL API ──
+  const MORPHO_API = 'https://api.morpho.org/graphql';
+
+  // Vault definitions (name, address, app URL)
+  const VAULT_DEFS = [
+    { name: 'Steakhouse USDC',              address: '0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB', url: 'https://app.morpho.org/ethereum/vault/0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB/steakhouse-usdc' },
+    { name: 'Gauntlet USDC Prime',           address: '0xdd0f28e19C1780eb6396170735D45153D261490d', url: 'https://app.morpho.org/ethereum/vault/0xdd0f28e19C1780eb6396170735D45153D261490d/gauntlet-usdc-prime' },
+    { name: 'Vault Bridge USDC',             address: '0xBEefb9f61CC44895d8AEc381373555a64191A9c4', url: 'https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4/vault-bridge-usdc' },
+    { name: 'Steakhouse Prime Instant',      address: '0xbeef088055857739C12CD3765F20b7679Def0f51', url: 'https://app.morpho.org/ethereum/vault/0xbeef088055857739C12CD3765F20b7679Def0f51/steakhouse-prime-instant' },
+    { name: 'KPK USDC Prime V2',             address: '0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6', url: 'https://app.morpho.org/ethereum/vault/0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6/kpk-usdc-prime-v2' },
+    { name: 'Avantgarde USDC Conservative',  address: '0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd', url: 'https://app.morpho.org/ethereum/vault/0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd/avantgarde-usdc-conservative' }
   ];
 
+  // Color palette for collateral assets (by symbol)
+  const ASSET_COLORS = {
+    cbBTC:  '#f59e0b', WBTC:   '#f97316', wstETH: '#3b82f6',
+    WETH:   '#6366f1', weETH:  '#818cf8', USDe:   '#ec4899',
+    USDT:   '#22c55e', USDC:   '#2563eb', DAI:    '#f59e0b',
+    rETH:   '#06b6d4', cbETH:  '#3b82f6', sDAI:   '#f59e0b',
+    LINK:   '#2563eb', AAVE:   '#9333ea', CRV:    '#ef4444',
+    MKR:    '#818cf8', GHO:    '#10b981', wbIB01: '#14b8a6',
+    osETH:  '#0ea5e9', swETH:  '#60a5fa', ezETH:  '#a78bfa',
+    rsETH:  '#c084fc', sUSDe:  '#f472b6', PT:     '#c7c7cc'
+  };
+  const DEFAULT_COLOR = '#c7c7cc';
+
+  // Friendly names for collateral symbols
+  const ASSET_NAMES = {
+    cbBTC: 'Coinbase BTC', WBTC: 'Wrapped BTC', wstETH: 'Lido Staked ETH',
+    WETH: 'Wrapped ETH', weETH: 'EtherFi Restaked ETH', USDe: 'Ethena Synthetic',
+    USDT: 'Tether', USDC: 'USD Coin', DAI: 'MakerDAO', rETH: 'Rocket Pool ETH',
+    cbETH: 'Coinbase Staked ETH', sDAI: 'Savings DAI', LINK: 'Chainlink',
+    AAVE: 'Aave Token', CRV: 'Curve', MKR: 'Maker', GHO: 'Aave Stablecoin',
+    wbIB01: 'Backed IB01', osETH: 'StakeWise ETH', swETH: 'Swell ETH',
+    ezETH: 'Renzo Restaked ETH', rsETH: 'KelpDAO Restaked ETH',
+    sUSDe: 'Staked USDe'
+  };
+
+  // ── State ──
+  let morphoVaults = [];  // populated by API
   let currentVault = 0;
+
+  // ── Build GraphQL query with aliases ──
+  function buildQuery() {
+    const fragment = 'state { netApy totalAssetsUsd allocation { supplyAssetsUsd market { collateralAsset { symbol name } } } }';
+    return '{ ' + VAULT_DEFS.map((v, i) =>
+      'v' + i + ': vaultByAddress(address: "' + v.address + '", chainId: 1) { ' + fragment + ' }'
+    ).join(' ') + ' }';
+  }
+
+  // ── Fetch live data from Morpho API ──
+  async function fetchVaultData() {
+    try {
+      const res = await fetch(MORPHO_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: buildQuery() })
+      });
+      const json = await res.json();
+      const data = json.data;
+
+      morphoVaults = VAULT_DEFS.map((def, i) => {
+        const vault = data['v' + i];
+        if (!vault || !vault.state) return buildFallbackVault(def);
+
+        const s = vault.state;
+        const apyPct = (s.netApy * 100).toFixed(2) + '%';
+
+        // Build collateral from allocation, filter out null collateral (idle)
+        const allocations = (s.allocation || [])
+          .filter(a => a.market && a.market.collateralAsset && a.supplyAssetsUsd > 0)
+          .sort((a, b) => b.supplyAssetsUsd - a.supplyAssetsUsd);
+
+        const totalAllocUsd = allocations.reduce((sum, a) => sum + a.supplyAssetsUsd, 0);
+
+        const collateral = allocations.map(a => {
+          const sym = a.market.collateralAsset.symbol;
+          const pctNum = totalAllocUsd > 0 ? (a.supplyAssetsUsd / totalAllocUsd) * 100 : 0;
+          return {
+            name: sym,
+            type: ASSET_NAMES[sym] || a.market.collateralAsset.name || sym,
+            pct: pctNum < 0.1 ? '<0.1%' : pctNum.toFixed(1) + '%',
+            width: pctNum,
+            color: ASSET_COLORS[sym] || DEFAULT_COLOR
+          };
+        });
+
+        const assetCount = collateral.length;
+
+        return {
+          name: def.name,
+          url: def.url,
+          apy: apyPct,
+          apySub: 'Net APY',
+          badge: assetCount + ' asset' + (assetCount !== 1 ? 's' : '') + ' \u00b7 Isolated',
+          collateral: collateral
+        };
+      });
+    } catch (err) {
+      console.warn('Morpho API fetch failed, using fallback data:', err);
+      morphoVaults = VAULT_DEFS.map(buildFallbackVault);
+    }
+
+    // Render after data is ready
+    buildTabs();
+    updateFadeClasses();
+    applyVault(0);
+  }
+
+  // Fallback if API fails
+  function buildFallbackVault(def) {
+    return {
+      name: def.name, url: def.url,
+      apy: '\u2014', apySub: 'Net APY (unavailable)',
+      badge: '\u2014',
+      collateral: []
+    };
+  }
 
   // ── Build tabs ──
   function buildTabs() {
     const container = document.getElementById('vaultTabs');
-    morphoVaults.forEach((v, i) => {
-      const btn = document.createElement('button');
+    container.innerHTML = '';
+    morphoVaults.forEach(function(v, i) {
+      var btn = document.createElement('button');
       btn.className = 'vault-tab' + (i === 0 ? ' active' : '');
       btn.textContent = v.name;
-      btn.onclick = () => selectVault(i);
+      btn.onclick = function() { selectVault(i); };
       container.appendChild(btn);
     });
+
+    // Listen to scroll for fade classes
+    container.addEventListener('scroll', updateFadeClasses);
+  }
+
+  // ── Fade edge indicators ──
+  function updateFadeClasses() {
+    var tabs = document.getElementById('vaultTabs');
+    var wrapper = document.getElementById('vaultTabsWrapper');
+    if (!tabs || !wrapper) return;
+
+    var atEnd = tabs.scrollLeft + tabs.clientWidth >= tabs.scrollWidth - 2;
+    var atStart = tabs.scrollLeft <= 2;
+
+    wrapper.classList.toggle('scrolled-end', atEnd);
+    wrapper.classList.toggle('scrolled-start', !atStart);
   }
 
   // ── Select vault ──
   function selectVault(index) {
     if (index === currentVault) return;
     currentVault = index;
-    const v = morphoVaults[index];
 
     // Update tabs
-    document.querySelectorAll('.vault-tab').forEach((tab, i) => {
+    document.querySelectorAll('.vault-tab').forEach(function(tab, i) {
       tab.classList.toggle('active', i === index);
     });
 
     // Scroll active tab into view
-    const activeTab = document.querySelectorAll('.vault-tab')[index];
-    activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    var activeTab = document.querySelectorAll('.vault-tab')[index];
+    if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
-    // Update yield card
+    // Animate collateral card
+    var inner = document.getElementById('morphoCollateral');
+    inner.classList.add('fading');
+    setTimeout(function() {
+      applyVault(index);
+      inner.classList.remove('fading');
+    }, 200);
+  }
+
+  // ── Apply vault data to UI ──
+  function applyVault(index) {
+    var v = morphoVaults[index];
+
+    // Yield card
     document.getElementById('morphoLink').href = v.url;
     document.getElementById('morphoVaultLabel').textContent = v.name;
     document.getElementById('morphoApy').textContent = v.apy;
     document.getElementById('morphoApySub').textContent = v.apySub;
 
-    // Animate collateral card
-    const inner = document.getElementById('morphoCollateral');
-    inner.classList.add('fading');
-    setTimeout(() => {
-      renderCollateral(v);
-      inner.classList.remove('fading');
-    }, 200);
+    // Collateral card
+    renderCollateral(v);
   }
 
   // ── Render collateral ──
   function renderCollateral(v) {
-    // Badge
     document.getElementById('morphoBadge').textContent = v.badge;
 
-    // Allocation bar
-    const bar = document.getElementById('morphoAllocBar');
-    bar.innerHTML = v.collateral.map(a =>
-      '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>'
-    ).join('');
+    var bar = document.getElementById('morphoAllocBar');
+    bar.innerHTML = v.collateral.map(function(a) {
+      return '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>';
+    }).join('');
 
-    // Asset list
-    const list = document.getElementById('morphoAssetList');
-    list.innerHTML = v.collateral.map(a =>
-      '<li class="asset-item">' +
+    var list = document.getElementById('morphoAssetList');
+    list.innerHTML = v.collateral.map(function(a) {
+      return '<li class="asset-item">' +
         '<div class="asset-left">' +
           '<span class="asset-dot" style="background:' + a.color + '"></span>' +
           '<span class="asset-name">' + a.name + ' <span class="asset-type">' + a.type + '</span></span>' +
         '</div>' +
         '<span class="asset-pct">' + a.pct + '</span>' +
-      '</li>'
-    ).join('');
+      '</li>';
+    }).join('');
   }
 
   // ── Aave dropdown ──
   function toggleAave() {
-    const el = document.getElementById('aaveMore');
-    const btn = document.getElementById('aaveToggle');
-    const text = document.getElementById('toggleText');
-    const isOpen = el.classList.toggle('show');
+    var el = document.getElementById('aaveMore');
+    var btn = document.getElementById('aaveToggle');
+    var text = document.getElementById('toggleText');
+    var isOpen = el.classList.toggle('show');
     btn.classList.toggle('open', isOpen);
     text.textContent = isOpen ? 'Show fewer' : 'Show all 20+ assets';
   }
 
-  // ── Init ──
-  buildTabs();
-  renderCollateral(morphoVaults[0]);
+  // ── Init: fetch live data on page load ──
+  fetchVaultData();
 </script>
 
 </body>
