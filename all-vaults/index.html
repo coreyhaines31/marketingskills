@@ -870,6 +870,12 @@
     if (morphoResult.status === 'fulfilled') {
       const raw = morphoResult.value;
       morphoVaults = raw.map(processVault);
+      /* Sort: bluechip (few collaterals, high deposits) left → long tail (many collaterals) right */
+      morphoVaults.sort((a, b) => {
+        const colDiff = a.collateral.length - b.collateral.length;
+        if (colDiff !== 0) return colDiff;
+        return b.tvl - a.tvl;
+      });
       morphoOk = true;
 
       buildTabs();
