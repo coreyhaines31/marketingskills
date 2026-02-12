@@ -690,7 +690,7 @@
     morphoVaults.forEach((v, i) => {
       const btn = document.createElement('button');
       btn.className = 'vault-tab' + (i === 0 ? ' active' : '');
-      btn.innerHTML = v.name + '<span class="tab-tvl">' + formatTvl(v.tvl) + '</span>';
+      btn.textContent = v.name;
       btn.onclick = () => selectVault(i);
       container.appendChild(btn);
     });
