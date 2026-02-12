@@ -794,6 +794,10 @@
         /* DeFi Llama symbols sometimes have suffixes */
         let sym = p.symbol.split('-')[0].trim();
         const pct = (p.tvlUsd / totalTvl) * 100;
+        /* Use hardcoded address, fall back to DeFi Llama's underlyingTokens */
+        const addr = AAVE_ADDRESSES[sym]
+          || (p.underlyingTokens && p.underlyingTokens[0]
+              ? p.underlyingTokens[0].toLowerCase() : null);
         return {
           symbol: sym,
           label: ASSET_LABELS[sym] || sym,
@@ -801,7 +805,7 @@
           pctStr: pct < 0.01 ? '<0.01%' : pct < 0.1 ? '<0.1%' : pct.toFixed(1) + '%',
           tvl: p.tvlUsd,
           color: colorFor(sym),
-          address: AAVE_ADDRESSES[sym] || null
+          address: addr
         };
       })
       .sort((a, b) => b.tvl - a.tvl);
@@ -864,7 +868,8 @@
     /* Morpho */
     if (morphoResult.status === 'fulfilled') {
       const raw = morphoResult.value;
-      morphoVaults = raw.map(processVault);
+      morphoVaults = raw.map(processVault)
+        .filter(v => v.collateral.length > 0 && v.collateral.length <= 5);
       morphoOk = true;
 
       buildTabs();
