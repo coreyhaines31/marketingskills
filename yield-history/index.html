@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USDC Yield History: Morpho vs Aave</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <style>
+    @import url('https://db.onlinewebfonts.com/c/9419cf3ea65d2c875025a63789ee57fa?family=FK+Grotesk+Variable');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'FK Grotesk Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #DFE1E8;
+      color: #1d1d1f;
+      min-height: 100vh;
+      padding: 48px 20px;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #86868b;
+    }
+
+    /* ── Chart Card ── */
+    .chart-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid #e5e5ea;
+      margin-bottom: 24px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .chart-subtitle {
+      font-size: 13px;
+      color: #86868b;
+      margin-top: 2px;
+    }
+
+    /* ── Time Range Tabs ── */
+    .time-tabs {
+      display: flex;
+      gap: 4px;
+      background: #f2f2f7;
+      border-radius: 10px;
+      padding: 3px;
+    }
+
+    .time-tab {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .time-tab:hover {
+      color: #1d1d1f;
+    }
+
+    .time-tab.active {
+      background: #ffffff;
+      color: #1d1d1f;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* ── Chart Container ── */
+    .chart-wrap {
+      position: relative;
+      height: 420px;
+    }
+
+    .chart-wrap canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* ── Loading ── */
+    .loading-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.85);
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    .loading-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e5e5ea;
+      border-top-color: #1d1d1f;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px 24px;
+      border: 1px solid #e5e5ea;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #86868b;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .stat-value .stat-unit {
+      font-size: 14px;
+      font-weight: 600;
+      color: #86868b;
+    }
+
+    .stat-delta {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .stat-delta.positive { color: #34c759; }
+    .stat-delta.negative { color: #ff3b30; }
+
+    /* ── Vault Legend ── */
+    .legend-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 32px;
+      border: 1px solid #e5e5ea;
+      margin-bottom: 24px;
+    }
+
+    .legend-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #86868b;
+      margin-bottom: 16px;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+      user-select: none;
+    }
+
+    .legend-item:hover {
+      background: #f5f5f7;
+    }
+
+    .legend-item.dimmed {
+      opacity: 0.35;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-dot.dashed {
+      border-radius: 2px;
+      height: 3px;
+      width: 18px;
+    }
+
+    .legend-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1d1d1f;
+      flex: 1;
+    }
+
+    .legend-apy {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 24px 0 0;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: #86868b;
+      line-height: 1.5;
+    }
+
+    .data-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #86868b;
+      margin-top: 8px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #86868b;
+    }
+
+    .status-dot.green { background: #34c759; }
+    .status-dot.yellow { background: #ffcc00; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      body { padding: 24px 12px; }
+      .chart-card { padding: 20px 16px; }
+      .chart-wrap { height: 300px; }
+      .chart-header { flex-direction: column; align-items: flex-start; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .legend-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>USDC Yield History</h1>
+    <p>Historical Net APY — Morpho Vaults vs Aave V3 on Ethereum</p>
+  </div>
+
+  <!-- Stats Summary -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card">
+      <div class="stat-label">Morpho Avg (All Vaults)</div>
+      <div class="stat-value" id="statMorphoAvg">—</div>
+      <div class="stat-delta" id="statMorphoDelta"></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Aave V3 USDC</div>
+      <div class="stat-value" id="statAave">—</div>
+      <div class="stat-delta" id="statAaveDelta"></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Morpho Advantage</div>
+      <div class="stat-value" id="statSpread">—</div>
+      <div class="stat-delta" id="statSpreadNote"></div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Net APY Over Time</div>
+        <div class="chart-subtitle" id="chartSubtitle">Loading data…</div>
+      </div>
+      <div class="time-tabs" id="timeTabs">
+        <button class="time-tab" data-range="7">7D</button>
+        <button class="time-tab" data-range="30">30D</button>
+        <button class="time-tab active" data-range="90">90D</button>
+        <button class="time-tab" data-range="180">6M</button>
+        <button class="time-tab" data-range="365">1Y</button>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="yieldChart"></canvas>
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend-card">
+    <div class="legend-title">Vaults & Protocol</div>
+    <div class="legend-grid" id="legendGrid"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">Data sourced from Morpho Blue API &amp; DeFi Llama. Net APY includes rewards, after fees.</div>
+    <div class="data-status" id="dataStatus">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Loading…</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Configuration
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+const MORPHO_VAULTS = [
+  { name: 'Steakhouse USDC',       alias: 'steakhouse',     address: '0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB', color: '#0057FF' },
+  { name: 'Gauntlet USDC Prime',   alias: 'gauntlet',       address: '0xdd0f28e19C1f9D5c1b1085f0738Cd69a37169577', color: '#7B61FF' },
+  { name: 'Vault Bridge USDC',     alias: 'vaultBridge',    address: '0xc080f56504e0278828B642b865c65f1532d14942', color: '#FF6B35' },
+  { name: 'Steakhouse Prime Inst', alias: 'steakhousePrime', address: '0x7C8DebA3aFa2E0c66E0b1E54893D1A88f7b89e28', color: '#00C9A7' },
+  { name: 'KPK USDC Prime V2',     alias: 'kpk',            address: '0x4Ff4186188f8406917293A9e01A1ca16d3cf9E59', color: '#FF3B8B' },
+  { name: 'Avantgarde Conservative', alias: 'avantgarde',   address: '0x8d92Be07DeFa27E6e6312c8d3AF7e39b8A2C2C82', color: '#FFB800' },
+];
+
+const AAVE_COLOR = '#2EBAC6';
+const AAVE_POOL_ID = 'aa70268e-4b52-42bf-a116-608b370f9501';
+
+const MORPHO_GQL = 'https://blue-api.morpho.org/graphql';
+const LLAMA_CHART = 'https://yields.llama.fi/chart/';
+
+let allMorphoData = {};   // alias -> [{x: Date, y: number}]
+let allAaveData = [];     // [{x: Date, y: number}]
+let currentRange = 90;
+let chart = null;
+let visibleSeries = {};   // key -> boolean
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Fetch Morpho Historical Data via GraphQL
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+async function fetchMorphoHistory(days) {
+  const now = Math.floor(Date.now() / 1000);
+  const start = now - (days * 86400);
+  const interval = days <= 30 ? 'HOUR' : 'DAY';
+
+  // Build aliased query for all vaults at once
+  const fragments = MORPHO_VAULTS.map(v =>
+    `${v.alias}: vaultByAddress(address: "${v.address}", chainId: 1) {
+      name
+      historicalState {
+        netApy(options: { startTimestamp: ${start}, endTimestamp: ${now}, interval: ${interval} }) {
+          x
+          y
+        }
+      }
+    }`
+  ).join('\n');
+
+  const query = `{ ${fragments} }`;
+
+  const resp = await fetch(MORPHO_GQL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query })
+  });
+
+  if (!resp.ok) throw new Error('Morpho API error: ' + resp.status);
+  const json = await resp.json();
+
+  if (json.errors) {
+    console.warn('Morpho GraphQL errors:', json.errors);
+  }
+
+  const result = {};
+  for (const v of MORPHO_VAULTS) {
+    const vault = json.data?.[v.alias];
+    if (vault?.historicalState?.netApy) {
+      result[v.alias] = vault.historicalState.netApy.map(p => ({
+        x: new Date(p.x * 1000),
+        y: p.y * 100  // convert decimal to percentage
+      }));
+    } else {
+      result[v.alias] = [];
+    }
+  }
+  return result;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Fetch Aave Historical Data via DeFi Llama
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+async function fetchAaveHistory() {
+  const resp = await fetch(LLAMA_CHART + AAVE_POOL_ID);
+  if (!resp.ok) throw new Error('DeFi Llama error: ' + resp.status);
+  const json = await resp.json();
+
+  if (json.status !== 'success' || !json.data) {
+    throw new Error('DeFi Llama: unexpected response');
+  }
+
+  return json.data.map(d => ({
+    x: new Date(d.timestamp),
+    y: d.apy ?? d.apyBase ?? 0
+  }));
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Data Loading
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+async function loadData(days) {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+  let morphoOk = false, aaveOk = false;
+
+  try {
+    const [morphoResult, aaveResult] = await Promise.allSettled([
+      fetchMorphoHistory(days),
+      fetchAaveHistory()
+    ]);
+
+    if (morphoResult.status === 'fulfilled') {
+      allMorphoData = morphoResult.value;
+      morphoOk = true;
+    } else {
+      console.error('Morpho fetch failed:', morphoResult.reason);
+    }
+
+    if (aaveResult.status === 'fulfilled') {
+      allAaveData = aaveResult.value;
+      aaveOk = true;
+    } else {
+      console.error('Aave fetch failed:', aaveResult.reason);
+    }
+  } catch (e) {
+    console.error('Data load error:', e);
+  }
+
+  // Update status
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  if (morphoOk && aaveOk) {
+    dot.className = 'status-dot green';
+    txt.textContent = 'Live data · Updated ' + new Date().toLocaleTimeString();
+  } else if (morphoOk || aaveOk) {
+    dot.className = 'status-dot yellow';
+    txt.textContent = 'Partial data · ' + (morphoOk ? 'Aave' : 'Morpho') + ' unavailable';
+  } else {
+    dot.className = 'status-dot';
+    txt.textContent = 'Data unavailable';
+  }
+
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Filter data by range
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+function filterByRange(data, days) {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  return data.filter(p => p.x >= cutoff);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Build / Update Chart
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+function buildChart() {
+  const ctx = document.getElementById('yieldChart').getContext('2d');
+
+  const datasets = [];
+
+  // Morpho vaults
+  MORPHO_VAULTS.forEach(v => {
+    const raw = allMorphoData[v.alias] || [];
+    const data = filterByRange(raw, currentRange);
+    const key = v.alias;
+    if (visibleSeries[key] === undefined) visibleSeries[key] = true;
+
+    datasets.push({
+      label: v.name,
+      data: data,
+      borderColor: v.color,
+      backgroundColor: v.color + '18',
+      borderWidth: 2,
+      pointRadius: 0,
+      pointHitRadius: 8,
+      tension: 0.3,
+      fill: false,
+      hidden: !visibleSeries[key],
+      _key: key
+    });
+  });
+
+  // Aave
+  const aaveFiltered = filterByRange(allAaveData, currentRange);
+  if (visibleSeries['aave'] === undefined) visibleSeries['aave'] = true;
+
+  datasets.push({
+    label: 'Aave V3 USDC',
+    data: aaveFiltered,
+    borderColor: AAVE_COLOR,
+    backgroundColor: AAVE_COLOR + '18',
+    borderWidth: 3,
+    borderDash: [8, 4],
+    pointRadius: 0,
+    pointHitRadius: 8,
+    tension: 0.3,
+    fill: false,
+    hidden: !visibleSeries['aave'],
+    _key: 'aave'
+  });
+
+  if (chart) {
+    chart.data.datasets = datasets;
+    chart.options.scales.x.time.unit = currentRange <= 30 ? 'day' : currentRange <= 180 ? 'week' : 'month';
+    chart.update('none');
+  } else {
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: { datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1d1d1f',
+            titleColor: '#ffffff',
+            bodyColor: '#ffffff',
+            padding: 12,
+            cornerRadius: 8,
+            titleFont: { family: "'FK Grotesk Variable', sans-serif", size: 13, weight: '600' },
+            bodyFont: { family: "'FK Grotesk Variable', sans-serif", size: 12 },
+            callbacks: {
+              title: function(items) {
+                if (!items.length) return '';
+                return items[0].raw.x.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+              },
+              label: function(item) {
+                return ' ' + item.dataset.label + ': ' + item.raw.y.toFixed(2) + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: currentRange <= 30 ? 'day' : currentRange <= 180 ? 'week' : 'month',
+              displayFormats: {
+                day: 'MMM d',
+                week: 'MMM d',
+                month: 'MMM yyyy'
+              }
+            },
+            grid: { display: false },
+            ticks: {
+              font: { family: "'FK Grotesk Variable', sans-serif", size: 11 },
+              color: '#86868b',
+              maxTicksLimit: 12
+            }
+          },
+          y: {
+            beginAtZero: false,
+            grid: {
+              color: '#f2f2f7',
+              drawBorder: false
+            },
+            ticks: {
+              font: { family: "'FK Grotesk Variable', sans-serif", size: 11 },
+              color: '#86868b',
+              callback: function(val) { return val.toFixed(1) + '%'; }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  updateSubtitle();
+  updateStats();
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Update Stats Summary
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+function updateStats() {
+  // Compute average APY for each Morpho vault over the period
+  let morphoAvgs = [];
+  MORPHO_VAULTS.forEach(v => {
+    const data = filterByRange(allMorphoData[v.alias] || [], currentRange);
+    if (data.length > 0) {
+      const avg = data.reduce((s, p) => s + p.y, 0) / data.length;
+      morphoAvgs.push(avg);
+    }
+  });
+
+  const aaveData = filterByRange(allAaveData, currentRange);
+  const aaveAvg = aaveData.length > 0 ? aaveData.reduce((s, p) => s + p.y, 0) / aaveData.length : null;
+
+  const morphoOverall = morphoAvgs.length > 0 ? morphoAvgs.reduce((s, v) => s + v, 0) / morphoAvgs.length : null;
+
+  // Morpho Avg
+  const morphoEl = document.getElementById('statMorphoAvg');
+  const morphoDelta = document.getElementById('statMorphoDelta');
+  if (morphoOverall !== null) {
+    morphoEl.innerHTML = morphoOverall.toFixed(2) + '<span class="stat-unit">% APY</span>';
+    // Get latest value
+    const latestVals = MORPHO_VAULTS.map(v => {
+      const d = allMorphoData[v.alias] || [];
+      return d.length > 0 ? d[d.length - 1].y : null;
+    }).filter(v => v !== null);
+    if (latestVals.length > 0) {
+      const latest = latestVals.reduce((s, v) => s + v, 0) / latestVals.length;
+      morphoDelta.textContent = 'Current: ' + latest.toFixed(2) + '%';
+      morphoDelta.className = 'stat-delta';
+    }
+  } else {
+    morphoEl.textContent = '—';
+    morphoDelta.textContent = '';
+  }
+
+  // Aave
+  const aaveEl = document.getElementById('statAave');
+  const aaveDelta = document.getElementById('statAaveDelta');
+  if (aaveAvg !== null) {
+    aaveEl.innerHTML = aaveAvg.toFixed(2) + '<span class="stat-unit">% APY</span>';
+    if (aaveData.length > 0) {
+      const latest = aaveData[aaveData.length - 1].y;
+      aaveDelta.textContent = 'Current: ' + latest.toFixed(2) + '%';
+      aaveDelta.className = 'stat-delta';
+    }
+  } else {
+    aaveEl.textContent = '—';
+    aaveDelta.textContent = '';
+  }
+
+  // Spread
+  const spreadEl = document.getElementById('statSpread');
+  const spreadNote = document.getElementById('statSpreadNote');
+  if (morphoOverall !== null && aaveAvg !== null) {
+    const spread = morphoOverall - aaveAvg;
+    const sign = spread >= 0 ? '+' : '';
+    spreadEl.innerHTML = sign + spread.toFixed(2) + '<span class="stat-unit">% avg</span>';
+    spreadEl.style.color = spread >= 0 ? '#34c759' : '#ff3b30';
+    spreadNote.textContent = 'Over selected ' + currentRange + '-day period';
+    spreadNote.className = 'stat-delta';
+  } else {
+    spreadEl.textContent = '—';
+    spreadEl.style.color = '#1d1d1f';
+    spreadNote.textContent = '';
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Update Subtitle
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+function updateSubtitle() {
+  const rangeLabels = { 7: '7 days', 30: '30 days', 90: '90 days', 180: '6 months', 365: '1 year' };
+  document.getElementById('chartSubtitle').textContent =
+    'Showing last ' + (rangeLabels[currentRange] || currentRange + ' days') +
+    ' · ' + MORPHO_VAULTS.length + ' Morpho vaults vs Aave V3';
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Build Legend
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+function buildLegend() {
+  const grid = document.getElementById('legendGrid');
+  let html = '';
+
+  MORPHO_VAULTS.forEach(v => {
+    const latest = getLatestApy(v.alias);
+    html += `<div class="legend-item" data-key="${v.alias}">
+      <span class="legend-dot" style="background:${v.color}"></span>
+      <span class="legend-name">${v.name}</span>
+      <span class="legend-apy">${latest !== null ? latest.toFixed(2) + '%' : '—'}</span>
+    </div>`;
+  });
+
+  // Aave
+  const aaveLatest = allAaveData.length > 0 ? allAaveData[allAaveData.length - 1].y : null;
+  html += `<div class="legend-item" data-key="aave">
+    <span class="legend-dot dashed" style="background:${AAVE_COLOR}"></span>
+    <span class="legend-name">Aave V3 USDC</span>
+    <span class="legend-apy">${aaveLatest !== null ? aaveLatest.toFixed(2) + '%' : '—'}</span>
+  </div>`;
+
+  grid.innerHTML = html;
+
+  // Toggle visibility on click
+  grid.querySelectorAll('.legend-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const key = el.dataset.key;
+      visibleSeries[key] = !visibleSeries[key];
+      el.classList.toggle('dimmed', !visibleSeries[key]);
+      buildChart();
+    });
+  });
+}
+
+function getLatestApy(alias) {
+  const d = allMorphoData[alias] || [];
+  return d.length > 0 ? d[d.length - 1].y : null;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Time Tab Handlers
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+document.getElementById('timeTabs').addEventListener('click', async (e) => {
+  const btn = e.target.closest('.time-tab');
+  if (!btn) return;
+
+  const range = parseInt(btn.dataset.range, 10);
+  if (range === currentRange) return;
+
+  document.querySelectorAll('.time-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentRange = range;
+
+  // Re-fetch Morpho data with appropriate interval for the range
+  await loadData(range);
+  buildChart();
+  buildLegend();
+});
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Init
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+(async function init() {
+  await loadData(currentRange);
+  buildChart();
+  buildLegend();
+})();
+</script>
+
+</body>
+</html>
