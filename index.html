@@ -109,43 +109,6 @@
       margin-bottom: 16px;
     }
 
-    /* Right fade */
-    .vault-tabs-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 48px;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,0), #ffffff 85%);
-      pointer-events: none;
-      z-index: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    .vault-tabs-wrapper.scrolled-end::after {
-      opacity: 0;
-    }
-
-    /* Left fade */
-    .vault-tabs-wrapper::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 48px;
-      height: 100%;
-      background: linear-gradient(to left, rgba(255,255,255,0), #ffffff 85%);
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .vault-tabs-wrapper.scrolled-start::before {
-      opacity: 1;
-    }
-
     .vault-tabs {
       display: flex;
       gap: 6px;
@@ -387,14 +350,14 @@
 
       <!-- Morpho carousel card -->
       <div class="yield-card morpho">
-        <div class="vault-tabs-wrapper" id="vaultTabsWrapper">
+        <div class="vault-tabs-wrapper">
           <div class="vault-tabs" id="vaultTabs"></div>
         </div>
         <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
           <div class="protocol-name">Morpho</div>
           <div class="vault-label" id="morphoVaultLabel">Steakhouse USDC</div>
           <div class="apy" id="morphoApy">5.87%</div>
-          <div class="apy-sub" id="morphoApySub">Net APY (post 25% perf. fee)</div>
+          <div class="apy-sub" id="morphoApySub">Net APY</div>
         </a>
       </div>
 
@@ -613,6 +576,7 @@
 
 <script>
   // ── Vault Data ──
+  // Update APY and collateral figures from the Morpho App as rates change.
   const morphoVaults = [
     {
       name: "Steakhouse USDC",
@@ -699,49 +663,41 @@
 
   // ── Build tabs ──
   function buildTabs() {
-    var container = document.getElementById('vaultTabs');
-    morphoVaults.forEach(function(v, i) {
-      var btn = document.createElement('button');
+    const container = document.getElementById('vaultTabs');
+    morphoVaults.forEach((v, i) => {
+      const btn = document.createElement('button');
       btn.className = 'vault-tab' + (i === 0 ? ' active' : '');
       btn.textContent = v.name;
-      btn.onclick = function() { selectVault(i); };
+      btn.onclick = () => selectVault(i);
       container.appendChild(btn);
     });
-    container.addEventListener('scroll', updateFadeClasses);
-  }
-
-  // ── Fade edge indicators ──
-  function updateFadeClasses() {
-    var tabs = document.getElementById('vaultTabs');
-    var wrapper = document.getElementById('vaultTabsWrapper');
-    if (!tabs || !wrapper) return;
-    var atEnd = tabs.scrollLeft + tabs.clientWidth >= tabs.scrollWidth - 2;
-    var atStart = tabs.scrollLeft <= 2;
-    wrapper.classList.toggle('scrolled-end', atEnd);
-    wrapper.classList.toggle('scrolled-start', !atStart);
   }
 
   // ── Select vault ──
   function selectVault(index) {
     if (index === currentVault) return;
     currentVault = index;
-    var v = morphoVaults[index];
+    const v = morphoVaults[index];
 
-    document.querySelectorAll('.vault-tab').forEach(function(tab, i) {
+    // Update tabs
+    document.querySelectorAll('.vault-tab').forEach((tab, i) => {
       tab.classList.toggle('active', i === index);
     });
 
-    var activeTab = document.querySelectorAll('.vault-tab')[index];
-    if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // Scroll active tab into view
+    const activeTab = document.querySelectorAll('.vault-tab')[index];
+    activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
+    // Update yield card
     document.getElementById('morphoLink').href = v.url;
     document.getElementById('morphoVaultLabel').textContent = v.name;
     document.getElementById('morphoApy').textContent = v.apy;
     document.getElementById('morphoApySub').textContent = v.apySub;
 
-    var inner = document.getElementById('morphoCollateral');
+    // Animate collateral card
+    const inner = document.getElementById('morphoCollateral');
     inner.classList.add('fading');
-    setTimeout(function() {
+    setTimeout(() => {
       renderCollateral(v);
       inner.classList.remove('fading');
     }, 200);
@@ -749,38 +705,40 @@
 
   // ── Render collateral ──
   function renderCollateral(v) {
+    // Badge
     document.getElementById('morphoBadge').textContent = v.badge;
 
-    var bar = document.getElementById('morphoAllocBar');
-    bar.innerHTML = v.collateral.map(function(a) {
-      return '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>';
-    }).join('');
+    // Allocation bar
+    const bar = document.getElementById('morphoAllocBar');
+    bar.innerHTML = v.collateral.map(a =>
+      '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>'
+    ).join('');
 
-    var list = document.getElementById('morphoAssetList');
-    list.innerHTML = v.collateral.map(function(a) {
-      return '<li class="asset-item">' +
+    // Asset list
+    const list = document.getElementById('morphoAssetList');
+    list.innerHTML = v.collateral.map(a =>
+      '<li class="asset-item">' +
         '<div class="asset-left">' +
           '<span class="asset-dot" style="background:' + a.color + '"></span>' +
           '<span class="asset-name">' + a.name + ' <span class="asset-type">' + a.type + '</span></span>' +
         '</div>' +
         '<span class="asset-pct">' + a.pct + '</span>' +
-      '</li>';
-    }).join('');
+      '</li>'
+    ).join('');
   }
 
   // ── Aave dropdown ──
   function toggleAave() {
-    var el = document.getElementById('aaveMore');
-    var btn = document.getElementById('aaveToggle');
-    var text = document.getElementById('toggleText');
-    var isOpen = el.classList.toggle('show');
+    const el = document.getElementById('aaveMore');
+    const btn = document.getElementById('aaveToggle');
+    const text = document.getElementById('toggleText');
+    const isOpen = el.classList.toggle('show');
     btn.classList.toggle('open', isOpen);
     text.textContent = isOpen ? 'Show fewer' : 'Show all 20+ assets';
   }
 
   // ── Init ──
   buildTabs();
-  updateFadeClasses();
   renderCollateral(morphoVaults[0]);
 </script>
 
