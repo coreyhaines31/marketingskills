@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USDC: Risk &amp; Yield Comparison — All Vaults</title>
+  <style>
+    @import url('https://db.onlinewebfonts.com/c/9419cf3ea65d2c875025a63789ee57fa?family=FK+Grotesk+Variable');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'FK Grotesk Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #DFE1E8;
+      color: #1d1d1f;
+      min-height: 100vh;
+      padding: 48px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1d1d1f;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #86868b;
+      margin-top: 6px;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #86868b;
+      margin-bottom: 16px;
+    }
+
+    /* ── Yield Cards ── */
+    .yield-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .yield-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      border: 1px solid #e5e5ea;
+      position: relative;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .yield-card .protocol-name {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .yield-card .vault-label {
+      font-size: 13px;
+      color: #86868b;
+      margin-bottom: 20px;
+    }
+
+    .yield-card .apy {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .yield-card .apy-sub {
+      font-size: 13px;
+      color: #86868b;
+      font-weight: 400;
+    }
+
+    .yield-card.morpho .protocol-name { color: #2470ff; }
+    .yield-card.morpho .apy { color: #2470ff; }
+    .yield-card.morpho { border-color: rgba(36, 112, 255, 0.2); }
+
+    .yield-card.aave .protocol-name { color: #7c3aed; }
+    .yield-card.aave .apy { color: #7c3aed; }
+    .yield-card.aave { border-color: rgba(124, 58, 237, 0.2); }
+
+    /* ── Vault Picker ── */
+    .vault-picker {
+      margin-bottom: 16px;
+    }
+
+    .vault-search-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .vault-search {
+      flex: 1;
+      padding: 8px 14px;
+      border: 1px solid #e5e5ea;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      background: #ffffff;
+      color: #1d1d1f;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .vault-search:focus {
+      border-color: #2470ff;
+    }
+
+    .vault-search::placeholder {
+      color: #aeaeb2;
+    }
+
+    .vault-count {
+      font-size: 12px;
+      color: #86868b;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .vault-sort {
+      padding: 8px 12px;
+      border: 1px solid #e5e5ea;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      background: #ffffff;
+      color: #1d1d1f;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* ── Vault Tabs (scrollable) ── */
+    .vault-tabs-wrapper {
+      position: relative;
+    }
+
+    .vault-tabs-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 48px; height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-end::after { opacity: 0; }
+
+    .vault-tabs-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 48px; height: 100%;
+      background: linear-gradient(to left, rgba(255,255,255,0), #ffffff 85%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .vault-tabs-wrapper.scrolled-start::before { opacity: 1; }
+
+    .vault-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0 2px 4px 2px;
+      flex-wrap: wrap;
+      max-height: 76px;
+      overflow-y: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .vault-tabs.expanded {
+      max-height: 600px;
+      flex-wrap: wrap;
+      overflow-y: auto;
+    }
+
+    .vault-tabs::-webkit-scrollbar { display: none; }
+
+    .vault-tab {
+      flex-shrink: 0;
+      padding: 6px 12px;
+      border-radius: 100px;
+      border: 1px solid #e5e5ea;
+      background: #f5f5f7;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .vault-tab:hover {
+      border-color: #c7c7cc;
+      color: #1d1d1f;
+    }
+
+    .vault-tab.active {
+      background: #2470ff;
+      border-color: #2470ff;
+      color: #ffffff;
+    }
+
+    .vault-tab .tab-tvl {
+      font-size: 10px;
+      opacity: 0.7;
+      margin-left: 4px;
+    }
+
+    .show-more-tabs {
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px dashed #c7c7cc;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .show-more-tabs:hover {
+      border-color: #2470ff;
+      color: #2470ff;
+    }
+
+    /* ── Morpho card link area ── */
+    .morpho-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .morpho-link:hover { opacity: 0.85; }
+
+    /* ── Collateral Section ── */
+    .collateral-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .collateral-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #e5e5ea;
+    }
+
+    .collateral-card.morpho { border-color: rgba(36, 112, 255, 0.2); }
+    .collateral-card.aave { border-color: rgba(124, 58, 237, 0.2); }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    .card-header .badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      background: #f5f5f7;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── TVL badge ── */
+    .tvl-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: #86868b;
+      background: #f5f5f7;
+      padding: 4px 10px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    /* ── Allocation Bar ── */
+    .alloc-bar {
+      height: 10px;
+      border-radius: 5px;
+      background: #f0f0f5;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .alloc-bar .seg {
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+
+    /* ── Asset List ── */
+    .asset-list { list-style: none; }
+
+    .asset-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f0f5;
+    }
+
+    .asset-item:last-child { border-bottom: none; }
+
+    a.asset-item {
+      text-decoration: none;
+      color: inherit;
+      border-radius: 6px;
+      margin: 0 -8px;
+      padding: 9px 8px;
+      transition: background 0.15s ease;
+    }
+
+    a.asset-item:hover { background: #f5f5f7; }
+
+    a.asset-item + a.asset-item,
+    a.asset-item + .asset-item,
+    .asset-item + a.asset-item { border-top: none; }
+
+    .asset-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .asset-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .asset-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1d1d1f;
+    }
+
+    .asset-type {
+      font-size: 12px;
+      color: #86868b;
+      margin-left: 4px;
+      font-weight: 400;
+    }
+
+    .asset-pct {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    /* ── Dropdown Toggle ── */
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 10px 0;
+      margin-top: 4px;
+      background: none;
+      border: 1px solid #e5e5ea;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: #86868b;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background: #f5f5f7;
+      color: #1d1d1f;
+    }
+
+    .dropdown-toggle .arrow {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown-toggle.open .arrow { transform: rotate(180deg); }
+
+    .hidden-assets {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .hidden-assets.show { max-height: 600px; }
+
+    /* ── Morpho collateral transition ── */
+    .morpho-collateral-inner { transition: opacity 0.25s ease; }
+    .morpho-collateral-inner.fading { opacity: 0; }
+
+    /* ── Loading skeleton ── */
+    .skeleton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      color: #aeaeb2;
+      font-size: 14px;
+    }
+
+    .loading-spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #e5e5ea;
+      border-top-color: #2470ff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #aeaeb2;
+    }
+
+    .data-status {
+      font-size: 12px;
+      color: #aeaeb2;
+      margin-top: 6px;
+    }
+
+    .data-status .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .yield-row, .collateral-row { grid-template-columns: 1fr; }
+      .yield-card .apy { font-size: 36px; }
+      body { padding: 24px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>USDC: Risk &amp; Yield Comparison</h1>
+    <p id="headerSub">Loading all Morpho USDC vaults on Ethereum&hellip;</p>
+  </div>
+
+  <!-- ── Section 1: Supply Yield ── -->
+  <div class="section">
+    <div class="section-label">Supply Yield &middot; Real-Time Rates</div>
+
+    <!-- Vault picker -->
+    <div class="yield-card morpho" style="margin-bottom: 16px;">
+      <div class="vault-picker">
+        <div class="vault-search-row">
+          <input type="text" class="vault-search" id="vaultSearch" placeholder="Search vaults&hellip;" autocomplete="off">
+          <select class="vault-sort" id="vaultSort">
+            <option value="tvl">TVL ↓</option>
+            <option value="apy">APY ↓</option>
+            <option value="name">Name A-Z</option>
+          </select>
+          <span class="vault-count" id="vaultCount"></span>
+        </div>
+        <div class="vault-tabs-wrapper" id="vaultTabsWrapper">
+          <div class="vault-tabs" id="vaultTabs">
+            <div class="skeleton" id="tabsSkeleton"><div class="loading-spinner"></div> Loading vaults&hellip;</div>
+          </div>
+        </div>
+      </div>
+
+      <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
+        <div class="protocol-name">Morpho</div>
+        <div class="vault-label" id="morphoVaultLabel">Select a vault</div>
+        <div class="apy" id="morphoApy">&mdash;</div>
+        <div class="apy-sub" id="morphoApySub">Net APY</div>
+        <div class="tvl-badge" id="morphoTvl" style="display:none"></div>
+      </a>
+    </div>
+
+    <!-- Aave card -->
+    <div class="yield-row">
+      <div style="grid-column: 1 / -1;">
+        <a href="https://app.aave.com/reserve-overview/?underlyingAsset=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&marketName=proto_mainnet_v3" class="yield-card aave" style="text-decoration: none; color: inherit;" target="_blank" rel="noopener">
+          <div class="protocol-name">Aave V3</div>
+          <div class="vault-label">USDC Market</div>
+          <div class="apy" id="aaveApy">4.01%</div>
+          <div class="apy-sub">Supply APR</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 2: Collateral Backing ── -->
+  <div class="section">
+    <div class="section-label">Collateral Backing</div>
+    <div class="collateral-row">
+
+      <!-- Morpho (dynamic) -->
+      <div class="collateral-card morpho">
+        <div class="morpho-collateral-inner" id="morphoCollateral">
+          <div class="card-header">
+            <h3>Morpho</h3>
+            <span class="badge" id="morphoBadge">Select a vault</span>
+          </div>
+          <div class="alloc-bar" id="morphoAllocBar"></div>
+          <ul class="asset-list" id="morphoAssetList">
+            <li class="skeleton" style="border:none; padding: 20px 0;">Select a vault above to see collateral</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Aave (static) -->
+      <div class="collateral-card aave">
+        <div class="card-header">
+          <h3>Aave V3</h3>
+          <span class="badge">20+ assets &middot; Shared pool</span>
+        </div>
+
+        <div class="alloc-bar">
+          <div class="seg" style="width: 22%; background: #6366f1"></div>
+          <div class="seg" style="width: 17.3%; background: #818cf8"></div>
+          <div class="seg" style="width: 13%; background: #3b82f6"></div>
+          <div class="seg" style="width: 13.5%; background: #ec4899"></div>
+          <div class="seg" style="width: 10.1%; background: #f97316"></div>
+          <div class="seg" style="width: 7%; background: #22c55e"></div>
+          <div class="seg" style="width: 3.3%; background: #f59e0b"></div>
+          <div class="seg" style="width: 2.5%; background: #2563eb"></div>
+          <div class="seg" style="width: 2%; background: #9333ea"></div>
+          <div class="seg" style="width: 9.3%; background: #c7c7cc"></div>
+        </div>
+
+        <ul class="asset-list">
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #6366f1"></span>
+              <span class="asset-name">WETH <span class="asset-type">Wrapped ETH</span></span>
+            </div>
+            <span class="asset-pct">22.0%</span>
+          </a>
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #818cf8"></span>
+              <span class="asset-name">weETH <span class="asset-type">EtherFi Restaked ETH</span></span>
+            </div>
+            <span class="asset-pct">17.3%</span>
+          </a>
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #3b82f6"></span>
+              <span class="asset-name">wstETH <span class="asset-type">Lido Staked ETH</span></span>
+            </div>
+            <span class="asset-pct">13.0%</span>
+          </a>
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x4c9edd5852cd905f086c759e8383e09bff1e68b3&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #ec4899"></span>
+              <span class="asset-name">USDe <span class="asset-type">Ethena Synthetic</span></span>
+            </div>
+            <span class="asset-pct">13.5%</span>
+          </a>
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x2260fac5e5542a773aa44fbcfedf7c193bc2c599&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f97316"></span>
+              <span class="asset-name">WBTC <span class="asset-type">Wrapped BTC</span></span>
+            </div>
+            <span class="asset-pct">10.1%</span>
+          </a>
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xdac17f958d2ee523a2206206994597c13d831ec7&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #22c55e"></span>
+              <span class="asset-name">USDT <span class="asset-type">Tether</span></span>
+            </div>
+            <span class="asset-pct">7.0%</span>
+          </a>
+          <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+            <div class="asset-left">
+              <span class="asset-dot" style="background: #f59e0b"></span>
+              <span class="asset-name">cbBTC <span class="asset-type">Coinbase BTC</span></span>
+            </div>
+            <span class="asset-pct">3.3%</span>
+          </a>
+        </ul>
+
+        <div class="hidden-assets" id="aaveMore">
+          <ul class="asset-list">
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x514910771af9ca656af840dff83e8264ecf986ca&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #2563eb"></span>
+                <span class="asset-name">LINK <span class="asset-type">Chainlink</span></span>
+              </div>
+              <span class="asset-pct">2.5%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #9333ea"></span>
+                <span class="asset-name">AAVE <span class="asset-type">Aave Token</span></span>
+              </div>
+              <span class="asset-pct">2.0%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x6b175474e89094c44da98b954eedeac495271d0f&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #f59e0b"></span>
+                <span class="asset-name">DAI <span class="asset-type">MakerDAO</span></span>
+              </div>
+              <span class="asset-pct">1.8%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xae78736cd615f374d3085123a210448e74fc6393&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #06b6d4"></span>
+                <span class="asset-name">rETH <span class="asset-type">Rocket Pool ETH</span></span>
+              </div>
+              <span class="asset-pct">1.5%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xd533a949740bb3306d119cc777fa900ba034cd52&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #ef4444"></span>
+                <span class="asset-name">CRV <span class="asset-type">Curve</span></span>
+              </div>
+              <span class="asset-pct">0.8%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xbe9895146f7af43049ca1c1ae358b0541ea49704&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #3b82f6"></span>
+                <span class="asset-name">cbETH <span class="asset-type">Coinbase Staked ETH</span></span>
+              </div>
+              <span class="asset-pct">0.7%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #10b981"></span>
+                <span class="asset-name">GHO <span class="asset-type">Aave Stablecoin</span></span>
+              </div>
+              <span class="asset-pct">0.6%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x5f98805a4e8be255a32880fdec7f6728c6568ba0&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #6366f1"></span>
+                <span class="asset-name">LUSD <span class="asset-type">Liquity USD</span></span>
+              </div>
+              <span class="asset-pct">0.5%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xc18360217d8f7ab5e7c516566761ea12ce7f9d72&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #60a5fa"></span>
+                <span class="asset-name">ENS <span class="asset-type">Ethereum Name Service</span></span>
+              </div>
+              <span class="asset-pct">0.4%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #a78bfa"></span>
+                <span class="asset-name">SNX <span class="asset-type">Synthetix</span></span>
+              </div>
+              <span class="asset-pct">0.3%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #818cf8"></span>
+                <span class="asset-name">MKR <span class="asset-type">Maker</span></span>
+              </div>
+              <span class="asset-pct">0.3%</span>
+            </a>
+            <a class="asset-item" href="https://app.aave.com/reserve-overview/?underlyingAsset=0xba100000625a3754423978a60c9317c58a424e3d&marketName=proto_mainnet_v3" target="_blank" rel="noopener">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #c084fc"></span>
+                <span class="asset-name">BAL <span class="asset-type">Balancer</span></span>
+              </div>
+              <span class="asset-pct">0.2%</span>
+            </a>
+            <li class="asset-item">
+              <div class="asset-left">
+                <span class="asset-dot" style="background: #c7c7cc"></span>
+                <span class="asset-name">Others <span class="asset-type">KNC, 1INCH, etc.</span></span>
+              </div>
+              <span class="asset-pct">1.5%</span>
+            </li>
+          </ul>
+        </div>
+
+        <button class="dropdown-toggle" id="aaveToggle" onclick="toggleAave()">
+          <span id="toggleText">Show all 20+ assets</span>
+          <span class="arrow" id="toggleArrow">&#9660;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Sources: Morpho Blue API, Aavescan, DefiLlama &middot; Rates update live</p>
+    <p class="data-status" id="dataStatus"><span class="dot" style="background:#aeaeb2"></span> Loading&hellip;</p>
+  </div>
+
+</div>
+
+<script>
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Configuration
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  const MORPHO_API = 'https://blue-api.morpho.org/graphql';
+  const USDC_ADDRESS = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
+
+  const COLLATERAL_COLORS = {
+    'cbBTC': '#f59e0b', 'WBTC': '#f97316', 'wstETH': '#3b82f6',
+    'WETH': '#6366f1', 'weETH': '#818cf8', 'USDT': '#22c55e',
+    'DAI': '#f59e0b', 'USDC': '#2563eb', 'sDAI': '#f59e0b',
+    'tBTC': '#e11d48', 'sUSDe': '#ec4899', 'USDe': '#ec4899',
+    'rsETH': '#10b981', 'ezETH': '#06b6d4', 'osETH': '#8b5cf6',
+    'rETH': '#06b6d4', 'LBTC': '#f97316', 'sFRAX': '#f97316',
+    'PT-sUSDe': '#ec4899', 'PT-USDe': '#ec4899', 'PT-weETH': '#818cf8',
+    'MKR': '#818cf8', 'AAVE': '#9333ea', 'LINK': '#2563eb',
+    'CRV': '#ef4444', 'cbETH': '#3b82f6', 'wUSDM': '#22c55e',
+    'PYUSD': '#2563eb', 'EURC': '#2563eb', 'GHO': '#10b981',
+    'susds': '#f59e0b', 'sUSDS': '#f59e0b', 'USDS': '#22c55e',
+    'ENA': '#ec4899', 'wM': '#22c55e'
+  };
+
+  let allVaults = [];       // full list from API
+  let filteredVaults = [];  // after search/sort
+  let currentVault = -1;    // index in filteredVaults
+  let tabsExpanded = false;
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Fetch all USDC vaults from Morpho
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  async function fetchAllVaults() {
+    let allItems = [];
+    let skip = 0;
+    const pageSize = 100;
+
+    while (true) {
+      const query = `{
+        vaults(
+          first: ${pageSize}
+          skip: ${skip}
+          orderBy: TotalAssetsUsd
+          orderDirection: Desc
+          where: {
+            chainId_in: [1]
+            assetAddress_in: ["${USDC_ADDRESS}"]
+          }
+        ) {
+          items {
+            address
+            name
+            symbol
+            state {
+              netApy
+              fee
+              totalAssetsUsd
+              allocation {
+                supplyAssetsUsd
+                market {
+                  uniqueKey
+                  collateralAsset { symbol name }
+                }
+              }
+            }
+          }
+          pageInfo {
+            count
+            countTotal
+          }
+        }
+      }`;
+
+      const res = await fetch(MORPHO_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
+
+      if (!res.ok) throw new Error('Morpho API error: ' + res.status);
+      const json = await res.json();
+      if (json.errors) throw new Error(json.errors[0].message);
+
+      const data = json.data.vaults;
+      allItems = allItems.concat(data.items);
+
+      if (allItems.length >= data.pageInfo.countTotal || data.items.length < pageSize) {
+        break;
+      }
+      skip += pageSize;
+    }
+
+    return allItems;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Process vault data
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function processVault(raw) {
+    const state = raw.state || {};
+    const apy = state.netApy != null ? (state.netApy * 100).toFixed(2) + '%' : '—';
+    const apyNum = state.netApy != null ? state.netApy * 100 : 0;
+    const tvl = state.totalAssetsUsd || 0;
+    const fee = state.fee != null ? state.fee : null;
+
+    let apySub = 'Net APY';
+    if (fee != null && fee > 0) {
+      apySub = 'Net APY (post ' + Math.round(fee * 100) + '% perf. fee)';
+    }
+
+    // Build collateral from allocation
+    const alloc = state.allocation || [];
+    const totalUsd = alloc.reduce((s, a) => s + (parseFloat(a.supplyAssetsUsd) || 0), 0);
+    let collateral = [];
+
+    if (totalUsd > 0) {
+      collateral = alloc
+        .filter(a => a.market && a.market.collateralAsset)
+        .map(a => {
+          const pct = (parseFloat(a.supplyAssetsUsd) || 0) / totalUsd * 100;
+          const sym = a.market.collateralAsset.symbol;
+          const key = a.market.uniqueKey;
+          return {
+            name: sym,
+            type: a.market.collateralAsset.name || sym,
+            pct: pct < 0.1 ? '<0.1%' : pct.toFixed(1) + '%',
+            width: Math.max(pct, 0.3),
+            color: COLLATERAL_COLORS[sym] || '#c7c7cc',
+            url: key ? 'https://app.morpho.org/ethereum/market/' + key : null
+          };
+        })
+        .sort((a, b) => b.width - a.width);
+    }
+
+    const badge = collateral.length > 0
+      ? collateral.length + ' assets; Isolated Markets'
+      : 'No active markets';
+
+    return {
+      address: raw.address,
+      name: raw.name || raw.symbol || raw.address.slice(0, 10),
+      symbol: raw.symbol,
+      url: 'https://app.morpho.org/ethereum/vault/' + raw.address,
+      apy, apyNum, apySub, tvl, badge, collateral
+    };
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Format helpers
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function formatTvl(usd) {
+    if (usd >= 1e9) return '$' + (usd / 1e9).toFixed(1) + 'B';
+    if (usd >= 1e6) return '$' + (usd / 1e6).toFixed(1) + 'M';
+    if (usd >= 1e3) return '$' + (usd / 1e3).toFixed(0) + 'K';
+    return '$' + Math.round(usd);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Build & filter tabs
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function applyFilters() {
+    const search = document.getElementById('vaultSearch').value.toLowerCase().trim();
+    const sort = document.getElementById('vaultSort').value;
+
+    filteredVaults = allVaults.filter(v =>
+      v.name.toLowerCase().includes(search) ||
+      v.symbol.toLowerCase().includes(search) ||
+      v.address.toLowerCase().includes(search)
+    );
+
+    if (sort === 'tvl') {
+      filteredVaults.sort((a, b) => b.tvl - a.tvl);
+    } else if (sort === 'apy') {
+      filteredVaults.sort((a, b) => b.apyNum - a.apyNum);
+    } else {
+      filteredVaults.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    document.getElementById('vaultCount').textContent = filteredVaults.length + ' vaults';
+    buildTabs();
+  }
+
+  function buildTabs() {
+    const container = document.getElementById('vaultTabs');
+    container.innerHTML = '';
+
+    filteredVaults.forEach((v, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'vault-tab' + (i === currentVault ? ' active' : '');
+      btn.innerHTML = v.name + '<span class="tab-tvl">' + formatTvl(v.tvl) + '</span>';
+      btn.onclick = () => selectVault(i);
+      container.appendChild(btn);
+    });
+
+    updateFadeClasses();
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Fade edge indicators
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function updateFadeClasses() {
+    const tabs = document.getElementById('vaultTabs');
+    const wrapper = document.getElementById('vaultTabsWrapper');
+    if (!tabs || !wrapper) return;
+    const atEnd = tabs.scrollLeft + tabs.clientWidth >= tabs.scrollWidth - 2;
+    const atStart = tabs.scrollLeft <= 2;
+    wrapper.classList.toggle('scrolled-end', atEnd);
+    wrapper.classList.toggle('scrolled-start', !atStart);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Select vault
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function selectVault(index) {
+    currentVault = index;
+    const v = filteredVaults[index];
+    if (!v) return;
+
+    // Update tabs
+    document.querySelectorAll('.vault-tab').forEach((tab, i) => {
+      tab.classList.toggle('active', i === index);
+    });
+
+    // Scroll active tab into view
+    const activeTab = document.querySelectorAll('.vault-tab')[index];
+    if (activeTab) activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+    // Update yield card
+    document.getElementById('morphoLink').href = v.url;
+    document.getElementById('morphoVaultLabel').textContent = v.name;
+    document.getElementById('morphoApy').textContent = v.apy;
+    document.getElementById('morphoApySub').textContent = v.apySub;
+
+    // TVL badge
+    const tvlEl = document.getElementById('morphoTvl');
+    tvlEl.textContent = 'TVL: ' + formatTvl(v.tvl);
+    tvlEl.style.display = 'inline-block';
+
+    // Animate collateral card
+    const inner = document.getElementById('morphoCollateral');
+    inner.classList.add('fading');
+    setTimeout(() => {
+      renderCollateral(v);
+      inner.classList.remove('fading');
+    }, 200);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Render collateral
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function renderCollateral(v) {
+    document.getElementById('morphoBadge').textContent = v.badge;
+
+    const bar = document.getElementById('morphoAllocBar');
+    bar.innerHTML = v.collateral.map(a =>
+      '<div class="seg" style="width:' + a.width + '%;background:' + a.color + '"></div>'
+    ).join('');
+
+    const list = document.getElementById('morphoAssetList');
+    if (v.collateral.length === 0) {
+      list.innerHTML = '<li class="asset-item" style="border:none;color:#aeaeb2;">No active collateral markets</li>';
+      return;
+    }
+
+    list.innerHTML = v.collateral.map(a => {
+      const tag = a.url ? 'a' : 'li';
+      const href = a.url ? ' href="' + a.url + '" target="_blank" rel="noopener"' : '';
+      return '<' + tag + ' class="asset-item"' + href + '>' +
+        '<div class="asset-left">' +
+          '<span class="asset-dot" style="background:' + a.color + '"></span>' +
+          '<span class="asset-name">' + a.name + ' <span class="asset-type">' + a.type + '</span></span>' +
+        '</div>' +
+        '<span class="asset-pct">' + a.pct + '</span>' +
+      '</' + tag + '>';
+    }).join('');
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Aave dropdown
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function toggleAave() {
+    const el = document.getElementById('aaveMore');
+    const btn = document.getElementById('aaveToggle');
+    const text = document.getElementById('toggleText');
+    const isOpen = el.classList.toggle('show');
+    btn.classList.toggle('open', isOpen);
+    text.textContent = isOpen ? 'Show fewer' : 'Show all 20+ assets';
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Fetch Aave rate
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  async function fetchAaveRate() {
+    const res = await fetch('https://yields.llama.fi/pools');
+    if (!res.ok) return false;
+    const json = await res.json();
+    const pool = json.data.find(p =>
+      p.project === 'aave-v3' && p.symbol === 'USDC' && p.chain === 'Ethereum'
+    );
+    if (pool && pool.apyBase != null) {
+      document.getElementById('aaveApy').textContent = pool.apyBase.toFixed(2) + '%';
+      return true;
+    }
+    return false;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Status
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function setStatus(color, text) {
+    document.getElementById('dataStatus').innerHTML =
+      '<span class="dot" style="background:' + color + '"></span> ' + text;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Event listeners
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  document.getElementById('vaultSearch').addEventListener('input', () => {
+    currentVault = -1;
+    applyFilters();
+  });
+
+  document.getElementById('vaultSort').addEventListener('change', () => {
+    currentVault = -1;
+    applyFilters();
+  });
+
+  document.getElementById('vaultTabs').addEventListener('scroll', updateFadeClasses);
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     Init
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  (async function init() {
+    let morphoOk = false;
+    let aaveOk = false;
+
+    try {
+      const [vaultsResult, aaveResult] = await Promise.allSettled([
+        fetchAllVaults(),
+        fetchAaveRate()
+      ]);
+
+      if (vaultsResult.status === 'fulfilled') {
+        const rawVaults = vaultsResult.value;
+        allVaults = rawVaults.map(processVault);
+        morphoOk = true;
+
+        document.getElementById('headerSub').textContent =
+          allVaults.length + ' USDC vaults on Morpho (Ethereum) vs Aave V3';
+
+        applyFilters();
+
+        // Auto-select first vault
+        if (filteredVaults.length > 0) {
+          selectVault(0);
+        }
+      } else {
+        console.error('Failed to fetch vaults:', vaultsResult.reason);
+        document.getElementById('tabsSkeleton').innerHTML = 'Failed to load vaults. Please refresh.';
+      }
+
+      if (aaveResult.status === 'fulfilled') {
+        aaveOk = aaveResult.value;
+      }
+    } catch (e) {
+      console.error('Init error:', e);
+    }
+
+    if (morphoOk && aaveOk) {
+      setStatus('#22c55e', 'Live data \u00b7 Updated just now');
+    } else if (morphoOk || aaveOk) {
+      setStatus('#f59e0b', 'Partial live data \u00b7 Some sources unavailable');
+    } else {
+      setStatus('#aeaeb2', 'Unable to load data \u00b7 Please refresh');
+    }
+  })();
+</script>
+
+</body>
+</html>
