@@ -364,13 +364,13 @@
       <div class="yield-card morpho">
         <div class="vault-tabs-wrapper" id="vaultTabsWrapper">
           <div class="vault-tabs" id="vaultTabs">
-            <span class="loading-text">Loading vaults&hellip;</span>
+            <button class="vault-tab active">Steakhouse USDC</button>
           </div>
         </div>
-        <a id="morphoLink" class="morpho-link" href="#" target="_blank" rel="noopener">
+        <a id="morphoLink" class="morpho-link" href="https://app.morpho.org/ethereum/vault/0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB/steakhouse-usdc" target="_blank" rel="noopener">
           <div class="protocol-name">Morpho</div>
-          <div class="vault-label" id="morphoVaultLabel">Loading&hellip;</div>
-          <div class="apy" id="morphoApy">&mdash;</div>
+          <div class="vault-label" id="morphoVaultLabel">Steakhouse USDC</div>
+          <div class="apy" id="morphoApy">5.87%</div>
           <div class="apy-sub" id="morphoApySub">Net APY</div>
         </a>
       </div>
@@ -588,7 +588,7 @@
             chainId_in: [1]
             assetAddress_in: ["${USDC_ADDRESS}"]
             whitelisted: true
-            totalAssetsUsd_gte: 100000000
+            totalAssetsUsd_gte: 50000000
           }
         ) {
           items {
