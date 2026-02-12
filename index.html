@@ -359,6 +359,22 @@
       color: #aeaeb2;
     }
 
+    /* ── Data Status ── */
+    .data-status {
+      font-size: 12px;
+      color: #aeaeb2;
+      margin-top: 6px;
+    }
+
+    .data-status .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 640px) {
       .yield-row, .collateral-row {
@@ -606,7 +622,8 @@
 
   <!-- Footer -->
   <div class="footer">
-    <p>Sources: Morpho App, Aavescan, DefiLlama &middot; Rates are 7-day averages and fluctuate</p>
+    <p>Sources: Morpho App, Aavescan, DefiLlama &middot; Rates update live when available</p>
+    <p class="data-status" id="dataStatus"><span class="dot" style="background:#aeaeb2"></span> Loading live data&hellip;</p>
   </div>
 
 </div>
@@ -617,6 +634,7 @@
   const morphoVaults = [
     {
       name: "Steakhouse USDC",
+      address: "0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB",
       url: "https://app.morpho.org/ethereum/vault/0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB/steakhouse-usdc",
       apy: "5.87%",
       apySub: "Net APY (post 25% perf. fee)",
@@ -630,6 +648,7 @@
     },
     {
       name: "Gauntlet USDC Prime",
+      address: "0xdd0f28e19C1780eb6396170735D45153D261490d",
       url: "https://app.morpho.org/ethereum/vault/0xdd0f28e19C1780eb6396170735D45153D261490d/gauntlet-usdc-prime",
       apy: "5.41%",
       apySub: "Net APY",
@@ -644,6 +663,7 @@
     },
     {
       name: "Vault Bridge USDC",
+      address: "0xBEefb9f61CC44895d8AEc381373555a64191A9c4",
       url: "https://app.morpho.org/ethereum/vault/0xBEefb9f61CC44895d8AEc381373555a64191A9c4/vault-bridge-usdc",
       apy: "4.62%",
       apySub: "Net APY",
@@ -657,6 +677,7 @@
     },
     {
       name: "Steakhouse Prime Instant",
+      address: "0xbeef088055857739C12CD3765F20b7679Def0f51",
       url: "https://app.morpho.org/ethereum/vault/0xbeef088055857739C12CD3765F20b7679Def0f51/steakhouse-prime-instant",
       apy: "5.14%",
       apySub: "Net APY (post 15% perf. fee)",
@@ -670,6 +691,7 @@
     },
     {
       name: "KPK USDC Prime V2",
+      address: "0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6",
       url: "https://app.morpho.org/ethereum/vault/0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6/kpk-usdc-prime-v2",
       apy: "5.53%",
       apySub: "Net APY",
@@ -684,6 +706,7 @@
     },
     {
       name: "Avantgarde USDC Conservative",
+      address: "0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd",
       url: "https://app.morpho.org/ethereum/vault/0xeBBaE8CfAbB0092d5B32f00EBeE0c8139d24dDcd/avantgarde-usdc-conservative",
       apy: "4.89%",
       apySub: "Net APY",
@@ -790,6 +813,143 @@
   buildTabs();
   updateFadeClasses();
   renderCollateral(morphoVaults[0]);
+
+  // ═══════════════════════════════════════════════════
+  // ── Live Data Integration ──
+  // ═══════════════════════════════════════════════════
+
+  const MORPHO_API = 'https://blue-api.morpho.org/graphql';
+
+  const COLLATERAL_COLORS = {
+    'cbBTC': '#f59e0b', 'WBTC': '#f97316', 'wstETH': '#3b82f6',
+    'WETH': '#6366f1', 'weETH': '#818cf8', 'USDT': '#22c55e',
+    'DAI': '#f59e0b', 'USDC': '#2563eb', 'sDAI': '#f59e0b',
+    'tBTC': '#e11d48', 'sUSDe': '#ec4899', 'USDe': '#ec4899',
+    'rsETH': '#10b981', 'ezETH': '#06b6d4', 'osETH': '#8b5cf6',
+    'rETH': '#06b6d4', 'LBTC': '#f97316', 'sFRAX': '#f97316'
+  };
+
+  function setStatus(color, text) {
+    const el = document.getElementById('dataStatus');
+    el.innerHTML = '<span class="dot" style="background:' + color + '"></span> ' + text;
+  }
+
+  async function fetchMorphoVault(address, index) {
+    const query = `{
+      vaultByAddress(address: "${address}", chainId: 1) {
+        state {
+          netApy
+          allocation {
+            supplyAssetsUsd
+            market {
+              collateralAsset { symbol name }
+            }
+          }
+        }
+      }
+    }`;
+
+    const res = await fetch(MORPHO_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    if (json.errors) throw new Error(json.errors[0].message);
+
+    const vault = json.data.vaultByAddress;
+    if (!vault || !vault.state) return false;
+
+    // Update APY
+    if (vault.state.netApy != null) {
+      morphoVaults[index].apy = (vault.state.netApy * 100).toFixed(2) + '%';
+    }
+
+    // Update collateral allocation
+    const alloc = vault.state.allocation;
+    if (alloc && alloc.length > 0) {
+      const totalUsd = alloc.reduce((s, a) => s + (parseFloat(a.supplyAssetsUsd) || 0), 0);
+      if (totalUsd > 0) {
+        const newCollateral = alloc
+          .filter(a => a.market && a.market.collateralAsset)
+          .map(a => {
+            const pct = (parseFloat(a.supplyAssetsUsd) || 0) / totalUsd * 100;
+            const sym = a.market.collateralAsset.symbol;
+            return {
+              name: sym,
+              type: a.market.collateralAsset.name || sym,
+              pct: pct < 0.1 ? '<0.1%' : pct.toFixed(1) + '%',
+              width: Math.max(pct, 0.3),
+              color: COLLATERAL_COLORS[sym] || '#c7c7cc'
+            };
+          })
+          .sort((a, b) => b.width - a.width);
+
+        if (newCollateral.length > 0) {
+          morphoVaults[index].collateral = newCollateral;
+          morphoVaults[index].badge = newCollateral.length + ' assets \u00b7 Isolated';
+        }
+      }
+    }
+    return true;
+  }
+
+  async function fetchAaveRate() {
+    const res = await fetch('https://yields.llama.fi/pools');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    const pool = json.data.find(p =>
+      p.project === 'aave-v3' && p.symbol === 'USDC' && p.chain === 'Ethereum'
+    );
+    if (pool && pool.apyBase != null) {
+      document.querySelector('.yield-card.aave .apy').textContent = pool.apyBase.toFixed(2) + '%';
+      return true;
+    }
+    return false;
+  }
+
+  async function fetchLiveData() {
+    let morphoOk = false;
+    let aaveOk = false;
+
+    // Fetch all Morpho vaults in parallel
+    try {
+      const results = await Promise.allSettled(
+        morphoVaults.map((v, i) => fetchMorphoVault(v.address, i))
+      );
+      morphoOk = results.some(r => r.status === 'fulfilled' && r.value);
+    } catch (e) {
+      console.warn('[Morpho API]', e.message || e);
+    }
+
+    // Fetch Aave rate
+    try {
+      aaveOk = await fetchAaveRate();
+    } catch (e) {
+      console.warn('[Aave/DeFi Llama]', e.message || e);
+    }
+
+    // Re-render currently selected vault with live data
+    if (morphoOk) {
+      const v = morphoVaults[currentVault];
+      document.getElementById('morphoApy').textContent = v.apy;
+      document.getElementById('morphoApySub').textContent = v.apySub;
+      renderCollateral(v);
+    }
+
+    // Update status
+    if (morphoOk && aaveOk) {
+      setStatus('#22c55e', 'Live data \u00b7 Updated just now');
+    } else if (morphoOk || aaveOk) {
+      setStatus('#f59e0b', 'Partial live data \u00b7 Some sources unavailable');
+    } else {
+      setStatus('#aeaeb2', 'Using cached data \u00b7 APIs unavailable');
+    }
+  }
+
+  // Render static data immediately, then overlay with live data
+  fetchLiveData();
 </script>
 
 </body>
