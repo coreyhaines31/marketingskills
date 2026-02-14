@@ -6,6 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-test-setup | 1.0.0 | 2026-01-27 |
 | analytics-tracking | 1.0.0 | 2026-01-27 |
+| cold-email | 1.0.0 | 2026-02-14 |
 | competitor-alternatives | 1.0.0 | 2026-01-27 |
 | content-strategy | 1.0.0 | 2026-01-27 |
 | copy-editing | 1.0.0 | 2026-01-27 |
