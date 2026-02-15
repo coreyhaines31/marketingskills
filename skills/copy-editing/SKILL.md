@@ -1,7 +1,8 @@
 ---
 name: copy-editing
-version: 1.0.0
 description: "When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' or 'copy sweep.' This skill provides a systematic approach to editing marketing copy through multiple focused passes."
+metadata:
+  version: 1.0.0
 ---
 
 # Copy Editing

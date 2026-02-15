@@ -1,7 +1,8 @@
 ---
 name: referral-program
-version: 1.0.0
 description: "When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy. Also use when the user mentions 'referral,' 'affiliate,' 'ambassador,' 'word of mouth,' 'viral loop,' 'refer a friend,' or 'partner program.' This skill covers program design, incentive structure, and growth optimization."
+metadata:
+  version: 1.0.0
 ---
 
 # Referral & Affiliate Programs
