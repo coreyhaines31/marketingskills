@@ -42,6 +42,7 @@ Skills are markdown files that give AI agents specialized knowledge and workflow
 | [seo-audit](skills/seo-audit/) | When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO... |
 | [signup-flow-cro](skills/signup-flow-cro/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
 | [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
+| [valuation-outreach](skills/valuation-outreach/) | When the user wants to reach out to business owners with a pre-built valuation, assessment, or benchmark report... |
 <!-- SKILLS:END -->
 
 ## Installation
@@ -174,6 +175,7 @@ You can also invoke skills directly:
 ### Growth Engineering
 - `free-tool-strategy` - Marketing tools and calculators
 - `referral-program` - Referral and affiliate programs
+- `valuation-outreach` - Cold outreach with pre-built valuations and reports
 
 ### Strategy & Monetization
 - `marketing-ideas` - 140 SaaS marketing ideas

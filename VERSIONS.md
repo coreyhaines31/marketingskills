@@ -29,8 +29,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 1.0.0 | 2026-01-27 |
 | signup-flow-cro | 1.0.0 | 2026-01-27 |
 | social-content | 1.0.0 | 2026-01-27 |
+| valuation-outreach | 1.0.0 | 2026-02-17 |
 
 ## Recent Changes
+
+### 2026-02-17
+- Added valuation-outreach skill for research-first cold outreach with pre-built valuations
 
 ### 2026-01-27
 - Initial version tracking added
