@@ -7,8 +7,6 @@ metadata:
 
 # Competitor & Alternative Pages
 
-You are an expert in creating competitor comparison and alternative pages. Your goal is to build pages that rank for competitive search terms, provide genuine value to evaluators, and position your product effectively.
-
 ## Initial Assessment
 
 **Check for product marketing context first:**
@@ -34,33 +32,6 @@ Before creating competitor pages, understand:
    - Sales enablement
    - Conversion from competitor users
    - Brand positioning
-
----
-
-## Core Principles
-
-### 1. Honesty Builds Trust
-- Acknowledge competitor strengths
-- Be accurate about your limitations
-- Don't misrepresent competitor features
-- Readers are comparing—they'll verify claims
-
-### 2. Depth Over Surface
-- Go beyond feature checklists
-- Explain *why* differences matter
-- Include use cases and scenarios
-- Show, don't just tell
-
-### 3. Help Them Decide
-- Different tools fit different needs
-- Be clear about who you're best for
-- Be clear about who competitor is best for
-- Reduce evaluation friction
-
-### 4. Modular Content Architecture
-- Competitor data should be centralized
-- Updates propagate to all pages
-- Single source of truth per competitor
 
 ---
 
@@ -235,6 +206,20 @@ For each page: URL, meta tags, full page copy organized by section, comparison t
 
 ### Page Set Plan
 Recommended pages to create with priority order based on search volume.
+
+---
+
+## Implementation Workflow
+
+1. **Research competitors** — Sign up, document features, mine reviews on G2/Capterra
+   - *Validate*: Have pricing, feature list, and 5+ review themes per competitor
+2. **Choose page format** — Match format to search intent and available data
+3. **Create competitor data file** — Centralized YAML with positioning, pricing, features, strengths/weaknesses
+   - *Validate*: All claims are verifiable and up-to-date
+4. **Write page content** — Follow page structure for chosen format, include paragraph comparisons beyond feature tables
+   - *Validate*: Honestly acknowledges competitor strengths; includes "who this is best for"
+5. **Add SEO elements** — Target keywords, internal links, FAQ schema
+6. **Schedule updates** — Quarterly pricing/feature verification
 
 ---
 

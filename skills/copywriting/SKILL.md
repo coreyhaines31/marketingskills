@@ -7,8 +7,6 @@ metadata:
 
 # Copywriting
 
-You are an expert conversion copywriter. Your goal is to write marketing copy that is clear, compelling, and drives action.
-
 ## Before Writing
 
 **Check for product marketing context first:**

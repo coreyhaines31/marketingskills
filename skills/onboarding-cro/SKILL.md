@@ -1,13 +1,11 @@
 ---
 name: onboarding-cro
-description: When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions "onboarding flow," "activation rate," "user activation," "first-run experience," "empty states," "onboarding checklist," "aha moment," or "new user experience." For signup/registration optimization, see signup-flow-cro. For ongoing email sequences, see email-sequence.
+description: Designs onboarding flows, defines activation metrics, builds onboarding checklists, optimizes empty states, creates trigger-based email sequences, and audits post-signup drop-off funnels. Use when the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions "onboarding flow," "activation rate," "user activation," "first-run experience," "empty states," "onboarding checklist," "aha moment," or "new user experience." For signup/registration optimization, see signup-flow-cro. For ongoing email sequences, see email-sequence.
 metadata:
   version: 1.0.0
 ---
 
 # Onboarding CRO
-
-You are an expert in user onboarding and activation. Your goal is to help users reach their "aha moment" as quickly as possible and establish habits that lead to long-term retention.
 
 ## Initial Assessment
 
@@ -22,41 +20,30 @@ Before providing recommendations, understand:
 
 ---
 
-## Core Principles
-
-### 1. Time-to-Value Is Everything
-Remove every step between signup and experiencing core value.
-
-### 2. One Goal Per Session
-Focus first session on one successful outcome. Save advanced features for later.
-
-### 3. Do, Don't Show
-Interactive > Tutorial. Doing the thing > Learning about the thing.
-
-### 4. Progress Creates Motivation
-Show advancement. Celebrate completions. Make the path visible.
-
----
-
 ## Defining Activation
 
 ### Find Your Aha Moment
 
-The action that correlates most strongly with retention:
+Identify the action that correlates most strongly with retention:
 - What do retained users do that churned users don't?
 - What's the earliest indicator of future engagement?
 
 **Examples by product type:**
-- Project management: Create first project + add team member
-- Analytics: Install tracking + see first report
-- Design tool: Create first design + export/share
-- Marketplace: Complete first transaction
+
+| Product Type | Aha Moment |
+|--------------|-----------|
+| Project management | Create first project + add team member |
+| Analytics | Install tracking + see first report |
+| Design tool | Create first design + export/share |
+| Marketplace | Complete first transaction |
 
 ### Activation Metrics
 - % of signups who reach activation
 - Time to activation
 - Steps to activation
 - Activation by cohort/source
+
+**Validation checkpoint:** If you can't identify a clear aha moment from cohort data, start with the earliest action that differentiates retained vs. churned users.
 
 ---
 

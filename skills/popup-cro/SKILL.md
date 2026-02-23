@@ -1,13 +1,11 @@
 ---
 name: popup-cro
-description: When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also use when the user mentions "exit intent," "popup conversions," "modal optimization," "lead capture popup," "email popup," "announcement banner," or "overlay." For forms outside of popups, see form-cro. For general page conversion optimization, see page-cro.
+description: Designs popup layouts, writes conversion copy, configures display triggers and timing, implements frequency capping, and A/B tests popup variants. Use when the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also use when the user mentions "exit intent," "popup conversions," "modal optimization," "lead capture popup," "email popup," "announcement banner," or "overlay." For forms outside of popups, see form-cro. For general page conversion optimization, see page-cro.
 metadata:
   version: 1.0.0
 ---
 
 # Popup CRO
-
-You are an expert in popup and modal optimization. Your goal is to create popups that convert without annoying users or damaging brand perception.
 
 ## Initial Assessment
 
@@ -35,26 +33,6 @@ Before providing recommendations, understand:
    - Traffic sources (paid, organic, direct)
    - New vs. returning visitors
    - Page types where shown
-
----
-
-## Core Principles
-
-### 1. Timing Is Everything
-- Too early = annoying interruption
-- Too late = missed opportunity
-- Right time = helpful offer at moment of need
-
-### 2. Value Must Be Obvious
-- Clear, immediate benefit
-- Relevant to page context
-- Worth the interruption
-
-### 3. Respect the User
-- Easy to dismiss
-- Don't trap or trick
-- Remember preferences
-- Don't ruin the experience
 
 ---
 
@@ -99,132 +77,64 @@ Before providing recommendations, understand:
 
 ## Popup Types
 
-### Email Capture Popup
-**Goal**: Newsletter/list subscription
-
-**Best practices:**
-- Clear value prop (not just "Subscribe")
-- Specific benefit of subscribing
-- Single field (email only)
-- Consider incentive (discount, content)
-
-**Copy structure:**
-- Headline: Benefit or curiosity hook
-- Subhead: What they get, how often
-- CTA: Specific action ("Get Weekly Tips")
-
-### Lead Magnet Popup
-**Goal**: Exchange content for email
-
-**Best practices:**
-- Show what they get (cover image, preview)
-- Specific, tangible promise
-- Minimal fields (email, maybe name)
-- Instant delivery expectation
-
-### Discount/Promotion Popup
-**Goal**: First purchase or conversion
-
-**Best practices:**
-- Clear discount (10%, $20, free shipping)
-- Deadline creates urgency
-- Single use per visitor
-- Easy to apply code
-
-### Exit Intent Popup
-**Goal**: Last-chance conversion
-
-**Best practices:**
-- Acknowledge they're leaving
-- Different offer than entry popup
-- Address common objections
-- Final compelling reason to stay
-
-**Formats:**
-- "Wait! Before you go..."
-- "Forget something?"
-- "Get 10% off your first order"
-- "Questions? Chat with us"
-
-### Announcement Banner
-**Goal**: Site-wide communication
-
-**Best practices:**
-- Top of page (sticky or static)
-- Single, clear message
-- Dismissable
-- Links to more info
-- Time-limited (don't leave forever)
-
-### Slide-In
-**Goal**: Less intrusive engagement
-
-**Best practices:**
-- Enters from corner/bottom
-- Doesn't block content
-- Easy to dismiss or minimize
-- Good for chat, support, secondary CTAs
+| Type | Goal | Key Practice |
+|------|------|-------------|
+| **Email Capture** | Newsletter subscription | Clear value prop, single field, specific CTA ("Get Weekly Tips") |
+| **Lead Magnet** | Content for email | Show preview of what they get, minimal fields, instant delivery |
+| **Discount/Promo** | First purchase | Clear discount amount, deadline urgency, single use per visitor |
+| **Exit Intent** | Last-chance conversion | Different offer than entry popup, address objections |
+| **Announcement Banner** | Site-wide communication | Top of page, dismissable, time-limited |
+| **Slide-In** | Less intrusive engagement | Corner/bottom entry, doesn't block content, easy dismiss |
 
 ---
 
-## Design Best Practices
+## Implementation Code
 
-### Visual Hierarchy
-1. Headline (largest, first seen)
-2. Value prop/offer (clear benefit)
-3. Form/CTA (obvious action)
-4. Close option (easy to find)
+### Exit Intent Detection
 
-### Sizing
-- Desktop: 400-600px wide typical
-- Don't cover entire screen
-- Mobile: Full-width bottom or center, not full-screen
-- Leave space to close (visible X, click outside)
+```javascript
+document.addEventListener('mouseout', function(e) {
+  if (e.clientY < 0 && !sessionStorage.getItem('popup_shown')) {
+    showPopup();
+    sessionStorage.setItem('popup_shown', 'true');
+  }
+});
+```
 
-### Close Button
-- Always visible (top right is convention)
-- Large enough to tap on mobile
-- "No thanks" text link as alternative
-- Click outside to close
+### Frequency Capping with localStorage
 
-### Mobile Considerations
-- Can't detect exit intent (use alternatives)
-- Full-screen overlays feel aggressive
-- Bottom slide-ups work well
-- Larger touch targets
-- Easy dismiss gestures
+```javascript
+function shouldShowPopup(popupId, cooldownDays = 7) {
+  const key = `popup_dismissed_${popupId}`;
+  const dismissed = localStorage.getItem(key);
+  if (dismissed && Date.now() - parseInt(dismissed) < cooldownDays * 86400000) {
+    return false;
+  }
+  return true;
+}
 
-### Imagery
-- Product image or preview
-- Face if relevant (increases trust)
-- Minimal for speed
-- Optional—copy can work alone
+function dismissPopup(popupId) {
+  localStorage.setItem(`popup_dismissed_${popupId}`, Date.now().toString());
+}
+```
+
+### Tracking Events
+
+```javascript
+// Track popup interactions
+analytics.track('popup_shown', { popup_id: 'exit-intent-discount', trigger: 'exit_intent' });
+analytics.track('popup_converted', { popup_id: 'exit-intent-discount', email: true });
+analytics.track('popup_dismissed', { popup_id: 'exit-intent-discount', method: 'close_button' });
+```
 
 ---
 
-## Copy Formulas
+## Copy Guidelines
 
-### Headlines
-- Benefit-driven: "Get [result] in [timeframe]"
-- Question: "Want [desired outcome]?"
-- Command: "Don't miss [thing]"
-- Social proof: "Join [X] people who..."
-- Curiosity: "The one thing [audience] always get wrong about [topic]"
-
-### Subheadlines
-- Expand on the promise
-- Address objection ("No spam, ever")
-- Set expectations ("Weekly tips in 5 min")
-
-### CTA Buttons
-- First person works: "Get My Discount" vs "Get Your Discount"
-- Specific over generic: "Send Me the Guide" vs "Submit"
-- Value-focused: "Claim My 10% Off" vs "Subscribe"
-
-### Decline Options
-- Polite, not guilt-trippy
-- "No thanks" / "Maybe later" / "I'm not interested"
-- Avoid manipulative: "No, I don't want to save money"
+- **Headlines**: Benefit-driven or curiosity-based ("Get [result] in [timeframe]", "Join [X] people who...")
+- **CTA buttons**: First-person, value-focused ("Get My Discount", "Send Me the Guide")
+- **Decline options**: Polite, non-manipulative ("No thanks", "Maybe later")
+- **Subheadlines**: Address objections or set expectations ("No spam, ever", "Weekly tips in 5 min")
 
 ---
 
@@ -343,94 +253,28 @@ Ideas to A/B test with expected outcomes
 
 ---
 
+## Optimization Workflow
+
+1. **Implement** — Deploy popup with tracking events (shown, converted, dismissed)
+2. **Baseline** — Run for 7 days minimum to establish conversion rate
+   - *Validate*: ≥1,000 impressions before drawing conclusions
+3. **Analyze** — Check conversion rate vs. benchmarks (email: 2-5%, exit intent: 3-10%)
+4. **Iterate** — Test one variable at a time (trigger, copy, offer, timing)
+   - *Validate*: Run each variant for ≥7 days or ≥500 impressions per variant
+5. **Monitor** — Watch close rate and page exit rate for annoyance signals
+
+---
+
 ## Experiment Ideas
 
-### Placement & Format Experiments
+Key areas to test:
+- **Format**: Center modal vs. slide-in, full-screen vs. smaller, banner position
+- **Triggers**: Exit intent vs. time delay vs. scroll depth, optimal timing thresholds
+- **Copy**: Headline variations, CTA text, urgency vs. value framing, decline text tone
+- **Personalization**: Dynamic content by visitor data, segment by traffic source
+- **Frequency**: Session caps, cool-down periods, escalating offers across visits
 
-**Banner Variations**
-- Top bar vs. banner below header
-- Sticky banner vs. static banner
-- Full-width vs. contained banner
-- Banner with countdown timer vs. without
-
-**Popup Formats**
-- Center modal vs. slide-in from corner
-- Full-screen overlay vs. smaller modal
-- Bottom bar vs. corner popup
-- Top announcements vs. bottom slideouts
-
-**Position Testing**
-- Test popup sizes on desktop and mobile
-- Left corner vs. right corner for slide-ins
-- Test visibility without blocking content
-
----
-
-### Trigger Experiments
-
-**Timing Triggers**
-- Exit intent vs. 30-second delay vs. 50% scroll depth
-- Test optimal time delay (10s vs. 30s vs. 60s)
-- Test scroll depth percentage (25% vs. 50% vs. 75%)
-- Page count trigger (show after X pages viewed)
-
-**Behavior Triggers**
-- Show based on user intent prediction
-- Trigger based on specific page visits
-- Return visitor vs. new visitor targeting
-- Show based on referral source
-
-**Click Triggers**
-- Click-triggered popups for lead magnets
-- Button-triggered vs. link-triggered modals
-- Test in-content triggers vs. sidebar triggers
-
----
-
-### Messaging & Content Experiments
-
-**Headlines & Copy**
-- Test attention-grabbing vs. informational headlines
-- "Limited-time offer" vs. "New feature alert" messaging
-- Urgency-focused copy vs. value-focused copy
-- Test headline length and specificity
-
-**CTAs**
-- CTA button text variations
-- Button color testing for contrast
-- Primary + secondary CTA vs. single CTA
-- Test decline text (friendly vs. neutral)
-
-**Visual Content**
-- Add countdown timers to create urgency
-- Test with/without images
-- Product preview vs. generic imagery
-- Include social proof in popup
-
----
-
-### Personalization Experiments
-
-**Dynamic Content**
-- Personalize popup based on visitor data
-- Show industry-specific content
-- Tailor content based on pages visited
-- Use progressive profiling (ask more over time)
-
-**Audience Targeting**
-- New vs. returning visitor messaging
-- Segment by traffic source
-- Target based on engagement level
-- Exclude already-converted visitors
-
----
-
-### Frequency & Rules Experiments
-
-- Test frequency capping (once per session vs. once per week)
-- Cool-down period after dismissal
-- Test different dismiss behaviors
-- Show escalating offers over multiple visits
+**For detailed experiment variations**: See [references/experiments.md](references/experiments.md)
 
 ---
 

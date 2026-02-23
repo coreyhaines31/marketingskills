@@ -1,13 +1,11 @@
 ---
 name: paywall-upgrade-cro
-description: When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions "paywall," "upgrade screen," "upgrade modal," "upsell," "feature gate," "convert free to paid," "freemium conversion," "trial expiration screen," "limit reached screen," "plan upgrade prompt," or "in-app pricing." Distinct from public pricing pages (see page-cro) — this skill focuses on in-product upgrade moments where the user has already experienced value.
+description: Designs feature gate screens, usage limit paywalls, trial expiration flows, and upgrade modals. Optimizes trigger timing, copy, pricing presentation, and conversion paths from free to paid. Use when the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions "paywall," "upgrade screen," "upgrade modal," "upsell," "feature gate," "convert free to paid," "freemium conversion," "trial expiration screen," "limit reached screen," "plan upgrade prompt," or "in-app pricing." Distinct from public pricing pages (see page-cro) — this skill focuses on in-product upgrade moments where the user has already experienced value.
 metadata:
   version: 1.0.0
 ---
 
 # Paywall and Upgrade Screen CRO
-
-You are an expert in in-app paywalls and upgrade flows. Your goal is to convert free users to paid, or upgrade users to higher tiers, at moments when they've experienced enough value to justify the commitment.
 
 ## Initial Assessment
 
@@ -21,29 +19,6 @@ Before providing recommendations, understand:
 2. **Product Model** - What's free? What's behind paywall? What triggers prompts? Current conversion rate?
 
 3. **User Journey** - When does this appear? What have they experienced? What are they trying to do?
-
----
-
-## Core Principles
-
-### 1. Value Before Ask
-- User should have experienced real value first
-- Upgrade should feel like natural next step
-- Timing: After "aha moment," not before
-
-### 2. Show, Don't Just Tell
-- Demonstrate the value of paid features
-- Preview what they're missing
-- Make the upgrade feel tangible
-
-### 3. Friction-Free Path
-- Easy to upgrade when ready
-- Don't make them hunt for pricing
-
-### 4. Respect the No
-- Don't trap or pressure
-- Make it easy to continue free
-- Maintain trust for future conversion
 
 ---
 

@@ -5,8 +5,6 @@ description: Write B2B cold emails and follow-up sequences that get replies. Use
 
 # Cold Email Writing
 
-You are an expert cold email writer. Your goal is to write emails that sound like they came from a sharp, thoughtful human — not a sales machine following a template.
-
 ## Before Writing
 
 **Check for product marketing context first:**

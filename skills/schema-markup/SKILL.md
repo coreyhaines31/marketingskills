@@ -7,8 +7,6 @@ metadata:
 
 # Schema Markup
 
-You are an expert in structured data and schema markup. Your goal is to implement schema.org markup that helps search engines understand content and enables rich results in search.
-
 ## Initial Assessment
 
 **Check for product marketing context first:**
@@ -24,27 +22,14 @@ Before implementing schema, understand:
 
 ---
 
-## Core Principles
+## Implementation Workflow
 
-### 1. Accuracy First
-- Schema must accurately represent page content
-- Don't markup content that doesn't exist
-- Keep updated when content changes
-
-### 2. Use JSON-LD
-- Google recommends JSON-LD format
-- Easier to implement and maintain
-- Place in `<head>` or end of `<body>`
-
-### 3. Follow Google's Guidelines
-- Only use markup Google supports
-- Avoid spam tactics
-- Review eligibility requirements
-
-### 4. Validate Everything
-- Test before deploying
-- Monitor Search Console
-- Fix errors promptly
+1. **Identify page type** → Match to schema type from table below
+2. **Draft JSON-LD** → Use required + recommended properties
+3. **Validate** → Test at https://search.google.com/test/rich-results
+4. **Fix errors** → Resolve missing required properties, invalid values
+5. **Deploy** → Place in `<head>` or end of `<body>`
+6. **Monitor** → Check Search Console Enhancements reports weekly
 
 ---
 
@@ -89,17 +74,47 @@ Required: itemListElement (array with position, name, item)
 
 ---
 
+## Complete Example: FAQPage
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is your refund policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer a full refund within 30 days of purchase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I cancel my subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Go to Settings > Billing > Cancel Subscription."
+      }
+    }
+  ]
+}
+```
+
 ## Multiple Schema Types
 
-You can combine multiple schema types on one page using `@graph`:
+Combine types on one page using `@graph`:
 
 ```json
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", ... },
-    { "@type": "WebSite", ... },
-    { "@type": "BreadcrumbList", ... }
+    { "@type": "Organization", "name": "YourCo", "url": "https://yourco.com" },
+    { "@type": "WebSite", "name": "YourCo", "url": "https://yourco.com" },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yourco.com" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://yourco.com/blog" }
+    ]}
   ]
 }
 ```

@@ -7,8 +7,6 @@ metadata:
 
 # Free Tool Strategy (Engineering as Marketing)
 
-You are an expert in engineering-as-marketing strategy. Your goal is to help plan and evaluate free tools that generate leads, attract organic traffic, and build brand awareness.
-
 ## Initial Assessment
 
 **Check for product marketing context first:**
@@ -21,28 +19,6 @@ Before designing a tool strategy, understand:
 2. **Goals** - Lead generation? SEO/traffic? Brand awareness? Product education?
 
 3. **Resources** - Technical capacity to build? Ongoing maintenance bandwidth? Budget for promotion?
-
----
-
-## Core Principles
-
-### 1. Solve a Real Problem
-- Tool must provide genuine value
-- Solves a problem your audience actually has
-- Useful even without your main product
-
-### 2. Adjacent to Core Product
-- Related to what you sell
-- Natural path from tool to product
-- Educates on problem you solve
-
-### 3. Simple and Focused
-- Does one thing well
-- Low friction to use
-- Immediate value
-
-### 4. Worth the Investment
-- Lead value × expected leads > build cost + maintenance
 
 ---
 
@@ -158,6 +134,22 @@ Rate each factor 1-5:
 | Share-worthiness | ___ |
 
 **25+**: Strong candidate | **15-24**: Promising | **<15**: Reconsider
+
+---
+
+## Implementation Workflow
+
+1. **Identify opportunity** — Research audience pain points, find search demand
+   - *Validate*: Confirm keyword volume exists for "[tool type] calculator/generator"
+2. **Score with evaluation scorecard** — Rate all 8 factors above
+   - *Validate*: Score ≥ 25 before proceeding
+3. **Define MVP scope** — Core functionality, essential UX, basic lead capture
+   - *Validate*: Can describe tool's value in one sentence
+4. **Choose build approach** — Custom, no-code, or embedded
+5. **Build and launch** — Implement tool, add lead capture, set up analytics
+   - *Validate*: Tool works on mobile, captures leads to CRM
+6. **Promote** — Target "[tool type]" keywords, create supporting content
+7. **Measure** — Track leads, conversion to customers, SEO rankings
 
 ---
 

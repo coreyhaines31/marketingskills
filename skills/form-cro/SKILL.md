@@ -1,13 +1,11 @@
 ---
 name: form-cro
-description: When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms, demo request forms, application forms, survey forms, or checkout forms. Also use when the user mentions "form optimization," "lead form conversions," "form friction," "form fields," "form completion rate," or "contact form." For signup/registration forms, see signup-flow-cro. For popups containing forms, see popup-cro.
+description: Audits form completion rates, reduces field count, optimizes field order and labels, designs multi-step forms with progress indicators, improves inline validation and error handling, and recommends submit button copy. Use when the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms, demo request forms, application forms, survey forms, or checkout forms. Also use when the user mentions "form optimization," "lead form conversions," "form friction," "form fields," "form completion rate," or "contact form." For signup/registration forms, see signup-flow-cro. For popups containing forms, see popup-cro.
 metadata:
   version: 1.0.0
 ---
 
 # Form CRO
-
-You are an expert in form optimization. Your goal is to maximize form completion rates while capturing the data that matters.
 
 ## Initial Assessment
 
@@ -38,29 +36,15 @@ Before providing recommendations, identify:
 
 ---
 
-## Core Principles
+## Field Cost Reference
 
-### 1. Every Field Has a Cost
-Each field reduces completion rate. Rule of thumb:
-- 3 fields: Baseline
-- 4-6 fields: 10-25% reduction
-- 7+ fields: 25-50%+ reduction
+| Field Count | Estimated Completion Impact |
+|-------------|---------------------------|
+| 3 fields | Baseline |
+| 4-6 fields | 10-25% reduction |
+| 7+ fields | 25-50%+ reduction |
 
-For each field, ask:
-- Is this absolutely necessary before we can help them?
-- Can we get this information another way?
-- Can we ask this later?
-
-### 2. Value Must Exceed Effort
-- Clear value proposition above form
-- Make what they get obvious
-- Reduce perceived effort (field count, labels)
-
-### 3. Reduce Cognitive Load
-- One question per field
-- Clear, conversational labels
-- Logical grouping and order
-- Smart defaults where possible
+For each field, ask: Is this needed before we can help them? Can we get it later or infer it?
 
 ---
 
@@ -332,81 +316,14 @@ Ideas to A/B test with expected outcomes
 
 ## Experiment Ideas
 
-### Form Structure Experiments
+Key areas to test:
+- **Layout**: Single-step vs. multi-step, 1-column vs. 2-column, embedded vs. separate page
+- **Fields**: Minimum viable fields, required vs. optional balance, progressive profiling
+- **Copy**: Button text variations, label clarity, error message tone
+- **Trust**: Privacy assurance placement, trust badges, testimonials near form
+- **Mobile**: Touch targets, keyboard types, sticky submit button
 
-**Layout & Flow**
-- Single-step form vs. multi-step with progress bar
-- 1-column vs. 2-column field layout
-- Form embedded on page vs. separate page
-- Vertical vs. horizontal field alignment
-- Form above fold vs. after content
-
-**Field Optimization**
-- Reduce to minimum viable fields
-- Add or remove phone number field
-- Add or remove company/organization field
-- Test required vs. optional field balance
-- Use field enrichment to auto-fill known data
-- Hide fields for returning/known visitors
-
-**Smart Forms**
-- Add real-time validation for emails and phone numbers
-- Progressive profiling (ask more over time)
-- Conditional fields based on earlier answers
-- Auto-suggest for company names
-
----
-
-### Copy & Design Experiments
-
-**Labels & Microcopy**
-- Test field label clarity and length
-- Placeholder text optimization
-- Help text: show vs. hide vs. on-hover
-- Error message tone (friendly vs. direct)
-
-**CTAs & Buttons**
-- Button text variations ("Submit" vs. "Get My Quote" vs. specific action)
-- Button color and size testing
-- Button placement relative to fields
-
-**Trust Elements**
-- Add privacy assurance near form
-- Show trust badges next to submit
-- Add testimonial near form
-- Display expected response time
-
----
-
-### Form Type-Specific Experiments
-
-**Demo Request Forms**
-- Test with/without phone number requirement
-- Add "preferred contact method" choice
-- Include "What's your biggest challenge?" question
-- Test calendar embed vs. form submission
-
-**Lead Capture Forms**
-- Email-only vs. email + name
-- Test value proposition messaging above form
-- Gated vs. ungated content strategies
-- Post-submission enrichment questions
-
-**Contact Forms**
-- Add department/topic routing dropdown
-- Test with/without message field requirement
-- Show alternative contact methods (chat, phone)
-- Expected response time messaging
-
----
-
-### Mobile & UX Experiments
-
-- Larger touch targets for mobile
-- Test appropriate keyboard types by field
-- Sticky submit button on mobile
-- Auto-focus first field on page load
-- Test form container styling (card vs. minimal)
+**For detailed experiment variations by form type**: See [references/experiments.md](references/experiments.md)
 
 ---
 

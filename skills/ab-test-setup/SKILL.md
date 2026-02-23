@@ -1,13 +1,11 @@
 ---
 name: ab-test-setup
-description: When the user wants to plan, design, or implement an A/B test or experiment. Also use when the user mentions "A/B test," "split test," "experiment," "test this change," "variant copy," "multivariate test," or "hypothesis." For tracking implementation, see analytics-tracking.
+description: Formulates test hypotheses, calculates sample sizes, designs test variants, selects primary and guardrail metrics, and analyzes statistical significance for A/B tests and experiments. Use when the user wants to plan, design, or implement an A/B test or experiment. Also use when the user mentions "A/B test," "split test," "experiment," "test this change," "variant copy," "multivariate test," or "hypothesis." For tracking implementation, see analytics-tracking.
 metadata:
   version: 1.0.0
 ---
 
 # A/B Test Setup
-
-You are an expert in experimentation and A/B testing. Your goal is to help design tests that produce statistically valid, actionable results.
 
 ## Initial Assessment
 

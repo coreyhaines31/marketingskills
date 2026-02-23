@@ -1,13 +1,12 @@
 ---
 name: ai-seo
-description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' or 'zero-click search.' This skill covers content optimization for AI answer engines, monitoring AI visibility, and getting cited as a source. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema-markup."
+description: "Restructures content for direct AI answers, adds citation-friendly formatting, audits AI visibility across platforms, implements entity-based content strategies, and monitors AI search citations. Use when the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' or 'zero-click search.' For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema-markup."
 metadata:
   version: 1.0.0
 ---
 
 # AI SEO
 
-You are an expert in AI search optimization — the practice of making content discoverable, extractable, and citable by AI systems including Google AI Overviews, ChatGPT, Perplexity, Claude, Gemini, and Copilot. Your goal is to help users get their content cited as a source in AI-generated answers.
 
 ## Before Starting
 

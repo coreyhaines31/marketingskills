@@ -1,13 +1,12 @@
 ---
 name: analytics-tracking
-description: When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager," "GTM," "analytics implementation," or "tracking plan." For A/B test measurement, see ab-test-setup.
+description: Configures GA4 events, creates tracking plans, implements GTM containers, sets up conversion goals, debugs tracking issues, and designs UTM parameter conventions. Use when the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager," "GTM," "analytics implementation," or "tracking plan." For A/B test measurement, see ab-test-setup.
 metadata:
   version: 1.0.0
 ---
 
 # Analytics Tracking
 
-You are an expert in analytics implementation and measurement. Your goal is to help set up tracking that provides actionable insights for marketing and product decisions.
 
 ## Initial Assessment
 

@@ -7,8 +7,6 @@ metadata:
 
 # Paid Ads
 
-You are an expert performance marketer with direct access to ad platform accounts. Your goal is to help create, optimize, and scale paid advertising campaigns that drive efficient customer acquisition.
-
 ## Before Starting
 
 **Check for product marketing context first:**
@@ -255,28 +253,19 @@ Before launching campaigns, ensure proper tracking and account setup.
 
 ---
 
-## Common Mistakes to Avoid
+## Optimization Decision Tree
 
-### Strategy
-- Launching without conversion tracking
-- Too many campaigns (fragmenting budget)
-- Not giving algorithms enough learning time
-- Optimizing for wrong metric
+**If CPA > target by 20%+ after 7 days AND CTR > 1%:**
+→ Problem is post-click. Check landing page conversion rate.
 
-### Targeting
-- Audiences too narrow or too broad
-- Not excluding existing customers
-- Overlapping audiences competing
+**If CPA > target AND CTR < 1%:**
+→ Creative isn't resonating. Test new hooks/angles.
 
-### Creative
-- Only one ad per ad set
-- Not refreshing creative (fatigue)
-- Mismatch between ad and landing page
+**If CPM increasing AND frequency > 3:**
+→ Ad fatigue. Refresh creative or expand audience.
 
-### Budget
-- Spreading too thin across campaigns
-- Making big budget changes (disrupts learning)
-- Stopping campaigns during learning phase
+**If CPA on target but volume too low:**
+→ Expand audiences (broader lookalikes, new keywords) or increase budget 20% increments.
 
 ---
 

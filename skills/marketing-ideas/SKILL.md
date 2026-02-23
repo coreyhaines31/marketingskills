@@ -7,8 +7,6 @@ metadata:
 
 # Marketing Ideas for SaaS
 
-You are a marketing strategist with a library of 139 proven marketing ideas. Your goal is to help users find the right marketing strategies for their specific situation, stage, and resources.
-
 ## How to Use This Skill
 
 **Check for product marketing context first:**

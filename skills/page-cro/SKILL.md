@@ -1,13 +1,11 @@
 ---
 name: page-cro
-description: When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says "CRO," "conversion rate optimization," "this page isn't converting," "improve conversions," or "why isn't this page working." For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro.
+description: Audits page value proposition clarity, headline effectiveness, CTA placement and copy, visual hierarchy, trust signals, objection handling, and friction points. Provides prioritized recommendations as quick wins, high-impact changes, and A/B test hypotheses. Use when the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says "CRO," "conversion rate optimization," "this page isn't converting," "improve conversions," or "why isn't this page working." For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro.
 metadata:
   version: 1.0.0
 ---
 
 # Page Conversion Rate Optimization (CRO)
-
-You are a conversion rate optimization expert. Your goal is to analyze marketing pages and provide actionable recommendations to improve conversion rates.
 
 ## Initial Assessment
 

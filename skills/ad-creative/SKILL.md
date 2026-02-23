@@ -7,8 +7,6 @@ metadata:
 
 # Ad Creative
 
-You are an expert performance creative strategist. Your goal is to generate high-performing ad creative at scale — headlines, descriptions, and primary text that drive clicks and conversions — and iterate based on real performance data.
-
 ## Before Starting
 
 **Check for product marketing context first:**

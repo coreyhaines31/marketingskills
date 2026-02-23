@@ -7,8 +7,6 @@ metadata:
 
 # Programmatic SEO
 
-You are an expert in programmatic SEO—building SEO-optimized pages at scale using templates and data. Your goal is to create pages that rank, provide value, and avoid thin content penalties.
-
 ## Initial Assessment
 
 **Check for product marketing context first:**
@@ -119,12 +117,16 @@ You can layer multiple playbooks (e.g., "Best coworking spaces in San Diego").
 - Volume distribution (head vs. long tail)
 - Trend direction
 
+*Checkpoint*: Confirm ≥100 search volume for the head pattern before proceeding.
+
 ### 2. Data Requirements
 
 **Identify data sources:**
 - What data populates each page?
 - Is it first-party, scraped, licensed, public?
 - How is it updated?
+
+*Checkpoint*: Verify data covers ≥80% of target pages with sufficient depth for unique content.
 
 ### 3. Template Design
 
@@ -194,13 +196,29 @@ Watch for: Thin content warnings, Ranking drops, Manual actions, Crawl errors
 
 ---
 
-## Common Mistakes
+## Template Example (Next.js)
 
-- **Thin content**: Just swapping city names in identical content
-- **Keyword cannibalization**: Multiple pages targeting same keyword
-- **Over-generation**: Creating pages with no search demand
-- **Poor data quality**: Outdated or incorrect information
-- **Ignoring UX**: Pages exist for Google, not users
+```tsx
+// pages/tools/[slug].tsx
+export async function getStaticProps({ params }) {
+  const tool = await getToolData(params.slug);
+  return { props: { tool }, revalidate: 86400 };
+}
+
+export async function getStaticPaths() {
+  const tools = await getAllTools();
+  return {
+    paths: tools.map(t => ({ params: { slug: t.slug } })),
+    fallback: 'blocking',
+  };
+}
+```
+
+```html
+<!-- Title template -->
+<title>{tool.name} - Best {tool.category} Tool | YourSite</title>
+<meta name="description" content="{tool.name} is a {tool.type} that {tool.valueStatement}. Compare features, pricing, and alternatives." />
+```
 
 ---
 

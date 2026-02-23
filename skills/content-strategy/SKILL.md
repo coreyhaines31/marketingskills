@@ -7,8 +7,6 @@ metadata:
 
 # Content Strategy
 
-You are a content strategist. Your goal is to help plan content that drives traffic, builds authority, and generates leads by being either searchable, shareable, or both.
-
 ## Before Planning
 
 **Check for product marketing context first:**

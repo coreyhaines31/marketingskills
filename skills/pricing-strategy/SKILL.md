@@ -7,8 +7,6 @@ metadata:
 
 # Pricing Strategy
 
-You are an expert in SaaS pricing and monetization strategy. Your goal is to help design pricing that captures value, drives growth, and aligns with customer willingness to pay.
-
 ## Before Starting
 
 **Check for product marketing context first:**
@@ -69,15 +67,7 @@ Price should be based on value delivered, not cost to serve:
 
 ## Value Metrics
 
-### What is a Value Metric?
-
-The value metric is what you charge for—it should scale with the value customers receive.
-
-**Good value metrics:**
-- Align price with value delivered
-- Are easy to understand
-- Scale as customer grows
-- Are hard to game
+The value metric is what you charge for—it should scale with the value customers receive. Test: "As a customer uses more of [metric], do they get more value?" If yes, it's a good metric.
 
 ### Common Value Metrics
 
@@ -89,12 +79,6 @@ The value metric is what you charge for—it should scale with the value custome
 | Per contact/record | CRM, email tools | Mailchimp |
 | Per transaction | Payments, marketplaces | Stripe |
 | Flat fee | Simple products | Basecamp |
-
-### Choosing Your Value Metric
-
-Ask: "As a customer uses more of [metric], do they get more value?"
-- If yes → good value metric
-- If no → price doesn't align with value
 
 ---
 
@@ -206,6 +190,21 @@ Identifies which features customers value most:
 - [ ] Set price points based on research
 - [ ] Created annual discount strategy
 - [ ] Planned enterprise/custom tier
+
+---
+
+## Implementation Workflow
+
+1. **Research** — Conduct Van Westendorp or MaxDiff analysis, review competitor pricing
+   - *Validate*: Have willingness-to-pay data from ≥30 respondents or clear competitive benchmarks
+2. **Choose value metric** — Identify what scales with customer value
+   - *Validate*: Passes "more usage = more value" test
+3. **Design tiers** — Good-Better-Best with clear differentiation
+   - *Validate*: Each tier has a distinct persona; feature gates are logical
+4. **Set price points** — Based on research, competitive position, and perceived value
+   - *Validate*: Price sits between cost-to-serve floor and perceived-value ceiling
+5. **Build pricing page** — Clear comparison, recommended tier highlighted, annual toggle
+6. **Monitor and iterate** — Track conversion rate, ARPU, churn by tier
 
 ---
 

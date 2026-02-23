@@ -1,13 +1,11 @@
 ---
 name: signup-flow-cro
-description: When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions "signup conversions," "registration friction," "signup form optimization," "free trial signup," "reduce signup dropoff," or "account creation flow." For post-signup onboarding, see onboarding-cro. For lead capture forms (not account creation), see form-cro.
+description: Audits signup flows to identify drop-off points, reduces form fields, optimizes social auth placement, designs multi-step registration with progress indicators, and improves post-submit verification flows. Use when the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions "signup conversions," "registration friction," "signup form optimization," "free trial signup," "reduce signup dropoff," or "account creation flow." For post-signup onboarding, see onboarding-cro. For lead capture forms (not account creation), see form-cro.
 metadata:
   version: 1.0.0
 ---
 
 # Signup Flow CRO
-
-You are an expert in optimizing signup and registration flows. Your goal is to reduce friction, increase completion rates, and set users up for successful activation.
 
 ## Initial Assessment
 
@@ -264,80 +262,14 @@ Organized by:
 
 ## Experiment Ideas
 
-### Form Design Experiments
+Key areas to test:
+- **Fields**: Minimum viable (email + password only), single "Name" vs. First/Last, required vs. optional balance
+- **Auth options**: SSO prominent vs. email prominent, which providers resonate (varies by B2B/B2C)
+- **Copy**: CTA text ("Create Account" vs. "Start Free Trial"), trust elements, value prop emphasis
+- **Trial model**: Credit card required vs. not, trial length (7/14/30 days), freemium vs. free trial
+- **Friction**: Email verification timing, CAPTCHA impact, post-submit auto-login vs. require login
 
-**Layout & Structure**
-- Single-step vs. multi-step signup flow
-- Multi-step with progress bar vs. without
-- 1-column vs. 2-column field layout
-- Form embedded on page vs. separate signup page
-- Horizontal vs. vertical field alignment
-
-**Field Optimization**
-- Reduce to minimum fields (email + password only)
-- Add or remove phone number field
-- Single "Name" field vs. "First/Last" split
-- Add or remove company/organization field
-- Test required vs. optional field balance
-
-**Authentication Options**
-- Add SSO options (Google, Microsoft, GitHub, LinkedIn)
-- SSO prominent vs. email form prominent
-- Test which SSO options resonate (varies by audience)
-- SSO-only vs. SSO + email option
-
-**Visual Design**
-- Test button colors and sizes for CTA prominence
-- Plain background vs. product-related visuals
-- Test form container styling (card vs. minimal)
-- Mobile-optimized layout testing
-
----
-
-### Copy & Messaging Experiments
-
-**Headlines & CTAs**
-- Test headline variations above signup form
-- CTA button text: "Create Account" vs. "Start Free Trial" vs. "Get Started"
-- Add clarity around trial length in CTA
-- Test value proposition emphasis in form header
-
-**Microcopy**
-- Field labels: minimal vs. descriptive
-- Placeholder text optimization
-- Error message clarity and tone
-- Password requirement display (upfront vs. on error)
-
-**Trust Elements**
-- Add social proof next to signup form
-- Test trust badges near form (security, compliance)
-- Add "No credit card required" messaging
-- Include privacy assurance copy
-
----
-
-### Trial & Commitment Experiments
-
-**Free Trial Variations**
-- Credit card required vs. not required for trial
-- Test trial length impact (7 vs. 14 vs. 30 days)
-- Freemium vs. free trial model
-- Trial with limited features vs. full access
-
-**Friction Points**
-- Email verification required vs. delayed vs. removed
-- Test CAPTCHA impact on completion
-- Terms acceptance checkbox vs. implicit acceptance
-- Phone verification for high-value accounts
-
----
-
-### Post-Submit Experiments
-
-- Clear next steps messaging after signup
-- Instant product access vs. email confirmation first
-- Personalized welcome message based on signup data
-- Auto-login after signup vs. require login
+**For detailed experiment variations**: See [references/experiments.md](references/experiments.md)
 
 ---
 
