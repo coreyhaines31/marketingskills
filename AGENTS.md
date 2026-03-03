@@ -128,12 +128,18 @@ description: When the user wants to optimize conversions on any marketing page. 
 
 ## Claude Code Plugin
 
-This repo also serves as a plugin marketplace. The manifest at `.claude-plugin/marketplace.json` lists all skills for installation via:
+This repo serves as a plugin marketplace and supports **Claude Organization Plugin > Sync from GitHub**.
+
+### Individual install (Claude Code CLI)
 
 ```bash
 /plugin marketplace add coreyhaines31/marketingskills
 /plugin install marketing-skills
 ```
+
+### Organization-wide install (GitHub Sync)
+
+Admins can sync this repo via **Claude Settings > Organization > Plugins > Sync from GitHub** using repository `coreyhaines31/marketingskills`. The `.claude-plugin/` directory contains both the marketplace manifest and plugin metadata required by GitHub Sync.
 
 See [Claude Code plugins documentation](https://code.claude.com/docs/en/plugins.md) for details.
 
