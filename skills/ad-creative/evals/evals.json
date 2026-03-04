@@ -20,13 +20,13 @@
     {
       "id": 2,
       "prompt": "I need Google Ads copy for our CRM product. We're targeting the keyword 'best CRM for small business'. Need responsive search ads.",
-      "expected_output": "Should generate Google RSA creative respecting character limits: headlines (≤30 chars each, need 10-15 variations) and descriptions (≤90 chars each, need 4+ variations). Should pin key headlines to positions 1-2 for message consistency. Should include the target keyword in headlines. Should provide multiple angle-based variations. Should suggest ad extensions (sitelinks, callouts, structured snippets). Should follow Google Ads best practices for RSA.",
+      "expected_output": "Should generate Google RSA creative respecting character limits: headlines (≤30 chars each, need 10-15 variations) and descriptions (≤90 chars each, need 4+ variations). Should note that pinning should be used sparingly as it reduces optimization. Should include the target keyword in headlines. Should provide multiple angle-based variations. Should suggest ad extensions (sitelinks, callouts, structured snippets). Should follow Google Ads best practices for RSA.",
       "assertions": [
         "Respects Google RSA character limits (30 char headlines, 90 char descriptions)",
         "Generates 10-15 headline variations",
         "Generates 4+ description variations",
         "Includes target keyword in headlines",
-        "Suggests pinning strategy",
+        "Notes pinning should be used sparingly per skill guidance",
         "Suggests ad extensions",
         "Uses angle-based variation approach"
       ],

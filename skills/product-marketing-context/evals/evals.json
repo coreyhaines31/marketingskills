@@ -4,12 +4,12 @@
     {
       "id": 1,
       "prompt": "I want to set up my product marketing context. We're a B2B SaaS company that sells a customer feedback platform to product teams.",
-      "expected_output": "Should check if .agents/product-marketing-context.md already exists. If not, should start the step-by-step document creation process covering all 12 sections: Product Overview, Target Audience, Personas, Problems You Solve, Competitive Landscape, Differentiation, Objections, Switching Dynamics, Customer Language, Brand Voice, Proof Points, and Goals. Should guide the user through each section, asking questions to fill in the details. Should create the file at .agents/product-marketing-context.md when complete.",
+      "expected_output": "Should check if .agents/product-marketing-context.md already exists. If not, should offer two options: (1) Auto-draft from codebase (recommended) or (2) Start from scratch. If user chooses start from scratch, should walk through sections conversationally one at a time. Should cover all applicable sections: Product Overview, Target Audience, Personas, Problems You Solve, Competitive Landscape, Differentiation, Objections, Switching Dynamics, Customer Language, Brand Voice, Proof Points, and Goals. Should create the file at .agents/product-marketing-context.md when complete.",
       "assertions": [
         "Checks for existing product-marketing-context.md",
-        "Initiates step-by-step creation process",
-        "Covers all 12 sections",
-        "Asks questions to fill in each section",
+        "Offers two options: auto-draft or start from scratch",
+        "Covers applicable sections",
+        "Walks through sections conversationally one at a time",
         "Creates file at .agents/product-marketing-context.md"
       ],
       "files": []
@@ -17,7 +17,7 @@
     {
       "id": 2,
       "prompt": "Update our product marketing context. We just added a new enterprise tier and our target audience has expanded to include VP of Engineering, not just Product Managers.",
-      "expected_output": "Should check for existing .agents/product-marketing-context.md and read it. Should identify which sections need updating based on the changes: Target Audience (add VP of Engineering), Personas (add new persona), Product Overview (new enterprise tier), possibly Pricing/Packaging, Objections (enterprise-specific), and Competitive Landscape (enterprise competitors). Should update only the relevant sections, preserving existing content that hasn't changed.",
+      "expected_output": "Should check for existing .agents/product-marketing-context.md and read it. Should identify which sections need updating based on the changes: Target Audience (add VP of Engineering), Personas (add new persona), Product Overview (new enterprise tier, including pricing updates within that section), Objections (enterprise-specific), and Competitive Landscape (enterprise competitors). Should update only the relevant sections, preserving existing content that hasn't changed.",
       "assertions": [
         "Reads existing product-marketing-context.md",
         "Identifies sections that need updating",
@@ -31,13 +31,14 @@
     {
       "id": 3,
       "prompt": "create a product context doc for my app. it's a mobile app that helps people find hiking trails. we're just getting started.",
-      "expected_output": "Should trigger on casual phrasing. Should check for existing context doc. Should start the step-by-step creation process, adapting questions for an early-stage mobile app (B2C, outdoor/fitness niche). Should note that some sections may be sparse for an early-stage product and that's okay — they can be filled in as the business matures. Should still cover all 12 sections but accept lighter answers for sections like Proof Points or Competitive Landscape if the company is new.",
+      "expected_output": "Should trigger on casual phrasing. Should check for existing context doc. Should offer auto-draft or start-from-scratch options. Should adapt questions for an early-stage B2C mobile app (outdoor/fitness niche). Should note that some sections may be sparse for an early-stage product and that's okay — they can be filled in as the business matures. Should skip non-applicable sections (e.g., Personas section is B2B-focused) rather than forcing all 12. Should accept lighter answers for sections like Proof Points or Competitive Landscape if the company is new.",
       "assertions": [
         "Triggers on casual phrasing",
         "Checks for existing context doc",
+        "Offers auto-draft or start-from-scratch options",
         "Adapts questions for early-stage B2C mobile app",
         "Notes some sections may be sparse early on",
-        "Still covers all 12 sections",
+        "Skips non-applicable sections rather than forcing all 12",
         "Creates file at .agents/product-marketing-context.md"
       ],
       "files": []

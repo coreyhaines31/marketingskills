@@ -33,7 +33,7 @@
     {
       "id": 3,
       "prompt": "what psychological principles should I use to write better marketing copy?",
-      "expected_output": "Should trigger on casual phrasing. Should recommend copy-relevant mental models: social proof, reciprocity, loss aversion, anchoring, specificity bias, the power of 'because' (reason-giving), storytelling/narrative transportation, IKEA effect, endowment effect. For each principle, should explain what it is and provide a specific copywriting application. Should reference the quick reference table by challenge. Should organize by where in the copy each principle applies (headlines, body, CTAs, testimonials).",
+      "expected_output": "Should trigger on casual phrasing. Should recommend copy-relevant mental models from the skill's taxonomy: social proof, reciprocity, loss aversion, anchoring, scarcity, IKEA Effect, Endowment Effect, Commitment & Consistency. For each principle, should explain what it is and provide a specific copywriting application. Should reference the quick reference table by challenge. Should organize by where in the copy each principle applies (headlines, body, CTAs, testimonials).",
       "assertions": [
         "Triggers on casual phrasing",
         "Recommends copy-relevant mental models",
@@ -47,7 +47,7 @@
     {
       "id": 4,
       "prompt": "I'm designing an onboarding flow and want to use behavioral psychology to increase activation. What models should I apply?",
-      "expected_output": "Should apply design and behavioral models: BJ Fogg Behavior Model (Motivation × Ability × Prompt), Hick's Law (reduce choices), IKEA Effect (let users build something), Endowment Effect (let them experience ownership), Variable Rewards, Zeigarnik Effect (incomplete tasks drive completion), Commitment and Consistency (small asks first). Should explain how each applies to onboarding specifically. Should provide actionable recommendations for each model.",
+      "expected_output": "Should apply design and behavioral models from the skill's taxonomy: Goal-Gradient Effect (motivation increases near goal), Hick's Law (reduce choices), IKEA Effect (let users build something), Endowment Effect (let them experience ownership), Zeigarnik Effect (incomplete tasks drive completion), Commitment & Consistency (small asks first). Should explain how each applies to onboarding specifically. Should provide actionable recommendations for each model.",
       "assertions": [
         "Applies BJ Fogg Behavior Model",
         "Applies Hick's Law",

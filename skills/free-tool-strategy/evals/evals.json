@@ -76,13 +76,13 @@
     },
     {
       "id": 6,
-      "prompt": "Can you help me build the actual code for a website grader tool? I want it in Next.js with a form and results page.",
-      "expected_output": "Should recognize this is a development/coding task, not a free tool strategy task. This skill covers strategy, evaluation, and planning of free tools — not the actual development. Should suggest that the user work on the implementation as a separate coding task. May provide strategic guidance on what the tool should include and how to structure it from a marketing perspective.",
+      "prompt": "How do I optimize the landing page for our free tool to get more signups? The tool itself is great but nobody finds it.",
+      "expected_output": "Should recognize this is a landing page conversion optimization task, not a free tool strategy task. Should defer to or cross-reference the page-cro skill for optimizing the tool's landing page conversion rate. May provide free-tool-specific context (gating strategy, value demonstration) but should make clear that page-cro is the right skill for page conversion optimization.",
       "assertions": [
-        "Recognizes this as a development task, not strategy",
-        "Does not attempt to write full application code",
-        "May provide strategic guidance on tool requirements",
-        "Suggests implementation as a separate task"
+        "Recognizes this as page CRO, not free tool strategy",
+        "References or defers to page-cro skill",
+        "May provide free-tool-specific context",
+        "Does not attempt full page CRO using free tool strategy patterns"
       ],
       "files": []
     }
