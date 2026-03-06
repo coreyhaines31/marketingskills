@@ -158,6 +158,17 @@ npx skillkit install coreyhaines31/marketingskills --skill page-cro copywriting
 npx skillkit install coreyhaines31/marketingskills --list
 ```
 
+### Option 7: Cowork Plugin
+
+Upload directly to [Claude Cowork](https://cowork.claude.ai) as a standalone plugin:
+
+```bash
+bash scripts/build-cowork-plugin.sh
+# Then upload marketing-skills.plugin to Cowork
+```
+
+See [COWORK.md](COWORK.md) for full details, including how to keep skills in sync.
+
 ## Upgrading from v1.0
 
 Skills now use `.agents/` instead of `.claude/` for the product marketing context file. Move your existing context file:
