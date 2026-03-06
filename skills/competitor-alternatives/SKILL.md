@@ -1,8 +1,6 @@
 ---
 name: competitor-alternatives
 description: "When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' 'competitive landing pages,' 'how do we compare to X,' 'battle card,' or 'competitor teardown.' Use this for any content that positions your product against competitors. Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For sales-specific competitor docs, see sales-enablement."
-metadata:
-  version: 1.1.0
 ---
 
 # Competitor & Alternative Pages
@@ -196,6 +194,28 @@ For each competitor, gather:
 4. **Customer feedback**: Talk to customers who switched (both directions)
 5. **Content research**: Their positioning, their comparison pages, their changelog
 
+### Data Integrity Protocol (Mandatory)
+
+Do not publish competitor content without source-backed evidence.
+
+1. **Crawl official sources first**
+   - Prioritize official domains, product docs, pricing pages, release notes, and official app listings.
+   - Use third-party reviews only for sentiment themes; never as the sole source for factual claims.
+2. **Capture source metadata**
+   - For every source, record: `source_url`, `source_type`, `crawl_timestamp`, `last_verified_date`, `status_code`.
+3. **Attach citations to every factual claim**
+   - Claims about pricing, features, integrations, uptime, migration, market position, or reviews must include a citation.
+   - If a claim has no valid source, remove it or mark it as unverified.
+4. **Run link validation before output**
+   - Verify all links are reachable or valid redirects.
+   - Replace fragile deep links with stable homepage/docs links when possible.
+5. **Enforce freshness window**
+   - Re-verify pricing/features within 30 days for active deliverables.
+   - If older than 30 days, mark data stale and flag for refresh before publication.
+6. **Do not score without evidence**
+   - Any scorecard row must include at least one citation per scored dimension.
+   - Use `N/A` instead of guessing when evidence is missing.
+
 ### Ongoing Updates
 
 - **Quarterly**: Verify pricing, check for major feature changes
@@ -230,11 +250,35 @@ Consider FAQ schema for common questions like "What is the best alternative to [
 ### Competitor Data File
 Complete competitor profile in YAML format for use across all comparison pages.
 
+Minimum schema:
+
+```yaml
+competitor: "Example"
+as_of_date: "2026-03-05"
+sources:
+  - source_url: "https://example.com/pricing"
+    source_type: "official_pricing"
+    crawl_timestamp: "2026-03-05T10:15:00Z"
+    last_verified_date: "2026-03-05"
+    status_code: 200
+claims:
+  - id: "pricing_starter"
+    statement: "Starter plan is $29/month"
+    citation_urls:
+      - "https://example.com/pricing"
+```
+
 ### Page Content
 For each page: URL, meta tags, full page copy organized by section, comparison tables, CTAs.
 
 ### Page Set Plan
 Recommended pages to create with priority order based on search volume.
+
+### Source Appendix (Required)
+At the end of each deliverable, add:
+1. Link checklist with status (`live`, `redirected`, `stale`, `unreachable`)
+2. Claim-to-citation map
+3. Data cutoff date (`as_of_date`) and unresolved evidence gaps
 
 ---
 
