@@ -90,7 +90,7 @@ async function main() {
             event_type: args['event-type'],
           }
           if (args.properties) {
-            event.event_properties = JSON.parse(args.properties)
+            try { event.event_properties = JSON.parse(args.properties) } catch { result = { error: 'Invalid JSON in --properties' }; break }
           }
           result = await ingestApi('POST', '/2/httpapi', {
             api_key: API_KEY,
@@ -100,7 +100,8 @@ async function main() {
         }
         case 'batch': {
           if (!args.events) { result = { error: '--events required (JSON array)' }; break }
-          const events = JSON.parse(args.events)
+          let events
+          try { events = JSON.parse(args.events) } catch { result = { error: 'Invalid JSON in --events' }; break }
           result = await ingestApi('POST', '/batch', {
             api_key: API_KEY,
             events,

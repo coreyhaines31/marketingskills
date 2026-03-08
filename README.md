@@ -30,7 +30,7 @@ Skills reference each other and build on shared context. The `product-marketing-
 │  SEO &   │ │   CRO    │ │Content & │ │  Paid &    │ │ Growth & │ │  Sales &    │ │ Strategy  │
 │ Content  │ │          │ │   Copy   │ │Measurement │ │Retention │ │    GTM      │ │           │
 ├──────────┤ ├──────────┤ ├──────────┤ ├────────────┤ ├──────────┤ ├─────────────┤ ├───────────┤
-│seo-audit │ │page-cro  │ │copywritng│ │paid-ads    │ │referral  │ │revops       │ │mktg-ideas │
+│seo-audit │ │page-cro  │ │copywriting│ │paid-ads    │ │referral  │ │revops       │ │mktg-ideas │
 │ai-seo    │ │signup-cro│ │copy-edit │ │ad-creative │ │free-tool │ │sales-enable │ │mktg-psych │
 │site-arch │ │onboard   │ │cold-email│ │ab-test     │ │churn-    │ │launch       │ │           │
 │programm  │ │form-cro  │ │email-seq │ │analytics   │ │ prevent  │ │pricing      │ │           │
@@ -157,6 +157,17 @@ npx skillkit install coreyhaines31/marketingskills --skill page-cro copywriting
 # List available skills
 npx skillkit install coreyhaines31/marketingskills --list
 ```
+
+### Option 7: Cowork Plugin
+
+Upload directly to [Claude Cowork](https://cowork.claude.ai) as a standalone plugin:
+
+```bash
+bash scripts/build-cowork-plugin.sh
+# Then upload marketing-skills.plugin to Cowork
+```
+
+See [COWORK.md](COWORK.md) for full details, including how to keep skills in sync.
 
 ## Upgrading from v1.0
 

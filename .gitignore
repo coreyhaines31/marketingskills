@@ -23,3 +23,7 @@ video/
 *~
 .idea/
 .vscode/
+
+# Cowork plugin build output
+*.plugin
+.upstream-cache/
