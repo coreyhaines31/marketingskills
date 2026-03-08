@@ -347,3 +347,4 @@ If context is missing, ask:
 - **revops**: For lead lifecycle, scoring, routing, and pipeline management
 - **pricing-strategy**: For pricing decisions and packaging
 - **product-marketing-context**: For foundational positioning and messaging
+- **persona-messaging**: For buyer research dossiers and persona-specific messaging

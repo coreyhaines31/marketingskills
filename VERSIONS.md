@@ -23,6 +23,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | onboarding-cro | 1.1.0 | 2026-02-27 |
 | page-cro | 1.1.0 | 2026-02-27 |
 | paid-ads | 1.1.0 | 2026-02-27 |
+| persona-messaging | 1.1.0 | 2026-03-08 |
 | paywall-upgrade-cro | 1.1.0 | 2026-02-27 |
 | popup-cro | 1.1.0 | 2026-02-27 |
 | pricing-strategy | 1.1.0 | 2026-02-27 |
@@ -38,6 +39,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | social-content | 1.1.0 | 2026-02-27 |
 
 ## Recent Changes
+
+### 2026-03-08
+- Added `persona-messaging` skill for buyer persona dossiers, persona-specific messaging, and research fallback for unknown personas
+- Cross-referenced from `cold-email`, `email-sequence`, and `sales-enablement`
 
 ### 2026-02-27
 - Migrated context path from `.claude/` to `.agents/` for agent-agnostic compatibility

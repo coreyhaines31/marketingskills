@@ -307,3 +307,4 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key email
 - **ab-test-setup**: For testing email elements
 - **popup-cro**: For email capture popups
 - **revops**: For lifecycle stages that trigger email sequences
+- **persona-messaging**: For buyer persona research dossiers and persona-specific tone
