@@ -40,8 +40,8 @@ for skill_dir in "$SKILLS_DIR"/*/; do
         continue
     fi
 
-    # Extract frontmatter
-    frontmatter=$(sed -n '/^---$/,/^---$/p' "$skill_file" | head -n -1 | tail -n +2)
+    # Extract frontmatter (use portable sed syntax for macOS compatibility)
+    frontmatter=$(sed -n '/^---$/,/^---$/p' "$skill_file" | sed '1d;$d')
 
     # Validate frontmatter exists
     if [[ -z "$frontmatter" ]]; then
