@@ -1,7 +1,7 @@
 ---
 name: content-creation-engine
 version: 1.0.0
-description: "When the user wants to build, set up, or use a brand-aware content creation system for generating marketing content at scale. Use when the user mentions 'content creation engine,' 'brand-consistent content,' 'multi-format export,' 'PDF export,' 'social carousel generation,' 'layout generation,' 'Cloudflare image generation,' 'brand management system,' or 'automated content production.' Covers brand profiles, Claude-powered layout generation, AI image generation, and multi-format export (PDF, PNG, Instagram carousels, LinkedIn, Twitter/X, TikTok). For standalone social posts without a generation engine, see social-content."
+description: "When the user wants to build, set up, or use a brand-aware content creation system for generating marketing content at scale. Use when the user mentions 'content creation engine,' 'brand-consistent content,' 'multi-format export,' 'PDF export,' 'social carousel generation,' 'layout generation,' 'Cloudflare image generation,' 'brand management system,' or 'automated content production.' Covers brand profiles, Claude-powered layout generation, Cloudflare AI image generation, and multi-format export (PDF, PNG, Instagram carousels, LinkedIn, Twitter/X, TikTok). For standalone social posts without a generation engine, see social-content."
 ---
 
 # Content Creation Engine
@@ -17,25 +17,29 @@ Before building or using the engine, understand:
 
 1. **Mode** — Are you *building* the engine (new setup) or *using* an existing one to produce content?
 2. **Brand Context** — How many brands? Are guidelines stored or do they need to be created?
-3. **Output Formats** — Which formats are needed: PDF, PNG, Instagram carousel, LinkedIn, Twitter/X, TikTok?
-4. **Phase** — MVP (brand management + PDF/PNG) or full build (carousels + social formats + templates)?
+3. **Starting point** — New React project, existing project, or adding to a deployed app?
+4. **Accounts** — Supabase, Cloudflare, and Anthropic API keys needed.
 
 ---
 
 ## Architecture Overview
 
 ```
-User Dashboard (React + TypeScript)
+Brand Setup (one-time per brand)
     ↓
-Brand Selector → Brand Context (colors, typography, tone, narrative, guidelines)
+Upload files + add narratives → Claude extracts guidelines → saved to Supabase
     ↓
-Content Input (finished copy) + Optional Visual Reference (image or PDF)
+Content Creation
+    ↓
+Brand Selector → Brand Context (extracted guidelines, colors, typography, tone)
+    ↓
+Paste finished copy + Optional: visual reference image | product image
     ↓
 Vercel Serverless → Claude API (vision analysis + layout generation)
     ↓
-Claude returns: HTML layout + image prompts (styled to match reference)
+Claude returns: HTML layout + image prompts
     ↓
-Cloudflare Workers AI (Stable Diffusion image generation)
+Cloudflare Workers AI (image generation, in parallel)
     ↓
 Final HTML assembly (layout + images)
     ↓
@@ -58,16 +62,21 @@ Supabase (brands, projects, exports persistence)
 
 ---
 
-## Phase 1: MVP Build Order
+## Build Order
 
 Build in this sequence to get value fastest:
 
-1. **Supabase setup** — Schema, auth, storage buckets
-2. **Brand management** — CRUD for brand profiles
-3. **Generate endpoint** — Vercel function calling Claude
-4. **HTML preview** — Render Claude's output in React
-5. **PDF + PNG export** — html2pdf and html2canvas
-6. **Project history** — Save/view past generations
+1. **Supabase setup** — Schema, auth, storage buckets, RLS policies
+2. **Brand management** — CRUD, file upload, narrative versioning
+3. **Brand analysis endpoint** — `/api/brands/analyze`: Claude vision extracts guidelines from uploaded files
+4. **Generate endpoint** — `/api/generate`: Claude layout + Cloudflare images
+5. **HTML preview** — Live render in right panel
+6. **PDF + PNG export** — html2pdf + html2canvas, multi-format batch
+7. **Social format presets** — Carousel ZIP, LinkedIn, Twitter/X, TikTok
+8. **Visual reference** — Style-matched generation from uploaded image/PDF
+9. **Product image / mockup mode** — Hero product + CSS device frames
+10. **Project history + templates** — Save, reuse, batch generation
+11. **Iteration UI** — Inline copy edit, per-image regenerate, re-export
 
 ---
 
@@ -85,6 +94,7 @@ CREATE TABLE brands (
   secondary_colors JSONB,      -- ["#FF5733", "#33FF57"]
   typography JSONB,            -- { fontFamily, headingSizes, bodySize }
   tone_of_voice TEXT,          -- "Direct, contrarian, growth-focused"
+  guidelines JSONB,            -- Claude-extracted: { typography, colorPalette, spacing, tone, visualStyle }
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
 );
@@ -107,16 +117,26 @@ CREATE TABLE brand_narratives (
 );
 ```
 
-### Brand Profile Checklist
+### Brand Analysis (One-Time Setup)
 
-Gather these for each brand before generating content:
+Upload files → Claude extracts structured guidelines → saved to `brands.guidelines`.
 
-- [ ] Brand name and one-line description
-- [ ] Primary color (hex) + secondary colors
-- [ ] Typography: font family, heading sizes, body size
-- [ ] Tone of voice (3-5 adjectives + short description)
-- [ ] Brand narrative (mission, positioning, key messages)
-- [ ] Guidelines document (PDF, image, or pasted text)
+**Setup flow:**
+1. Upload brand files (guidelines PDFs, past content samples, style sheets, images)
+2. Add text narratives: brand voice, positioning, tone guidance
+3. Click "Analyze Brand" → `/api/brands/analyze` calls Claude vision on uploaded files
+4. Claude extracts and returns structured `guidelines` JSON:
+   ```json
+   {
+     "typography": "Freight Display for headings, Inter for body, generous line-height",
+     "colorPalette": ["#1A2B3C", "#FF5733", "#F5F5F0"],
+     "spacing": "40px section padding, 8px base grid, wide margins",
+     "tone": "Direct, warm, premium — avoids jargon",
+     "visualStyle": "Clean editorial, photography-forward, minimal ornamentation"
+   }
+   ```
+5. Review and edit extracted guidelines before saving
+6. Saved to Supabase — reused for every content generation
 
 **For detailed brand setup**: See [references/brand-management.md](references/brand-management.md)
 
@@ -135,7 +155,8 @@ Gather these for each brand before generating content:
 6. Add optional layout hints: "Hero image at top," "2-column layout," "minimal white space"
 7. Click Generate → Vercel serverless function runs
 8. Preview HTML output in right panel
-9. Export to desired format(s)
+9. *(Iterate)* Tweak copy or layout hints → click Regenerate; or regenerate individual images
+10. Export to desired format(s)
 
 ### Vercel Serverless: `/api/generate`
 
@@ -293,21 +314,7 @@ await batchExport(htmlLayout, ['pdf', 'png', 'carousel'], brandName);
 // → triggers PDF download + PNG download + carousel ZIP download at once
 ```
 
-### How It Works
-
-1. User checks multiple format boxes before clicking Generate
-2. One Claude API call generates the HTML layout
-3. `batchExport()` fires all selected export functions in parallel
-4. User receives all files as simultaneous downloads
-
-### Quality Trade-off
-
-| Approach | API Calls | Quality | Use When |
-|----------|-----------|---------|----------|
-| **Batch export** (default) | 1 | Good — layout adapts to each format's CSS constraints | Most cases |
-| **Per-format generation** (Phase 3) | 1 per format | Best — Claude optimizes layout per format | Max quality needed |
-
-For most daily use (5-10 pieces/day), batch export is the right default. Per-format generation is a Phase 3 enhancement for cases where LinkedIn and Instagram need fundamentally different layouts.
+One Claude API call generates the HTML → `batchExport()` fires all selected export functions in parallel → user receives simultaneous downloads. For maximum layout quality per format, use per-format generation (one Claude call per format).
 
 ---
 
@@ -324,8 +331,13 @@ CREATE TABLE projects (
   copy TEXT,
   layout_html TEXT,
   image_prompts JSONB,
+  output_formats JSONB,              -- array of selected formats
+  has_visual_reference BOOLEAN DEFAULT false,
+  has_product_image BOOLEAN DEFAULT false,
+  product_placement JSONB,           -- { deviceFrame, productType }
   template_id UUID REFERENCES templates(id),
-  status TEXT DEFAULT 'draft',  -- 'draft' | 'exported' | 'archived'
+  status TEXT DEFAULT 'draft',       -- 'draft' | 'exported' | 'archived'
+  exported_at TIMESTAMP,
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
 );
@@ -334,20 +346,17 @@ CREATE TABLE templates (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES auth.users(id),
   brand_id UUID REFERENCES brands(id),
-  name TEXT NOT NULL,            -- "Weekly Newsletter", "Product Launch"
+  name TEXT NOT NULL,
   layout_html TEXT,
   custom_hints TEXT,
-  output_format TEXT,
+  output_formats JSONB,
   created_at TIMESTAMP DEFAULT now()
 );
 ```
 
-### Template Workflow
+Templates: generate content you like → "Save as Template" → reuse layout + hints for future pieces.
 
-1. Generate content you like
-2. Click "Save as Template" → stores layout + custom hints
-3. On next use: select template from dropdown → pre-fills hints
-4. Generate with new copy → template guides layout consistency
+**For full schema and brand analysis endpoint**: See [references/brand-management.md](references/brand-management.md)
 
 ---
 
@@ -397,18 +406,6 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ...   # Server-side only
 
 ---
 
-## Performance Targets
-
-| Operation | Target | Approach |
-|-----------|--------|----------|
-| Layout generation | < 3s | Claude API direct call |
-| Image generation | < 5s total | Parallel Cloudflare calls |
-| PDF export | < 2s | html2pdf client-side |
-| PNG export | < 1s | html2canvas client-side |
-| Full generate + images | < 5s | Images generated in parallel |
-
----
-
 ## Implementation Decisions
 
 1. **Copy-first, layout-second** — Users write copy elsewhere (Claude chat); this engine layouts and images it. Reduces API complexity.
@@ -422,37 +419,36 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ...   # Server-side only
 
 ---
 
-## Phased Rollout
+## Success Criteria
 
-### Phase 1 (MVP)
-- [ ] Brand CRUD (name, colors, typography, tone, narrative)
-- [ ] Single content generation (PDF + PNG output)
-- [ ] HTML preview in-browser
-- [ ] Project history (view only)
+- [ ] Upload brand docs once → reuse intelligently across all future content pieces
+- [ ] Layout is brand-adapted, not generic — colors, type, spacing, voice reflected
+- [ ] Copy → exported PDF/PNG in under 5 minutes including preview and iteration
+- [ ] All 6 output formats working: PDF, PNG, Carousel, LinkedIn, Twitter/X, TikTok
+- [ ] Visual reference matching: output visually resembles the uploaded reference
+- [ ] Product mockup mode: dropped product image becomes the content hero
+- [ ] Scales across 3+ brands without manual overhead or configuration per piece
+- [ ] Daily use at 5-10 pieces/week is fast, reliable, and friction-free
 
-### Phase 2
-- [ ] Instagram carousel export (ZIP)
-- [ ] LinkedIn, Twitter/X, TikTok format presets
-- [ ] Draft edit + regenerate workflow
-- [ ] Guidelines file upload (Supabase storage)
-- [ ] Visual reference upload (image or PDF → style-matched layout)
-- [ ] Product image upload → mockup-focused content with CSS device frames
+## Constraints & Assumptions
 
-### Phase 3
-- [ ] Per-image regeneration
-- [ ] Layout templates (save/reuse)
-- [ ] Batch generation (multiple pieces)
-- [ ] Analytics (pieces created, formats used, time saved)
+- **Input**: Copy is written/iterated separately (in Claude chat); this engine handles layout only
+- **Users**: Internal tool only — no public sharing, no multi-user auth needed initially
+- **Brands**: 3-5 active brands to start; schema supports unlimited
+- **Images**: Cloudflare Workers AI free tier (100k calls/month) covers ~300-900 images/month
+- **Content saved**: All generations auto-saved as drafts; export triggers status update
+- **Brand guidelines auto-extracted**: Reviewed/confirmed before saving, not applied blindly
 
 ---
 
 ## Task-Specific Questions
 
-1. Are you building the engine from scratch or adding to an existing React project?
-2. Which output formats are needed first?
-3. Do you have a Supabase project and Cloudflare account set up?
-4. How many brands will you manage initially?
-5. Do you have existing brand guidelines to upload?
+1. Are you building from scratch or adding to an existing React/Next.js project?
+2. Do you have a Supabase project and Cloudflare account set up already?
+3. How many brands to start? Do existing brand guidelines need uploading?
+4. Should brand guidelines be auto-applied after extraction, or manually reviewed first?
+5. Should content history be saved to Supabase, or just export and discard?
+6. Image regeneration — one-click regenerate, or do you want to edit prompts manually?
 
 ---
 

@@ -56,24 +56,21 @@ const FORMAT_SPECS: Record<string, string> = {
 export async function POST(req: NextRequest) {
   const { brandId, copy, outputFormats, customHints, visualReference, productImage } = await req.json();
 
-  // 1. Fetch brand from Supabase
+  // 1. Fetch brand from Supabase (includes extracted guidelines JSON + latest narrative)
   const { data: brand } = await supabase
     .from('brands')
     .select('*, brand_narratives(content, version)')
     .eq('id', brandId)
     .single();
 
-  const { data: guidelines } = await supabase
-    .from('brand_guidelines')
-    .select('file_name, file_type')
-    .eq('brand_id', brandId);
-
   const narrative = brand?.brand_narratives?.[0]?.content ?? '';
+  const extractedGuidelines = brand?.guidelines ?? null;  // Claude-extracted on brand setup
 
   // 2. Build Claude prompt
   const prompt = buildPrompt({
     brand,
     narrative,
+    extractedGuidelines,
     copy,
     outputFormats,
     formatSpecs: outputFormats.map((f: string) => `${f.toUpperCase()}: ${FORMAT_SPECS[f]}`).join(' | '),
@@ -188,19 +185,28 @@ Your JSON response MUST include productPlacement:
 }`;
 }
 
-function buildPrompt({ brand, narrative, copy, outputFormats, formatSpecs, customHints }: any) {
+function buildPrompt({ brand, narrative, extractedGuidelines, copy, outputFormats, formatSpecs, customHints }: any) {
   const colors = [brand.primary_color, ...(brand.secondary_colors ?? [])].join(', ');
   const typography = brand.typography
     ? `${brand.typography.fontFamily}, headings ${brand.typography.headingSizes}, body ${brand.typography.bodySize}`
     : 'system-ui, default sizing';
 
-  return `You are a layout designer for ${brand.name}. Design an HTML layout for this content.
-
-Brand Context:
-- Name: ${brand.name}
+  // Prefer Claude-extracted guidelines over manual fields when available
+  const guidelinesBlock = extractedGuidelines
+    ? `Extracted Brand Guidelines:
+- Typography: ${extractedGuidelines.typography}
+- Color Palette: ${extractedGuidelines.colorPalette?.join(', ')}
+- Spacing/Grid: ${extractedGuidelines.spacing}
+- Tone: ${extractedGuidelines.tone}
+- Visual Style: ${extractedGuidelines.visualStyle}`
+    : `Brand Context:
 - Colors: ${colors}
 - Typography: ${typography}
-- Voice: ${brand.tone_of_voice ?? 'Professional'}
+- Voice: ${brand.tone_of_voice ?? 'Professional'}`;
+
+  return `You are a layout designer for ${brand.name}. Design an HTML layout for this content.
+
+${guidelinesBlock}
 - Narrative: ${narrative}
 
 Content to Layout:
@@ -247,6 +253,56 @@ async function generateImage(prompt: string): Promise<string> {
   const result = await response.json();
   // Returns base64; embed directly in HTML
   return `data:image/png;base64,${result.result.image}`;
+}
+```
+
+---
+
+## `/api/brands/analyze` — Extract Guidelines from Uploaded Files
+
+Called once during brand setup after files are uploaded to Supabase storage:
+
+```typescript
+// app/api/brands/analyze/route.ts
+export async function POST(req: NextRequest) {
+  const { brandId, fileUrls } = await req.json();
+  // fileUrls: array of Supabase storage public URLs (PDFs, images, style sheets)
+
+  // Fetch file contents as base64 for vision
+  const fileBlocks: Anthropic.MessageParam['content'] = [];
+  for (const url of fileUrls) {
+    const res = await fetch(url);
+    const buffer = await res.arrayBuffer();
+    const base64 = Buffer.from(buffer).toString('base64');
+    const mediaType = res.headers.get('content-type') ?? 'image/png';
+    fileBlocks.push({ type: 'image', source: { type: 'base64', media_type: mediaType as any, data: base64 } });
+  }
+
+  fileBlocks.push({
+    type: 'text',
+    text: `Analyze the brand materials above and extract a structured brand guidelines profile.
+Return ONLY valid JSON (no markdown):
+{
+  "typography": "Font families, heading/body sizes, line-height style",
+  "colorPalette": ["#hex1", "#hex2", "#hex3"],
+  "spacing": "Grid system, section padding, margin patterns",
+  "tone": "Voice and tone description in 1-2 sentences",
+  "visualStyle": "Visual aesthetic in 1-2 sentences"
+}`,
+  });
+
+  const message = await anthropic.messages.create({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 1024,
+    messages: [{ role: 'user', content: fileBlocks }],
+  });
+
+  const guidelines = JSON.parse(message.content[0].type === 'text' ? message.content[0].text : '{}');
+
+  // Save extracted guidelines to brand record
+  await supabase.from('brands').update({ guidelines }).eq('id', brandId);
+
+  return NextResponse.json({ guidelines });
 }
 ```
 
