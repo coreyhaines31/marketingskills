@@ -29,8 +29,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 1.0.0 | 2026-01-27 |
 | signup-flow-cro | 1.0.0 | 2026-01-27 |
 | social-content | 1.0.0 | 2026-01-27 |
+| content-creation-engine | 1.0.0 | 2026-03-09 |
 
 ## Recent Changes
+
+### 2026-03-09
+- Added content-creation-engine skill: brand management, Claude layout generation, Cloudflare image gen, multi-format export
 
 ### 2026-01-27
 - Initial version tracking added
