@@ -29,11 +29,11 @@ User Dashboard (React + TypeScript)
     ↓
 Brand Selector → Brand Context (colors, typography, tone, narrative, guidelines)
     ↓
-Content Input (finished copy)
+Content Input (finished copy) + Optional Visual Reference (image or PDF)
     ↓
-Vercel Serverless → Claude API (layout generation)
+Vercel Serverless → Claude API (vision analysis + layout generation)
     ↓
-Claude returns: HTML layout + image prompts
+Claude returns: HTML layout + image prompts (styled to match reference)
     ↓
 Cloudflare Workers AI (Stable Diffusion image generation)
     ↓
@@ -128,12 +128,13 @@ Gather these for each brand before generating content:
 
 1. Select brand from dropdown
 2. Paste finished copy (written separately — engine handles layout, not copy)
-3. Choose output format(s) — check all you need:
+3. *(Optional)* Upload a visual reference — an image or PDF whose layout/style you want to match
+4. Choose output format(s) — check all you need:
    ☐ PDF (A4)  ☐ PNG/Instagram  ☐ Carousel  ☐ LinkedIn  ☐ Twitter/X  ☐ TikTok
-4. Add optional layout hints: "Hero image at top," "2-column layout," "minimal white space"
-5. Click Generate → Vercel serverless function runs
-6. Preview HTML output in right panel
-7. Export to desired format(s)
+5. Add optional layout hints: "Hero image at top," "2-column layout," "minimal white space"
+6. Click Generate → Vercel serverless function runs
+7. Preview HTML output in right panel
+8. Export to desired format(s)
 
 ### Vercel Serverless: `/api/generate`
 
@@ -144,6 +145,11 @@ interface GenerateRequest {
   copy: string;
   outputFormats: ('pdf' | 'png' | 'carousel' | 'linkedin' | 'twitter' | 'tiktok')[];
   customHints?: string;
+  visualReference?: {
+    mediaType: 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp';
+    data: string;        // base64-encoded image (PDF: first page converted to PNG)
+    fileName?: string;
+  };
 }
 
 interface GenerateResponse {
@@ -155,12 +161,13 @@ interface GenerateResponse {
 
 **Generation flow:**
 1. Fetch brand profile + guidelines from Supabase
-2. Construct Claude prompt with brand context + copy + all requested format specs
-3. Call Claude API → returns `{ htmlLayout, imagePrompts }`
-4. Call Cloudflare Workers AI in parallel for each image prompt
-5. Embed generated images into HTML
-6. Return assembled HTML to frontend
-7. Auto-save as draft project in Supabase
+2. If `visualReference` provided: convert PDF → PNG (first page) if needed
+3. Construct Claude message — text prompt with brand context + copy + format specs; if visual reference present, prepend it as a vision image block
+4. Call Claude API (with vision if reference supplied) → returns `{ htmlLayout, imagePrompts }`
+5. Call Cloudflare Workers AI in parallel for each image prompt
+6. Embed generated images into HTML
+7. Return assembled HTML to frontend
+8. Auto-save as draft project in Supabase
 
 **For full API implementation**: See [references/api-setup.md](references/api-setup.md)
 
@@ -169,6 +176,8 @@ interface GenerateResponse {
 ## Claude Prompt Template
 
 Send this to Claude via the Vercel serverless function:
+
+When no visual reference is provided, send a single text message:
 
 ```
 You are a layout designer for [BRAND NAME]. Design an HTML layout for this content.
@@ -183,20 +192,31 @@ Brand Context:
 Content to Layout:
 [COPY]
 
-Output Format: [FORMAT]
+Output Formats: [FORMAT LIST]
 Specifications: [SIZE, MARGINS, LAYOUT RULES]
 Custom Hints: [HINTS IF PROVIDED]
 
 Respond ONLY with valid JSON:
 {
   "htmlLayout": "<complete HTML with inline CSS>",
-  "imagePrompts": [
-    {
-      "description": "Stable Diffusion prompt (max 150 words)",
-      "placement": "hero | section_1 | sidebar | background"
-    }
-  ]
+  "imagePrompts": [{ "description": "...", "placement": "hero | section_1 | ..." }]
 }
+```
+
+When a visual reference is provided, prepend an image block before the text:
+
+```
+[IMAGE: visual reference]
+The image above is a visual reference. Analyze its:
+- Layout structure (grid, columns, whitespace, element positions)
+- Typography hierarchy (heading scale, weight, line height)
+- Color usage patterns (background/foreground ratios, accent usage)
+- Visual composition (image-to-text ratio, focal points)
+
+Apply those style patterns to the layout below, adapted to the brand context.
+Do NOT copy text or logos from the reference — style only.
+
+[rest of prompt as above]
 ```
 
 ### Format Specifications
@@ -371,11 +391,14 @@ CREATE TABLE templates (
 
 ### Content Creation Page
 ```
-Left Panel (40%):          Right Panel (60%):
-- Brand selector           - HTML preview (live render)
-- Copy textarea            - Export buttons: PDF | PNG | Carousel
-- Format checkboxes        - Per-image: "Regenerate" button
-- Layout hints (optional)  - Inline copy edit
+Left Panel (40%):                    Right Panel (60%):
+- Brand selector                     - HTML preview (live render)
+- Copy textarea                      - Export buttons: PDF | PNG | Carousel
+- Visual reference upload (optional) - Per-image: "Regenerate" button
+  [Drop image or PDF here]           - Inline copy edit
+  Accepted: JPG, PNG, WEBP, PDF
+- Format checkboxes
+- Layout hints (optional)
 - [Generate] button
 ```
 
@@ -421,6 +444,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ...   # Server-side only
 4. **Supabase for everything** — Auth + DB + Storage = one vendor, one dashboard, Row Level Security ready.
 5. **Auto-save always on** — Every generation auto-saves as draft. No "save" friction.
 6. **Version history for narratives** — Brand narratives are versioned; layout-only guidelines keep only latest.
+7. **Visual reference via Claude vision (single-pass)** — The reference image is included directly in the Claude API call as a vision block alongside the text prompt. No separate analysis step — Claude extracts style patterns and applies them to the layout in one pass. PDFs are converted to PNG (first page) on the server before sending.
 
 ---
 
@@ -437,6 +461,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ...   # Server-side only
 - [ ] LinkedIn, Twitter/X, TikTok format presets
 - [ ] Draft edit + regenerate workflow
 - [ ] Guidelines file upload (Supabase storage)
+- [ ] Visual reference upload (image or PDF → style-matched layout)
 
 ### Phase 3
 - [ ] Per-image regeneration

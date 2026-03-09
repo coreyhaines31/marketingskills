@@ -54,7 +54,7 @@ const FORMAT_SPECS: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
-  const { brandId, copy, outputFormats, customHints } = await req.json();
+  const { brandId, copy, outputFormats, customHints, visualReference } = await req.json();
 
   // 1. Fetch brand from Supabase
   const { data: brand } = await supabase
@@ -80,17 +80,31 @@ export async function POST(req: NextRequest) {
     customHints,
   });
 
-  // 3. Call Claude
+  // 3. Build message content — prepend visual reference image block if provided
+  const userContent: Anthropic.MessageParam['content'] = [];
+  if (visualReference) {
+    userContent.push({
+      type: 'image',
+      source: { type: 'base64', media_type: visualReference.mediaType, data: visualReference.data },
+    });
+    userContent.push({
+      type: 'text',
+      text: 'The image above is a visual reference. Analyze its layout structure, typography hierarchy, color usage patterns, and visual composition. Apply those style patterns to the layout below — adapted to the brand context. Do NOT copy any text or logos from the reference.',
+    });
+  }
+  userContent.push({ type: 'text', text: prompt });
+
+  // 4. Call Claude (vision-enabled when reference provided)
   const message = await anthropic.messages.create({
     model: 'claude-sonnet-4-6',
     max_tokens: 4096,
-    messages: [{ role: 'user', content: prompt }],
+    messages: [{ role: 'user', content: userContent }],
   });
 
   const responseText = message.content[0].type === 'text' ? message.content[0].text : '';
   const { htmlLayout, imagePrompts } = JSON.parse(responseText);
 
-  // 4. Generate images in parallel
+  // 5. Generate images in parallel
   const images = await Promise.all(
     imagePrompts.map(async (p: { description: string; placement: string }) => ({
       placement: p.placement,
@@ -99,7 +113,7 @@ export async function POST(req: NextRequest) {
     }))
   );
 
-  // 5. Embed images into HTML
+  // 6. Embed images into HTML
   let finalHtml = htmlLayout;
   for (const img of images) {
     finalHtml = finalHtml.replace(
@@ -108,7 +122,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // 6. Auto-save project
+  // 7. Auto-save project
   const { data: project } = await supabase
     .from('projects')
     .insert({
@@ -116,7 +130,8 @@ export async function POST(req: NextRequest) {
       copy,
       layout_html: finalHtml,
       image_prompts: imagePrompts,
-      output_formats: outputFormats,   // store selected formats array
+      output_formats: outputFormats,
+      has_visual_reference: !!visualReference,
       status: 'draft',
     })
     .select()
@@ -301,6 +316,55 @@ export async function batchExport(
 // await batchExport(htmlLayout, selectedFormats, brandName);
 // → triggers all file downloads simultaneously
 ```
+
+---
+
+## Visual Reference: Frontend Handling
+
+The client converts the uploaded file to base64 before sending:
+
+```typescript
+// lib/prepareVisualReference.ts
+export async function prepareVisualReference(file: File): Promise<{
+  mediaType: string;
+  data: string;
+  fileName: string;
+} | null> {
+  if (!file) return null;
+
+  // PDF: render first page to PNG via canvas (using pdfjs-dist)
+  if (file.type === 'application/pdf') {
+    const pdfjsLib = await import('pdfjs-dist');
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 2 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    await page.render({ canvasContext: canvas.getContext('2d')!, viewport }).promise;
+    const data = canvas.toDataURL('image/png').split(',')[1];
+    return { mediaType: 'image/png', data, fileName: file.name };
+  }
+
+  // Image: read directly as base64
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const dataUrl = e.target!.result as string;
+      resolve({
+        mediaType: file.type as any,
+        data: dataUrl.split(',')[1],
+        fileName: file.name,
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+}
+```
+
+**Accepted file types:** JPG, PNG, WEBP, GIF, PDF (first page used)
+**Size guidance:** Keep under 5MB for fast uploads; Claude handles up to 20MB images
 
 ---
 
