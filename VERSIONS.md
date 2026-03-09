@@ -7,6 +7,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | ab-test-setup | 1.0.0 | 2026-01-27 |
 | analytics-tracking | 1.0.0 | 2026-01-27 |
 | competitor-alternatives | 1.0.0 | 2026-01-27 |
+| content-creation-engine | 1.0.0 | 2026-03-09 |
 | content-strategy | 1.0.0 | 2026-01-27 |
 | copy-editing | 1.0.0 | 2026-01-27 |
 | copywriting | 1.0.0 | 2026-01-27 |
@@ -29,7 +30,6 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 1.0.0 | 2026-01-27 |
 | signup-flow-cro | 1.0.0 | 2026-01-27 |
 | social-content | 1.0.0 | 2026-01-27 |
-| content-creation-engine | 1.0.0 | 2026-03-09 |
 
 ## Recent Changes
 
