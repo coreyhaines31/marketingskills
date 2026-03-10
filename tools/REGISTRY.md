@@ -82,6 +82,9 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | shopify | Commerce | ✓ | - | ✓ | ✓ | [shopify.md](integrations/shopify.md) |
 | wordpress | CMS | ✓ | - | ✓ | ✓ | [wordpress.md](integrations/wordpress.md) |
 | webflow | CMS | ✓ | - | ✓ | ✓ | [webflow.md](integrations/webflow.md) |
+| sanity | Headless CMS | ✓ | - | ✓ | ✓ | [sanity.md](integrations/sanity.md) |
+| contentful | Headless CMS | ✓ | - | ✓ | ✓ | [contentful.md](integrations/contentful.md) |
+| strapi | Headless CMS | ✓ | - | ✓ | ✓ | [strapi.md](integrations/strapi.md) |
 
 ---
 
@@ -386,8 +389,11 @@ E-commerce platforms and content management systems.
 | **shopify** | E-commerce, product sales | ✓ |
 | **wordpress** | Blogs, content sites | ✓ |
 | **webflow** | Design-focused marketing sites | ✓ |
+| **sanity** | Headless CMS, structured content | ✓ |
+| **contentful** | Enterprise headless CMS, multi-locale | ✓ |
+| **strapi** | Open-source headless CMS, self-hosted | ✓ |
 
-**Agent recommendation**: Shopify for e-commerce. Webflow for marketing sites. WordPress for blogs.
+**Agent recommendation**: Shopify for e-commerce. Webflow for marketing sites. WordPress for blogs. For headless CMS: Sanity for developer-flexible content, Contentful for enterprise multi-locale, Strapi for self-hosted/budget-conscious. See [headless CMS guide](../skills/content-strategy/references/headless-cms.md) for selection criteria.
 
 ---
 

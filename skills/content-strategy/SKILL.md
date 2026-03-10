@@ -348,6 +348,12 @@ Visual or structured representation of how content interconnects.
 
 ---
 
+## References
+
+- **[Headless CMS Guide](references/headless-cms.md)**: CMS selection, content modeling for marketing, editorial workflows, platform comparison (Sanity, Contentful, Strapi)
+
+---
+
 ## Related Skills
 
 - **copywriting**: For writing individual content pieces
