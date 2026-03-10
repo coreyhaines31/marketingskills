@@ -1,0 +1,12 @@
+{
+  "name": "cowork-plugin",
+  "version": "1.1.0",
+  "description": "32 marketing skills for AI agents — conversion optimization, copywriting, SEO, paid ads, and growth.",
+  "author": {
+    "name": "Corey Haines",
+    "url": "https://corey.co"
+  },
+  "repository": "https://github.com/coreyhaines31/marketingskills",
+  "license": "MIT",
+  "keywords": ["marketing", "seo", "cro", "copywriting", "paid-ads", "email", "growth", "saas"]
+}

@@ -1,4 +1,4 @@
-# AGENTS.md
+# CLAUDE.md
 
 Guidelines for AI agents working in this repository.
 
@@ -10,23 +10,35 @@ This repository contains **Agent Skills** for AI agents following the [Agent Ski
 - **GitHub**: [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
 - **Creator**: Corey Haines
 - **License**: MIT
+- **Current State**: 32 skills · 61 CLI tools · 68 integration guides · all skills at v1.1.0
 
 ## Repository Structure
 
 ```
 marketingskills/
 ├── .claude-plugin/
-│   └── marketplace.json   # Claude Code plugin marketplace manifest
-├── skills/                # Agent Skills
+│   ├── marketplace.json   # Claude Code plugin marketplace manifest
+│   └── plugin.json        # Claude Cowork plugin manifest
+├── skills/                # 32 Agent Skills
 │   └── skill-name/
-│       └── SKILL.md       # Required skill file
+│       ├── SKILL.md       # Required — main instructions (<500 lines)
+│       ├── references/    # Optional — detailed docs loaded on demand
+│       ├── evals/         # Optional — evaluation test suites
+│       ├── scripts/       # Optional — executable code
+│       └── assets/        # Optional — templates, data files
+├── scripts/
+│   ├── build-cowork-plugin.sh  # Builds marketing-skills.plugin
+│   └── sync-upstream.sh        # Pulls upstream skills + rebuilds plugin
 ├── tools/
-│   ├── clis/              # Zero-dependency Node.js CLI tools (51 tools)
-│   ├── integrations/      # API integration guides per tool
+│   ├── clis/              # Zero-dependency Node.js CLI tools (61 tools)
+│   ├── integrations/      # API integration guides (68 guides)
 │   └── REGISTRY.md        # Tool index with capabilities
+├── CLAUDE.md
+├── COWORK.md
 ├── CONTRIBUTING.md
 ├── LICENSE
-└── README.md
+├── README.md
+└── VERSIONS.md            # Version tracking for all skills
 ```
 
 ## Build / Lint / Test Commands
@@ -36,12 +48,13 @@ marketingskills/
 - `name` field matches directory name exactly
 - `name` is 1-64 chars, lowercase alphanumeric and hyphens only
 - `description` is 1-1024 characters
+- `SKILL.md` is under 500 lines
 
 **CLI tools** (`tools/clis/*.js`) are zero-dependency Node.js scripts (Node 18+). Verify with:
 ```bash
-node --check tools/clis/<name>.js   # Syntax check
-node tools/clis/<name>.js           # Show usage (no args = help)
-node tools/clis/<name>.js <cmd> --dry-run  # Preview request without sending
+node --check tools/clis/<name>.js         # Syntax check
+node tools/clis/<name>.js                 # Show usage (no args = help)
+node tools/clis/<name>.js <cmd> --dry-run # Preview request without sending
 ```
 
 ## Agent Skills Specification
@@ -80,11 +93,14 @@ description: What this skill does and when to use it. Include trigger phrases.
 
 ```
 skills/skill-name/
-├── SKILL.md        # Required - main instructions (<500 lines)
-├── references/     # Optional - detailed docs loaded on demand
-├── scripts/        # Optional - executable code
-└── assets/         # Optional - templates, data files
+├── SKILL.md        # Required — main instructions (<500 lines)
+├── references/     # Optional — detailed docs loaded on demand
+├── evals/          # Optional — evaluation test suites
+├── scripts/        # Optional — executable code
+└── assets/         # Optional — templates, data files
 ```
+
+**Evals**: All 32 existing skills have `evals/` directories containing assertion-based test suites (197+ evals total). When creating or significantly modifying a skill, add evals that cover: core use case triggers, boundary conditions, and expected output assertions.
 
 ## Writing Style Guidelines
 
@@ -99,6 +115,7 @@ skills/skill-name/
 
 - Direct and instructional
 - Second person ("You are a conversion rate optimization expert")
+- Reasoning-based guidance over rigid imperatives — explain *why*, not just *what*
 - Professional but approachable
 
 ### Formatting
@@ -126,6 +143,47 @@ The `description` is critical for skill discovery. Include:
 description: When the user wants to optimize conversions on any marketing page. Use when the user says "CRO," "conversion rate optimization," "this page isn't converting." For signup flows, see signup-flow-cro.
 ```
 
+Avoid trigger phrase conflicts between skills — each skill's description should clearly differentiate its scope from adjacent skills.
+
+## Current Skills (32 total)
+
+| Skill | Category | Description |
+|-------|----------|-------------|
+| `ab-test-setup` | CRO | A/B testing and experiment planning |
+| `ad-creative` | Ads | Bulk ad creative generation and iteration |
+| `ai-seo` | SEO | AI search optimization (AEO, GEO, LLMO, AI Overviews) |
+| `analytics-tracking` | Analytics | Event tracking setup and measurement |
+| `churn-prevention` | Retention | Cancel flows, save offers, dunning, payment recovery |
+| `cold-email` | Outreach | B2B cold outreach emails and sequences |
+| `competitor-alternatives` | Content | Competitor comparison and alternative pages |
+| `content-strategy` | Content | Content planning and topic strategy |
+| `copy-editing` | Copy | Edit and polish existing marketing copy |
+| `copywriting` | Copy | Marketing page copy and rewriting |
+| `email-sequence` | Email | Automated email flows and drip campaigns |
+| `form-cro` | CRO | Lead capture and form optimization (non-signup) |
+| `free-tool-strategy` | Growth | Free tool planning, evaluation, and building |
+| `launch-strategy` | Growth | Product launches and feature announcements |
+| `marketing-ideas` | Growth | 140 SaaS marketing ideas and inspiration |
+| `marketing-psychology` | Strategy | Psychological principles and behavioral science |
+| `onboarding-cro` | CRO | Post-signup user activation and first-run experience |
+| `page-cro` | CRO | Homepage, landing page, and marketing page optimization |
+| `paid-ads` | Ads | Google, Meta, LinkedIn, TikTok ad campaigns |
+| `paywall-upgrade-cro` | CRO | In-app paywalls and upsell modals |
+| `popup-cro` | CRO | Popups, modals, overlays, and slide-in optimization |
+| `pricing-strategy` | Strategy | Pricing, packaging, and monetization decisions |
+| `product-marketing-context` | Foundation | Foundation document for all other skills |
+| `programmatic-seo` | SEO | SEO-driven page generation at scale |
+| `referral-program` | Growth | Referral, affiliate, and word-of-mouth programs |
+| `revops` | Sales | Revenue operations, lead lifecycle, scoring, routing |
+| `sales-enablement` | Sales | Sales decks, one-pagers, objection handling, demo scripts |
+| `schema-markup` | SEO | Schema markup and structured data implementation |
+| `seo-audit` | SEO | Technical and on-page SEO audits |
+| `signup-flow-cro` | CRO | Signup, registration, and trial flow optimization |
+| `site-architecture` | SEO | Website structure, hierarchy, and navigation planning |
+| `social-content` | Content | Social media content creation and scheduling |
+
+**Note**: `product-marketing-context` is the foundation skill — it provides company/product context for all other skills. Skills look for context at `.agents/product-marketing-context.md` (with `.claude/` fallback for older setups).
+
 ## Claude Code Plugin
 
 This repo also serves as a plugin marketplace. The manifest at `.claude-plugin/marketplace.json` lists all skills for installation via:
@@ -136,6 +194,16 @@ This repo also serves as a plugin marketplace. The manifest at `.claude-plugin/m
 ```
 
 See [Claude Code plugins documentation](https://code.claude.com/docs/en/plugins.md) for details.
+
+## Cowork Plugin
+
+This repo also ships as a Claude Cowork plugin. Build `marketing-skills.plugin` and upload it to Cowork:
+
+```bash
+bash scripts/build-cowork-plugin.sh
+```
+
+See [COWORK.md](COWORK.md) for upload steps, sync instructions, and what's included in the archive.
 
 ## Git Workflow
 
@@ -152,14 +220,18 @@ Follow the [Conventional Commits](https://www.conventionalcommits.org/) specific
 - `feat: add skill-name skill`
 - `fix: improve clarity in page-cro`
 - `docs: update README`
+- `refactor: replace rigid imperatives with reasoning-based guidance`
 
 ### Pull Request Checklist
 
 - [ ] `name` matches directory name exactly
 - [ ] `name` follows naming rules (lowercase, hyphens, no `--`)
 - [ ] `description` is 1-1024 chars with trigger phrases
+- [ ] No trigger phrase conflicts with existing skills
 - [ ] `SKILL.md` is under 500 lines
+- [ ] `evals/` added or updated for new/changed skill
 - [ ] No sensitive data or credentials
+- [ ] VERSIONS.md updated if skills were modified
 
 ## Tool Integrations
 
@@ -173,13 +245,25 @@ This repository includes a tools registry for agent-compatible marketing tools.
 
 ```
 tools/
-├── REGISTRY.md              # Index of all tools with capabilities
-└── integrations/            # Detailed integration guides
+├── REGISTRY.md              # Index of all 61 tools with capabilities
+├── clis/                    # Zero-dependency Node.js CLI tools
+│   └── *.js                 # 61 tools — run with node, no npm install needed
+└── integrations/            # Detailed integration guides (68 guides)
     ├── ga4.md
     ├── stripe.md
     ├── rewardful.md
     └── ...
 ```
+
+### CLI Tool Conventions
+
+All CLI tools follow a consistent pattern:
+- **No dependencies** — plain Node.js 18+, no npm install
+- **JSON output** — machine-readable responses
+- **Env var auth** — credentials via environment variables (never hardcoded)
+- **Consistent commands** — `node tools/clis/<tool>.js <resource> <action> [options]`
+- **`--dry-run` flag** — preview API request without sending
+- **No-args = help** — running with no arguments prints usage
 
 ### When to Use Tools
 
@@ -188,6 +272,8 @@ Skills reference relevant tools for implementation. For example:
 - `analytics-tracking` skill → ga4, mixpanel, segment guides
 - `email-sequence` skill → customer-io, mailchimp, resend guides
 - `paid-ads` skill → google-ads, meta-ads, linkedin-ads guides
+- `revops` skill → hubspot, salesforce, outreach, clay guides
+- `cold-email` skill → hunter, snov, lemlist, instantly guides
 
 ## Checking for Updates
 
@@ -214,4 +300,4 @@ When using any skill from this repository:
 
 ## Skill Categories
 
-See `README.md` for the current list of skills organized by category. When adding new skills, follow the naming patterns of existing skills in that category.
+See `README.md` for the current list of skills organized by category. When adding new skills, follow the naming patterns of existing skills in that category. Skills are organized into these categories: **CRO**, **Copy**, **SEO**, **Ads**, **Email**, **Content**, **Growth**, **Strategy**, **Analytics**, **Retention**, **Sales**, and **Foundation**.
