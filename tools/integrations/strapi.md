@@ -64,7 +64,7 @@ Authorization: Bearer {api_token}
     "title": "New Article",
     "slug": "new-article",
     "body": "Article content here",
-    "category": "abc123documentId"
+    "category": "{category_documentId}"
   }
 }
 ```

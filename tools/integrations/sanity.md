@@ -22,6 +22,8 @@ Headless CMS with real-time collaboration, GROQ query language, and schema-as-co
 
 ### Query documents (GROQ)
 
+URL-encode the `query` parameter value in practice.
+
 ```bash
 GET https://{projectId}.api.sanity.io/v2024-01-01/data/query/{dataset}?query=*[_type == "post"]{title, slug, publishedAt}
 ```
@@ -38,7 +40,7 @@ GET https://{projectId}.api.sanity.io/v2024-01-01/data/query/{dataset}?query=*[_
 GET https://{projectId}.api.sanity.io/v2024-01-01/data/doc/{dataset}/{documentId}
 ```
 
-### Create or update document (Mutations API)
+### Create document (Mutations API)
 
 ```bash
 POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
@@ -46,7 +48,7 @@ POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
 {
   "mutations": [
     {
-      "createOrReplace": {
+      "create": {
         "_type": "post",
         "title": "New Post",
         "slug": {"_type": "slug", "current": "new-post"},
@@ -56,6 +58,8 @@ POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
   ]
 }
 ```
+
+Use `createOrReplace` instead if you want to upsert (requires `_id` field).
 
 ### Delete document
 

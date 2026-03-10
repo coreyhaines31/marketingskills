@@ -129,7 +129,7 @@ Exact permission models vary by platform. Sanity uses role-based access. Content
 
 ### Contentful
 
-**Strengths**: Mature enterprise platform. Excellent multi-locale support. Strong ecosystem of integrations. Composable content with Assembly. Well-documented APIs.
+**Strengths**: Mature enterprise platform. Excellent multi-locale support. Strong ecosystem of integrations. Composable content with Studio. Well-documented APIs.
 
 **Considerations**: Pricing scales with content types and locales. Two separate APIs (Delivery and Management). Rate limits can be tight on lower plans.
 

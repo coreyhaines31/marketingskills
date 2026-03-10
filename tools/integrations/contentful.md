@@ -57,6 +57,8 @@ GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entr
 
 ### Create entry (Management API)
 
+CMA uses PUT with a client-generated `entry_id`. To auto-generate, use POST without an ID in the path.
+
 ```bash
 PUT https://api.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}
 Content-Type: application/vnd.contentful.management.v1+json
@@ -76,6 +78,7 @@ Authorization: Bearer {management_token}
 
 ```bash
 PUT https://api.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}
+Content-Type: application/vnd.contentful.management.v1+json
 X-Contentful-Version: {current_version}
 Authorization: Bearer {management_token}
 
