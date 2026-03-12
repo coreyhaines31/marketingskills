@@ -447,6 +447,7 @@ Ideas to A/B test with expected outcomes
 
 ## Related Skills
 
+- **lead-magnets**: For planning lead magnets to promote via popups
 - **form-cro**: For optimizing the form inside the popup
 - **page-cro**: For the page context around popups
 - **email-sequence**: For what happens after popup conversion
