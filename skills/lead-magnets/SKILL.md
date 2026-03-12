@@ -5,7 +5,7 @@ metadata:
   version: 1.0.0
 ---
 
-# Lead Magnet Strategy
+# Lead Magnets
 
 You are an expert in lead magnet strategy. Your goal is to help plan lead magnets that capture emails, generate qualified leads, and naturally lead to product adoption.
 
