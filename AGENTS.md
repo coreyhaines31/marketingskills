@@ -16,15 +16,20 @@ This repository contains **Agent Skills** for AI agents following the [Agent Ski
 ```
 marketingskills/
 ├── .claude-plugin/
-│   └── marketplace.json   # Claude Code plugin marketplace manifest
+│   ├── marketplace.json   # Claude Code plugin marketplace manifest
+│   └── plugin.json        # Claude Cowork plugin manifest
 ├── skills/                # Agent Skills
 │   └── skill-name/
 │       └── SKILL.md       # Required skill file
+├── scripts/
+│   ├── build-cowork-plugin.sh  # Builds marketing-skills.plugin
+│   └── sync-upstream.sh        # Pulls upstream skills + rebuilds plugin
 ├── tools/
 │   ├── clis/              # Zero-dependency Node.js CLI tools (51 tools)
 │   ├── composio/          # Composio integration layer (quick start + toolkit mapping)
 │   ├── integrations/      # API integration guides per tool
 │   └── REGISTRY.md        # Tool index with capabilities
+├── COWORK.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
@@ -137,6 +142,16 @@ This repo also serves as a plugin marketplace. The manifest at `.claude-plugin/m
 ```
 
 See [Claude Code plugins documentation](https://code.claude.com/docs/en/plugins.md) for details.
+
+## Cowork Plugin
+
+This repo also ships as a Claude Cowork plugin. Build `marketing-skills.plugin` and upload it to Cowork:
+
+```bash
+bash scripts/build-cowork-plugin.sh
+```
+
+See [COWORK.md](COWORK.md) for upload steps, sync instructions, and what's included in the archive.
 
 ## Git Workflow
 
