@@ -208,6 +208,80 @@ Read the comments on these posts — people who find comparison content are acti
 
 ---
 
+## B2C and Consumer App Research
+
+B2C research requires different sources than B2B SaaS. Consumer buyers don't congregate on LinkedIn or G2 — they leave traces in app stores, social media, and communities built around the activity your product serves.
+
+### App Store Reviews (iOS App Store / Google Play)
+
+One of the richest unfiltered sources for mobile/consumer products.
+
+**Read in this order:**
+1. **1-2 star reviews** — failure modes, unmet expectations, frustration peaks
+2. **3-star reviews** — honest tradeoffs and "it's good but…" feedback
+3. **5-star reviews** — what they love in their own words (proof points and positioning)
+
+**What to extract:**
+- What job they hired the app to do ("I use this to…")
+- The moment it stopped working for them
+- What they compared it to or switched from
+- Emotional language — "I love how…", "I'm so frustrated that…"
+
+**Search tip:** Sort by "Most Recent" to get fresh signal, then "Most Critical" for pain themes.
+
+### Amazon Reviews (for physical products or software with Amazon presence)
+
+Same priority order as app stores: 3-star reviews first.
+
+**G2 analog for consumer SaaS**: Trustpilot, Sitejabber, and product-specific review aggregators.
+
+### Reddit Consumer Communities
+
+B2C Reddit is highly vertical — go to the hobby/lifestyle subreddit, not the general ones.
+
+**Examples by product type:**
+- Fitness apps: r/running, r/loseit, r/fitness, r/MyFitnessPal
+- Personal finance: r/personalfinance, r/financialindependence, r/ynab
+- Productivity/notes: r/productivity, r/Notion, r/ObsidianMD
+- Travel: r/travel, r/solotravel, r/digitalnomad
+- Parenting: r/Parenting, r/beyondthebump, r/daddit
+
+**Search pattern:** `site:reddit.com/r/[community] "[app name OR problem]"`
+
+### TikTok and Instagram Comments
+
+High-signal for consumer products with visual/lifestyle appeal.
+
+**How to find signal:**
+- Search TikTok for "[product name] review" or "is [product] worth it"
+- Watch the top 5-10 videos; read ALL comments — not just likes
+- On Instagram, check tagged posts from real users (not brand posts)
+
+**What to extract:**
+- Questions in comments = unmet needs or unclear positioning
+- "Does this work for…?" = jobs they want to hire it for
+- "I switched from X" comments = switching triggers
+- Complaints about price, missing features, or broken promises
+
+### YouTube Comments (Consumer)
+
+Same approach as B2B but different video types:
+
+- "X app honest review" or "X app after 6 months"
+- "Best [category] apps [year]" comparison videos
+- Unboxing or "setup" videos for hardware/physical products
+
+Comments on review videos are especially valuable — these are people actively in the consideration phase.
+
+### Consumer Community Platforms
+
+- **Facebook Groups**: Still dominant for many consumer verticals (parenting, fitness, local services, hobbies)
+- **Discord servers**: Growing for gaming, creator tools, productivity, crypto, lifestyle communities
+- **Nextdoor**: Useful for local service businesses
+- **Quora**: Long-form questions reveal decision anxiety and evaluation criteria
+
+---
+
 ## Organizing Your Research
 
 Use a simple tagging system across all sources:
@@ -225,3 +299,47 @@ Use a simple tagging system across all sources:
 Keep a running doc with columns: Source | Date | Quote | Tags | Notes
 
 After 20-30 entries, patterns will emerge. Look for quotes that appear in multiple unrelated sources — those are your highest-confidence insights.
+
+---
+
+## Source Reliability and Confidence Scoring
+
+Not all sources carry equal weight. Use this guide when assigning confidence labels.
+
+### Source Weighting
+
+| Source | Signal Strength | Bias to Note |
+|--------|----------------|--------------|
+| Customer interviews (unprompted) | Very high | Small sample; selection bias toward engaged customers |
+| Win/loss interviews | High | Recent memory only; rationalization common |
+| App store / G2 reviews | High | Skews toward strong opinions (love or hate) |
+| Reddit / community posts | Medium-high | Skews technical, skeptical, vocal minorities |
+| Support tickets | Medium | Skews toward problems; silent majority not represented |
+| Survey (open-ended) | Medium | Primed by question framing |
+| Survey (multiple choice) | Low-medium | Artifacts of the options you provided |
+| NPS verbatims | Medium | Correlates with score; prompted by the survey moment |
+| YouTube/TikTok comments | Medium | Skews toward engaged viewers; social performance |
+| Job postings | Low-medium | Aspirational, not necessarily reflective of current pain |
+
+### Confidence Labels in Practice
+
+When presenting insights, lead with confidence:
+
+```
+[HIGH CONFIDENCE] Customers feel overwhelmed by manual reporting — appears in 12 of 20 interviews,
+4 Reddit threads, and is the #1 complaint in 3-star G2 reviews. Consistent across SMB and mid-market.
+
+[MEDIUM CONFIDENCE] Customers compare us to spreadsheets more than to direct competitors —
+mentioned in 6 interviews and 3 Reddit threads, but not yet seen in review data.
+
+[LOW CONFIDENCE] Enterprise buyers may have procurement concerns — mentioned by 2 interviewees
+from companies 500+. Needs more signal before acting on it.
+```
+
+### Recency Window
+
+- **Use as primary source**: Data from the last 12 months
+- **Use with caution**: 12-24 months (product and market may have shifted)
+- **Use only for baseline context**: 2+ years old
+
+When a theme appears consistently across old and new data, that's a durable signal worth acting on.

@@ -89,6 +89,26 @@ After extracting from individual assets:
 4. **Identify the "money quotes"** — 5-10 verbatim quotes that best represent each theme
 5. **Flag contradictions** — where do customers say one thing but do another?
 
+### Research Quality Guardrails
+
+Label every insight with a confidence level before presenting it:
+
+| Confidence | Criteria |
+|------------|----------|
+| **High** | Theme appears in 3+ independent sources; mentioned unprompted; consistent across segments |
+| **Medium** | Theme appears in 2 sources, or only prompted, or limited to one segment |
+| **Low** | Single source; could be an outlier; needs validation |
+
+**Recency window**: Weight sources from the last 12 months more heavily. Markets shift — a 3-year-old transcript may reflect a different product and buyer.
+
+**Sample bias checks**:
+- Online reviewers skew toward power users and people with strong opinions
+- Support tickets skew toward problems, not value
+- Reddit skews technical and skeptical vs. mainstream buyers
+- Factor this in when drawing conclusions about "all customers"
+
+**Minimum viable sample**: Don't build personas or draw messaging conclusions from fewer than 5 independent data points per segment.
+
 ---
 
 ## Mode 2: Digital Watering Hole Research
@@ -97,39 +117,21 @@ Online communities are where customers speak without a filter. The goal is to fi
 
 ### Where to Look
 
-**Reddit**
-- Search: `subreddit:relevant_sub "[problem or category]"`
-- Best subreddits vary by industry — find where your ICP congregates
-- Focus on: posts asking for recommendations, venting about problems, "how do you handle X" threads
-- High-signal threads: ones with 50+ comments and genuine debate
-- See `references/source-guides.md` for search operators and extraction tips
+Choose sources based on your ICP type — then read `references/source-guides.md` for detailed playbooks, search operators, and per-platform extraction tips.
 
-**G2, Capterra, Trustpilot, and review sites**
-- Your product: read 1-star and 3-star reviews most carefully
-- Competitor products: read their 4-star reviews (complaints buried in praise)
-- Look for: what reviewers say they use the product *for*, not just whether they like it
-- Extract: the "I wish it could…" and "the only downside is…" sections
+| ICP Type | Primary Sources |
+|----------|----------------|
+| B2B SaaS / technical buyers | Reddit (role-specific subs), G2/Capterra, Hacker News, LinkedIn, Indie Hackers |
+| SMB / founders | Reddit (r/entrepreneur, r/smallbusiness), Indie Hackers, Product Hunt, Facebook Groups |
+| Developer / DevOps | r/devops, r/programming, Hacker News, Stack Overflow, Discord servers |
+| B2C / consumer | App store reviews (1-3 star), Reddit hobby/lifestyle subs, YouTube comments, TikTok/Instagram comments |
+| Enterprise | LinkedIn, industry analyst reports, G2 Enterprise filter, job postings |
 
-**Niche forums and communities**
-- Industry Slack groups, Discord servers, Facebook Groups, LinkedIn Groups
-- Indie Hackers, Product Hunt discussions, Hacker News "Ask HN" threads
-- Niche subreddits (e.g., r/projectmanagement, r/marketing, r/devops)
-
-**YouTube comments**
-- Tutorial videos and "how to" content for your category attract active practitioners
-- Comments = unfiltered questions, frustrations, and comparisons
-
-**Blog post comments**
-- Long-form posts about the problem your product solves often have comment sections with high-signal discussion
-- Comparison posts ("X vs Y") attract people actively evaluating
-
-**Twitter / X and LinkedIn**
-- Search for complaints about the problem, or tagging your competitors
-- LinkedIn posts by practitioners in your ICP describing their workflows
-
-**Job postings**
-- Companies hiring for roles related to your product space reveal priorities, stack, and pain points
-- E.g., a job posting for a "data ops analyst" signals pain around data management
+**Quick decision guide:**
+- Have a product category? → Start with G2/Capterra reviews (yours + competitors)
+- Need raw language? → Reddit and YouTube comments
+- Need trigger events? → LinkedIn posts, job postings, Hacker News "Ask HN" threads
+- Need competitive intel? → Competitor 4-star reviews on G2; Product Hunt discussions
 
 ### What to Extract from Each Source
 
@@ -251,3 +253,17 @@ If context is unclear:
 5. **What do you want delivered?** (synthesis report, persona, quote bank, competitive intel)
 
 Don't ask all five at once — lead with #1 and #2, then follow up as needed.
+
+---
+
+## Related Skills
+
+| When to hand off | Skill |
+|-----------------|-------|
+| Writing copy informed by the research | `copywriting` |
+| Optimizing a page using VOC insights | `page-cro` |
+| Building a competitor comparison page | `competitor-alternatives` |
+| Creating a churn prevention strategy from churn research | `churn-prevention` |
+| Planning paid ads informed by research | `paid-ads` |
+| Writing cold email using research on pain/trigger | `cold-email` |
+| Planning content based on discovered topics | `content-strategy` |
