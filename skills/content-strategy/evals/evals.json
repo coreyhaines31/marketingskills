@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Help me build a content strategy for our B2B SaaS product. We sell expense management software to finance teams at companies with 50-500 employees. We currently have no blog and want to start from scratch.",
+      "prompt": "Help me build a content strategy for our B2B ISO product. We sell ISO auditing and complaince certification to teams at companies with 50-5000 employees. We currently have no content strategy or camapaign plan and want to start from scratch.",
       "expected_output": "Should check for product-marketing-context.md first. Should establish content pillars (3-5 core topic areas). Should map content types by buyer stage (awareness → consideration → decision → implementation). Should identify keyword research opportunities by buyer stage. Should recommend a mix of searchable (SEO-driven) and shareable (thought leadership, data) content. Should use the prioritization scoring framework (customer impact 40%, content-market fit 30%, search potential 20%, resources 10%). Should provide an initial content calendar or publishing cadence. Should recommend content types appropriate for starting from scratch.",
       "assertions": [
         "Checks for product-marketing-context.md",
@@ -34,16 +34,16 @@
     },
     {
       "id": 3,
-      "prompt": "what kind of content should we be creating? we're a developer tool (API testing platform) and our audience is backend developers and QA engineers",
-      "expected_output": "Should trigger on casual phrasing. Should recommend content types appropriate for a developer audience: technical tutorials, documentation-style guides, use-case content, template/example libraries, data-driven benchmarks. Should note that developer audiences prefer depth, accuracy, and practical value over marketing fluff. Should suggest content pillars aligned with developer interests. Should use the ideation sources framework (keyword data, community forums like Stack Overflow/Reddit, competitor gaps).",
+      "prompt": "what kind of content should we be creating? we are experts in ISO certification and training. Offering certification in standards that help improve business processes and our audience is head of quality , HSQE Manager, Quality Director,  quality managers, compliance manager, operations managers",
+      "expected_output": "Should trigger on casual phrasing. Should recommend content types appropriate for a head of quality , HSQE Manager, Quality Director,  quality managers, compliance manager, operations manager: technical tutorials, documentation-style guides, use-case content, template/example libraries, data-driven benchmarks. Should note that developer audiences prefer depth, accuracy, and practical value over marketing fluff. Should suggest content pillars aligned with developer interests. Should use the ideation sources framework (keyword data, community forums like Stack Overflow/Reddit, competitor gaps).",
       "assertions": [
         "Triggers on casual phrasing",
-        "Recommends content types for developer audience",
+        "Recommends content types for complaince and operations audience",
         "Emphasizes technical depth and practical value",
-        "Notes developers prefer substance over marketing",
-        "Suggests content pillars for developer tool",
+        "Notes complaince, quality and operations prefer substance over marketing",
+        "Suggests content pillars for quality and operations tool",
         "Uses ideation sources framework",
-        "Mentions developer community channels"
+        "Mentions quality and operations community channels"
       ],
       "files": []
     },
@@ -62,8 +62,8 @@
     },
     {
       "id": 5,
-      "prompt": "We want to build topical authority in 'employee engagement.' What does a content cluster look like for this topic?",
-      "expected_output": "Should apply the hub-and-spoke content cluster model. Should design a pillar page for 'employee engagement' (comprehensive, 3000+ word guide). Should identify 8-15 supporting spoke articles targeting long-tail keywords related to employee engagement. Should map the internal linking structure between hub and spokes. Should address keyword research for the cluster. Should recommend content types for each piece (guide, how-to, template, data-driven, etc.).",
+      "prompt": "We want to build topical authority in 'compliance and quality assurance.' What does a content cluster look like for this topic?",
+      "expected_output": "Should apply the hub-and-spoke content cluster model. Should design a pillar page for 'compliance and quality assurance' (comprehensive, 3000+ word guide). Should identify 8-15 supporting spoke articles targeting long-tail keywords related to employee engagement. Should map the internal linking structure between hub and spokes. Should address keyword research for the cluster. Should recommend content types for each piece (guide, how-to, template, data-driven, etc.).",
       "assertions": [
         "Applies hub-and-spoke content cluster model",
         "Designs a pillar page for the core topic",
@@ -76,7 +76,7 @@
     },
     {
       "id": 6,
-      "prompt": "Can you write a blog post about remote work best practices for our HR software blog?",
+      "prompt": "Can you write a blog post about the benefits of ISO14001 and the transitions coming in?",
       "expected_output": "Should recognize this is a copywriting/content creation task, not a content strategy task. Should defer to or cross-reference the copywriting skill for writing individual pieces of content. May provide strategic context (where this fits in the content strategy, keyword targeting, audience) but should make clear that copywriting is the right skill for writing the actual content.",
       "assertions": [
         "Recognizes this as content creation, not strategy",
