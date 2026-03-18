@@ -8,7 +8,7 @@ Developer-friendly transactional email service with modern API.
 |-------------|-----------|-------|
 | API | ✓ | Simple REST API for sending emails |
 | MCP | ✓ | Available via Resend MCP server |
-| CLI | - | Not available |
+| CLI | ✓ | Official Resend CLI |
 | SDK | ✓ | Official SDKs for Node.js, Python, Go, etc. |
 
 ## Authentication
@@ -16,6 +16,49 @@ Developer-friendly transactional email service with modern API.
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: API Keys section in Resend dashboard
+
+## CLI
+
+### Install
+
+```bash
+npm install -g resend-cli
+```
+
+### Setup
+
+```bash
+resend login
+# or set env var: RESEND_API_KEY=re_xxx
+```
+
+### Common commands
+
+```bash
+# Send a test email
+resend emails send --from hello@example.com --to user@example.com --subject "Test" --text "Hello"
+
+# List recent emails
+resend emails list
+
+# Get email status
+resend emails get <email_id>
+
+# List domains
+resend domains list
+
+# Add a domain
+resend domains create --name example.com
+
+# Verify a domain
+resend domains verify <domain_id>
+
+# List API keys
+resend api-keys list
+
+# Create an API key
+resend api-keys create --name "Production"
+```
 
 ## Common Agent Operations
 
@@ -155,6 +198,7 @@ await resend.emails.send({
 - Receipt and notification emails
 - Developer-friendly email integration
 - React-based email templates
+- Quick CLI testing of email flows without writing code
 
 ## Rate Limits
 
