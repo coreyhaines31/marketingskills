@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magista — AI Marketing Platform</title>
+  <meta name="description" content="Magista deploys specialized AI agents for SEO, CRO, copywriting, paid ads, and analytics — working from your product context, 24/7." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== CSS CUSTOM PROPERTIES ===== */
+    :root {
+      --primary: #6C47FF;
+      --primary-light: #8B6FFF;
+      --primary-dark: #5235D4;
+      --accent: #FF6B6B;
+      --gradient: linear-gradient(135deg, #6C47FF, #FF6B6B);
+      --bg: #0A0A0F;
+      --surface: #13131A;
+      --surface-2: #1A1A24;
+      --border: #1E1E2E;
+      --border-light: #2A2A3E;
+      --text: #F0F0FF;
+      --text-muted: #8888AA;
+      --text-subtle: #5555777;
+      --nav-bg: rgba(10, 10, 15, 0.85);
+      --card-bg: #13131A;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 48px rgba(0,0,0,0.5);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.25s ease;
+    }
+    [data-theme="light"] {
+      --bg: #F5F5FF;
+      --surface: #FFFFFF;
+      --surface-2: #F0F0FA;
+      --border: #E0E0F0;
+      --border-light: #D0D0E8;
+      --text: #0A0A1F;
+      --text-muted: #5555777;
+      --text-subtle: #8888AA;
+      --nav-bg: rgba(245, 245, 255, 0.85);
+      --card-bg: #FFFFFF;
+      --shadow: 0 4px 24px rgba(108, 71, 255, 0.08);
+      --shadow-lg: 0 8px 48px rgba(108, 71, 255, 0.12);
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--primary);
+      background: rgba(108, 71, 255, 0.12);
+      border: 1px solid rgba(108, 71, 255, 0.25);
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .section-header { text-align: center; max-width: 680px; margin: 0 auto 64px; }
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+      line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .section-header p { font-size: 17px; color: var(--text-muted); line-height: 1.7; }
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 10px; font-size: 15px;
+      font-weight: 600; transition: all var(--transition); cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--primary); color: #fff;
+      box-shadow: 0 4px 20px rgba(108, 71, 255, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--primary-light); transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(108, 71, 255, 0.5);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1.5px solid var(--border-light);
+    }
+    .btn-ghost:hover {
+      border-color: var(--primary); color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .btn-white {
+      background: #fff; color: #0A0A1F;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+    .btn-white-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+    .btn-white-outline:hover {
+      border-color: #fff; background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      * { animation: none !important; transition: none !important; }
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0; transition: all var(--transition);
+    }
+    .nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0; gap: 32px;
+    }
+    .nav-logo {
+      font-size: 22px; font-weight: 800; letter-spacing: -0.03em;
+      color: var(--text); display: flex; align-items: center; gap: 4px;
+      flex-shrink: 0;
+    }
+    .nav-logo .dot { color: var(--primary); font-size: 28px; line-height: 1; margin-top: -2px; }
+    .nav-links {
+      display: flex; align-items: center; gap: 8px;
+      flex: 1; justify-content: center;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-muted);
+      padding: 7px 14px; border-radius: 8px; transition: all var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); transition: all var(--transition); cursor: pointer;
+      font-size: 16px;
+    }
+    .theme-toggle:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-light); }
+    .nav-login {
+      font-size: 14px; font-weight: 500; color: var(--text-muted);
+      padding: 8px 16px; border-radius: 8px; transition: all var(--transition);
+      border: 1px solid transparent;
+    }
+    .nav-login:hover { color: var(--text); border-color: var(--border); }
+    .nav-cta { padding: 9px 20px; font-size: 14px; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      width: 38px; height: 38px; align-items: center; justify-content: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 9px; cursor: pointer;
+    }
+    .hamburger span {
+      display: block; width: 18px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 16px 0 20px; border-top: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 15px; font-weight: 500; color: var(--text-muted);
+      padding: 10px 0; transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--text); }
+    .mobile-menu .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding: 140px 0 96px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .hero-glow-1 {
+      position: absolute; top: -200px; left: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,71,255,0.18) 0%, transparent 70%);
+    }
+    .hero-glow-2 {
+      position: absolute; bottom: -150px; right: -150px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,107,0.12) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+    }
+    .hero-content {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center; position: relative; z-index: 1; width: 100%;
+    }
+    .hero-text { max-width: 580px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+      color: var(--primary-light); background: rgba(108, 71, 255, 0.12);
+      border: 1px solid rgba(108, 71, 255, 0.3);
+      padding: 7px 16px; border-radius: 100px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 64px); font-weight: 900;
+      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: 18px; color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-proof {
+      display: flex; align-items: center; gap: 16px;
+      font-size: 14px; color: var(--text-muted); flex-wrap: wrap;
+    }
+    .hero-proof .stars { color: #FFB800; font-size: 16px; letter-spacing: 1px; }
+    .hero-proof strong { color: var(--text); font-weight: 600; }
+    .hero-proof .sep { width: 1px; height: 20px; background: var(--border); }
+
+    /* Dashboard mockup */
+    .hero-visual { position: relative; display: flex; justify-content: flex-end; }
+    .dashboard-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 24px;
+      width: 100%; max-width: 520px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .dashboard-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+    }
+    .dashboard-title { font-size: 14px; font-weight: 700; }
+    .dashboard-live {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; color: #22C55E;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #22C55E;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .metrics-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      margin-bottom: 20px;
+    }
+    .metric-tile {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 12px;
+    }
+    .metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+    .metric-value { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .metric-change {
+      font-size: 11px; font-weight: 600; margin-top: 4px;
+      color: #22C55E; display: flex; align-items: center; gap: 2px;
+    }
+    .metric-change.negative { color: #FF6B6B; }
+    .metric-mrr { color: var(--text); }
+    .metric-conv { color: #22C55E; }
+    .metric-traffic { color: var(--primary-light); }
+    .agent-feed-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 10px;
+    }
+    .agent-feed { display: flex; flex-direction: column; gap: 8px; }
+    .agent-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 9px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      font-size: 12px; animation: slideIn 0.4s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-8px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .agent-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+    .agent-icon.purple { background: rgba(108,71,255,0.15); }
+    .agent-icon.coral { background: rgba(255,107,107,0.15); }
+    .agent-icon.green { background: rgba(34,197,94,0.15); }
+    .agent-icon.blue { background: rgba(59,130,246,0.15); }
+    .agent-text { flex: 1; }
+    .agent-name { font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .agent-status { color: var(--text-muted); font-size: 11px; }
+    .agent-badge {
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+    }
+    .badge-running {
+      background: rgba(108,71,255,0.15); color: var(--primary-light);
+      border: 1px solid rgba(108,71,255,0.2);
+    }
+    .badge-done {
+      background: rgba(34,197,94,0.1); color: #22C55E;
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+    .badge-queued {
+      background: rgba(255,107,107,0.1); color: #FF6B6B;
+      border: 1px solid rgba(255,107,107,0.2);
+    }
+
+    /* ===== LOGO BAR ===== */
+    .logo-bar {
+      padding: 52px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .logo-bar-label {
+      text-align: center; font-size: 13px; font-weight: 500;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
+    .logo-bar-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+    }
+    .logo-chip {
+      padding: 8px 22px; border-radius: 100px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      font-size: 14px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: -0.01em; transition: all var(--transition);
+    }
+    .logo-chip:hover { color: var(--text); border-color: var(--border-light); }
+
+    /* ===== FEATURES ===== */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .feature-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      transition: all var(--transition); position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(108,71,255,0.04), transparent);
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: var(--shadow-lg); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon {
+      font-size: 32px; margin-bottom: 16px; display: block;
+    }
+    .feature-card h3 {
+      font-size: 18px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em;
+    }
+    .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works { background: var(--surface); }
+    .steps-container {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+      position: relative;
+    }
+    .steps-container::before {
+      content: ''; position: absolute; top: 48px; left: calc(16.6% + 20px); right: calc(16.6% + 20px);
+      height: 1px; border-top: 2px dashed var(--border-light); z-index: 0;
+    }
+    .step { text-align: center; position: relative; z-index: 1; }
+    .step-badge {
+      width: 72px; height: 72px; border-radius: 20px;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #fff;
+      margin: 0 auto 24px; letter-spacing: -0.03em;
+      box-shadow: 0 8px 30px rgba(108,71,255,0.35);
+    }
+    .step h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .step p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ===== PRICING ===== */
+    .pricing-toggle-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 48px;
+    }
+    .pricing-toggle-label { font-size: 14px; font-weight: 500; color: var(--text-muted); }
+    .pricing-toggle-label.active { color: var(--text); font-weight: 600; }
+    .toggle-switch {
+      width: 48px; height: 26px; border-radius: 100px;
+      background: var(--primary); position: relative; cursor: pointer;
+      transition: background var(--transition); flex-shrink: 0;
+    }
+    .toggle-switch::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 20px; height: 20px; border-radius: 50%; background: #fff;
+      transition: transform var(--transition);
+    }
+    .toggle-switch.annual::after { transform: translateX(22px); }
+    .annual-badge {
+      background: rgba(34,197,94,0.15); color: #22C55E;
+      border: 1px solid rgba(34,197,94,0.25);
+      font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 36px 32px;
+      transition: all var(--transition); position: relative;
+    }
+    .pricing-card.popular {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary), 0 20px 60px rgba(108,71,255,0.2);
+      transform: translateY(-8px);
+    }
+    .popular-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--gradient); color: #fff;
+      font-size: 11px; font-weight: 700; padding: 5px 16px; border-radius: 100px;
+      white-space: nowrap; letter-spacing: 0.04em;
+    }
+    .pricing-tier { font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.07em; }
+    .pricing-for { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+    .pricing-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+    .price-currency { font-size: 20px; font-weight: 700; color: var(--text-muted); }
+    .price-amount {
+      font-size: 52px; font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+    }
+    .price-period { font-size: 14px; color: var(--text-muted); }
+    .pricing-annual-note { font-size: 12px; color: var(--text-muted); margin-bottom: 28px; min-height: 18px; }
+    .pricing-divider { height: 1px; background: var(--border); margin: 24px 0; }
+    .pricing-features { display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+    .pricing-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text-muted);
+    }
+    .pricing-feature .check {
+      color: var(--primary); font-size: 15px; margin-top: 1px; flex-shrink: 0;
+    }
+    .pricing-cta { width: 100%; justify-content: center; padding: 13px; font-size: 15px; }
+    .pricing-note {
+      text-align: center; font-size: 13px; color: var(--text-muted);
+      margin-top: 32px;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials { background: var(--surface); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      transition: all var(--transition);
+    }
+    .testimonial-card:hover { transform: translateY(-4px); border-color: var(--border-light); box-shadow: var(--shadow-lg); }
+    .testimonial-stars { color: #FFB800; font-size: 18px; letter-spacing: 2px; margin-bottom: 18px; }
+    .testimonial-quote {
+      font-size: 15px; line-height: 1.75; color: var(--text);
+      font-style: italic; margin-bottom: 24px;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--gradient); display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+    .author-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .author-title { font-size: 13px; color: var(--text-muted); }
+
+    /* ===== FAQ ===== */
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition);
+    }
+    .faq-item.open { border-color: var(--primary); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; cursor: pointer; gap: 16px;
+      font-size: 15px; font-weight: 600;
+      background: none; text-align: left; width: 100%; color: var(--text);
+      transition: color var(--transition);
+    }
+    .faq-question:hover { color: var(--primary); }
+    .faq-item.open .faq-question { color: var(--primary); }
+    .faq-chevron {
+      font-size: 12px; color: var(--text-muted); flex-shrink: 0;
+      transition: transform 0.3s ease; display: inline-block;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--primary); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 24px;
+    }
+    .faq-answer-inner {
+      padding: 0 0 20px; font-size: 14px; color: var(--text-muted);
+      line-height: 1.75; border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta {
+      background: linear-gradient(135deg, #0D0820 0%, #1A0A35 35%, #120818 65%, #0A0A0F 100%);
+      position: relative; overflow: hidden; padding: 120px 0;
+    }
+    .final-cta::before {
+      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,71,255,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .final-cta-inner { text-align: center; position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .final-cta h2 {
+      font-size: clamp(32px, 5vw, 52px); font-weight: 900;
+      letter-spacing: -0.03em; color: #fff; margin-bottom: 16px; line-height: 1.15;
+    }
+    .final-cta p { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
+    .final-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .final-cta-reassurance {
+      display: flex; align-items: center; justify-content: center;
+      gap: 24px; flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .final-cta-reassurance span { display: flex; align-items: center; gap: 6px; }
+    .final-cta-reassurance .check-icon { color: #22C55E; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo { font-size: 20px; margin-bottom: 14px; }
+    .footer-tagline { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link {
+      width: 36px; height: 36px; border-radius: 9px;
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 14px; transition: all var(--transition);
+    }
+    .social-link:hover { border-color: var(--primary); color: var(--primary); background: rgba(108,71,255,0.08); }
+    .footer-col-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text); margin-bottom: 16px; }
+    .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { font-size: 14px; color: var(--text-muted); transition: color var(--transition); }
+    .footer-col-links a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .footer-bottom a { color: var(--text-muted); transition: color var(--transition); }
+    .footer-bottom a:hover { color: var(--text); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: 56px; }
+      .hero-visual { justify-content: center; }
+      .dashboard-card { max-width: 480px; width: 100%; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-container::before { display: none; }
+      .steps-container { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pricing-card.popular { transform: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .hero { padding: 120px 0 80px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps-container { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; }
+      .nav-login { display: none; }
+      .hamburger { display: flex; }
+      .metrics-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .metric-value { font-size: 16px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .final-cta-reassurance { gap: 16px; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { justify-content: center; }
+      .metrics-row { gap: 6px; }
+      .metric-tile { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">Magista<span class="dot">.</span></a>
+
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">☀️</span>
+          </button>
+          <a href="#" class="nav-login">Log In</a>
+          <a href="#pricing" class="btn btn-primary nav-cta">Start Free Trial</a>
+          <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu" role="navigation">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" class="btn btn-ghost" style="text-align:center">Log In</a>
+        <a href="#pricing" class="btn btn-primary">Start Free Trial</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-glow-1"></div>
+      <div class="hero-glow-2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-eyebrow">✦ Powered by AI Agents</div>
+          <h1>
+            <span class="gradient-text">Your AI Marketing Team.</span><br />
+            Always On.
+          </h1>
+          <p class="hero-sub">
+            Magista deploys specialized AI agents for SEO, CRO, copywriting, paid ads, and analytics — working from your product context, 24/7.
+          </p>
+          <div class="hero-ctas">
+            <a href="#pricing" class="btn btn-primary">Start Free Trial</a>
+            <a href="#" class="btn btn-ghost">▶ Watch Demo</a>
+          </div>
+          <div class="hero-proof">
+            <div class="stars">★★★★★</div>
+            <strong>4.9/5</strong>
+            <div class="sep"></div>
+            <span>Join <strong>2,400+</strong> growth teams</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="dashboard-card">
+            <div class="dashboard-header">
+              <div class="dashboard-title">Magista Dashboard</div>
+              <div class="dashboard-live">
+                <div class="live-dot"></div>
+                LIVE
+              </div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-tile">
+                <div class="metric-label">MRR</div>
+                <div class="metric-value metric-mrr">$47,230</div>
+                <div class="metric-change">↑ +18%</div>
+              </div>
+              <div class="metric-tile">
+                <div class="metric-label">Conversions</div>
+                <div class="metric-value metric-conv">3.2%</div>
+                <div class="metric-change">↑ +0.8%</div>
+              </div>
+              <div class="metric-tile">
+                <div class="metric-label">Traffic</div>
+                <div class="metric-value metric-traffic">+140%</div>
+                <div class="metric-change">↑ 90d avg</div>
+              </div>
+            </div>
+            <div class="agent-feed-label">Active Agents</div>
+            <div class="agent-feed" id="agentFeed">
+              <div class="agent-item">
+                <div class="agent-icon purple">🎯</div>
+                <div class="agent-text">
+                  <div class="agent-name">CRO Agent</div>
+                  <div class="agent-status">Analyzing pricing page friction...</div>
+                </div>
+                <span class="agent-badge badge-running">Running</span>
+              </div>
+              <div class="agent-item">
+                <div class="agent-icon coral">✍️</div>
+                <div class="agent-text">
+                  <div class="agent-name">Copy Agent</div>
+                  <div class="agent-status">Rewrote 5 email subject lines</div>
+                </div>
+                <span class="agent-badge badge-done">Done</span>
+              </div>
+              <div class="agent-item">
+                <div class="agent-icon green">🔍</div>
+                <div class="agent-text">
+                  <div class="agent-name">SEO Agent</div>
+                  <div class="agent-status">Generating 24 programmatic pages</div>
+                </div>
+                <span class="agent-badge badge-running">Running</span>
+              </div>
+              <div class="agent-item">
+                <div class="agent-icon blue">📊</div>
+                <div class="agent-text">
+                  <div class="agent-name">Ads Agent</div>
+                  <div class="agent-status">New Google campaign queued</div>
+                </div>
+                <span class="agent-badge badge-queued">Queued</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOGO BAR ===== -->
+  <section class="logo-bar">
+    <div class="container">
+      <p class="logo-bar-label">Trusted by growth teams at</p>
+      <div class="logo-bar-logos">
+        <div class="logo-chip fade-up">Runway</div>
+        <div class="logo-chip fade-up">Clearbit</div>
+        <div class="logo-chip fade-up">Paddle</div>
+        <div class="logo-chip fade-up">Beehiiv</div>
+        <div class="logo-chip fade-up">Dub</div>
+        <div class="logo-chip fade-up">Rewardful</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">What Magista Does</div>
+        <h2>Every marketing skill your team needs, <span class="gradient-text">run by AI</span></h2>
+        <p>32 specialized agents, each trained on best practices for a specific marketing discipline.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <span class="feature-icon">🎯</span>
+          <h3>Conversion Optimization</h3>
+          <p>Analyzes every page against CRO dimensions. Finds friction, rewrites CTAs, proposes A/B tests automatically.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <span class="feature-icon">✍️</span>
+          <h3>AI Copywriting</h3>
+          <p>Writes benefit-led copy using proven frameworks. Uses your product context so it never sounds generic.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <span class="feature-icon">🔍</span>
+          <h3>SEO &amp; AI Search</h3>
+          <p>Audits technical issues, generates programmatic pages, optimizes for AI Overviews and LLM citations.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <span class="feature-icon">📧</span>
+          <h3>Email Sequences</h3>
+          <p>Designs lifecycle email flows, writes each message, maps them to customer journey stages.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <span class="feature-icon">📊</span>
+          <h3>Paid Ads</h3>
+          <p>Builds campaign structures, writes ad creative at scale, monitors ROAS across Google, Meta, and LinkedIn.</p>
+        </div>
+        <div class="feature-card fade-up">
+          <span class="feature-icon">📈</span>
+          <h3>Growth Engineering</h3>
+          <p>Plans referral programs, free tool strategies, and churn prevention flows using behavioral data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">The Process</div>
+        <h2>From context to campaigns <span class="gradient-text">in minutes</span></h2>
+      </div>
+      <div class="steps-container">
+        <div class="step fade-up">
+          <div class="step-badge">01</div>
+          <h3>Set Your Context</h3>
+          <p>Fill in your product-marketing-context once. Every agent reads this before acting — no re-explaining your product.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-badge">02</div>
+          <h3>Deploy Your Agents</h3>
+          <p>Choose which marketing disciplines to activate. Magista runs the right skill automatically based on your goals.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-badge">03</div>
+          <h3>Review and Ship</h3>
+          <p>Every output reviewed in your dashboard. Approve, edit, or send back. Full audit trail for every decision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Simple Pricing</div>
+        <h2>One platform. <span class="gradient-text">No per-seat surprises.</span></h2>
+      </div>
+
+      <div class="pricing-toggle-wrap">
+        <span class="pricing-toggle-label active" id="monthlyLabel">Monthly</span>
+        <div class="toggle-switch" id="pricingToggle" role="switch" aria-checked="false" tabindex="0"></div>
+        <span class="pricing-toggle-label" id="annualLabel">Annual</span>
+        <span class="annual-badge">Save 20%</span>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card fade-up">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="79" data-annual="63">79</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="pricing-annual-note" id="starterNote"></div>
+          <div class="pricing-for">For solo founders</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="check">✓</span>5 AI agent skills</li>
+            <li class="pricing-feature"><span class="check">✓</span>1 workspace</li>
+            <li class="pricing-feature"><span class="check">✓</span>50 tasks/month</li>
+            <li class="pricing-feature"><span class="check">✓</span>Email support</li>
+          </ul>
+          <a href="#" class="btn btn-ghost pricing-cta">Start Free Trial</a>
+        </div>
+
+        <!-- Growth -->
+        <div class="pricing-card popular fade-up">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="pricing-tier">Growth</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="199" data-annual="159">199</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="pricing-annual-note" id="growthNote"></div>
+          <div class="pricing-for">For growing teams</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="check">✓</span>All 32 agent skills</li>
+            <li class="pricing-feature"><span class="check">✓</span>3 workspaces</li>
+            <li class="pricing-feature"><span class="check">✓</span>Unlimited tasks</li>
+            <li class="pricing-feature"><span class="check">✓</span>Priority support</li>
+            <li class="pricing-feature"><span class="check">✓</span>A/B test automation</li>
+          </ul>
+          <a href="#" class="btn btn-primary pricing-cta">Start Free Trial</a>
+        </div>
+
+        <!-- Agency -->
+        <div class="pricing-card fade-up">
+          <div class="pricing-tier">Agency</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="499" data-annual="399">499</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="pricing-annual-note" id="agencyNote"></div>
+          <div class="pricing-for">For agencies &amp; teams</div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="check">✓</span>Everything in Growth</li>
+            <li class="pricing-feature"><span class="check">✓</span>10 workspaces</li>
+            <li class="pricing-feature"><span class="check">✓</span>White-label reports</li>
+            <li class="pricing-feature"><span class="check">✓</span>API access</li>
+            <li class="pricing-feature"><span class="check">✓</span>Dedicated CSM</li>
+          </ul>
+          <a href="#" class="btn btn-ghost pricing-cta">Start Free Trial</a>
+        </div>
+      </div>
+
+      <p class="pricing-note">14-day free trial. No credit card required.</p>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">What Teams Say</div>
+        <h2>Marketing that ships, <span class="gradient-text">every week</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"We replaced 3 freelance contractors with Magista. The copywriting and CRO agents alone paid for the platform in the first month."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SC</div>
+            <div>
+              <div class="author-name">Sarah Chen</div>
+              <div class="author-title">Head of Growth at Runway</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"The AI SEO agent found 47 technical issues and generated 200+ programmatic pages in an afternoon. Organic traffic up 140% in 90 days."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MW</div>
+            <div>
+              <div class="author-name">Marcus Webb</div>
+              <div class="author-title">Founder at Beehiiv</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Finally a tool that understands our product before it writes a word. The product-marketing-context system is genuinely brilliant."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PN</div>
+            <div>
+              <div class="author-name">Priya Nair</div>
+              <div class="author-title">CMO at Paddle</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow">Questions</div>
+        <h2>Everything you <span class="gradient-text">need to know</span></h2>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How is Magista different from ChatGPT or Claude?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              ChatGPT and Claude are general-purpose assistants — you have to prompt them from scratch every time, and they have no memory of your product, audience, or goals. Magista is purpose-built for marketing. Each agent is pre-trained on the best practices for its specific discipline (CRO, SEO, copywriting, etc.), reads your product-marketing-context automatically, and maintains a workflow across tasks. It's the difference between hiring a generalist temp and having a specialist who already knows your business.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What is a "marketing skill" and how do agents use it?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              A marketing skill is a structured set of instructions, frameworks, and best practices for a specific marketing discipline. Think of it as a playbook that guides how the agent thinks, what it checks, and how it delivers outputs. For example, the CRO skill instructs the agent to analyze pages across 12 conversion dimensions, prioritize by impact, and format output as testable hypotheses. Agents load the relevant skill before every task.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Do I need to set up anything technical?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              No. Magista is a no-code platform. You fill out your product-marketing-context (a guided form), activate the agents you want, and review outputs in your dashboard. For advanced features like analytics integration or A/B test automation, we provide simple one-click integrations with tools like Google Analytics, Segment, and your email platform. No engineering required.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How does the product-marketing-context work?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Your product-marketing-context is a structured document you fill out once. It captures your product description, target audience, key differentiators, messaging pillars, competitors, tone of voice, and current goals. Every Magista agent reads this context before it acts, so outputs are always grounded in your specific business — not generic marketing copy. You can update it anytime, and all agents pick up the changes automatically.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Can I use Magista alongside my existing tools?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Absolutely. Magista is designed to complement your stack, not replace it. We integrate with the tools you already use: Mailchimp, Customer.io, HubSpot, Google Analytics 4, Stripe, Webflow, and more. Outputs from Magista can be exported directly or pushed to your tools via integrations. You stay in control of your existing workflows while Magista handles the marketing intelligence layer.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What marketing channels does Magista support?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Magista covers all major marketing channels: organic search (SEO), paid search and social (Google, Meta, LinkedIn), email marketing, content marketing, conversion rate optimization, and growth engineering (referral programs, viral loops, retention flows). The Growth and Agency plans include all 32 agent skills across every supported channel. The Starter plan includes 5 skills — you choose which disciplines matter most to your business.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is there a free trial?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. Every plan comes with a 14-day free trial. No credit card required to start. During your trial you get full access to all the features of your chosen plan. At the end of the trial, you can choose to subscribe or your account will automatically move to a read-only state — all your work is saved and accessible if you decide to come back.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How do I get support?
+            <span class="faq-chevron">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Starter plans include email support with a 24-hour response time. Growth plans include priority email and chat support with responses within 4 hours. Agency plans come with a dedicated Customer Success Manager who onboards your team, runs regular reviews, and is available via a private Slack channel. All plans also have access to our help center, video walkthroughs, and community forum.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta-inner fade-up">
+        <h2>Your AI marketing team is ready.</h2>
+        <p>Start your free 14-day trial. No card required. Cancel anytime.</p>
+        <div class="final-cta-buttons">
+          <a href="#pricing" class="btn btn-white">Start Free Trial</a>
+          <a href="#" class="btn btn-white-outline">Talk to Sales</a>
+        </div>
+        <div class="final-cta-reassurance">
+          <span><span class="check-icon">✓</span> 14-day free trial</span>
+          <span><span class="check-icon">✓</span> No setup fees</span>
+          <span><span class="check-icon">✓</span> Cancel anytime</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">Magista<span class="dot">.</span></div>
+          <p class="footer-tagline">Your AI Marketing Team. Always On.<br />32 specialized agents, working 24/7 from your product context.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-link" aria-label="GitHub">⌥</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <ul class="footer-col-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#">Changelog</a></li>
+            <li><a href="#">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-col-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <ul class="footer-col-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Magista, Inc. Built with AI Marketing Skills.</span>
+        <span>Made with <span style="color: var(--accent);">♥</span> for growth teams everywhere.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ===== THEME TOGGLE =====
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function applyTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('magista-theme', theme);
+    }
+
+    // Initialize from localStorage
+    const savedTheme = localStorage.getItem('magista-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // ===== NAV SCROLL =====
+    const nav = document.getElementById('nav');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      lastScrollY = scrollY;
+    }, { passive: true });
+
+    // ===== HAMBURGER / MOBILE MENU =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('active', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ===== PRICING TOGGLE =====
+    const pricingToggle = document.getElementById('pricingToggle');
+    const monthlyLabel = document.getElementById('monthlyLabel');
+    const annualLabel = document.getElementById('annualLabel');
+    let isAnnual = false;
+
+    const priceAmounts = document.querySelectorAll('.price-amount');
+    const noteIds = ['starterNote', 'growthNote', 'agencyNote'];
+    const annualPrices = { starter: 63, growth: 159, agency: 399 };
+    const monthlyPrices = { starter: 79, growth: 199, agency: 499 };
+
+    function updatePricing() {
+      priceAmounts.forEach(el => {
+        const val = isAnnual ? el.dataset.annual : el.dataset.monthly;
+        el.textContent = val;
+      });
+      const notes = [
+        isAnnual ? 'Billed $756/year (save $192)' : '',
+        isAnnual ? 'Billed $1,908/year (save $480)' : '',
+        isAnnual ? 'Billed $4,788/year (save $1,200)' : ''
+      ];
+      noteIds.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = notes[i];
+      });
+      pricingToggle.classList.toggle('annual', isAnnual);
+      monthlyLabel.classList.toggle('active', !isAnnual);
+      annualLabel.classList.toggle('active', isAnnual);
+      pricingToggle.setAttribute('aria-checked', isAnnual.toString());
+    }
+
+    pricingToggle.addEventListener('click', () => {
+      isAnnual = !isAnnual;
+      updatePricing();
+    });
+
+    pricingToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        isAnnual = !isAnnual;
+        updatePricing();
+      }
+    });
+
+    updatePricing();
+
+    // ===== FAQ ACCORDION =====
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        faqItems.forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ===== SCROLL ANIMATIONS =====
+    const fadeEls = document.querySelectorAll('.fade-up');
+
+    const observerOptions = {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ===== AGENT FEED ANIMATION =====
+    const agentFeed = document.getElementById('agentFeed');
+
+    const agentActivities = [
+      { icon: '🎯', iconClass: 'purple', name: 'CRO Agent', status: 'Found 3 high-impact page changes', badge: 'Done', badgeClass: 'badge-done' },
+      { icon: '✍️', iconClass: 'coral', name: 'Copy Agent', status: 'Writing landing page headlines...', badge: 'Running', badgeClass: 'badge-running' },
+      { icon: '📧', iconClass: 'blue', name: 'Email Agent', status: 'Onboarding sequence ready for review', badge: 'Done', badgeClass: 'badge-done' },
+      { icon: '📊', iconClass: 'green', name: 'Ads Agent', status: 'Optimizing Meta campaign ROAS...', badge: 'Running', badgeClass: 'badge-running' },
+      { icon: '🔍', iconClass: 'purple', name: 'SEO Agent', status: '47 technical issues found', badge: 'Done', badgeClass: 'badge-done' },
+      { icon: '📈', iconClass: 'coral', name: 'Growth Agent', status: 'Referral program structure queued', badge: 'Queued', badgeClass: 'badge-queued' },
+      { icon: '🎯', iconClass: 'purple', name: 'CRO Agent', status: 'Analyzing pricing page friction...', badge: 'Running', badgeClass: 'badge-running' },
+      { icon: '✍️', iconClass: 'coral', name: 'Copy Agent', status: 'Rewrote 5 email subject lines', badge: 'Done', badgeClass: 'badge-done' },
+    ];
+
+    let activityIndex = 0;
+    const maxItems = 4;
+
+    function addAgentActivity() {
+      if (!agentFeed) return;
+
+      const activity = agentActivities[activityIndex % agentActivities.length];
+      activityIndex++;
+
+      const item = document.createElement('div');
+      item.className = 'agent-item';
+      item.innerHTML = `
+        <div class="agent-icon ${activity.iconClass}">${activity.icon}</div>
+        <div class="agent-text">
+          <div class="agent-name">${activity.name}</div>
+          <div class="agent-status">${activity.status}</div>
+        </div>
+        <span class="agent-badge ${activity.badgeClass}">${activity.badge}</span>
+      `;
+
+      agentFeed.insertBefore(item, agentFeed.firstChild);
+
+      // Remove oldest if too many
+      while (agentFeed.children.length > maxItems) {
+        agentFeed.removeChild(agentFeed.lastChild);
+      }
+    }
+
+    // Start animation cycle after initial delay
+    setTimeout(() => {
+      setInterval(addAgentActivity, 3200);
+    }, 2000);
+
+    // ===== TYPING CURSOR EFFECT on agent status lines =====
+    function typeText(el, text, speed = 35) {
+      return new Promise(resolve => {
+        el.textContent = '';
+        let i = 0;
+        const interval = setInterval(() => {
+          el.textContent += text[i];
+          i++;
+          if (i >= text.length) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, speed);
+      });
+    }
+
+    // Type the first agent status text on load
+    window.addEventListener('load', () => {
+      const firstStatus = agentFeed.querySelector('.agent-status');
+      if (firstStatus) {
+        const original = firstStatus.textContent;
+        setTimeout(() => typeText(firstStatus, original, 30), 800);
+      }
+    });
+
+  </script>
+</body>
+</html>
