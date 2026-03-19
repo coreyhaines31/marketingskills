@@ -143,6 +143,9 @@
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 0; transition: all var(--transition);
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
     .nav.scrolled {
       background: var(--nav-bg);
