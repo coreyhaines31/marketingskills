@@ -63,6 +63,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [content-strategy](skills/content-strategy/) | When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also... |
 | [copy-editing](skills/copy-editing/) | When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this... |
 | [copywriting](skills/copywriting/) | When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,... |
+| [edm-design-templates](skills/edm-design-templates/) | When the user wants to design, build, or improve EDM (Electronic Direct Mail) templates — visual layout, HTML structure, and design system for marketing emails. Also use when the user mentions "EDM design," "email template," "HTML email," or "responsive email." For email copy strategy, see email-sequence. |
 | [email-sequence](skills/email-sequence/) | When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email... |
 | [form-cro](skills/form-cro/) | When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms,... |
 | [free-tool-strategy](skills/free-tool-strategy/) | When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or... |
@@ -210,6 +211,7 @@ You can also invoke skills directly:
 - `copy-editing` - Edit and polish existing copy
 - `cold-email` - B2B cold outreach emails and sequences
 - `email-sequence` - Automated email flows
+- `edm-design-templates` - HTML email templates, visual layout, and design system
 - `social-content` - Social media content
 
 ### SEO & Discovery
