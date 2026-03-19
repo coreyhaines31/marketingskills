@@ -396,6 +396,9 @@ For sending and testing EDMs, see [tools registry](../../tools/REGISTRY.md):
 | **SendGrid** | Transactional at scale | - | [sendgrid.md](../../tools/integrations/sendgrid.md) |
 | **Customer.io** | Behavior-based triggers | - | [customer-io.md](../../tools/integrations/customer-io.md) |
 
+**Design tools:**
+- **Canva** — Design hero images and visual sections, then export for use in HTML templates. Start at canva.com/email-newsletters/templates/ or create a custom 600×300px design. Share editable template links with teammates. See [references/canva-integration.md](references/canva-integration.md) for the full workflow.
+
 **Testing tools:**
 - **Litmus** — Preview across 100+ email clients
 - **Email on Acid** — Cross-client rendering tests
@@ -413,3 +416,5 @@ For sending and testing EDMs, see [tools registry](../../tools/REGISTRY.md):
 
 **For detailed layout templates and HTML snippets**: See [references/layout-templates.md](references/layout-templates.md)
 **For visual design principles and brand application**: See [references/design-principles.md](references/design-principles.md)
+**For Canva integration, export workflow, and share links**: See [references/canva-integration.md](references/canva-integration.md)
+**For a full worked example (Rotisha's World VISA EDM)**: See [assets/rotishas-world-visa-edm.html](assets/rotishas-world-visa-edm.html)
