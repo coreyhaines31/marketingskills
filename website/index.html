@@ -49,7 +49,7 @@
 
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; width: 100%; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
@@ -57,6 +57,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      width: 100%;
       transition: background var(--transition), color var(--transition);
     }
     img { max-width: 100%; display: block; }
@@ -66,7 +67,7 @@
 
     /* ===== UTILITIES ===== */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .section { padding: 96px 0; }
+    .section { padding: 96px 0; width: 100%; box-sizing: border-box; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
@@ -218,6 +219,7 @@
     .hero {
       min-height: 100vh; display: flex; align-items: center;
       position: relative; overflow: hidden; padding: 140px 0 96px;
+      width: 100%; box-sizing: border-box;
     }
     .hero-bg {
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
@@ -365,7 +367,7 @@
     /* ===== LOGO BAR ===== */
     .logo-bar {
       padding: 52px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--surface); width: 100%; box-sizing: border-box;
     }
     .logo-bar-label {
       text-align: center; font-size: 13px; font-weight: 500;
@@ -559,6 +561,7 @@
     .final-cta {
       background: linear-gradient(135deg, #0D0820 0%, #1A0A35 35%, #120818 65%, #0A0A0F 100%);
       position: relative; overflow: hidden; padding: 120px 0;
+      width: 100%; box-sizing: border-box;
     }
     .final-cta::before {
       content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
@@ -583,7 +586,7 @@
     /* ===== FOOTER ===== */
     .footer {
       background: var(--surface); border-top: 1px solid var(--border);
-      padding: 64px 0 32px;
+      padding: 64px 0 32px; width: 100%; box-sizing: border-box;
     }
     .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
