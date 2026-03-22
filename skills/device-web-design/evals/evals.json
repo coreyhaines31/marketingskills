@@ -1,0 +1,66 @@
+{
+  "skill_name": "device-web-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a SaaS landing page built with Next.js and Tailwind. It has a navbar, hero with gradient background, 3 feature cards, testimonials section, and footer. It looks like every other website. Make it look completely different.",
+      "expected_output": "Should strip the page to its core, replace navbar with bottom bar or floating button, replace gradient hero with solid dark background and massive display typography (7xl-9xl), replace feature cards with full-width strips, eliminate testimonials section or replace with single metric, eliminate verbose footer. Total visible words should drop below 40. Should specify exact font (from recommended list like Clash Display or Space Mono), exact color palette (monochrome + one accent), and provide actual Tailwind component code.",
+      "assertions": [
+        "Does NOT use rounded-lg, shadow-md, or gradient classes",
+        "Specifies a font NOT in the banned list (Inter, Roboto, Open Sans, etc.)",
+        "Headlines use text-7xl or larger",
+        "Total word count on hero/above-fold is 20 or fewer",
+        "Uses sharp corners (rounded-none) or full radius (rounded-full) only",
+        "Provides actual component code, not just descriptions",
+        "Uses monochrome palette with exactly one accent color",
+        "Replaces standard navbar with device-style navigation"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm building a password-gated web app. It needs a login screen. Right now it has a centered card with email/password fields and a blue login button. Make it look like a device.",
+      "expected_output": "Should transform the login into a device-like interface: split layout with side panel or full-viewport layout, oversized input fields with bottom-border-only styling, monospace labels, a large action button (80px+ height), sharp corners throughout. Should include version number or status indicator as machine detail. Color palette should be dark with a single accent for the action elements.",
+      "assertions": [
+        "Login button is full-width and minimum 80px tall",
+        "Input fields use bottom-border-only styling, not boxed inputs",
+        "No rounded corners on any element",
+        "Includes at least one 'device detail' (version number, status indicator)",
+        "Uses monospace font for labels and inputs",
+        "Background is solid dark or solid warm white, no gradients",
+        "No card/container with shadow wrapping the form"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "This page needs to look futuristic and premium. Add some glow effects and make it feel like a sci-fi interface.",
+      "expected_output": "Should apply glow effects sparingly (max 2 elements per viewport): thin glowing borders with box-shadow, subtle text glow on accent elements. May include scan line overlay at low opacity. Should use dark background (near-black) with electric green or blue accent. Should include blinking cursor effect on a heading. Must NOT overdo glow — restraint is key.",
+      "assertions": [
+        "Glow effects applied to maximum 2 elements per viewport",
+        "Uses specific CSS box-shadow values for glow (not just shadow-glow class)",
+        "Scan lines use low opacity (3-5%)",
+        "Background is dark/near-black",
+        "Includes at least one mechanical animation (blink, steps, etc.)",
+        "Does not use smooth ease-in-out transitions",
+        "Overall design remains readable and functional"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I want to completely change the web identity of my existing React project. Give me the design system setup I need to transform everything at once.",
+      "expected_output": "Should provide: 1) CSS custom properties (:root variables) for the full palette, 2) Tailwind config override with custom fontSize, colors, borderRadius, boxShadow, and fontFamily, 3) Google Fonts link tag for recommended fonts, 4) Global CSS reset/overrides, 5) Component replacements for buttons, inputs, nav, and cards. Should explain the order of implementation (strip, frame, type, action, signal, accent, test).",
+      "assertions": [
+        "Provides complete CSS custom properties block",
+        "Provides Tailwind config with borderRadius DEFAULT set to 0",
+        "Specifies exact Google Fonts URL",
+        "Includes at least 4 component code examples",
+        "Follows the implementation checklist order",
+        "Provides both dark and light mode variable sets",
+        "Total implementation can be applied without restructuring the React component tree"
+      ],
+      "files": []
+    }
+  ]
+}
