@@ -69,6 +69,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | intercom | Messaging | ✓ | - | [✓](clis/intercom.js) | ✓ | [intercom.md](integrations/intercom.md) |
 | outreach | Sales Engagement | ✓ | ✓ | [✓](clis/outreach.js) | - | [outreach.md](integrations/outreach.md) |
 | crossbeam | Partner Ecosystem | ✓ | ✓ | [✓](clis/crossbeam.js) | - | [crossbeam.md](integrations/crossbeam.md) |
+| introw | Partner Ecosystem | ✓ | ✓ | - | - | [introw.md](integrations/introw.md) |
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | - | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
@@ -354,8 +355,9 @@ Partner data sharing, co-sell, and ecosystem management.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **crossbeam** | Account overlaps, co-sell | Now part of Reveal |
+| **introw** | Partner management, deal registration, QBRs | MCP-enabled PRM |
 
-**Agent recommendation**: Crossbeam for identifying partner account overlaps and co-sell opportunities.
+**Agent recommendation**: Crossbeam for identifying partner account overlaps and co-sell opportunities. Introw for full partner relationship management — partner pipeline, commissions, tasks, and automated business review prep.
 
 ### Email Outreach
 
@@ -426,6 +428,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **coupler** - Marketing data pipelines
 - **outreach** - Sales engagement sequences
 - **crossbeam** - Partner ecosystem data
+- **introw** - Partner relationship management
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 
