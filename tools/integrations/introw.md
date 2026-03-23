@@ -6,10 +6,10 @@ Partner Relationship Management platform for managing channel partners, tracking
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | Partners, CRM objects, tasks, commissions, engagement, forms |
+| API | - | Not available |
 | MCP | ✓ | Full read/write via Claude connector |
 | CLI | - | Not available |
-| SDK | - | MCP-based integration |
+| SDK | - | Not available |
 
 ## Authentication
 
