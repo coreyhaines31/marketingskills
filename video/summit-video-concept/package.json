@@ -4,9 +4,9 @@
   "description": "2026 Envision Supplier Summit — motion graphics video (Remotion)",
   "scripts": {
     "start": "remotion preview src/index.ts",
-    "render": "remotion render src/index.ts SummitVideo out/summit-video.mp4",
-    "render:30s": "remotion render src/index.ts SummitVideo30 out/summit-video-30s.mp4",
-    "still": "remotion still src/index.ts SummitVideo out/still.png"
+    "render": "remotion render src/index.ts SummitVideo out/summit-video.mp4 --browser-executable=$HOME/.cache/ms-playwright/chromium_headless_shell-1194/chrome-linux/headless_shell",
+    "render:30s": "remotion render src/index.ts SummitVideo30 out/summit-video-30s.mp4 --browser-executable=$HOME/.cache/ms-playwright/chromium_headless_shell-1194/chrome-linux/headless_shell",
+    "still": "remotion still src/index.ts SummitVideo out/still.png --browser-executable=$HOME/.cache/ms-playwright/chromium_headless_shell-1194/chrome-linux/headless_shell"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
