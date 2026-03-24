@@ -8,13 +8,13 @@
   <!-- Google Fonts: Montserrat (Gotham substitute) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style>
-    /* ── Reset & Base ─────────────────────────────────────────── */
+    /* ── Reset & Base ───────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -24,68 +24,58 @@
       --navy-mid:    #003087;
       --white:       #ffffff;
       --text-muted:  #a8c5d4;
-      --font-head:   'Montserrat', sans-serif;
-      --font-body:   'Montserrat', sans-serif;
+      --panel-w:     360px;
     }
 
     html, body {
       height: 100%;
       background: var(--navy-dark);
       color: var(--white);
-      font-family: var(--font-body);
+      font-family: 'Montserrat', sans-serif;
       font-weight: 400;
+      overflow: hidden;
     }
 
-    /* ── Layout ───────────────────────────────────────────────── */
+    /* ── App Shell ──────────────────────────────────────────────── */
     .app {
       display: flex;
       flex-direction: column;
       height: 100vh;
     }
 
-    /* ── Header ───────────────────────────────────────────────── */
+    /* ── Header ─────────────────────────────────────────────────── */
     .header {
       background: var(--green-dark);
       border-bottom: 3px solid var(--green-light);
-      padding: 14px 24px;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-shrink: 0;
-      z-index: 1000;
+      z-index: 600;
     }
 
     .header-icon {
-      width: 40px;
-      height: 40px;
+      width: 38px; height: 38px;
       background: var(--green-light);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-
-    .header-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--green-dark);
-    }
+    .header-icon svg { width: 20px; height: 20px; fill: var(--green-dark); }
 
     .header-text h1 {
-      font-family: var(--font-head);
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--white);
       line-height: 1.1;
     }
-
     .header-text p {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--green-light);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-top: 2px;
     }
@@ -95,166 +85,302 @@
       background: var(--navy-mid);
       border: 1px solid var(--green-light);
       border-radius: 6px;
-      padding: 6px 14px;
+      padding: 5px 12px;
       text-align: center;
       flex-shrink: 0;
     }
-
     .header-count .num {
-      font-family: var(--font-head);
       font-weight: 800;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: var(--green-light);
       line-height: 1;
     }
-
     .header-count .lbl {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--text-muted);
     }
 
-    /* ── Map container ────────────────────────────────────────── */
+    /* ── Map + Panel row ─────────────────────────────────────────── */
+    .map-row {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
     #map {
       flex: 1;
-      width: 100%;
+      transition: width 0.4s ease;
     }
 
-    /* ── Leaflet overrides ────────────────────────────────────── */
-    .leaflet-container {
+    /* ── Side Panel ──────────────────────────────────────────────── */
+    .side-panel {
+      width: var(--panel-w);
       background: var(--navy-dark);
-      font-family: var(--font-body);
-    }
-
-    /* Popup wrapper */
-    .leaflet-popup-content-wrapper {
-      background: var(--navy-dark);
-      border: 1px solid var(--green-light);
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .leaflet-popup-tip {
-      background: var(--green-light);
-    }
-
-    .leaflet-popup-content {
-      margin: 0;
-      width: 260px !important;
-    }
-
-    .popup-header {
-      background: var(--green-dark);
-      border-bottom: 2px solid var(--green-light);
-      padding: 10px 14px 8px;
-    }
-
-    .popup-header .center-num {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 0.7rem;
-      color: var(--green-light);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .popup-header .center-base {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--white);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.2;
-    }
-
-    .popup-body {
-      padding: 10px 14px 12px;
-    }
-
-    .popup-row {
+      border-left: 2px solid var(--green-light);
       display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 7px;
-      font-size: 0.8rem;
-      color: var(--white);
-      line-height: 1.4;
-    }
-
-    .popup-row:last-child { margin-bottom: 0; }
-
-    .popup-icon {
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      margin-top: 1px;
-      fill: var(--green-light);
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      z-index: 500;
     }
 
-    .popup-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
+    .side-panel.open {
+      transform: translateX(0);
+    }
+
+    /* Photo area */
+    .panel-photo {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--green-dark);
+    }
+
+    .panel-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+      filter: brightness(0.75) saturate(0.85);
+    }
+
+    /* Photo overlay gradient */
+    .panel-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 40%,
+        rgba(0,40,85,0.92) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Center badge on photo */
+    .panel-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 800;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      z-index: 2;
     }
 
     /* Close button */
-    .leaflet-popup-close-button {
-      color: var(--green-light) !important;
-      font-size: 18px !important;
-      top: 8px !important;
-      right: 10px !important;
+    .panel-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px; height: 30px;
+      background: rgba(0,40,85,0.75);
+      border: 1px solid var(--green-light);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 3;
+      transition: background 0.2s;
+      font-family: inherit;
     }
+    .panel-close:hover { background: var(--green-dark); }
 
-    .leaflet-popup-close-button:hover {
-      color: var(--white) !important;
+    /* Base name over photo bottom */
+    .panel-base-name {
+      position: absolute;
+      bottom: 10px;
+      left: 14px;
+      right: 44px;
+      z-index: 2;
     }
-
-    /* Attribution */
-    .leaflet-control-attribution {
-      background: rgba(0, 40, 85, 0.85) !important;
-      color: var(--text-muted) !important;
-      font-size: 10px;
+    .panel-base-name .base-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      font-weight: 600;
     }
-
-    .leaflet-control-attribution a {
-      color: var(--green-light) !important;
-    }
-
-    /* Zoom controls */
-    .leaflet-control-zoom a {
-      background: var(--green-dark) !important;
-      color: var(--green-light) !important;
-      border-color: var(--green-light) !important;
+    .panel-base-name h2 {
       font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      line-height: 1.15;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
-    .leaflet-control-zoom a:hover {
-      background: var(--navy-mid) !important;
+    /* Panel body */
+    .panel-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
-    /* ── Footer ───────────────────────────────────────────────── */
+    /* Info rows */
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(120,190,50,0.15);
+    }
+    .info-row:last-of-type { border-bottom: none; }
+
+    .info-icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: rgba(0,73,30,0.45);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .info-icon svg { width: 16px; height: 16px; fill: var(--green-light); }
+
+    .info-content { flex: 1; }
+    .info-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .info-value {
+      font-size: 0.82rem;
+      color: var(--white);
+      line-height: 1.45;
+    }
+
+    /* USP card */
+    .usp-card {
+      margin-top: 14px;
+      background: linear-gradient(135deg, var(--green-dark) 0%, #005a25 100%);
+      border: 1px solid var(--green-light);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .usp-eyebrow {
+      font-size: 0.58rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--green-light);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .usp-eyebrow::before {
+      content: '';
+      display: block;
+      width: 16px; height: 2px;
+      background: var(--green-light);
+      border-radius: 1px;
+    }
+    .usp-headline {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .usp-body {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55;
+    }
+
+    /* ── Hint overlay ────────────────────────────────────────────── */
+    .map-hint {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,40,85,0.88);
+      border: 1px solid rgba(120,190,50,0.5);
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      transition: opacity 0.4s;
+      white-space: nowrap;
+      z-index: 400;
+    }
+    .map-hint.hidden { opacity: 0; }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
     .footer {
       background: var(--navy-mid);
-      border-top: 1px solid rgba(120,190,50,0.25);
-      padding: 6px 24px;
-      font-size: 0.7rem;
+      border-top: 1px solid rgba(120,190,50,0.2);
+      padding: 5px 20px;
+      font-size: 0.65rem;
       color: var(--text-muted);
       letter-spacing: 0.04em;
       text-align: center;
       flex-shrink: 0;
     }
 
-    /* ── Responsive ───────────────────────────────────────────── */
-    @media (max-width: 480px) {
-      .header { padding: 10px 14px; }
-      .header-text h1 { font-size: 1rem; }
+    /* ── Leaflet overrides ───────────────────────────────────────── */
+    .leaflet-container {
+      background: var(--navy-dark);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .leaflet-control-attribution {
+      background: rgba(0,40,85,0.85) !important;
+      color: var(--text-muted) !important;
+      font-size: 10px;
+    }
+    .leaflet-control-attribution a { color: var(--green-light) !important; }
+    .leaflet-control-zoom a {
+      background: var(--green-dark) !important;
+      color: var(--green-light) !important;
+      border-color: rgba(120,190,50,0.4) !important;
+      font-weight: 800;
+    }
+    .leaflet-control-zoom a:hover { background: var(--navy-mid) !important; }
+
+    /* ── Mobile ──────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      :root { --panel-w: 100vw; }
+
+      .side-panel {
+        top: auto;
+        height: 70vh;
+        width: 100%;
+        right: 0; bottom: 0; left: 0;
+        border-left: none;
+        border-top: 2px solid var(--green-light);
+        transform: translateY(100%);
+        border-radius: 12px 12px 0 0;
+      }
+      .side-panel.open { transform: translateY(0); }
+
       .header-count { display: none; }
+      .header-text h1 { font-size: 1rem; }
+      .panel-photo { height: 150px; }
     }
   </style>
 </head>
@@ -265,9 +391,7 @@
   <!-- Header -->
   <header class="header">
     <div class="header-icon">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
-      </svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
     </div>
     <div class="header-text">
       <h1>Base Supply Centers</h1>
@@ -279,267 +403,409 @@
     </div>
   </header>
 
-  <!-- Map -->
-  <div id="map"></div>
+  <!-- Map Row -->
+  <div class="map-row">
+    <div id="map"></div>
 
-  <!-- Footer -->
+    <!-- Hint -->
+    <div class="map-hint" id="mapHint">Click a marker to explore a location</div>
+
+    <!-- Side Panel -->
+    <div class="side-panel" id="sidePanel">
+
+      <div class="panel-photo">
+        <div class="panel-badge" id="panelBadge">Center #00</div>
+        <button class="panel-close" id="panelClose" title="Back to map">&#10005;</button>
+        <img id="panelPhoto" src="" alt="Base photo" loading="lazy" />
+        <div class="panel-base-name">
+          <div class="base-label">Base Supply Center</div>
+          <h2 id="panelBaseName">—</h2>
+        </div>
+      </div>
+
+      <div class="panel-body">
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          </div>
+          <div class="info-content">
+            <span class="info-label">Address</span>
+            <div class="info-value" id="panelAddress">—</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="info-content">
+            <span class="info-label">Voice</span>
+            <div class="info-value" id="panelPhone">—</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div class="info-content">
+            <span class="info-label">Hours</span>
+            <div class="info-value" id="panelHours">—</div>
+          </div>
+        </div>
+
+        <!-- USP Card -->
+        <div class="usp-card">
+          <div class="usp-eyebrow">Why This BSC</div>
+          <div class="usp-headline" id="uspHeadline">—</div>
+          <div class="usp-body" id="uspBody">—</div>
+        </div>
+
+      </div>
+    </div><!-- /side-panel -->
+  </div><!-- /map-row -->
+
   <footer class="footer">
     Hours listed are local base time &nbsp;|&nbsp; M–F only &nbsp;|&nbsp; Contact individual centers for holiday schedules
   </footer>
 
-</div>
+</div><!-- /app -->
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-  // ── Supply Center Data ───────────────────────────────────────
-  const centers = [
-    {
-      id: 51,
-      base: "USAFA",
-      address: "8110 Security Dr., Door 11",
-      city: "USAFA, CO 80840",
-      phone: "719 472-1212",
-      hours: "0700–1545, M–F",
-      lat: 38.996,
-      lng: -104.861
-    },
-    {
-      id: 55,
-      base: "NAS Lemoore",
-      address: "140 Reeves Blvd., Building 140",
-      city: "NAS Lemoore, CA 93246",
-      phone: "559 998-8408 / 8410 / 8411",
-      hours: "0700–1530, M–F",
-      lat: 36.330,
-      lng: -119.952
-    },
-    {
-      id: 56,
-      base: "Fairchild AFB",
-      address: "500 West Arnold Ave., Building 2163",
-      city: "Fairchild AFB, WA 99011",
-      phone: "509 247-5732",
-      hours: "0700–1600, M–F",
-      lat: 47.615,
-      lng: -117.656
-    },
-    {
-      id: 57,
-      base: "NSA Mid-South",
-      address: "5464 Essex St., Building S-242",
-      city: "Millington, TN 38054",
-      phone: "901 874-5024",
-      hours: "0730–1600, M–F",
-      lat: 35.357,
-      lng: -89.870
-    },
-    {
-      id: 58,
-      base: "Offutt AFB",
-      address: "Martin Bomber Bldg. 301, Ent 2\n106 Peacekeeper Dr., Ste 2N3",
-      city: "Offutt AFB, NE 68113",
-      phone: "402 294-2341",
-      hours: "0800–1600, M–F",
-      lat: 41.118,
-      lng: -95.913
-    },
-    {
-      id: 59,
-      base: "Ft. Riley",
-      address: "7929 Apennines Dr.",
-      city: "Ft. Riley, KS 66442",
-      phone: "785 239-4801",
-      hours: "0800–1630, M–F",
-      lat: 39.055,
-      lng: -96.783
-    },
-    {
-      id: 60,
-      base: "Mtn. Home AFB",
-      address: "430 5th Ave., Building 2607",
-      city: "Mountain Home AFB, ID 83648",
-      phone: "208 828-3972",
-      hours: "0730–1600, M–F",
-      lat: 43.044,
-      lng: -115.872
-    },
-    {
-      id: 61,
-      base: "Minot AFB",
-      address: "311 Bomber Blvd., Building 505",
-      city: "Minot AFB, ND 58705",
-      phone: "701 727-9588",
-      hours: "0730–1630, M–F",
-      lat: 48.416,
-      lng: -101.358
-    },
-    {
-      id: 62,
-      base: "FE Warren AFB",
-      address: "7100 Saber Rd., Building 1284",
-      city: "FE Warren AFB, WY 82005",
-      phone: "307 773-3723",
-      hours: "0730–1600, M–F",
-      lat: 41.146,
-      lng: -104.861
-    },
-    {
-      id: 63,
-      base: "Ft. Carson",
-      address: "1400 Specker Ave., Building 735",
-      city: "Ft. Carson, CO 80913",
-      phone: "719 576-8135",
-      hours: "0730–1600, M–F",
-      lat: 38.740,
-      lng: -104.786
-    },
-    {
-      id: 64,
-      base: "Grand Forks AFB",
-      address: "400 Eielson Building 408",
-      city: "Grand Forks AFB, ND 58205",
-      phone: "701 747-3689",
-      hours: "0800–1600, M–F",
-      lat: 47.961,
-      lng: -97.376
-    },
-    {
-      id: 65,
-      base: "Whiteman AFB",
-      address: "727 Second St., Building 139",
-      city: "Whiteman AFB, MO 65305",
-      phone: "660 687-4343",
-      hours: "0730–1600, M–F",
-      lat: 38.728,
-      lng: -93.548
-    },
-    {
-      id: 66,
-      base: "McConnell AFB",
-      address: "53241 Topeka Street, Building 1169",
-      city: "McConnell AFB, KS 67221",
-      phone: "316 759-5528",
-      hours: "0730–1600, M–F",
-      lat: 37.623,
-      lng: -97.268
-    },
-    {
-      id: 67,
-      base: "Peterson SFB",
-      address: "725 W. Paine St., Building 666",
-      city: "Peterson SFB, CO 80914",
-      phone: "719 556-4431",
-      hours: "0730–1600, M–F",
-      lat: 38.820,
-      lng: -104.701
-    },
-    {
-      id: 68,
-      base: "Buckley SFB",
-      address: "18251 E. Steamboat Ave., Building 14",
-      city: "Buckley SFB, CO 80011",
-      phone: "303 363-0176",
-      hours: "0730–1600, M–F",
-      lat: 39.717,
-      lng: -104.752
-    },
-    {
-      id: 69,
-      base: "Ft. Leavenworth",
-      address: "1015 Sheridan Dr., Building 399",
-      city: "Ft. Leavenworth, KS 66027",
-      phone: "913 682-3895",
-      hours: "0730–1600, M–F",
-      lat: 39.362,
-      lng: -94.922
+// ── Supply Center Data ─────────────────────────────────────────────
+const centers = [
+  {
+    id: 51,
+    base: "USAFA",
+    address: "8110 Security Dr., Door 11<br>USAFA, CO 80840",
+    phone: "719 472-1212",
+    hours: "0700–1545, M–F",
+    lat: 38.996, lng: -104.861,
+    // picsum seed → consistent unique landscape image per center
+    photo: "https://picsum.photos/seed/bsc51/700/380",
+    usp: {
+      headline: "Direct Access Where It Matters Most",
+      body: "Base Supply Centers place products directly within the installation, connecting suppliers to real demand while giving service members immediate access to what they need."
     }
-  ];
-
-  // ── Map Init ─────────────────────────────────────────────────
-  const map = L.map('map', {
-    center: [40.5, -100.5],
-    zoom: 5,
-    zoomControl: true,
-    attributionControl: true
-  });
-
-  // Dark tile layer (CartoDB Dark Matter)
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 19
-  }).addTo(map);
-
-  // ── Custom Circle Marker ─────────────────────────────────────
-  function makeIcon(id) {
-    const html = `
-      <div style="
-        width: 36px; height: 36px;
-        background: #78be32;
-        border: 3px solid #00491e;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 800;
-        font-size: 10px;
-        color: #00491e;
-        letter-spacing: -0.5px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        cursor: pointer;
-      ">${id}</div>`;
-    return L.divIcon({
-      html,
-      className: '',
-      iconSize: [36, 36],
-      iconAnchor: [18, 18],
-      popupAnchor: [0, -20]
-    });
+  },
+  {
+    id: 55,
+    base: "NAS Lemoore",
+    address: "140 Reeves Blvd., Building 140<br>NAS Lemoore, CA 93246",
+    phone: "559 998-8408 / 8410 / 8411",
+    hours: "0700–1530, M–F",
+    lat: 36.330, lng: -119.952,
+    photo: "https://picsum.photos/seed/bsc55/700/380",
+    usp: {
+      headline: "Built Around How Purchasing Actually Happens",
+      body: "BSCs align with established federal purchasing processes, ensuring suppliers operate within the system while users can confidently obtain compliant products."
+    }
+  },
+  {
+    id: 56,
+    base: "Fairchild AFB",
+    address: "500 West Arnold Ave., Building 2163<br>Fairchild AFB, WA 99011",
+    phone: "509 247-5732",
+    hours: "0700–1600, M–F",
+    lat: 47.615, lng: -117.656,
+    photo: "https://picsum.photos/seed/bsc56/700/380",
+    usp: {
+      headline: "One Environment, Multiple Supply Paths",
+      body: "The BSC model brings together AbilityOne and commercial products, allowing suppliers to participate within federal requirements while giving users appropriate options within a single location."
+    }
+  },
+  {
+    id: 57,
+    base: "NSA Mid-South",
+    address: "5464 Essex St., Building S-242<br>Millington, TN 38054",
+    phone: "901 874-5024",
+    hours: "0730–1600, M–F",
+    lat: 35.357, lng: -89.870,
+    photo: "https://picsum.photos/seed/bsc57/700/380",
+    usp: {
+      headline: "Confidence in Every Purchase",
+      body: "Products available through BSCs are aligned with federal procurement expectations, helping suppliers operate within compliance while ensuring users receive approved solutions."
+    }
+  },
+  {
+    id: 58,
+    base: "Offutt AFB",
+    address: "Martin Bomber Bldg. 301, Ent 2<br>106 Peacekeeper Dr., Ste 2N3<br>Offutt AFB, NE 68113",
+    phone: "402 294-2341",
+    hours: "0800–1600, M–F",
+    lat: 41.118, lng: -95.913,
+    photo: "https://picsum.photos/seed/bsc58/700/380",
+    usp: {
+      headline: "A Single Destination for Operational Needs",
+      body: "BSCs consolidate multiple product categories into one accessible location, making it easier for suppliers to reach customers and for users to find what they need efficiently."
+    }
+  },
+  {
+    id: 59,
+    base: "Ft. Riley",
+    address: "7929 Apennines Dr.<br>Ft. Riley, KS 66442",
+    phone: "785 239-4801",
+    hours: "0800–1630, M–F",
+    lat: 39.055, lng: -96.783,
+    photo: "https://picsum.photos/seed/bsc59/700/380",
+    usp: {
+      headline: "Faster Access Without Added Complexity",
+      body: "By positioning inventory on base, BSCs reduce delays and simplify fulfillment, supporting both supplier distribution efficiency and user responsiveness."
+    }
+  },
+  {
+    id: 60,
+    base: "Mtn. Home AFB",
+    address: "430 5th Ave., Building 2607<br>Mountain Home AFB, ID 83648",
+    phone: "208 828-3972",
+    hours: "0730–1600, M–F",
+    lat: 43.044, lng: -115.872,
+    photo: "https://picsum.photos/seed/bsc60/700/380",
+    usp: {
+      headline: "Designed for Real-Time Demand",
+      body: "BSCs support immediate, day-to-day needs while also accommodating recurring supply requirements, creating a reliable system for both supply and use."
+    }
+  },
+  {
+    id: 61,
+    base: "Minot AFB",
+    address: "311 Bomber Blvd., Building 505<br>Minot AFB, ND 58705",
+    phone: "701 727-9588",
+    hours: "0730–1630, M–F",
+    lat: 48.416, lng: -101.358,
+    photo: "https://picsum.photos/seed/bsc61/700/380",
+    usp: {
+      headline: "Bridging Supply and Mission Execution",
+      body: "BSCs connect supplier capabilities directly to operational environments, ensuring products are not only available but positioned where they are actively used."
+    }
+  },
+  {
+    id: 62,
+    base: "FE Warren AFB",
+    address: "7100 Saber Rd., Building 1284<br>FE Warren AFB, WY 82005",
+    phone: "307 773-3723",
+    hours: "0730–1600, M–F",
+    lat: 41.146, lng: -104.861,
+    photo: "https://picsum.photos/seed/bsc62/700/380",
+    usp: {
+      headline: "A Structured Path into Federal Supply",
+      body: "For suppliers, BSCs provide a defined entry point into federal purchasing environments; for users, they ensure access to products within a trusted system."
+    }
+  },
+  {
+    id: 63,
+    base: "Ft. Carson",
+    address: "1400 Specker Ave., Building 735<br>Ft. Carson, CO 80913",
+    phone: "719 576-8135",
+    hours: "0730–1600, M–F",
+    lat: 38.740, lng: -104.786,
+    photo: "https://picsum.photos/seed/bsc63/700/380",
+    usp: {
+      headline: "Visibility Where It Counts",
+      body: "Products within BSCs are placed in environments where purchasing decisions are made, giving suppliers presence and users immediate access."
+    }
+  },
+  {
+    id: 64,
+    base: "Grand Forks AFB",
+    address: "400 Eielson Building 408<br>Grand Forks AFB, ND 58205",
+    phone: "701 747-3689",
+    hours: "0800–1600, M–F",
+    lat: 47.961, lng: -97.376,
+    photo: "https://picsum.photos/seed/bsc64/700/380",
+    usp: {
+      headline: "Aligned with Existing Procurement Channels",
+      body: "BSCs operate alongside established government purchasing systems, allowing suppliers to integrate smoothly while maintaining consistency for users."
+    }
+  },
+  {
+    id: 65,
+    base: "Whiteman AFB",
+    address: "727 Second St., Building 139<br>Whiteman AFB, MO 65305",
+    phone: "660 687-4343",
+    hours: "0730–1600, M–F",
+    lat: 38.728, lng: -93.548,
+    photo: "https://picsum.photos/seed/bsc65/700/380",
+    usp: {
+      headline: "Consistency Across Categories and Needs",
+      body: "BSCs provide a dependable, repeatable supply experience across multiple product categories, benefiting both supplier reliability and user expectations."
+    }
+  },
+  {
+    id: 66,
+    base: "McConnell AFB",
+    address: "53241 Topeka Street, Building 1169<br>McConnell AFB, KS 67221",
+    phone: "316 759-5528",
+    hours: "0730–1600, M–F",
+    lat: 37.623, lng: -97.268,
+    photo: "https://picsum.photos/seed/bsc66/700/380",
+    usp: {
+      headline: "Supporting Requirements Without Disruption",
+      body: "BSCs operate within environments where sourcing requirements are relevant, helping suppliers align while ensuring users remain compliant."
+    }
+  },
+  {
+    id: 67,
+    base: "Peterson SFB",
+    address: "725 W. Paine St., Building 666<br>Peterson SFB, CO 80914",
+    phone: "719 556-4431",
+    hours: "0730–1600, M–F",
+    lat: 38.820, lng: -104.701,
+    photo: "https://picsum.photos/seed/bsc67/700/380",
+    usp: {
+      headline: "Reduced Friction from Order to Use",
+      body: "The BSC model minimizes steps between product selection and product use, improving efficiency for both suppliers and end users."
+    }
+  },
+  {
+    id: 68,
+    base: "Buckley SFB",
+    address: "18251 E. Steamboat Ave., Building 14<br>Buckley SFB, CO 80011",
+    phone: "303 363-0176",
+    hours: "0730–1600, M–F",
+    lat: 39.717, lng: -104.752,
+    photo: "https://picsum.photos/seed/bsc68/700/380",
+    usp: {
+      headline: "Built for Operational Efficiency at Scale",
+      body: "BSCs support streamlined supply access across installations, allowing suppliers to operate within a consistent model while enabling users to access what they need quickly."
+    }
+  },
+  {
+    id: 69,
+    base: "Ft. Leavenworth",
+    address: "1015 Sheridan Dr., Building 399<br>Ft. Leavenworth, KS 66027",
+    phone: "913 682-3895",
+    hours: "0730–1600, M–F",
+    lat: 39.362, lng: -94.922,
+    photo: "https://picsum.photos/seed/bsc69/700/380",
+    usp: {
+      headline: "Part of a Larger, Coordinated Supply System",
+      body: "BSCs function within a broader network of suppliers, distributors, and AbilityOne partners, creating a coordinated environment that supports both supply delivery and operational readiness."
+    }
   }
+];
 
-  // ── SVG Icons for Popup ──────────────────────────────────────
-  const iconAddr = `<svg class="popup-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
-  const iconPhone = `<svg class="popup-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`;
-  const iconClock = `<svg class="popup-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>`;
+// ── Map Init ───────────────────────────────────────────────────────
+const map = L.map('map', {
+  center: [40.5, -100.5],
+  zoom: 5,
+  zoomControl: true,
+  attributionControl: true
+});
 
-  // ── Place Markers ────────────────────────────────────────────
-  centers.forEach(c => {
-    const popup = `
-      <div>
-        <div class="popup-header">
-          <div class="center-num">Center #${c.id}</div>
-          <div class="center-base">${c.base}</div>
-        </div>
-        <div class="popup-body">
-          <div class="popup-row">
-            ${iconAddr}
-            <div>
-              <span class="popup-label">Address</span>
-              ${c.address.replace(/\n/g, '<br>')} <br>${c.city}
-            </div>
-          </div>
-          <div class="popup-row">
-            ${iconPhone}
-            <div>
-              <span class="popup-label">Voice</span>
-              ${c.phone}
-            </div>
-          </div>
-          <div class="popup-row">
-            ${iconClock}
-            <div>
-              <span class="popup-label">Hours</span>
-              ${c.hours}
-            </div>
-          </div>
-        </div>
-      </div>`;
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
 
-    L.marker([c.lat, c.lng], { icon: makeIcon(c.id) })
-      .addTo(map)
-      .bindPopup(popup, { maxWidth: 280 });
+// ── Panel Elements ─────────────────────────────────────────────────
+const sidePanel   = document.getElementById('sidePanel');
+const panelClose  = document.getElementById('panelClose');
+const panelBadge  = document.getElementById('panelBadge');
+const panelPhoto  = document.getElementById('panelPhoto');
+const panelName   = document.getElementById('panelBaseName');
+const panelAddr   = document.getElementById('panelAddress');
+const panelPhone  = document.getElementById('panelPhone');
+const panelHours  = document.getElementById('panelHours');
+const uspHeadline = document.getElementById('uspHeadline');
+const uspBody     = document.getElementById('uspBody');
+const mapHint     = document.getElementById('mapHint');
+
+const DEFAULT_CENTER = [40.5, -100.5];
+const DEFAULT_ZOOM   = 5;
+
+function openPanel(c) {
+  panelBadge.textContent  = `Center #${c.id}`;
+  panelPhoto.src          = c.photo;
+  panelPhoto.alt          = `${c.base} — Base Supply Center`;
+  panelName.textContent   = c.base;
+  panelAddr.innerHTML     = c.address;
+  panelPhone.textContent  = c.phone;
+  panelHours.textContent  = c.hours;
+  uspHeadline.textContent = c.usp.headline;
+  uspBody.textContent     = c.usp.body;
+
+  sidePanel.classList.add('open');
+  mapHint.classList.add('hidden');
+
+  // Fly to location with zoom-in
+  map.flyTo([c.lat, c.lng], 13, { animate: true, duration: 1.2 });
+}
+
+function closePanel() {
+  sidePanel.classList.remove('open');
+  mapHint.classList.remove('hidden');
+  // Zoom back out to overview
+  map.flyTo(DEFAULT_CENTER, DEFAULT_ZOOM, { animate: true, duration: 1.0 });
+}
+
+panelClose.addEventListener('click', closePanel);
+
+// ── Custom Marker ──────────────────────────────────────────────────
+function makeIcon(id, active) {
+  const bg     = active ? '#ffffff' : '#78be32';
+  const border = active ? '#78be32' : '#00491e';
+  const color  = active ? '#00491e' : '#00491e';
+  const size   = active ? 42 : 36;
+  const html = `<div style="
+    width:${size}px;height:${size}px;
+    background:${bg};
+    border:3px solid ${border};
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Montserrat',sans-serif;
+    font-weight:800;
+    font-size:${active ? 11 : 10}px;
+    color:${color};
+    letter-spacing:-0.5px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.55);
+    cursor:pointer;
+    transition:all .2s;
+  ">${id}</div>`;
+  return L.divIcon({
+    html,
+    className: '',
+    iconSize: [size, size],
+    iconAnchor: [size/2, size/2],
+    popupAnchor: [0, -size/2 - 4]
   });
+}
+
+// ── Place Markers ──────────────────────────────────────────────────
+let activeMarker = null;
+
+centers.forEach(c => {
+  const marker = L.marker([c.lat, c.lng], { icon: makeIcon(c.id, false) }).addTo(map);
+
+  marker.on('click', () => {
+    // Reset previous active marker
+    if (activeMarker && activeMarker !== marker) {
+      const prevId = activeMarker.options._centerId;
+      activeMarker.setIcon(makeIcon(prevId, false));
+    }
+    activeMarker = marker;
+    marker.options._centerId = c.id;
+    marker.setIcon(makeIcon(c.id, true));
+    openPanel(c);
+  });
+});
+
+// Close panel when clicking map background
+map.on('click', () => {
+  if (sidePanel.classList.contains('open')) {
+    if (activeMarker) {
+      const prevId = activeMarker.options._centerId;
+      activeMarker.setIcon(makeIcon(prevId, false));
+      activeMarker = null;
+    }
+    closePanel();
+  }
+});
 </script>
 
 </body>
