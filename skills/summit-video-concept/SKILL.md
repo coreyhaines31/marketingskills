@@ -1,8 +1,3 @@
-cd video/summit-video-concept
-npm install
-npm start           # browser preview at localhost:3000
-npm run render      # → out/summit-video.mp4
-npm run render:30s  # → out/summit-video-30s.mp4
 ---
 name: summit-video-concept
 description: Use when you need to plan, script, or storyboard a supplier summit video. Produces a production-ready video concept with script, shot list, timing, transitions, and style direction for B2B or government procurement contexts. Trigger phrases: "summit video," "supplier video," "event video concept," "video storyboard," "video production plan."
