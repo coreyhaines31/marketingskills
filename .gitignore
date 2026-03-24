@@ -14,8 +14,9 @@ node_modules/
 * 2.*
 * 2/
 
-# Remotion video project
-video/
+# Remotion render output (ignore generated MP4s)
+video/**/out/
+video/**/node_modules/
 
 # Editor
 *.swp
