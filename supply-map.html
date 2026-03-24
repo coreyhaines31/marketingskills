@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base Supply Centers — Location Map</title>
+
+  <!-- Google Fonts: Montserrat (Gotham substitute) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #00491e;
+      --green-light: #78be32;
+      --navy-dark:   #002855;
+      --navy-mid:    #003087;
+      --white:       #ffffff;
+      --text-muted:  #a8c5d4;
+      --font-head:   'Montserrat', sans-serif;
+      --font-body:   'Montserrat', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--navy-dark);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────── */
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* ── Header ───────────────────────────────────────────────── */
+    .header {
+      background: var(--green-dark);
+      border-bottom: 3px solid var(--green-light);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      z-index: 1000;
+    }
+
+    .header-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .header-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--green-dark);
+    }
+
+    .header-text h1 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    .header-text p {
+      font-size: 0.75rem;
+      color: var(--green-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .header-count {
+      margin-left: auto;
+      background: var(--navy-mid);
+      border: 1px solid var(--green-light);
+      border-radius: 6px;
+      padding: 6px 14px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .header-count .num {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--green-light);
+      line-height: 1;
+    }
+
+    .header-count .lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    /* ── Map container ────────────────────────────────────────── */
+    #map {
+      flex: 1;
+      width: 100%;
+    }
+
+    /* ── Leaflet overrides ────────────────────────────────────── */
+    .leaflet-container {
+      background: var(--navy-dark);
+      font-family: var(--font-body);
+    }
+
+    /* Popup wrapper */
+    .leaflet-popup-content-wrapper {
+      background: var(--navy-dark);
+      border: 1px solid var(--green-light);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .leaflet-popup-tip {
+      background: var(--green-light);
+    }
+
+    .leaflet-popup-content {
+      margin: 0;
+      width: 260px !important;
+    }
+
+    .popup-header {
+      background: var(--green-dark);
+      border-bottom: 2px solid var(--green-light);
+      padding: 10px 14px 8px;
+    }
+
+    .popup-header .center-num {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 0.7rem;
+      color: var(--green-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .popup-header .center-base {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .popup-body {
+      padding: 10px 14px 12px;
+    }
+
+    .popup-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 7px;
+      font-size: 0.8rem;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .popup-row:last-child { margin-bottom: 0; }
+
+    .popup-icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-top: 1px;
+      fill: var(--green-light);
+    }
+
+    .popup-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* Close button */
+    .leaflet-popup-close-button {
+      color: var(--green-light) !important;
+      font-size: 18px !important;
+      top: 8px !important;
+      right: 10px !important;
+    }
+
+    .leaflet-popup-close-button:hover {
+      color: var(--white) !important;
+    }
+
+    /* Attribution */
+    .leaflet-control-attribution {
+      background: rgba(0, 40, 85, 0.85) !important;
+      color: var(--text-muted) !important;
+      font-size: 10px;
+    }
+
+    .leaflet-control-attribution a {
+      color: var(--green-light) !important;
+    }
+
+    /* Zoom controls */
+    .leaflet-control-zoom a {
+      background: var(--green-dark) !important;
+      color: var(--green-light) !important;
+      border-color: var(--green-light) !important;
+      font-weight: 800;
+    }
+
+    .leaflet-control-zoom a:hover {
+      background: var(--navy-mid) !important;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(120,190,50,0.25);
+      padding: 6px 24px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .header { padding: 10px 14px; }
+      .header-text h1 { font-size: 1rem; }
+      .header-count { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>Base Supply Centers</h1>
+      <p>Interactive Location Directory</p>
+    </div>
+    <div class="header-count">
+      <div class="num">16</div>
+      <div class="lbl">Locations</div>
+    </div>
+  </header>
+
+  <!-- Map -->
+  <div id="map"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    Hours listed are local base time &nbsp;|&nbsp; M–F only &nbsp;|&nbsp; Contact individual centers for holiday schedules
+  </footer>
+
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // ── Supply Center Data ───────────────────────────────────────
+  const centers = [
+    {
+      id: 51,
+      base: "USAFA",
+      address: "8110 Security Dr., Door 11",
+      city: "USAFA, CO 80840",
+      phone: "719 472-1212",
+      hours: "0700–1545, M–F",
+      lat: 38.996,
+      lng: -104.861
+    },
+    {
+      id: 55,
+      base: "NAS Lemoore",
+      address: "140 Reeves Blvd., Building 140",
+      city: "NAS Lemoore, CA 93246",
+      phone: "559 998-8408 / 8410 / 8411",
+      hours: "0700–1530, M–F",
+      lat: 36.330,
+      lng: -119.952
+    },
+    {
+      id: 56,
+      base: "Fairchild AFB",
+      address: "500 West Arnold Ave., Building 2163",
+      city: "Fairchild AFB, WA 99011",
+      phone: "509 247-5732",
+      hours: "0700–1600, M–F",
+      lat: 47.615,
+      lng: -117.656
+    },
+    {
+      id: 57,
+      base: "NSA Mid-South",
+      address: "5464 Essex St., Building S-242",
+      city: "Millington, TN 38054",
+      phone: "901 874-5024",
+      hours: "0730–1600, M–F",
+      lat: 35.357,
+      lng: -89.870
+    },
+    {
+      id: 58,
+      base: "Offutt AFB",
+      address: "Martin Bomber Bldg. 301, Ent 2\n106 Peacekeeper Dr., Ste 2N3",
+      city: "Offutt AFB, NE 68113",
+      phone: "402 294-2341",
+      hours: "0800–1600, M–F",
+      lat: 41.118,
+      lng: -95.913
+    },
+    {
+      id: 59,
+      base: "Ft. Riley",
+      address: "7929 Apennines Dr.",
+      city: "Ft. Riley, KS 66442",
+      phone: "785 239-4801",
+      hours: "0800–1630, M–F",
+      lat: 39.055,
+      lng: -96.783
+    },
+    {
+      id: 60,
+      base: "Mtn. Home AFB",
+      address: "430 5th Ave., Building 2607",
+      city: "Mountain Home AFB, ID 83648",
+      phone: "208 828-3972",
+      hours: "0730–1600, M–F",
+      lat: 43.044,
+      lng: -115.872
+    },
+    {
+      id: 61,
+      base: "Minot AFB",
+      address: "311 Bomber Blvd., Building 505",
+      city: "Minot AFB, ND 58705",
+      phone: "701 727-9588",
+      hours: "0730–1630, M–F",
+      lat: 48.416,
+      lng: -101.358
+    },
+    {
+      id: 62,
+      base: "FE Warren AFB",
+      address: "7100 Saber Rd., Building 1284",
+      city: "FE Warren AFB, WY 82005",
+      phone: "307 773-3723",
+      hours: "0730–1600, M–F",
+      lat: 41.146,
+      lng: -104.861
+    },
+    {
+      id: 63,
+      base: "Ft. Carson",
+      address: "1400 Specker Ave., Building 735",
+      city: "Ft. Carson, CO 80913",
+      phone: "719 576-8135",
+      hours: "0730–1600, M–F",
+      lat: 38.740,
+      lng: -104.786
+    },
+    {
+      id: 64,
+      base: "Grand Forks AFB",
+      address: "400 Eielson Building 408",
+      city: "Grand Forks AFB, ND 58205",
+      phone: "701 747-3689",
+      hours: "0800–1600, M–F",
+      lat: 47.961,
+      lng: -97.376
+    },
+    {
+      id: 65,
+      base: "Whiteman AFB",
+      address: "727 Second St., Building 139",
+      city: "Whiteman AFB, MO 65305",
+      phone: "660 687-4343",
+      hours: "0730–1600, M–F",
+      lat: 38.728,
+      lng: -93.548
+    },
+    {
+      id: 66,
+      base: "McConnell AFB",
+      address: "53241 Topeka Street, Building 1169",
+      city: "McConnell AFB, KS 67221",
+      phone: "316 759-5528",
+      hours: "0730–1600, M–F",
+      lat: 37.623,
+      lng: -97.268
+    },
+    {
+      id: 67,
+      base: "Peterson SFB",
+      address: "725 W. Paine St., Building 666",
+      city: "Peterson SFB, CO 80914",
+      phone: "719 556-4431",
+      hours: "0730–1600, M–F",
+      lat: 38.820,
+      lng: -104.701
+    },
+    {
+      id: 68,
+      base: "Buckley SFB",
+      address: "18251 E. Steamboat Ave., Building 14",
+      city: "Buckley SFB, CO 80011",
+      phone: "303 363-0176",
+      hours: "0730–1600, M–F",
+      lat: 39.717,
+      lng: -104.752
+    },
+    {
+      id: 69,
+      base: "Ft. Leavenworth",
+      address: "1015 Sheridan Dr., Building 399",
+      city: "Ft. Leavenworth, KS 66027",
+      phone: "913 682-3895",
+      hours: "0730–1600, M–F",
+      lat: 39.362,
+      lng: -94.922
+    }
+  ];
+
+  // ── Map Init ─────────────────────────────────────────────────
+  const map = L.map('map', {
+    center: [40.5, -100.5],
+    zoom: 5,
+    zoomControl: true,
+    attributionControl: true
+  });
+
+  // Dark tile layer (CartoDB Dark Matter)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  // ── Custom Circle Marker ─────────────────────────────────────
+  function makeIcon(id) {
+    const html = `
+      <div style="
+        width: 36px; height: 36px;
+        background: #78be32;
+        border: 3px solid #00491e;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 10px;
+        color: #00491e;
+        letter-spacing: -0.5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        cursor: pointer;
+      ">${id}</div>`;
+    return L.divIcon({
+      html,
+      className: '',
+      iconSize: [36, 36],
+      iconAnchor: [18, 18],
+      popupAnchor: [0, -20]
+    });
+  }
+
+  // ── SVG Icons for Popup ──────────────────────────────────────
+  const iconAddr = `<svg class="popup-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>`;
+  const iconPhone = `<svg class="popup-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`;
+  const iconClock = `<svg class="popup-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>`;
+
+  // ── Place Markers ────────────────────────────────────────────
+  centers.forEach(c => {
+    const popup = `
+      <div>
+        <div class="popup-header">
+          <div class="center-num">Center #${c.id}</div>
+          <div class="center-base">${c.base}</div>
+        </div>
+        <div class="popup-body">
+          <div class="popup-row">
+            ${iconAddr}
+            <div>
+              <span class="popup-label">Address</span>
+              ${c.address.replace(/\n/g, '<br>')} <br>${c.city}
+            </div>
+          </div>
+          <div class="popup-row">
+            ${iconPhone}
+            <div>
+              <span class="popup-label">Voice</span>
+              ${c.phone}
+            </div>
+          </div>
+          <div class="popup-row">
+            ${iconClock}
+            <div>
+              <span class="popup-label">Hours</span>
+              ${c.hours}
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    L.marker([c.lat, c.lng], { icon: makeIcon(c.id) })
+      .addTo(map)
+      .bindPopup(popup, { maxWidth: 280 });
+  });
+</script>
+
+</body>
+</html>
