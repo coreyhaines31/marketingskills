@@ -152,6 +152,33 @@
       object-fit: cover;
       display: block;
       filter: brightness(0.75) saturate(0.85);
+      transition: opacity 0.3s;
+    }
+
+    /* Loading skeleton */
+    .photo-skeleton {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0,73,30,0.4) 0%,
+        rgba(120,190,50,0.12) 50%,
+        rgba(0,73,30,0.4) 100%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .photo-skeleton svg {
+      width: 40px; height: 40px;
+      fill: rgba(120,190,50,0.35);
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
     }
 
     /* Photo overlay gradient */
@@ -416,7 +443,10 @@
       <div class="panel-photo">
         <div class="panel-badge" id="panelBadge">Center #00</div>
         <button class="panel-close" id="panelClose" title="Back to map">&#10005;</button>
-        <img id="panelPhoto" src="" alt="Base photo" loading="lazy" />
+        <div class="photo-skeleton" id="photoSkeleton">
+          <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-5-7l-3 3.72L10 13l-4 5h12l-3-3z"/></svg>
+        </div>
+        <img id="panelPhoto" src="" alt="Base photo" style="opacity:0" />
         <div class="panel-base-name">
           <div class="base-label">Base Supply Center</div>
           <h2 id="panelBaseName">—</h2>
@@ -477,6 +507,9 @@
 
 <script>
 // ── Supply Center Data ─────────────────────────────────────────────
+// wikiArticle: exact Wikipedia article title used to fetch the real
+// base photo via the Wikipedia REST summary API (CORS-enabled).
+// fallbackPhoto: shown if the API is unreachable.
 const centers = [
   {
     id: 51,
@@ -485,8 +518,8 @@ const centers = [
     phone: "719 472-1212",
     hours: "0700–1545, M–F",
     lat: 38.996, lng: -104.861,
-    // picsum seed → consistent unique landscape image per center
-    photo: "https://picsum.photos/seed/bsc51/700/380",
+    wikiArticle: "United States Air Force Academy",
+    fallbackPhoto: "https://picsum.photos/seed/bsc51/700/380",
     usp: {
       headline: "Direct Access Where It Matters Most",
       body: "Base Supply Centers place products directly within the installation, connecting suppliers to real demand while giving service members immediate access to what they need."
@@ -499,7 +532,8 @@ const centers = [
     phone: "559 998-8408 / 8410 / 8411",
     hours: "0700–1530, M–F",
     lat: 36.330, lng: -119.952,
-    photo: "https://picsum.photos/seed/bsc55/700/380",
+    wikiArticle: "Naval Air Station Lemoore",
+    fallbackPhoto: "https://picsum.photos/seed/bsc55/700/380",
     usp: {
       headline: "Built Around How Purchasing Actually Happens",
       body: "BSCs align with established federal purchasing processes, ensuring suppliers operate within the system while users can confidently obtain compliant products."
@@ -512,7 +546,8 @@ const centers = [
     phone: "509 247-5732",
     hours: "0700–1600, M–F",
     lat: 47.615, lng: -117.656,
-    photo: "https://picsum.photos/seed/bsc56/700/380",
+    wikiArticle: "Fairchild Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc56/700/380",
     usp: {
       headline: "One Environment, Multiple Supply Paths",
       body: "The BSC model brings together AbilityOne and commercial products, allowing suppliers to participate within federal requirements while giving users appropriate options within a single location."
@@ -525,7 +560,8 @@ const centers = [
     phone: "901 874-5024",
     hours: "0730–1600, M–F",
     lat: 35.357, lng: -89.870,
-    photo: "https://picsum.photos/seed/bsc57/700/380",
+    wikiArticle: "Naval Support Activity Mid-South",
+    fallbackPhoto: "https://picsum.photos/seed/bsc57/700/380",
     usp: {
       headline: "Confidence in Every Purchase",
       body: "Products available through BSCs are aligned with federal procurement expectations, helping suppliers operate within compliance while ensuring users receive approved solutions."
@@ -538,7 +574,8 @@ const centers = [
     phone: "402 294-2341",
     hours: "0800–1600, M–F",
     lat: 41.118, lng: -95.913,
-    photo: "https://picsum.photos/seed/bsc58/700/380",
+    wikiArticle: "Offutt Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc58/700/380",
     usp: {
       headline: "A Single Destination for Operational Needs",
       body: "BSCs consolidate multiple product categories into one accessible location, making it easier for suppliers to reach customers and for users to find what they need efficiently."
@@ -551,7 +588,8 @@ const centers = [
     phone: "785 239-4801",
     hours: "0800–1630, M–F",
     lat: 39.055, lng: -96.783,
-    photo: "https://picsum.photos/seed/bsc59/700/380",
+    wikiArticle: "Fort Riley",
+    fallbackPhoto: "https://picsum.photos/seed/bsc59/700/380",
     usp: {
       headline: "Faster Access Without Added Complexity",
       body: "By positioning inventory on base, BSCs reduce delays and simplify fulfillment, supporting both supplier distribution efficiency and user responsiveness."
@@ -564,7 +602,8 @@ const centers = [
     phone: "208 828-3972",
     hours: "0730–1600, M–F",
     lat: 43.044, lng: -115.872,
-    photo: "https://picsum.photos/seed/bsc60/700/380",
+    wikiArticle: "Mountain Home Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc60/700/380",
     usp: {
       headline: "Designed for Real-Time Demand",
       body: "BSCs support immediate, day-to-day needs while also accommodating recurring supply requirements, creating a reliable system for both supply and use."
@@ -577,7 +616,8 @@ const centers = [
     phone: "701 727-9588",
     hours: "0730–1630, M–F",
     lat: 48.416, lng: -101.358,
-    photo: "https://picsum.photos/seed/bsc61/700/380",
+    wikiArticle: "Minot Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc61/700/380",
     usp: {
       headline: "Bridging Supply and Mission Execution",
       body: "BSCs connect supplier capabilities directly to operational environments, ensuring products are not only available but positioned where they are actively used."
@@ -590,7 +630,8 @@ const centers = [
     phone: "307 773-3723",
     hours: "0730–1600, M–F",
     lat: 41.146, lng: -104.861,
-    photo: "https://picsum.photos/seed/bsc62/700/380",
+    wikiArticle: "Francis E. Warren Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc62/700/380",
     usp: {
       headline: "A Structured Path into Federal Supply",
       body: "For suppliers, BSCs provide a defined entry point into federal purchasing environments; for users, they ensure access to products within a trusted system."
@@ -603,7 +644,8 @@ const centers = [
     phone: "719 576-8135",
     hours: "0730–1600, M–F",
     lat: 38.740, lng: -104.786,
-    photo: "https://picsum.photos/seed/bsc63/700/380",
+    wikiArticle: "Fort Carson",
+    fallbackPhoto: "https://picsum.photos/seed/bsc63/700/380",
     usp: {
       headline: "Visibility Where It Counts",
       body: "Products within BSCs are placed in environments where purchasing decisions are made, giving suppliers presence and users immediate access."
@@ -616,7 +658,8 @@ const centers = [
     phone: "701 747-3689",
     hours: "0800–1600, M–F",
     lat: 47.961, lng: -97.376,
-    photo: "https://picsum.photos/seed/bsc64/700/380",
+    wikiArticle: "Grand Forks Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc64/700/380",
     usp: {
       headline: "Aligned with Existing Procurement Channels",
       body: "BSCs operate alongside established government purchasing systems, allowing suppliers to integrate smoothly while maintaining consistency for users."
@@ -629,7 +672,8 @@ const centers = [
     phone: "660 687-4343",
     hours: "0730–1600, M–F",
     lat: 38.728, lng: -93.548,
-    photo: "https://picsum.photos/seed/bsc65/700/380",
+    wikiArticle: "Whiteman Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc65/700/380",
     usp: {
       headline: "Consistency Across Categories and Needs",
       body: "BSCs provide a dependable, repeatable supply experience across multiple product categories, benefiting both supplier reliability and user expectations."
@@ -642,7 +686,8 @@ const centers = [
     phone: "316 759-5528",
     hours: "0730–1600, M–F",
     lat: 37.623, lng: -97.268,
-    photo: "https://picsum.photos/seed/bsc66/700/380",
+    wikiArticle: "McConnell Air Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc66/700/380",
     usp: {
       headline: "Supporting Requirements Without Disruption",
       body: "BSCs operate within environments where sourcing requirements are relevant, helping suppliers align while ensuring users remain compliant."
@@ -655,7 +700,8 @@ const centers = [
     phone: "719 556-4431",
     hours: "0730–1600, M–F",
     lat: 38.820, lng: -104.701,
-    photo: "https://picsum.photos/seed/bsc67/700/380",
+    wikiArticle: "Peterson Space Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc67/700/380",
     usp: {
       headline: "Reduced Friction from Order to Use",
       body: "The BSC model minimizes steps between product selection and product use, improving efficiency for both suppliers and end users."
@@ -668,7 +714,8 @@ const centers = [
     phone: "303 363-0176",
     hours: "0730–1600, M–F",
     lat: 39.717, lng: -104.752,
-    photo: "https://picsum.photos/seed/bsc68/700/380",
+    wikiArticle: "Buckley Space Force Base",
+    fallbackPhoto: "https://picsum.photos/seed/bsc68/700/380",
     usp: {
       headline: "Built for Operational Efficiency at Scale",
       body: "BSCs support streamlined supply access across installations, allowing suppliers to operate within a consistent model while enabling users to access what they need quickly."
@@ -681,7 +728,8 @@ const centers = [
     phone: "913 682-3895",
     hours: "0730–1600, M–F",
     lat: 39.362, lng: -94.922,
-    photo: "https://picsum.photos/seed/bsc69/700/380",
+    wikiArticle: "Fort Leavenworth",
+    fallbackPhoto: "https://picsum.photos/seed/bsc69/700/380",
     usp: {
       headline: "Part of a Larger, Coordinated Supply System",
       body: "BSCs function within a broader network of suppliers, distributors, and AbilityOne partners, creating a coordinated environment that supports both supply delivery and operational readiness."
@@ -704,25 +752,66 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 }).addTo(map);
 
 // ── Panel Elements ─────────────────────────────────────────────────
-const sidePanel   = document.getElementById('sidePanel');
-const panelClose  = document.getElementById('panelClose');
-const panelBadge  = document.getElementById('panelBadge');
-const panelPhoto  = document.getElementById('panelPhoto');
-const panelName   = document.getElementById('panelBaseName');
-const panelAddr   = document.getElementById('panelAddress');
-const panelPhone  = document.getElementById('panelPhone');
-const panelHours  = document.getElementById('panelHours');
-const uspHeadline = document.getElementById('uspHeadline');
-const uspBody     = document.getElementById('uspBody');
-const mapHint     = document.getElementById('mapHint');
+const sidePanel    = document.getElementById('sidePanel');
+const panelClose   = document.getElementById('panelClose');
+const panelBadge   = document.getElementById('panelBadge');
+const panelPhoto   = document.getElementById('panelPhoto');
+const photoSkeleton= document.getElementById('photoSkeleton');
+const panelName    = document.getElementById('panelBaseName');
+const panelAddr    = document.getElementById('panelAddress');
+const panelPhone   = document.getElementById('panelPhone');
+const panelHours   = document.getElementById('panelHours');
+const uspHeadline  = document.getElementById('uspHeadline');
+const uspBody      = document.getElementById('uspBody');
+const mapHint      = document.getElementById('mapHint');
 
 const DEFAULT_CENTER = [40.5, -100.5];
 const DEFAULT_ZOOM   = 5;
 
-function openPanel(c) {
+// Cache fetched photo URLs to avoid repeat API calls
+const photoCache = {};
+
+// Fetch the real base photo from Wikipedia's summary API (CORS-enabled).
+// Falls back to fallbackPhoto if the article has no image or fetch fails.
+async function fetchBasePhoto(wikiArticle, fallbackPhoto) {
+  if (photoCache[wikiArticle]) return photoCache[wikiArticle];
+  try {
+    const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiArticle)}`;
+    const res  = await fetch(apiUrl, { headers: { 'Api-User-Agent': 'BSCMap/1.0' } });
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    // Use originalimage for best quality, fall back to thumbnail
+    const src = (data.originalimage && data.originalimage.source)
+              || (data.thumbnail    && data.thumbnail.source)
+              || fallbackPhoto;
+    photoCache[wikiArticle] = src;
+    return src;
+  } catch (_) {
+    return fallbackPhoto;
+  }
+}
+
+function showPhotoLoading() {
+  panelPhoto.style.opacity = '0';
+  photoSkeleton.style.display = 'flex';
+}
+
+function showPhoto(src, alt) {
+  panelPhoto.onload = () => {
+    photoSkeleton.style.display = 'none';
+    panelPhoto.style.opacity = '1';
+  };
+  panelPhoto.onerror = () => {
+    photoSkeleton.style.display = 'none';
+    panelPhoto.style.opacity = '0.4';
+  };
+  panelPhoto.alt = alt;
+  panelPhoto.src = src;
+}
+
+async function openPanel(c) {
+  // Fill text immediately
   panelBadge.textContent  = `Center #${c.id}`;
-  panelPhoto.src          = c.photo;
-  panelPhoto.alt          = `${c.base} — Base Supply Center`;
   panelName.textContent   = c.base;
   panelAddr.innerHTML     = c.address;
   panelPhone.textContent  = c.phone;
@@ -730,11 +819,18 @@ function openPanel(c) {
   uspHeadline.textContent = c.usp.headline;
   uspBody.textContent     = c.usp.body;
 
+  // Show skeleton while photo loads
+  showPhotoLoading();
+
   sidePanel.classList.add('open');
   mapHint.classList.add('hidden');
 
-  // Fly to location with zoom-in
+  // Zoom in
   map.flyTo([c.lat, c.lng], 13, { animate: true, duration: 1.2 });
+
+  // Load real Wikipedia photo asynchronously
+  const src = await fetchBasePhoto(c.wikiArticle, c.fallbackPhoto);
+  showPhoto(src, `${c.base} — Base Supply Center`);
 }
 
 function closePanel() {
