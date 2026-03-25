@@ -32,8 +32,8 @@ Skills reference each other and build on shared context. The `product-marketing-
 ├──────────┤ ├──────────┤ ├──────────┤ ├────────────┤ ├──────────┤ ├─────────────┤ ├───────────┤
 │seo-audit │ │page-cro  │ │copywritng│ │paid-ads    │ │referral  │ │revops       │ │mktg-ideas │
 │ai-seo    │ │signup-cro│ │copy-edit │ │ad-creative │ │free-tool │ │sales-enable │ │mktg-psych │
-│site-arch │ │onboard   │ │cold-email│ │ab-test     │ │churn-    │ │launch       │ │           │
-│programm  │ │form-cro  │ │email-seq │ │analytics   │ │ prevent  │ │pricing      │ │           │
+│site-arch │ │onboard   │ │cold-email│ │ab-test     │ │churn-    │ │launch       │ │customer-  │
+│programm  │ │form-cro  │ │email-seq │ │analytics   │ │ prevent  │ │pricing      │ │research   │
 │schema    │ │popup-cro │ │social    │ │            │ │          │ │competitor   │ │           │
 │content   │ │paywall   │ │          │ │            │ │          │ │             │ │           │
 └────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬──────┘ └────┬─────┘ └──────┬──────┘ └─────┬─────┘
@@ -44,6 +44,7 @@ Skills reference each other and build on shared context. The `product-marketing-
            copywriting ↔ page-cro ↔ ab-test-setup
            revops ↔ sales-enablement ↔ cold-email
            seo-audit ↔ schema-markup ↔ ai-seo
+           customer-research → copywriting, page-cro, competitor-alternatives
 ```
 
 See each skill's **Related Skills** section for the full dependency map.
@@ -63,6 +64,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [content-strategy](skills/content-strategy/) | When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also... |
 | [copy-editing](skills/copy-editing/) | When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this... |
 | [copywriting](skills/copywriting/) | When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,... |
+| [customer-research](skills/customer-research/) | When the user wants to conduct, analyze, or synthesize customer research — including interview transcripts, surveys, support tickets, review mining, Reddit/G2/forum research, persona generation, and voice of customer (VOC)... |
 | [email-sequence](skills/email-sequence/) | When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email... |
 | [form-cro](skills/form-cro/) | When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms,... |
 | [free-tool-strategy](skills/free-tool-strategy/) | When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or... |
