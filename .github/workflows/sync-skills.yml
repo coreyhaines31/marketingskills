@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           persist-credentials: true
 
@@ -22,9 +22,15 @@ jobs:
         run: node .github/scripts/sync-skills.js
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_user_name: Coreybot
-          commit_user_email: coreybot+github-actions[bot]@users.noreply.github.com
-          commit_message: "chore: sync skills with marketplace.json and README"
-          file_pattern: ".claude-plugin/marketplace.json README.md"
+        shell: bash
+        run: |
+          if git diff --quiet -- .claude-plugin/marketplace.json README.md; then
+            echo "No sync changes to commit"
+            exit 0
+          fi
+
+          git config user.name "Coreybot"
+          git config user.email "coreybot+github-actions[bot]@users.noreply.github.com"
+          git add .claude-plugin/marketplace.json README.md
+          git commit -m "chore: sync skills with marketplace.json and README"
+          git push

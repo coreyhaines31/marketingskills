@@ -51,7 +51,7 @@ Every CLI reads credentials from environment variables:
 | `demio` | `DEMIO_API_KEY`, `DEMIO_API_SECRET` |
 | `dub` | `DUB_API_KEY` |
 | `g2` | `G2_API_TOKEN` |
-| `ga4` | `GA4_ACCESS_TOKEN` |
+| `ga4` | `GA4_ACCESS_TOKEN`, `GA4_MP_API_SECRET` (Measurement Protocol, optional) |
 | `google-ads` | `GOOGLE_ADS_TOKEN`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` |
 | `google-search-console` | `GSC_ACCESS_TOKEN` |
 | `hotjar` | `HOTJAR_CLIENT_ID`, `HOTJAR_CLIENT_SECRET` |
@@ -76,6 +76,8 @@ Every CLI reads credentials from environment variables:
 | `savvycal` | `SAVVYCAL_API_KEY` |
 | `segment` | `SEGMENT_WRITE_KEY` (tracking), `SEGMENT_ACCESS_TOKEN` (profile) |
 | `semrush` | `SEMRUSH_API_KEY` |
+| `similarweb` | `SIMILARWEB_API_KEY` |
+| `supermetrics` | `SUPERMETRICS_API_KEY` |
 | `sendgrid` | `SENDGRID_API_KEY` |
 | `tiktok-ads` | `TIKTOK_ACCESS_TOKEN`, `TIKTOK_ADVERTISER_ID` |
 | `tolt` | `TOLT_API_KEY` |
@@ -87,6 +89,7 @@ Every CLI reads credentials from environment variables:
 | `snov` | `SNOV_CLIENT_ID`, `SNOV_CLIENT_SECRET` |
 | `wistia` | `WISTIA_API_KEY` |
 | `zapier` | `ZAPIER_API_KEY` |
+| `zoominfo` | `ZOOMINFO_ACCESS_TOKEN` or `ZOOMINFO_USERNAME`, `ZOOMINFO_PRIVATE_KEY` |
 
 ## Security
 
@@ -95,6 +98,9 @@ Every CLI reads credentials from environment variables:
 - Store keys in your shell profile (`~/.zshrc`, `~/.bashrc`) or a `.env` file
 - The `.env` file is gitignored — but double-check before committing
 - Use `--dry-run` on any command to preview the request without sending it (credentials are masked as `***`)
+- Prefer env vars over CLI flags for one-time secrets. For GA4 Measurement Protocol, set `GA4_MP_API_SECRET` or pass `--api-secret-env`.
+- `zoominfo auth` now masks JWTs by default. Only use `--show-token` when you explicitly need the raw token.
+- Some vendor APIs only support query-string auth (for example Hunter, Similarweb, Instantly, and some Kit endpoints). Use least-privileged keys and avoid verbose proxy logging when calling them.
 - If you fork this repo, audit your commits to ensure no secrets are included
 
 ## Command Pattern

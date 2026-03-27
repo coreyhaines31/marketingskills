@@ -9,17 +9,24 @@ if (!API_KEY) {
 }
 
 async function api(method, path, body) {
-  const separator = path.includes('?') ? '&' : '?'
-  const url = `${BASE_URL}${path}${separator}api_key=${API_KEY}`
+  const url = `${BASE_URL}${path}`
+  const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'x-api-key': API_KEY,
+  }
   if (args['dry-run']) {
-    return { _dry_run: true, method, url: url.replace(API_KEY, '***'), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: body || undefined }
+    return {
+      _dry_run: true,
+      method,
+      url,
+      headers: { ...headers, 'x-api-key': '***' },
+      body: body || undefined,
+    }
   }
   const res = await fetch(url, {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
+    headers,
     body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()

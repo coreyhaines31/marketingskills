@@ -14,6 +14,9 @@ concurrency:
   group: validate-skill-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   detect-changes:
     runs-on: ubuntu-slim
@@ -22,8 +25,9 @@ jobs:
       skills: ${{ steps.changed-skills.outputs.skills }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Get changed skills
@@ -57,9 +61,10 @@ jobs:
         skill: ${{ fromJson(needs.detect-changes.outputs.skills) }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
       - name: Validate ${{ matrix.skill }}
-        uses: Flash-Brew-Digital/validate-skill@v1
-        with:
-          path: ${{ matrix.skill }}
+        shell: bash
+        run: ./validate-skills.sh "${{ matrix.skill }}"

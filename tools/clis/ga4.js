@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
 const ACCESS_TOKEN = process.env.GA4_ACCESS_TOKEN
+const MP_API_SECRET = process.env.GA4_MP_API_SECRET
 const DATA_API = 'https://analyticsdata.googleapis.com/v1beta'
 const ADMIN_API = 'https://analyticsadmin.googleapis.com/v1beta'
 const MP_URL = 'https://www.google-analytics.com/mp/collect'
 
-if (!ACCESS_TOKEN) {
-  console.error(JSON.stringify({ error: 'GA4_ACCESS_TOKEN environment variable required' }))
-  process.exit(1)
-}
-
 async function api(method, baseUrl, path, body) {
+  if (!ACCESS_TOKEN) {
+    throw new Error('GA4_ACCESS_TOKEN environment variable required')
+  }
   if (args['dry-run']) {
     return { _dry_run: true, method, url: `${baseUrl}${path}`, headers: { Authorization: '***', 'Content-Type': 'application/json' }, body: body || undefined }
   }
@@ -147,7 +146,13 @@ async function main() {
       switch (sub) {
         case 'send': {
           if (!args['measurement-id']) { result = { error: '--measurement-id required' }; break }
-          if (!args['api-secret']) { result = { error: '--api-secret required' }; break }
+          const apiSecretEnv = args['api-secret-env']
+          if (apiSecretEnv && !process.env[apiSecretEnv]) {
+            result = { error: `Environment variable ${apiSecretEnv} is not set` }
+            break
+          }
+          const apiSecret = args['api-secret'] || (apiSecretEnv ? process.env[apiSecretEnv] : undefined) || MP_API_SECRET
+          if (!apiSecret) { result = { error: '--api-secret, --api-secret-env <ENV_VAR>, or GA4_MP_API_SECRET required' }; break }
           if (!args['client-id']) { result = { error: '--client-id required' }; break }
           if (!args['event-name']) { result = { error: '--event-name required' }; break }
           let eventParams = {}
@@ -165,7 +170,7 @@ async function main() {
               params: eventParams,
             }],
           }
-          result = await mpApi(args['measurement-id'], args['api-secret'], body)
+          result = await mpApi(args['measurement-id'], apiSecret, body)
           break
         }
         default:
@@ -180,7 +185,7 @@ async function main() {
           reports: 'reports run --property <id> [--start-date <date>] [--end-date <date>] [--dimensions <dims>] [--metrics <metrics>]',
           realtime: 'realtime run --property <id> [--dimensions <dims>] [--metrics <metrics>]',
           conversions: 'conversions [list|create] --property <id> [--event-name <name>]',
-          events: 'events send --measurement-id <id> --api-secret <secret> --client-id <id> --event-name <name> [--params <json>]',
+          events: 'events send --measurement-id <id> [--api-secret <secret> | --api-secret-env <ENV_VAR>] --client-id <id> --event-name <name> [--params <json>] (or set GA4_MP_API_SECRET)',
         }
       }
   }

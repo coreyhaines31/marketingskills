@@ -57,6 +57,12 @@ async function api(method, path, body) {
   }
 }
 
+function maskToken(token) {
+  if (!token) return '***'
+  if (token.length <= 12) return '***'
+  return `${token.slice(0, 6)}...${token.slice(-4)}`
+}
+
 function parseArgs(args) {
   const result = { _: [] }
   for (let i = 0; i < args.length; i++) {
@@ -92,7 +98,9 @@ async function main() {
         break
       }
       const token = await authenticate()
-      result = { jwt: token }
+      result = args['show-token']
+        ? { jwt: token }
+        : { authenticated: true, jwt_preview: maskToken(token), note: 'Use --show-token to print the full JWT' }
       break
     }
 
@@ -188,7 +196,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          auth: 'auth — authenticate and get JWT token',
+          auth: 'auth [--show-token] — authenticate and print the JWT only when explicitly requested',
           contacts: {
             search: 'contacts search [--job-title <t>] [--company <c>] [--location <l>] [--seniority <s>] [--department <d>] [--page <n>]',
             enrich: 'contacts enrich --email <email> | --person-id <id>',

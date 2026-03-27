@@ -12,10 +12,7 @@ async function api(method, path, body) {
   const separator = path.includes('?') ? '&' : '?'
   const url = `${BASE_URL}${path}${separator}api_key=${API_KEY}`
   if (args['dry-run']) {
-    const maskedUrl = url.replace(API_KEY, '***')
-    const maskedBody = body ? JSON.parse(JSON.stringify(body)) : undefined
-    if (maskedBody && maskedBody.api_key) maskedBody.api_key = '***'
-    return { _dry_run: true, method, url: maskedUrl, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: maskedBody }
+    return { _dry_run: true, method, url: url.replace(API_KEY, '***'), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: body || undefined }
   }
   const res = await fetch(url, {
     method,
@@ -87,13 +84,13 @@ async function main() {
         case 'launch': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', '/campaign/launch', { api_key: API_KEY, campaign_id: id })
+          result = await api('POST', '/campaign/launch', { campaign_id: id })
           break
         }
         case 'pause': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', '/campaign/pause', { api_key: API_KEY, campaign_id: id })
+          result = await api('POST', '/campaign/pause', { campaign_id: id })
           break
         }
         default:
@@ -121,7 +118,7 @@ async function main() {
           if (args['first-name']) lead.first_name = args['first-name']
           if (args['last-name']) lead.last_name = args['last-name']
           if (args.company) lead.company_name = args.company
-          result = await api('POST', '/lead/add', { api_key: API_KEY, campaign_id: campaignId, leads: [lead] })
+          result = await api('POST', '/lead/add', { campaign_id: campaignId, leads: [lead] })
           break
         }
         case 'delete': {
@@ -129,7 +126,7 @@ async function main() {
           const email = args.email
           if (!campaignId) { result = { error: '--campaign-id required' }; break }
           if (!email) { result = { error: '--email required' }; break }
-          result = await api('POST', '/lead/delete', { api_key: API_KEY, campaign_id: campaignId, delete_list: [email] })
+          result = await api('POST', '/lead/delete', { campaign_id: campaignId, delete_list: [email] })
           break
         }
         case 'status': {
@@ -180,7 +177,7 @@ async function main() {
         case 'campaign': {
           const campaignId = args['campaign-id']
           if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          const body = { api_key: API_KEY, campaign_id: campaignId }
+          const body = { campaign_id: campaignId }
           if (args['start-date']) body.start_date = args['start-date']
           if (args['end-date']) body.end_date = args['end-date']
           result = await api('POST', '/analytics/campaign/summary', body)
@@ -189,7 +186,7 @@ async function main() {
         case 'steps': {
           const campaignId = args['campaign-id']
           if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          const body = { api_key: API_KEY, campaign_id: campaignId }
+          const body = { campaign_id: campaignId }
           if (args['start-date']) body.start_date = args['start-date']
           if (args['end-date']) body.end_date = args['end-date']
           result = await api('POST', '/analytics/campaign/step', body)
@@ -200,7 +197,7 @@ async function main() {
           const endDate = args['end-date']
           if (!startDate) { result = { error: '--start-date required' }; break }
           if (!endDate) { result = { error: '--end-date required' }; break }
-          result = await api('POST', '/analytics/campaign/count', { api_key: API_KEY, start_date: startDate, end_date: endDate })
+          result = await api('POST', '/analytics/campaign/count', { start_date: startDate, end_date: endDate })
           break
         }
         default:
@@ -217,7 +214,7 @@ async function main() {
           const entries = args.entries
           if (!entries) { result = { error: '--entries required (comma-separated emails or domains)' }; break }
           const entryList = entries.split(',').map(e => e.trim())
-          result = await api('POST', '/blocklist/add', { api_key: API_KEY, entries: entryList })
+          result = await api('POST', '/blocklist/add', { entries: entryList })
           break
         }
         default:

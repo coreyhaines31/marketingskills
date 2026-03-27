@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -uo pipefail
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -8,9 +10,29 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 SKILLS_DIR="skills"
+TARGET_PATH="${1:-$SKILLS_DIR}"
 ISSUES=0
 WARNINGS=0
 PASSED=0
+
+shopt -s nullglob
+SKILL_PATHS=()
+
+if [[ -f "$TARGET_PATH" && "$(basename "$TARGET_PATH")" == "SKILL.md" ]]; then
+    SKILL_PATHS=("$(dirname "$TARGET_PATH")/")
+elif [[ -d "$TARGET_PATH" && -f "$TARGET_PATH/SKILL.md" ]]; then
+    SKILL_PATHS=("${TARGET_PATH%/}/")
+elif [[ -d "$TARGET_PATH" ]]; then
+    SKILL_PATHS=("${TARGET_PATH%/}"/*/)
+else
+    echo -e "${RED}Invalid path:${NC} $TARGET_PATH"
+    exit 1
+fi
+
+if [[ ${#SKILL_PATHS[@]} -eq 0 ]]; then
+    echo -e "${RED}No skills found at:${NC} $TARGET_PATH"
+    exit 1
+fi
 
 echo "🔍 Auditing Skills Against Agent Skills Specification"
 echo "======================================================"
@@ -26,7 +48,7 @@ echo ""
 # SKILL.md: under 500 lines
 # Optional dirs: references/, scripts/, assets/
 
-for skill_dir in "$SKILLS_DIR"/*/; do
+for skill_dir in "${SKILL_PATHS[@]}"; do
     skill_name=$(basename "$skill_dir")
     skill_file="$skill_dir/SKILL.md"
     skill_errors=()
@@ -41,7 +63,20 @@ for skill_dir in "$SKILLS_DIR"/*/; do
     fi
 
     # Extract frontmatter
-    frontmatter=$(sed -n '/^---$/,/^---$/p' "$skill_file" | head -n -1 | tail -n +2)
+    frontmatter=$(awk '
+        BEGIN { in_frontmatter = 0; found_start = 0 }
+        /^---[[:space:]]*$/ {
+            if (!found_start) {
+                found_start = 1
+                in_frontmatter = 1
+                next
+            }
+            if (in_frontmatter) {
+                exit
+            }
+        }
+        in_frontmatter { print }
+    ' "$skill_file")
 
     # Validate frontmatter exists
     if [[ -z "$frontmatter" ]]; then
@@ -52,7 +87,7 @@ for skill_dir in "$SKILLS_DIR"/*/; do
     fi
 
     # ===== NAME VALIDATION =====
-    name_in_file=$(echo "$frontmatter" | grep "^name:" | sed 's/^name: //' | tr -d ' ')
+    name_in_file=$(printf '%s\n' "$frontmatter" | sed -n 's/^name:[[:space:]]*//p' | head -n 1 | tr -d ' ')
 
     if [[ -z "$name_in_file" ]]; then
         skill_errors+=("Missing 'name' field in frontmatter")
@@ -66,13 +101,11 @@ for skill_dir in "$SKILLS_DIR"/*/; do
 
     # ===== DESCRIPTION VALIDATION =====
     # Handle both quoted and unquoted descriptions
-    description=$(echo "$frontmatter" | grep "^description:" | head -1)
-    if [[ $description == *'description: "'* ]]; then
-        # Quoted description - extract between quotes
-        description=$(echo "$description" | sed 's/^description: "//' | sed 's/"$//')
-    else
-        # Unquoted description
-        description=$(echo "$description" | sed 's/^description: //')
+    description=$(printf '%s\n' "$frontmatter" | sed -n 's/^description:[[:space:]]*//p' | head -n 1)
+    if [[ $description == \"*\" && $description == *\" ]]; then
+        description="${description:1:-1}"
+    elif [[ $description == \'*\' && $description == *\' ]]; then
+        description="${description:1:-1}"
     fi
 
     if [[ -z "$description" ]]; then
@@ -95,16 +128,16 @@ for skill_dir in "$SKILLS_DIR"/*/; do
     fi
 
     # ===== OPTIONAL FIELDS VALIDATION =====
-    license=$(echo "$frontmatter" | grep "^license:" | sed 's/^license: //' | tr -d ' ')
+    license=$(printf '%s\n' "$frontmatter" | sed -n 's/^license:[[:space:]]*//p' | head -n 1 | tr -d ' ')
     if [[ -n "$license" && "$license" != "MIT" && "$license" != "Apache-2.0" && "$license" != "ISC" ]]; then
         skill_warnings+=("License '$license' is non-standard (default: MIT)")
     fi
 
     # Check metadata structure
-    metadata=$(echo "$frontmatter" | grep -A 10 "^metadata:")
+    metadata=$(printf '%s\n' "$frontmatter" | grep -A 10 "^metadata:" || true)
     if [[ -n "$metadata" ]]; then
         # If metadata exists, check for version placement
-        if echo "$frontmatter" | grep -q "^version:"; then
+        if printf '%s\n' "$frontmatter" | grep -q "^version:"; then
             skill_errors+=("'version' is top-level (should be under 'metadata:')")
         fi
         # Could add more metadata validation here
