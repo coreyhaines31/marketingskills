@@ -244,6 +244,8 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key tools
 | **Mention Me** | Enterprise referral programs | [mention-me.md](../../tools/integrations/mention-me.md) |
 | **Dub.co** | Link tracking and attribution | [dub-co.md](../../tools/integrations/dub-co.md) |
 | **Stripe** | Payment processing (for commission tracking) | [stripe.md](../../tools/integrations/stripe.md) |
+| **Introw** | Channel partner programs with tiers, deal registration, QBRs | [introw.md](../../tools/integrations/introw.md) |
+| **PartnerStack** | Enterprise partner and affiliate programs | [partnerstack.md](../../tools/integrations/partnerstack.md) |
 
 ---
 
