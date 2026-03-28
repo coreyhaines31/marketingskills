@@ -164,7 +164,7 @@ Reporting "no schema found" based solely on `web_fetch` or `curl` leads to false
 - Primary keyword near beginning
 - 50-60 characters (visible in SERP)
 - Compelling and click-worthy
-- No brand name placement (SERPs include brand name above title already)
+- Brand name placement (end, usually)
 
 **Common issues:**
 - Duplicate titles
