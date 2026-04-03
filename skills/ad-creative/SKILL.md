@@ -357,6 +357,6 @@ node tools/clis/google-ads.js reports get --type ad_performance --date-range las
 
 - **paid-ads**: For campaign strategy, targeting, budgets, and optimization
 - **copywriting**: For landing page copy (where ad traffic lands)
-- **ab-test-setup**: For structuring creative tests with statistical rigor
+- **ab-testing**: For structuring creative tests with statistical rigor
 - **marketing-psychology**: For psychological principles behind high-performing creative
 - **copy-editing**: For polishing ad copy before launch

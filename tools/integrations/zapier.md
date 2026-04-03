@@ -145,6 +145,6 @@ When sending to Zapier, structure data as flat JSON:
 
 ## Relevant Skills
 
-- email-sequence
-- analytics-tracking
-- referral-program
+- emails
+- analytics
+- referrals

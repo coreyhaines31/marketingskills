@@ -74,7 +74,7 @@ description: What this skill does and when to use it. Include trigger phrases.
 - No consecutive hyphens (`--`)
 - Must match parent directory name exactly
 
-**Valid**: `page-cro`, `email-sequence`, `ab-test-setup`
+**Valid**: `cro`, `emails`, `ab-testing`
 **Invalid**: `Page-CRO`, `-page`, `page--cro`
 
 ### Optional Skill Directories
@@ -124,7 +124,7 @@ The `description` is critical for skill discovery. Include:
 3. Related skills for scope boundaries
 
 ```yaml
-description: When the user wants to optimize conversions on any marketing page. Use when the user says "CRO," "conversion rate optimization," "this page isn't converting." For signup flows, see signup-flow-cro.
+description: When the user wants to optimize conversions on any marketing page. Use when the user says "CRO," "conversion rate optimization," "this page isn't converting." For signup flows, see signup.
 ```
 
 ## Claude Code Plugin
@@ -151,7 +151,7 @@ See [Claude Code plugins documentation](https://code.claude.com/docs/en/plugins.
 Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
 
 - `feat: add skill-name skill`
-- `fix: improve clarity in page-cro`
+- `fix: improve clarity in cro`
 - `docs: update README`
 
 ### Pull Request Checklist
@@ -186,9 +186,9 @@ tools/
 ### When to Use Tools
 
 Skills reference relevant tools for implementation. For example:
-- `referral-program` skill → rewardful, tolt, dub-co, mention-me guides
-- `analytics-tracking` skill → ga4, mixpanel, segment guides
-- `email-sequence` skill → customer-io, mailchimp, resend guides
+- `referrals` skill → rewardful, tolt, dub-co, mention-me guides
+- `analytics` skill → ga4, mixpanel, segment guides
+- `emails` skill → customer-io, mailchimp, resend guides
 - `paid-ads` skill → google-ads, meta-ads, linkedin-ads guides
 
 For tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion), Composio provides MCP access via a single server. See `tools/integrations/composio.md` for setup and `tools/composio/marketing-tools.md` for the full toolkit mapping.

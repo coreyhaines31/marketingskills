@@ -118,4 +118,4 @@ Use country code: `us`, `uk`, `de`, `fr`, `ca`, `au`, etc.
 - seo-audit
 - programmatic-seo
 - content-strategy
-- competitor-alternatives
+- competitors

@@ -155,6 +155,6 @@ const analytics = await dub.analytics.retrieve({
 
 ## Relevant Skills
 
-- referral-program
-- analytics-tracking
+- referrals
+- analytics
 - paid-ads

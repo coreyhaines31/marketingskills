@@ -162,4 +162,4 @@ Request bodies are always JSON arrays (even for single requests).
 - seo-audit
 - programmatic-seo
 - content-strategy
-- competitor-alternatives
+- competitors

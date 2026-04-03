@@ -204,4 +204,4 @@ Authorization: Bearer {api_key}
 - seo-audit
 - content-strategy
 - programmatic-seo
-- competitor-alternatives
+- competitors

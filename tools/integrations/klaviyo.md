@@ -222,7 +222,7 @@ Klaviyo uses the JSON:API specification. All request/response bodies use `{ "dat
 
 ## Relevant Skills
 
-- email-sequence
+- emails
 - ecommerce-email
 - lifecycle-marketing
 - customer-segmentation

@@ -408,5 +408,5 @@ Same format as above
 - **programmatic-seo**: For building SEO pages at scale
 - **site-architecture**: For page hierarchy, navigation design, and URL structure
 - **schema-markup**: For implementing structured data
-- **page-cro**: For optimizing pages for conversion (not just ranking)
-- **analytics-tracking**: For measuring SEO performance
+- **cro**: For optimizing pages for conversion (not just ranking)
+- **analytics**: For measuring SEO performance

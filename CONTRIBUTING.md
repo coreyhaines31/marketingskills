@@ -33,7 +33,7 @@ Optional frontmatter fields: `license` (default: MIT), `metadata` (author, versi
 
 ### 3. Follow the naming conventions
 
-- **Directory name**: lowercase, hyphens only (e.g., `email-sequence`)
+- **Directory name**: lowercase, hyphens only (e.g., `emails`)
 - **Name field**: must match directory name exactly
 - **Description**: 1-1024 characters, include trigger phrases
 

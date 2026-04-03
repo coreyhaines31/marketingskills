@@ -133,5 +133,5 @@ Authorization: Bearer {api_key}
 
 - revops
 - sales-enablement
-- referral-program
-- competitor-alternatives
+- referrals
+- competitors

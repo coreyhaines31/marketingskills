@@ -188,4 +188,4 @@ POST https://api.zoominfo.com/lookup/scoops
 - cold-email
 - revops
 - sales-enablement
-- competitor-alternatives
+- competitors

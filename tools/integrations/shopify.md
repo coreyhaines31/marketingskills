@@ -171,6 +171,6 @@ shopify app create node
 
 ## Relevant Skills
 
-- analytics-tracking
-- email-sequence
-- referral-program
+- analytics
+- emails
+- referrals

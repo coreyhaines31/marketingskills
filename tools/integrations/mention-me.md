@@ -155,6 +155,6 @@ MentionMe.push({
 
 ## Relevant Skills
 
-- referral-program
-- pricing-strategy
-- analytics-tracking
+- referrals
+- pricing
+- analytics

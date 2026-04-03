@@ -146,6 +146,6 @@ if (posthog.isFeatureEnabled('new-pricing')) {
 
 ## Relevant Skills
 
-- analytics-tracking
-- ab-test-setup
-- onboarding-cro
+- analytics
+- ab-testing
+- onboarding

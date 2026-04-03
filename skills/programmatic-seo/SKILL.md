@@ -235,4 +235,4 @@ Watch for: Thin content warnings, Ranking drops, Manual actions, Crawl errors
 - **seo-audit**: For auditing programmatic pages after launch
 - **schema-markup**: For adding structured data
 - **site-architecture**: For page hierarchy, URL structure, and internal linking
-- **competitor-alternatives**: For comparison page frameworks
+- **competitors**: For comparison page frameworks

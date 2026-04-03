@@ -143,5 +143,5 @@ Rewardful automatically:
 
 ## Relevant Skills
 
-- referral-program
-- pricing-strategy
+- referrals
+- pricing

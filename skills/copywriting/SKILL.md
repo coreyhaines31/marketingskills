@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see email-sequence. For popup copy, see popup-cro. For editing existing copy, see copy-editing.
+description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing.
 metadata:
   version: 1.1.0
 ---
@@ -246,7 +246,7 @@ For headlines and CTAs, provide 2-3 options:
 ## Related Skills
 
 - **copy-editing**: For polishing existing copy (use after your draft)
-- **page-cro**: If page structure/strategy needs work, not just copy
-- **email-sequence**: For email copywriting
-- **popup-cro**: For popup and modal copy
-- **ab-test-setup**: To test copy variations
+- **cro**: If page structure/strategy needs work, not just copy
+- **emails**: For email copywriting
+- **popups**: For popup and modal copy
+- **ab-testing**: To test copy variations

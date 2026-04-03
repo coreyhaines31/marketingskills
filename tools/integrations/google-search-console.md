@@ -144,4 +144,4 @@ POST https://indexing.googleapis.com/v3/urlNotifications:publish
 
 - seo-audit
 - programmatic-seo
-- analytics-tracking
+- analytics

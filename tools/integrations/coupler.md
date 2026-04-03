@@ -137,6 +137,6 @@ GET https://api.coupler.io/v1/destinations
 
 ## Relevant Skills
 
-- analytics-tracking
+- analytics
 - paid-ads
 - revops

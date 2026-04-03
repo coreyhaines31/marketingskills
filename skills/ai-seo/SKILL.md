@@ -333,7 +333,7 @@ Monthly manual check:
 - Fair and balanced (AI penalizes obviously biased comparisons)
 - Specific criteria with ratings or scores
 - Updated pricing and feature data
-- Cite the competitor-alternatives skill for building these pages
+- Cite the competitors skill for building these pages
 
 ### Documentation / Help Content
 
@@ -393,6 +393,6 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md).
 - **seo-audit**: For traditional technical and on-page SEO audits
 - **schema-markup**: For implementing structured data that helps AI understand your content
 - **content-strategy**: For planning what content to create
-- **competitor-alternatives**: For building comparison pages that get cited
+- **competitors**: For building comparison pages that get cited
 - **programmatic-seo**: For building SEO pages at scale
 - **copywriting**: For writing content that's both human-readable and AI-extractable

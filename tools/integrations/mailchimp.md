@@ -145,6 +145,6 @@ const hash = md5(email.toLowerCase());
 
 ## Relevant Skills
 
-- email-sequence
-- analytics-tracking
-- referral-program
+- emails
+- analytics
+- referrals

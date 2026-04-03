@@ -173,6 +173,6 @@ hs accounts list
 
 ## Relevant Skills
 
-- email-sequence
-- analytics-tracking
-- referral-program
+- emails
+- analytics
+- referrals

@@ -1,6 +1,6 @@
 ---
 name: marketing-ideas
-description: "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,' or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on how to grow. For specific channel execution, see the relevant skill (paid-ads, social-content, email-sequence, etc.)."
+description: "When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' 'ideas to grow,' 'what else can I try,' 'I don't know how to market this,' 'brainstorm marketing,' or 'what marketing should I do.' Use this as a starting point whenever someone is stuck or looking for inspiration on how to grow. For specific channel execution, see the relevant skill (paid-ads, social, emails, etc.)."
 metadata:
   version: 1.1.0
 ---
@@ -161,7 +161,7 @@ When recommending ideas, provide for each:
 ## Related Skills
 
 - **programmatic-seo**: For scaling SEO content (#4)
-- **competitor-alternatives**: For comparison pages (#11)
-- **email-sequence**: For email marketing tactics
-- **free-tool-strategy**: For engineering as marketing (#15)
+- **competitors**: For comparison pages (#11)
+- **emails**: For email marketing tactics
+- **free-tools**: For engineering as marketing (#15)
 - **referral-program**: For viral growth (#93)

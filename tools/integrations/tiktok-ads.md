@@ -158,4 +158,4 @@ Access-Token: {access_token}
 ## Relevant Skills
 
 - paid-ads
-- analytics-tracking
+- analytics

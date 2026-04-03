@@ -178,5 +178,5 @@ share_lead_or_register_deal
 
 - revops
 - sales-enablement
-- referral-program
-- competitor-alternatives
+- referrals
+- competitors

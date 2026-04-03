@@ -215,7 +215,7 @@ All responses follow the format:
 
 ## Relevant Skills
 
-- referral-program
+- referrals
 - affiliate-marketing
 - partner-enablement
 - saas-metrics

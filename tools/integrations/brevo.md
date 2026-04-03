@@ -261,7 +261,7 @@ Brevo uses standard REST with offset-based pagination (`limit` and `offset` para
 
 ## Relevant Skills
 
-- email-sequence
+- emails
 - sms-marketing
 - transactional-email
 - lifecycle-marketing

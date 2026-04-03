@@ -161,4 +161,4 @@ POST https://api.linkedin.com/v2/audienceCountsV2
 ## Relevant Skills
 
 - paid-ads
-- analytics-tracking
+- analytics

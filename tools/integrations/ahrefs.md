@@ -139,4 +139,4 @@ Authorization: Bearer {api_token}
 
 - seo-audit
 - content-strategy
-- competitor-alternatives
+- competitors

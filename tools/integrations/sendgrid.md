@@ -157,5 +157,5 @@ await sgMail.send({
 
 ## Relevant Skills
 
-- email-sequence
-- analytics-tracking
+- emails
+- analytics

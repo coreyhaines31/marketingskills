@@ -1,6 +1,6 @@
 ---
 name: content-strategy
-description: When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions "content strategy," "what should I write about," "content ideas," "blog strategy," "topic clusters," "content planning," "editorial calendar," "content marketing," "content roadmap," "what content should I create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social-content.
+description: When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions "content strategy," "what should I write about," "content ideas," "blog strategy," "topic clusters," "content planning," "editorial calendar," "content marketing," "content roadmap," "what content should I create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social.
 metadata:
   version: 1.1.0
 ---
@@ -361,5 +361,5 @@ Visual or structured representation of how content interconnects.
 - **ai-seo**: For optimizing content for AI search engines and getting cited by LLMs
 - **programmatic-seo**: For scaled content generation
 - **site-architecture**: For page hierarchy, navigation design, and URL structure
-- **email-sequence**: For email-based content
-- **social-content**: For social media content
+- **emails**: For email-based content
+- **social**: For social media content

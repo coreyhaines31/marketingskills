@@ -169,7 +169,7 @@ URL structure, navigation hierarchy, and internal linking all depend on how cont
 
 ### Email Sequences
 
-Pull CMS content into email templates for consistent messaging across web and email. Case studies, testimonials, and blog posts can feed email nurture sequences. See **email-sequence** skill.
+Pull CMS content into email templates for consistent messaging across web and email. Case studies, testimonials, and blog posts can feed email nurture sequences. See **emails** skill.
 
 ---
 

@@ -145,6 +145,6 @@ ORDER BY CreatedDate DESC
 
 ## Relevant Skills
 
-- email-sequence
-- analytics-tracking
+- emails
+- analytics
 - paid-ads
