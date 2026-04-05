@@ -172,6 +172,12 @@ mv .claude/product-marketing-context.md .agents/product-marketing-context.md
 
 Skills will still check `.claude/` as a fallback, so nothing breaks if you don't.
 
+## Strategy First
+
+Before diving into execution skills, consider running [forbotsake](https://github.com/forbotsake/forbotsake) to define your positioning, ICP, and channel strategy. forbotsake helps you figure out *what* to do — marketingskills helps you do it.
+
+Think with forbotsake, execute with marketingskills.
+
 ## Usage
 
 Once installed, just ask your agent to help with marketing tasks:
