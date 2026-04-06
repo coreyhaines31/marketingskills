@@ -297,6 +297,7 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key email
 | **Resend** | Developer-friendly transactional | ✓ | [resend.md](../../tools/integrations/resend.md) |
 | **SendGrid** | Transactional email at scale | - | [sendgrid.md](../../tools/integrations/sendgrid.md) |
 | **Kit** | Creator/newsletter focused | - | [kit.md](../../tools/integrations/kit.md) |
+| **SigParser** | Extract audience from email signatures | ✓ | Email-to-contact extraction for warm list building |
 
 ---
 
