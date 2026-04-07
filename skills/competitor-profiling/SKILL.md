@@ -41,6 +41,37 @@ Don't exaggerate competitor weaknesses or downplay their strengths. Accurate pro
 
 ---
 
+## Saving Raw Data
+
+Before synthesizing the profile, persist all raw scrape, SEO, and review data to disk so it can be re-read, audited, or re-used later without re-running expensive API calls.
+
+**Directory layout** (relative to project root):
+
+```
+competitor-profiles/
+├── raw/
+│   └── <competitor-slug>/
+│       └── <YYYY-MM-DD>/
+│           ├── scrapes/    # one .md file per scraped page (homepage.md, pricing.md, ...)
+│           ├── seo/        # one .json file per DataForSEO call (backlinks-summary.json, ranked-keywords.json, ...)
+│           └── reviews/    # one .md or .json file per review source (g2.md, capterra.md, ...)
+├── <competitor-slug>.md    # final synthesized profile
+└── _summary.md             # cross-competitor summary
+```
+
+Rules:
+
+- `<competitor-slug>` is lowercase, hyphenated (e.g. `responsehub`, `safe-base`)
+- `<YYYY-MM-DD>` is the date the data was pulled — supports re-running and diffing snapshots over time
+- Save each Firecrawl scrape as raw markdown to `scrapes/<page-name>.md`
+- Save each DataForSEO response as raw JSON to `seo/<endpoint-name>.json`
+- Save each review source to `reviews/<source>.md` (cleaned text) or `.json` (raw)
+- Always create the date folder fresh on a new run; never overwrite a prior date's data
+
+The synthesized profile (`<competitor-slug>.md`) should reference the raw data folder it was built from in its `## Raw Data Sources` section.
+
+---
+
 ## Research Process
 
 ### Phase 1: Site Scraping (Firecrawl)
@@ -73,6 +104,8 @@ Use **Firecrawl Scrape** on each identified page:
 firecrawl_scrape → each key page URL
 ```
 
+Save each result to `competitor-profiles/raw/<competitor-slug>/<YYYY-MM-DD>/scrapes/<page-name>.md` before extracting fields.
+
 Extract from each page:
 
 | Page | What to Extract |
@@ -93,13 +126,13 @@ Use **Firecrawl Scrape** or **Firecrawl Search** to find:
 - Product Hunt launch page
 - TrustRadius profile
 
-Extract: overall rating, review count, common praise themes, common complaint themes, and 3-5 representative quotes.
+Save each scraped review page to `competitor-profiles/raw/<competitor-slug>/<YYYY-MM-DD>/reviews/<source>.md`. Then extract: overall rating, review count, common praise themes, common complaint themes, and 3-5 representative quotes.
 
 ---
 
 ### Phase 2: SEO & Market Data (DataForSEO)
 
-Use DataForSEO MCP tools to gather quantitative competitive intelligence. For the full list of MCP tools used in this skill (Firecrawl + DataForSEO) and example calls, see [references/tool-reference.md](references/tool-reference.md).
+Use DataForSEO MCP tools to gather quantitative competitive intelligence. Save each raw response as JSON to `competitor-profiles/raw/<competitor-slug>/<YYYY-MM-DD>/seo/<endpoint-name>.json` before parsing it into the profile. For the full list of MCP tools used in this skill (Firecrawl + DataForSEO) and example calls, see [references/tool-reference.md](references/tool-reference.md).
 
 #### Domain Authority & Backlinks
 
