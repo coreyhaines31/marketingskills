@@ -1,0 +1,90 @@
+{
+  "skill_name": "banana-image-gen",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate a hero image for my SaaS landing page. We're a project management tool targeting startup founders. Brand colors are teal and dark navy.",
+      "expected_output": "Should act as Creative Director — not pass raw text to API. Should analyze intent (SaaS hero image, web use case). Should select UI/Web or Product domain mode. Should construct a 5-component prompt (Subject, Action, Location/Context, Composition, Style) using narrative prose, not keyword lists. Should avoid banned keywords (8K, masterpiece, ultra-realistic). Should select appropriate aspect ratio (16:9 for hero). Should use prestigious context anchors instead of generic quality terms. Should mention model selection and resolution.",
+      "assertions": [
+        "Acts as Creative Director, does not pass raw text",
+        "Analyzes intent and use case before generating",
+        "Selects appropriate domain mode",
+        "Constructs prompt using 5-component formula",
+        "Uses narrative prose, not keyword lists",
+        "Avoids banned keywords (8K, masterpiece, ultra-realistic)",
+        "Sets aspect ratio appropriate for hero image (16:9)",
+        "Uses prestigious context anchors"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "/banana edit ~/Downloads/product-photo.png remove the background and make it look more professional",
+      "expected_output": "Should enhance the raw edit instruction — not pass 'remove background' directly. Should craft a detailed edit prompt with edge-preserving instructions, background replacement details, and quality preservation notes. Should use gemini_edit_image MCP tool or fallback to edit.py script. Should describe the enhanced instruction to the user.",
+      "assertions": [
+        "Enhances raw edit instruction with specific detail",
+        "Includes edge-preserving instructions",
+        "Specifies background replacement approach",
+        "Uses gemini_edit_image or edit.py fallback",
+        "Shows the user the crafted edit prompt"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need 5 variations of a product shot for our new coffee brand. The bag is kraft paper with a black logo.",
+      "expected_output": "Should activate batch variation workflow. Should construct a base Reasoning Brief using the Product domain mode. Should create 5 variations by rotating different components (lighting, composition, angle, style, setting). Should select appropriate aspect ratio for product shots (4:3 or 1:1). Should use Product mode prompt patterns with studio lighting vocabulary, surface materials, and brand specificity. Should show cost estimate before generating.",
+      "assertions": [
+        "Activates batch variation workflow",
+        "Uses Product domain mode",
+        "Creates 5 distinct variations rotating different components",
+        "Uses Product mode vocabulary (surfaces, lighting, angles)",
+        "Shows cost estimate before generating",
+        "Each variation has a clearly different component"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "make me a logo",
+      "expected_output": "Should recognize this as a vague request and ask clarifying questions before generating. Should ask about: brand name, industry/use case, style preferences, color preferences, and where the logo will be used. Should NOT immediately generate an image from the vague prompt. Should mention Logo domain mode capabilities.",
+      "assertions": [
+        "Recognizes vague request",
+        "Asks clarifying questions before generating",
+        "Asks about brand name and industry",
+        "Asks about style and color preferences",
+        "Does NOT immediately generate from vague prompt"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "/banana generate a dramatic cinematic shot of a luxury watch on a dark surface with moody lighting",
+      "expected_output": "Should read references/gemini-models.md and references/prompt-engineering.md first. Should select Cinema or Product domain mode. Should construct full 5-component prompt with specific camera model (e.g., Sony A7R IV), lens specs (e.g., 90mm macro f/2.8), lighting setup details, surface material description, and prestigious context anchor (e.g., Wallpaper* magazine editorial). Should set aspect ratio (16:9 or 3:2 for cinematic). Should call MCP generate tool or fallback script.",
+      "assertions": [
+        "Reads reference docs before constructing prompt",
+        "Selects Cinema or Product domain mode",
+        "Includes specific camera model in prompt",
+        "Includes lens specifications",
+        "Describes lighting setup in detail",
+        "Includes prestigious context anchor",
+        "Sets cinematic aspect ratio",
+        "Calls MCP tool or fallback script"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "I need social media graphics for Instagram, a YouTube thumbnail, and a LinkedIn banner — all for the same product launch. Can you help?",
+      "expected_output": "Should plan a multi-asset workflow with different aspect ratios per platform. Instagram: 1:1 or 4:5, YouTube thumbnail: 16:9 at 1280x720, LinkedIn banner: custom crop. Should maintain visual consistency across assets using the same Reasoning Brief base with adapted compositions. Should mention post-processing resize commands if needed. Should suggest generating each separately with appropriate ratios.",
+      "assertions": [
+        "Plans multi-asset workflow",
+        "Specifies correct aspect ratio per platform",
+        "Maintains visual consistency across assets",
+        "Mentions post-processing for exact platform dimensions",
+        "Generates each asset with appropriate settings"
+      ],
+      "files": []
+    }
+  ]
+}
