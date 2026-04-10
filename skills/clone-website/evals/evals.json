@@ -1,0 +1,43 @@
+{
+  "skill_name": "clone-website",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/clone-website https://example.com",
+      "expected_output": "Should start Phase 1 Reconnaissance: take full-page screenshots at 1440px, 768px, and 390px breakpoints. Should extract design tokens (fonts, colors, spacing). Should perform interaction sweep (scroll, hover, click). Should map page topology into sections before building anything. Should NOT skip to building components without completing recon.",
+      "assertions": [
+        "Takes screenshots at multiple breakpoints",
+        "Extracts design tokens (fonts, colors)",
+        "Performs interaction sweep",
+        "Maps page into sections/components",
+        "Does not skip reconnaissance phase"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "/clone-website https://example.com https://example.com/pricing",
+      "expected_output": "Should handle multiple URLs in one invocation. Should perform recon on each page separately. Should identify shared components across pages (navbar, footer). Should build shared components once and reuse. Should create separate page routes for each URL.",
+      "assertions": [
+        "Accepts multiple URLs",
+        "Performs recon on each page",
+        "Identifies shared components",
+        "Creates separate routes per page"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Clone this website and make it pixel-perfect: https://example.com",
+      "expected_output": "Should trigger the clone-website skill from natural language. Should extract exact CSS values using getComputedStyle(), not estimates. Should write component spec files to docs/research/components/ before dispatching builders. Should dispatch parallel builder agents in git worktrees. Should run Visual QA diff comparing original vs clone at the end.",
+      "assertions": [
+        "Triggers from natural language request",
+        "Uses getComputedStyle() for exact values",
+        "Writes spec files before building",
+        "Dispatches parallel builder agents",
+        "Runs visual QA comparison"
+      ],
+      "files": []
+    }
+  ]
+}
