@@ -1,0 +1,42 @@
+{
+  "skill_name": "notebooklm",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Ask my NotebookLM about the key findings in my research docs",
+      "expected_output": "Should trigger from natural language mentioning NotebookLM or querying docs. Should use the run.py wrapper (never call scripts directly). Should use ask_question.py with --question flag. Should require a notebook URL or check the library for a matching notebook. Should return source-grounded, citation-backed answer.",
+      "assertions": [
+        "Triggers from natural language request",
+        "Uses run.py wrapper to call scripts",
+        "Uses ask_question.py with proper flags",
+        "Requires or looks up notebook URL",
+        "Returns citation-backed answer"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Add this notebook to my library: https://notebooklm.google.com/notebook/abc123",
+      "expected_output": "Should use Smart Add workflow — query the notebook first to discover content, then use notebook_manager.py add with discovered --name, --description, and --topics. Should never guess or use generic descriptions. Should always use run.py wrapper.",
+      "assertions": [
+        "Uses Smart Add to discover content first",
+        "Queries notebook before adding",
+        "Uses notebook_manager.py add with all required flags",
+        "Never uses generic descriptions",
+        "Uses run.py wrapper"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "What notebooks do I have in my NotebookLM library?",
+      "expected_output": "Should use notebook_manager.py list via run.py wrapper. Should display notebook names, descriptions, and topics from the library.",
+      "assertions": [
+        "Uses notebook_manager.py list command",
+        "Uses run.py wrapper",
+        "Displays library contents"
+      ],
+      "files": []
+    }
+  ]
+}
