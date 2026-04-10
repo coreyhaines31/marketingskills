@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketingSkills — AI Marketing Skills for Teams</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { scroll-behavior: smooth; }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+    .card-hover:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+    .skill-card { cursor: pointer; }
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      z-index: 1000; display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .modal-box {
+      background: #1e1b4b; border: 1px solid #4338ca;
+      border-radius: 1rem; max-width: 600px; width: 100%;
+      max-height: 80vh; overflow-y: auto; padding: 2rem;
+    }
+    .pill {
+      display: inline-block; padding: 2px 10px;
+      border-radius: 9999px; font-size: 0.7rem; font-weight: 600;
+    }
+    .hidden { display: none !important; }
+    body { background: #0f0e2a; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; }
+    .section-divider { border-color: #2d2b6b; }
+    .nav-link:hover { color: #a78bfa; }
+    .filter-btn.active { background: #6366f1; color: white; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a1740; }
+    ::-webkit-scrollbar-thumb { background: #4338ca; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="sticky top-0 z-50 border-b border-indigo-900/50 backdrop-blur bg-[#0f0e2a]/90">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">M</div>
+      <span class="font-bold text-lg text-white">MarketingSkills</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#tools" class="nav-link">Tools</a>
+      <a href="#integrations" class="nav-link">Integrations</a>
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+    </div>
+    <a href="#pricing" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm px-4 py-2 rounded-lg font-semibold transition">Get Started</a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="relative overflow-hidden py-24 px-6">
+  <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-900/20 to-transparent pointer-events-none"></div>
+  <div class="max-w-5xl mx-auto text-center relative">
+    <div class="inline-flex items-center gap-2 bg-indigo-900/50 border border-indigo-700/50 text-indigo-300 text-xs px-4 py-1.5 rounded-full mb-6">
+      <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+      35 AI-powered marketing skills — ready to deploy
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+      Your AI Marketing<br/>
+      <span class="gradient-text">Superpower</span>
+    </h1>
+    <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+      Give your team 35 expert marketing skills, 51 tools, and 78+ integrations — all powered by AI. Install once, use forever.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center mb-16">
+      <a href="#skills" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-xl font-semibold transition text-lg">Browse Skills</a>
+      <a href="#how-it-works" class="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-xl font-semibold transition text-lg border border-white/20">How It Works</a>
+    </div>
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <div class="text-4xl font-extrabold text-indigo-400">35</div>
+        <div class="text-slate-400 text-sm mt-1">Marketing Skills</div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <div class="text-4xl font-extrabold text-purple-400">51</div>
+        <div class="text-slate-400 text-sm mt-1">CLI Tools</div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <div class="text-4xl font-extrabold text-pink-400">78+</div>
+        <div class="text-slate-400 text-sm mt-1">Integrations</div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <div class="text-4xl font-extrabold text-green-400">9</div>
+        <div class="text-slate-400 text-sm mt-1">Categories</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SKILLS BROWSER ══════════ -->
+<section id="skills" class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white mb-4">Skill Library</h2>
+      <p class="text-slate-400 max-w-xl mx-auto">Each skill is a complete AI workflow — just invoke it and get expert-level output instantly.</p>
+    </div>
+
+    <!-- Search + Filter -->
+    <div class="flex flex-col md:flex-row gap-4 mb-8">
+      <input id="skill-search" type="text" placeholder="Search skills..."
+        class="flex-1 bg-white/5 border border-white/10 text-white placeholder-slate-500 rounded-xl px-5 py-3 focus:outline-none focus:border-indigo-500 transition" />
+    </div>
+    <div id="category-filters" class="flex flex-wrap gap-2 mb-8">
+      <button class="filter-btn active px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="all">All</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="CRO">CRO</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="SEO">SEO</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Content">Content</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Email">Email</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Ads">Ads</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Growth">Growth</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Strategy">Strategy</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Sales">Sales</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/20 text-slate-300 transition" data-cat="Retention">Retention</button>
+    </div>
+
+    <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    <p id="no-results" class="hidden text-center text-slate-500 py-12">No skills match your search.</p>
+  </div>
+</section>
+
+<!-- ══════════ TOOLS DIRECTORY ══════════ -->
+<section id="tools" class="py-20 px-6 bg-white/[0.02] border-t border-b section-divider">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white mb-4">51 CLI Tools</h2>
+      <p class="text-slate-400 max-w-xl mx-auto">Zero-dependency Node.js tools that plug directly into your marketing stack.</p>
+    </div>
+    <div id="tools-grid" class="space-y-10"></div>
+  </div>
+</section>
+
+<!-- ══════════ INTEGRATIONS ══════════ -->
+<section id="integrations" class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white mb-4">78+ Integrations</h2>
+      <p class="text-slate-400 max-w-xl mx-auto">Connects to your entire marketing stack — out of the box.</p>
+    </div>
+    <div id="integrations-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+  </div>
+</section>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section id="how-it-works" class="py-20 px-6 bg-white/[0.02] border-t border-b section-divider">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl font-bold text-white mb-4">How It Works</h2>
+      <p class="text-slate-400">Up and running in under 2 minutes.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="w-14 h-14 bg-indigo-600/20 border border-indigo-500/30 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-5">⚡</div>
+        <div class="text-indigo-400 font-bold text-sm uppercase tracking-widest mb-2">Step 1</div>
+        <h3 class="text-white font-bold text-xl mb-3">Install Skills</h3>
+        <p class="text-slate-400 text-sm mb-4">One command installs all 35 skills into your AI agent.</p>
+        <div class="bg-black/40 border border-white/10 rounded-xl p-4 text-left font-mono text-sm text-green-400">
+          npx skills install<br/>coreyhaines31/marketingskills
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="w-14 h-14 bg-purple-600/20 border border-purple-500/30 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-5">🧠</div>
+        <div class="text-purple-400 font-bold text-sm uppercase tracking-widest mb-2">Step 2</div>
+        <h3 class="text-white font-bold text-xl mb-3">Invoke a Skill</h3>
+        <p class="text-slate-400 text-sm mb-4">Call any skill with a slash command or natural language.</p>
+        <div class="bg-black/40 border border-white/10 rounded-xl p-4 text-left font-mono text-sm text-purple-300">
+          /page-cro<br/><span class="text-slate-500"># or just say:</span><br/>"optimize my landing page"
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="w-14 h-14 bg-pink-600/20 border border-pink-500/30 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-5">🚀</div>
+        <div class="text-pink-400 font-bold text-sm uppercase tracking-widest mb-2">Step 3</div>
+        <h3 class="text-white font-bold text-xl mb-3">Get Expert Output</h3>
+        <p class="text-slate-400 text-sm mb-4">Receive a complete expert-level marketing deliverable instantly.</p>
+        <div class="bg-black/40 border border-white/10 rounded-xl p-4 text-left font-mono text-sm text-pink-300">
+          ✓ Audit complete<br/>✓ 12 CRO improvements<br/>✓ Priority ranked
+        </div>
+      </div>
+    </div>
+
+    <!-- Compatible agents -->
+    <div class="mt-16 text-center">
+      <p class="text-slate-500 text-sm mb-6">Works with your favorite AI tools</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <span class="bg-white/5 border border-white/10 px-5 py-2.5 rounded-xl text-slate-300 text-sm font-medium">Claude Code</span>
+        <span class="bg-white/5 border border-white/10 px-5 py-2.5 rounded-xl text-slate-300 text-sm font-medium">Cursor</span>
+        <span class="bg-white/5 border border-white/10 px-5 py-2.5 rounded-xl text-slate-300 text-sm font-medium">Windsurf</span>
+        <span class="bg-white/5 border border-white/10 px-5 py-2.5 rounded-xl text-slate-300 text-sm font-medium">OpenAI Codex</span>
+        <span class="bg-white/5 border border-white/10 px-5 py-2.5 rounded-xl text-slate-300 text-sm font-medium">Any Agent Skills tool</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRICING ══════════ -->
+<section id="pricing" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl font-bold text-white mb-4">Simple Pricing</h2>
+      <p class="text-slate-400">Choose the plan that fits your team.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Basic -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+        <div class="text-slate-400 text-sm font-semibold uppercase tracking-widest mb-2">Starter</div>
+        <div class="text-4xl font-extrabold text-white mb-1">$49<span class="text-lg font-normal text-slate-500">/mo</span></div>
+        <p class="text-slate-400 text-sm mb-8">For solo marketers and founders.</p>
+        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <li class="flex gap-2"><span class="text-green-400">✓</span> 10 core skills</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> 10 CLI tools</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Claude Code + Cursor support</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Email support</li>
+          <li class="flex gap-2"><span class="text-slate-600">✗</span> Custom branding</li>
+          <li class="flex gap-2"><span class="text-slate-600">✗</span> Priority support</li>
+        </ul>
+        <a href="#" class="block text-center border border-indigo-500 text-indigo-400 hover:bg-indigo-600 hover:text-white py-3 rounded-xl font-semibold transition">Get Starter</a>
+      </div>
+      <!-- Pro (highlighted) -->
+      <div class="bg-gradient-to-b from-indigo-600/20 to-purple-600/10 border-2 border-indigo-500 rounded-2xl p-8 card-hover relative">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full">MOST POPULAR</div>
+        <div class="text-indigo-300 text-sm font-semibold uppercase tracking-widest mb-2">Pro</div>
+        <div class="text-4xl font-extrabold text-white mb-1">$149<span class="text-lg font-normal text-slate-400">/mo</span></div>
+        <p class="text-slate-400 text-sm mb-8">For growing marketing teams.</p>
+        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <li class="flex gap-2"><span class="text-green-400">✓</span> All 35 skills</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> All 51 CLI tools</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> 78+ integrations</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> All AI agents support</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Priority support</li>
+          <li class="flex gap-2"><span class="text-slate-600">✗</span> White-label / resell</li>
+        </ul>
+        <a href="#" class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-xl font-semibold transition">Get Pro</a>
+      </div>
+      <!-- Agency -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 card-hover">
+        <div class="text-slate-400 text-sm font-semibold uppercase tracking-widest mb-2">Agency</div>
+        <div class="text-4xl font-extrabold text-white mb-1">$499<span class="text-lg font-normal text-slate-500">/mo</span></div>
+        <p class="text-slate-400 text-sm mb-8">For agencies that resell to clients.</p>
+        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Everything in Pro</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> White-label rights</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Resell to clients</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Custom skill creation</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Dedicated onboarding</li>
+          <li class="flex gap-2"><span class="text-green-400">✓</span> Slack support channel</li>
+        </ul>
+        <a href="#" class="block text-center border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white py-3 rounded-xl font-semibold transition">Get Agency</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="border-t section-divider py-12 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+    <div class="flex items-center gap-2">
+      <div class="w-6 h-6 rounded-md bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">M</div>
+      <span>MarketingSkills — MIT License</span>
+    </div>
+    <div class="flex gap-6">
+      <a href="#skills" class="hover:text-slate-300 transition">Skills</a>
+      <a href="#tools" class="hover:text-slate-300 transition">Tools</a>
+      <a href="#pricing" class="hover:text-slate-300 transition">Pricing</a>
+      <a href="https://github.com/coreyhaines31/marketingskills" target="_blank" class="hover:text-slate-300 transition">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ SKILL MODAL ══════════ -->
+<div id="skill-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="flex items-start justify-between mb-6">
+      <div>
+        <div id="modal-category" class="pill bg-indigo-900 text-indigo-300 mb-2"></div>
+        <h3 id="modal-name" class="text-2xl font-bold text-white"></h3>
+      </div>
+      <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl leading-none ml-4">✕</button>
+    </div>
+    <p id="modal-description" class="text-slate-300 leading-relaxed mb-6"></p>
+    <div class="bg-black/30 border border-white/10 rounded-xl p-4 font-mono text-sm">
+      <div class="text-slate-500 mb-1"># Invoke in Claude Code:</div>
+      <div id="modal-command" class="text-green-400"></div>
+    </div>
+    <div class="mt-6 flex gap-3">
+      <a href="#pricing" onclick="closeModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition">Get Access</a>
+      <button onclick="closeModal()" class="bg-white/10 hover:bg-white/20 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ DATA + LOGIC ══════════ -->
+<script>
+const CATEGORY_COLORS = {
+  CRO:       { bg: "bg-orange-900/40", text: "text-orange-300", border: "border-orange-700/40" },
+  SEO:       { bg: "bg-green-900/40",  text: "text-green-300",  border: "border-green-700/40"  },
+  Content:   { bg: "bg-blue-900/40",   text: "text-blue-300",   border: "border-blue-700/40"   },
+  Email:     { bg: "bg-cyan-900/40",   text: "text-cyan-300",   border: "border-cyan-700/40"   },
+  Ads:       { bg: "bg-yellow-900/40", text: "text-yellow-300", border: "border-yellow-700/40" },
+  Growth:    { bg: "bg-pink-900/40",   text: "text-pink-300",   border: "border-pink-700/40"   },
+  Strategy:  { bg: "bg-purple-900/40", text: "text-purple-300", border: "border-purple-700/40" },
+  Sales:     { bg: "bg-red-900/40",    text: "text-red-300",    border: "border-red-700/40"    },
+  Retention: { bg: "bg-teal-900/40",   text: "text-teal-300",   border: "border-teal-700/40"   },
+};
+
+const SKILLS = [
+  { name: "ab-test-setup",             category: "Growth",    description: "Plan, design, and implement A/B tests and growth experimentation programs. Handles statistical significance, hypothesis testing, and experiment velocity." },
+  { name: "ad-creative",               category: "Ads",       description: "Generate, iterate, and scale ad creative (headlines, descriptions, primary text) for Google Ads, Meta, LinkedIn, Twitter/X, and other platforms." },
+  { name: "ai-seo",                    category: "SEO",       description: "Optimize content for AI search engines and LLMs. Covers AEO, GEO, LLMO optimization for ChatGPT, Perplexity, Claude, and Gemini." },
+  { name: "analytics-tracking",        category: "Growth",    description: "Set up, improve, and audit analytics tracking. Covers GA4, UTM parameters, GTM, event tracking, and conversion tracking." },
+  { name: "churn-prevention",          category: "Retention", description: "Reduce churn through cancellation flows, save offers, dunning, failed payment recovery, win-back campaigns, and retention strategies." },
+  { name: "cold-email",                category: "Sales",     description: "Write B2B cold emails and follow-up sequences. Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch sequences." },
+  { name: "community-marketing",       category: "Growth",    description: "Build and leverage online communities (Discord, Slack, forums, subreddits) for product growth, brand loyalty, and word-of-mouth." },
+  { name: "competitor-alternatives",   category: "Content",   description: "Create competitor comparison and alternative pages for SEO and sales. Formats: singular alternatives, plural alternatives, vs competitor." },
+  { name: "content-strategy",          category: "Content",   description: "Plan content strategy, decide what to create, and determine topic coverage. Covers content roadmaps, pillar topics, and editorial calendars." },
+  { name: "copy-editing",              category: "Content",   description: "Edit, review, improve, and refresh existing marketing copy. Focuses on polishing and updating outdated content." },
+  { name: "copywriting",               category: "Content",   description: "Write and improve marketing copy for homepages, landing pages, pricing pages, feature pages, about pages, and product pages." },
+  { name: "customer-research",         category: "Strategy",  description: "Conduct and analyze customer research including interviews, surveys, support tickets, Reddit mining, G2 reviews, and jobs-to-be-done analysis." },
+  { name: "email-sequence",            category: "Email",     description: "Create and optimize email sequences, drip campaigns, automated flows, and lifecycle email programs." },
+  { name: "form-cro",                  category: "CRO",       description: "Optimize non-signup forms including lead capture, contact, demo request, survey, and checkout forms." },
+  { name: "free-tool-strategy",        category: "Growth",    description: "Plan, evaluate, and build free marketing tools (calculators, generators, audits) for lead generation and SEO value." },
+  { name: "launch-strategy",           category: "Strategy",  description: "Plan product launches, feature announcements, and release strategies including Product Hunt launches and beta strategies." },
+  { name: "lead-magnets",              category: "Growth",    description: "Create, plan, and optimize lead magnets (ebooks, checklists, templates, PDFs) for email capture and lead generation." },
+  { name: "marketing-ideas",           category: "Strategy",  description: "Generate marketing ideas, inspiration, and strategies for SaaS and software products. 140+ growth ideas included." },
+  { name: "marketing-psychology",      category: "Strategy",  description: "Apply psychological principles to marketing — anchoring, social proof, scarcity, loss aversion, and framing." },
+  { name: "onboarding-cro",            category: "CRO",       description: "Optimize post-signup onboarding, user activation, first-run experience, and time-to-value. Covers empty states and aha moments." },
+  { name: "page-cro",                  category: "CRO",       description: "Optimize any marketing page for conversions: homepages, landing pages, pricing pages, feature pages, and blog posts." },
+  { name: "paid-ads",                  category: "Ads",       description: "Manage paid advertising on Google, Meta, LinkedIn, and Twitter/X. Covers campaign strategy, targeting, bidding, and optimization." },
+  { name: "paywall-upgrade-cro",       category: "CRO",       description: "Optimize in-app paywalls, upgrade screens, upsell modals, and feature gates for freemium-to-paid conversion." },
+  { name: "popup-cro",                 category: "CRO",       description: "Create and optimize popups, modals, overlays, slide-ins, and banners (exit intent, scroll trigger, sticky bars)." },
+  { name: "pricing-strategy",          category: "Strategy",  description: "Help with pricing decisions, packaging, and monetization strategy. Covers Van Westendorp pricing, value metrics, price increases." },
+  { name: "product-marketing-context", category: "Strategy",  description: "Create and maintain the foundational product marketing context document read by all other skills. Covers product, audience, and positioning." },
+  { name: "programmatic-seo",          category: "SEO",       description: "Create SEO-driven pages at scale using templates and data. Covers location pages, comparison pages, and integration pages." },
+  { name: "referral-program",          category: "Growth",    description: "Create, optimize, and analyze referral programs, affiliate programs, and word-of-mouth strategies." },
+  { name: "revops",                    category: "Sales",     description: "Revenue operations, lead lifecycle management, lead scoring, routing, and marketing-to-sales handoff processes." },
+  { name: "sales-enablement",          category: "Sales",     description: "Create sales collateral: pitch decks, one-pagers, objection handling docs, demo scripts, talk tracks, and buyer persona cards." },
+  { name: "schema-markup",             category: "SEO",       description: "Add, fix, and optimize schema markup and structured data for Google rich results (FAQ, product, reviews, breadcrumbs)." },
+  { name: "seo-audit",                 category: "SEO",       description: "Audit and diagnose SEO issues: technical SEO, on-page SEO, meta tags, page speed, Core Web Vitals, and crawl errors." },
+  { name: "signup-flow-cro",           category: "CRO",       description: "Optimize signup, registration, account creation, and trial activation flows to reduce abandonment." },
+  { name: "site-architecture",         category: "Content",   description: "Plan and restructure website page hierarchy, navigation, URL structure, and internal linking strategy." },
+  { name: "social-content",            category: "Content",   description: "Create, schedule, and optimize social media content for LinkedIn, Twitter/X, Instagram, TikTok, and Facebook." },
+];
+
+const TOOLS = {
+  "Analytics":  ["ga4","mixpanel","amplitude","plausible","segment","adobe-analytics"],
+  "SEO":        ["ahrefs","semrush","google-search-console","dataforseo","keywords-everywhere"],
+  "Email":      ["mailchimp","sendgrid","resend","customer-io","postmark","brevo","activecampaign","beehiiv","klaviyo","kit","lemlist","instantly"],
+  "CRM":        ["hubspot","salesforce","close"],
+  "Ads":        ["google-ads","meta-ads","linkedin-ads","tiktok-ads"],
+  "Data & Enrichment": ["clearbit","apollo","clay","zoominfo","hunter","snov"],
+  "Payments":   ["stripe","paddle","rewardful","tolt","mention-me","partnerstack"],
+  "CRO":        ["hotjar","optimizely"],
+  "Sales":      ["outreach","gong","intercom"],
+  "Other":      ["calendly","savvycal","typeform","buffer","wistia","trustpilot","g2","onesignal","demio","livestorm","zapier","dub","supermetrics","coupler","crossbeam","pendo","similarweb","airops"],
+};
+
+const INTEGRATIONS = [
+  "HubSpot","Salesforce","GA4","Stripe","Mailchimp","Meta Ads",
+  "Google Ads","LinkedIn Ads","TikTok Ads","Mixpanel","Amplitude",
+  "Segment","Ahrefs","Semrush","Intercom","Hotjar","Optimizely",
+  "Customer.io","SendGrid","Resend","Klaviyo","ActiveCampaign",
+  "Apollo","Clay","Clearbit","ZoomInfo","Zapier","Slack",
+  "Notion","Google Sheets","Typeform","Calendly","Gong","Outreach",
+  "Paddle","Rewardful","Tolt","Dub","Buffer","Wistia",
+  "G2","Trustpilot","OneSignal","Supermetrics","Coupler","Beehiiv",
+];
+
+// ── Render Skills ──────────────────────────────
+function renderSkills(list) {
+  const grid = document.getElementById('skills-grid');
+  const noResults = document.getElementById('no-results');
+  grid.innerHTML = '';
+  if (!list.length) { noResults.classList.remove('hidden'); return; }
+  noResults.classList.add('hidden');
+  list.forEach(skill => {
+    const c = CATEGORY_COLORS[skill.category] || CATEGORY_COLORS.Strategy;
+    const card = document.createElement('div');
+    card.className = `skill-card bg-white/5 border border-white/10 hover:border-indigo-500/50 rounded-2xl p-6 card-hover ${c.bg}`;
+    card.innerHTML = `
+      <div class="flex items-start justify-between mb-3">
+        <span class="pill ${c.bg} ${c.text} border ${c.border}">${skill.category}</span>
+      </div>
+      <h3 class="text-white font-bold text-lg mb-2">${skill.name}</h3>
+      <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">${skill.description}</p>
+      <div class="mt-4 text-indigo-400 text-sm font-semibold flex items-center gap-1">View details <span>→</span></div>
+    `;
+    card.addEventListener('click', () => openModal(skill));
+    grid.appendChild(card);
+  });
+}
+
+// ── Render Tools ──────────────────────────────
+function renderTools() {
+  const container = document.getElementById('tools-grid');
+  Object.entries(TOOLS).forEach(([cat, tools]) => {
+    const section = document.createElement('div');
+    section.innerHTML = `
+      <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+        <span class="w-2 h-2 bg-indigo-500 rounded-full"></span>${cat}
+      </h3>
+      <div class="flex flex-wrap gap-2 mb-2">
+        ${tools.map(t => `
+          <span class="bg-white/5 border border-white/10 hover:border-indigo-500/50 hover:bg-indigo-900/20 text-slate-300 text-sm px-4 py-2 rounded-xl font-medium transition cursor-default">${t}</span>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(section);
+  });
+}
+
+// ── Render Integrations ───────────────────────
+function renderIntegrations() {
+  const grid = document.getElementById('integrations-grid');
+  INTEGRATIONS.forEach(name => {
+    const el = document.createElement('div');
+    el.className = 'bg-white/5 border border-white/10 hover:border-indigo-500/40 hover:bg-indigo-900/20 rounded-xl p-4 text-center text-sm text-slate-300 font-medium transition cursor-default card-hover';
+    el.textContent = name;
+    grid.appendChild(el);
+  });
+}
+
+// ── Modal ─────────────────────────────────────
+function openModal(skill) {
+  document.getElementById('modal-name').textContent = skill.name;
+  document.getElementById('modal-category').textContent = skill.category;
+  document.getElementById('modal-description').textContent = skill.description;
+  document.getElementById('modal-command').textContent = `/${skill.name}`;
+  document.getElementById('skill-modal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('skill-modal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.getElementById('skill-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('skill-modal')) closeModal();
+});
+
+// ── Search + Filter ───────────────────────────
+let activeCategory = 'all';
+let searchQuery = '';
+
+function getFiltered() {
+  return SKILLS.filter(s => {
+    const matchCat = activeCategory === 'all' || s.category === activeCategory;
+    const matchSearch = !searchQuery ||
+      s.name.includes(searchQuery) ||
+      s.description.toLowerCase().includes(searchQuery) ||
+      s.category.toLowerCase().includes(searchQuery);
+    return matchCat && matchSearch;
+  });
+}
+
+document.getElementById('skill-search').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  renderSkills(getFiltered());
+});
+
+document.getElementById('category-filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCategory = btn.dataset.cat;
+  renderSkills(getFiltered());
+});
+
+// ── Init ──────────────────────────────────────
+renderSkills(SKILLS);
+renderTools();
+renderIntegrations();
+</script>
+</body>
+</html>
