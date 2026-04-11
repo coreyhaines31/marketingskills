@@ -78,7 +78,7 @@ Connect via the Cloudflare MCP server to query the GraphQL Analytics API. The qu
 use the `httpRequestsAdaptiveGroups` dataset, available on all Cloudflare plans
 including free.
 
-See `references/cloudflare-setup.md` for:
+See [references/cloudflare-setup.md](references/cloudflare-setup.md) for:
 - MCP server setup instructions
 - Zone discovery query
 - Full GraphQL query with all four bot categories
@@ -159,7 +159,7 @@ later, per report section.
 ### Step 3a: Classify bot agents
 
 Match each request's user-agent string against the reference tables in
-`references/bot-signatures.md`. Classification is case-insensitive substring matching.
+[references/bot-signatures.md](references/bot-signatures.md). Classification is case-insensitive substring matching.
 Assign each request:
 
 - `agent_id`: the specific bot identifier (e.g., `chatgpt-user`, `googlebot`)
