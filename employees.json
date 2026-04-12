@@ -1,0 +1,88 @@
+{
+  "employees": [
+    {
+      "id": "alex-chen",
+      "name": "Alex Chen",
+      "role": "SEO Specialist",
+      "skills": [
+        "programmatic-seo",
+        "ai-seo",
+        "schema-markup",
+        "site-architecture",
+        "seo-audit"
+      ]
+    },
+    {
+      "id": "jordan-rivera",
+      "name": "Jordan Rivera",
+      "role": "CRO Specialist",
+      "skills": [
+        "page-cro",
+        "popup-cro",
+        "form-cro",
+        "onboarding-cro",
+        "paywall-upgrade-cro"
+      ]
+    },
+    {
+      "id": "sam-taylor",
+      "name": "Sam Taylor",
+      "role": "Content & Copy Strategist",
+      "skills": [
+        "copywriting",
+        "copy-editing",
+        "content-strategy",
+        "social-content",
+        "signup-flow-cro"
+      ]
+    },
+    {
+      "id": "casey-morgan",
+      "name": "Casey Morgan",
+      "role": "Paid Acquisition Specialist",
+      "skills": [
+        "paid-ads",
+        "ad-creative",
+        "cold-email",
+        "lead-magnets",
+        "sales-enablement"
+      ]
+    },
+    {
+      "id": "riley-kim",
+      "name": "Riley Kim",
+      "role": "Growth & Community Manager",
+      "skills": [
+        "referral-program",
+        "community-marketing",
+        "free-tool-strategy",
+        "email-sequence",
+        "competitor-alternatives"
+      ]
+    },
+    {
+      "id": "dana-patel",
+      "name": "Dana Patel",
+      "role": "Analytics & Revenue Operations",
+      "skills": [
+        "analytics-tracking",
+        "ab-test-setup",
+        "revops",
+        "pricing-strategy",
+        "launch-strategy"
+      ]
+    },
+    {
+      "id": "morgan-lee",
+      "name": "Morgan Lee",
+      "role": "Product & Customer Marketing",
+      "skills": [
+        "customer-research",
+        "product-marketing-context",
+        "marketing-psychology",
+        "churn-prevention",
+        "marketing-ideas"
+      ]
+    }
+  ]
+}
