@@ -53,6 +53,14 @@
         "./skills/site-architecture",
         "./skills/social-content"
       ]
+    },
+    {
+      "name": "mmx-cli",
+      "description": "Generate text, images, video, speech, and music via MiniMax AI platform",
+      "source": "MiniMax-AI/cli",
+      "skills": [
+        "./skill/"
+      ]
     }
   ]
 }
