@@ -49,6 +49,7 @@
       color: #1A1A2E;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden; /* prevent horizontal bleed from glow elements */
     }
 
     /* Gold divider — signature NÉVUE element */
@@ -178,7 +179,7 @@
     <div class="absolute bottom-24 right-8 w-px h-20 bg-gold/30 hidden lg:block" style="bottom:96px;right:32px;"></div>
     <div class="absolute bottom-24 right-8 w-20 h-px bg-gold/30 hidden lg:block" style="bottom:96px;right:32px;"></div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
 
       <!-- Eyebrow -->
       <p class="hero-line-1 font-body text-gold text-xs tracking-[0.22em] uppercase mb-8">
@@ -215,7 +216,7 @@
       </div>
 
       <!-- Trust bar -->
-      <div class="hero-line-5 mt-16 flex flex-wrap justify-center gap-x-10 gap-y-4">
+      <div class="hero-line-5 mt-16 flex flex-wrap justify-center gap-x-6 md:gap-x-10 gap-y-4">
         <span class="flex items-center gap-2 font-body text-charcoal/45 text-xs tracking-widest uppercase">
           <span class="text-gold">✦</span> No-Bruise Guarantee
         </span>
@@ -242,17 +243,17 @@
     <div class="max-w-4xl mx-auto px-6">
       <div class="flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-off-white/10 text-center">
 
-        <div class="flex-1 py-6 sm:py-0 sm:px-10">
+        <div class="flex-1 py-6 sm:py-0 sm:px-6 md:px-10">
           <p class="font-display text-gold" style="font-size:42px;font-weight:600;">100%</p>
           <p class="font-body text-off-white/50 text-xs tracking-widest uppercase mt-1">Photo-Ready Glow</p>
         </div>
 
-        <div class="flex-1 py-6 sm:py-0 sm:px-10">
+        <div class="flex-1 py-6 sm:py-0 sm:px-6 md:px-10">
           <p class="font-display text-gold" style="font-size:42px;font-weight:600;">0</p>
           <p class="font-body text-off-white/50 text-xs tracking-widest uppercase mt-1">Bruises on Your Big Day</p>
         </div>
 
-        <div class="flex-1 py-6 sm:py-0 sm:px-10">
+        <div class="flex-1 py-6 sm:py-0 sm:px-6 md:px-10">
           <p class="font-display text-gold" style="font-size:42px;font-weight:600;">60 min</p>
           <p class="font-body text-off-white/50 text-xs tracking-widest uppercase mt-1">Back to Glam</p>
         </div>
@@ -265,11 +266,11 @@
   <!-- ============================================================
        BENEFITS / SERVICES SECTION
   ============================================================ -->
-  <section id="benefits" class="py-28 bg-off-white">
+  <section id="benefits" class="py-16 md:py-28 bg-off-white">
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Section header -->
-      <div class="text-center mb-20 reveal">
+      <div class="text-center mb-12 md:mb-20 reveal">
         <p class="font-body text-gold text-xs tracking-[0.22em] uppercase mb-4">The NÉVUE Difference</p>
         <h2 class="font-display text-navy" style="font-size:clamp(32px,4.5vw,52px);font-weight:700;letter-spacing:0.01em;line-height:1.15;">
           Designed for Brides.<br>Not for Clinics.
@@ -285,7 +286,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
 
         <!-- Card 1: No-Bruise Strategy -->
-        <div class="reveal group bg-linen border border-mist/50 p-10 flex flex-col text-center transition-shadow duration-300 hover:shadow-lg">
+        <div class="reveal group bg-linen border border-mist/50 p-7 md:p-10 flex flex-col text-center transition-shadow duration-300 hover:shadow-lg">
 
           <!-- Icon -->
           <div class="w-14 h-14 mx-auto mb-7 flex items-center justify-center border border-gold/50 group-hover:border-gold transition-colors duration-300">
@@ -320,7 +321,7 @@
         </div>
 
         <!-- Card 2: W-2 Nurse (featured — cream background) -->
-        <div class="reveal group bg-cream border border-gold/30 p-10 flex flex-col text-center relative transition-shadow duration-300 hover:shadow-lg">
+        <div class="reveal group bg-cream border border-gold/30 p-7 md:p-10 flex flex-col text-center relative transition-shadow duration-300 hover:shadow-lg">
 
           <!-- Featured pill -->
           <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gold px-4 py-1">
@@ -360,7 +361,7 @@
         </div>
 
         <!-- Card 3: ZenDrip -->
-        <div class="reveal group bg-marble border border-mist/50 p-10 flex flex-col text-center transition-shadow duration-300 hover:shadow-lg">
+        <div class="reveal group bg-marble border border-mist/50 p-7 md:p-10 flex flex-col text-center transition-shadow duration-300 hover:shadow-lg">
 
           <!-- Icon -->
           <div class="w-14 h-14 mx-auto mb-7 flex items-center justify-center border border-gold/50 group-hover:border-gold transition-colors duration-300">
@@ -407,11 +408,11 @@
   <!-- ============================================================
        TESTIMONIALS
   ============================================================ -->
-  <section id="testimonials" class="py-28 bg-linen">
+  <section id="testimonials" class="py-16 md:py-28 bg-linen">
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Section header -->
-      <div class="text-center mb-16 reveal">
+      <div class="text-center mb-10 md:mb-16 reveal">
         <p class="font-body text-gold text-xs tracking-[0.22em] uppercase mb-4">Brides Are Talking</p>
         <h2 class="font-display text-navy" style="font-size:clamp(30px,4vw,46px);font-weight:700;line-height:1.2;">
           The Reviews Speak<br>for Themselves.
@@ -423,7 +424,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         <!-- Review 1 -->
-        <div class="reveal bg-off-white border border-mist/50 p-8 flex flex-col">
+        <div class="reveal bg-off-white border border-mist/50 p-6 md:p-8 flex flex-col">
           <!-- Stars -->
           <div class="flex gap-1 mb-5">
             <span class="text-gold text-base">★★★★★</span>
@@ -442,7 +443,7 @@
         </div>
 
         <!-- Review 2 — featured -->
-        <div class="reveal bg-navy border border-gold/40 p-8 flex flex-col relative">
+        <div class="reveal bg-navy border border-gold/40 p-6 md:p-8 flex flex-col relative">
           <!-- Featured badge -->
           <div class="absolute -top-3.5 left-6 bg-gold px-3 py-1">
             <span class="font-body text-navy text-xs tracking-widest uppercase">Featured</span>
@@ -465,7 +466,7 @@
         </div>
 
         <!-- Review 3 -->
-        <div class="reveal bg-off-white border border-mist/50 p-8 flex flex-col">
+        <div class="reveal bg-off-white border border-mist/50 p-6 md:p-8 flex flex-col">
           <!-- Stars -->
           <div class="flex gap-1 mb-5">
             <span class="text-gold text-base">★★★★★</span>
@@ -488,7 +489,7 @@
       <!-- Venue trust line -->
       <div class="reveal mt-16 text-center">
         <p class="font-body text-charcoal/35 text-xs tracking-[0.18em] uppercase mb-6">Trusted at Tampa Bay's Finest Venues</p>
-        <div class="flex flex-wrap justify-center gap-x-10 gap-y-3 opacity-40">
+        <div class="flex flex-wrap justify-center gap-x-6 md:gap-x-10 gap-y-3 opacity-40">
           <span class="font-display text-charcoal" style="font-size:18px;font-weight:500;letter-spacing:0.1em;">The Vinoy</span>
           <span class="font-display text-charcoal" style="font-size:18px;font-weight:500;letter-spacing:0.1em;">Don CeSar</span>
           <span class="font-display text-charcoal" style="font-size:18px;font-weight:500;letter-spacing:0.1em;">Armature Works</span>
@@ -503,7 +504,7 @@
   <!-- ============================================================
        WAITLIST CTA SECTION
   ============================================================ -->
-  <section id="waitlist" class="py-28 bg-navy relative overflow-hidden">
+  <section id="waitlist" class="py-16 md:py-28 bg-navy relative overflow-hidden">
 
     <!-- Subtle radial glow -->
     <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at center, rgba(201,169,110,0.07) 0%, transparent 65%);"></div>
@@ -593,7 +594,7 @@
       </form>
 
       <!-- Success state (hidden by default) -->
-      <div id="form-success" class="hidden mt-6 border border-gold/30 p-10">
+      <div id="form-success" class="hidden mt-6 border border-gold/30 p-6 md:p-10">
         <p class="font-display text-gold mb-3" style="font-size:30px;font-weight:500;font-style:italic;">You're on the list.</p>
         <p class="font-body text-off-white/60 text-sm leading-relaxed">
           We'll be in touch soon with your exclusive pre-launch offer.<br>
