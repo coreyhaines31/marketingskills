@@ -141,6 +141,19 @@
     .nav-scrolled {
       box-shadow: 0 1px 16px rgba(27,39,68,0.07);
     }
+
+    /* FAQ accordion */
+    details summary::-webkit-details-marker { display: none; }
+    details summary { user-select: none; }
+    details[open] summary .faq-icon { transform: rotate(45deg); }
+    details > p {
+      overflow: hidden;
+      animation: faqOpen 0.3s ease;
+    }
+    @keyframes faqOpen {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 
@@ -607,6 +620,100 @@
 
 
   <!-- ============================================================
+       FAQ SECTION
+  ============================================================ -->
+  <section id="faq" class="py-16 md:py-24 bg-marble">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Section header -->
+      <div class="text-center mb-12 reveal">
+        <p class="font-body text-gold text-xs tracking-[0.22em] uppercase mb-4">Questions</p>
+        <h2 class="font-display text-navy" style="font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.2;">
+          Everything You<br>Want to Know.
+        </h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <!-- FAQ items -->
+      <div class="space-y-0 divide-y divide-mist/60 reveal">
+
+        <!-- Q1 -->
+        <details class="group py-7 cursor-pointer list-none" open>
+          <summary class="flex items-start justify-between gap-6 list-none marker:hidden">
+            <span class="font-display text-navy" style="font-size:20px;font-weight:600;line-height:1.3;">
+              Is IV therapy safe on my wedding day?
+            </span>
+            <span class="text-gold mt-1 shrink-0 transition-transform duration-300 group-open:rotate-45" style="font-size:22px;line-height:1;">+</span>
+          </summary>
+          <p class="font-body text-charcoal/60 leading-relaxed mt-5 pr-10" style="font-size:15px;">
+            Entirely. Every NÉVUE session is administered by a licensed registered nurse and overseen by
+            a board-certified physician. We complete a brief health intake before every appointment,
+            and our nurses are trained specifically for mobile, event-day settings. Sessions take 45–60 minutes
+            and clients are photo-ready immediately after.
+          </p>
+        </details>
+
+        <!-- Q2 -->
+        <details class="group py-7 cursor-pointer list-none">
+          <summary class="flex items-start justify-between gap-6 list-none marker:hidden">
+            <span class="font-display text-navy" style="font-size:20px;font-weight:600;line-height:1.3;">
+              Will I bruise before the ceremony?
+            </span>
+            <span class="text-gold mt-1 shrink-0 transition-transform duration-300 group-open:rotate-45" style="font-size:22px;line-height:1;">+</span>
+          </summary>
+          <p class="font-body text-charcoal/60 leading-relaxed mt-5 pr-10" style="font-size:15px;">
+            Bruising is our highest priority — which is why we developed our No-Bruise Strategy.
+            Before any needle is placed, your nurse uses advanced vein mapping technology to identify
+            the optimal site. Our first-attempt success rate is exceptionally high, and in the rare
+            event of any mark, our nurses carry arnica protocol to address it immediately.
+            The majority of our brides are in front of a camera within the hour.
+          </p>
+        </details>
+
+        <!-- Q3 -->
+        <details class="group py-7 cursor-pointer list-none">
+          <summary class="flex items-start justify-between gap-6 list-none marker:hidden">
+            <span class="font-display text-navy" style="font-size:20px;font-weight:600;line-height:1.3;">
+              How far in advance should I book?
+            </span>
+            <span class="text-gold mt-1 shrink-0 transition-transform duration-300 group-open:rotate-45" style="font-size:22px;line-height:1;">+</span>
+          </summary>
+          <p class="font-body text-charcoal/60 leading-relaxed mt-5 pr-10" style="font-size:15px;">
+            We recommend securing your date at least six months before your wedding — earlier for
+            peak season (April–June, September–November). Because NÉVUE is a concierge service,
+            each nurse serves only one bridal party per day. Founding bride waitlist members receive
+            priority access before dates open to the public.
+          </p>
+        </details>
+
+        <!-- Q4 -->
+        <details class="group py-7 cursor-pointer list-none">
+          <summary class="flex items-start justify-between gap-6 list-none marker:hidden">
+            <span class="font-display text-navy" style="font-size:20px;font-weight:600;line-height:1.3;">
+              Can my whole bridal party receive treatment?
+            </span>
+            <span class="text-gold mt-1 shrink-0 transition-transform duration-300 group-open:rotate-45" style="font-size:22px;line-height:1;">+</span>
+          </summary>
+          <p class="font-body text-charcoal/60 leading-relaxed mt-5 pr-10" style="font-size:15px;">
+            Yes. NÉVUE specializes in bridal party packages — bridesmaids, mothers of the bride,
+            and even groomsmen. Groups of four or more receive dedicated concierge planning to
+            stagger sessions so everyone is ready before the first look. Tell us your party size
+            when you join the waitlist and we'll build around your timeline.
+          </p>
+        </details>
+
+      </div>
+
+      <!-- Bottom reassurance -->
+      <p class="reveal text-center font-body text-charcoal/35 text-xs tracking-widest uppercase mt-14">
+        Additional questions — <a href="mailto:hello@nevuewellness.com" class="text-gold hover:text-charcoal/60 transition-colors">hello@nevuewellness.com</a>
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
        FOOTER
   ============================================================ -->
   <footer class="bg-charcoal border-t border-off-white/5 py-16">
@@ -665,11 +772,6 @@
 
     </div>
   </footer>
-
-
-  <!-- ============================================================
-       PLACEHOLDER — FAQ section added next
-  ============================================================ -->
 
 
   <!-- JavaScript -->
