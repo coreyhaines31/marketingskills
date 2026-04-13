@@ -1,0 +1,362 @@
+{
+  "_meta": {
+    "brand": "NÉVUE",
+    "version": "1.0.0",
+    "description": "Design tokens for all AI agent branded outputs. Use these exact values in any HTML, CSS, email template, ad creative brief, or design spec. Never approximate colors.",
+    "last_updated": "2026-04-13",
+    "usage": "Import or reference this file before generating any branded asset."
+  },
+
+  "color": {
+    "primary": {
+      "navy": {
+        "name": "Névue Navy",
+        "hex": "#1B2744",
+        "rgb": { "r": 27, "g": 39, "b": 68 },
+        "hsl": { "h": 226, "s": 43, "l": 19 },
+        "cmyk": { "c": 60, "m": 43, "y": 0, "k": 73 },
+        "usage": "Primary brand color. Backgrounds, wordmark, primary buttons, packaging, signage, staff apparel.",
+        "on_color": "Névue White (#FAFAF8) or Névue Gold (#C9A96E)"
+      },
+      "gold": {
+        "name": "Névue Gold",
+        "hex": "#C9A96E",
+        "rgb": { "r": 201, "g": 169, "b": 110 },
+        "hsl": { "h": 38, "s": 46, "l": 61 },
+        "cmyk": { "c": 0, "m": 16, "y": 45, "k": 21 },
+        "usage": "Accent color. Logo highlights, embossed elements, CTA borders, icon accents, small text on navy.",
+        "on_color": "Névue Navy (#1B2744) for highest contrast"
+      }
+    },
+    "secondary": {
+      "cream": {
+        "name": "Névue Cream",
+        "hex": "#EDE0CC",
+        "rgb": { "r": 237, "g": 224, "b": 204 },
+        "hsl": { "h": 36, "s": 42, "l": 86 },
+        "cmyk": { "c": 0, "m": 6, "y": 14, "k": 7 },
+        "usage": "Warm background. Email cards, secondary sections, product surfaces. Warm linen character.",
+        "on_color": "Névue Navy (#1B2744) or Névue Charcoal (#1A1A2E)"
+      },
+      "linen": {
+        "name": "Névue Linen",
+        "hex": "#F5EDD8",
+        "rgb": { "r": 245, "g": 237, "b": 216 },
+        "hsl": { "h": 39, "s": 56, "l": 90 },
+        "cmyk": { "c": 0, "m": 3, "y": 12, "k": 4 },
+        "usage": "Page backgrounds, email wrappers, large-area warm backgrounds. Lighter than cream.",
+        "on_color": "Névue Navy (#1B2744) or Névue Charcoal (#1A1A2E)"
+      },
+      "marble": {
+        "name": "Névue Marble",
+        "hex": "#F2EFEC",
+        "rgb": { "r": 242, "g": 239, "b": 236 },
+        "hsl": { "h": 24, "s": 14, "l": 94 },
+        "cmyk": { "c": 0, "m": 1, "y": 2, "k": 5 },
+        "usage": "Clinical/clean surfaces. Cards needing a cooler, more neutral feel. Product imagery backgrounds.",
+        "on_color": "Névue Charcoal (#1A1A2E) or Névue Navy (#1B2744)"
+      }
+    },
+    "utility": {
+      "white": {
+        "name": "Névue White",
+        "hex": "#FAFAF8",
+        "rgb": { "r": 250, "g": 250, "b": 248 },
+        "hsl": { "h": 60, "s": 17, "l": 98 },
+        "cmyk": { "c": 0, "m": 0, "y": 1, "k": 2 },
+        "usage": "Text on dark backgrounds. Icon fills. Negative space. Never use pure #FFFFFF — too cold.",
+        "on_color": "Any dark background"
+      },
+      "charcoal": {
+        "name": "Névue Charcoal",
+        "hex": "#1A1A2E",
+        "rgb": { "r": 26, "g": 26, "b": 46 },
+        "hsl": { "h": 240, "s": 28, "l": 14 },
+        "cmyk": { "c": 43, "m": 43, "y": 0, "k": 82 },
+        "usage": "Primary body text on light backgrounds. Softer than pure black, maintains warmth and depth.",
+        "on_color": "Névue Linen, Névue Cream, Névue Marble, Névue White"
+      },
+      "mist": {
+        "name": "Névue Mist",
+        "hex": "#D6CFC5",
+        "rgb": { "r": 214, "g": 207, "b": 197 },
+        "hsl": { "h": 34, "s": 14, "l": 81 },
+        "cmyk": { "c": 0, "m": 3, "y": 8, "k": 16 },
+        "usage": "Borders, dividers, disabled states, placeholder text, secondary metadata.",
+        "on_color": "Never use as background for important content — low contrast"
+      }
+    },
+    "semantic": {
+      "success": {
+        "name": "Névue Sage",
+        "hex": "#7A9E87",
+        "rgb": { "r": 122, "g": 158, "b": 135 },
+        "usage": "Success states, positive feedback. Wellness-adjacent green, not neon."
+      },
+      "warning": {
+        "name": "Névue Amber",
+        "hex": "#C4894A",
+        "rgb": { "r": 196, "g": 137, "b": 74 },
+        "usage": "Warning states, caution messaging. Stays within warm brand palette."
+      },
+      "error": {
+        "name": "Névue Rose",
+        "hex": "#B85C5C",
+        "rgb": { "r": 184, "g": 92, "b": 92 },
+        "usage": "Error states, critical alerts. Muted, not alarming red."
+      },
+      "info": {
+        "name": "Névue Steel",
+        "hex": "#4A6B8A",
+        "rgb": { "r": 74, "g": 107, "b": 138 },
+        "usage": "Informational states, neutral notifications."
+      }
+    },
+    "combinations": {
+      "premium": {
+        "name": "Premium (Primary)",
+        "background": "#1B2744",
+        "text": "#FAFAF8",
+        "accent": "#C9A96E",
+        "use_for": "Hero sections, primary CTAs, premium feature callouts, packaging"
+      },
+      "warm_editorial": {
+        "name": "Warm Editorial",
+        "background": "#F5EDD8",
+        "text": "#1B2744",
+        "accent": "#C9A96E",
+        "use_for": "Email campaigns, editorial layouts, blog posts, social content"
+      },
+      "clean_clinical": {
+        "name": "Clean Clinical",
+        "background": "#F2EFEC",
+        "text": "#1A1A2E",
+        "accent": "#C9A96E",
+        "use_for": "Product/service descriptions, clinical content, pricing pages"
+      },
+      "reversed_highlight": {
+        "name": "Reversed Highlight",
+        "background": "#EDE0CC",
+        "text": "#1B2744",
+        "accent": "#C9A96E",
+        "use_for": "Testimonials, pull quotes, feature callouts, cards"
+      }
+    }
+  },
+
+  "typography": {
+    "fonts": {
+      "display": {
+        "family": "Cormorant Garamond",
+        "fallback": "Cormorant, Georgia, 'Times New Roman', serif",
+        "google_import": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap",
+        "weights": [400, 500, 600, 700],
+        "use_for": "Display text, wordmark recreation, hero headlines, pull quotes"
+      },
+      "heading": {
+        "family": "Playfair Display",
+        "fallback": "'Playfair Display', Georgia, serif",
+        "google_import": "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap",
+        "weights": [400, 500, 700],
+        "use_for": "H1, H2, H3 headings in body content"
+      },
+      "body": {
+        "family": "Inter",
+        "fallback": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "google_import": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap",
+        "weights": [300, 400, 500, 600],
+        "use_for": "Body copy, paragraphs, descriptions, long-form content"
+      },
+      "ui": {
+        "family": "DM Sans",
+        "fallback": "'DM Sans', -apple-system, sans-serif",
+        "google_import": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap",
+        "weights": [300, 400, 500, 600],
+        "use_for": "Navigation, labels, buttons, metadata, small functional text"
+      }
+    },
+    "scale": {
+      "display_xl": { "size": "72px", "line_height": "1.1", "letter_spacing": "0.08em", "font": "Cormorant Garamond", "weight": 600 },
+      "display_lg": { "size": "56px", "line_height": "1.15", "letter_spacing": "0.08em", "font": "Cormorant Garamond", "weight": 600 },
+      "h1": { "size": "48px", "line_height": "1.2", "letter_spacing": "0.02em", "font": "Playfair Display", "weight": 700 },
+      "h2": { "size": "36px", "line_height": "1.25", "letter_spacing": "0.01em", "font": "Playfair Display", "weight": 700 },
+      "h3": { "size": "28px", "line_height": "1.3", "letter_spacing": "0.01em", "font": "Playfair Display", "weight": 500 },
+      "h4": { "size": "22px", "line_height": "1.4", "letter_spacing": "0.01em", "font": "Playfair Display", "weight": 500 },
+      "body_lg": { "size": "18px", "line_height": "1.75", "letter_spacing": "0", "font": "Inter", "weight": 400 },
+      "body": { "size": "16px", "line_height": "1.7", "letter_spacing": "0", "font": "Inter", "weight": 400 },
+      "body_sm": { "size": "14px", "line_height": "1.6", "letter_spacing": "0", "font": "Inter", "weight": 400 },
+      "label": { "size": "12px", "line_height": "1.5", "letter_spacing": "0.12em", "font": "DM Sans", "weight": 500, "transform": "uppercase" },
+      "caption": { "size": "12px", "line_height": "1.5", "letter_spacing": "0.02em", "font": "DM Sans", "weight": 400 },
+      "button": { "size": "14px", "line_height": "1", "letter_spacing": "0.1em", "font": "DM Sans", "weight": 500, "transform": "uppercase" },
+      "wordmark": { "size": "varies", "letter_spacing": "0.2em", "font": "Cormorant Garamond", "weight": 600, "transform": "uppercase" }
+    }
+  },
+
+  "spacing": {
+    "base": "8px",
+    "scale": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "40px",
+      "2xl": "64px",
+      "3xl": "96px",
+      "4xl": "128px"
+    },
+    "section_padding": {
+      "web": "80px 0",
+      "mobile": "48px 0"
+    },
+    "content_max_width": "1200px",
+    "narrow_content_width": "720px",
+    "column_gutter": {
+      "web": "24px",
+      "mobile": "16px"
+    }
+  },
+
+  "border": {
+    "radius": {
+      "none": "0px",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "note": "Prefer 0px (squared corners) for primary buttons and key UI elements — squared corners signal luxury. Use sm/md only for subtle cards."
+    },
+    "width": {
+      "hairline": "0.5px",
+      "thin": "1px",
+      "medium": "2px"
+    },
+    "color": {
+      "default": "#D6CFC5",
+      "accent": "#C9A96E",
+      "strong": "#1B2744"
+    }
+  },
+
+  "shadow": {
+    "subtle": "0 1px 3px rgba(27, 39, 68, 0.06), 0 1px 2px rgba(27, 39, 68, 0.04)",
+    "card": "0 4px 12px rgba(27, 39, 68, 0.08), 0 2px 4px rgba(27, 39, 68, 0.04)",
+    "elevated": "0 8px 32px rgba(27, 39, 68, 0.12), 0 4px 8px rgba(27, 39, 68, 0.06)",
+    "note": "All shadows use Navy base color (not pure black) for warmth. Avoid harsh drop shadows."
+  },
+
+  "components": {
+    "button_primary": {
+      "background": "#1B2744",
+      "text": "#FAFAF8",
+      "border": "none",
+      "border_radius": "0px",
+      "padding": "14px 32px",
+      "font": "DM Sans",
+      "font_size": "14px",
+      "font_weight": 500,
+      "letter_spacing": "0.1em",
+      "text_transform": "uppercase",
+      "hover_background": "#C9A96E",
+      "hover_text": "#1B2744"
+    },
+    "button_secondary": {
+      "background": "transparent",
+      "text": "#1B2744",
+      "border": "1px solid #1B2744",
+      "border_radius": "0px",
+      "padding": "14px 32px",
+      "font": "DM Sans",
+      "font_size": "14px",
+      "font_weight": 500,
+      "letter_spacing": "0.1em",
+      "text_transform": "uppercase",
+      "hover_background": "#1B2744",
+      "hover_text": "#FAFAF8"
+    },
+    "button_ghost": {
+      "background": "transparent",
+      "text": "#C9A96E",
+      "border": "1px solid #C9A96E",
+      "border_radius": "0px",
+      "padding": "14px 32px",
+      "hover_background": "#C9A96E",
+      "hover_text": "#1B2744"
+    },
+    "card": {
+      "background": "#FAFAF8",
+      "border": "1px solid #D6CFC5",
+      "border_radius": "4px",
+      "padding": "32px",
+      "shadow": "0 4px 12px rgba(27, 39, 68, 0.08)"
+    },
+    "card_premium": {
+      "background": "#1B2744",
+      "border": "1px solid #C9A96E",
+      "border_radius": "4px",
+      "padding": "32px",
+      "text_color": "#FAFAF8",
+      "accent_color": "#C9A96E"
+    },
+    "divider": {
+      "color": "#C9A96E",
+      "height": "1px",
+      "width": "48px",
+      "margin": "24px auto",
+      "note": "Short gold dividers are a signature NÉVUE design element. Use them to separate sections elegantly."
+    },
+    "badge": {
+      "background": "#C9A96E",
+      "text": "#1B2744",
+      "font": "DM Sans",
+      "font_size": "11px",
+      "font_weight": 500,
+      "letter_spacing": "0.1em",
+      "text_transform": "uppercase",
+      "padding": "4px 12px",
+      "border_radius": "0px"
+    }
+  },
+
+  "email": {
+    "wrapper_background": "#F5EDD8",
+    "content_background": "#FAFAF8",
+    "content_max_width": "600px",
+    "header_background": "#1B2744",
+    "header_padding": "40px 40px 32px",
+    "body_padding": "40px",
+    "footer_background": "#EDE0CC",
+    "footer_text_color": "#D6CFC5",
+    "body_font": "Inter, -apple-system, sans-serif",
+    "body_font_size": "16px",
+    "body_line_height": "1.7",
+    "body_color": "#1A1A2E",
+    "heading_font": "'Playfair Display', Georgia, serif",
+    "link_color": "#C9A96E",
+    "cta_background": "#1B2744",
+    "cta_text": "#FAFAF8",
+    "cta_border_radius": "0px",
+    "cta_padding": "14px 32px"
+  },
+
+  "social": {
+    "formats": {
+      "instagram_square": { "width": 1080, "height": 1080, "ratio": "1:1" },
+      "instagram_portrait": { "width": 1080, "height": 1350, "ratio": "4:5" },
+      "instagram_story": { "width": 1080, "height": 1920, "ratio": "9:16" },
+      "linkedin_landscape": { "width": 1200, "height": 628, "ratio": "1.91:1" },
+      "linkedin_square": { "width": 1080, "height": 1080, "ratio": "1:1" },
+      "pinterest": { "width": 1000, "height": 1500, "ratio": "2:3" }
+    },
+    "safe_zone_padding": "80px",
+    "logo_placement": "bottom-right or bottom-center",
+    "overlay_options": {
+      "navy_overlay": "rgba(27, 39, 68, 0.6)",
+      "cream_overlay": "rgba(245, 237, 216, 0.85)",
+      "dark_gradient": "linear-gradient(to top, rgba(27, 39, 68, 0.8) 0%, transparent 60%)"
+    }
+  },
+
+  "css_variables": {
+    "comment": "Paste this :root block at the top of any CSS file for a branded project",
+    "code": ":root {\n  /* NÉVUE Color Tokens */\n  --nevue-navy: #1B2744;\n  --nevue-gold: #C9A96E;\n  --nevue-cream: #EDE0CC;\n  --nevue-linen: #F5EDD8;\n  --nevue-marble: #F2EFEC;\n  --nevue-white: #FAFAF8;\n  --nevue-charcoal: #1A1A2E;\n  --nevue-mist: #D6CFC5;\n\n  /* NÉVUE Typography */\n  --font-display: 'Cormorant Garamond', Georgia, serif;\n  --font-heading: 'Playfair Display', Georgia, serif;\n  --font-body: 'Inter', -apple-system, sans-serif;\n  --font-ui: 'DM Sans', -apple-system, sans-serif;\n\n  /* NÉVUE Spacing */\n  --space-xs: 4px;\n  --space-sm: 8px;\n  --space-md: 16px;\n  --space-lg: 24px;\n  --space-xl: 40px;\n  --space-2xl: 64px;\n  --space-3xl: 96px;\n\n  /* NÉVUE Borders */\n  --border-gold: 1px solid #C9A96E;\n  --border-mist: 1px solid #D6CFC5;\n  --border-navy: 1px solid #1B2744;\n\n  /* NÉVUE Shadows */\n  --shadow-card: 0 4px 12px rgba(27, 39, 68, 0.08);\n  --shadow-elevated: 0 8px 32px rgba(27, 39, 68, 0.12);\n}"
+  }
+}
