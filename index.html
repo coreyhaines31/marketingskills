@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NÉVUE Bridal — Luxury mobile IV therapy concierge for brides and bridal parties in Tampa Bay. No bruises. Pure glow. Join the waitlist.">
+  <title>NÉVUE Bridal | Luxury IV Concierge — Tampa Bay</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:    '#1B2744',
+            gold:    '#C9A96E',
+            cream:   '#EDE0CC',
+            linen:   '#F5EDD8',
+            marble:  '#F2EFEC',
+            'off-white': '#FAFAF8',
+            charcoal:'#1A1A2E',
+            mist:    '#D6CFC5',
+            sage:    '#7A9E87',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Base */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #FAFAF8;
+      color: #1A1A2E;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Gold divider — signature NÉVUE element */
+    .gold-divider {
+      width: 48px;
+      height: 1px;
+      background: #C9A96E;
+      margin: 20px auto;
+    }
+
+    /* Primary button */
+    .btn-primary {
+      display: inline-block;
+      background: #1B2744;
+      color: #FAFAF8;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 36px;
+      border: 1px solid #1B2744;
+      border-radius: 0;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: #C9A96E;
+      border-color: #C9A96E;
+      color: #1B2744;
+      transform: translateY(-1px);
+    }
+
+    /* Ghost link */
+    .btn-ghost {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1B2744;
+      border-bottom: 1px solid #D6CFC5;
+      padding-bottom: 2px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .btn-ghost:hover {
+      border-color: #C9A96E;
+      color: #1A1A2E;
+    }
+
+    /* Scroll-reveal utility */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero headline animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    .hero-line-1 { animation: fadeUp 0.9s ease 0.1s both; }
+    .hero-line-2 { animation: fadeUp 0.9s ease 0.3s both; }
+    .hero-line-3 { animation: fadeUp 0.9s ease 0.5s both; }
+    .hero-line-4 { animation: fadeUp 0.9s ease 0.7s both; }
+    .hero-line-5 { animation: fadeUp 0.9s ease 0.9s both; }
+
+    /* Soft radial glow behind hero text */
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,169,110,0.09) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* Nav scroll shadow */
+    .nav-scrolled {
+      box-shadow: 0 1px 16px rgba(27,39,68,0.07);
+    }
+  </style>
+</head>
+
+<body class="bg-off-white">
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header id="site-nav" class="fixed top-0 left-0 right-0 z-50 bg-off-white/95 backdrop-blur-sm border-b border-mist/60 transition-shadow duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Wordmark -->
+      <a href="/" class="font-display text-navy" style="font-size:22px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;">
+        NÉVUE
+      </a>
+
+      <!-- Nav CTA (hidden on small screens) -->
+      <a href="#waitlist" class="btn-primary hidden sm:inline-block" style="padding:11px 28px;font-size:12px;">
+        Join the Waitlist
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center bg-linen overflow-hidden pt-16">
+
+    <!-- Soft radial background glow -->
+    <div class="hero-glow"></div>
+
+    <!-- Decorative corner accents -->
+    <div class="absolute top-24 left-8 w-px h-20 bg-gold/30 hidden lg:block"></div>
+    <div class="absolute top-24 left-8 w-20 h-px bg-gold/30 hidden lg:block"></div>
+    <div class="absolute bottom-24 right-8 w-px h-20 bg-gold/30 hidden lg:block" style="bottom:96px;right:32px;"></div>
+    <div class="absolute bottom-24 right-8 w-20 h-px bg-gold/30 hidden lg:block" style="bottom:96px;right:32px;"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+
+      <!-- Eyebrow -->
+      <p class="hero-line-1 font-body text-gold text-xs tracking-[0.22em] uppercase mb-8">
+        Tampa Bay's First Luxury Bridal IV Concierge
+      </p>
+
+      <!-- Main headline -->
+      <h1 class="hero-line-2 font-display text-navy leading-none" style="font-size:clamp(56px,10vw,104px);font-weight:600;letter-spacing:0.03em;">
+        Glow. Calm.<br>Perfect.
+      </h1>
+
+      <!-- Gold divider -->
+      <div class="hero-line-3 gold-divider my-7"></div>
+
+      <!-- Subheadline -->
+      <p class="hero-line-3 font-display text-charcoal/70" style="font-size:clamp(22px,3.5vw,34px);font-weight:400;font-style:italic;line-height:1.4;">
+        Your Wedding Day, Optimized.
+      </p>
+
+      <!-- Supporting copy -->
+      <p class="hero-line-4 font-body text-charcoal/60 mx-auto mt-6 mb-12 leading-relaxed" style="font-size:17px;max-width:520px;">
+        Premium mobile IV therapy delivered to your venue by W-2 employed nurses —
+        so you walk down that aisle hydrated, radiant, and completely yourself.
+      </p>
+
+      <!-- CTA group -->
+      <div class="hero-line-5 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#waitlist" class="btn-primary w-full sm:w-auto text-center">
+          Secure Your Date
+        </a>
+        <a href="#benefits" class="btn-ghost">
+          See How It Works
+        </a>
+      </div>
+
+      <!-- Trust bar -->
+      <div class="hero-line-5 mt-16 flex flex-wrap justify-center gap-x-10 gap-y-4">
+        <span class="flex items-center gap-2 font-body text-charcoal/45 text-xs tracking-widest uppercase">
+          <span class="text-gold">✦</span> No-Bruise Guarantee
+        </span>
+        <span class="flex items-center gap-2 font-body text-charcoal/45 text-xs tracking-widest uppercase">
+          <span class="text-gold">✦</span> W-2 Employed Nurses
+        </span>
+        <span class="flex items-center gap-2 font-body text-charcoal/45 text-xs tracking-widest uppercase">
+          <span class="text-gold">✦</span> Comes to Your Venue
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Bottom fade into next section -->
+    <div class="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+         style="background:linear-gradient(to bottom, transparent, #FAFAF8);"></div>
+  </section>
+
+
+  <!-- ============================================================
+       PLACEHOLDER — remaining sections added next
+  ============================================================ -->
+
+
+  <!-- JavaScript -->
+  <script>
+    // Nav shadow on scroll
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll-reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
