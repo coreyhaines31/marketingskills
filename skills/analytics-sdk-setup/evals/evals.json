@@ -1,0 +1,23 @@
+{
+  "skill_name": "analytics-sdk-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In our Next.js storefront repo, TikTok Pixel seems to load twice on checkout and Meta only loads once. Please fix the duplicate Pixel initialization without changing unrelated tracking code.",
+      "expected_output": "The skill should explicitly choose Mode A only if ownership, bootstrap location, and privacy blockers are already clear from the repo. It should keep the fix localized, inspect duplicate-init ownership first, and avoid broad tracking refactors.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Compare TikTok and Meta tracking in this repo and tell me where they drift. I want to understand whether event timing, ownership, and source of truth are aligned before we edit anything.",
+      "expected_output": "The skill should explicitly choose Mode B, inspect the repo before proposing edits, classify current governance state, and produce an audit or plan that covers per-platform correctness, cross-platform consistency, and ownership.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Add TikTok and Meta Purchase tracking to our checkout success flow, but I do not know whether Pixel IDs, consent gating, or CSP changes are already configured.",
+      "expected_output": "The skill should explicitly choose Mode C, ask only the minimum blocking questions, stay privacy-conservative, and avoid inventing Pixel IDs, consent rules, CSP allowlists, LDU behavior, or PII handling.",
+      "files": []
+    }
+  ]
+}
