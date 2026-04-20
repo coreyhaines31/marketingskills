@@ -1,0 +1,61 @@
+{
+  "skill_name": "tiktok-pixel-implementation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Help me implement TikTok Pixel AddToCart for our product detail page. We already have Meta Pixel tracking in the repository.",
+      "expected_output": "Should identify AddToCart as the target TikTok event. Should run the coupled workflow: Base Code audit, TikTok event audit, and Meta alignment audit. Should check whether Meta AddToCart already exists and whether its trigger point and parameters can be reused. Should provide code-level implementation guidance and prefer a maintainable patch location rather than a random UI-only click handler.",
+      "assertions": [
+        "Identifies AddToCart as the target TikTok event",
+        "Runs Base Code audit",
+        "Runs TikTok event audit",
+        "Runs Meta alignment audit",
+        "Checks whether Meta implementation can be reused",
+        "Provides code-level implementation guidance",
+        "Prefers a maintainable patch location"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We need to add TikTok Pixel Purchase tracking to our checkout success flow. Meta Purchase is already implemented.",
+      "expected_output": "Should identify Purchase as the target event. Should evaluate whether Base Code is globally valid for the checkout success flow. Should treat Meta Purchase as a migration source. Should verify timing at confirmed order completion rather than checkout button click. Should consider parameter mapping and deduplication readiness when relevant. Should provide implementation-ready guidance.",
+      "assertions": [
+        "Identifies Purchase as the target event",
+        "Checks Base Code coverage for checkout success",
+        "Uses Meta Purchase as a migration source",
+        "Validates confirmed order-success timing",
+        "Checks parameter mapping",
+        "Checks deduplication readiness when relevant",
+        "Provides implementation-ready guidance"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "There is no TikTok Pixel installed in this repo. Please give me the Base Code we should use.",
+      "expected_output": "Should trigger Base Code audit and template escalation logic. Should retrieve the canonical Base Code template rather than inventing a new snippet. Should recognize that final installable Base Code requires pixel_code. If pixel_code is not already known, it should ask for it before producing final installable Base Code. Should not present unresolved Base Code as ready-to-ship output.",
+      "assertions": [
+        "Triggers Base Code audit",
+        "Uses canonical Base Code template",
+        "Does not invent a custom Base Code snippet",
+        "Recognizes that pixel_code is required",
+        "Asks for pixel_code if it is not known",
+        "Does not present unresolved Base Code as final installable output"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Is it okay to fire AddToCart on button click before we know whether the cart request succeeds?",
+      "expected_output": "Should focus on trigger timing reasoning. Should explain that click indicates intent but may not represent confirmed cart addition. Should prefer the confirmed success point when available. Should not approve the click handler blindly just because it is easy to implement.",
+      "assertions": [
+        "Evaluates trigger timing explicitly",
+        "Distinguishes user intent from confirmed success",
+        "Prefers confirmed cart-add success when available",
+        "Does not blindly approve click timing"
+      ],
+      "files": []
+    }
+  ]
+}
