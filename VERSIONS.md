@@ -42,6 +42,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup-flow-cro | 1.2.0 | 2026-03-14 |
 | site-architecture | 1.2.0 | 2026-03-14 |
 | social-content | 1.2.0 | 2026-03-14 |
+| video | 1.0.0 | 2026-04-21 |
 
 ## Recent Changes
 

@@ -35,7 +35,7 @@ Skills reference each other and build on shared context. The `product-marketing-
 │site-arch │ │onboard   │ │cold-email│ │ab-test     │ │churn-    │ │launch       │ │customer-  │
 │programm  │ │form-cro  │ │email-seq │ │analytics   │ │ prevent  │ │pricing      │ │ research  │
 │schema    │ │popup-cro │ │social    │ │            │ │community │ │comp-alts    │ │           │
-│content   │ │paywall   │ │          │ │            │ │lead-magnt│ │comp-profile │ │           │
+│content   │ │paywall   │ │video     │ │            │ │lead-magnt│ │comp-profile │ │           │
 │aso-audit │ │          │ │          │ │            │ │          │ │directory    │ │           │
 └────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬──────┘ └────┬─────┘ └──────┬──────┘ └─────┬─────┘
      │            │            │              │             │              │              │
@@ -93,6 +93,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [signup-flow-cro](skills/signup-flow-cro/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
 | [site-architecture](skills/site-architecture/) | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal... |
 | [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
+| [video](skills/video/) | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Covers Remotion, Hyperframes, HeyGen, Veo, Runway, Kling... |
 <!-- SKILLS:END -->
 
 ## Installation

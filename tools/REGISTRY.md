@@ -80,6 +80,8 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
+| heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
+| hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
 | trustpilot | Reviews | ✓ | - | [✓](clis/trustpilot.js) | - | [trustpilot.md](integrations/trustpilot.md) |
 | g2 | Reviews | ✓ | - | [✓](clis/g2.js) | - | [g2.md](integrations/g2.md) |
 | onesignal | Push | ✓ | - | [✓](clis/onesignal.js) | ✓ | [onesignal.md](integrations/onesignal.md) |
@@ -260,13 +262,15 @@ Social media scheduling, management, and analytics.
 
 ### Video
 
-Video hosting, analytics, and engagement.
+Video hosting, creation, and AI generation.
 
 | Tool | Best For | Notes |
 |------|----------|-------|
-| **wistia** | Video hosting, marketing analytics | Best for marketing video |
+| **wistia** | Video hosting, marketing analytics | Best for marketing video hosting |
+| **heygen** | AI avatars, talking-head videos | MCP server available |
+| **hyperframes** | Programmatic video from HTML/CSS | Open source, agent-native |
 
-**Agent recommendation**: Wistia for marketing video hosting with analytics.
+**Agent recommendation**: HeyGen for AI avatar videos (MCP-enabled). Hyperframes for templated, data-driven video from code. Wistia for hosting and analytics.
 
 ### Data Enrichment
 

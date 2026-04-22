@@ -14,8 +14,8 @@ node_modules/
 * 2.*
 * 2/
 
-# Remotion video project
-video/
+# Remotion video project (root only, not skills/video/)
+/video/
 
 # Editor
 *.swp
