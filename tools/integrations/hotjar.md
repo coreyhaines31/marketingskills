@@ -1,25 +1,25 @@
 # Hotjar
 
-Behavior analytics platform with heatmaps, session recordings, and surveys for understanding user experience.
+Plataforma de analytics comportamental com heatmaps, gravações de sessão e pesquisas para entender a experiência do usuário.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | Surveys, Responses, Sites, Heatmaps, Recordings |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [hotjar.js](../clis/hotjar.js) |
-| SDK | ✓ | JavaScript tracking snippet, Identify API, Events API |
+| SDK | ✓ | Snippet de tracking JavaScript, Identify API, Events API |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0 Client Credentials
+- **Tipo**: OAuth 2.0 Client Credentials
 - **Token endpoint**: `POST https://api.hotjar.io/v1/oauth/token`
 - **Header**: `Authorization: Bearer {access_token}`
 - **Get credentials**: Hotjar Dashboard > Integrations > API
-- **Token expiry**: 3600 seconds (1 hour)
+- **Token expiry**: 3600 segundos (1 hora)
 
-### Token Request
+### Requisição de token
 
 ```bash
 POST https://api.hotjar.io/v1/oauth/token
@@ -28,7 +28,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}
 ```
 
-### Token Response
+### Resposta do token
 
 ```json
 {
@@ -38,9 +38,9 @@ grant_type=client_credentials&client_id={client_id}&client_secret={client_secret
 }
 ```
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### List Sites
+### Listar Sites
 
 ```bash
 GET https://api.hotjar.io/v1/sites
@@ -48,7 +48,7 @@ GET https://api.hotjar.io/v1/sites
 Authorization: Bearer {access_token}
 ```
 
-### List Surveys
+### Listar Surveys
 
 ```bash
 GET https://api.hotjar.io/v1/sites/{site_id}/surveys
@@ -56,7 +56,7 @@ GET https://api.hotjar.io/v1/sites/{site_id}/surveys
 Authorization: Bearer {access_token}
 ```
 
-### Get Survey Responses
+### Buscar respostas de Survey
 
 ```bash
 GET https://api.hotjar.io/v1/sites/{site_id}/surveys/{survey_id}/responses?limit=100
@@ -64,9 +64,9 @@ GET https://api.hotjar.io/v1/sites/{site_id}/surveys/{survey_id}/responses?limit
 Authorization: Bearer {access_token}
 ```
 
-Supports cursor-based pagination with `cursor` and `limit` parameters.
+Suporta paginação baseada em cursor com os parâmetros `cursor` e `limit`.
 
-### List Heatmaps
+### Listar Heatmaps
 
 ```bash
 GET https://api.hotjar.io/v1/sites/{site_id}/heatmaps
@@ -74,7 +74,7 @@ GET https://api.hotjar.io/v1/sites/{site_id}/heatmaps
 Authorization: Bearer {access_token}
 ```
 
-### List Recordings
+### Listar Recordings
 
 ```bash
 GET https://api.hotjar.io/v1/sites/{site_id}/recordings
@@ -82,7 +82,7 @@ GET https://api.hotjar.io/v1/sites/{site_id}/recordings
 Authorization: Bearer {access_token}
 ```
 
-### List Forms
+### Listar Forms
 
 ```bash
 GET https://api.hotjar.io/v1/sites/{site_id}/forms
@@ -90,55 +90,55 @@ GET https://api.hotjar.io/v1/sites/{site_id}/forms
 Authorization: Bearer {access_token}
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Survey Response Data
-- `response_id` - Unique response identifier
-- `answers` - Array of question/answer pairs
-- `created_at` - Response timestamp
+### Dados de resposta de Survey
+- `response_id` - Identificador único da resposta
+- `answers` - Array de pares pergunta/resposta
+- `created_at` - Timestamp da resposta
 - `device_type` - Desktop, mobile, tablet
 
-### Heatmap Data
-- `url` - Page URL
-- `click_count` - Total clicks tracked
-- `visitors` - Unique visitors
-- `created_at` - Heatmap creation date
+### Dados de Heatmap
+- `url` - URL da página
+- `click_count` - Total de cliques rastreados
+- `visitors` - Visitantes únicos
+- `created_at` - Data de criação do heatmap
 
-### Recording Data
-- `recording_id` - Unique recording ID
-- `duration` - Session duration
-- `pages_visited` - Pages in session
-- `device` - Device information
+### Dados de Recording
+- `recording_id` - ID único da gravação
+- `duration` - Duração da sessão
+- `pages_visited` - Páginas na sessão
+- `device` - Informações do dispositivo
 
-## Parameters
+## Parâmetros
 
-### Survey Responses
-- `limit` - Results per page (default: 100)
-- `cursor` - Pagination cursor from previous response
-- `sort` - Sort order (default: created_at desc)
+### Respostas de Survey
+- `limit` - Resultados por página (padrão: 100)
+- `cursor` - Cursor de paginação da resposta anterior
+- `sort` - Ordenação (padrão: created_at desc)
 
 ### Recordings
-- `limit` - Results per page
-- `cursor` - Pagination cursor
-- `date_from` - Start date filter
-- `date_to` - End date filter
+- `limit` - Resultados por página
+- `cursor` - Cursor de paginação
+- `date_from` - Filtro de data inicial
+- `date_to` - Filtro de data final
 
-## When to Use
+## Quando usar
 
-- Analyzing user behavior patterns on landing pages
-- Collecting qualitative feedback via on-site surveys
-- Identifying UX issues through session recordings
-- Understanding scroll depth and engagement via heatmaps
-- Validating CRO hypotheses with user behavior data
-- Form abandonment analysis
+- Analisar padrões de comportamento de usuários em landing pages
+- Coletar feedback qualitativo com surveys no site
+- Identificar problemas de UX por meio de gravações de sessão
+- Entender profundidade de rolagem e engajamento com heatmaps
+- Validar hipóteses de CRO com dados de comportamento do usuário
+- Analisar abandono de formulários
 
-## Rate Limits
+## Limites de taxa
 
-- 3000 requests/minute (50 per second)
-- Rate limited by source IP address
-- Cursor-based pagination for large result sets
+- 3000 requisições/minuto (50 por segundo)
+- Limite de taxa por endereço IP de origem
+- Paginação por cursor para grandes conjuntos de resultados
 
-## Relevant Skills
+## Habilidades relevantes
 
 - page-cro
 - ab-test-setup

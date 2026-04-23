@@ -1,36 +1,36 @@
 # Introw PRM
 
-Partner Relationship Management platform for managing channel partners, tracking partner-sourced deals, commissions, tasks, and engagement — with built-in business review generation.
+Plataforma de Partner Relationship Management para gerenciar parceiros de canal, rastrear deals originados por parceiros, comissões, tarefas e engajamento — com geração de business review embutida.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | - | Not available |
-| MCP | ✓ | Full read/write via Claude connector |
-| CLI | - | Not available |
-| SDK | - | Not available |
+| API | - | Não disponível |
+| MCP | ✓ | Leitura/escrita completa via conector do Claude |
+| CLI | - | Não disponível |
+| SDK | - | Não disponível |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth2 (via MCP connector)
-- **Setup**: Connect via Claude MCP connector — no API key management needed
-- **Scope**: All data is scoped to the authenticated organisation
+- **Tipo**: OAuth2 (via MCP connector)
+- **Configuração**: Conecte via Claude MCP connector — não é necessário gerenciar API key
+- **Scope**: Todos os dados são limitados à organização autenticada
 
-## Common Agent Operations
+## Operações comuns de agent
 
-All operations are performed via MCP tools. The following are the primary tool calls available.
+Todas as operações são realizadas via ferramentas MCP. A seguir estão as principais chamadas disponíveis.
 
-### Search Partners
+### Pesquisar parceiros
 
 ```
 search_partners
   dateRange: { field: "CREATED_AT" | "LAST_ACTIVITY_AT", from: "YYYY-MM-DD", to: "YYYY-MM-DD" }
 ```
 
-Returns: partner name/ID, contact info, tier, lifecycle stage, categories, country, last activity date.
+Retorna: nome/ID do parceiro, informações de contato, tier, estágio de lifecycle, categorias, país, data da última atividade.
 
-### Search CRM Objects (Deals, Tickets, Leads, Companies, Contacts)
+### Pesquisar objetos de CRM (Deals, Tickets, Leads, Companies, Contacts)
 
 ```
 search_crm_objects
@@ -42,9 +42,9 @@ search_crm_objects
   limit: 10
 ```
 
-Synonym mapping: Opportunity/Forecast → `DEAL`, Account → `COMPANY`, Case → `TICKET`.
+Mapeamento de sinônimos: Opportunity/Forecast → `DEAL`, Account → `COMPANY`, Case → `TICKET`.
 
-### Search Tasks
+### Pesquisar tarefas
 
 ```
 search_tasks
@@ -52,16 +52,16 @@ search_tasks
   partnerId: "{partner_id}"
 ```
 
-### Search Commissions
+### Pesquisar comissões
 
 ```
 search_commissions
   partnerId: "{partner_id}"
 ```
 
-Returns: commission amounts, currency, payment status, associated partner and deals.
+Retorna: valores de comissão, moeda, status de pagamento, parceiro e deals associados.
 
-### Generate Business Review (QBR/MBR/WBR)
+### Gerar Business Review (QBR/MBR/WBR)
 
 ```
 generate_business_review
@@ -69,9 +69,9 @@ generate_business_review
   partnerId: "{partner_id}"
 ```
 
-Returns: pipeline & forecast analysis, form submissions overview, mutual action plan, goal tracking, timed agenda and next steps.
+Retorna: análise de pipeline e forecast, visão geral de envios de formulário, plano de ação mútuo, acompanhamento de metas, agenda com tempo e próximos passos.
 
-### Search Partner Engagement
+### Pesquisar engajamento de parceiros
 
 ```
 search_partner_engagement
@@ -80,9 +80,9 @@ search_partner_engagement
   dateRange: { from: "YYYY-MM-DD", to: "YYYY-MM-DD" }
 ```
 
-Returns: comments, deal updates, asset views, task events, portal visits, form submissions, announcements, quotes.
+Retorna: comentários, atualizações de deals, visualizações de assets, eventos de tarefas, visitas ao portal, envios de formulário, anúncios e cotações.
 
-### Add Comment to Deal/Object
+### Adicionar comentário a Deal/Object
 
 ```
 add_comment
@@ -91,7 +91,7 @@ add_comment
   objectType: "DEAL" | "TICKET" | "LEAD" | "COMPANY" | "CONTACT"
 ```
 
-### Create or Update Tasks
+### Criar ou atualizar tarefas
 
 ```
 add_task
@@ -105,7 +105,7 @@ update_task
   status: "TODO" | "IN_PROGRESS" | "DONE"
 ```
 
-### Update CRM Object Properties
+### Atualizar propriedades de objeto de CRM
 
 ```
 update_crm_object
@@ -114,11 +114,11 @@ update_crm_object
   propertiesToUpdate: { "amount": 50000, "stage": "Negotiation" }
 ```
 
-### Share Lead or Register Deal
+### Compartilhar lead ou registrar deal
 
-Two-step flow:
-1. **Discovery**: provide `objectType` and `callToAction` to get form fields
-2. **Submit**: provide `formId` and `userProvidedData` to submit
+Fluxo em duas etapas:
+1. **Discovery**: forneça `objectType` e `callToAction` para obter campos do formulário
+2. **Submit**: forneça `formId` e `userProvidedData` para enviar
 
 ```
 share_lead_or_register_deal
@@ -127,54 +127,54 @@ share_lead_or_register_deal
   partnerId: "{partner_id}"
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Partner Data
-- `id` - Partner ID
-- `name` - Partner company name
-- `championEmail` - Primary contact email
-- `tier` - Current tier level
-- `lifecycleStage` - Partner lifecycle stage
-- `categories` - Partner categories
-- `country` - Partner country
-- `lastActivityAt` - Last activity date
+### Dados de parceiro
+- `id` - ID do parceiro
+- `name` - Nome da empresa parceira
+- `championEmail` - Email do contato principal
+- `tier` - Nível de tier atual
+- `lifecycleStage` - Estágio de lifecycle do parceiro
+- `categories` - Categorias do parceiro
+- `country` - País do parceiro
+- `lastActivityAt` - Data da última atividade
 
-### CRM Object Data
-- `objectId` - External CRM ID
+### Dados de objeto de CRM
+- `objectId` - ID externo no CRM
 - `objectType` - DEAL, TICKET, LEAD, COMPANY, CONTACT
 - `stage` - OPEN, WON, LOST
-- `amount` - Deal amount
-- `closeDate` - Expected close date
+- `amount` - Valor do deal
+- `closeDate` - Data prevista de fechamento
 
-### Commission Data
-- `amount` - Commission amount
-- `currency` - Payment currency
-- `paymentStatus` - Current payment status
-- `partnerId` - Associated partner
-- `dealId` - Associated deal
+### Dados de comissão
+- `amount` - Valor da comissão
+- `currency` - Moeda de pagamento
+- `paymentStatus` - Status atual do pagamento
+- `partnerId` - Parceiro associado
+- `dealId` - Deal associado
 
-### Engagement Data
-- `type` - Activity type (ROOM_VISIT, COMMENT, FORM_SUBMIT, etc.)
-- `partnerId` - Partner involved
-- `crmObjectId` - Related CRM object
-- `createdAt` - Activity timestamp
+### Dados de engajamento
+- `type` - Tipo de atividade (ROOM_VISIT, COMMENT, FORM_SUBMIT etc.)
+- `partnerId` - Parceiro envolvido
+- `crmObjectId` - Objeto de CRM relacionado
+- `createdAt` - Timestamp da atividade
 
-## When to Use
+## Quando usar
 
-- Managing channel partner relationships and tracking partner activity
-- Reviewing partner-sourced pipeline (deals, leads, opportunities)
-- Preparing QBR/MBR/WBR meetings with automated business review generation
-- Tracking partner commissions and payouts
-- Managing mutual action plans via tasks assigned to partners or internal teams
-- Processing deal registrations and lead sharing from partners
-- Monitoring partner portal engagement and content asset views
+- Gerenciar relacionamento com parceiros de canal e rastrear atividade dos parceiros
+- Revisar pipeline originado por parceiros (deals, leads, opportunities)
+- Preparar reuniões QBR/MBR/WBR com geração automatizada de business review
+- Acompanhar comissões e pagamentos de parceiros
+- Gerenciar planos de ação mútuos via tarefas atribuídas a parceiros ou times internos
+- Processar registros de deals e compartilhamento de leads de parceiros
+- Monitorar engajamento no portal de parceiros e visualizações de assets de conteúdo
 
-## Rate Limits
+## Limites de taxa
 
-- Rate limits managed by the MCP connector
-- All data scoped to authenticated organisation
+- Limites de taxa gerenciados pelo MCP connector
+- Todos os dados limitados à organização autenticada
 
-## Relevant Skills
+## Habilidades relevantes
 
 - revops
 - sales-enablement

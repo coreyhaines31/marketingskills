@@ -1,26 +1,26 @@
 # Keywords Everywhere
 
-Keyword research API for search volume, CPC, competition, related keywords, and traffic data.
+API de pesquisa de palavras-chave para volume de busca, CPC, concorrência, keywords relacionadas e dados de tráfego.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for keyword data, related keywords, traffic |
-| MCP | - | Community MCP server available |
+| API | ✓ | REST API para dados de keywords, keywords relacionadas e tráfego |
+| MCP | - | MCP server da comunidade disponível |
 | CLI | ✓ | [keywords-everywhere.js](../clis/keywords-everywhere.js) |
-| SDK | - | API-only |
+| SDK | - | somente API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key (Bearer token)
+- **Tipo**: API Key (Bearer token)
 - **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: https://keywordseverywhere.com/first-install-addon.html
-- **Limit**: 100 keywords per request
+- **Obter chave**: https://keywordseverywhere.com/first-install-addon.html
+- **Limit**: 100 keywords por requisição
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Get keyword data (volume, CPC, competition)
+### Buscar dados de keyword (volume, CPC, concorrência)
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_keyword_data
@@ -35,7 +35,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get related keywords
+### Buscar keywords relacionadas
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_related_keywords
@@ -50,7 +50,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get "People Also Search For" keywords
+### Buscar keywords de "People Also Search For"
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_pasf_keywords
@@ -65,7 +65,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get domain keywords (what a domain ranks for)
+### Buscar keywords de domínio (para quais keywords um domínio ranqueia)
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_domain_keywords
@@ -79,7 +79,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get URL keywords (what a specific URL ranks for)
+### Buscar keywords de URL (para quais keywords uma URL específica ranqueia)
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_url_keywords
@@ -93,7 +93,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get domain traffic
+### Buscar tráfego de domínio
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_domain_traffic
@@ -106,7 +106,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get URL traffic
+### Buscar tráfego de URL
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_url_traffic
@@ -119,7 +119,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get domain backlinks
+### Buscar backlinks de domínio
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_domain_backlinks
@@ -131,7 +131,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Get page backlinks
+### Buscar backlinks de página
 
 ```bash
 POST https://api.keywordseverywhere.com/v1/get_page_backlinks
@@ -143,7 +143,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Check credits
+### Verificar créditos
 
 ```bash
 GET https://api.keywordseverywhere.com/v1/get_credits
@@ -151,7 +151,7 @@ GET https://api.keywordseverywhere.com/v1/get_credits
 Authorization: Bearer {api_key}
 ```
 
-### Get supported countries
+### Buscar países suportados
 
 ```bash
 GET https://api.keywordseverywhere.com/v1/get_countries
@@ -159,7 +159,7 @@ GET https://api.keywordseverywhere.com/v1/get_countries
 Authorization: Bearer {api_key}
 ```
 
-### Get supported currencies
+### Buscar moedas suportadas
 
 ```bash
 GET https://api.keywordseverywhere.com/v1/get_currencies
@@ -167,39 +167,39 @@ GET https://api.keywordseverywhere.com/v1/get_currencies
 Authorization: Bearer {api_key}
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Keyword Data
-- `vol` - Monthly search volume
-- `cpc.value` - Cost per click
-- `competition` - Competition score
-- `trend` - 12-month trend data
+### Dados de keyword
+- `vol` - Volume de busca mensal
+- `cpc.value` - Custo por clique
+- `competition` - Score de concorrência
+- `trend` - Dados de tendência de 12 meses
 
-### Traffic Data
-- `estimated_traffic` - Estimated monthly traffic
-- `keywords_count` - Number of ranking keywords
+### Dados de tráfego
+- `estimated_traffic` - Tráfego mensal estimado
+- `keywords_count` - Número de keywords ranqueadas
 
-## Parameters
+## Parâmetros
 
-- `country` - Country code (us, uk, de, fr, etc.)
-- `currency` - Currency code (USD, GBP, EUR, etc.)
-- `dataSource` - Data source, default `gkp` (Google Keyword Planner)
-- `kw` - Array of keywords (max 100 per request)
+- `country` - Código do país (us, uk, de, fr etc.)
+- `currency` - Código da moeda (USD, GBP, EUR etc.)
+- `dataSource` - Fonte de dados, padrão `gkp` (Google Keyword Planner)
+- `kw` - Array de keywords (máx. 100 por requisição)
 
-## When to Use
+## Quando usar
 
-- Quick keyword research with volume and CPC
-- Finding related keywords and PASF suggestions
-- Analyzing domain/URL keyword rankings
-- Traffic estimation for domains and pages
-- Backlink discovery
+- Pesquisa rápida de keywords com volume e CPC
+- Encontrar keywords relacionadas e sugestões de PASF
+- Analisar rankings de keywords por domínio/URL
+- Estimar tráfego para domínios e páginas
+- Descobrir backlinks
 
-## Rate Limits
+## Limites de taxa
 
-- 100 keywords per request
-- Credit-based pricing (1 credit per keyword)
+- 100 keywords por requisição
+- Preço baseado em créditos (1 crédito por keyword)
 
-## Relevant Skills
+## Habilidades relevantes
 
 - seo-audit
 - content-strategy

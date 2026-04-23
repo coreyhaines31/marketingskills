@@ -1,25 +1,25 @@
 # LinkedIn Ads
 
-B2B advertising platform with professional targeting.
+Plataforma de publicidade B2B com segmentação profissional.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Marketing API for campaigns, audiences, analytics |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | - | API-only (community libraries available) |
+| API | ✓ | Marketing API para campaigns, audiences e analytics |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | - | somente API (bibliotecas da comunidade disponíveis) |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0
+- **Tipo**: OAuth 2.0
 - **Header**: `Authorization: Bearer {access_token}`
 - **Scopes**: `r_ads`, `r_ads_reporting`, `rw_ads`
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Get ad accounts
+### Buscar contas de anúncio
 
 ```bash
 GET https://api.linkedin.com/v2/adAccountsV2?q=search
@@ -27,7 +27,7 @@ GET https://api.linkedin.com/v2/adAccountsV2?q=search
 Authorization: Bearer {access_token}
 ```
 
-### Get campaigns
+### Buscar campanhas
 
 ```bash
 GET https://api.linkedin.com/v2/adCampaignsV2?q=search&search.account.values[0]=urn:li:sponsoredAccount:{account_id}
@@ -35,7 +35,7 @@ GET https://api.linkedin.com/v2/adCampaignsV2?q=search&search.account.values[0]=
 Authorization: Bearer {access_token}
 ```
 
-### Get campaign analytics
+### Buscar analytics de campanha
 
 ```bash
 GET https://api.linkedin.com/v2/adAnalyticsV2?q=analytics&pivot=CAMPAIGN&dateRange.start.year=2024&dateRange.start.month=1&dateRange.start.day=1&dateRange.end.year=2024&dateRange.end.month=1&dateRange.end.day=31&campaigns=urn:li:sponsoredCampaign:{campaign_id}&fields=impressions,clicks,costInLocalCurrency,conversions
@@ -43,7 +43,7 @@ GET https://api.linkedin.com/v2/adAnalyticsV2?q=analytics&pivot=CAMPAIGN&dateRan
 Authorization: Bearer {access_token}
 ```
 
-### Create campaign
+### Criar campanha
 
 ```bash
 POST https://api.linkedin.com/v2/adCampaignsV2
@@ -67,7 +67,7 @@ Authorization: Bearer {access_token}
 }
 ```
 
-### Update campaign status
+### Atualizar status da campanha
 
 ```bash
 POST https://api.linkedin.com/v2/adCampaignsV2/{campaign_id}
@@ -83,7 +83,7 @@ Authorization: Bearer {access_token}
 }
 ```
 
-### Get creatives
+### Buscar creatives
 
 ```bash
 GET https://api.linkedin.com/v2/adCreativesV2?q=search&search.campaign.values[0]=urn:li:sponsoredCampaign:{campaign_id}
@@ -91,7 +91,7 @@ GET https://api.linkedin.com/v2/adCreativesV2?q=search&search.campaign.values[0]
 Authorization: Bearer {access_token}
 ```
 
-### Get audience counts
+### Buscar contagem de audiência
 
 ```bash
 POST https://api.linkedin.com/v2/audienceCountsV2
@@ -109,56 +109,56 @@ POST https://api.linkedin.com/v2/audienceCountsV2
 }
 ```
 
-## Key Metrics
+## Métricas principais
 
-| Metric | Description |
-|--------|-------------|
-| `impressions` | Ad impressions |
-| `clicks` | Total clicks |
-| `costInLocalCurrency` | Spend |
-| `conversions` | Conversion count |
-| `leadGenerationMailContactInfoShares` | Lead form submissions |
+| Métrica | Descrição |
+|---------|-----------|
+| `impressions` | Impressões de anúncios |
+| `clicks` | Total de cliques |
+| `costInLocalCurrency` | Gasto |
+| `conversions` | Total de conversões |
+| `leadGenerationMailContactInfoShares` | Envios de formulário de lead |
 
-## Campaign Types
+## Tipos de campanha
 
-- `SPONSORED_UPDATES` - Sponsored content
-- `TEXT_AD` - Text ads
-- `SPONSORED_INMAILS` - Message ads
-- `DYNAMIC` - Dynamic ads
+- `SPONSORED_UPDATES` - Conteúdo patrocinado
+- `TEXT_AD` - Anúncios de texto
+- `SPONSORED_INMAILS` - Anúncios de mensagem
+- `DYNAMIC` - Anúncios dinâmicos
 
-## Targeting Options
+## Opções de segmentação
 
-### Job-Based
-- Job titles
-- Job functions
-- Seniority levels
-- Years of experience
+### Baseadas em cargo
+- Cargos
+- Funções de trabalho
+- Níveis de senioridade
+- Anos de experiência
 
-### Company-Based
-- Company names
-- Industries
-- Company size
-- Company followers
+### Baseadas em empresa
+- Nomes de empresas
+- Setores
+- Tamanho da empresa
+- Seguidores da empresa
 
-### Professional
-- Skills
+### Profissional
+- Habilidades
 - Groups
 - Schools
 - Degrees
 
-## When to Use
+## Quando usar
 
-- B2B advertising
-- Job title targeting
+- Publicidade B2B
+- Segmentação por cargo
 - Account-based marketing
-- Lead generation campaigns
+- Campanhas de geração de leads
 
-## Rate Limits
+## Limites de taxa
 
-- 100 requests/day (basic)
-- 10,000 requests/day (Marketing Developer Platform)
+- 100 requisições/dia (básico)
+- 10.000 requisições/dia (Marketing Developer Platform)
 
-## Relevant Skills
+## Habilidades relevantes
 
 - paid-ads
 - analytics-tracking

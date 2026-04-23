@@ -1,28 +1,28 @@
 # Livestorm
 
-Video engagement platform for webinars, virtual events, and online meetings with built-in analytics and integrations.
+Plataforma de engajamento em vídeo para webinars, eventos virtuais e reuniões online com analytics e integrações embutidos.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | Events, Sessions, People, Recordings, Webhooks |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [livestorm.js](../clis/livestorm.js) |
-| SDK | - | REST API with JSON:API format |
+| SDK | - | REST API com formato JSON:API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Token
+- **Tipo**: API Token
 - **Header**: `Authorization: {API_TOKEN}` (no prefix)
 - **Content-Type**: `application/vnd.api+json` (JSON:API)
 - **Scopes**: Identity, Events, Admin, Webhooks
-- **Get token**: Account Settings > Integrations > Public API
+- **Obter token**: Account Settings > Integrations > Public API
 - **Docs**: https://developers.livestorm.co/
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Ping (test authentication)
+### Ping (testar autenticação)
 
 ```bash
 GET https://api.livestorm.co/v1/ping
@@ -32,7 +32,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### List events
+### Listar events
 
 ```bash
 GET https://api.livestorm.co/v1/events?page[number]=1&page[size]=25
@@ -42,7 +42,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### Create an event
+### Criar um event
 
 ```bash
 POST https://api.livestorm.co/v1/events
@@ -63,7 +63,7 @@ Headers:
 }
 ```
 
-### Get event details
+### Buscar detalhes do event
 
 ```bash
 GET https://api.livestorm.co/v1/events/{event_id}
@@ -73,7 +73,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### Update an event
+### Atualizar um event
 
 ```bash
 PATCH https://api.livestorm.co/v1/events/{event_id}
@@ -93,7 +93,7 @@ Headers:
 }
 ```
 
-### List sessions
+### Listar sessions
 
 ```bash
 GET https://api.livestorm.co/v1/sessions?page[number]=1&page[size]=25
@@ -103,7 +103,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### Create a session for an event
+### Criar uma session para um event
 
 ```bash
 POST https://api.livestorm.co/v1/events/{event_id}/sessions
@@ -123,7 +123,7 @@ Headers:
 }
 ```
 
-### Register someone for a session
+### Registrar alguém em uma session
 
 ```bash
 POST https://api.livestorm.co/v1/sessions/{session_id}/people
@@ -146,7 +146,7 @@ Headers:
 }
 ```
 
-### List session participants
+### Listar participantes da session
 
 ```bash
 GET https://api.livestorm.co/v1/sessions/{session_id}/people?page[number]=1&page[size]=25
@@ -156,7 +156,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### Remove a registrant from session
+### Remover um inscrito da session
 
 ```bash
 DELETE https://api.livestorm.co/v1/sessions/{session_id}/people?filter[email]=attendee@example.com
@@ -165,7 +165,7 @@ Headers:
   Authorization: {API_TOKEN}
 ```
 
-### List session chat messages
+### Listar mensagens de chat da session
 
 ```bash
 GET https://api.livestorm.co/v1/sessions/{session_id}/chat-messages
@@ -175,7 +175,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### List session questions
+### Listar perguntas da session
 
 ```bash
 GET https://api.livestorm.co/v1/sessions/{session_id}/questions
@@ -185,7 +185,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### Get session recordings
+### Buscar recordings da session
 
 ```bash
 GET https://api.livestorm.co/v1/sessions/{session_id}/recordings
@@ -195,7 +195,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### List all people
+### Listar todas as people
 
 ```bash
 GET https://api.livestorm.co/v1/people?page[number]=1&page[size]=25
@@ -205,7 +205,7 @@ Headers:
   Accept: application/vnd.api+json
 ```
 
-### Create a webhook
+### Criar um webhook
 
 ```bash
 POST https://api.livestorm.co/v1/webhooks
@@ -225,85 +225,85 @@ Headers:
 }
 ```
 
-## API Pattern
+## Padrão da API
 
-Livestorm follows the JSON:API specification:
-- All responses use `data`, `attributes`, `relationships` structure
-- Pagination: `page[number]` and `page[size]` query parameters
-- Filtering: `filter[field]=value` query parameters
-- Events contain multiple Sessions; Sessions contain People
-- ISO 8601 timestamps throughout
+O Livestorm segue a especificação JSON:API:
+- Todas as respostas usam a estrutura `data`, `attributes`, `relationships`
+- Paginação: parâmetros de query `page[number]` e `page[size]`
+- Filtros: parâmetros de query `filter[field]=value`
+- Events contêm múltiplas Sessions; Sessions contêm People
+- Timestamps ISO 8601 em toda a API
 
-## Key Metrics
+## Métricas principais
 
-### Event Metrics
-- `title` - Event title
-- `slug` - URL-friendly identifier
-- `estimated_duration` - Duration in minutes
-- `registration_page_enabled` - Registration page status
-- `everyone_can_speak` - Whether all attendees can speak
+### Métricas de event
+- `title` - Título do event
+- `slug` - Identificador amigável para URL
+- `estimated_duration` - Duração em minutos
+- `registration_page_enabled` - Status da página de inscrição
+- `everyone_can_speak` - Se todos os participantes podem falar
 
-### Session Metrics
-- `status` - Session status (upcoming, live, past)
-- `estimated_started_at` - Scheduled start time
-- `started_at` - Actual start time
-- `ended_at` - Actual end time
-- `timezone` - Session timezone
-- `attendees_count` - Number of attendees
-- `registrants_count` - Number of registrants
+### Métricas de session
+- `status` - Status da session (upcoming, live, past)
+- `estimated_started_at` - Horário de início programado
+- `started_at` - Horário real de início
+- `ended_at` - Horário real de término
+- `timezone` - Fuso horário da session
+- `attendees_count` - Número de participantes
+- `registrants_count` - Número de inscritos
 
-### People Metrics
-- `email` - Contact email
-- `first_name` / `last_name` - Contact name
-- `registrant_detail` - Registration metadata
-- `attendance_rate` - Attendance percentage
-- `attended_at` - Join timestamp
-- `left_at` - Leave timestamp
+### Métricas de people
+- `email` - Email de contato
+- `first_name` / `last_name` - Nome do contato
+- `registrant_detail` - Metadados de inscrição
+- `attendance_rate` - Percentual de presença
+- `attended_at` - Timestamp de entrada
+- `left_at` - Timestamp de saída
 
-## Parameters
+## Parâmetros
 
-### Pagination
-- `page[number]` - Page number (default: 1)
-- `page[size]` - Items per page (default: 25)
+### Paginação
+- `page[number]` - Número da página (padrão: 1)
+- `page[size]` - Itens por página (padrão: 25)
 
-### Event Attributes
-- `title` - Event title (required for create)
+### Atributos de event
+- `title` - Título do event (obrigatório para criação)
 - `slug` - URL slug
-- `description` - Event description
-- `estimated_duration` - Duration in minutes
+- `description` - Descrição do event
+- `estimated_duration` - Duração em minutos
 
-### Session Attributes
-- `estimated_started_at` - ISO 8601 start time
-- `timezone` - IANA timezone string
+### Atributos de session
+- `estimated_started_at` - Horário de início ISO 8601
+- `timezone` - String de timezone IANA
 
-### Registration Fields
-- `email` - Registrant email (required)
-- `first_name` - First name
-- `last_name` - Last name
+### Campos de inscrição
+- `email` - Email do inscrito (obrigatório)
+- `first_name` - Nome
+- `last_name` - Sobrenome
 
-### Webhook Events
-- `attendance` - Triggered on session attendance
-- `registration` - Triggered on new registration
-- `unregistration` - Triggered on unregistration
+### Eventos de webhook
+- `attendance` - Disparado na presença da session
+- `registration` - Disparado em nova inscrição
+- `unregistration` - Disparado no cancelamento da inscrição
 
-## When to Use
+## Quando usar
 
-- Hosting product demos and marketing webinars
-- Automated webinar registration and attendee management
-- Tracking webinar engagement and attendance rates
-- Retrieving session recordings for content repurposing
-- Building custom registration pages with API-driven registration
-- Syncing webinar data with CRM and marketing automation
-- Monitoring session Q&A and chat for follow-up
+- Realizar product demos e webinars de marketing
+- Automatizar inscrição em webinars e gestão de participantes
+- Acompanhar engajamento e taxas de presença em webinars
+- Buscar gravações de session para reaproveitamento de conteúdo
+- Construir páginas de inscrição customizadas com registro via API
+- Sincronizar dados de webinars com CRM e automação de marketing
+- Monitorar Q&A e chat da session para follow-up
 
-## Rate Limits
+## Limites de taxa
 
-- **10,000 API calls per 30-day period** (organization-wide)
-- Rate limits shared across all API tokens in the organization
-- Plan accordingly for high-volume operations
-- Use webhooks instead of polling to conserve quota
+- **10.000 chamadas de API por período de 30 dias** (nível da organização)
+- Limites de taxa compartilhados entre todos os API tokens da organização
+- Planeje adequadamente para operações de alto volume
+- Use webhooks em vez de polling para economizar cota
 
-## Relevant Skills
+## Habilidades relevantes
 
 - webinar-marketing
 - event-marketing

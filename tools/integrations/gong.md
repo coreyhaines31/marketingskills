@@ -1,26 +1,26 @@
 # Gong
 
-Revenue intelligence platform that records, transcribes, and analyzes sales conversations (calls, video meetings, emails) to surface deal insights, coaching opportunities, and competitive intelligence.
+Plataforma de revenue intelligence que grava, transcreve e analisa conversas de vendas (ligações, reuniões em vídeo, emails) para gerar insights de deals, oportunidades de coaching e inteligência competitiva.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API, Basic Auth or OAuth2 |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | - | REST API only; community Python client via dltHub |
+| API | ✓ | REST API, Basic Auth ou OAuth2 |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | - | Apenas REST API; client Python da comunidade via dltHub |
 
-## Authentication
+## Autenticação
 
-- **Type**: Basic Auth (Access Key + Secret) or OAuth2 for published apps
-- **Get key**: Admin-only — Settings > API at https://app.gong.io
-- **Base URL**: Tenant-specific — retrieve from your Gong API settings (typically `https://{tenant}.api.gong.io/v2/`)
+- **Tipo**: Basic Auth (Access Key + Secret) ou OAuth2 para apps publicados
+- **Obter chave**: Somente admin — Settings > API em https://app.gong.io
+- **Base URL**: Específica do tenant — obtenha nas configurações da sua Gong API (normalmente `https://{tenant}.api.gong.io/v2/`)
 - **Docs**: https://help.gong.io/docs/what-the-gong-api-provides
 
-## API Endpoints
+## Endpoints da API
 
-Most Gong API endpoints use **POST** with JSON request bodies for filtering. Check the [official API docs](https://gong.app.gong.io/settings/api/documentation) for current endpoint availability.
+A maioria dos endpoints da Gong API usa **POST** com JSON no corpo da requisição para filtros. Consulte a [documentação oficial da API](https://gong.app.gong.io/settings/api/documentation) para verificar a disponibilidade atual dos endpoints.
 
 ### Calls
 
@@ -32,7 +32,7 @@ POST /v2/calls/extensive
 POST /v2/calls/transcript
 ```
 
-### Users & Stats
+### Usuários e estatísticas
 
 ```bash
 # List users
@@ -52,84 +52,84 @@ GET /v2/flows
 GET /v2/flows/{id}/analytics
 ```
 
-## Key Data Points
+## Principais pontos de dados
 
-### Per Call
-- Full transcript with speaker labels and timestamps
-- Talk-to-listen ratio per participant
-- Topics discussed (auto-detected)
-- Questions asked (count and content)
-- Longest monologue duration
-- Next steps mentioned
-- Competitor mentions
-- Pricing discussions flagged
+### Por call
+- Transcrição completa com identificação de falantes e timestamps
+- Relação fala/escuta por participante
+- Tópicos discutidos (detectados automaticamente)
+- Perguntas feitas (quantidade e conteúdo)
+- Duração do monólogo mais longo
+- Próximos passos mencionados
+- Menções a concorrentes
+- Discussões de preço sinalizadas
 
-### Per Deal
-- All associated calls and emails
-- Deal stage progression
-- Risk signals (gone dark, competitor mentioned, champion left)
-- Engagement score
+### Por deal
+- Todas as calls e emails associados
+- Progressão de estágio do deal
+- Sinais de risco (sem resposta, menção a concorrente, champion saiu)
+- Score de engajamento
 
-### Per Rep
-- Talk ratio trends
-- Question frequency
-- Topic coverage vs. playbook
-- Win rate correlation with behaviors
+### Por rep
+- Tendências de talk ratio
+- Frequência de perguntas
+- Cobertura de tópicos vs. playbook
+- Correlação entre taxa de ganho e comportamentos
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Extract Competitive Intelligence from Calls
+### Extrair Competitive Intelligence de Calls
 
-1. Query calls mentioning competitor names
-2. Extract: objections raised, features compared, pricing discussed
-3. Synthesize into competitive battlecard updates
-4. Track competitor mention frequency over time
+1. Consultar calls com menção a nomes de concorrentes
+2. Extrair: objeções levantadas, features comparadas, discussões de preço
+3. Sintetizar em atualizações de battlecards competitivos
+4. Acompanhar frequência de menções a concorrentes ao longo do tempo
 
-### Mine Calls for Customer Research
+### Minerar Calls para Customer Research
 
-1. Pull transcripts from recent won/lost deals
-2. Extract: pain points, trigger events, decision criteria, language used
-3. Feed into persona building and messaging work
-4. Identify recurring objections for sales enablement
+1. Coletar transcrições de deals ganhos/perdidos recentemente
+2. Extrair: pain points, trigger events, critérios de decisão e linguagem usada
+3. Alimentar trabalho de construção de personas e messaging
+4. Identificar objeções recorrentes para sales enablement
 
 ### Revenue Attribution
 
-1. Pull call data alongside CRM deal data
-2. Map which content/pages were discussed in winning deals
-3. Identify which talking points correlate with closed-won
-4. Build content-to-revenue attribution reports
+1. Coletar dados de call junto com dados de deals no CRM
+2. Mapear quais conteúdos/páginas foram discutidos em deals ganhos
+3. Identificar quais talking points se correlacionam com closed-won
+4. Criar relatórios de atribuição de conteúdo para receita
 
 ### Rep Coaching Insights
 
-1. Compare top performer call patterns vs. team average
-2. Identify: talk ratio, question frequency, topic coverage gaps
-3. Surface specific call moments for coaching review
-4. Track improvement over time
+1. Comparar padrões de call dos top performers vs. média da equipe
+2. Identificar: talk ratio, frequência de perguntas, lacunas de cobertura de tópicos
+3. Destacar momentos específicos de calls para revisão de coaching
+4. Acompanhar melhorias ao longo do tempo
 
-## Rate Limits
+## Limites de taxa
 
-- 3 API calls per second
-- 10,000 API calls per day
-- Pagination required for large result sets
+- 3 chamadas de API por segundo
+- 10.000 chamadas de API por dia
+- Paginação obrigatória para grandes conjuntos de resultados
 
-## When to Use
+## Quando usar
 
-- Mining sales call transcripts for customer research and VOC data
-- Extracting competitive intelligence from prospect conversations
-- Building revenue attribution models (content → deal influence)
-- Analyzing win/loss patterns across deal transcripts
-- Coaching sales reps based on conversation analytics
-- Identifying common objections and buying signals
+- Minerar transcrições de calls de vendas para customer research e dados de VOC
+- Extrair inteligência competitiva de conversas com prospects
+- Construir modelos de atribuição de receita (conteúdo → influência no deal)
+- Analisar padrões de ganho/perda em transcrições de deals
+- Fazer coaching de sales reps com base em conversation analytics
+- Identificar objeções comuns e sinais de compra
 
-## Limitations
+## Limitações
 
-- API access requires admin credentials
-- Transcript quality depends on call audio quality
-- Rate limits (10k/day) may constrain large-scale analysis
-- Pricing is enterprise-level (not publicly listed, typically $100+/user/month)
-- Requires team adoption — records calls via integrations, but also supports uploading calls from non-integrated telephony systems
+- Acesso à API exige credenciais de admin
+- Qualidade da transcrição depende da qualidade do áudio da call
+- Limites de taxa (10k/dia) podem limitar análises em grande escala
+- O preço é de nível enterprise (não listado publicamente, geralmente $100+/usuário/mês)
+- Exige adoção da equipe — grava calls via integrações, mas também permite upload de calls de sistemas de telefonia não integrados
 
-## Relevant Skills
+## Habilidades relevantes
 
 - customer-research
 - sales-enablement
@@ -137,7 +137,7 @@ GET /v2/flows/{id}/analytics
 - revops
 - cold-email
 
-## Sources
+## Fontes
 
 - [Gong API overview](https://help.gong.io/docs/what-the-gong-api-provides)
 - [Gong API documentation](https://gong.app.gong.io/settings/api/documentation)

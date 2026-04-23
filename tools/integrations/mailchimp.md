@@ -1,37 +1,37 @@
 # Mailchimp
 
-Email marketing platform for campaigns, automation, and audience management.
+Plataforma de email marketing para campanhas, automação e gestão de público.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Marketing API for campaigns, audiences, automation |
-| MCP | ✓ | Available via Mailchimp MCP server |
-| CLI | - | Not available |
-| SDK | ✓ | Official SDKs for multiple languages |
+| API | ✓ | Marketing API para campaigns, audiences e automação |
+| MCP | ✓ | Disponível via Mailchimp MCP server |
+| CLI | - | Não disponível |
+| SDK | ✓ | SDKs oficiais para múltiplas linguagens |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key or OAuth 2.0
-- **Header**: `Authorization: Bearer {api_key}` or `Authorization: apikey {api_key}`
-- **Base URL**: `https://{dc}.api.mailchimp.com/3.0/` (dc = datacenter from API key)
+- **Tipo**: API Key ou OAuth 2.0
+- **Header**: `Authorization: Bearer {api_key}` ou `Authorization: apikey {api_key}`
+- **Base URL**: `https://{dc}.api.mailchimp.com/3.0/` (dc = datacenter da API key)
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### List audiences (lists)
+### Listar audiences (lists)
 
 ```bash
 GET https://{dc}.api.mailchimp.com/3.0/lists
 ```
 
-### Get audience members
+### Buscar membros da audiência
 
 ```bash
 GET https://{dc}.api.mailchimp.com/3.0/lists/{list_id}/members?count=100
 ```
 
-### Add subscriber
+### Adicionar subscriber
 
 ```bash
 POST https://{dc}.api.mailchimp.com/3.0/lists/{list_id}/members
@@ -46,7 +46,7 @@ POST https://{dc}.api.mailchimp.com/3.0/lists/{list_id}/members
 }
 ```
 
-### Update subscriber
+### Atualizar subscriber
 
 ```bash
 PATCH https://{dc}.api.mailchimp.com/3.0/lists/{list_id}/members/{subscriber_hash}
@@ -59,19 +59,19 @@ PATCH https://{dc}.api.mailchimp.com/3.0/lists/{list_id}/members/{subscriber_has
 }
 ```
 
-### Get campaigns
+### Buscar campaigns
 
 ```bash
 GET https://{dc}.api.mailchimp.com/3.0/campaigns?count=20
 ```
 
-### Get campaign report
+### Buscar relatório de campanha
 
 ```bash
 GET https://{dc}.api.mailchimp.com/3.0/reports/{campaign_id}
 ```
 
-### Create campaign
+### Criar campanha
 
 ```bash
 POST https://{dc}.api.mailchimp.com/3.0/campaigns
@@ -89,61 +89,61 @@ POST https://{dc}.api.mailchimp.com/3.0/campaigns
 }
 ```
 
-### Send campaign
+### Enviar campanha
 
 ```bash
 POST https://{dc}.api.mailchimp.com/3.0/campaigns/{campaign_id}/actions/send
 ```
 
-### List automations
+### Listar automations
 
 ```bash
 GET https://{dc}.api.mailchimp.com/3.0/automations
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Campaign Report Fields
-- `emails_sent` - Total sent
-- `opens` - Open count
-- `unique_opens` - Unique opens
-- `open_rate` - Open rate
-- `clicks` - Click count
-- `click_rate` - Click rate
-- `unsubscribes` - Unsubscribe count
-- `bounces` - Bounce count
+### Campos de relatório de campanha
+- `emails_sent` - Total enviado
+- `opens` - Total de aberturas
+- `unique_opens` - Aberturas únicas
+- `open_rate` - Taxa de abertura
+- `clicks` - Total de cliques
+- `click_rate` - Taxa de cliques
+- `unsubscribes` - Total de cancelamentos de inscrição
+- `bounces` - Total de bounces
 
-### Subscriber Hash
+### Hash do subscriber
 
-Calculate subscriber hash for updates:
+Calcule o hash do subscriber para atualizações:
 ```javascript
 const hash = md5(email.toLowerCase());
 ```
 
-## Subscriber Statuses
+## Status de subscriber
 
-- `subscribed` - Active subscriber
-- `unsubscribed` - Unsubscribed
+- `subscribed` - Subscriber ativo
+- `unsubscribed` - Descadastrado
 - `cleaned` - Hard bounce
-- `pending` - Awaiting confirmation
-- `transactional` - Transactional only
+- `pending` - Aguardando confirmação
+- `transactional` - Apenas transacional
 
-## When to Use
+## Quando usar
 
-- Managing email lists and subscribers
-- Creating and sending email campaigns
-- Setting up email automation
-- Analyzing campaign performance
-- Segmenting audiences
-- A/B testing emails
+- Gerenciar listas de email e assinantes
+- Criar e enviar campanhas de email
+- Configurar automação de email
+- Analisar performance de campanhas
+- Segmentar audiências
+- Fazer A/B testing de emails
 
-## Rate Limits
+## Limites de taxa
 
-- 10 concurrent connections
-- 10 requests per second
-- Batch endpoints for bulk operations
+- 10 conexões simultâneas
+- 10 requisições por segundo
+- Endpoints em lote para operações em massa
 
-## Relevant Skills
+## Habilidades relevantes
 
 - email-sequence
 - analytics-tracking

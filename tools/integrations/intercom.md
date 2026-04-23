@@ -1,38 +1,38 @@
 # Intercom
 
-Customer messaging and support platform API for managing contacts, conversations, messages, companies, articles, and tags.
+API da plataforma de mensagens e suporte ao cliente para gerenciar contatos, conversas, mensagens, empresas, artigos e tags.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | REST API v2.11+ - contacts, conversations, messages, companies, articles, tags |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [intercom.js](../clis/intercom.js) |
 | SDK | ✓ | Node.js, Ruby, Python, PHP, Go |
 
-## Authentication
+## Autenticação
 
-- **Type**: Bearer Token (Access Token or OAuth 2.0)
+- **Tipo**: Bearer Token (Access Token ou OAuth 2.0)
 - **Header**: `Authorization: Bearer {token}`
 - **Version Header**: `Intercom-Version: 2.11`
-- **Get key**: Developer Hub at https://app.intercom.com/a/apps/_/developer-hub
+- **Obter chave**: Developer Hub em https://app.intercom.com/a/apps/_/developer-hub
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### List contacts
+### Listar contatos
 
 ```bash
 GET https://api.intercom.io/contacts
 ```
 
-### Get a contact
+### Buscar um contato
 
 ```bash
 GET https://api.intercom.io/contacts/{id}
 ```
 
-### Create a contact
+### Criar um contato
 
 ```bash
 POST https://api.intercom.io/contacts
@@ -47,7 +47,7 @@ POST https://api.intercom.io/contacts
 }
 ```
 
-### Update a contact
+### Atualizar um contato
 
 ```bash
 PUT https://api.intercom.io/contacts/{id}
@@ -60,7 +60,7 @@ PUT https://api.intercom.io/contacts/{id}
 }
 ```
 
-### Search contacts
+### Pesquisar contatos
 
 ```bash
 POST https://api.intercom.io/contacts/search
@@ -74,25 +74,25 @@ POST https://api.intercom.io/contacts/search
 }
 ```
 
-### Delete a contact
+### Excluir um contato
 
 ```bash
 DELETE https://api.intercom.io/contacts/{id}
 ```
 
-### List conversations
+### Listar conversas
 
 ```bash
 GET https://api.intercom.io/conversations
 ```
 
-### Get a conversation
+### Buscar uma conversa
 
 ```bash
 GET https://api.intercom.io/conversations/{id}
 ```
 
-### Search conversations
+### Pesquisar conversas
 
 ```bash
 POST https://api.intercom.io/conversations/search
@@ -106,7 +106,7 @@ POST https://api.intercom.io/conversations/search
 }
 ```
 
-### Reply to a conversation
+### Responder a uma conversa
 
 ```bash
 POST https://api.intercom.io/conversations/{id}/reply
@@ -119,7 +119,7 @@ POST https://api.intercom.io/conversations/{id}/reply
 }
 ```
 
-### Create a message
+### Criar uma mensagem
 
 ```bash
 POST https://api.intercom.io/messages
@@ -138,13 +138,13 @@ POST https://api.intercom.io/messages
 }
 ```
 
-### List companies
+### Listar empresas
 
 ```bash
 GET https://api.intercom.io/companies
 ```
 
-### Create or update a company
+### Criar ou atualizar uma empresa
 
 ```bash
 POST https://api.intercom.io/companies
@@ -159,13 +159,13 @@ POST https://api.intercom.io/companies
 }
 ```
 
-### List tags
+### Listar tags
 
 ```bash
 GET https://api.intercom.io/tags
 ```
 
-### Create a tag
+### Criar uma tag
 
 ```bash
 POST https://api.intercom.io/tags
@@ -175,7 +175,7 @@ POST https://api.intercom.io/tags
 }
 ```
 
-### Tag a contact
+### Adicionar tag a um contato
 
 ```bash
 POST https://api.intercom.io/contacts/{contact_id}/tags
@@ -185,13 +185,13 @@ POST https://api.intercom.io/contacts/{contact_id}/tags
 }
 ```
 
-### List articles
+### Listar artigos
 
 ```bash
 GET https://api.intercom.io/articles
 ```
 
-### Create an article
+### Criar um artigo
 
 ```bash
 POST https://api.intercom.io/articles
@@ -204,13 +204,13 @@ POST https://api.intercom.io/articles
 }
 ```
 
-### List admins
+### Listar admins
 
 ```bash
 GET https://api.intercom.io/admins
 ```
 
-### Submit events
+### Enviar eventos
 
 ```bash
 POST https://api.intercom.io/events
@@ -226,64 +226,64 @@ POST https://api.intercom.io/events
 }
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Contact Data
-- `id` - Unique contact identifier
-- `role` - user or lead
-- `email` - Contact email
-- `name` - Contact name
+### Dados de contato
+- `id` - Identificador único do contato
+- `role` - user ou lead
+- `email` - Email do contato
+- `name` - Nome do contato
 - `created_at` / `updated_at` - Timestamps
-- `last_seen_at` - Last activity
-- `custom_attributes` - Custom data fields
-- `tags` - Applied tags
-- `companies` - Associated companies
+- `last_seen_at` - Última atividade
+- `custom_attributes` - Campos de dados customizados
+- `tags` - Tags aplicadas
+- `companies` - Empresas associadas
 
-### Conversation Data
-- `id` - Conversation identifier
+### Dados de conversa
+- `id` - Identificador da conversa
 - `state` - open, closed, snoozed
-- `open` - Boolean open status
-- `read` - Read status
-- `priority` - Priority level
-- `statistics` - Response times, counts
-- `conversation_parts` - Message history
+- `open` - Status aberto em boolean
+- `read` - Status de leitura
+- `priority` - Nível de prioridade
+- `statistics` - Tempos de resposta, contagens
+- `conversation_parts` - Histórico de mensagens
 
-## Parameters
+## Parâmetros
 
-### List Contacts
-- `per_page` - Results per page (default 50, max 150)
-- `starting_after` - Pagination cursor
+### Listar contatos
+- `per_page` - Resultados por página (padrão 50, máx 150)
+- `starting_after` - Cursor de paginação
 
-### List Conversations
-- `per_page` - Results per page (default 20, max 150)
-- `starting_after` - Pagination cursor
+### Listar conversas
+- `per_page` - Resultados por página (padrão 20, máx 150)
+- `starting_after` - Cursor de paginação
 
-### Search (Contacts & Conversations)
-- `query.field` - Field to search
+### Busca (Contacts & Conversations)
+- `query.field` - Campo para busca
 - `query.operator` - Comparison operator (=, !=, >, <, ~, IN, NIN)
-- `query.value` - Search value
-- `pagination.per_page` - Results per page
-- `pagination.starting_after` - Cursor for next page
-- `sort.field` / `sort.order` - Sort configuration
+- `query.value` - Valor de busca
+- `pagination.per_page` - Resultados por página
+- `pagination.starting_after` - Cursor da próxima página
+- `sort.field` / `sort.order` - Configuração de ordenação
 
-## When to Use
+## Quando usar
 
-- Managing customer contact records and segments
-- Automating customer messaging and onboarding
-- Monitoring and responding to support conversations
-- Tracking customer events and behavior
-- Building custom support workflows
-- Syncing customer data between platforms
+- Gerenciar registros e segmentos de contatos de clientes
+- Automatizar mensagens e onboarding de clientes
+- Monitorar e responder conversas de suporte
+- Rastrear eventos e comportamento de clientes
+- Criar workflows de suporte customizados
+- Sincronizar dados de clientes entre plataformas
 
-## Rate Limits
+## Limites de taxa
 
-- **Default**: 10,000 API calls per minute per app
-- **Per workspace**: 25,000 API calls per minute
-- Distributed in 10-second windows (resets every 10 seconds)
+- **Padrão**: 10.000 chamadas de API por minuto por app
+- **Por workspace**: 25.000 chamadas de API por minuto
+- Distribuído em janelas de 10 segundos (reinicia a cada 10 segundos)
 - Headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
-- HTTP 429 returned when exceeded
+- HTTP 429 retornado quando o limite é excedido
 
-## Relevant Skills
+## Habilidades relevantes
 
 - customer-onboarding
 - customer-retention

@@ -1,50 +1,50 @@
 # Hunter.io
 
-Email finding and verification platform for outreach and link building.
+Plataforma de busca e verificação de emails para outreach e link building.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for domain search, email finder, verification |
-| MCP | - | Not available |
+| API | ✓ | REST API para domain search, email finder e verification |
+| MCP | - | Não disponível |
 | CLI | [✓](../clis/hunter.js) | Zero-dependency Node.js CLI |
-| SDK | - | API-only |
+| SDK | - | somente API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key (query parameter)
-- **Parameter**: `api_key={key}`
+- **Tipo**: API Key (query parameter)
+- **Parâmetro**: `api_key={key}`
 - **Env var**: `HUNTER_API_KEY`
-- **Get key**: [Hunter dashboard > API](https://hunter.io/api-keys)
+- **Obter chave**: [Hunter dashboard > API](https://hunter.io/api-keys)
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Find emails for a domain
+### Encontrar emails para um domínio
 
 ```bash
 node tools/clis/hunter.js domain search --domain example.com --limit 10
 ```
 
-### Find a specific person's email
+### Encontrar o email de uma pessoa específica
 
 ```bash
 node tools/clis/hunter.js email find --domain example.com --first-name John --last-name Doe
 ```
 
-### Verify an email address
+### Verificar um endereço de email
 
 ```bash
 node tools/clis/hunter.js email verify --email john@example.com
 ```
 
-### Count emails available for a domain
+### Contar emails disponíveis para um domínio
 
 ```bash
 node tools/clis/hunter.js domain count --domain example.com
 ```
 
-### Manage leads
+### Gerenciar leads
 
 ```bash
 # List leads
@@ -57,7 +57,7 @@ node tools/clis/hunter.js leads create --email john@example.com --first-name Joh
 node tools/clis/hunter.js leads delete --id 12345
 ```
 
-### Manage campaigns
+### Gerenciar campanhas
 
 ```bash
 # List campaigns
@@ -71,20 +71,20 @@ node tools/clis/hunter.js campaigns start --id 12345
 node tools/clis/hunter.js campaigns pause --id 12345
 ```
 
-### Check account usage
+### Verificar uso da conta
 
 ```bash
 node tools/clis/hunter.js account info
 ```
 
-## Rate Limits
+## Limites de taxa
 
-- Free plan: 25 searches/month, 50 verifications/month
-- Paid plans scale with tier
-- API rate limit: 10 requests/second
+- Plano gratuito: 25 buscas/mês, 50 verificações/mês
+- Planos pagos escalam conforme o tier
+- Limite de taxa da API: 10 requisições/segundo
 
-## Use Cases
+## Casos de uso
 
-- **Link building**: Find email contacts at target domains for outreach
-- **Prospecting**: Build lead lists from company domains
-- **Verification**: Clean email lists before sending campaigns
+- **Link building**: Encontrar contatos de email em domínios-alvo para outreach
+- **Prospecting**: Montar listas de leads a partir de domínios de empresas
+- **Verification**: Limpar listas de email antes de enviar campanhas

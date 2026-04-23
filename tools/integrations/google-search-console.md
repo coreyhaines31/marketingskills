@@ -1,25 +1,25 @@
 # Google Search Console
 
-Free tool for monitoring website search performance and indexing.
+Ferramenta gratuita para monitorar performance de busca e indexação de sites.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | Search Analytics API, URL Inspection API |
-| MCP | - | Not available |
-| CLI | - | Use gcloud or API scripts |
+| MCP | - | Não disponível |
+| CLI | - | Use gcloud ou scripts de API |
 | SDK | ✓ | Google API client libraries |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0 or Service Account
+- **Tipo**: OAuth 2.0 ou Service Account
 - **Scopes**: `https://www.googleapis.com/auth/webmasters.readonly`
-- **Setup**: Create credentials in Google Cloud Console
+- **Setup**: Crie credenciais no Google Cloud Console
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Get search analytics
+### Buscar analytics de pesquisa
 
 ```bash
 POST https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/searchAnalytics/query
@@ -32,7 +32,7 @@ POST https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/searchA
 }
 ```
 
-### Get performance by page
+### Buscar performance por página
 
 ```bash
 POST https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/searchAnalytics/query
@@ -45,7 +45,7 @@ POST https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/searchA
 }
 ```
 
-### Get performance by country
+### Buscar performance por país
 
 ```bash
 POST https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/searchAnalytics/query
@@ -58,7 +58,7 @@ POST https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/searchA
 }
 ```
 
-### Inspect URL
+### Inspecionar URL
 
 ```bash
 POST https://searchconsole.googleapis.com/v1/urlInspection/index:inspect
@@ -69,7 +69,7 @@ POST https://searchconsole.googleapis.com/v1/urlInspection/index:inspect
 }
 ```
 
-### List sitemaps
+### Listar sitemaps
 
 ```bash
 GET https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/sitemaps
@@ -77,7 +77,7 @@ GET https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/sitemaps
 Authorization: Bearer {access_token}
 ```
 
-### Submit sitemap
+### Enviar sitemap
 
 ```bash
 PUT https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/sitemaps/{sitemap_url}
@@ -85,7 +85,7 @@ PUT https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/sitemaps
 Authorization: Bearer {access_token}
 ```
 
-### Request indexing
+### Solicitar indexação
 
 ```bash
 POST https://indexing.googleapis.com/v3/urlNotifications:publish
@@ -96,23 +96,23 @@ POST https://indexing.googleapis.com/v3/urlNotifications:publish
 }
 ```
 
-## Dimensions
+## Dimensões
 
-- `query` - Search query
-- `page` - Page URL
-- `country` - Country code
-- `device` - Device type (MOBILE, DESKTOP, TABLET)
-- `date` - Date
-- `searchAppearance` - Search result type
+- `query` - Consulta de busca
+- `page` - URL da página
+- `country` - Código do país
+- `device` - Tipo de dispositivo (MOBILE, DESKTOP, TABLET)
+- `date` - Data
+- `searchAppearance` - Tipo de resultado de busca
 
-## Metrics
+## Métricas
 
-- `clicks` - Clicks from search
-- `impressions` - Search impressions
-- `ctr` - Click-through rate
-- `position` - Average position
+- `clicks` - Cliques vindos da busca
+- `impressions` - Impressões na busca
+- `ctr` - Taxa de cliques
+- `position` - Posição média
 
-## Filters
+## Filtros
 
 ```json
 {
@@ -126,21 +126,21 @@ POST https://indexing.googleapis.com/v3/urlNotifications:publish
 }
 ```
 
-## When to Use
+## Quando usar
 
-- Analyzing search performance
-- Finding keyword opportunities
-- Monitoring indexing status
-- Submitting new pages for indexing
-- Identifying crawl issues
-- Tracking position changes
+- Analisar performance de busca
+- Encontrar oportunidades de keywords
+- Monitorar status de indexação
+- Enviar novas páginas para indexação
+- Identificar problemas de crawl
+- Acompanhar mudanças de posição
 
-## Rate Limits
+## Limites de taxa
 
-- 200 queries per minute
-- 1,200 requests per minute
+- 200 consultas por minuto
+- 1.200 requisições por minuto
 
-## Relevant Skills
+## Habilidades relevantes
 
 - seo-audit
 - programmatic-seo
