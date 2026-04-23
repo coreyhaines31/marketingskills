@@ -1,6 +1,6 @@
 # Marketing Skills Versions
 
-Current versions of all skills. Agents can compare against local versions to check for updates.
+Versões atuais de todas as skills. Os agentes podem comparar com as versões locais para verificar atualizações.
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
@@ -43,58 +43,58 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 1.2.0 | 2026-03-14 |
 | social-content | 1.2.0 | 2026-03-14 |
 
-## Recent Changes
+## Alterações Recentes
 
 ### 2026-04-21
-- Added `directory-submissions` skill for Product Hunt, G2, AI directories, and backlink strategy
-- Added `competitor-profiling` skill for competitive intelligence research
-- Added international SEO & localization section to `seo-audit` (1.2.0)
-- Added conversion tracking reference to `paid-ads` (cross-platform pixel setup)
-- Added Zapier SDK integration for 8,000+ app access
-- Fixed plugin loading: removed `./` prefix from marketplace.json skill paths (#243)
-- Hardened CLI tools: Supermetrics API key moved to header, ZoomInfo JWT masked by default
-- Fixed community-marketing YAML frontmatter (#240)
-- Fixed Zapier webhook URL validation (#247)
-- Added missing skills to VERSIONS.md (aso-audit, community-marketing, customer-research — shipped in prior releases)
-- Total skills: 38
+- Adicionada skill `directory-submissions` para Product Hunt, G2, diretórios de IA e estratégia de backlinks
+- Adicionada skill `competitor-profiling` para pesquisa de inteligência competitiva
+- Adicionada seção de SEO internacional e localização ao `seo-audit` (1.2.0)
+- Adicionada referência de rastreamento de conversão ao `paid-ads` (configuração de pixel multiplataforma)
+- Adicionada integração com Zapier SDK para acesso a mais de 8.000 aplicativos
+- Corrigido carregamento de plugins: prefixo `./` removido dos caminhos de skills no marketplace.json (#243)
+- Robustez dos CLIs: chave de API da Supermetrics movida para o header, JWT do ZoomInfo mascarado por padrão
+- Corrigido frontmatter YAML do community-marketing (#240)
+- Corrigida validação de URL de webhook do Zapier (#247)
+- Adicionadas skills ausentes ao VERSIONS.md (aso-audit, community-marketing, customer-research — lançadas em versões anteriores)
+- Total de skills: 38
 
 ### 2026-03-14
-- Added `lead-magnets` skill for lead magnet strategy, format selection, and conversion optimization
-- Added Composio integration layer for MCP access to OAuth-heavy tools (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion, etc.)
-- Added headless CMS integration guides (Sanity, Contentful, Strapi) with headless-cms reference
-- Added 197 evals across all 33 skills for automated quality testing
-- Optimized all 32 skill descriptions for better trigger phrase matching
-- Replaced rigid imperatives with reasoning-based guidance across all skills
-- Added 10 new CLI tools (airops, clay, close, coupler, crossbeam, outreach, pendo, similarweb, supermetrics, zoominfo)
-- Added 13 new integration guides
-- Bumped all 32 existing skills from 1.1.0 → 1.2.0
+- Adicionada skill `lead-magnets` para estratégia de lead magnet, seleção de formato e otimização de conversão
+- Adicionada camada de integração Composio para acesso MCP a ferramentas com OAuth pesado (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion, etc.)
+- Adicionados guias de integração com headless CMS (Sanity, Contentful, Strapi) com referência headless-cms
+- Adicionados 197 evals em todas as 33 skills para testes automatizados de qualidade
+- Otimizadas todas as 32 descrições de skills para melhor correspondência de frases de gatilho
+- Substituídos imperativos rígidos por orientações baseadas em raciocínio em todas as skills
+- Adicionados 10 novos CLIs (airops, clay, close, coupler, crossbeam, outreach, pendo, similarweb, supermetrics, zoominfo)
+- Adicionados 13 novos guias de integração
+- Todas as 32 skills existentes atualizadas de 1.1.0 → 1.2.0
 
 ### 2026-02-27
-- Migrated context path from `.claude/` to `.agents/` for agent-agnostic compatibility
-- All skills now check `.agents/product-marketing-context.md` first, with `.claude/` fallback for older setups
-- Updated install paths in README to reference `.agents/skills/`
-- Bumped all 32 skills from 1.0.0 → 1.1.0
+- Migrado caminho de contexto de `.claude/` para `.agents/` para compatibilidade agnóstica de agente
+- Todas as skills agora verificam `.agents/product-marketing-context.md` primeiro, com fallback para `.claude/` em configurações mais antigas
+- Caminhos de instalação no README atualizados para referenciar `.agents/skills/`
+- Todas as 32 skills atualizadas de 1.0.0 → 1.1.0
 
 ### 2026-02-22
-- Added `revops` skill for revenue operations, lead lifecycle, scoring, routing, pipeline management, and CRM automation
-- Added `sales-enablement` skill for sales decks, one-pagers, objection handling, demo scripts, and sales playbooks
+- Adicionada skill `revops` para operações de receita, ciclo de vida de leads, pontuação, roteamento, gestão de pipeline e automação de CRM
+- Adicionada skill `sales-enablement` para decks de vendas, one-pagers, tratamento de objeções, scripts de demo e playbooks de vendas
 
 ### 2026-02-21
-- Added `site-architecture` skill for website structure planning, page hierarchy, navigation design, URL structure, and internal linking strategy
+- Adicionada skill `site-architecture` para planejamento de estrutura de site, hierarquia de páginas, design de navegação, estrutura de URL e estratégia de links internos
 
 ### 2026-02-18
-- Added `ai-seo` skill for AI search optimization (AEO, GEO, LLMO, AI Overviews)
-- Moved AEO/GEO content patterns from `seo-audit` references to `ai-seo` skill
-- Added `churn-prevention` skill for cancel flows, save offers, dunning, and payment recovery
+- Adicionada skill `ai-seo` para otimização de busca com IA (AEO, GEO, LLMO, AI Overviews)
+- Padrões de conteúdo AEO/GEO movidos das referências do `seo-audit` para a skill `ai-seo`
+- Adicionada skill `churn-prevention` para fluxos de cancelamento, ofertas de salvamento, dunning e recuperação de pagamentos
 
 ### 2026-02-17
-- Added `ad-creative` skill for bulk ad creative generation and performance-based iteration
-- Added 51 zero-dependency CLI tools for marketing platforms (`tools/clis/`)
-- Added 31 new integration guides (`tools/integrations/`)
-- Added 4 email outreach CLIs: hunter, snov, lemlist, instantly
-- Security hardening: header auth for meta-ads, URL encoding, input validation
-- All CLIs reviewed via independent codex audit (auth, security, error handling, consistency)
+- Adicionada skill `ad-creative` para geração em volume de criativos e iteração baseada em performance
+- Adicionados 51 CLIs zero-dependência para plataformas de marketing (`tools/clis/`)
+- Adicionados 31 novos guias de integração (`tools/integrations/`)
+- Adicionados 4 CLIs de prospecção por e-mail: hunter, snov, lemlist, instantly
+- Robustez de segurança: autenticação via header para meta-ads, codificação de URL, validação de entrada
+- Todos os CLIs revisados por auditoria independente via codex (autenticação, segurança, tratamento de erros, consistência)
 
 ### 2026-01-27
-- Initial version tracking added
-- Added tools registry with 29 integration guides
+- Rastreamento inicial de versões adicionado
+- Adicionado registro de ferramentas com 29 guias de integração

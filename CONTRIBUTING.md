@@ -1,22 +1,22 @@
 # Contributing
 
-Thanks for your interest in contributing to Marketing Skills! This guide will help you add new skills or improve existing ones.
+Obrigado pelo interesse em contribuir com o Marketing Skills! Este guia vai ajudá-lo a adicionar novas skills ou melhorar as existentes.
 
-## Requesting a Skill
+## Solicitando uma Skill
 
-You can also suggest new skills by [opening a skill request](https://github.com/coreyhaines31/marketingskills/issues/new?template=skill-request.yml).
+Você também pode sugerir novas skills [abrindo uma solicitação de skill](https://github.com/coreyhaines31/marketingskills/issues/new?template=skill-request.yml).
 
-## Adding a New Skill
+## Adicionando uma Nova Skill
 
-### 1. Create the skill directory
+### 1. Crie o diretório da skill
 
 ```bash
 mkdir -p skills/your-skill-name
 ```
 
-### 2. Create the SKILL.md file
+### 2. Crie o arquivo SKILL.md
 
-Every skill needs a `SKILL.md` file with YAML frontmatter:
+Toda skill precisa de um arquivo `SKILL.md` com frontmatter YAML:
 
 ```yaml
 ---
@@ -29,61 +29,61 @@ description: When to use this skill. Include trigger phrases and keywords that h
 Instructions for the agent go here...
 ```
 
-Optional frontmatter fields: `license` (default: MIT), `metadata` (author, version, etc.)
+Campos opcionais do frontmatter: `license` (padrão: MIT), `metadata` (autor, versão, etc.)
 
-### 3. Follow the naming conventions
+### 3. Siga as convenções de nomenclatura
 
-- **Directory name**: lowercase, hyphens only (e.g., `email-sequence`)
-- **Name field**: must match directory name exactly
-- **Description**: 1-1024 characters, include trigger phrases
+- **Nome do diretório**: minúsculas, apenas hífens (ex.: `email-sequence`)
+- **Campo name**: deve corresponder exatamente ao nome do diretório
+- **Description**: 1-1024 caracteres, inclua frases de gatilho
 
-### 4. Structure your skill
+### 4. Estruture sua skill
 
 ```
 skills/your-skill-name/
-├── SKILL.md           # Required - main instructions
-├── references/        # Optional - additional documentation
+├── SKILL.md           # Obrigatório - instruções principais
+├── references/        # Opcional - documentação adicional
 │   └── guide.md
-├── scripts/           # Optional - executable code
+├── scripts/           # Opcional - código executável
 │   └── helper.py
-└── assets/            # Optional - templates, images, data
+└── assets/            # Opcional - templates, imagens, dados
     └── template.json
 ```
 
-### 5. Write effective instructions
+### 5. Escreva instruções eficazes
 
-- Keep `SKILL.md` under 500 lines
-- Move detailed reference material to `references/`
-- Include step-by-step instructions
-- Add examples of inputs and outputs
-- Cover common edge cases
+- Mantenha o `SKILL.md` com menos de 500 linhas
+- Mova material de referência detalhado para `references/`
+- Inclua instruções passo a passo
+- Adicione exemplos de entradas e saídas
+- Cubra casos extremos comuns
 
-## Improving Existing Skills
+## Melhorando Skills Existentes
 
-1. Read the existing skill thoroughly
-2. Test your changes locally
-3. Keep changes focused and minimal
-4. Update the version in metadata if making significant changes
+1. Leia a skill existente com atenção
+2. Teste suas alterações localmente
+3. Mantenha as mudanças focadas e mínimas
+4. Atualize a versão nos metadados ao fazer alterações significativas
 
-## Submitting Your Contribution
+## Enviando Sua Contribuição
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-skill-name`)
-3. Make your changes
-4. Test locally with an AI agent
-5. Submit a pull request using the appropriate template:
+1. Faça um fork do repositório
+2. Crie um branch de funcionalidade (`git checkout -b feature/new-skill-name`)
+3. Faça suas alterações
+4. Teste localmente com um agente de IA
+5. Envie um pull request usando o template adequado:
    - [New Skill](?template=new-skill.md)
    - [Skill Update](?template=skill-update.md)
    - [Documentation](?template=documentation.md)
 
-## Skill Quality Checklist
+## Checklist de Qualidade da Skill
 
-- [ ] `name` matches directory name
-- [ ] `description` clearly explains when to use the skill
-- [ ] Instructions are clear and actionable
-- [ ] No sensitive data or credentials
-- [ ] Follows existing skill patterns in the repo
+- [ ] `name` corresponde ao nome do diretório
+- [ ] `description` explica claramente quando usar a skill
+- [ ] Instruções são claras e práticas
+- [ ] Nenhum dado sensível ou credencial
+- [ ] Segue os padrões de skill existentes no repositório
 
-## Questions?
+## Dúvidas?
 
-Open an issue if you have questions or need help with your contribution.
+Abra uma issue se tiver dúvidas ou precisar de ajuda com sua contribuição.

@@ -1,15 +1,15 @@
-## Documentation
+## Documentação
 
-## Summary
+## Resumo
 
-<!-- What documentation changes are you making? -->
+<!-- Quais alterações de documentação você está fazendo? -->
 
-## Files changed
+## Arquivos alterados
 
-<!-- List the files you're updating -->
+<!-- Liste os arquivos que você está atualizando -->
 
 ## Checklist
 
-- [ ] Links are valid
-- [ ] Formatting is consistent with existing docs
-- [ ] No sensitive data or credentials
+- [ ] Os links são válidos
+- [ ] A formatação é consistente com a documentação existente
+- [ ] Nenhum dado sensível ou credencial
