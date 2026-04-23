@@ -1,24 +1,24 @@
 # Nitrosend
 
-AI-native email platform that combines transactional and marketing email in one stack, controlled entirely through AI assistants via MCP. No traditional dashboard required — build sequences, campaigns, and automations by prompting.
+Plataforma de email AI-native que combina email transacional e de marketing em uma única stack, totalmente controlada por assistentes de AI via MCP. Não é necessário dashboard tradicional — crie sequências, campanhas e automações por prompt.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API available |
-| MCP | ✓ | Full MCP support — primary integration method |
+| MCP | ✓ | Suporte completo a MCP — principal método de integração |
 | CLI | - | Not available |
-| SDK | - | Use MCP or API directly |
+| SDK | - | Use MCP ou API diretamente |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key
-- **MCP Setup**: Add Nitrosend MCP server to your Claude Code / AI assistant config
-- **BYO Infrastructure**: Optionally bring your own SendGrid, Postmark, SES, or Resend keys
-- **Get access**: Sign up at nitrosend.com — free tier includes 8K emails initially, then 500/month
+- **MCP Setup**: Adicione o server MCP da Nitrosend à configuração do Claude Code / assistente de AI
+- **BYO Infrastructure**: Opcionalmente use suas próprias chaves SendGrid, Postmark, SES ou Resend
+- **Get access**: Cadastre-se em nitrosend.com — o plano gratuito inclui 8K emails inicialmente, depois 500/mês
 
-## Pricing
+## Preços
 
 | Plan | Cost | Volume |
 |------|------|--------|
@@ -28,19 +28,19 @@ AI-native email platform that combines transactional and marketing email in one 
 | Scale | $300/mo | 500,000/mo |
 | BYO | $60/mo | Unlimited (your infrastructure) |
 
-Unlimited contacts on all plans — pay per email sent, not per subscriber.
+Contatos ilimitados em todos os planos — você paga por email enviado, não por subscriber.
 
-## What Makes It Different
+## O que torna a Nitrosend diferente
 
-- **AI-first**: Designed to be controlled by Claude, ChatGPT, Codex, Cursor, Gemini, Windsurf — not a human clicking through a dashboard
-- **Unified transactional + marketing**: Single platform for both, on separate infrastructure
-- **Automatic optimization**: Continuously tests subject lines, send times, and content based on engagement
-- **Auto-configured deliverability**: DKIM, SPF, DMARC, and dedicated IP warmup handled automatically
-- **Migration-friendly**: Import from Mailchimp, Klaviyo, ActiveCampaign, HubSpot
+- **AI-first**: Projetada para ser controlada por Claude, ChatGPT, Codex, Cursor, Gemini, Windsurf — não por uma pessoa clicando em um dashboard
+- **Unified transactional + marketing**: Plataforma única para ambos, em infraestrutura separada
+- **Automatic optimization**: Testa continuamente subject lines, horários de envio e conteúdo com base em engajamento
+- **Auto-configured deliverability**: DKIM, SPF, DMARC e warmup de IP dedicado gerenciados automaticamente
+- **Migration-friendly**: Importação de Mailchimp, Klaviyo, ActiveCampaign e HubSpot
 
-## Common Agent Operations (via MCP)
+## Operações comuns do agente (via MCP)
 
-### Create an email sequence
+### Criar uma sequência de email
 
 ```
 "Create a 5-email onboarding sequence for new SaaS trial users.
@@ -51,15 +51,15 @@ Email 4: Check-in + support offer (day 7)
 Email 5: Upgrade prompt (day 12)"
 ```
 
-Nitrosend builds the sequence, timing, and sends — no manual setup in a dashboard.
+A Nitrosend cria a sequência, timing e envios — sem setup manual em dashboard.
 
-### Send a transactional email
+### Enviar um email transacional
 
 ```
 "Send a password reset email to user@example.com with a reset link valid for 1 hour."
 ```
 
-### Create a campaign
+### Criar uma campanha
 
 ```
 "Create a re-engagement campaign for subscribers who haven't opened in 90 days.
@@ -67,45 +67,45 @@ Subject line variants: [A] 'We miss you', [B] 'Still interested in [topic]?'
 Test both, send winner to remaining list after 4 hours."
 ```
 
-### Check sequence performance
+### Verificar performance da sequência
 
 ```
 "Show me open rates, click rates, and unsubscribes for the onboarding sequence."
 ```
 
-### Import a list
+### Importar uma lista
 
 ```
 "Import this CSV of 2,000 subscribers from our Mailchimp export."
 ```
 
-## Deliverability Setup
+## Setup de deliverability
 
-Nitrosend handles this automatically on signup:
+A Nitrosend faz isso automaticamente no signup:
 - DKIM signing
-- SPF record configuration
+- Configuração de registro SPF
 - DMARC policy
-- Dedicated IP provisioning (Pro+)
-- IP warmup schedule
+- Provisionamento de IP dedicado (Pro+)
+- Agenda de warmup de IP
 
-For BYO plan users: bring your own SendGrid, Postmark, SES, or Resend account and Nitrosend routes through your infrastructure.
+Para usuários do plano BYO: use sua própria conta SendGrid, Postmark, SES ou Resend, e a Nitrosend roteia pela sua infraestrutura.
 
-## When to Use
+## Quando usar
 
-- Building email sequences via AI without touching a dashboard
-- Teams already using Claude Code or other AI coding tools as their primary workflow
-- Combining transactional (password resets, receipts) and marketing (nurture, campaigns) in one place
-- Rapid sequence prototyping — describe the sequence, get it built
-- Migrating from Mailchimp/Klaviyo and wanting AI control going forward
+- Criar sequências de email via AI sem mexer em dashboard
+- Times que já usam Claude Code ou outras ferramentas de AI coding como fluxo principal
+- Combinar transacional (password resets, receipts) e marketing (nurture, campaigns) em um só lugar
+- Prototipação rápida de sequência — descreva a sequência e receba pronta
+- Migrar de Mailchimp/Klaviyo e ter controle por AI daqui para frente
 
-## When to Use Something Else
+## Quando usar outra ferramenta
 
-- **Customer.io** — if you need complex event-based branching logic and behavioral triggers
-- **Klaviyo** — if you're in e-commerce and need deep Shopify integration
-- **Resend** — if you need transactional-only and prefer a pure API/code approach
-- **Kit** — if you're a creator or newsletter-first
+- **Customer.io** — se você precisa de lógica complexa de branching por eventos e triggers comportamentais
+- **Klaviyo** — se você está em e-commerce e precisa de integração profunda com Shopify
+- **Resend** — se você precisa apenas de transacional e prefere uma abordagem pura de API/código
+- **Kit** — se você é creator ou newsletter-first
 
-## Relevant Skills
+## Skills relevantes
 
 - email-sequence
 - onboarding-cro

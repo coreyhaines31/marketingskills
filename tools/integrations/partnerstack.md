@@ -1,8 +1,8 @@
 # PartnerStack
 
-Partner and affiliate program management platform for SaaS companies with deal tracking, rewards, and multi-tier partnerships.
+Plataforma de gestão de programas de parceiros e afiliados para empresas SaaS, com rastreamento de deals, rewards e parcerias em múltiplos níveis.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,16 +11,16 @@ Partner and affiliate program management platform for SaaS companies with deal t
 | CLI | ✓ | [partnerstack.js](../clis/partnerstack.js) |
 | SDK | - | No official SDK; REST API with Basic Auth |
 
-## Authentication
+## Autenticação
 
 - **Type**: Basic Auth (Vendor API)
 - **Header**: `Authorization: Basic {base64(public_key:secret_key)}`
 - **Get credentials**: Vendor dashboard > Settings > Integrations > PartnerStack API Keys
-- **Note**: Separate Test and Production API keys. Test transactions can only be added to customers created with Test keys.
+- **Note**: Chaves de API de Test e Production são separadas. Transactions de teste só podem ser adicionadas a customers criados com chaves de Test.
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### List partnerships
+### Listar partnerships
 
 ```bash
 GET https://api.partnerstack.com/api/v2/partnerships?limit=25
@@ -28,7 +28,7 @@ GET https://api.partnerstack.com/api/v2/partnerships?limit=25
 Authorization: Basic {base64(public_key:secret_key)}
 ```
 
-### Create a partnership
+### Criar uma partnership
 
 ```bash
 POST https://api.partnerstack.com/api/v2/partnerships
@@ -41,13 +41,13 @@ POST https://api.partnerstack.com/api/v2/partnerships
 }
 ```
 
-### List customers
+### Listar customers
 
 ```bash
 GET https://api.partnerstack.com/api/v2/customers?limit=25
 ```
 
-### Create a customer (attribute to partner)
+### Criar um customer (atribuir ao partner)
 
 ```bash
 POST https://api.partnerstack.com/api/v2/customers
@@ -59,7 +59,7 @@ POST https://api.partnerstack.com/api/v2/customers
 }
 ```
 
-### Record a transaction
+### Registrar uma transaction
 
 ```bash
 POST https://api.partnerstack.com/api/v2/transactions
@@ -72,13 +72,13 @@ POST https://api.partnerstack.com/api/v2/transactions
 }
 ```
 
-### List deals
+### Listar deals
 
 ```bash
 GET https://api.partnerstack.com/api/v2/deals?limit=25
 ```
 
-### Create a deal
+### Criar um deal
 
 ```bash
 POST https://api.partnerstack.com/api/v2/deals
@@ -91,7 +91,7 @@ POST https://api.partnerstack.com/api/v2/deals
 }
 ```
 
-### Record an action (event-based rewards)
+### Registrar uma action (rewards baseadas em evento)
 
 ```bash
 POST https://api.partnerstack.com/api/v2/actions
@@ -103,7 +103,7 @@ POST https://api.partnerstack.com/api/v2/actions
 }
 ```
 
-### Create a reward
+### Criar uma reward
 
 ```bash
 POST https://api.partnerstack.com/api/v2/rewards
@@ -115,13 +115,13 @@ POST https://api.partnerstack.com/api/v2/rewards
 }
 ```
 
-### List leads
+### Listar leads
 
 ```bash
 GET https://api.partnerstack.com/api/v2/leads?limit=25
 ```
 
-### Create a lead
+### Criar um lead
 
 ```bash
 POST https://api.partnerstack.com/api/v2/leads
@@ -134,13 +134,13 @@ POST https://api.partnerstack.com/api/v2/leads
 }
 ```
 
-### List partner groups
+### Listar grupos de parceiros
 
 ```bash
 GET https://api.partnerstack.com/api/v2/groups
 ```
 
-### Manage webhooks
+### Gerenciar webhooks
 
 ```bash
 POST https://api.partnerstack.com/api/v2/webhooks
@@ -151,11 +151,11 @@ POST https://api.partnerstack.com/api/v2/webhooks
 }
 ```
 
-## API Pattern
+## Padrão de API
 
-PartnerStack uses cursor-based pagination. List responses include `has_more` and item keys for `starting_after` / `ending_before` parameters.
+A PartnerStack usa paginação baseada em cursor. As respostas de listagem incluem `has_more` e chaves de item para os parâmetros `starting_after` / `ending_before`.
 
-All responses follow the format:
+Todas as respostas seguem o formato:
 ```json
 {
   "data": { ... },
@@ -164,56 +164,56 @@ All responses follow the format:
 }
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Partnership Metrics
-- `partner_key` - Unique partner identifier
-- `group` - Partner tier/group
+### Métricas de partnership
+- `partner_key` - Identificador único do partner
+- `group` - Tier/grupo do partner
 - `status` - active, pending, archived
-- `created_at` - Partnership start date
+- `created_at` - Data de início da partnership
 
-### Transaction Metrics
-- `amount` - Transaction value in cents
-- `currency` - Currency code
-- `product_key` - Associated product
-- `customer_key` - Associated customer
+### Métricas de transaction
+- `amount` - Valor da transaction em centavos
+- `currency` - Código de moeda
+- `product_key` - Produto associado
+- `customer_key` - Customer associado
 
-### Deal Metrics
-- `amount` - Deal value
-- `stage` - Deal pipeline stage
+### Métricas de deal
+- `amount` - Valor do deal
+- `stage` - Etapa do pipeline do deal
 - `status` - open, won, lost
 
-### Reward Metrics
-- `amount` - Reward amount in cents
+### Métricas de reward
+- `amount` - Valor da reward em centavos
 - `status` - pending, approved, paid
 
-## Parameters
+## Parâmetros
 
-### Pagination Parameters
-- `limit` - Items per page (1-250, default: 10)
-- `starting_after` - Cursor for next page (item key)
-- `ending_before` - Cursor for previous page (item key)
-- `order_by` - Sort field, prefix with `-` for descending
+### Parâmetros de paginação
+- `limit` - Itens por página (1-250, default: 10)
+- `starting_after` - Cursor para a próxima página (item key)
+- `ending_before` - Cursor para a página anterior (item key)
+- `order_by` - Campo de ordenação, prefixe com `-` para descendente
 
-### Common Filters
-- `include_archived` - Include archived records
-- `has_sub_id` - Filter by sub ID presence
+### Filtros comuns
+- `include_archived` - Inclui registros arquivados
+- `has_sub_id` - Filtra pela presença de sub ID
 
-## When to Use
+## Quando usar
 
-- Managing SaaS affiliate and referral programs
-- Tracking partner-driven revenue and attributions
-- Automating partner onboarding and rewards
-- Deal registration and pipeline tracking
-- Multi-tier partnership programs (affiliates, resellers, agencies)
-- Event-based reward triggers (signups, upgrades, etc.)
+- Gerenciar programas de afiliados e referral para SaaS
+- Rastrear receita e atribuição geradas por parceiros
+- Automatizar onboarding de parceiros e rewards
+- Registro de deals e acompanhamento de pipeline
+- Programas de partnership em múltiplos tiers (affiliates, resellers, agencies)
+- Triggers de rewards baseadas em eventos (signups, upgrades etc.)
 
-## Rate Limits
+## Limites de taxa
 
-- Not explicitly documented
-- Use reasonable request rates; implement exponential backoff on 429 responses
+- Não documentado explicitamente
+- Use taxas de requisição razoáveis; implemente exponential backoff em respostas 429
 
-## Relevant Skills
+## Skills relevantes
 
 - referral-program
 - affiliate-marketing

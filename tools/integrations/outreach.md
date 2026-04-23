@@ -1,8 +1,8 @@
 # Outreach
 
-Sales engagement platform for managing prospects, sequences, and outbound campaigns at scale.
+Plataforma de sales engagement para gerenciar prospects, sequências e campanhas outbound em escala.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,16 +11,16 @@ Sales engagement platform for managing prospects, sequences, and outbound campai
 | CLI | ✓ | [outreach.js](../clis/outreach.js) |
 | SDK | - | REST API only (JSON:API format) |
 
-## Authentication
+## Autenticação
 
 - **Type**: OAuth2 Bearer Token
 - **Header**: `Authorization: Bearer {access_token}`
 - **Content-Type**: `application/vnd.api+json`
 - **Get token**: Settings > API at https://app.outreach.io or via OAuth2 flow
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### List Prospects
+### Listar prospects
 
 ```bash
 curl -s https://api.outreach.io/api/v2/prospects \
@@ -28,7 +28,7 @@ curl -s https://api.outreach.io/api/v2/prospects \
   -H "Content-Type: application/vnd.api+json"
 ```
 
-### Get a Prospect
+### Obter um prospect
 
 ```bash
 curl -s https://api.outreach.io/api/v2/prospects/42 \
@@ -36,7 +36,7 @@ curl -s https://api.outreach.io/api/v2/prospects/42 \
   -H "Content-Type: application/vnd.api+json"
 ```
 
-### Create a Prospect
+### Criar um prospect
 
 ```bash
 curl -s -X POST https://api.outreach.io/api/v2/prospects \
@@ -54,7 +54,7 @@ curl -s -X POST https://api.outreach.io/api/v2/prospects \
   }'
 ```
 
-### List Sequences
+### Listar sequências
 
 ```bash
 curl -s https://api.outreach.io/api/v2/sequences \
@@ -62,7 +62,7 @@ curl -s https://api.outreach.io/api/v2/sequences \
   -H "Content-Type: application/vnd.api+json"
 ```
 
-### Add Prospect to Sequence
+### Adicionar prospect à sequência
 
 ```bash
 curl -s -X POST https://api.outreach.io/api/v2/sequenceStates \
@@ -79,7 +79,7 @@ curl -s -X POST https://api.outreach.io/api/v2/sequenceStates \
   }'
 ```
 
-### List Mailings for a Sequence
+### Listar mailings de uma sequência
 
 ```bash
 curl -s "https://api.outreach.io/api/v2/mailings?filter[sequence][id]=7" \
@@ -87,7 +87,7 @@ curl -s "https://api.outreach.io/api/v2/mailings?filter[sequence][id]=7" \
   -H "Content-Type: application/vnd.api+json"
 ```
 
-### List Accounts
+### Listar accounts
 
 ```bash
 curl -s https://api.outreach.io/api/v2/accounts \
@@ -95,7 +95,7 @@ curl -s https://api.outreach.io/api/v2/accounts \
   -H "Content-Type: application/vnd.api+json"
 ```
 
-### List Tasks
+### Listar tasks
 
 ```bash
 curl -s "https://api.outreach.io/api/v2/tasks?filter[status]=incomplete" \
@@ -103,68 +103,68 @@ curl -s "https://api.outreach.io/api/v2/tasks?filter[status]=incomplete" \
   -H "Content-Type: application/vnd.api+json"
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Prospect Data
-- `firstName`, `lastName` - Name
-- `emails` - Email addresses
-- `title` - Job title
-- `company` - Company name
-- `tags` - Prospect tags
-- `engagedAt` - Last engagement timestamp
+### Dados de prospect
+- `firstName`, `lastName` - Nome
+- `emails` - Endereços de email
+- `title` - Cargo
+- `company` - Nome da empresa
+- `tags` - Tags do prospect
+- `engagedAt` - Timestamp do último engajamento
 
-### Sequence Data
-- `name` - Sequence name
-- `enabled` - Whether sequence is active
-- `sequenceType` - Type (e.g., interval, date-based)
-- `stepCount` - Number of steps
-- `openCount`, `clickCount`, `replyCount` - Engagement metrics
+### Dados de sequência
+- `name` - Nome da sequência
+- `enabled` - Se a sequência está ativa
+- `sequenceType` - Tipo (ex.: interval, date-based)
+- `stepCount` - Número de etapas
+- `openCount`, `clickCount`, `replyCount` - Métricas de engajamento
 
-### Mailing Data
-- `mailingType` - Type of mailing
-- `state` - Delivery state
-- `openCount`, `clickCount` - Engagement
+### Dados de mailing
+- `mailingType` - Tipo de mailing
+- `state` - Estado de entrega
+- `openCount`, `clickCount` - Engajamento
 - `deliveredAt`, `openedAt`, `clickedAt` - Timestamps
 
-## Parameters
+## Parâmetros
 
 ### Prospects
-- `page[number]` - Page number (default: 1)
-- `page[size]` - Results per page (default: 25, max: 1000)
-- `filter[emails]` - Filter by email
-- `filter[firstName]` - Filter by first name
-- `filter[lastName]` - Filter by last name
-- `sort` - Sort field (e.g., `createdAt`, `-updatedAt`)
+- `page[number]` - Número da página (default: 1)
+- `page[size]` - Resultados por página (default: 25, max: 1000)
+- `filter[emails]` - Filtro por email
+- `filter[firstName]` - Filtro por first name
+- `filter[lastName]` - Filtro por last name
+- `sort` - Campo de ordenação (ex.: `createdAt`, `-updatedAt`)
 
 ### Sequences
-- `filter[name]` - Filter by sequence name
-- `filter[enabled]` - Filter by active status
+- `filter[name]` - Filtro por nome da sequência
+- `filter[enabled]` - Filtro por status ativo
 
 ### Mailings
-- `filter[sequence][id]` - Filter by sequence ID
-- `filter[prospect][id]` - Filter by prospect ID
+- `filter[sequence][id]` - Filtro por ID da sequência
+- `filter[prospect][id]` - Filtro por ID do prospect
 
 ### Tasks
-- `filter[status]` - Filter by status (e.g., `incomplete`, `complete`)
-- `filter[taskType]` - Filter by type (e.g., `call`, `email`, `action_item`)
+- `filter[status]` - Filtro por status (ex.: `incomplete`, `complete`)
+- `filter[taskType]` - Filtro por tipo (ex.: `call`, `email`, `action_item`)
 
-## When to Use
+## Quando usar
 
-- Managing outbound sales sequences and cadences
-- Adding prospects to automated email sequences
-- Tracking prospect engagement across touchpoints
-- Managing sales tasks and follow-ups
-- Coordinating multi-channel outreach campaigns
-- Monitoring sequence performance and reply rates
+- Gerenciar sequências e cadências de vendas outbound
+- Adicionar prospects a sequências de email automatizadas
+- Rastrear engajamento de prospects em múltiplos touchpoints
+- Gerenciar tasks de vendas e follow-ups
+- Coordenar campanhas de outreach multicanal
+- Monitorar performance das sequências e taxas de resposta
 
-## Rate Limits
+## Limites de taxa
 
 - 10,000 requests per hour per user
 - Burst limit: 100 requests per 10 seconds
 - Rate limit headers returned: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
-- 429 responses when limits exceeded
+- Respostas 429 quando os limites são excedidos
 
-## Relevant Skills
+## Skills relevantes
 
 - cold-email
 - revops

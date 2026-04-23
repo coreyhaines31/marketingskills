@@ -1,8 +1,8 @@
 # Resend
 
-Developer-friendly transactional email service with modern API.
+Serviço de email transacional developer-friendly com API moderna.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,7 +11,7 @@ Developer-friendly transactional email service with modern API.
 | CLI | ✓ | Official Resend CLI |
 | SDK | ✓ | Official SDKs for Node.js, Python, Go, etc. |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
@@ -19,7 +19,7 @@ Developer-friendly transactional email service with modern API.
 
 ## CLI
 
-### Install
+### Instalação
 
 ```bash
 npm install -g resend-cli
@@ -32,7 +32,7 @@ resend login
 # or set env var: RESEND_API_KEY=re_xxx
 ```
 
-### Common commands
+### Comandos comuns
 
 ```bash
 # Send a test email
@@ -60,9 +60,9 @@ resend api-keys list
 resend api-keys create --name "Production"
 ```
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Send email
+### Enviar email
 
 ```bash
 POST https://api.resend.com/emails
@@ -75,7 +75,7 @@ POST https://api.resend.com/emails
 }
 ```
 
-### Send with React template
+### Enviar com template React
 
 ```bash
 POST https://api.resend.com/emails
@@ -91,19 +91,19 @@ POST https://api.resend.com/emails
 }
 ```
 
-### Get email status
+### Obter status de email
 
 ```bash
 GET https://api.resend.com/emails/{email_id}
 ```
 
-### List emails
+### Listar emails
 
 ```bash
 GET https://api.resend.com/emails
 ```
 
-### Send batch emails
+### Enviar emails em batch
 
 ```bash
 POST https://api.resend.com/emails/batch
@@ -122,13 +122,13 @@ POST https://api.resend.com/emails/batch
 ]
 ```
 
-### List domains
+### Listar domains
 
 ```bash
 GET https://api.resend.com/domains
 ```
 
-### Verify domain
+### Verificar domain
 
 ```bash
 POST https://api.resend.com/domains/{domain_id}/verify
@@ -136,13 +136,13 @@ POST https://api.resend.com/domains/{domain_id}/verify
 
 ## Node.js SDK
 
-### Install
+### Instalação
 
 ```bash
 npm install resend
 ```
 
-### Usage
+### Uso
 
 ```typescript
 import { Resend } from 'resend';
@@ -157,7 +157,7 @@ await resend.emails.send({
 });
 ```
 
-### With React Email
+### Com React Email
 
 ```typescript
 import { WelcomeEmail } from './emails/welcome';
@@ -170,43 +170,43 @@ await resend.emails.send({
 });
 ```
 
-## Email Statuses
+## Status de email
 
-- `queued` - Email queued for delivery
-- `sent` - Email sent to recipient server
-- `delivered` - Email delivered
-- `opened` - Email opened (if tracking enabled)
-- `clicked` - Link clicked (if tracking enabled)
-- `bounced` - Email bounced
-- `complained` - Marked as spam
+- `queued` - Email enfileirado para entrega
+- `sent` - Email enviado ao servidor do recipient
+- `delivered` - Email entregue
+- `opened` - Email aberto (se tracking habilitado)
+- `clicked` - Link clicado (se tracking habilitado)
+- `bounced` - Email com bounce
+- `complained` - Marcado como spam
 
-## Webhook Events
+## Eventos de webhook
 
 | Event | When |
 |-------|------|
-| `email.sent` | Email sent |
-| `email.delivered` | Email delivered |
-| `email.opened` | Email opened |
-| `email.clicked` | Link clicked |
-| `email.bounced` | Email bounced |
-| `email.complained` | Spam complaint |
+| `email.sent` | Email enviado |
+| `email.delivered` | Email entregue |
+| `email.opened` | Email aberto |
+| `email.clicked` | Link clicado |
+| `email.bounced` | Email com bounce |
+| `email.complained` | Reclamação de spam |
 
-## When to Use
+## Quando usar
 
-- Sending transactional emails
-- Welcome emails, password resets
-- Receipt and notification emails
-- Developer-friendly email integration
-- React-based email templates
-- Quick CLI testing of email flows without writing code
+- Enviar emails transacionais
+- Welcome emails e password resets
+- Emails de recibo e notification
+- Integração de email developer-friendly
+- Templates de email baseados em React
+- Testes rápidos de fluxo de email via CLI sem escrever código
 
-## Rate Limits
+## Limites de taxa
 
 - Free: 100 emails/day, 3,000/month
 - Pro: 100 emails/second
-- Higher limits on scale plans
+- Limites maiores nos planos scale
 
-## Relevant Skills
+## Skills relevantes
 
 - email-sequence
 - onboarding-cro
