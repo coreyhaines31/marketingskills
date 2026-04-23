@@ -73,6 +73,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | introw | Partner Ecosystem | - | ✓ | - | - | [introw.md](integrations/introw.md) |
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | - | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
+| exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
@@ -383,6 +384,16 @@ AI-powered content generation and optimization platforms.
 
 **Agent recommendation**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
+### AI Search
+
+AI-powered web search APIs built for LLMs and agents. Return structured results with on-demand text, highlights, and summaries.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **exa** | Neural/semantic web search, content research, competitor discovery | Search + findSimilar + Contents; MCP and SDKs available |
+
+**Agent recommendation**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
+
 ### Partner Ecosystem
 
 Partner data sharing, co-sell, and ecosystem management.
@@ -464,6 +475,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **outreach** - Sales engagement sequences
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
+- **exa** - AI-powered web search for LLMs and agents
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 
