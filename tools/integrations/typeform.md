@@ -1,37 +1,37 @@
-# Typeform
+# Tipoform
 
-Forms and surveys platform API for creating typeforms, retrieving responses, managing webhooks, themes, images, and workspaces.
+API de plataforma de formulários e pesquisas para criar typeforms, recuperar respostas, gerenciar webhooks, temas, imagens e workspaces.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Create, Responses, Webhooks APIs |
-| MCP | - | Not available |
+| API | ✓ | APIs de criação, respostas e webhooks |
+| MCP | - | Não disponível |
 | CLI | ✓ | [typeform.js](../clis/typeform.js) |
 | SDK | ✓ | JavaScript (@typeform/js-api-client), Embed SDK |
 
-## Authentication
+## Autenticação
 
-- **Type**: Bearer Token (Personal Access Token or OAuth 2.0)
+- **Tipo**: Bearer Token (Personal Access Token ou OAuth 2.0)
 - **Header**: `Authorization: Bearer {token}`
-- **Get key**: https://admin.typeform.com/account#/section/tokens
+- **Obter chave**: https://admin.typeform.com/account#/section/tokens
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List forms
+### Listar formulários
 
 ```bash
 GET https://api.typeform.com/forms
 ```
 
-### Get a form
+### Obter um formulário
 
 ```bash
 GET https://api.typeform.com/forms/{form_id}
 ```
 
-### Create a form
+### Criar um formulário
 
 ```bash
 POST https://api.typeform.com/forms
@@ -54,7 +54,7 @@ POST https://api.typeform.com/forms
 }
 ```
 
-### Update a form
+### Atualizar um formulário
 
 ```bash
 PUT https://api.typeform.com/forms/{form_id}
@@ -64,31 +64,31 @@ PUT https://api.typeform.com/forms/{form_id}
 }
 ```
 
-### Delete a form
+### Excluir um formulário
 
 ```bash
 DELETE https://api.typeform.com/forms/{form_id}
 ```
 
-### Retrieve responses
+### Recuperar respostas
 
 ```bash
 GET https://api.typeform.com/forms/{form_id}/responses?page_size=25&since=2024-01-01T00:00:00Z
 ```
 
-### Delete responses
+### Excluir respostas
 
 ```bash
 DELETE https://api.typeform.com/forms/{form_id}/responses?included_response_ids={id1},{id2}
 ```
 
-### List webhooks
+### Listar webhooks
 
 ```bash
 GET https://api.typeform.com/forms/{form_id}/webhooks
 ```
 
-### Create or update webhook
+### Criar ou atualizar webhook
 
 ```bash
 PUT https://api.typeform.com/forms/{form_id}/webhooks/{tag}
@@ -99,39 +99,39 @@ PUT https://api.typeform.com/forms/{form_id}/webhooks/{tag}
 }
 ```
 
-### Delete webhook
+### Excluir webhook
 
 ```bash
 DELETE https://api.typeform.com/forms/{form_id}/webhooks/{tag}
 ```
 
-### List themes
+### Listar temas
 
 ```bash
 GET https://api.typeform.com/themes
 ```
 
-### List images
+### Listar imagens
 
 ```bash
 GET https://api.typeform.com/images
 ```
 
-### List workspaces
+### Listar workspaces
 
 ```bash
 GET https://api.typeform.com/workspaces
 ```
 
-### Get a workspace
+### Obter um workspace
 
 ```bash
 GET https://api.typeform.com/workspaces/{workspace_id}
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Response Data
+### Dados de Resposta
 - `response_id` - Unique response identifier
 - `landed_at` / `submitted_at` - Timestamps
 - `answers` - Array of field answers
@@ -139,49 +139,49 @@ GET https://api.typeform.com/workspaces/{workspace_id}
 - `hidden` - Hidden field values
 - `calculated` - Score calculations
 
-### Form Data
-- `id` - Form ID (from URL)
+### Dados do Formulário
+- `id` - ID do formulário (da URL)
 - `title` - Form title
 - `fields` - Array of form fields
 - `logic` - Logic jumps
 - `settings` - Form settings (notifications, meta, etc.)
-- `_links` - Display and responses URLs
+- `_links` - URLs de exibição e respostas
 
-## Parameters
+## Parâmetros
 
-### Retrieve Responses
+### Recuperar Respostas
 - `page_size` - Results per page (default 25, max 1000)
-- `since` / `until` - Date range filter (ISO 8601 or Unix timestamp)
+- `since` / `until` - Filtro de intervalo de data (ISO 8601 ou Unix timestamp)
 - `after` / `before` - Pagination tokens
-- `response_type` - Filter: started, partial, completed (default: completed)
-- `query` - Text search within responses
-- `fields` - Show only specific fields in answers
+- `response_type` - Filtro: started, partial, completed (padrão: completed)
+- `query` - Busca de texto nas respostas
+- `fields` - Mostrar apenas campos específicos nas respostas
 - `sort` - Sort order: `{fieldID},{asc|desc}`
-- `included_response_ids` / `excluded_response_ids` - Filter specific responses
-- `answered_fields` - Only responses containing specified fields
+- `included_response_ids` / `excluded_response_ids` - Filtrar respostas específicas
+- `answered_fields` - Apenas respostas contendo os campos especificados
 
-### List Forms
+### Listar Formulários
 - `page` - Page number
 - `page_size` - Results per page (default 10, max 200)
-- `workspace_id` - Filter by workspace
-- `search` - Search by form title
+- `workspace_id` - Filtrar por workspace
+- `search` - Buscar por título do formulário
 
-## When to Use
+## Quando Usar
 
-- Collecting lead information and survey data
-- Building custom form experiences programmatically
-- Automating survey creation for campaigns
-- Analyzing form response data at scale
+- Coletar informações de leads e dados de pesquisa
+- Construir experiências de formulário customizadas de forma programática
+- Automatizar criação de pesquisas para campanhas
+- Analisar dados de resposta de formulários em escala
 - Setting up real-time response webhooks
-- Managing form themes and branding
+- Gerenciar temas e branding de formulários
 
-## Rate Limits
+## Limites de Taxa
 
 - **Create & Responses APIs**: 2 requests per second per account
 - **Webhooks & Embed**: No rate limits (push-based)
-- Monitor for HTTP 429 responses
+- Monitorar respostas HTTP 429
 
-## Relevant Skills
+## Skills Relevantes
 
 - lead-generation
 - customer-research

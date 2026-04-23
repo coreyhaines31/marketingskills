@@ -1,37 +1,37 @@
 # Tolt
 
-Affiliate program management for SaaS, with Stripe and Paddle integration.
+Gerenciamento de programa de afiliados para SaaS, com integração Stripe e Paddle.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for affiliates, referrals, payouts |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | - | JavaScript snippet for tracking |
+| API | ✓ | API REST para afiliados, indicações e pagamentos |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | - | Snippet JavaScript para rastreamento |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
+- **Tipo**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: Settings > API in Tolt dashboard
+- **Obter chave**: Settings > API no dashboard do Tolt
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List affiliates
+### Listar afiliados
 
 ```bash
 GET https://api.tolt.io/v1/affiliates
 ```
 
-### Get affiliate
+### Obter afiliado
 
 ```bash
 GET https://api.tolt.io/v1/affiliates/{affiliate_id}
 ```
 
-### Create affiliate
+### Criar afiliado
 
 ```bash
 POST https://api.tolt.io/v1/affiliates
@@ -42,31 +42,31 @@ POST https://api.tolt.io/v1/affiliates
 }
 ```
 
-### List referrals
+### Listar indicações
 
 ```bash
 GET https://api.tolt.io/v1/referrals?affiliate_id={affiliate_id}
 ```
 
-### Get referral by customer
+### Obter indicação por cliente
 
 ```bash
 GET https://api.tolt.io/v1/referrals?customer_id={stripe_customer_id}
 ```
 
-### List commissions
+### Listar comissões
 
 ```bash
 GET https://api.tolt.io/v1/commissions?affiliate_id={affiliate_id}
 ```
 
-### Get payout history
+### Obter histórico de pagamentos
 
 ```bash
 GET https://api.tolt.io/v1/payouts?affiliate_id={affiliate_id}
 ```
 
-### Update affiliate
+### Atualizar afiliado
 
 ```bash
 PATCH https://api.tolt.io/v1/affiliates/{affiliate_id}
@@ -78,46 +78,46 @@ PATCH https://api.tolt.io/v1/affiliates/{affiliate_id}
 }
 ```
 
-## JavaScript Tracking
+## Rastreamento em JavaScript
 
-### Install snippet
+### Instalar snippet
 
 ```html
 <script src="https://cdn.tolt.io/tolt.js" data-tolt="YOUR_PUBLIC_KEY"></script>
 ```
 
-### Track signup
+### Rastrear cadastro
 
 ```javascript
 window.tolt.signup(stripeCustomerId);
 ```
 
-### Identify existing customer
+### Identificar cliente existente
 
 ```javascript
 window.tolt.identify(stripeCustomerId);
 ```
 
-## Webhook Events
+## Eventos de Webhook
 
-| Event | When |
+| Evento | Quando |
 |-------|------|
-| `affiliate.created` | New affiliate registered |
+| `affiliate.created` | Novo afiliado registrado |
 | `affiliate.approved` | Affiliate approved |
-| `referral.created` | New referral tracked |
-| `referral.converted` | Referral converted to customer |
+| `referral.created` | Nova indicação rastreada |
+| `referral.converted` | Indicação convertida em cliente |
 | `commission.created` | Commission earned |
 | `payout.completed` | Payout sent |
 
 ## Key Features
 
-- **Stripe native** - Automatic commission tracking
-- **Paddle support** - Works with Paddle billing
+- **Stripe native** - Rastreamento automático de comissão
+- **Paddle support** - Funciona com cobrança via Paddle
 - **Affiliate dashboard** - White-labeled portal
-- **Payout automation** - PayPal and Wise payouts
+- **Automação de pagamentos** - Pagamentos via PayPal e Wise
 - **Custom commission tiers** - Different rates per affiliate
 
-## Key Objects
+## Objetos Principais
 
 - **Affiliate** - Partner in your program
 - **Referral** - Tracked conversion
@@ -125,20 +125,20 @@ window.tolt.identify(stripeCustomerId);
 - **Payout** - Processed payment to affiliate
 - **Program** - Campaign configuration
 
-## When to Use
+## Quando Usar
 
 - Setting up SaaS affiliate programs
-- Managing affiliate relationships
-- Tracking Stripe or Paddle-based referrals
+- Gerenciar relacionamento com afiliados
+- Rastrear indicações baseadas em Stripe ou Paddle
 - Processing affiliate payouts
-- Building affiliate dashboards
+- Construir dashboards de afiliados
 
-## Rate Limits
+## Limites de Taxa
 
 - 100 requests per minute
 - Higher limits on enterprise plans
 
-## Relevant Skills
+## Skills Relevantes
 
 - referral-program
 - pricing-strategy

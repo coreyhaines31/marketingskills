@@ -1,25 +1,25 @@
 # Webflow
 
-Visual web design and CMS platform for marketing sites.
+Plataforma visual de web design e CMS para sites de marketing.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for sites, CMS, forms |
-| MCP | - | Not available |
-| CLI | ✓ | Webflow CLI for devlink and apps |
-| SDK | ✓ | Official SDK for Node.js |
+| API | ✓ | API REST para sites, CMS e formulários |
+| MCP | - | Não disponível |
+| CLI | ✓ | Webflow CLI para devlink e apps |
+| SDK | ✓ | SDK oficial para Node.js |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Token (Site token or OAuth)
+- **Tipo**: API Token (Site token ou OAuth)
 - **Header**: `Authorization: Bearer {api_token}`
-- **Get token**: Site Settings > Integrations > API Access
+- **Get token**: Configurações do Site > Integrations > API Access
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List sites
+### Listar sites
 
 ```bash
 GET https://api.webflow.com/v2/sites
@@ -27,7 +27,7 @@ GET https://api.webflow.com/v2/sites
 Authorization: Bearer {api_token}
 ```
 
-### Get site
+### Obter site
 
 ```bash
 GET https://api.webflow.com/v2/sites/{site_id}
@@ -35,7 +35,7 @@ GET https://api.webflow.com/v2/sites/{site_id}
 Authorization: Bearer {api_token}
 ```
 
-### List collections
+### Listar coleções
 
 ```bash
 GET https://api.webflow.com/v2/sites/{site_id}/collections
@@ -43,7 +43,7 @@ GET https://api.webflow.com/v2/sites/{site_id}/collections
 Authorization: Bearer {api_token}
 ```
 
-### List collection items
+### Listar itens da coleção
 
 ```bash
 GET https://api.webflow.com/v2/collections/{collection_id}/items
@@ -51,7 +51,7 @@ GET https://api.webflow.com/v2/collections/{collection_id}/items
 Authorization: Bearer {api_token}
 ```
 
-### Get collection item
+### Obter item da coleção
 
 ```bash
 GET https://api.webflow.com/v2/collections/{collection_id}/items/{item_id}
@@ -59,7 +59,7 @@ GET https://api.webflow.com/v2/collections/{collection_id}/items/{item_id}
 Authorization: Bearer {api_token}
 ```
 
-### Create collection item
+### Criar item da coleção
 
 ```bash
 POST https://api.webflow.com/v2/collections/{collection_id}/items
@@ -75,7 +75,7 @@ Authorization: Bearer {api_token}
 }
 ```
 
-### Update collection item
+### Atualizar item da coleção
 
 ```bash
 PATCH https://api.webflow.com/v2/collections/{collection_id}/items/{item_id}
@@ -89,7 +89,7 @@ Authorization: Bearer {api_token}
 }
 ```
 
-### Publish collection items
+### Publicar itens da coleção
 
 ```bash
 POST https://api.webflow.com/v2/collections/{collection_id}/items/publish
@@ -101,7 +101,7 @@ Authorization: Bearer {api_token}
 }
 ```
 
-### List form submissions
+### Listar envios de formulário
 
 ```bash
 GET https://api.webflow.com/v2/sites/{site_id}/forms/{form_id}/submissions
@@ -109,7 +109,7 @@ GET https://api.webflow.com/v2/sites/{site_id}/forms/{form_id}/submissions
 Authorization: Bearer {api_token}
 ```
 
-### Publish site
+### Publicar site
 
 ```bash
 POST https://api.webflow.com/v2/sites/{site_id}/publish
@@ -122,7 +122,7 @@ Authorization: Bearer {api_token}
 }
 ```
 
-## Node.js SDK
+## SDK Node.js
 
 ```javascript
 const Webflow = require('webflow-api');
@@ -144,7 +144,7 @@ const item = await webflow.collections.items.createItem(collectionId, {
 });
 ```
 
-## CLI Commands
+## Comandos CLI
 
 ```bash
 # Install
@@ -160,16 +160,16 @@ webflow devlink init
 webflow devlink sync
 ```
 
-## CMS Structure
+## Estrutura do CMS
 
-- **Collections** - Content types (like blog posts, team members)
+- **Collections** - Tipos de conteúdo (como posts de blog e membros de time)
 - **Items** - Individual entries in a collection
-- **Fields** - Data fields on items
+- **Fields** - Campos de dados nos itens
 
-## Common Field Types
+## Tipos de Campo Comuns
 
 - `PlainText` - Simple text
-- `RichText` - Formatted content
+- `RichText` - Conteúdo formatado
 - `Image` - Image upload
 - `Link` - URL or page reference
 - `Reference` - Link to another collection
@@ -178,20 +178,20 @@ webflow devlink sync
 - `Number` - Numeric value
 - `Date` - Date/time
 
-## When to Use
+## Quando Usar
 
-- Marketing site CMS management
-- Blog/content publishing
+- Gestão de CMS de site de marketing
+- Publicação de blog/conteúdo
 - Form submission handling
-- Automated content updates
+- Atualizações automáticas de conteúdo
 - Programmatic SEO pages
 
-## Rate Limits
+## Limites de Taxa
 
 - 60 requests/minute (general)
 - 10 requests/minute (publishing)
 
-## Relevant Skills
+## Skills Relevantes
 
 - programmatic-seo
 - content-strategy
