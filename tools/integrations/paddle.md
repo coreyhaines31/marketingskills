@@ -1,8 +1,8 @@
 # Paddle
 
-SaaS billing and payments platform with built-in tax compliance, acting as merchant of record for global sales.
+Plataforma de billing e pagamentos para SaaS com tax compliance embutido, atuando como merchant of record para vendas globais.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,24 +11,24 @@ SaaS billing and payments platform with built-in tax compliance, acting as merch
 | CLI | ✓ | [paddle.js](../clis/paddle.js) |
 | SDK | ✓ | Node.js, Python, PHP, Go |
 
-## Authentication
+## Autenticação
 
 - **Type**: Bearer Token
 - **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: Paddle dashboard > Developer Tools > Authentication
 - **Production URL**: `https://api.paddle.com`
 - **Sandbox URL**: `https://sandbox-api.paddle.com`
-- **Note**: Version specified via header, not path. Set `PADDLE_SANDBOX=true` env var for sandbox.
+- **Note**: A versão é especificada via header, não no path. Defina a env var `PADDLE_SANDBOX=true` para sandbox.
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### List products
+### Listar produtos
 
 ```bash
 GET https://api.paddle.com/products
 ```
 
-### Create a product
+### Criar um produto
 
 ```bash
 POST https://api.paddle.com/products
@@ -40,7 +40,7 @@ POST https://api.paddle.com/products
 }
 ```
 
-### Create a price for a product
+### Criar um preço para um produto
 
 ```bash
 POST https://api.paddle.com/prices
@@ -59,13 +59,13 @@ POST https://api.paddle.com/prices
 }
 ```
 
-### List customers
+### Listar customers
 
 ```bash
 GET https://api.paddle.com/customers
 ```
 
-### Create a customer
+### Criar um customer
 
 ```bash
 POST https://api.paddle.com/customers
@@ -76,19 +76,19 @@ POST https://api.paddle.com/customers
 }
 ```
 
-### List subscriptions
+### Listar subscriptions
 
 ```bash
 GET https://api.paddle.com/subscriptions?status=active
 ```
 
-### Get subscription details
+### Obter detalhes de subscription
 
 ```bash
 GET https://api.paddle.com/subscriptions/{subscription_id}
 ```
 
-### Cancel a subscription
+### Cancelar uma subscription
 
 ```bash
 POST https://api.paddle.com/subscriptions/{subscription_id}/cancel
@@ -98,19 +98,19 @@ POST https://api.paddle.com/subscriptions/{subscription_id}/cancel
 }
 ```
 
-### Pause a subscription
+### Pausar uma subscription
 
 ```bash
 POST https://api.paddle.com/subscriptions/{subscription_id}/pause
 ```
 
-### List transactions
+### Listar transactions
 
 ```bash
 GET https://api.paddle.com/transactions
 ```
 
-### Create a discount
+### Criar um discount
 
 ```bash
 POST https://api.paddle.com/discounts
@@ -123,7 +123,7 @@ POST https://api.paddle.com/discounts
 }
 ```
 
-### Create a refund adjustment
+### Criar um ajuste de refund
 
 ```bash
 POST https://api.paddle.com/adjustments
@@ -136,74 +136,74 @@ POST https://api.paddle.com/adjustments
 }
 ```
 
-### List events
+### Listar eventos
 
 ```bash
 GET https://api.paddle.com/events
 ```
 
-### List event types
+### Listar tipos de evento
 
 ```bash
 GET https://api.paddle.com/event-types
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Transaction Metrics
-- `totals.total` - Total amount charged
-- `totals.tax` - Tax amount
-- `totals.subtotal` - Amount before tax
-- `totals.discount` - Discount applied
-- `currency_code` - Transaction currency
+### Métricas de transaction
+- `totals.total` - Valor total cobrado
+- `totals.tax` - Valor de tax
+- `totals.subtotal` - Valor antes de tax
+- `totals.discount` - Discount aplicado
+- `currency_code` - Moeda da transaction
 
-### Subscription Metrics
+### Métricas de subscription
 - `status` - active, canceled, paused, past_due, trialing
-- `current_billing_period` - Current period start/end
-- `next_billed_at` - Next billing date
-- `scheduled_change` - Pending changes (cancellation, plan change)
+- `current_billing_period` - Início/fim do período atual
+- `next_billed_at` - Próxima data de cobrança
+- `scheduled_change` - Mudanças pendentes (cancelamento, mudança de plano)
 
-### Product/Price Metrics
-- `unit_price.amount` - Price in lowest denomination
-- `billing_cycle` - Interval and frequency
-- `trial_period` - Trial duration if set
+### Métricas de Product/Price
+- `unit_price.amount` - Preço na menor denominação
+- `billing_cycle` - Intervalo e frequência
+- `trial_period` - Duração do trial, se definido
 
-## Parameters
+## Parâmetros
 
-### List Filtering
-- `status` - Filter by status (e.g., active, archived)
-- `after` - Cursor for pagination
-- `per_page` - Results per page (default: 50)
-- `order_by` - Sort field and direction
+### Filtros de listagem
+- `status` - Filtro por status (ex.: active, archived)
+- `after` - Cursor para paginação
+- `per_page` - Resultados por página (default: 50)
+- `order_by` - Campo e direção de ordenação
 
-### Subscription Cancel Options
+### Opções de cancelamento de subscription
 - `effective_from` - `immediately` or `next_billing_period`
 
-### Price Billing Cycle
+### Billing cycle de preço
 - `interval` - `day`, `week`, `month`, `year`
-- `frequency` - Number of intervals between billings
+- `frequency` - Número de intervalos entre cobranças
 
-### Tax Categories
-- `standard` - Standard tax rate
-- `digital-goods` - Digital goods tax rate
-- `saas` - SaaS-specific tax rate
+### Categorias de tax
+- `standard` - Taxa padrão de tax
+- `digital-goods` - Taxa de tax para bens digitais
+- `saas` - Taxa de tax específica para SaaS
 
-## When to Use
+## Quando usar
 
-- Managing SaaS subscription billing with tax compliance
-- Creating products and pricing tiers
-- Processing refunds and adjustments
-- Handling subscription lifecycle (create, pause, cancel, resume)
-- Global tax handling as merchant of record
-- Discount and coupon management for promotions
+- Gerenciar billing de subscriptions SaaS com tax compliance
+- Criar produtos e tiers de preço
+- Processar refunds e ajustes
+- Gerenciar lifecycle de subscriptions (create, pause, cancel, resume)
+- Gerenciar tax global como merchant of record
+- Gerenciar discounts e cupons para promoções
 
-## Rate Limits
+## Limites de taxa
 
 - 100 requests per minute
-- Applies across all endpoints
-- HTTP 429 returned when exceeded
+- Aplica-se a todos os endpoints
+- HTTP 429 retornado quando excedido
 
-## Relevant Skills
+## Skills relevantes
 
 - pricing-page
 - saas-metrics

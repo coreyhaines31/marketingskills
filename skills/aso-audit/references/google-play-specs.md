@@ -1,130 +1,130 @@
-# Google Play Store — Official Specs & Guidelines
+# Google Play Store — Especificações e Diretrizes Oficiais
 
-All data from support.google.com and developer.android.com as of March 2026.
+Todos os dados de support.google.com e developer.android.com em março de 2026.
 
-## Character Limits
+## Limites de Caracteres
 
-| Field             | Limit       | Indexed?               | Notes                                 |
-| ----------------- | ----------- | ---------------------- | ------------------------------------- |
-| App Title         | 30 chars    | Yes (strongest signal) | Reduced from 50 in Sept 2021          |
-| Short Description | 80 chars    | Yes                    | Visible without expanding             |
-| Full Description  | 4,000 chars | **Yes (heavily)**      | Google NLP indexes entire text        |
-| Developer Name    | 64 chars    | Partial                | Same emoji/caps restrictions as title |
+| Campo              | Limite      | Indexado?              | Notas                                          |
+| ------------------ | ----------- | ---------------------- | ---------------------------------------------- |
+| Título do App      | 30 chars    | Sim (sinal mais forte) | Reduzido de 50 em setembro de 2021             |
+| Descrição Curta    | 80 chars    | Sim                    | Visível sem expandir                           |
+| Descrição Completa | 4.000 chars | **Sim (muito)**        | NLP do Google indexa o texto completo          |
+| Nome do Desenvolvedor | 64 chars | Parcial                | Mesmas restrições de emoji/caps do título      |
 
-## Prohibited in Metadata (enforced since Sept 2021)
+## Proibido nos Metadados (em vigor desde setembro de 2021)
 
-**Title, Icon, Developer Name:**
+**Título, Ícone, Nome do Desenvolvedor:**
 
-- Emojis, emoticons, repeated special characters
-- ALL CAPS (unless registered brand)
-- Performance claims: "top," "best," "#1," "free," "no ads"
-- Misleading store performance or endorsement
-- Calls-to-action: "update now," "download now"
+- Emojis, emoticons, caracteres especiais repetidos
+- CAIXA ALTA (exceto marca registrada)
+- Afirmações de desempenho: "top," "melhor," "#1," "grátis," "sem anúncios"
+- Desempenho enganoso na loja ou endosso
+- Chamadas para ação: "atualize agora," "baixe agora"
 
-**Short Description:**
+**Descrição Curta:**
 
-- Same performance claims as title
-- Calls-to-action
-- Unattributed testimonials
+- Mesmas afirmações de desempenho do título
+- Chamadas para ação
+- Depoimentos sem atribuição
 
-**Screenshots, Feature Graphic, Video:**
+**Screenshots, Imagem de Destaque, Vídeo:**
 
-- Time-sensitive taglines
-- Calls-to-action ("Download now," "Play now")
-- Must authentically showcase app functionality
+- Slogans com prazo limitado
+- Chamadas para ação ("Baixe agora," "Jogue agora")
+- Devem mostrar autenticamente a funcionalidade do app
 
-## Screenshot Specs
+## Especificações de Screenshots
 
-| Device     | Min   | Max   | Aspect Ratio | Min Resolution | Max Long Edge |
-| ---------- | ----- | ----- | ------------ | -------------- | ------------- |
-| Phone      | **2** | **8** | 9:16 or 16:9 | 320px any side | 3,840px       |
-| 7" Tablet  | 4     | 8     | 9:16 or 16:9 | 1,080px short  | 7,680px       |
-| 10" Tablet | 4     | 8     | 9:16 or 16:9 | 1,080px short  | 7,680px       |
-| Chromebook | 4     | 8     | 9:16 or 16:9 | 1,080px short  | 7,680px       |
-| Wear OS    | 1     | 8     | **1:1**      | 384x384        | 3,840px       |
-| Android TV | 1     | 8     | **16:9**     | 1,920x1,080    | 3,840px       |
+| Dispositivo  | Mín   | Máx   | Proporção    | Resolução Mín  | Lado Longo Máx |
+| ------------ | ----- | ----- | ------------ | -------------- | -------------- |
+| Telefone     | **2** | **8** | 9:16 ou 16:9 | 320px qualquer lado | 3.840px   |
+| Tablet 7"    | 4     | 8     | 9:16 ou 16:9 | 1.080px lado curto  | 7.680px   |
+| Tablet 10"   | 4     | 8     | 9:16 ou 16:9 | 1.080px lado curto  | 7.680px   |
+| Chromebook   | 4     | 8     | 9:16 ou 16:9 | 1.080px lado curto  | 7.680px   |
+| Wear OS      | 1     | 8     | **1:1**      | 384x384             | 3.840px   |
+| Android TV   | 1     | 8     | **16:9**     | 1.920x1.080         | 3.840px   |
 
-- **Recommended phone size:** 1080x1920 (portrait)
-- **Format:** JPEG or 24-bit PNG (no alpha)
-- **Max file size:** 8 MB each
+- **Tamanho recomendado para telefone:** 1080x1920 (retrato)
+- **Formato:** JPEG ou PNG de 24 bits (sem alpha)
+- **Tamanho máximo do arquivo:** 8 MB cada
 
-**Note:** Google Play max is 8 screenshots per device, not 10 like Apple.
+**Nota:** O máximo do Google Play é 8 screenshots por dispositivo, não 10 como na Apple.
 
-## Feature Graphic
+## Imagem de Destaque
 
-- **Dimensions:** 1024 x 500 px (exact, required)
-- **Format:** JPEG or 24-bit PNG (no alpha)
-- Displayed at top of listing and in featured placements
+- **Dimensões:** 1024 x 500 px (exato, obrigatório)
+- **Formato:** JPEG ou PNG de 24 bits (sem alpha)
+- Exibida no topo da listagem e em posicionamentos em destaque
 
-## App Icon
+## Ícone do App
 
-- **Dimensions:** 512 x 512 px
-- **Format:** 32-bit PNG (with alpha)
-- **Max file size:** 1,024 KB
-- **Shape:** Full square (Google applies 30% corner radius automatically)
-- **Prohibited:** Ranking claims, download counts, deal text, emoji
+- **Dimensões:** 512 x 512 px
+- **Formato:** PNG de 32 bits (com alpha)
+- **Tamanho máximo do arquivo:** 1.024 KB
+- **Forma:** Quadrado completo (Google aplica 30% de raio de canto automaticamente)
+- **Proibido:** Afirmações de ranking, contagens de download, texto promocional, emoji
 
-## Preview Video
+## Vídeo de Pré-visualização
 
-- **Format:** YouTube URL (public or unlisted)
-- **Duration:** 30 seconds to 2 minutes recommended
-- No ads, no monetization, must be embeddable, not age-restricted
-- **Does NOT autoplay** (only ~6% of visitors tap to play)
+- **Formato:** URL do YouTube (público ou não listado)
+- **Duração:** 30 segundos a 2 minutos recomendado
+- Sem anúncios, sem monetização, deve ser incorporável, sem restrição de idade
+- **NÃO reproduz automaticamente** (apenas ~6% dos visitantes tocam para reproduzir)
 
-## Store Listing Experiments (A/B Testing)
+## Store Listing Experiments (Testes A/B)
 
-- **Variants:** Up to 3 per experiment (plus control)
-- **Testable:** Icon, feature graphic, screenshots, video, short description, full description
-- **Concurrent:** Cannot run more than 1 default graphics experiment simultaneously
-- **Audience:** Signed-in Google Play users only
-- **Metrics:** First-time installers + retained first-time installers (1-day retention)
-- **Duration:** Run at least 7 days (weekday/weekend variance)
-- **Localized:** Test across up to 5 languages simultaneously
+- **Variantes:** Até 3 por experimento (mais o controle)
+- **Testável:** Ícone, imagem de destaque, screenshots, vídeo, descrição curta, descrição completa
+- **Simultâneo:** Não é possível executar mais de 1 experimento de gráficos padrão ao mesmo tempo
+- **Público:** Apenas usuários do Google Play que estejam conectados
+- **Métricas:** Instaladores pela primeira vez + instaladores retidos pela primeira vez (retenção de 1 dia)
+- **Duração:** Execute por pelo menos 7 dias (variação dia de semana/fim de semana)
+- **Localizado:** Teste em até 5 idiomas simultaneamente
 
 ## Custom Store Listings
 
-- **Max:** 50 per app (100 for Play partners)
-- **Customizable:** Title, short/full description, icon, screenshots, feature graphic, video
-- **Targeting:** Country/region, pre-registration, install state, Google Ads campaigns, inactive/churned users (28+ days)
-- **2025 addition:** Gemini AI auto-generates text for CSLs in Play Console
+- **Máximo:** 50 por app (100 para parceiros Play)
+- **Personalizável:** Título, descrição curta/completa, ícone, screenshots, imagem de destaque, vídeo
+- **Segmentação:** País/região, pré-registro, estado de instalação, campanhas do Google Ads, usuários inativos/que desistiram (28+ dias)
+- **Adição de 2025:** IA Gemini gera texto automaticamente para CSLs no Play Console
 
-## Promotional Content (LiveOps)
+## Conteúdo Promocional (LiveOps)
 
-| Type              | Description                    | Duration             |
-| ----------------- | ------------------------------ | -------------------- |
-| Offers            | Discounts, free items, bundles | Up to 28 days        |
-| Events            | Time-limited in-app events     | Must have time limit |
-| Major Update      | Significant new features       | Max 1 week           |
-| Crossover (games) | Cross-game/IP collaboration    | Varies               |
+| Tipo              | Descrição                             | Duração              |
+| ----------------- | ------------------------------------- | -------------------- |
+| Ofertas           | Descontos, itens gratuitos, pacotes   | Até 28 dias          |
+| Eventos           | Eventos no app por tempo limitado     | Deve ter prazo       |
+| Atualização Maior | Novos recursos significativos         | Máx 1 semana         |
+| Crossover (jogos) | Colaboração entre jogos/IPs           | Varia                |
 
-- Submit **4+ days** before start (standard review)
-- Submit **14+ days** before for featuring requests
-- **Impact:** "Over twice as many explore acquisitions during featuring" (official Google)
+- Envie **4+ dias** antes do início (revisão padrão)
+- Envie **14+ dias** antes para solicitações de destaque
+- **Impacto:** "Mais do dobro de aquisições por exploração durante o destaque" (Google oficial)
 
-## Android Vitals — Ranking Thresholds
+## Android Vitals — Limites de Ranking
 
-Apps exceeding these thresholds get **reduced visibility** in search and recommendations.
+Apps que excedem esses limites recebem **visibilidade reduzida** em busca e recomendações.
 
-| Metric                       | Overall Threshold | Per-Device Threshold |
-| ---------------------------- | ----------------- | -------------------- |
-| User-Perceived Crash Rate    | **1.09%**         | 8%                   |
-| User-Perceived ANR Rate      | **0.47%**         | 8%                   |
-| Excessive Partial Wake Locks | 5%                | N/A                  |
+| Métrica                          | Limite Geral | Limite por Dispositivo |
+| -------------------------------- | ------------ | ---------------------- |
+| Taxa de Crash Percebida pelo Usuário | **1,09%** | 8%                  |
+| Taxa de ANR Percebida pelo Usuário   | **0,47%** | 8%                  |
+| Wake Locks Parciais Excessivos   | 5%           | N/A                    |
 
-**Consequences:** Reduced search visibility, warning labels on listing, quality alerts to users before install.
-**Recovery:** Google checks daily using 28-day rolling average.
+**Consequências:** Visibilidade reduzida na busca, rótulos de aviso na listagem, alertas de qualidade para usuários antes da instalação.
+**Recuperação:** O Google verifica diariamente usando média móvel de 28 dias.
 
-## Search Ranking — Official Factors
+## Ranking de Busca — Fatores Oficiais
 
-Google confirms these affect ranking:
+O Google confirma que estes afetam o ranking:
 
-1. **Metadata relevance** — Title carries most weight. NLP scans title + short desc + full desc.
-2. **App quality** — Android Vitals (crash/ANR rates)
-3. **Ratings and reviews** — Star rating + review text. 85% of featured apps have 4.0+
-4. **Install volume and velocity** — Total installs + daily/weekly frequency
-5. **Engagement and retention** — Session frequency, duration, retention rates
-6. **Update frequency** — Regular updates signal active maintenance
-7. **Localization** — Regional keyword/visual adaptation. 59% of US apps localize titles.
+1. **Relevância dos metadados** — O título tem mais peso. NLP verifica título + descrição curta + descrição completa.
+2. **Qualidade do app** — Android Vitals (taxas de crash/ANR)
+3. **Avaliações e reviews** — Estrelas + texto dos reviews. 85% dos apps em destaque têm 4,0+
+4. **Volume e velocidade de instalação** — Total de instalações + frequência diária/semanal
+5. **Engajamento e retenção** — Frequência de sessões, duração, taxas de retenção
+6. **Frequência de atualização** — Atualizações regulares sinalizam manutenção ativa
+7. **Localização** — Adaptação regional de palavras-chave/visuais. 59% dos apps dos EUA localizam títulos.
 
 Sources: support.google.com/googleplay/android-developer/answer/4448378,
 support.google.com/googleplay/android-developer/answer/9898842,

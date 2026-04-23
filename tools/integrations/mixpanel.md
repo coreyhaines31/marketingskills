@@ -1,8 +1,8 @@
 # Mixpanel
 
-Product analytics platform for tracking user behavior and retention.
+Plataforma de product analytics para rastrear comportamento e retenção de usuários.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,15 +11,15 @@ Product analytics platform for tracking user behavior and retention.
 | CLI | - | Not available |
 | SDK | ✓ | JavaScript, iOS, Android, Python, etc. |
 
-## Authentication
+## Autenticação
 
-- **Ingestion**: Project token (public)
+- **Ingestion**: Project token (público)
 - **Query API**: Service Account (username:secret as Basic auth)
 - **Export**: API Secret
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Track event (Ingestion API)
+### Rastrear evento (Ingestion API)
 
 ```bash
 POST https://api.mixpanel.com/track
@@ -35,7 +35,7 @@ POST https://api.mixpanel.com/track
 }
 ```
 
-### Set user profile
+### Definir perfil de usuário
 
 ```bash
 POST https://api.mixpanel.com/engage
@@ -51,7 +51,7 @@ POST https://api.mixpanel.com/engage
 }
 ```
 
-### Query events (Query API)
+### Consultar eventos (Query API)
 
 ```bash
 POST https://mixpanel.com/api/2.0/insights
@@ -69,19 +69,19 @@ POST https://mixpanel.com/api/2.0/insights
 }
 ```
 
-### Get funnel data
+### Obter dados de funnel
 
 ```bash
 GET https://mixpanel.com/api/2.0/funnels?funnel_id={funnel_id}&from_date=2024-01-01&to_date=2024-01-31
 ```
 
-### Export raw events
+### Exportar eventos brutos
 
 ```bash
 GET https://data.mixpanel.com/api/2.0/export?from_date=2024-01-01&to_date=2024-01-01
 ```
 
-### Get retention data
+### Obter dados de retenção
 
 ```bash
 GET https://mixpanel.com/api/2.0/retention?from_date=2024-01-01&to_date=2024-01-31&retention_type=birth&born_event=signup_completed
@@ -108,29 +108,29 @@ mixpanel.track('Feature Used', {
 });
 ```
 
-## Key Concepts
+## Conceitos principais
 
-- **Events** - User actions (signup, purchase, etc.)
-- **Properties** - Attributes on events
-- **User Profiles** - Persistent user data
-- **Cohorts** - Saved user segments
-- **Funnels** - Conversion sequences
-- **Retention** - User return patterns
+- **Events** - Ações do usuário (signup, purchase etc.)
+- **Properties** - Atributos dos eventos
+- **User Profiles** - Dados persistentes do usuário
+- **Cohorts** - Segmentos de usuário salvos
+- **Funnels** - Sequências de conversão
+- **Retention** - Padrões de retorno dos usuários
 
-## When to Use
+## Quando usar
 
-- Tracking product usage events
-- Analyzing conversion funnels
-- Measuring feature adoption
-- Retention analysis
-- User segmentation
+- Rastrear eventos de uso do produto
+- Analisar funnels de conversão
+- Medir adoção de funcionalidades
+- Análise de retenção
+- Segmentação de usuários
 
-## Rate Limits
+## Limites de taxa
 
-- Ingestion: No hard limit (batch recommended)
-- Query API: Varies by plan
+- Ingestion: Sem limite rígido (batch recomendado)
+- Query API: Varia por plano
 
-## Relevant Skills
+## Skills relevantes
 
 - analytics-tracking
 - ab-test-setup

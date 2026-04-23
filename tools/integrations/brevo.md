@@ -1,44 +1,44 @@
 # Brevo
 
-All-in-one marketing platform (formerly Sendinblue) for email, SMS, and WhatsApp with contacts, campaigns, and transactional messaging.
+Plataforma de marketing all-in-one (anteriormente Sendinblue) para email, SMS e WhatsApp com contatos, campanhas e mensagens transacionais.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | REST API v3 for contacts, campaigns, transactional email/SMS |
-| MCP | - | Not available |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | REST API v3 para contatos, campanhas, email/SMS transacional |
+| MCP | - | Não disponível |
 | CLI | ✓ | [brevo.js](../clis/brevo.js) |
 | SDK | ✓ | Node.js, Python, PHP, Ruby, Java, C#, Go |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
-- **Header**: `api-key: {api_key}`
-- **Get key**: SMTP & API settings at https://app.brevo.com/settings/keys/api
-- **Note**: API key is only shown once on creation; store securely. Formerly used `api.sendinblue.com` base URL.
+- **Tipo**: API Key
+- **Cabeçalho**: `api-key: {api_key}`
+- **Obter chave**: SMTP & API settings at https://app.brevo.com/settings/keys/api
+- **Observação**: A API key é exibida apenas uma vez na criação; armazene com segurança. Formerly used `api.sendinblue.com` base URL.
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get account info
+### Obter account info
 
 ```bash
 GET https://api.brevo.com/v3/account
 ```
 
-### List contacts
+### Listar contacts
 
 ```bash
 GET https://api.brevo.com/v3/contacts?limit=50&offset=0
 ```
 
-### Get contact by email
+### Obter contato por email
 
 ```bash
 GET https://api.brevo.com/v3/contacts/user@example.com
 ```
 
-### Create contact
+### Criar contact
 
 ```bash
 POST https://api.brevo.com/v3/contacts
@@ -53,7 +53,7 @@ POST https://api.brevo.com/v3/contacts
 }
 ```
 
-### Update contact
+### Atualizar contact
 
 ```bash
 PUT https://api.brevo.com/v3/contacts/user@example.com
@@ -66,13 +66,13 @@ PUT https://api.brevo.com/v3/contacts/user@example.com
 }
 ```
 
-### Delete contact
+### Excluir contact
 
 ```bash
 DELETE https://api.brevo.com/v3/contacts/user@example.com
 ```
 
-### Import contacts
+### Importar contacts
 
 ```bash
 POST https://api.brevo.com/v3/contacts/import
@@ -86,13 +86,13 @@ POST https://api.brevo.com/v3/contacts/import
 }
 ```
 
-### List contact lists
+### Listar contact lists
 
 ```bash
 GET https://api.brevo.com/v3/contacts/lists?limit=50&offset=0
 ```
 
-### Create list
+### Criar lista
 
 ```bash
 POST https://api.brevo.com/v3/contacts/lists
@@ -103,7 +103,7 @@ POST https://api.brevo.com/v3/contacts/lists
 }
 ```
 
-### Add contacts to list
+### Adicionar contatos à lista
 
 ```bash
 POST https://api.brevo.com/v3/contacts/lists/{listId}/contacts/add
@@ -113,7 +113,7 @@ POST https://api.brevo.com/v3/contacts/lists/{listId}/contacts/add
 }
 ```
 
-### Remove contacts from list
+### Remover contatos da lista
 
 ```bash
 POST https://api.brevo.com/v3/contacts/lists/{listId}/contacts/remove
@@ -123,7 +123,7 @@ POST https://api.brevo.com/v3/contacts/lists/{listId}/contacts/remove
 }
 ```
 
-### Send transactional email
+### Enviar transactional email
 
 ```bash
 POST https://api.brevo.com/v3/smtp/email
@@ -141,13 +141,13 @@ POST https://api.brevo.com/v3/smtp/email
 }
 ```
 
-### List email campaigns
+### Listar email campaigns
 
 ```bash
 GET https://api.brevo.com/v3/emailCampaigns?limit=50&offset=0&type=classic&status=sent
 ```
 
-### Create email campaign
+### Criar email campaign
 
 ```bash
 POST https://api.brevo.com/v3/emailCampaigns
@@ -161,13 +161,13 @@ POST https://api.brevo.com/v3/emailCampaigns
 }
 ```
 
-### Send campaign immediately
+### Enviar campaign immediately
 
 ```bash
 POST https://api.brevo.com/v3/emailCampaigns/{campaignId}/sendNow
 ```
 
-### Send test email for campaign
+### Enviar email de teste para a campanha
 
 ```bash
 POST https://api.brevo.com/v3/emailCampaigns/{campaignId}/sendTest
@@ -177,7 +177,7 @@ POST https://api.brevo.com/v3/emailCampaigns/{campaignId}/sendTest
 }
 ```
 
-### Send transactional SMS
+### Enviar transactional SMS
 
 ```bash
 POST https://api.brevo.com/v3/transactionalSMS/sms
@@ -190,76 +190,76 @@ POST https://api.brevo.com/v3/transactionalSMS/sms
 }
 ```
 
-### List SMS campaigns
+### Listar SMS campaigns
 
 ```bash
 GET https://api.brevo.com/v3/smsCampaigns?limit=50&offset=0
 ```
 
-### List senders
+### Listar senders
 
 ```bash
 GET https://api.brevo.com/v3/senders
 ```
 
-## API Pattern
+## Padrão da API
 
-Brevo uses standard REST with offset-based pagination (`limit` and `offset` parameters). Contact attributes use uppercase field names (FIRSTNAME, LASTNAME). Lists are nested under the contacts resource path. Transactional email uses the `/smtp/email` endpoint despite being REST-based.
+Brevo usa REST padrão com paginação baseada em offset (parâmetros `limit` e `offset`). Os atributos de contato usam nomes de campo em maiúsculas (FIRSTNAME, LASTNAME). As listas são aninhadas sob o path do recurso contacts. Email transacional usa o endpoint `/smtp/email` apesar de ser baseado em REST.
 
-## Key Metrics
+## Métricas Principais
 
-### Contact Fields
+### Campos de Contato
 - `email` - Email address
 - `attributes` - Custom attributes (FIRSTNAME, LASTNAME, SMS, etc.)
-- `listIds` - Associated list IDs
+- `listIds` - IDs de listas associadas
 - `emailBlacklisted` - Email opt-out status
 - `smsBlacklisted` - SMS opt-out status
 - `statistics` - Engagement stats (with expand)
 
-### Campaign Metrics
+### Métricas de Campanha
 - `sent` - Total sends
 - `delivered` - Successful deliveries
-- `openRate` - Open percentage
-- `clickRate` - Click percentage
+- `openRate` - Percentual de abertura
+- `clickRate` - Percentual de cliques
 - `unsubscribed` - Unsubscribe count
 - `hardBounces`, `softBounces` - Bounce counts
 
-### Transactional Email Response
-- `messageId` - Unique message identifier for tracking
+### Resposta de Email Transacional
+- `messageId` - Identificador único da mensagem para rastreamento
 
-## Parameters
+## Parâmetros
 
-### Contact Parameters
+### Parâmetros de Contato
 - `email` - Contact email address
 - `attributes` - Key-value object of custom attributes
-- `listIds` - Array of list IDs to subscribe to
-- `unlinkListIds` - Array of list IDs to unsubscribe from
+- `listIds` - Array de IDs de lista para inscrição
+- `unlinkListIds` - Array de IDs de lista para cancelamento de inscrição
 
-### Campaign Parameters
+### Parâmetros de Campanha
 - `name` - Campaign name
 - `subject` - Email subject line
-- `sender` - Object with `name` and `email`
+- `sender` - Objeto com `name` e `email`
 - `htmlContent` / `textContent` - Email body
-- `recipients` - Object with `listIds` array
+- `recipients` - Objeto com array `listIds`
 - `type` - classic or trigger
 
-## When to Use
+## Quando Usar
 
 - Multi-channel marketing (email + SMS + WhatsApp)
-- Transactional email sending with tracking
-- Managing contacts and segmented lists
-- Creating and scheduling email campaigns
-- SMS notifications and marketing
+- Envio de email transacional com rastreamento
+- Gerenciamento de contatos e listas segmentadas
+- Criação e agendamento de campanhas de email
+- Notificações e marketing por SMS
 - Affordable all-in-one marketing automation
 
-## Rate Limits
+## Limites de Taxa
 
-- API rate limits depend on plan (free tier: limited sends/day)
-- Transactional email: varies by plan
-- Contact imports: batch processing with async status
-- Rate limit headers returned with responses
+- Os limites de taxa da API dependem do plano (free tier: envios limitados/dia)
+- Email transacional: varia por plano
+- Importações de contatos: processamento em lote com status assíncrono
+- Headers de limite de taxa retornados nas respostas
 
-## Relevant Skills
+## Skills Relevantes
 
 - email-sequence
 - sms-marketing

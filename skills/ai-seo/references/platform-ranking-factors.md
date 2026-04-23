@@ -1,119 +1,119 @@
-# How Each AI Platform Picks Sources
+# Como Cada Plataforma de IA Escolhe Suas Fontes
 
-Each AI search platform has its own search index, ranking logic, and content preferences. This guide covers what matters for getting cited on each one.
+Cada plataforma de busca por IA tem seu próprio índice de busca, lógica de ranking e preferências de conteúdo. Este guia aborda o que importa para ser citado em cada uma delas.
 
-Sources cited throughout: Princeton GEO study (KDD 2024), SE Ranking domain authority study, ZipTie content-answer fit analysis.
+Fontes citadas ao longo do texto: estudo Princeton GEO (KDD 2024), estudo de autoridade de domínio da SE Ranking, análise de adequação conteúdo-resposta da ZipTie.
 
 ---
 
-## The Fundamentals
+## Os Fundamentos
 
-Every AI platform shares three baseline requirements:
+Toda plataforma de IA compartilha três requisitos básicos:
 
-1. **Your content must be in their index** — Each platform uses a different search backend (Google, Bing, Brave, or their own). If you're not indexed, you can't be cited.
-2. **Your content must be crawlable** — AI bots need access via robots.txt. Block the bot, lose the citation.
-3. **Your content must be extractable** — AI systems pull passages, not pages. Clear structure and self-contained paragraphs win.
+1. **Seu conteúdo precisa estar no índice deles** — Cada plataforma usa um backend de busca diferente (Google, Bing, Brave ou o próprio). Se você não está indexado, não pode ser citado.
+2. **Seu conteúdo precisa ser rastreável** — Os bots de IA precisam de acesso via robots.txt. Bloqueie o bot, perca a citação.
+3. **Seu conteúdo precisa ser extraível** — Sistemas de IA puxam trechos, não páginas. Estrutura clara e parágrafos autossuficientes vencem.
 
-Beyond these basics, each platform weights different signals. Here's what matters and where.
+Além desses fundamentos, cada plataforma valoriza sinais diferentes. Veja o que importa e onde.
 
 ---
 
 ## Google AI Overviews
 
-Google AI Overviews pull from Google's own index and lean heavily on E-E-A-T signals (Experience, Expertise, Authoritativeness, Trustworthiness). They appear in roughly 45% of Google searches.
+O Google AI Overviews extrai dados do próprio índice do Google e se baseia fortemente em sinais E-E-A-T (Experiência, Expertise, Autoridade, Confiabilidade). Eles aparecem em aproximadamente 45% das buscas do Google.
 
-**What makes Google AI Overviews different:** They already have your traditional SEO signals — backlinks, page authority, topical relevance. The additional AI layer adds a preference for content with cited sources and structured data. Research shows that including authoritative citations in your content correlates with a 132% visibility boost, and writing with an authoritative (not salesy) tone adds another 89%.
+**O que torna o Google AI Overviews diferente:** Eles já têm seus sinais de SEO tradicional — backlinks, autoridade de página, relevância temática. A camada adicional de IA acrescenta uma preferência por conteúdo com fontes citadas e dados estruturados. Pesquisas mostram que incluir citações autoritativas no seu conteúdo se correlaciona com um aumento de 132% na visibilidade, e escrever com um tom autoritativo (não de vendas) adiciona outros 89%.
 
-**Importantly, AI Overviews don't just recycle the traditional Top 10.** Only about 15% of AI Overview sources overlap with conventional organic results. Pages that wouldn't crack page 1 in traditional search can still get cited if they have strong structured data and clear, extractable answers.
+**É importante destacar que os AI Overviews não simplesmente reciclam o Top 10 tradicional.** Apenas cerca de 15% das fontes dos AI Overviews se sobrepõem com os resultados orgânicos convencionais. Páginas que não chegariam à primeira página na busca tradicional ainda podem ser citadas se tiverem dados estruturados sólidos e respostas claras e extraíveis.
 
-**What to focus on:**
-- Schema markup is the single biggest lever — Article, FAQPage, HowTo, and Product schemas give AI Overviews structured context to work with (30-40% visibility boost)
-- Build topical authority through content clusters with strong internal linking
-- Include named, sourced citations in your content (not just claims)
-- Author bios with real credentials matter — E-E-A-T is weighted heavily
-- Get into Google's Knowledge Graph where possible (an accurate Wikipedia entry helps)
-- Target "how to" and "what is" query patterns — these trigger AI Overviews most often
+**No que focar:**
+- Schema markup é a alavanca mais poderosa — schemas de Article, FAQPage, HowTo e Product fornecem aos AI Overviews contexto estruturado para trabalhar (aumento de 30-40% na visibilidade)
+- Construir autoridade temática por meio de clusters de conteúdo com forte linkagem interna
+- Incluir citações nomeadas e com fonte no seu conteúdo (não apenas afirmações)
+- Biografias de autores com credenciais reais importam — E-E-A-T tem peso significativo
+- Entrar no Google Knowledge Graph quando possível (uma entrada precisa na Wikipedia ajuda)
+- Focar em padrões de consulta "como fazer" e "o que é" — estes ativam AI Overviews com mais frequência
 
 ---
 
 ## ChatGPT
 
-ChatGPT's web search draws from a Bing-based index. It combines this with its training knowledge to generate answers, then cites the web sources it relied on.
+A busca na web do ChatGPT usa um índice baseado no Bing. Ele combina isso com seu conhecimento de treinamento para gerar respostas e, em seguida, cita as fontes web nas quais se baseou.
 
-**What makes ChatGPT different:** Domain authority matters more here than on other AI platforms. An SE Ranking analysis of 129,000 domains found that authority and credibility signals account for roughly 40% of what determines citation, with content quality at about 35% and platform trust at 25%. Sites with very high referring domain counts (350K+) average 8.4 citations per response, while sites with slightly lower trust scores (91-96 vs 97-100) drop from 8.4 to 6 citations.
+**O que torna o ChatGPT diferente:** A autoridade de domínio importa mais aqui do que em outras plataformas de IA. Uma análise da SE Ranking de 129.000 domínios descobriu que sinais de autoridade e credibilidade representam cerca de 40% do que determina a citação, com a qualidade do conteúdo em torno de 35% e a confiança na plataforma em 25%. Sites com contagens muito altas de domínios de referência (350K+) têm em média 8,4 citações por resposta, enquanto sites com pontuações de confiança ligeiramente menores (91-96 vs. 97-100) caem de 8,4 para 6 citações.
 
-**Freshness is a major differentiator.** Content updated within the last 30 days gets cited about 3.2x more often than older content. ChatGPT clearly favors recent information.
+**A atualidade é um diferencial importante.** Conteúdo atualizado nos últimos 30 dias é citado cerca de 3,2x mais do que conteúdo mais antigo. O ChatGPT claramente favorece informações recentes.
 
-**The most important signal is content-answer fit** — a ZipTie analysis of 400,000 pages found that how well your content's style and structure matches ChatGPT's own response format accounts for about 55% of citation likelihood. This is far more important than domain authority (12%) or on-page structure (14%) alone. Write the way ChatGPT would answer the question, and you're more likely to be the source it cites.
+**O sinal mais importante é a adequação conteúdo-resposta** — uma análise da ZipTie de 400.000 páginas descobriu que o quanto o estilo e a estrutura do seu conteúdo correspondem ao próprio formato de resposta do ChatGPT representa cerca de 55% da probabilidade de citação. Isso é muito mais importante do que a autoridade de domínio (12%) ou a estrutura on-page (14%) isoladamente. Escreva da forma como o ChatGPT responderia à pergunta e você tem mais chance de ser a fonte que ele cita.
 
-**Where ChatGPT looks beyond your site:** Wikipedia accounts for 7.8% of all ChatGPT citations, Reddit for 1.8%, and Forbes for 1.1%. Brand official sites are cited frequently but third-party mentions carry significant weight.
+**Onde o ChatGPT busca além do seu site:** A Wikipedia representa 7,8% de todas as citações do ChatGPT, o Reddit 1,8% e o Forbes 1,1%. Sites oficiais de marcas são citados com frequência, mas menções de terceiros têm peso significativo.
 
-**What to focus on:**
-- Invest in backlinks and domain authority — it's the strongest baseline signal
-- Update competitive content at least monthly
-- Structure your content the way ChatGPT structures its answers (conversational, direct, well-organized)
-- Include verifiable statistics with named sources
-- Clean heading hierarchy (H1 > H2 > H3) with descriptive headings
+**No que focar:**
+- Investir em backlinks e autoridade de domínio — é o sinal base mais forte
+- Atualizar conteúdo competitivo pelo menos mensalmente
+- Estruturar seu conteúdo da forma como o ChatGPT estrutura suas respostas (conversacional, direto, bem organizado)
+- Incluir estatísticas verificáveis com fontes nomeadas
+- Hierarquia de títulos clara (H1 > H2 > H3) com títulos descritivos
 
 ---
 
 ## Perplexity
 
-Perplexity always cites its sources with clickable links, making it the most transparent AI search platform. It combines its own index with Google's and runs results through multiple reranking passes — initial relevance retrieval, then traditional ranking factor scoring, then ML-based quality evaluation that can discard entire result sets if they don't meet quality thresholds.
+O Perplexity sempre cita suas fontes com links clicáveis, tornando-se a plataforma de busca por IA mais transparente. Ele combina seu próprio índice com o do Google e executa os resultados por múltiplas etapas de reranking — recuperação inicial de relevância, depois pontuação de fatores de ranking tradicionais, depois avaliação de qualidade baseada em ML que pode descartar conjuntos inteiros de resultados se não atenderem aos limites de qualidade.
 
-**What makes Perplexity different:** It's the most "research-oriented" AI search engine, and its citation behavior reflects that. Perplexity maintains curated lists of authoritative domains (Amazon, GitHub, major academic sites) that get inherent ranking boosts. It uses a time-decay algorithm that evaluates new content quickly, giving fresh publishers a real shot at citation.
+**O que torna o Perplexity diferente:** É o mecanismo de busca por IA mais "orientado à pesquisa", e seu comportamento de citação reflete isso. O Perplexity mantém listas selecionadas de domínios autoritativos (Amazon, GitHub, grandes sites acadêmicos) que recebem aumentos de ranking inerentes. Ele usa um algoritmo de decaimento de tempo que avalia conteúdo novo rapidamente, dando aos novos publicadores uma real chance de citação.
 
-**Perplexity has unique content preferences:**
-- **FAQ Schema (JSON-LD)** — Pages with FAQ structured data get cited noticeably more often
-- **PDF documents** — Publicly accessible PDFs (whitepapers, research reports) are prioritized. If you have authoritative PDF content gated behind a form, consider making a version public.
-- **Publishing velocity** — How frequently you publish matters more than keyword targeting
-- **Self-contained paragraphs** — Perplexity prefers atomic, semantically complete paragraphs it can extract cleanly
+**O Perplexity tem preferências únicas de conteúdo:**
+- **FAQ Schema (JSON-LD)** — Páginas com dados estruturados de FAQ são citadas notavelmente com mais frequência
+- **Documentos PDF** — PDFs acessíveis publicamente (whitepapers, relatórios de pesquisa) são priorizados. Se você tem conteúdo autoritativo em PDF bloqueado por um formulário, considere disponibilizar uma versão pública
+- **Velocidade de publicação** — Com que frequência você publica importa mais do que o direcionamento de palavras-chave
+- **Parágrafos autossuficientes** — O Perplexity prefere parágrafos atômicos e semanticamente completos que pode extrair de forma limpa
 
-**What to focus on:**
-- Allow PerplexityBot in robots.txt
-- Implement FAQPage schema on any page with Q&A content
-- Host PDF resources publicly (whitepapers, guides, reports)
-- Add Article schema with publication and modification timestamps
-- Write in clear, self-contained paragraphs that work as standalone answers
-- Build deep topical authority in your specific niche
+**No que focar:**
+- Permitir o PerplexityBot no robots.txt
+- Implementar schema FAQPage em qualquer página com conteúdo de perguntas e respostas
+- Hospedar recursos em PDF publicamente (whitepapers, guias, relatórios)
+- Adicionar schema Article com timestamps de publicação e modificação
+- Escrever em parágrafos claros e autossuficientes que funcionem como respostas independentes
+- Construir autoridade temática profunda no seu nicho específico
 
 ---
 
 ## Microsoft Copilot
 
-Copilot is embedded across Microsoft's ecosystem — Edge, Windows, Microsoft 365, and Bing Search. It relies entirely on Bing's index, so if Bing hasn't indexed your content, Copilot can't cite it.
+O Copilot está integrado em todo o ecossistema Microsoft — Edge, Windows, Microsoft 365 e Bing Search. Ele depende inteiramente do índice do Bing, portanto, se o Bing não indexou seu conteúdo, o Copilot não pode citá-lo.
 
-**What makes Copilot different:** The Microsoft ecosystem connection creates unique optimization opportunities. Mentions and content on LinkedIn and GitHub provide ranking boosts that other platforms don't offer. Copilot also puts more weight on page speed — sub-2-second load times are a clear threshold.
+**O que torna o Copilot diferente:** A conexão com o ecossistema Microsoft cria oportunidades únicas de otimização. Menções e conteúdo no LinkedIn e GitHub fornecem aumentos de ranking que outras plataformas não oferecem. O Copilot também dá mais peso à velocidade da página — tempos de carregamento abaixo de 2 segundos são um limiar claro.
 
-**What to focus on:**
-- Submit your site to Bing Webmaster Tools (many sites only submit to Google Search Console)
-- Use IndexNow protocol for faster indexing of new and updated content
-- Optimize page speed to under 2 seconds
-- Write clear entity definitions — when your content defines a term or concept, make the definition explicit and extractable
-- Build presence on LinkedIn (publish articles, maintain company page) and GitHub if relevant
-- Ensure Bingbot has full crawl access
+**No que focar:**
+- Enviar seu site para o Bing Webmaster Tools (muitos sites enviam apenas para o Google Search Console)
+- Usar o protocolo IndexNow para indexação mais rápida de conteúdo novo e atualizado
+- Otimizar a velocidade da página para menos de 2 segundos
+- Escrever definições claras de entidades — quando seu conteúdo define um termo ou conceito, torne a definição explícita e extraível
+- Construir presença no LinkedIn (publicar artigos, manter página da empresa) e no GitHub, se relevante
+- Garantir que o Bingbot tenha acesso completo de rastreamento
 
 ---
 
 ## Claude
 
-Claude uses Brave Search as its search backend when web search is enabled — not Google, not Bing. This is a completely different index, which means your Brave Search visibility directly determines whether Claude can find and cite you.
+O Claude usa o Brave Search como backend de busca quando a busca na web está habilitada — não o Google, não o Bing. Este é um índice completamente diferente, o que significa que a sua visibilidade no Brave Search determina diretamente se o Claude pode encontrar e citá-lo.
 
-**What makes Claude different:** Claude is extremely selective about what it cites. While it processes enormous amounts of content, its citation rate is very low — it's looking for the most factually accurate, well-sourced content on a given topic. Data-rich content with specific numbers and clear attribution performs significantly better than general-purpose content.
+**O que torna o Claude diferente:** O Claude é extremamente seletivo sobre o que cita. Embora processe quantidades enormes de conteúdo, sua taxa de citação é muito baixa — ele procura o conteúdo mais preciso factualmente e bem referenciado sobre um determinado tema. Conteúdo rico em dados com números específicos e atribuição clara tem desempenho significativamente melhor do que conteúdo de uso geral.
 
-**What to focus on:**
-- Verify your content appears in Brave Search results (search for your brand and key terms at search.brave.com)
-- Allow ClaudeBot and anthropic-ai user agents in robots.txt
-- Maximize factual density — specific numbers, named sources, dated statistics
-- Use clear, extractable structure with descriptive headings
-- Cite authoritative sources within your content
-- Aim to be the most factually accurate source on your topic — Claude rewards precision
+**No que focar:**
+- Verificar se seu conteúdo aparece nos resultados do Brave Search (pesquise sua marca e termos-chave em search.brave.com)
+- Permitir os user agents ClaudeBot e anthropic-ai no robots.txt
+- Maximizar a densidade factual — números específicos, fontes nomeadas, estatísticas com data
+- Usar estrutura clara e extraível com títulos descritivos
+- Citar fontes autoritativas dentro do seu conteúdo
+- Buscar ser a fonte mais factualmente precisa sobre o seu tema — o Claude recompensa a precisão
 
 ---
 
-## Allowing AI Bots in robots.txt
+## Permitindo Bots de IA no robots.txt
 
-If your robots.txt blocks an AI bot, that platform can't cite your content. Here are the user agents to allow:
+Se o seu robots.txt bloquear um bot de IA, essa plataforma não poderá citar seu conteúdo. Aqui estão os user agents para permitir:
 
 ```
 User-agent: GPTBot           # OpenAI — powers ChatGPT search
@@ -126,27 +126,27 @@ User-agent: Bingbot          # Microsoft Copilot (via Bing)
 Allow: /
 ```
 
-**Training vs. search:** Some AI bots are used for both model training and search citation. If you want to be cited but don't want your content used for training, your options are limited — GPTBot handles both for OpenAI. However, you can safely block **CCBot** (Common Crawl) without affecting any AI search citations, since it's only used for training dataset collection.
+**Treinamento vs. busca:** Alguns bots de IA são usados tanto para treinamento de modelos quanto para citação em busca. Se você deseja ser citado, mas não quer que seu conteúdo seja usado para treinamento, suas opções são limitadas — o GPTBot lida com ambos para a OpenAI. No entanto, você pode bloquear o **CCBot** (Common Crawl) com segurança sem afetar nenhuma citação de busca por IA, pois ele é usado apenas para coleta de datasets de treinamento.
 
 ---
 
-## Where to Start
+## Por Onde Começar
 
-If you're optimizing for AI search for the first time, focus your effort where your audience actually is:
+Se você está otimizando para busca por IA pela primeira vez, foque seu esforço onde seu público realmente está:
 
-**Start with Google AI Overviews** — They reach the most users (45%+ of Google searches) and you likely already have Google SEO foundations in place. Add schema markup, include cited sources in your content, and strengthen E-E-A-T signals.
+**Comece com o Google AI Overviews** — Eles alcançam mais usuários (45%+ das buscas do Google) e você provavelmente já tem a base de SEO do Google em vigor. Adicione schema markup, inclua fontes citadas no seu conteúdo e fortaleça os sinais E-E-A-T.
 
-**Then address ChatGPT** — It's the most-used standalone AI search tool for tech and business audiences. Focus on freshness (update content monthly), domain authority, and matching your content structure to how ChatGPT formats its responses.
+**Em seguida, aborde o ChatGPT** — É a ferramenta de busca por IA independente mais usada para públicos de tecnologia e negócios. Foque na atualidade (atualizar conteúdo mensalmente), autoridade de domínio e adequar a estrutura do seu conteúdo à forma como o ChatGPT formata suas respostas.
 
-**Then expand to Perplexity** — Especially valuable if your audience includes researchers, early adopters, or tech professionals. Add FAQ schema, publish PDF resources, and write in clear, self-contained paragraphs.
+**Depois, expanda para o Perplexity** — Especialmente valioso se seu público inclui pesquisadores, early adopters ou profissionais de tecnologia. Adicione schema FAQ, publique recursos em PDF e escreva em parágrafos claros e autossuficientes.
 
-**Copilot and Claude are lower priority** unless your audience skews enterprise/Microsoft (Copilot) or developer/analyst (Claude). But the fundamentals — structured content, cited sources, schema markup — help across all platforms.
+**Copilot e Claude são prioridade menor** a menos que seu público seja mais corporativo/Microsoft (Copilot) ou desenvolvedor/analista (Claude). Mas os fundamentos — conteúdo estruturado, fontes citadas, schema markup — ajudam em todas as plataformas.
 
-**Actions that help everywhere:**
-1. Allow all AI bots in robots.txt
-2. Implement schema markup (FAQPage, Article, Organization at minimum)
-3. Include statistics with named sources in your content
-4. Update content regularly — monthly for competitive topics
-5. Use clear heading structure (H1 > H2 > H3)
-6. Keep page load time under 2 seconds
-7. Add author bios with credentials
+**Ações que ajudam em todas as plataformas:**
+1. Permitir todos os bots de IA no robots.txt
+2. Implementar schema markup (FAQPage, Article, Organization no mínimo)
+3. Incluir estatísticas com fontes nomeadas no seu conteúdo
+4. Atualizar conteúdo regularmente — mensalmente para tópicos competitivos
+5. Usar estrutura clara de títulos (H1 > H2 > H3)
+6. Manter o tempo de carregamento da página abaixo de 2 segundos
+7. Adicionar biografias de autores com credenciais

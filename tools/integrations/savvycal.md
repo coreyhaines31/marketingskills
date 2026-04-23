@@ -1,8 +1,8 @@
 # SavvyCal
 
-Scheduling platform API for managing scheduling links, events, availability slots, and webhooks.
+API de plataforma de agendamento para gerenciar scheduling links, eventos, slots de disponibilidade e webhooks.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,33 +11,33 @@ Scheduling platform API for managing scheduling links, events, availability slot
 | CLI | ✓ | [savvycal.js](../clis/savvycal.js) |
 | SDK | - | No official SDK |
 
-## Authentication
+## Autenticação
 
 - **Type**: Bearer Token (Personal Access Token or OAuth 2.0)
 - **Header**: `Authorization: Bearer {token}`
 - **Get key**: Developer Settings in SavvyCal dashboard (create a Personal Access Token)
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Get current user
+### Obter usuário atual
 
 ```bash
 GET https://api.savvycal.com/v1/me
 ```
 
-### List scheduling links
+### Listar scheduling links
 
 ```bash
 GET https://api.savvycal.com/v1/scheduling-links
 ```
 
-### Get a scheduling link
+### Obter um scheduling link
 
 ```bash
 GET https://api.savvycal.com/v1/scheduling-links/{id}
 ```
 
-### Create a scheduling link
+### Criar um scheduling link
 
 ```bash
 POST https://api.savvycal.com/v1/scheduling-links
@@ -49,7 +49,7 @@ POST https://api.savvycal.com/v1/scheduling-links
 }
 ```
 
-### Update a scheduling link
+### Atualizar um scheduling link
 
 ```bash
 PATCH https://api.savvycal.com/v1/scheduling-links/{id}
@@ -59,43 +59,43 @@ PATCH https://api.savvycal.com/v1/scheduling-links/{id}
 }
 ```
 
-### Delete a scheduling link
+### Excluir um scheduling link
 
 ```bash
 DELETE https://api.savvycal.com/v1/scheduling-links/{id}
 ```
 
-### Duplicate a scheduling link
+### Duplicar um scheduling link
 
 ```bash
 POST https://api.savvycal.com/v1/scheduling-links/{id}/duplicate
 ```
 
-### Toggle link state (active/disabled)
+### Alternar estado do link (active/disabled)
 
 ```bash
 POST https://api.savvycal.com/v1/scheduling-links/{id}/toggle
 ```
 
-### Get available time slots
+### Obter slots de horário disponíveis
 
 ```bash
 GET https://api.savvycal.com/v1/scheduling-links/{id}/slots
 ```
 
-### List events
+### Listar eventos
 
 ```bash
 GET https://api.savvycal.com/v1/events
 ```
 
-### Get an event
+### Obter um evento
 
 ```bash
 GET https://api.savvycal.com/v1/events/{id}
 ```
 
-### Create an event
+### Criar um evento
 
 ```bash
 POST https://api.savvycal.com/v1/events
@@ -108,19 +108,19 @@ POST https://api.savvycal.com/v1/events
 }
 ```
 
-### Cancel an event
+### Cancelar um evento
 
 ```bash
 POST https://api.savvycal.com/v1/events/{id}/cancel
 ```
 
-### List webhooks
+### Listar webhooks
 
 ```bash
 GET https://api.savvycal.com/v1/webhooks
 ```
 
-### Create a webhook
+### Criar um webhook
 
 ```bash
 POST https://api.savvycal.com/v1/webhooks
@@ -131,49 +131,49 @@ POST https://api.savvycal.com/v1/webhooks
 }
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Scheduling Link Data
-- `id` - Unique link identifier
-- `name` - Display name
-- `slug` - URL slug
-- `duration_minutes` - Meeting duration
-- `state` - Active or disabled
-- `url` - Full scheduling URL
+### Dados de scheduling link
+- `id` - Identificador único do link
+- `name` - Nome de exibição
+- `slug` - Slug da URL
+- `duration_minutes` - Duração da reunião
+- `state` - Active ou disabled
+- `url` - URL completa de agendamento
 
-### Event Data
-- `id` - Unique event identifier
-- `name` - Invitee name
-- `email` - Invitee email
-- `start_at` / `end_at` - Event timing
-- `status` - Event status
-- `scheduling_link` - Associated scheduling link
+### Dados de evento
+- `id` - Identificador único do evento
+- `name` - Nome do invitee
+- `email` - Email do invitee
+- `start_at` / `end_at` - Horário do evento
+- `status` - Status do evento
+- `scheduling_link` - Scheduling link associado
 
-## Parameters
+## Parâmetros
 
-### List Events
-- `before` / `after` - Pagination cursors
-- `limit` - Results per page (default 20, max 100)
+### Listar eventos
+- `before` / `after` - Cursors de paginação
+- `limit` - Resultados por página (default 20, max 100)
 
-### List Scheduling Links
-- `before` / `after` - Pagination cursors
-- `limit` - Results per page
+### Listar scheduling links
+- `before` / `after` - Cursors de paginação
+- `limit` - Resultados por página
 
-## When to Use
+## Quando usar
 
-- Managing scheduling links programmatically
-- Retrieving booked events for CRM or analytics sync
-- Checking available time slots for custom booking UIs
-- Automating scheduling link creation for campaigns
-- Monitoring booking activity via webhooks
+- Gerenciar scheduling links programaticamente
+- Buscar eventos agendados para sync de CRM ou analytics
+- Verificar slots disponíveis para booking UIs custom
+- Automatizar criação de scheduling links para campanhas
+- Monitorar atividade de agendamento via webhooks
 
-## Rate Limits
+## Limites de taxa
 
-- Not officially documented
-- Implement retry logic with exponential backoff
-- Monitor for HTTP 429 responses
+- Não documentado oficialmente
+- Implemente lógica de retry com exponential backoff
+- Monitore respostas HTTP 429
 
-## Relevant Skills
+## Skills relevantes
 
 - lead-generation
 - sales-automation

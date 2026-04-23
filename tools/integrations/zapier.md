@@ -1,25 +1,25 @@
 # Zapier
 
-Workflow automation platform connecting 8,000+ apps. The Zapier SDK gives AI agents direct access to any app's actions without building OAuth flows or reverse-engineering APIs.
+Plataforma de automação de workflows que conecta mais de 8.000 apps. O Zapier SDK oferece aos agentes de IA acesso direto às ações de qualquer app sem construir fluxos OAuth ou fazer engenharia reversa de APIs.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for Zaps, tasks, and webhooks |
-| MCP | ✓ | Available via Zapier MCP server |
-| CLI | ✓ | `@zapier/zapier-sdk-cli` for app discovery and type generation |
-| SDK | ✓ | `@zapier/zapier-sdk` — TypeScript SDK for 8,000+ app integrations |
+| API | ✓ | API REST para Zaps, tarefas e webhooks |
+| MCP | ✓ | Disponível via servidor MCP do Zapier |
+| CLI | ✓ | `@zapier/zapier-sdk-cli` para descoberta de apps e geração de tipos |
+| SDK | ✓ | `@zapier/zapier-sdk` — SDK TipoScript para mais de 8.000 integrações de apps |
 
-## Authentication
+## Autenticação
 
-### Legacy API (Zaps management)
+### API Legada (gerenciamento de Zaps)
 
-- **Type**: API Key
+- **Tipo**: API Key
 - **Header**: `X-API-Key: {api_key}`
-- **Get key**: Settings > API in Zapier account
+- **Obter chave**: Settings > API na conta Zapier
 
-### SDK Authentication
+### Autenticação do SDK
 
 **Browser-based login (development):**
 ```bash
@@ -28,13 +28,13 @@ npx zapier-sdk login
 
 **Server-side (production):**
 - Client Credentials — store as environment variables
-- Direct token — set `ZAPIER_CREDENTIALS` env var
+- Token direto — definir env var `ZAPIER_CREDENTIALS`
 
-Browser-based login only works locally. Use Client Credentials for any server-side deployment.
+Login via browser só funciona localmente. Use Client Credentials para qualquer deploy server-side.
 
-## SDK Quick Start
+## Início Rápido do SDK
 
-### Install
+### Instalar
 
 ```bash
 npm install @zapier/zapier-sdk
@@ -42,33 +42,33 @@ npm install -D @zapier/zapier-sdk-cli @types/node typescript
 npm pkg set type=module
 ```
 
-### Initialize
+### Inicializar
 
 ```typescript
 import { createZapierSdk } from "@zapier/zapier-sdk";
 const zapier = createZapierSdk();
 ```
 
-### CLI Commands
+### Comandos CLI
 
-| Command | Purpose |
+| Comando | Objetivo |
 |---------|---------|
-| `npx zapier-sdk login` | Authenticate (dev only) |
-| `npx zapier-sdk list-apps --search "query"` | Search available apps |
-| `npx zapier-sdk list-actions APP_KEY` | List actions for an app |
-| `npx zapier-sdk add [app-key]` | Generate TypeScript types |
+| `npx zapier-sdk login` | Autenticar (apenas dev) |
+| `npx zapier-sdk list-apps --search "query"` | Buscar apps disponíveis |
+| `npx zapier-sdk list-actions APP_KEY` | Listar ações de um app |
+| `npx zapier-sdk add [app-key]` | Generate TipoScript types |
 
-### SDK Methods
+### Métodos do SDK
 
-| Method | Purpose |
+| Método | Objetivo |
 |--------|---------|
-| `zapier.listConnections()` | List authenticated app connections |
+| `zapier.listConnections()` | Listar conexões autenticadas de apps |
 | `zapier.findFirstConnection()` | Find a specific connection |
 | `zapier.runAction()` | Execute an action on a connected app |
-| `zapier.apps.slack()` | App proxy pattern for clean syntax |
+| `zapier.apps.slack()` | Padrão de app proxy para sintaxe limpa |
 | `zapier.fetch()` | Custom authenticated API calls |
 
-### Example: Send a Slack Message
+### Exemplo: Enviar uma mensagem no Slack
 
 ```typescript
 import { createZapierSdk } from "@zapier/zapier-sdk";
@@ -82,7 +82,7 @@ await slack.sendChannelMessage({
 });
 ```
 
-### Example: Create a HubSpot Contact
+### Exemplo: Criar um contato no HubSpot
 
 ```typescript
 const hubspot = await zapier.apps.hubspot();
@@ -94,9 +94,9 @@ await hubspot.createContact({
 });
 ```
 
-### Pagination
+### Paginação
 
-Use `.items()` for large datasets:
+Use `.items()` para datasets grandes:
 
 ```typescript
 const contacts = await hubspot.listContacts({ maxItems: 100 });
@@ -105,40 +105,40 @@ for await (const contact of contacts.items()) {
 }
 ```
 
-### Governance Note
+### Nota de Governança
 
-Direct API calls via `zapier.fetch()` are not subject to org app/action restriction policies. Use pre-built actions where possible if your org has governance requirements.
+Chamadas diretas de API via `zapier.fetch()` não estão sujeitas às políticas de restrição de app/ação da organização. Use ações pré-construídas sempre que possível se sua organização tiver requisitos de governança.
 
 ---
 
-## Zaps API (Legacy)
+## API de Zaps (Legado)
 
-### List Zaps
+### Listar Zaps
 
 ```bash
 GET https://api.zapier.com/v1/zaps
 ```
 
-### Get Zap details
+### Obter detalhes do Zap
 
 ```bash
 GET https://api.zapier.com/v1/zaps/{zap_id}
 ```
 
-### Turn Zap on/off
+### Ligar/desligar Zap
 
 ```bash
 POST https://api.zapier.com/v1/zaps/{zap_id}/on
 POST https://api.zapier.com/v1/zaps/{zap_id}/off
 ```
 
-### Get task history
+### Obter histórico de tarefas
 
 ```bash
 GET https://api.zapier.com/v1/zaps/{zap_id}/tasks
 ```
 
-### Get profile info
+### Obter informações do perfil
 
 ```bash
 GET https://api.zapier.com/v1/profiles/me
@@ -146,9 +146,9 @@ GET https://api.zapier.com/v1/profiles/me
 
 ## Webhooks (Triggers)
 
-### Catch Hook (receive data)
+### Catch Hook (receber dados)
 
-Create a "Webhooks by Zapier" trigger to receive data:
+Crie um trigger "Webhooks by Zapier" para receber dados:
 
 ```bash
 POST https://hooks.zapier.com/hooks/catch/{webhook_id}/
@@ -160,9 +160,9 @@ POST https://hooks.zapier.com/hooks/catch/{webhook_id}/
 }
 ```
 
-### Send data to Zapier
+### Enviar dados para o Zapier
 
-Most common: trigger a Zap from your app:
+Mais comum: disparar um Zap a partir do seu app:
 
 ```bash
 POST https://hooks.zapier.com/hooks/catch/{account_id}/{hook_id}/
@@ -174,9 +174,9 @@ POST https://hooks.zapier.com/hooks/catch/{account_id}/{hook_id}/
 }
 ```
 
-## Common Marketing Automations
+## Automações de Marketing Comuns
 
-### With SDK (recommended for agents)
+### Com SDK (recomendado para agentes)
 
 ```typescript
 // Lead capture to CRM
@@ -192,17 +192,17 @@ const customerio = await zapier.apps.customerio();
 await customerio.createOrUpdatePerson({ email, plan: "pro" });
 ```
 
-### With Zaps (no-code)
+### Com Zaps (no-code)
 
-- Typeform → Zapier → HubSpot (lead capture)
-- Stripe → Zapier → Slack (new customer alerts)
-- Form submission → Zapier → Customer.io (email sequences)
-- New review → Zapier → Slack (social proof)
-- New referral → Zapier → Spreadsheet + Slack (referral tracking)
+- Tipoform → Zapier → HubSpot (lead capture)
+- Stripe → Zapier → Slack (alertas de novos clientes)
+- Envio de formulário → Zapier → Customer.io (sequências de email)
+- Nova avaliação → Zapier → Slack (social proof)
+- Nova indicação → Zapier → Spreadsheet + Slack (rastreamento de indicações)
 
-## Webhook Payload Structure
+## Estrutura de Payload de Webhook
 
-When sending to Zapier, structure data as flat JSON:
+Ao enviar para o Zapier, estruture os dados como JSON plano:
 
 ```json
 {
@@ -214,29 +214,29 @@ When sending to Zapier, structure data as flat JSON:
 }
 ```
 
-## Key Concepts
+## Conceitos Principais
 
-- **Zap** - Automated workflow (no-code)
-- **SDK** - Programmatic access to 8,000+ app integrations
+- **Zap** - Workflow automatizado (no-code)
+- **SDK** - Acesso programático a mais de 8.000 integrações de apps
 - **Trigger** - Event that starts a Zap
 - **Action** - Task performed by Zap or SDK
 - **Task** - Single action execution
-- **Connection** - Authenticated link to an app (shared between Zaps and SDK)
+- **Connection** - Link autenticado para um app (compartilhado entre Zaps e SDK)
 
-## When to Use
+## Quando Usar
 
-- **SDK**: When an AI agent needs to interact with any app directly — send messages, create records, sync data
-- **Zaps**: When you need always-on automation without code
-- **Webhooks**: When triggering workflows from your own app
-- **API**: When managing Zaps programmatically
+- **SDK**: Quando um agente de IA precisa interagir diretamente com qualquer app — enviar mensagens, criar registros, sincronizar dados
+- **Zaps**: Quando você precisa de automação always-on sem código
+- **Webhooks**: Ao disparar workflows a partir do seu próprio app
+- **API**: Ao gerenciar Zaps programaticamente
 
-## Rate Limits
+## Limites de Taxa
 
 - API: 100 requests per minute
 - SDK: Rate limits per connected app
 - Task limits by plan tier
 
-## Relevant Skills
+## Skills Relevantes
 
 - email-sequence
 - analytics-tracking

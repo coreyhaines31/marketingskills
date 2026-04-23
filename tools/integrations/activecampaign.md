@@ -1,33 +1,33 @@
 # ActiveCampaign
 
-Email marketing automation platform with CRM, contacts, deals pipeline, tags, automations, and campaign management.
+Plataforma de automação de email marketing com CRM, contatos, pipeline de deals, tags, automações e gerenciamento de campanhas.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | REST API v3 for contacts, deals, automations, campaigns, tags |
-| MCP | - | Not available |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | REST API v3 para contatos, deals, automações, campanhas, tags |
+| MCP | - | Não disponível |
 | CLI | ✓ | [activecampaign.js](../clis/activecampaign.js) |
 | SDK | ✓ | Python, PHP, Node.js, Ruby |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Token
-- **Header**: `Api-Token: {api_token}`
+- **Tipo**: API Token
+- **Cabeçalho**: `Api-Token: {api_token}`
 - **Base URL**: `https://{yourAccountName}.api-us1.com/api/3`
-- **Get key**: Settings > Developer tab in your ActiveCampaign account
-- **Note**: Each user has a unique API key. Base URL is account-specific (found in Settings > Developer).
+- **Obter chave**: Settings > aba Developer na sua conta ActiveCampaign
+- **Observação**: Cada usuário tem uma API key única. A Base URL é específica da conta (encontrada em Settings > Developer).
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get current user
+### Obter current user
 
 ```bash
 GET https://{account}.api-us1.com/api/3/users/me
 ```
 
-### List contacts
+### Listar contacts
 
 ```bash
 GET https://{account}.api-us1.com/api/3/contacts?limit=20&offset=0
@@ -39,7 +39,7 @@ GET https://{account}.api-us1.com/api/3/contacts?email=user@example.com
 GET https://{account}.api-us1.com/api/3/contacts?search=Jane
 ```
 
-### Create contact
+### Criar contact
 
 ```bash
 POST https://{account}.api-us1.com/api/3/contacts
@@ -54,7 +54,7 @@ POST https://{account}.api-us1.com/api/3/contacts
 }
 ```
 
-### Update contact
+### Atualizar contact
 
 ```bash
 PUT https://{account}.api-us1.com/api/3/contacts/{contactId}
@@ -67,7 +67,7 @@ PUT https://{account}.api-us1.com/api/3/contacts/{contactId}
 }
 ```
 
-### Sync contact (create or update)
+### Sincronizar contato (criar ou atualizar)
 
 ```bash
 POST https://{account}.api-us1.com/api/3/contact/sync
@@ -81,19 +81,19 @@ POST https://{account}.api-us1.com/api/3/contact/sync
 }
 ```
 
-### Delete contact
+### Excluir contact
 
 ```bash
 DELETE https://{account}.api-us1.com/api/3/contacts/{contactId}
 ```
 
-### List all lists
+### Listar todas as listas
 
 ```bash
 GET https://{account}.api-us1.com/api/3/lists?limit=20&offset=0
 ```
 
-### Create list
+### Criar lista
 
 ```bash
 POST https://{account}.api-us1.com/api/3/lists
@@ -108,7 +108,7 @@ POST https://{account}.api-us1.com/api/3/lists
 }
 ```
 
-### Subscribe contact to list
+### Inscrever contato na lista
 
 ```bash
 POST https://{account}.api-us1.com/api/3/contactLists
@@ -122,7 +122,7 @@ POST https://{account}.api-us1.com/api/3/contactLists
 }
 ```
 
-### Unsubscribe contact from list
+### Cancelar inscrição de contato na lista
 
 ```bash
 POST https://{account}.api-us1.com/api/3/contactLists
@@ -136,13 +136,13 @@ POST https://{account}.api-us1.com/api/3/contactLists
 }
 ```
 
-### List campaigns
+### Listar campaigns
 
 ```bash
 GET https://{account}.api-us1.com/api/3/campaigns?limit=20&offset=0
 ```
 
-### List deals
+### Listar deals
 
 ```bash
 GET https://{account}.api-us1.com/api/3/deals?limit=20&offset=0
@@ -151,7 +151,7 @@ GET https://{account}.api-us1.com/api/3/deals?limit=20&offset=0
 GET https://{account}.api-us1.com/api/3/deals?filters[stage]=1
 ```
 
-### Create deal
+### Criar deal
 
 ```bash
 POST https://{account}.api-us1.com/api/3/deals
@@ -169,7 +169,7 @@ POST https://{account}.api-us1.com/api/3/deals
 }
 ```
 
-### Update deal
+### Atualizar deal
 
 ```bash
 PUT https://{account}.api-us1.com/api/3/deals/{dealId}
@@ -182,13 +182,13 @@ PUT https://{account}.api-us1.com/api/3/deals/{dealId}
 }
 ```
 
-### List automations
+### Listar automations
 
 ```bash
 GET https://{account}.api-us1.com/api/3/automations?limit=20&offset=0
 ```
 
-### Add contact to automation
+### Adicionar contato à automação
 
 ```bash
 POST https://{account}.api-us1.com/api/3/contactAutomations
@@ -201,13 +201,13 @@ POST https://{account}.api-us1.com/api/3/contactAutomations
 }
 ```
 
-### List tags
+### Listar tags
 
 ```bash
 GET https://{account}.api-us1.com/api/3/tags?limit=20&offset=0
 ```
 
-### Create tag
+### Criar tag
 
 ```bash
 POST https://{account}.api-us1.com/api/3/tags
@@ -220,7 +220,7 @@ POST https://{account}.api-us1.com/api/3/tags
 }
 ```
 
-### Add tag to contact
+### Adicionar tag ao contato
 
 ```bash
 POST https://{account}.api-us1.com/api/3/contactTags
@@ -233,19 +233,19 @@ POST https://{account}.api-us1.com/api/3/contactTags
 }
 ```
 
-### List pipelines (deal groups)
+### Listar pipelines (deal groups)
 
 ```bash
 GET https://{account}.api-us1.com/api/3/dealGroups?limit=20&offset=0
 ```
 
-### List webhooks
+### Listar webhooks
 
 ```bash
 GET https://{account}.api-us1.com/api/3/webhooks?limit=20&offset=0
 ```
 
-### Create webhook
+### Criar webhook
 
 ```bash
 POST https://{account}.api-us1.com/api/3/webhooks
@@ -260,21 +260,21 @@ POST https://{account}.api-us1.com/api/3/webhooks
 }
 ```
 
-## API Pattern
+## Padrão da API
 
-ActiveCampaign uses REST with resource wrapping (e.g., `{ "contact": {...} }`). Responses include the resource object plus metadata. Related resources are managed via junction endpoints (e.g., `/contactLists`, `/contactTags`, `/contactAutomations`). The base URL is account-specific. Pagination uses `limit` and `offset` parameters.
+ActiveCampaign usa REST com encapsulamento de recursos (e.g., `{ "contact": {...} }`). As respostas incluem o objeto do recurso mais metadados. Recursos relacionados são gerenciados por endpoints de junção (e.g., `/contactLists`, `/contactTags`, `/contactAutomations`). A base URL é específica da conta. A paginação usa os parâmetros `limit` e `offset`.
 
-## Key Metrics
+## Métricas Principais
 
-### Contact Fields
+### Campos de Contato
 - `email` - Email address
 - `firstName`, `lastName` - Name fields
 - `phone` - Phone number
-- `cdate` - Creation date
-- `udate` - Last updated date
+- `cdate` - Data de criação
+- `udate` - Data da última atualização
 - `deals` - Related deals count
 
-### Deal Fields
+### Campos de Deal
 - `title` - Deal name
 - `value` - Deal value in cents
 - `currency` - Currency code
@@ -283,52 +283,52 @@ ActiveCampaign uses REST with resource wrapping (e.g., `{ "contact": {...} }`). 
 - `owner` - Assigned user ID
 - `status` - 0 (open), 1 (won), 2 (lost)
 
-### Campaign Metrics
+### Métricas de Campanha
 - `sends` - Total sends
 - `opens` - Opens count
 - `clicks` - Clicks count
 - `uniqueopens` - Unique opens
 - `uniquelinks` - Unique clicks
 
-## Parameters
+## Parâmetros
 
-### Contact List Status
+### Status da Lista de Contatos
 - `1` - Subscribed (active)
 - `2` - Unsubscribed
 
-### Deal Status
+### Status do Deal
 - `0` - Open
 - `1` - Won
 - `2` - Lost
 
-### Tag Types
+### Tipos de Tag
 - `contact` - Contact tags
 - `deal` - Deal tags
 
-### Common Query Parameters
-- `limit` - Results per page (default 20)
+### Parâmetros de Query Comuns
+- `limit` - Resultados por página (padrão 20)
 - `offset` - Skip N results
-- `search` - Text search
-- `email` - Filter contacts by email
-- `filters[stage]` - Filter deals by stage
-- `filters[owner]` - Filter deals by owner
+- `search` - Busca textual
+- `email` - Filtrar contatos por email
+- `filters[stage]` - Filtrar deals por estágio
+- `filters[owner]` - Filtrar deals por responsável
 
-## When to Use
+## Quando Usar
 
-- Marketing automation with complex conditional workflows
-- CRM with deal pipeline management
-- Contact management with tagging and segmentation
-- Email campaign creation and tracking
-- Triggering automations based on external events
-- B2B sales pipeline tracking integrated with marketing
+- Automação de marketing com workflows condicionais complexos
+- CRM com gerenciamento de pipeline de deals
+- Gerenciamento de contatos com tagging e segmentação
+- Criação e rastreamento de campanhas de email
+- Disparo de automações com base em eventos externos
+- Rastreamento de pipeline de vendas B2B integrado ao marketing
 
-## Rate Limits
+## Limites de Taxa
 
-- 5 requests per second per account
-- Rate limit applies across all API users on the same account
-- 429 responses include `Retry-After` header
+- 5 requisições por segundo por conta
+- O limite de taxa se aplica a todos os usuários da API na mesma conta
+- Respostas 429 incluem o header `Retry-After`
 
-## Relevant Skills
+## Skills Relevantes
 
 - email-sequence
 - lifecycle-marketing

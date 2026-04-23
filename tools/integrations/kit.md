@@ -1,38 +1,38 @@
 # Kit (formerly ConvertKit)
 
-Email marketing platform for creators and newsletter businesses.
+Plataforma de email marketing para creators e negócios de newsletter.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for subscribers, forms, sequences |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | ✓ | JavaScript, Ruby gems available |
+| API | ✓ | REST API para subscribers, forms e sequences |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | ✓ | JavaScript e Ruby gems disponíveis |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key or API Secret
-- **Parameter**: `api_key={key}` or `api_secret={secret}` in query/body
-- **Get key**: Settings > Advanced in Kit dashboard
+- **Tipo**: API Key ou API Secret
+- **Parâmetro**: `api_key={key}` ou `api_secret={secret}` em query/body
+- **Obter chave**: Settings > Advanced no dashboard do Kit
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### List subscribers
+### Listar subscribers
 
 ```bash
 GET https://api.convertkit.com/v3/subscribers?api_secret={api_secret}&page=1
 
 ```
 
-### Get subscriber
+### Buscar subscriber
 
 ```bash
 GET https://api.convertkit.com/v3/subscribers/{subscriber_id}?api_secret={api_secret}
 ```
 
-### Add subscriber to form
+### Adicionar subscriber a um form
 
 ```bash
 POST https://api.convertkit.com/v3/forms/{form_id}/subscribe
@@ -47,7 +47,7 @@ POST https://api.convertkit.com/v3/forms/{form_id}/subscribe
 }
 ```
 
-### Add subscriber to sequence
+### Adicionar subscriber a uma sequence
 
 ```bash
 POST https://api.convertkit.com/v3/sequences/{sequence_id}/subscribe
@@ -58,7 +58,7 @@ POST https://api.convertkit.com/v3/sequences/{sequence_id}/subscribe
 }
 ```
 
-### Tag subscriber
+### Adicionar tag em subscriber
 
 ```bash
 POST https://api.convertkit.com/v3/tags/{tag_id}/subscribe
@@ -69,13 +69,13 @@ POST https://api.convertkit.com/v3/tags/{tag_id}/subscribe
 }
 ```
 
-### Remove tag from subscriber
+### Remover tag de subscriber
 
 ```bash
 DELETE https://api.convertkit.com/v3/subscribers/{subscriber_id}/tags/{tag_id}?api_secret={api_secret}
 ```
 
-### Update subscriber
+### Atualizar subscriber
 
 ```bash
 PUT https://api.convertkit.com/v3/subscribers/{subscriber_id}
@@ -89,7 +89,7 @@ PUT https://api.convertkit.com/v3/subscribers/{subscriber_id}
 }
 ```
 
-### Unsubscribe
+### Cancelar inscrição
 
 ```bash
 PUT https://api.convertkit.com/v3/unsubscribe
@@ -100,25 +100,25 @@ PUT https://api.convertkit.com/v3/unsubscribe
 }
 ```
 
-### List forms
+### Listar forms
 
 ```bash
 GET https://api.convertkit.com/v3/forms?api_key={api_key}
 ```
 
-### List sequences
+### Listar sequences
 
 ```bash
 GET https://api.convertkit.com/v3/sequences?api_key={api_key}
 ```
 
-### List tags
+### Listar tags
 
 ```bash
 GET https://api.convertkit.com/v3/tags?api_key={api_key}
 ```
 
-### Create broadcast
+### Criar broadcast
 
 ```bash
 POST https://api.convertkit.com/v3/broadcasts
@@ -131,37 +131,37 @@ POST https://api.convertkit.com/v3/broadcasts
 }
 ```
 
-## Key Concepts
+## Conceitos principais
 
-- **Subscribers** - Email contacts
-- **Forms** - Signup forms
-- **Sequences** - Automated email series
-- **Tags** - Subscriber labels
-- **Broadcasts** - One-time sends
-- **Custom Fields** - Subscriber attributes
+- **Subscribers** - Contatos de email
+- **Forms** - Formulários de inscrição
+- **Sequences** - Séries de emails automatizadas
+- **Tags** - Rótulos de subscribers
+- **Broadcasts** - Envios pontuais
+- **Custom Fields** - Atributos de subscribers
 
-## Subscriber States
+## Estados do subscriber
 
-- `active` - Can receive emails
-- `unsubscribed` - Opted out
-- `bounced` - Email bounced
-- `complained` - Marked as spam
-- `inactive` - Cold subscriber
+- `active` - Pode receber emails
+- `unsubscribed` - Cancelou inscrição
+- `bounced` - Email retornou
+- `complained` - Marcado como spam
+- `inactive` - Subscriber frio
 
-## When to Use
+## Quando usar
 
-- Creator/newsletter businesses
-- Simple email automation
-- Form-based list building
-- Tagging and segmentation
-- Course email sequences
+- Negócios de creators/newsletter
+- Automação simples de email
+- Construção de lista via formulários
+- Tagueamento e segmentação
+- Sequências de email para cursos
 
-## Rate Limits
+## Limites de taxa
 
-- 120 requests per minute
-- Batch endpoints available
+- 120 requisições por minuto
+- Endpoints em lote disponíveis
 
-## Relevant Skills
+## Habilidades relevantes
 
 - email-sequence
 - content-strategy

@@ -1,25 +1,25 @@
 # Supermetrics
 
-Marketing data pipeline that connects 200+ marketing platforms. Pulls data from ad platforms, analytics, social, SEO, email, and more into a single query interface.
+Pipeline de dados de marketing que conecta mais de 200 plataformas de marketing. Puxa dados de plataformas de anúncios, analytics, social, SEO, email e mais em uma única interface de consulta.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Query any connected data source, manage accounts |
+| API | ✓ | Consultar qualquer fonte de dados conectada, gerenciar contas |
 | MCP | ✓ | [Claude connector](https://claude.com/connectors/supermetrics) |
 | CLI | ✓ | [supermetrics.js](../clis/supermetrics.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas API REST |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
+- **Tipo**: API Key
 - **Query param**: `api_key={api_key}` or **Header**: `x-api-key: {api_key}`
-- **Get key**: Supermetrics Hub > API settings at https://hub.supermetrics.com
+- **Obter chave**: Supermetrics Hub > API settings at https://hub.supermetrics.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Query a Data Source
+### Consultar uma Fonte de Dados
 
 ```bash
 POST https://api.supermetrics.com/enterprise/v2/query/data/json
@@ -36,7 +36,7 @@ POST https://api.supermetrics.com/enterprise/v2/query/data/json
 }
 ```
 
-### Query with Filters
+### Consultar com Filtros
 
 ```bash
 POST https://api.supermetrics.com/enterprise/v2/query/data/json
@@ -55,33 +55,33 @@ POST https://api.supermetrics.com/enterprise/v2/query/data/json
 }
 ```
 
-### List Available Data Sources
+### Listar Fontes de Dados Disponíveis
 
 ```bash
 GET https://api.supermetrics.com/enterprise/v2/datasources
 ```
 
-### List Connected Accounts
+### Listar Contas Conectadas
 
 ```bash
 GET https://api.supermetrics.com/enterprise/v2/datasources/accounts?ds_id=GA4
 ```
 
-### List Teams
+### Listar Times
 
 ```bash
 GET https://api.supermetrics.com/enterprise/v2/teams
 ```
 
-### List Users
+### Listar Usuários
 
 ```bash
 GET https://api.supermetrics.com/enterprise/v2/users
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Data Source IDs
+### IDs de Fonte de Dados
 - `GA4` - Google Analytics 4
 - `GA4_PAID` - Google Analytics (paid)
 - `AW` - Google Ads
@@ -95,23 +95,23 @@ GET https://api.supermetrics.com/enterprise/v2/users
 - `MC` - Mailchimp
 - `HubSpot` - HubSpot
 
-### Date Range Values
+### Valores de Intervalo de Datas
 - `last_28_days` - Last 28 days
 - `last_month` - Previous calendar month
 - `this_month` - Current month to date
-- `custom` - Custom range (requires `start_date` and `end_date`)
+- `custom` - Intervalo customizado (requer `start_date` e `end_date`)
 
-## Parameters
+## Parâmetros
 
 ### Query
-- `ds_id` - Data source identifier (required)
-- `ds_accounts` - Account ID for the data source (required)
+- `ds_id` - Identificador da fonte de dados (obrigatório)
+- `ds_accounts` - ID da conta para a fonte de dados (obrigatório)
 - `date_range_type` - Date range preset or "custom" (required)
-- `fields` - Array of field objects with `name` property (required)
-- `filter` - Filter expression for narrowing results
+- `fields` - Array de objetos de campo com propriedade `name` (obrigatório)
+- `filter` - Expressão de filtro para restringir resultados
 - `max_rows` - Maximum number of rows to return
-- `start_date` - Start date for custom range (YYYY-MM-DD)
-- `end_date` - End date for custom range (YYYY-MM-DD)
+- `start_date` - Data inicial para intervalo customizado (YYYY-MM-DD)
+- `end_date` - Data final para intervalo customizado (YYYY-MM-DD)
 
 ### Common Fields by Source
 - **GA4**: `sessions`, `pageviews`, `users`, `bounce_rate`, `date`, `source`, `medium`, `page_path`
@@ -120,23 +120,23 @@ GET https://api.supermetrics.com/enterprise/v2/users
 - **LinkedIn Ads**: `campaign_name`, `impressions`, `clicks`, `cost`, `conversions`
 - **GSC**: `query`, `clicks`, `impressions`, `ctr`, `position`, `page`
 
-## When to Use
+## Quando Usar
 
-- Pulling cross-platform marketing data into a single report
+- Consolidar dados de marketing multiplataforma em um único relatório
 - Comparing performance across ad platforms (Google, Meta, LinkedIn, TikTok)
-- Aggregating analytics data from multiple sources
+- Agregar dados de analytics de múltiplas fontes
 - Automating marketing reporting workflows
-- Building unified dashboards across marketing channels
-- Extracting SEO data alongside paid media metrics
+- Construir dashboards unificados entre canais de marketing
+- Extrair dados de SEO junto com métricas de mídia paga
 
-## Rate Limits
+## Limites de Taxa
 
 - Rate limits vary by plan
 - Enterprise API: typically 100 requests/minute
-- Query results may be paginated for large datasets
-- Recommended: use `max_rows` to control response size
+- Resultados de consulta podem ser paginados para datasets grandes
+- Recomendado: usar `max_rows` para controlar o tamanho da resposta
 
-## Relevant Skills
+## Skills Relevantes
 
 - analytics-tracking
 - paid-ads

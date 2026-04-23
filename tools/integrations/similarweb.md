@@ -1,25 +1,25 @@
 # Similarweb
 
-Competitive traffic intelligence platform providing website analytics, traffic sources, keyword data, and competitor insights.
+Plataforma de inteligência de tráfego competitivo que fornece analytics de sites, fontes de tráfego, dados de palavras-chave e insights de concorrentes.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Traffic, Search, Referrals, Competitors, Geography |
-| MCP | - | Not available |
+| API | ✓ | Tráfego, Busca, Referências, Concorrentes, Geografia |
+| MCP | - | Não disponível |
 | CLI | ✓ | [similarweb.js](../clis/similarweb.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas API REST |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
+- **Tipo**: API Key
 - **Query param**: `?api_key={key}`
-- **Get key**: Account Settings > API at https://account.similarweb.com
+- **Obter chave**: Configurações da Conta > API em https://account.similarweb.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Total Visits
+### Visitas Totais
 
 ```bash
 GET https://api.similarweb.com/v1/website/example.com/total-traffic-and-engagement/visits?api_key={key}&start_date=2024-01&end_date=2024-03&country=us&granularity=monthly
@@ -31,7 +31,7 @@ GET https://api.similarweb.com/v1/website/example.com/total-traffic-and-engageme
 GET https://api.similarweb.com/v1/website/example.com/total-traffic-and-engagement/pages-per-visit?api_key={key}&start_date=2024-01&end_date=2024-03
 ```
 
-### Average Visit Duration
+### Duração Média da Visita
 
 ```bash
 GET https://api.similarweb.com/v1/website/example.com/total-traffic-and-engagement/average-visit-duration?api_key={key}&start_date=2024-01&end_date=2024-03
@@ -43,7 +43,7 @@ GET https://api.similarweb.com/v1/website/example.com/total-traffic-and-engageme
 GET https://api.similarweb.com/v1/website/example.com/total-traffic-and-engagement/bounce-rate?api_key={key}&start_date=2024-01&end_date=2024-03
 ```
 
-### Traffic Sources Breakdown
+### Fontes de Tráfego Breakdown
 
 ```bash
 GET https://api.similarweb.com/v1/website/example.com/traffic-sources/overview?api_key={key}&start_date=2024-01&end_date=2024-03
@@ -79,70 +79,70 @@ GET https://api.similarweb.com/v1/website/example.com/similar-sites/similarsites
 GET https://api.similarweb.com/v1/website/example.com/category-rank/category-rank?api_key={key}
 ```
 
-### Traffic by Country
+### Tráfego por País
 
 ```bash
 GET https://api.similarweb.com/v1/website/example.com/geo/traffic-by-country?api_key={key}&start_date=2024-01&end_date=2024-03
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Traffic & Engagement
-- `visits` - Total visits for the period
-- `pages_per_visit` - Average pages viewed per visit
-- `average_visit_duration` - Average session duration in seconds
+### Tráfego e Engajamento
+- `visits` - Total de visitas no período
+- `pages_per_visit` - Média de páginas visualizadas por visita
+- `average_visit_duration` - Duração média da sessão em segundos
 - `bounce_rate` - Percentage of single-page visits
 
-### Traffic Sources
-- `search` - Organic + paid search percentage
-- `social` - Social media traffic percentage
-- `direct` - Direct traffic percentage
-- `referrals` - Referral traffic percentage
-- `mail` - Email traffic percentage
+### Fontes de Tráfego
+- `search` - Percentual de busca orgânica + paga
+- `social` - Percentual de tráfego de mídia social
+- `direct` - Percentual de tráfego direto
+- `referrals` - Percentual de tráfego de referência
+- `mail` - Percentual de tráfego de email
 - `display_ads` - Display advertising percentage
 
-### Search Keywords
+### Palavras-chave de Busca
 - `search_term` - Keyword text
-- `share` - Traffic share percentage
-- `volume` - Search volume
+- `share` - Percentual de participação de tráfego
+- `volume` - Volume de busca
 - `cpc` - Cost per click
-- `position` - Average ranking position
+- `position` - Posição média no ranking
 
 ### Geography
 - `country` - Country code
-- `share` - Traffic share from that country
+- `share` - Participação de tráfego desse país
 
-## Parameters
+## Parâmetros
 
-### Common Parameters
+### Parâmetros Comuns
 - `start_date` - Start month (YYYY-MM format)
 - `end_date` - End month (YYYY-MM format)
 - `country` - Two-letter country code (e.g., us, gb, de)
-- `granularity` - Data granularity: monthly, weekly, daily
+- `granularity` - Granularidade dos dados: mensal, semanal, diário
 
-### Search Parameters
+### Parâmetros de Busca
 - `limit` - Number of keywords to return
-- `country` - Filter by country
+- `country` - Filtrar por país
 
-## When to Use
+## Quando Usar
 
-- Analyzing competitor website traffic and engagement metrics
-- Benchmarking your site against competitors
-- Identifying top traffic sources for any website
-- Discovering competitor organic and paid keywords
-- Finding similar sites and competitive landscape
-- Understanding geographic traffic distribution
+- Analisar tráfego de sites concorrentes e métricas de engajamento
+- Comparar seu site com concorrentes
+- Identificar as principais fontes de tráfego de qualquer site
+- Descobrir palavras-chave orgânicas e pagas dos concorrentes
+- Encontrar sites similares e o cenário competitivo
+- Entender a distribuição geográfica do tráfego
 - Auditing SEO performance relative to competitors
-- Researching market share by traffic volume
+- Pesquisar market share por volume de tráfego
 
-## Rate Limits
+## Limites de Taxa
 
 - Rate limits vary by plan tier
 - Standard: 10 requests/second
-- Data availability depends on plan (3 months to 36 months historical)
+- Disponibilidade de dados depende do plano (de 3 a 36 meses de histórico)
 - Some endpoints require Premium or Enterprise plans
 
-## Relevant Skills
+## Skills Relevantes
 
 - seo-audit
 - competitor-alternatives

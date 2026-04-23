@@ -1,25 +1,25 @@
 # Shopify
 
-E-commerce platform for online stores and retail.
+Plataforma de e-commerce para lojas online e varejo.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | REST Admin API, Storefront API, GraphQL |
-| MCP | - | Not available |
-| CLI | ✓ | Shopify CLI for themes and apps |
-| SDK | ✓ | Official libraries for multiple languages |
+| MCP | - | Não disponível |
+| CLI | ✓ | Shopify CLI para temas e apps |
+| SDK | ✓ | Bibliotecas oficiais para múltiplas linguagens |
 
-## Authentication
+## Autenticação
 
-- **Type**: Access Token (Custom App or OAuth)
+- **Tipo**: Access Token (Custom App or OAuth)
 - **Header**: `X-Shopify-Access-Token: {access_token}`
 - **Base URL**: `https://{shop}.myshopify.com/admin/api/2024-01/`
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get shop info
+### Obter informações da loja
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/shop.json
@@ -27,7 +27,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/shop.json
 X-Shopify-Access-Token: {access_token}
 ```
 
-### List products
+### Listar produtos
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/products.json?limit=50
@@ -35,7 +35,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/products.json?limit=50
 X-Shopify-Access-Token: {access_token}
 ```
 
-### Get product
+### Obter produto
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/products/{product_id}.json
@@ -43,7 +43,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/products/{product_id}.json
 X-Shopify-Access-Token: {access_token}
 ```
 
-### Create product
+### Criar produto
 
 ```bash
 POST https://{shop}.myshopify.com/admin/api/2024-01/products.json
@@ -64,7 +64,7 @@ X-Shopify-Access-Token: {access_token}
 }
 ```
 
-### List orders
+### Listar pedidos
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/orders.json?status=any&limit=50
@@ -72,7 +72,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/orders.json?status=any&limit=
 X-Shopify-Access-Token: {access_token}
 ```
 
-### Get order
+### Obter pedido
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/orders/{order_id}.json
@@ -80,7 +80,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/orders/{order_id}.json
 X-Shopify-Access-Token: {access_token}
 ```
 
-### List customers
+### Listar clientes
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/customers.json?limit=50
@@ -88,7 +88,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/customers.json?limit=50
 X-Shopify-Access-Token: {access_token}
 ```
 
-### Search customers
+### Buscar clientes
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/customers/search.json?query=email:user@example.com
@@ -96,7 +96,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/customers/search.json?query=e
 X-Shopify-Access-Token: {access_token}
 ```
 
-### Get analytics
+### Obter analytics
 
 ```bash
 GET https://{shop}.myshopify.com/admin/api/2024-01/reports.json
@@ -104,7 +104,7 @@ GET https://{shop}.myshopify.com/admin/api/2024-01/reports.json
 X-Shopify-Access-Token: {access_token}
 ```
 
-## GraphQL API
+## API GraphQL
 
 ```graphql
 {
@@ -125,7 +125,7 @@ X-Shopify-Access-Token: {access_token}
 }
 ```
 
-## CLI Commands
+## Comandos CLI
 
 ```bash
 # Login
@@ -146,7 +146,7 @@ shopify app create node
 
 ## Webhook Topics
 
-| Topic | When |
+| Tópico | Quando |
 |-------|------|
 | `orders/create` | New order |
 | `orders/paid` | Order paid |
@@ -155,7 +155,7 @@ shopify app create node
 | `products/update` | Product changed |
 | `checkouts/create` | Checkout started |
 
-## When to Use
+## Quando Usar
 
 - E-commerce store management
 - Product catalog operations
@@ -163,13 +163,13 @@ shopify app create node
 - Customer data management
 - Inventory tracking
 
-## Rate Limits
+## Limites de Taxa
 
 - REST: 2 requests/second
 - GraphQL: 50 points/second
 - Bulk operations available
 
-## Relevant Skills
+## Skills Relevantes
 
 - analytics-tracking
 - email-sequence

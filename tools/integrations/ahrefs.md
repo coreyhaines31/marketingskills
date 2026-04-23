@@ -1,23 +1,23 @@
 # Ahrefs
 
-SEO toolset for backlink analysis, keyword research, and competitive research.
+Conjunto de ferramentas de SEO para análise de backlinks, pesquisa de palavras-chave e pesquisa competitiva.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | REST API for Site Explorer, Keywords Explorer |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | - | API-only |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | REST API para Site Explorer, Keywords Explorer |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | - | Apenas API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Token
-- **Header**: `Authorization: Bearer {api_token}`
-- **Get token**: Account Settings > API in Ahrefs dashboard
+- **Tipo**: API Token
+- **Cabeçalho**: `Authorization: Bearer {api_token}`
+- **Obter token**: Account Settings > API in Ahrefs dashboard
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
 ### Domain rating
 
@@ -27,7 +27,7 @@ GET https://api.ahrefs.com/v3/site-explorer/domain-rating?target=example.com
 Authorization: Bearer {api_token}
 ```
 
-### Backlinks overview
+### Visão geral de backlinks
 
 ```bash
 GET https://api.ahrefs.com/v3/site-explorer/backlinks-stats?target=example.com&mode=domain
@@ -43,7 +43,7 @@ GET https://api.ahrefs.com/v3/site-explorer/refdomains?target=example.com&mode=d
 Authorization: Bearer {api_token}
 ```
 
-### Backlinks list
+### Lista de backlinks
 
 ```bash
 GET https://api.ahrefs.com/v3/site-explorer/backlinks?target=example.com&mode=domain&limit=100
@@ -67,7 +67,7 @@ GET https://api.ahrefs.com/v3/site-explorer/top-pages?target=example.com&mode=do
 Authorization: Bearer {api_token}
 ```
 
-### Keyword overview
+### Visão geral de palavra-chave
 
 ```bash
 GET https://api.ahrefs.com/v3/keywords-explorer/overview?keywords=keyword1,keyword2&country=us
@@ -83,7 +83,7 @@ GET https://api.ahrefs.com/v3/keywords-explorer/matching-terms?keyword=seed+keyw
 Authorization: Bearer {api_token}
 ```
 
-### SERP overview
+### Visão geral de SERP
 
 ```bash
 GET https://api.ahrefs.com/v3/keywords-explorer/serp-overview?keyword=target+keyword&country=us
@@ -91,51 +91,51 @@ GET https://api.ahrefs.com/v3/keywords-explorer/serp-overview?keyword=target+key
 Authorization: Bearer {api_token}
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Domain Metrics
+### Métricas de Domínio
 - `domain_rating` - Domain Rating (DR)
 - `ahrefs_rank` - Ahrefs Rank
 - `referring_domains` - Referring domains count
 - `backlinks` - Total backlinks
 - `organic_traffic` - Estimated organic traffic
 
-### Keyword Metrics
-- `volume` - Monthly search volume
+### Métricas de Palavra-chave
+- `volume` - Volume de busca mensal
 - `keyword_difficulty` - KD score (0-100)
-- `cpc` - Cost per click
+- `cpc` - Custo por clique
 - `clicks` - Estimated monthly clicks
-- `global_volume` - Global search volume
+- `global_volume` - Volume de busca global
 
-### Backlink Fields
+### Campos de Backlink
 - `url_from` - Source URL
-- `url_to` - Target URL
+- `url_to` - URL de destino
 - `anchor` - Anchor text
 - `domain_rating_source` - Source DR
 - `first_seen` - First discovery date
 
-## Modes
+## Modos
 
 - `domain` - Entire domain
 - `subdomains` - Domain + subdomains
 - `prefix` - URL prefix
 - `exact` - Exact URL
 
-## When to Use
+## Quando Usar
 
 - Backlink analysis
-- Link building research
-- Keyword research
+- Pesquisa de link building
+- Pesquisa de palavras-chave
 - Competitive analysis
 - Content gap analysis
 - Site audits
 
-## Rate Limits
+## Limites de Taxa
 
-- Varies by plan
-- 500-5000 rows per request
+- Varia por plano
+- 500-5000 linhas por requisição
 
-## Relevant Skills
+## Skills Relevantes
 
 - seo-audit
 - content-strategy

@@ -1,25 +1,25 @@
 # WordPress
 
-Content management system for blogs and websites.
+Sistema de gestão de conteúdo para blogs e sites.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | REST API (WP REST API) |
-| MCP | - | Not available |
-| CLI | ✓ | WP-CLI for server-side management |
+| MCP | - | Não disponível |
+| CLI | ✓ | WP-CLI para gerenciamento server-side |
 | SDK | ✓ | Various client libraries |
 
-## Authentication
+## Autenticação
 
-- **Type**: Application Password, JWT, or OAuth
+- **Tipo**: Application Password, JWT, or OAuth
 - **Header**: `Authorization: Basic {base64(username:app_password)}`
 - **Setup**: Users > Your Profile > Application Passwords
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List posts
+### Listar posts
 
 ```bash
 GET https://example.com/wp-json/wp/v2/posts?per_page=10
@@ -27,7 +27,7 @@ GET https://example.com/wp-json/wp/v2/posts?per_page=10
 Authorization: Basic {base64(username:app_password)}
 ```
 
-### Get post
+### Obter post
 
 ```bash
 GET https://example.com/wp-json/wp/v2/posts/{post_id}
@@ -35,7 +35,7 @@ GET https://example.com/wp-json/wp/v2/posts/{post_id}
 Authorization: Basic {base64(username:app_password)}
 ```
 
-### Create post
+### Criar post
 
 ```bash
 POST https://example.com/wp-json/wp/v2/posts
@@ -51,7 +51,7 @@ Authorization: Basic {base64(username:app_password)}
 }
 ```
 
-### Update post
+### Atualizar post
 
 ```bash
 PUT https://example.com/wp-json/wp/v2/posts/{post_id}
@@ -64,7 +64,7 @@ Authorization: Basic {base64(username:app_password)}
 }
 ```
 
-### List pages
+### Listar páginas
 
 ```bash
 GET https://example.com/wp-json/wp/v2/pages?per_page=20
@@ -72,13 +72,13 @@ GET https://example.com/wp-json/wp/v2/pages?per_page=20
 Authorization: Basic {base64(username:app_password)}
 ```
 
-### List categories
+### Listar categorias
 
 ```bash
 GET https://example.com/wp-json/wp/v2/categories
 ```
 
-### Create category
+### Criar categoria
 
 ```bash
 POST https://example.com/wp-json/wp/v2/categories
@@ -89,7 +89,7 @@ POST https://example.com/wp-json/wp/v2/categories
 }
 ```
 
-### Upload media
+### Enviar mídia
 
 ```bash
 POST https://example.com/wp-json/wp/v2/media
@@ -101,7 +101,7 @@ Content-Type: image/jpeg
 [binary image data]
 ```
 
-### List users
+### Listar usuários
 
 ```bash
 GET https://example.com/wp-json/wp/v2/users
@@ -109,7 +109,7 @@ GET https://example.com/wp-json/wp/v2/users
 Authorization: Basic {base64(username:app_password)}
 ```
 
-## WP-CLI Commands
+## Comandos WP-CLI
 
 ```bash
 # List posts
@@ -134,18 +134,18 @@ wp plugin install yoast-seo --activate
 wp plugin update --all
 ```
 
-## Post Statuses
+## Status de Postagem
 
-- `publish` - Live on site
-- `draft` - Not published
-- `pending` - Awaiting review
+- `publish` - Ao vivo no site
+- `draft` - Não publicado
+- `pending` - Aguardando revisão
 - `private` - Private post
 - `future` - Scheduled
 - `trash` - In trash
 
-## Common Endpoints
+## Endpoints Comuns
 
-| Endpoint | Resource |
+| Endpoint | Recurso |
 |----------|----------|
 | `/wp/v2/posts` | Blog posts |
 | `/wp/v2/pages` | Pages |
@@ -155,20 +155,20 @@ wp plugin update --all
 | `/wp/v2/users` | Users |
 | `/wp/v2/comments` | Comments |
 
-## When to Use
+## Quando Usar
 
-- Blog content management
+- Gestão de conteúdo de blog
 - Page updates
 - Media management
-- Site configuration
+- Configuração do site
 - Plugin/theme management
 
-## Rate Limits
+## Limites de Taxa
 
-- No default limits
+- Sem limites padrão
 - Server/host dependent
 
-## Relevant Skills
+## Skills Relevantes
 
 - content-strategy
 - seo-audit

@@ -1,42 +1,42 @@
-# GA4 Implementation Reference
+# Referência de Implementação do GA4
 
-Detailed implementation guide for Google Analytics 4.
+Guia de implementação detalhado para Google Analytics 4.
 
-## Contents
-- Configuration (data streams, enhanced measurement events, recommended events)
-- Custom Events (gtag.js implementation, Google Tag Manager)
-- Conversions Setup (creating conversions, conversion values)
-- Custom Dimensions and Metrics (when to use, setup steps, examples)
-- Audiences (creating audiences, audience examples)
-- Debugging (DebugView, real-time reports, common issues)
-- Data Quality (filters, cross-domain tracking, session settings)
-- Integration with Google Ads (linking, audience export)
+## Índice
+- Configuração (data streams, eventos de enhanced measurement, eventos recomendados)
+- Eventos Personalizados (implementação gtag.js, Google Tag Manager)
+- Configuração de Conversões (criando conversões, valores de conversão)
+- Dimensões e Métricas Personalizadas (quando usar, etapas de configuração, exemplos)
+- Audiências (criando audiências, exemplos de audiências)
+- Depuração (DebugView, relatórios em tempo real, problemas comuns)
+- Qualidade dos Dados (filtros, rastreamento entre domínios, configurações de sessão)
+- Integração com Google Ads (vinculação, exportação de audiências)
 
-## Configuration
+## Configuração
 
 ### Data Streams
 
-- One stream per platform (web, iOS, Android)
-- Enable enhanced measurement for automatic tracking
-- Configure data retention (2 months default, 14 months max)
-- Enable Google Signals (for cross-device, if consented)
+- Um stream por plataforma (web, iOS, Android)
+- Habilitar enhanced measurement para rastreamento automático
+- Configurar retenção de dados (2 meses padrão, 14 meses máximo)
+- Habilitar Google Signals (para cross-device, se houver consentimento)
 
-### Enhanced Measurement Events (Automatic)
+### Eventos de Enhanced Measurement (Automáticos)
 
-| Event | Description | Configuration |
+| Evento | Descrição | Configuração |
 |-------|-------------|---------------|
-| page_view | Page loads | Automatic |
-| scroll | 90% scroll depth | Toggle on/off |
-| outbound_click | Click to external domain | Automatic |
-| site_search | Search query used | Configure parameter |
-| video_engagement | YouTube video plays | Toggle on/off |
-| file_download | PDF, docs, etc. | Configurable extensions |
+| page_view | Carregamento de página | Automático |
+| scroll | 90% de profundidade de rolagem | Ativar/desativar |
+| outbound_click | Clique para domínio externo | Automático |
+| site_search | Consulta de busca utilizada | Configurar parâmetro |
+| video_engagement | Reprodução de vídeo do YouTube | Ativar/desativar |
+| file_download | PDF, documentos, etc. | Extensões configuráveis |
 
-### Recommended Events
+### Eventos Recomendados
 
-Use Google's predefined events when possible for enhanced reporting:
+Use os eventos predefinidos do Google quando possível para relatórios aprimorados:
 
-**All properties:**
+**Todas as propriedades:**
 - login, sign_up
 - share
 - search
@@ -48,17 +48,17 @@ Use Google's predefined events when possible for enhanced reporting:
 - add_payment_info
 - purchase, refund
 
-**Games:**
+**Jogos:**
 - level_up, unlock_achievement
 - post_score, spend_virtual_currency
 
-Reference: https://support.google.com/analytics/answer/9267735
+Referência: https://support.google.com/analytics/answer/9267735
 
 ---
 
-## Custom Events
+## Eventos Personalizados
 
-### gtag.js Implementation
+### Implementação gtag.js
 
 ```javascript
 // Basic event
@@ -135,18 +135,18 @@ dataLayer.push({
 
 ---
 
-## Conversions Setup
+## Configuração de Conversões
 
-### Creating Conversions
+### Criando Conversões
 
-1. **Collect the event** - Ensure event is firing in GA4
-2. **Mark as conversion** - Admin > Events > Mark as conversion
-3. **Set counting method**:
-   - Once per session (leads, signups)
-   - Every event (purchases)
-4. **Import to Google Ads** - For conversion-optimized bidding
+1. **Colete o evento** — Garanta que o evento esteja disparando no GA4
+2. **Marque como conversão** — Admin > Events > Mark as conversion
+3. **Defina o método de contagem**:
+   - Uma vez por sessão (leads, cadastros)
+   - Cada evento (compras)
+4. **Importe para o Google Ads** — Para lances otimizados por conversão
 
-### Conversion Values
+### Valores de Conversão
 
 ```javascript
 // Event with conversion value
@@ -156,145 +156,145 @@ gtag('event', 'purchase', {
 });
 ```
 
-Or set default value in GA4 Admin when marking conversion.
+Ou defina o valor padrão no GA4 Admin ao marcar a conversão.
 
 ---
 
-## Custom Dimensions and Metrics
+## Dimensões e Métricas Personalizadas
 
-### When to Use
+### Quando Usar
 
-**Custom dimensions:**
-- Properties you want to segment/filter by
-- User attributes (plan type, industry)
-- Content attributes (author, category)
+**Dimensões personalizadas:**
+- Propriedades pelas quais você deseja segmentar/filtrar
+- Atributos do usuário (tipo de plano, setor)
+- Atributos de conteúdo (autor, categoria)
 
-**Custom metrics:**
-- Numeric values to aggregate
-- Scores, counts, durations
+**Métricas personalizadas:**
+- Valores numéricos para agregar
+- Pontuações, contagens, durações
 
-### Setup Steps
+### Etapas de Configuração
 
 1. Admin > Data display > Custom definitions
-2. Create dimension or metric
-3. Choose scope:
-   - **Event**: Per event (content_type)
-   - **User**: Per user (account_type)
-   - **Item**: Per product (product_category)
-4. Enter parameter name (must match event parameter)
+2. Criar dimensão ou métrica
+3. Escolher o escopo:
+   - **Event**: Por evento (content_type)
+   - **User**: Por usuário (account_type)
+   - **Item**: Por produto (product_category)
+4. Inserir nome do parâmetro (deve corresponder ao parâmetro do evento)
 
-### Examples
+### Exemplos
 
-| Dimension | Scope | Parameter | Description |
+| Dimensão | Escopo | Parâmetro | Descrição |
 |-----------|-------|-----------|-------------|
 | User Type | User | user_type | Free, trial, paid |
-| Content Author | Event | author | Blog post author |
-| Product Category | Item | item_category | E-commerce category |
+| Content Author | Event | author | Autor do post do blog |
+| Product Category | Item | item_category | Categoria de e-commerce |
 
 ---
 
-## Audiences
+## Audiências
 
-### Creating Audiences
+### Criando Audiências
 
 Admin > Data display > Audiences
 
-**Use cases:**
-- Remarketing audiences (export to Ads)
-- Segment analysis
-- Trigger-based events
+**Casos de uso:**
+- Audiências de remarketing (exportar para Ads)
+- Análise de segmentos
+- Eventos baseados em trigger
 
-### Audience Examples
+### Exemplos de Audiências
 
-**High-intent visitors:**
-- Viewed pricing page
-- Did not convert
-- In last 7 days
+**Visitantes de alta intenção:**
+- Visualizou página de preços
+- Não converteu
+- Nos últimos 7 dias
 
-**Engaged users:**
-- 3+ sessions
-- Or 5+ minutes total engagement
+**Usuários engajados:**
+- 3+ sessões
+- Ou 5+ minutos de engajamento total
 
-**Purchasers:**
-- Purchase event
-- For exclusion or lookalike
+**Compradores:**
+- Evento de compra
+- Para exclusão ou lookalike
 
 ---
 
-## Debugging
+## Depuração
 
 ### DebugView
 
-Enable with:
-- URL parameter: `?debug_mode=true`
-- Chrome extension: GA Debugger
-- gtag: `'debug_mode': true` in config
+Habilitar com:
+- Parâmetro de URL: `?debug_mode=true`
+- Extensão do Chrome: GA Debugger
+- gtag: `'debug_mode': true` na configuração
 
-View at: Reports > Configure > DebugView
+Visualizar em: Reports > Configure > DebugView
 
-### Real-Time Reports
+### Relatórios em Tempo Real
 
-Check events within 30 minutes:
+Verifique eventos nos últimos 30 minutos:
 Reports > Real-time
 
-### Common Issues
+### Problemas Comuns
 
-**Events not appearing:**
-- Check DebugView first
-- Verify gtag/GTM firing
-- Check filter exclusions
+**Eventos não aparecendo:**
+- Verifique o DebugView primeiro
+- Confirme o disparo do gtag/GTM
+- Verifique exclusões de filtro
 
-**Parameter values missing:**
-- Custom dimension not created
-- Parameter name mismatch
-- Data still processing (24-48 hrs)
+**Valores de parâmetros ausentes:**
+- Dimensão personalizada não criada
+- Nome do parâmetro não corresponde
+- Dados ainda sendo processados (24-48 h)
 
-**Conversions not recording:**
-- Event not marked as conversion
-- Event name doesn't match
-- Counting method (once vs. every)
+**Conversões não registrando:**
+- Evento não marcado como conversão
+- Nome do evento não corresponde
+- Método de contagem (uma vez vs. cada)
 
 ---
 
-## Data Quality
+## Qualidade dos Dados
 
-### Filters
+### Filtros
 
 Admin > Data streams > [Stream] > Configure tag settings > Define internal traffic
 
-**Exclude:**
-- Internal IP addresses
-- Developer traffic
-- Testing environments
+**Excluir:**
+- Endereços IP internos
+- Tráfego de desenvolvedores
+- Ambientes de teste
 
-### Cross-Domain Tracking
+### Rastreamento Entre Domínios
 
-For multiple domains sharing analytics:
+Para múltiplos domínios compartilhando analytics:
 
 1. Admin > Data streams > [Stream] > Configure tag settings
-2. Configure your domains
-3. List all domains that should share sessions
+2. Configure seus domínios
+3. Liste todos os domínios que devem compartilhar sessões
 
-### Session Settings
+### Configurações de Sessão
 
 Admin > Data streams > [Stream] > Configure tag settings
 
-- Session timeout (default 30 min)
-- Engaged session duration (10 sec default)
+- Timeout de sessão (padrão 30 min)
+- Duração de sessão engajada (padrão 10 seg)
 
 ---
 
-## Integration with Google Ads
+## Integração com Google Ads
 
-### Linking
+### Vinculação
 
 1. Admin > Product links > Google Ads links
-2. Enable auto-tagging in Google Ads
-3. Import conversions in Google Ads
+2. Habilitar auto-tagging no Google Ads
+3. Importar conversões no Google Ads
 
-### Audience Export
+### Exportação de Audiências
 
-Audiences created in GA4 can be used in Google Ads for:
-- Remarketing campaigns
+Audiências criadas no GA4 podem ser usadas no Google Ads para:
+- Campanhas de remarketing
 - Customer match
 - Similar audiences

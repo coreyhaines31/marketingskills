@@ -1,22 +1,22 @@
 # Marketing Skills for AI Agents
 
-A collection of AI agent skills focused on marketing tasks. Built for technical marketers and founders who want AI coding agents to help with conversion optimization, copywriting, SEO, analytics, and growth engineering. Works with Claude Code, OpenAI Codex, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io).
+Uma coleção de skills para agentes de IA focadas em tarefas de marketing. Desenvolvida para profissionais de marketing técnico e fundadores que querem que agentes de IA auxiliem com otimização de conversão, copywriting, SEO, analytics e growth engineering. Compatível com Claude Code, OpenAI Codex, Cursor, Windsurf e qualquer agente que suporte a [especificação Agent Skills](https://agentskills.io).
 
-Built by [Corey Haines](https://corey.co?ref=marketingskills). Need hands-on help? Check out [Conversion Factory](https://conversionfactory.co?ref=marketingskills) — Corey's agency for conversion optimization, landing pages, and growth strategy. Want to learn more about marketing? Subscribe to [Swipe Files](https://swipefiles.com?ref=marketingskills). Want an autonomous AI agent that uses these skills to be your CMO? Try [Magister](https://magistermarketing.com?ref=marketingskills).
+Desenvolvido por [Corey Haines](https://corey.co?ref=marketingskills). Precisa de ajuda prática? Conheça a [Conversion Factory](https://conversionfactory.co?ref=marketingskills) — a agência de Corey para otimização de conversão, landing pages e estratégia de crescimento. Quer aprender mais sobre marketing? Assine a [Swipe Files](https://swipefiles.com?ref=marketingskills). Quer um agente de IA autônomo que use essas skills como seu CMO? Experimente o [Magister](https://magistermarketing.com?ref=marketingskills).
 
-New to the terminal and coding agents? Check out the companion guide [Coding for Marketers](https://codingformarketers.com?ref=marketingskills).
+Novo no terminal e em agentes de código? Confira o guia complementar [Coding for Marketers](https://codingformarketers.com?ref=marketingskills).
 
-**Contributions welcome!** Found a way to improve a skill or have a new one to add? [Open a PR](#contributing).
+**Contribuições são bem-vindas!** Encontrou uma forma de melhorar uma skill ou tem uma nova para adicionar? [Abra um PR](#contributing).
 
-Run into a problem or have a question? [Open an issue](https://github.com/coreyhaines31/marketingskills/issues) — we're happy to help.
+Encontrou algum problema ou tem uma dúvida? [Abra uma issue](https://github.com/coreyhaines31/marketingskills/issues) — estamos felizes em ajudar.
 
-## What are Skills?
+## O que são Skills?
 
-Skills are markdown files that give AI agents specialized knowledge and workflows for specific tasks. When you add these to your project, your agent can recognize when you're working on a marketing task and apply the right frameworks and best practices.
+Skills são arquivos markdown que fornecem aos agentes de IA conhecimento especializado e fluxos de trabalho para tarefas específicas. Ao adicioná-las ao seu projeto, o agente consegue identificar quando você está trabalhando em uma tarefa de marketing e aplicar os frameworks e boas práticas corretos.
 
-## How Skills Work Together
+## Como as Skills Funcionam em Conjunto
 
-Skills reference each other and build on shared context. The `product-marketing-context` skill is the foundation — every other skill checks it first to understand your product, audience, and positioning before doing anything.
+As skills se referenciam entre si e se constroem sobre um contexto compartilhado. A skill `product-marketing-context` é a base — todas as outras skills a consultam primeiro para entender seu produto, público e posicionamento antes de fazer qualquer coisa.
 
 ```
                             ┌──────────────────────────────────────┐
@@ -48,12 +48,12 @@ Skills reference each other and build on shared context. The `product-marketing-
            customer-research → copywriting, page-cro, competitor-alternatives
 ```
 
-See each skill's **Related Skills** section for the full dependency map.
+Veja a seção **Related Skills** de cada skill para o mapa completo de dependências.
 
-## Available Skills
+## Skills Disponíveis
 
 <!-- SKILLS:START -->
-| Skill | Description |
+| Skill | Descrição |
 |-------|-------------|
 | [ab-test-setup](skills/ab-test-setup/) | When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program.... |
 | [ad-creative](skills/ad-creative/) | When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad... |
@@ -95,91 +95,91 @@ See each skill's **Related Skills** section for the full dependency map.
 | [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
 <!-- SKILLS:END -->
 
-## Installation
+## Instalação
 
-### Option 1: CLI Install (Recommended)
+### Opção 1: Instalação via CLI (Recomendado)
 
-Use [npx skills](https://github.com/vercel-labs/skills) to install skills directly:
+Use [npx skills](https://github.com/vercel-labs/skills) para instalar skills diretamente:
 
 ```bash
-# Install all skills
+# Instalar todas as skills
 npx skills add coreyhaines31/marketingskills
 
-# Install specific skills
+# Instalar skills específicas
 npx skills add coreyhaines31/marketingskills --skill page-cro copywriting
 
-# List available skills
+# Listar skills disponíveis
 npx skills add coreyhaines31/marketingskills --list
 ```
 
-This automatically installs to your `.agents/skills/` directory (and symlinks into `.claude/skills/` for Claude Code compatibility).
+Isso instala automaticamente no diretório `.agents/skills/` (e cria symlinks em `.claude/skills/` para compatibilidade com Claude Code).
 
-### Option 2: Claude Code Plugin
+### Opção 2: Plugin do Claude Code
 
-Install via Claude Code's built-in plugin system:
+Instale pelo sistema de plugins integrado do Claude Code:
 
 ```bash
-# Add the marketplace
+# Adicionar o marketplace
 /plugin marketplace add coreyhaines31/marketingskills
 
-# Install all marketing skills
+# Instalar todas as marketing skills
 /plugin install marketing-skills
 ```
 
-### Option 3: Clone and Copy
+### Opção 3: Clone e Cópia
 
-Clone the entire repo and copy the skills folder:
+Clone o repositório completo e copie a pasta de skills:
 
 ```bash
 git clone https://github.com/coreyhaines31/marketingskills.git
 cp -r marketingskills/skills/* .agents/skills/
 ```
 
-### Option 4: Git Submodule
+### Opção 4: Git Submodule
 
-Add as a submodule for easy updates:
+Adicione como submódulo para atualizações fáceis:
 
 ```bash
 git submodule add https://github.com/coreyhaines31/marketingskills.git .agents/marketingskills
 ```
 
-Then reference skills from `.agents/marketingskills/skills/`.
+Depois referencie as skills em `.agents/marketingskills/skills/`.
 
-### Option 5: Fork and Customize
+### Opção 5: Fork e Personalização
 
-1. Fork this repository
-2. Customize skills for your specific needs
-3. Clone your fork into your projects
+1. Faça um fork deste repositório
+2. Personalize as skills para suas necessidades específicas
+3. Clone seu fork nos seus projetos
 
-### Option 6: SkillKit (Multi-Agent)
+### Opção 6: SkillKit (Multi-Agente)
 
-Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across multiple AI agents (Claude Code, Cursor, Copilot, etc.):
+Use o [SkillKit](https://github.com/rohitg00/skillkit) para instalar skills em múltiplos agentes de IA (Claude Code, Cursor, Copilot, etc.):
 
 ```bash
-# Install all skills
+# Instalar todas as skills
 npx skillkit install coreyhaines31/marketingskills
 
-# Install specific skills
+# Instalar skills específicas
 npx skillkit install coreyhaines31/marketingskills --skill page-cro copywriting
 
-# List available skills
+# Listar skills disponíveis
 npx skillkit install coreyhaines31/marketingskills --list
 ```
 
-## Upgrading from v1.0
+## Atualizando a partir da v1.0
 
-Skills now use `.agents/` instead of `.claude/` for the product marketing context file. Move your existing context file:
+As skills agora usam `.agents/` em vez de `.claude/` para o arquivo de contexto de marketing de produto. Mova seu arquivo de contexto existente:
 
 ```bash
 mkdir -p .agents
 mv .claude/product-marketing-context.md .agents/product-marketing-context.md
 ```
 
-Skills will still check `.claude/` as a fallback, so nothing breaks if you don't.
+As skills ainda verificam `.claude/` como fallback, então nada quebra se você não fizer isso.
 
-## Usage
+## Uso
 
-Once installed, just ask your agent to help with marketing tasks:
+Uma vez instaladas, basta pedir ao seu agente ajuda com tarefas de marketing:
 
 ```
 "Help me optimize this landing page for conversions"
@@ -195,7 +195,7 @@ Once installed, just ask your agent to help with marketing tasks:
 → Uses email-sequence skill
 ```
 
-You can also invoke skills directly:
+Você também pode invocar skills diretamente:
 
 ```
 /page-cro
@@ -203,63 +203,63 @@ You can also invoke skills directly:
 /seo-audit
 ```
 
-## Skill Categories
+## Categorias de Skills
 
-### Conversion Optimization
-- `page-cro` - Any marketing page
-- `signup-flow-cro` - Registration flows
-- `onboarding-cro` - Post-signup activation
-- `form-cro` - Lead capture forms
-- `popup-cro` - Modals and overlays
-- `paywall-upgrade-cro` - In-app upgrade moments
+### Otimização de Conversão
+- `page-cro` - Qualquer página de marketing
+- `signup-flow-cro` - Fluxos de registro
+- `onboarding-cro` - Ativação pós-cadastro
+- `form-cro` - Formulários de captura de leads
+- `popup-cro` - Modais e overlays
+- `paywall-upgrade-cro` - Momentos de upgrade no app
 
-### Content & Copy
-- `copywriting` - Marketing page copy
-- `copy-editing` - Edit and polish existing copy
-- `cold-email` - B2B cold outreach emails and sequences
-- `email-sequence` - Automated email flows
-- `social-content` - Social media content
+### Conteúdo & Copy
+- `copywriting` - Copy para páginas de marketing
+- `copy-editing` - Editar e polir copy existente
+- `cold-email` - E-mails de prospecção B2B e sequências
+- `email-sequence` - Fluxos de e-mail automatizados
+- `social-content` - Conteúdo para redes sociais
 
-### SEO & Discovery
-- `seo-audit` - Technical and on-page SEO
-- `ai-seo` - AI search optimization (AEO, GEO, LLMO)
-- `programmatic-seo` - Scaled page generation
-- `site-architecture` - Page hierarchy, navigation, URL structure
-- `competitor-alternatives` - Comparison and alternative pages
-- `schema-markup` - Structured data
+### SEO & Descoberta
+- `seo-audit` - SEO técnico e on-page
+- `ai-seo` - Otimização para busca com IA (AEO, GEO, LLMO)
+- `programmatic-seo` - Geração de páginas em escala
+- `site-architecture` - Hierarquia de páginas, navegação, estrutura de URL
+- `competitor-alternatives` - Páginas de comparação e alternativas
+- `schema-markup` - Dados estruturados
 
-### Paid & Distribution
-- `paid-ads` - Google, Meta, LinkedIn ad campaigns
-- `ad-creative` - Bulk ad creative generation and iteration
-- `social-content` - Social media scheduling and strategy
+### Mídia Paga & Distribuição
+- `paid-ads` - Campanhas no Google, Meta, LinkedIn
+- `ad-creative` - Geração e iteração de criativos em volume
+- `social-content` - Agendamento e estratégia de redes sociais
 
-### Measurement & Testing
-- `analytics-tracking` - Event tracking setup
-- `ab-test-setup` - Experiment design
+### Mensuração & Testes
+- `analytics-tracking` - Configuração de rastreamento de eventos
+- `ab-test-setup` - Design de experimentos
 
-### Retention
-- `churn-prevention` - Cancel flows, save offers, dunning, payment recovery
+### Retenção
+- `churn-prevention` - Fluxos de cancelamento, ofertas de salvamento, dunning, recuperação de pagamentos
 
 ### Growth Engineering
-- `free-tool-strategy` - Marketing tools and calculators
-- `referral-program` - Referral and affiliate programs
+- `free-tool-strategy` - Ferramentas de marketing e calculadoras
+- `referral-program` - Programas de indicação e afiliados
 
-### Strategy & Monetization
-- `marketing-ideas` - 140 SaaS marketing ideas
-- `marketing-psychology` - Mental models and psychology
-- `launch-strategy` - Product launches and announcements
-- `pricing-strategy` - Pricing, packaging, and monetization
+### Estratégia & Monetização
+- `marketing-ideas` - 140 ideias de marketing para SaaS
+- `marketing-psychology` - Modelos mentais e psicologia
+- `launch-strategy` - Lançamentos de produto e anúncios
+- `pricing-strategy` - Precificação, empacotamento e monetização
 
-### Sales & RevOps
-- `revops` - Lead lifecycle, scoring, routing, pipeline management
-- `sales-enablement` - Sales decks, one-pagers, objection docs, demo scripts
+### Vendas & RevOps
+- `revops` - Ciclo de vida de leads, pontuação, roteamento, gestão de pipeline
+- `sales-enablement` - Decks de vendas, one-pagers, docs de objeções, scripts de demo
 
-## Contributing
+## Contribuindo
 
-Found a way to improve a skill? Have a new skill to suggest? PRs and issues welcome!
+Encontrou uma forma de melhorar uma skill? Tem uma nova skill para sugerir? PRs e issues são bem-vindos!
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving skills.
+Veja [CONTRIBUTING.md](CONTRIBUTING.md) para diretrizes sobre como adicionar ou melhorar skills.
 
-## License
+## Licença
 
-[MIT](LICENSE) - Use these however you want.
+[MIT](LICENSE) - Use como quiser.

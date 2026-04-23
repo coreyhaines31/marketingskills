@@ -1,32 +1,32 @@
 # Contentful
 
-Enterprise headless CMS with multi-locale support, two-API architecture, and composable content.
+CMS headless empresarial com suporte a múltiplos locais, arquitetura de duas APIs e conteúdo componível.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | Content Delivery API (read), Content Management API (write) |
-| MCP | - | No official MCP server |
-| CLI | ✓ | `contentful-cli` for spaces, content types, migrations |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | Content Delivery API (leitura), Content Management API (escrita) |
+| MCP | - | Sem servidor MCP oficial |
+| CLI | ✓ | `contentful-cli` para spaces, content types, migrations |
 | SDK | ✓ | `contentful` (delivery), `contentful-management` (management) |
 
-## Authentication
+## Autenticação
 
 - **Delivery API (CDA)**: `Authorization: Bearer {delivery_token}`
   - Base URL: `https://cdn.contentful.com`
-  - Read-only, CDN-cached
+  - Somente leitura, CDN-cached
 - **Preview API (CPA)**: `Authorization: Bearer {preview_token}`
   - Base URL: `https://preview.contentful.com`
-  - Read-only, returns draft content
+  - Somente leitura, retorna conteúdo em rascunho
 - **Management API (CMA)**: `Authorization: Bearer {management_token}`
   - Base URL: `https://api.contentful.com`
-  - Read/write, not cached
-- **Tokens**: Create in Settings → API keys (delivery) or Settings → CMA tokens (management)
+  - Leitura/escrita, não armazenado em cache
+- **Tokens**: Crie em Settings → API keys (delivery) or Settings → CMA tokens (management)
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get entries (Delivery API)
+### Obter entries (Delivery API)
 
 ```bash
 GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entries?content_type=blogPost&limit=10
@@ -34,7 +34,7 @@ GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entr
 Authorization: Bearer {delivery_token}
 ```
 
-### Get single entry
+### Obter single entry
 
 ```bash
 GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}
@@ -42,7 +42,7 @@ GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entr
 Authorization: Bearer {delivery_token}
 ```
 
-### Search and filter
+### Buscar e filtrar
 
 ```bash
 # By field value
@@ -55,9 +55,9 @@ GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entr
 GET https://cdn.contentful.com/spaces/{space_id}/environments/{environment}/entries?content_type=blogPost&fields.publishDate[gte]=2024-01-01
 ```
 
-### Create entry (Management API)
+### Criar entry (Management API)
 
-CMA uses PUT with a client-generated `entry_id`. To auto-generate, use POST without an ID in the path.
+O CMA usa PUT com `entry_id` gerado pelo cliente. Para gerar automaticamente, use POST sem ID no path.
 
 ```bash
 PUT https://api.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}
@@ -74,7 +74,7 @@ Authorization: Bearer {management_token}
 }
 ```
 
-### Update entry
+### Atualizar entry
 
 ```bash
 PUT https://api.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}
@@ -89,7 +89,7 @@ Authorization: Bearer {management_token}
 }
 ```
 
-### Publish entry
+### Publicar entry
 
 ```bash
 PUT https://api.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}/published
@@ -97,7 +97,7 @@ X-Contentful-Version: {current_version}
 Authorization: Bearer {management_token}
 ```
 
-### Unpublish entry
+### Despublicar entry
 
 ```bash
 DELETE https://api.contentful.com/spaces/{space_id}/environments/{environment}/entries/{entry_id}/published
@@ -105,7 +105,7 @@ X-Contentful-Version: {current_version}
 Authorization: Bearer {management_token}
 ```
 
-## CLI Commands
+## Comandos CLI
 
 ```bash
 # Login
@@ -127,33 +127,33 @@ contentful space migration --space-id {space_id} migration.js
 contentful content-type list --space-id {space_id}
 ```
 
-## Key Objects
+## Objetos Principais
 
-- **Space** — Top-level container for content (one per project)
+- **Space** — Contêiner de nível superior para conteúdo (um por projeto)
 - **Environment** — Isolated content branch (`master`, `staging`, etc.)
-- **Content Type** — Schema definition with fields and validations
+- **Content Type** — Definição de schema com campos e validações
 - **Entry** — Content item of a specific content type
 - **Asset** — Media file (image, video, document)
 - **Locale** — Language/region variant (e.g., `en-US`, `de-DE`)
 
-## When to Use
+## Quando Usar
 
 - Multi-locale marketing content (global sites)
-- Enterprise content operations with approval workflows
+- Operações de conteúdo Enterprise com workflows de aprovação
 - Composable content architecture
-- Teams needing established vendor support and SLAs
-- Content reuse across multiple channels
+- Equipes que precisam de suporte de fornecedor estabelecido e SLAs
+- Reutilização de conteúdo em múltiplos canais
 
-## Rate Limits
+## Limites de Taxa
 
-Rate limits are plan-dependent. Check `X-Contentful-RateLimit-Second-Limit` response header for your actual limits.
+Limites de taxa dependem do plano. Verifique o header de resposta `X-Contentful-RateLimit-Second-Limit` para seus limites reais.
 
-- Delivery API (CDA): Varies by plan (typically high throughput)
-- Preview API (CPA): Lower than CDA (varies by plan)
-- Management API (CMA): ~10 requests per second (default)
-- See [Contentful technical limits](https://www.contentful.com/developers/docs/technical-limits/) for current values
+- Delivery API (CDA): Varia por plano (typically high throughput)
+- Preview API (CPA): menor que CDA (varia por plano)
+- Management API (CMA): ~10 requisições por segundo (padrão)
+- Veja [Contentful technical limits](https://www.contentful.com/developers/docs/technical-limits/) para os valores atuais
 
-## Relevant Skills
+## Skills Relevantes
 
 - content-strategy (CMS selection, content modeling)
 - programmatic-seo (CMS as data source for generated pages)

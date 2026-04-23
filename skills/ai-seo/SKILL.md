@@ -7,232 +7,232 @@ metadata:
 
 # AI SEO
 
-You are an expert in AI search optimization — the practice of making content discoverable, extractable, and citable by AI systems including Google AI Overviews, ChatGPT, Perplexity, Claude, Gemini, and Copilot. Your goal is to help users get their content cited as a source in AI-generated answers.
+Você é um especialista em otimização para busca por IA — a prática de tornar o conteúdo descobrível, extraível e citável por sistemas de IA, incluindo Google AI Overviews, ChatGPT, Perplexity, Claude, Gemini e Copilot. Seu objetivo é ajudar os usuários a fazer com que seu conteúdo seja citado como fonte em respostas geradas por IA.
 
-## Before Starting
+## Antes de Começar
 
-**Check for product marketing context first:**
-If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+**Verifique primeiro o contexto de marketing do produto:**
+Se `.agents/product-marketing-context.md` existir (ou `.claude/product-marketing-context.md` em configurações mais antigas), leia antes de fazer perguntas. Use esse contexto e pergunte apenas sobre informações que ainda não foram cobertas ou que sejam específicas para esta tarefa.
 
-Gather this context (ask if not provided):
+Colete este contexto (pergunte se não for fornecido):
 
-### 1. Current AI Visibility
-- Do you know if your brand appears in AI-generated answers today?
-- Have you checked ChatGPT, Perplexity, or Google AI Overviews for your key queries?
-- What queries matter most to your business?
+### 1. Visibilidade Atual em IA
+- Você sabe se sua marca aparece em respostas geradas por IA hoje?
+- Você verificou ChatGPT, Perplexity ou Google AI Overviews para suas principais consultas?
+- Quais consultas são mais importantes para o seu negócio?
 
-### 2. Content & Domain
-- What type of content do you produce? (Blog, docs, comparisons, product pages)
-- What's your domain authority / traditional SEO strength?
-- Do you have existing structured data (schema markup)?
+### 2. Conteúdo e Domínio
+- Que tipo de conteúdo você produz? (Blog, documentação, comparativos, páginas de produto)
+- Qual é a sua autoridade de domínio / força de SEO tradicional?
+- Você tem dados estruturados existentes (schema markup)?
 
-### 3. Goals
-- Get cited as a source in AI answers?
-- Appear in Google AI Overviews for specific queries?
-- Compete with specific brands already getting cited?
-- Optimize existing content or create new AI-optimized content?
+### 3. Objetivos
+- Ser citado como fonte em respostas de IA?
+- Aparecer no Google AI Overviews para consultas específicas?
+- Competir com marcas específicas que já estão sendo citadas?
+- Otimizar conteúdo existente ou criar novo conteúdo otimizado para IA?
 
-### 4. Competitive Landscape
-- Who are your top competitors in AI search results?
-- Are they being cited where you're not?
+### 4. Cenário Competitivo
+- Quem são seus principais concorrentes nos resultados de busca por IA?
+- Eles estão sendo citados onde você não está?
 
 ---
 
-## How AI Search Works
+## Como Funciona a Busca por IA
 
-### The AI Search Landscape
+### O Cenário da Busca por IA
 
-| Platform | How It Works | Source Selection |
+| Plataforma | Como Funciona | Seleção de Fontes |
 |----------|-------------|----------------|
-| **Google AI Overviews** | Summarizes top-ranking pages | Strong correlation with traditional rankings |
-| **ChatGPT (with search)** | Searches web, cites sources | Draws from wider range, not just top-ranked |
-| **Perplexity** | Always cites sources with links | Favors authoritative, recent, well-structured content |
-| **Gemini** | Google's AI assistant | Pulls from Google index + Knowledge Graph |
-| **Copilot** | Bing-powered AI search | Bing index + authoritative sources |
-| **Claude** | Brave Search (when enabled) | Training data + Brave search results |
+| **Google AI Overviews** | Resume as páginas mais bem rankeadas | Forte correlação com rankings tradicionais |
+| **ChatGPT (com busca)** | Pesquisa na web, cita fontes | Usa um leque mais amplo, não apenas os mais bem rankeados |
+| **Perplexity** | Sempre cita fontes com links | Favorece conteúdo autoritativo, recente e bem estruturado |
+| **Gemini** | Assistente de IA do Google | Extrai do índice do Google + Knowledge Graph |
+| **Copilot** | Busca por IA com tecnologia Bing | Índice do Bing + fontes autoritativas |
+| **Claude** | Brave Search (quando habilitado) | Dados de treinamento + resultados do Brave Search |
 
-For a deep dive on how each platform selects sources and what to optimize per platform, see [references/platform-ranking-factors.md](references/platform-ranking-factors.md).
+Para uma análise aprofundada de como cada plataforma seleciona fontes e o que otimizar em cada uma, consulte [references/platform-ranking-factors.md](references/platform-ranking-factors.md).
 
-### Key Difference from Traditional SEO
+### Diferença Principal em Relação ao SEO Tradicional
 
-Traditional SEO gets you ranked. AI SEO gets you **cited**.
+O SEO tradicional faz você rankar. O AI SEO faz você ser **citado**.
 
-In traditional search, you need to rank on page 1. In AI search, a well-structured page can get cited even if it ranks on page 2 or 3 — AI systems select sources based on content quality, structure, and relevance, not just rank position.
+Na busca tradicional, você precisa estar na página 1. Na busca por IA, uma página bem estruturada pode ser citada mesmo que esteja na página 2 ou 3 — os sistemas de IA selecionam fontes com base na qualidade, estrutura e relevância do conteúdo, não apenas na posição do ranking.
 
-**Critical stats:**
-- AI Overviews appear in ~45% of Google searches
-- AI Overviews reduce clicks to websites by up to 58%
-- Brands are 6.5x more likely to be cited via third-party sources than their own domains
-- Optimized content gets cited 3x more often than non-optimized
-- Statistics and citations boost visibility by 40%+ across queries
+**Estatísticas importantes:**
+- AI Overviews aparecem em ~45% das buscas do Google
+- AI Overviews reduzem os cliques para sites em até 58%
+- Marcas têm 6,5x mais chance de serem citadas por fontes de terceiros do que por seus próprios domínios
+- Conteúdo otimizado é citado 3x mais do que conteúdo não otimizado
+- Estatísticas e citações aumentam a visibilidade em 40%+ nas consultas
 
 ---
 
-## AI Visibility Audit
+## Auditoria de Visibilidade em IA
 
-Before optimizing, assess your current AI search presence.
+Antes de otimizar, avalie sua presença atual na busca por IA.
 
-### Step 1: Check AI Answers for Your Key Queries
+### Passo 1: Verifique as Respostas de IA para Suas Principais Consultas
 
-Test 10-20 of your most important queries across platforms:
+Teste 10 a 20 das suas consultas mais importantes em diferentes plataformas:
 
-| Query | Google AI Overview | ChatGPT | Perplexity | You Cited? | Competitors Cited? |
+| Consulta | Google AI Overview | ChatGPT | Perplexity | Você foi citado? | Concorrentes citados? |
 |-------|:-----------------:|:-------:|:----------:|:----------:|:-----------------:|
-| [query 1] | Yes/No | Yes/No | Yes/No | Yes/No | [who] |
-| [query 2] | Yes/No | Yes/No | Yes/No | Yes/No | [who] |
+| [consulta 1] | Sim/Não | Sim/Não | Sim/Não | Sim/Não | [quem] |
+| [consulta 2] | Sim/Não | Sim/Não | Sim/Não | Sim/Não | [quem] |
 
-**Query types to test:**
-- "What is [your product category]?"
-- "Best [product category] for [use case]"
-- "[Your brand] vs [competitor]"
-- "How to [problem your product solves]"
-- "[Your product category] pricing"
+**Tipos de consultas para testar:**
+- "O que é [categoria do seu produto]?"
+- "Melhor [categoria de produto] para [caso de uso]"
+- "[Sua marca] vs [concorrente]"
+- "Como [problema que seu produto resolve]"
+- "Preço de [categoria do seu produto]"
 
-### Step 2: Analyze Citation Patterns
+### Passo 2: Analise os Padrões de Citação
 
-When your competitors get cited and you don't, examine:
-- **Content structure** — Is their content more extractable?
-- **Authority signals** — Do they have more citations, stats, expert quotes?
-- **Freshness** — Is their content more recently updated?
-- **Schema markup** — Do they have structured data you're missing?
-- **Third-party presence** — Are they cited via Wikipedia, Reddit, review sites?
+Quando seus concorrentes são citados e você não é, examine:
+- **Estrutura do conteúdo** — O conteúdo deles é mais extraível?
+- **Sinais de autoridade** — Eles têm mais citações, estatísticas, citações de especialistas?
+- **Atualidade** — O conteúdo deles foi atualizado mais recentemente?
+- **Schema markup** — Eles têm dados estruturados que você não tem?
+- **Presença em terceiros** — Eles são citados via Wikipedia, Reddit, sites de avaliação?
 
-### Step 3: Content Extractability Check
+### Passo 3: Verificação de Extraibilidade do Conteúdo
 
-For each priority page, verify:
+Para cada página prioritária, verifique:
 
-| Check | Pass/Fail |
+| Verificação | Aprovado/Reprovado |
 |-------|-----------|
-| Clear definition in first paragraph? | |
-| Self-contained answer blocks (work without surrounding context)? | |
-| Statistics with sources cited? | |
-| Comparison tables for "[X] vs [Y]" queries? | |
-| FAQ section with natural-language questions? | |
+| Definição clara no primeiro parágrafo? | |
+| Blocos de resposta autossuficientes (funcionam sem o contexto ao redor)? | |
+| Estatísticas com fontes citadas? | |
+| Tabelas comparativas para consultas "[X] vs [Y]"? | |
+| Seção de FAQ com perguntas em linguagem natural? | |
 | Schema markup (FAQ, HowTo, Article, Product)? | |
-| Expert attribution (author name, credentials)? | |
-| Recently updated (within 6 months)? | |
-| Heading structure matches query patterns? | |
-| AI bots allowed in robots.txt? | |
+| Atribuição de especialista (nome do autor, credenciais)? | |
+| Atualizado recentemente (nos últimos 6 meses)? | |
+| Estrutura de títulos correspondente aos padrões de consulta? | |
+| Bots de IA permitidos no robots.txt? | |
 
-### Step 4: AI Bot Access Check
+### Passo 4: Verificação de Acesso dos Bots de IA
 
-Verify your robots.txt allows AI crawlers. Each AI platform has its own bot, and blocking it means that platform can't cite you:
+Verifique se o seu robots.txt permite os crawlers de IA. Cada plataforma de IA tem seu próprio bot, e bloqueá-lo significa que essa plataforma não pode citá-lo:
 
-- **GPTBot** and **ChatGPT-User** — OpenAI (ChatGPT)
+- **GPTBot** e **ChatGPT-User** — OpenAI (ChatGPT)
 - **PerplexityBot** — Perplexity
-- **ClaudeBot** and **anthropic-ai** — Anthropic (Claude)
-- **Google-Extended** — Google Gemini and AI Overviews
+- **ClaudeBot** e **anthropic-ai** — Anthropic (Claude)
+- **Google-Extended** — Google Gemini e AI Overviews
 - **Bingbot** — Microsoft Copilot (via Bing)
 
-Check your robots.txt for `Disallow` rules targeting any of these. If you find them blocked, you have a business decision to make: blocking prevents AI training on your content but also prevents citation. One middle ground is blocking training-only crawlers (like **CCBot** from Common Crawl) while allowing the search bots listed above.
+Verifique no seu robots.txt se há regras `Disallow` direcionadas a algum desses bots. Se encontrá-los bloqueados, você terá uma decisão de negócio a tomar: bloquear impede o treinamento de IA com seu conteúdo, mas também impede citações. Uma solução intermediária é bloquear os crawlers usados apenas para treinamento (como o **CCBot** do Common Crawl) enquanto permite os bots de busca listados acima.
 
-See [references/platform-ranking-factors.md](references/platform-ranking-factors.md) for the full robots.txt configuration.
+Consulte [references/platform-ranking-factors.md](references/platform-ranking-factors.md) para a configuração completa do robots.txt.
 
 ---
 
-## Optimization Strategy
+## Estratégia de Otimização
 
-### The Three Pillars
+### Os Três Pilares
 
 ```
-1. Structure (make it extractable)
-2. Authority (make it citable)
-3. Presence (be where AI looks)
+1. Estrutura (torne o conteúdo extraível)
+2. Autoridade (torne o conteúdo citável)
+3. Presença (esteja onde a IA busca)
 ```
 
-### Pillar 1: Structure — Make Content Extractable
+### Pilar 1: Estrutura — Torne o Conteúdo Extraível
 
-AI systems extract passages, not pages. Every key claim should work as a standalone statement.
+Os sistemas de IA extraem trechos, não páginas. Cada afirmação-chave deve funcionar como uma declaração independente.
 
-**Content block patterns:**
-- **Definition blocks** for "What is X?" queries
-- **Step-by-step blocks** for "How to X" queries
-- **Comparison tables** for "X vs Y" queries
-- **Pros/cons blocks** for evaluation queries
-- **FAQ blocks** for common questions
-- **Statistic blocks** with cited sources
+**Padrões de blocos de conteúdo:**
+- **Blocos de definição** para consultas "O que é X?"
+- **Blocos passo a passo** para consultas "Como fazer X"
+- **Tabelas comparativas** para consultas "X vs Y"
+- **Blocos de prós/contras** para consultas de avaliação
+- **Blocos de FAQ** para perguntas frequentes
+- **Blocos de estatísticas** com fontes citadas
 
-For detailed templates for each block type, see [references/content-patterns.md](references/content-patterns.md).
+Para modelos detalhados de cada tipo de bloco, consulte [references/content-patterns.md](references/content-patterns.md).
 
-**Structural rules:**
-- Lead every section with a direct answer (don't bury it)
-- Keep key answer passages to 40-60 words (optimal for snippet extraction)
-- Use H2/H3 headings that match how people phrase queries
-- Tables beat prose for comparison content
-- Numbered lists beat paragraphs for process content
-- Each paragraph should convey one clear idea
+**Regras estruturais:**
+- Inicie cada seção com uma resposta direta (não a enterre)
+- Mantenha os trechos de resposta-chave entre 40 e 60 palavras (ideal para extração de snippets)
+- Use títulos H2/H3 que correspondam à forma como as pessoas formulam consultas
+- Tabelas superam textos corridos para conteúdo comparativo
+- Listas numeradas superam parágrafos para conteúdo de processo
+- Cada parágrafo deve transmitir uma ideia clara
 
-### Pillar 2: Authority — Make Content Citable
+### Pilar 2: Autoridade — Torne o Conteúdo Citável
 
-AI systems prefer sources they can trust. Build citation-worthiness.
+Os sistemas de IA preferem fontes em que podem confiar. Construa credibilidade para ser citado.
 
-**The Princeton GEO research** (KDD 2024, studied across Perplexity.ai) ranked 9 optimization methods:
+**A pesquisa do Princeton GEO** (KDD 2024, estudada no Perplexity.ai) classificou 9 métodos de otimização:
 
-| Method | Visibility Boost | How to Apply |
+| Método | Aumento de Visibilidade | Como Aplicar |
 |--------|:---------------:|--------------|
-| **Cite sources** | +40% | Add authoritative references with links |
-| **Add statistics** | +37% | Include specific numbers with sources |
-| **Add quotations** | +30% | Expert quotes with name and title |
-| **Authoritative tone** | +25% | Write with demonstrated expertise |
-| **Improve clarity** | +20% | Simplify complex concepts |
-| **Technical terms** | +18% | Use domain-specific terminology |
-| **Unique vocabulary** | +15% | Increase word diversity |
-| **Fluency optimization** | +15-30% | Improve readability and flow |
-| ~~Keyword stuffing~~ | **-10%** | **Actively hurts AI visibility** |
+| **Citar fontes** | +40% | Adicionar referências autoritativas com links |
+| **Adicionar estatísticas** | +37% | Incluir números específicos com fontes |
+| **Adicionar citações** | +30% | Citações de especialistas com nome e cargo |
+| **Tom autoritativo** | +25% | Escrever com expertise demonstrada |
+| **Melhorar a clareza** | +20% | Simplificar conceitos complexos |
+| **Termos técnicos** | +18% | Usar terminologia específica do domínio |
+| **Vocabulário único** | +15% | Aumentar a diversidade lexical |
+| **Otimização de fluência** | +15-30% | Melhorar legibilidade e fluidez |
+| ~~Keyword stuffing~~ | **-10%** | **Prejudica ativamente a visibilidade em IA** |
 
-**Best combination:** Fluency + Statistics = maximum boost. Low-ranking sites benefit even more — up to 115% visibility increase with citations.
+**Melhor combinação:** Fluência + Estatísticas = máximo aumento. Sites com baixo ranking se beneficiam ainda mais — até 115% de aumento de visibilidade com citações.
 
-**Statistics and data** (+37-40% citation boost)
-- Include specific numbers with sources
-- Cite original research, not summaries of research
-- Add dates to all statistics
-- Original data beats aggregated data
+**Estatísticas e dados** (+37-40% de aumento de citação)
+- Incluir números específicos com fontes
+- Citar pesquisas originais, não resumos de pesquisas
+- Adicionar datas a todas as estatísticas
+- Dados originais superam dados agregados
 
-**Expert attribution** (+25-30% citation boost)
-- Named authors with credentials
-- Expert quotes with titles and organizations
-- "According to [Source]" framing for claims
-- Author bios with relevant expertise
+**Atribuição de especialistas** (+25-30% de aumento de citação)
+- Autores identificados com credenciais
+- Citações de especialistas com cargos e organizações
+- Enquadramento "De acordo com [Fonte]" para afirmações
+- Biografias de autores com expertise relevante
 
-**Freshness signals**
-- "Last updated: [date]" prominently displayed
-- Regular content refreshes (quarterly minimum for competitive topics)
-- Current year references and recent statistics
-- Remove or update outdated information
+**Sinais de atualidade**
+- "Última atualização: [data]" exibido com destaque
+- Atualização regular do conteúdo (mínimo trimestral para tópicos competitivos)
+- Referências ao ano atual e estatísticas recentes
+- Remover ou atualizar informações desatualizadas
 
-**E-E-A-T alignment**
-- First-hand experience demonstrated
-- Specific, detailed information (not generic)
-- Transparent sourcing and methodology
-- Clear author expertise for the topic
+**Alinhamento com E-E-A-T**
+- Experiência em primeira mão demonstrada
+- Informações específicas e detalhadas (não genéricas)
+- Origem e metodologia transparentes
+- Expertise clara do autor sobre o tema
 
-### Pillar 3: Presence — Be Where AI Looks
+### Pilar 3: Presença — Esteja Onde a IA Busca
 
-AI systems don't just cite your website — they cite where you appear.
+Os sistemas de IA não citam apenas o seu site — eles citam onde você aparece.
 
-**Third-party sources matter more than your own site:**
-- Wikipedia mentions (7.8% of all ChatGPT citations)
-- Reddit discussions (1.8% of ChatGPT citations)
-- Industry publications and guest posts
-- Review sites (G2, Capterra, TrustRadius for B2B SaaS)
-- YouTube (frequently cited by Google AI Overviews)
-- Quora answers
+**Fontes de terceiros importam mais do que o seu próprio site:**
+- Menções na Wikipedia (7,8% de todas as citações do ChatGPT)
+- Discussões no Reddit (1,8% das citações do ChatGPT)
+- Publicações do setor e artigos como convidado
+- Sites de avaliação (G2, Capterra, TrustRadius para B2B SaaS)
+- YouTube (frequentemente citado pelo Google AI Overviews)
+- Respostas no Quora
 
-**Actions:**
-- Ensure your Wikipedia page is accurate and current
-- Participate authentically in Reddit communities
-- Get featured in industry roundups and comparison articles
-- Maintain updated profiles on relevant review platforms
-- Create YouTube content for key how-to queries
-- Answer relevant Quora questions with depth
+**Ações:**
+- Garanta que sua página da Wikipedia esteja precisa e atualizada
+- Participe autenticamente em comunidades do Reddit
+- Apareça em roundups e artigos comparativos do setor
+- Mantenha perfis atualizados nas plataformas de avaliação relevantes
+- Crie conteúdo no YouTube para as principais consultas de "como fazer"
+- Responda perguntas relevantes no Quora com profundidade
 
-### Machine-Readable Files for AI Agents
+### Arquivos Legíveis por Máquina para Agentes de IA
 
-AI agents aren't just answering questions — they're becoming buyers. When an AI agent evaluates tools on behalf of a user, it needs structured, parseable information. If your pricing is locked in a JavaScript-rendered page or a "contact sales" wall, agents will skip you and recommend competitors whose information they can actually read.
+Os agentes de IA não estão apenas respondendo perguntas — eles estão se tornando compradores. Quando um agente de IA avalia ferramentas em nome de um usuário, ele precisa de informações estruturadas e analisáveis. Se o seu preço está bloqueado em uma página renderizada por JavaScript ou por um muro de "fale com o comercial", os agentes vão ignorá-lo e recomendar concorrentes cujas informações eles realmente consigam ler.
 
-Add these machine-readable files to your site root:
+Adicione estes arquivos legíveis por máquina na raiz do seu site:
 
-**`/pricing.md` or `/pricing.txt`** — Structured pricing data for AI agents
+**`/pricing.md` ou `/pricing.txt`** — Dados de preços estruturados para agentes de IA
 
 ```markdown
 # Pricing — [Your Product Name]
@@ -253,191 +253,191 @@ Add these machine-readable files to your site root:
 - Features: SSO, SLA, dedicated account manager
 ```
 
-**Why this matters now:**
-- AI agents increasingly compare products programmatically before a human ever visits your site
-- Opaque pricing gets filtered out of AI-mediated buying journeys
-- A simple markdown file is trivially parseable by any LLM — no rendering, no JavaScript, no login walls
-- Same principle as `robots.txt` (for crawlers), `llms.txt` (for AI context), and `AGENTS.md` (for agent capabilities)
+**Por que isso importa agora:**
+- Agentes de IA comparam produtos programaticamente antes de qualquer humano visitar seu site
+- Preços opacos são filtrados das jornadas de compra mediadas por IA
+- Um simples arquivo markdown é trivialmente analisável por qualquer LLM — sem renderização, sem JavaScript, sem muros de login
+- Mesmo princípio do `robots.txt` (para crawlers), `llms.txt` (para contexto de IA) e `AGENTS.md` (para capacidades de agentes)
 
-**Best practices:**
-- Use consistent units (monthly vs. annual, per-seat vs. flat)
-- Include specific limits and thresholds, not just feature names
-- List what's included at each tier, not just what's different
-- Keep it updated — stale pricing is worse than no file
-- Link to it from your sitemap and main pricing page
+**Boas práticas:**
+- Use unidades consistentes (mensal vs. anual, por usuário vs. valor fixo)
+- Inclua limites e limiares específicos, não apenas nomes de funcionalidades
+- Liste o que está incluído em cada plano, não apenas o que é diferente
+- Mantenha atualizado — preços desatualizados são piores do que nenhum arquivo
+- Adicione um link para ele no seu sitemap e na página principal de preços
 
-**`/llms.txt`** — Context file for AI systems (see [llmstxt.org](https://llmstxt.org))
+**`/llms.txt`** — Arquivo de contexto para sistemas de IA (veja [llmstxt.org](https://llmstxt.org))
 
-If you don't have one yet, add an `llms.txt` that gives AI systems a quick overview of what your product does, who it's for, and links to key pages (including your pricing).
+Se você ainda não tiver um, adicione um `llms.txt` que forneça aos sistemas de IA uma visão geral rápida do que seu produto faz, para quem é e links para as páginas principais (incluindo seus preços).
 
-### Schema Markup for AI
+### Schema Markup para IA
 
-Structured data helps AI systems understand your content. Key schemas:
+Dados estruturados ajudam os sistemas de IA a entender seu conteúdo. Schemas principais:
 
-| Content Type | Schema | Why It Helps |
+| Tipo de Conteúdo | Schema | Por Que Ajuda |
 |-------------|--------|-------------|
-| Articles/Blog posts | `Article`, `BlogPosting` | Author, date, topic identification |
-| How-to content | `HowTo` | Step extraction for process queries |
-| FAQs | `FAQPage` | Direct Q&A extraction |
-| Products | `Product` | Pricing, features, reviews |
-| Comparisons | `ItemList` | Structured comparison data |
-| Reviews | `Review`, `AggregateRating` | Trust signals |
-| Organization | `Organization` | Entity recognition |
+| Artigos/Posts de blog | `Article`, `BlogPosting` | Identificação de autor, data e tópico |
+| Conteúdo de tutoriais | `HowTo` | Extração de passos para consultas de processo |
+| FAQs | `FAQPage` | Extração direta de perguntas e respostas |
+| Produtos | `Product` | Preços, funcionalidades, avaliações |
+| Comparativos | `ItemList` | Dados de comparação estruturados |
+| Avaliações | `Review`, `AggregateRating` | Sinais de confiança |
+| Organização | `Organization` | Reconhecimento de entidade |
 
-Content with proper schema shows 30-40% higher AI visibility. For implementation, use the **schema-markup** skill.
+Conteúdo com schema adequado mostra 30-40% maior visibilidade em IA. Para implementação, use a skill **schema-markup**.
 
 ---
 
-## Content Types That Get Cited Most
+## Tipos de Conteúdo Mais Citados
 
-Not all content is equally citable. Prioritize these formats:
+Nem todo conteúdo é igualmente citável. Priorize estes formatos:
 
-| Content Type | Citation Share | Why AI Cites It |
+| Tipo de Conteúdo | Participação em Citações | Por Que a IA Cita |
 |-------------|:------------:|----------------|
-| **Comparison articles** | ~33% | Structured, balanced, high-intent |
-| **Definitive guides** | ~15% | Comprehensive, authoritative |
-| **Original research/data** | ~12% | Unique, citable statistics |
-| **Best-of/listicles** | ~10% | Clear structure, entity-rich |
-| **Product pages** | ~10% | Specific details AI can extract |
-| **How-to guides** | ~8% | Step-by-step structure |
-| **Opinion/analysis** | ~10% | Expert perspective, quotable |
+| **Artigos comparativos** | ~33% | Estruturado, equilibrado, alta intenção |
+| **Guias definitivos** | ~15% | Abrangente, autoritativo |
+| **Pesquisa/dados originais** | ~12% | Estatísticas únicas e citáveis |
+| **Listicles/melhores de** | ~10% | Estrutura clara, rico em entidades |
+| **Páginas de produto** | ~10% | Detalhes específicos que a IA pode extrair |
+| **Guias práticos** | ~8% | Estrutura passo a passo |
+| **Opinião/análise** | ~10% | Perspectiva especializada, citável |
 
-**Underperformers for AI citation:**
-- Generic blog posts without structure
-- Thin product pages with marketing fluff
-- Gated content (AI can't access it)
-- Content without dates or author attribution
-- PDF-only content (harder for AI to parse)
+**Baixo desempenho para citação em IA:**
+- Posts de blog genéricos sem estrutura
+- Páginas de produto superficiais com textos de marketing
+- Conteúdo bloqueado (a IA não consegue acessá-lo)
+- Conteúdo sem datas ou atribuição de autor
+- Conteúdo apenas em PDF (mais difícil para a IA analisar)
 
 ---
 
-## Monitoring AI Visibility
+## Monitoramento da Visibilidade em IA
 
-### What to Track
+### O Que Monitorar
 
-| Metric | What It Measures | How to Check |
+| Métrica | O Que Mede | Como Verificar |
 |--------|-----------------|-------------|
-| AI Overview presence | Do AI Overviews appear for your queries? | Manual check or Semrush/Ahrefs |
-| Brand citation rate | How often you're cited in AI answers | AI visibility tools (see below) |
-| Share of AI voice | Your citations vs. competitors | Peec AI, Otterly, ZipTie |
-| Citation sentiment | How AI describes your brand | Manual review + monitoring tools |
-| Source attribution | Which of your pages get cited | Track referral traffic from AI sources |
+| Presença em AI Overview | AI Overviews aparecem para suas consultas? | Verificação manual ou Semrush/Ahrefs |
+| Taxa de citação da marca | Com que frequência você é citado em respostas de IA | Ferramentas de visibilidade em IA (veja abaixo) |
+| Share of AI voice | Suas citações vs. concorrentes | Peec AI, Otterly, ZipTie |
+| Sentimento das citações | Como a IA descreve sua marca | Revisão manual + ferramentas de monitoramento |
+| Atribuição de fonte | Quais das suas páginas são citadas | Rastrear tráfego de referência de fontes de IA |
 
-### AI Visibility Monitoring Tools
+### Ferramentas de Monitoramento de Visibilidade em IA
 
-| Tool | Coverage | Best For |
+| Ferramenta | Cobertura | Melhor Para |
 |------|----------|----------|
-| **Otterly AI** | ChatGPT, Perplexity, Google AI Overviews | Share of AI voice tracking |
-| **Peec AI** | ChatGPT, Gemini, Perplexity, Claude, Copilot+ | Multi-platform monitoring at scale |
-| **ZipTie** | Google AI Overviews, ChatGPT, Perplexity | Brand mention + sentiment tracking |
-| **LLMrefs** | ChatGPT, Perplexity, AI Overviews, Gemini | SEO keyword → AI visibility mapping |
+| **Otterly AI** | ChatGPT, Perplexity, Google AI Overviews | Rastreamento de share of AI voice |
+| **Peec AI** | ChatGPT, Gemini, Perplexity, Claude, Copilot+ | Monitoramento multi-plataforma em escala |
+| **ZipTie** | Google AI Overviews, ChatGPT, Perplexity | Rastreamento de menções de marca + sentimento |
+| **LLMrefs** | ChatGPT, Perplexity, AI Overviews, Gemini | Mapeamento de palavras-chave SEO → visibilidade em IA |
 
-### DIY Monitoring (No Tools)
+### Monitoramento Manual (Sem Ferramentas)
 
-Monthly manual check:
-1. Pick your top 20 queries
-2. Run each through ChatGPT, Perplexity, and Google
-3. Record: Are you cited? Who is? What page?
-4. Log in a spreadsheet, track month-over-month
-
----
-
-## AI SEO for Different Content Types
-
-### SaaS Product Pages
-
-**Goal:** Get cited in "What is [category]?" and "Best [category]" queries.
-
-**Optimize:**
-- Clear product description in first paragraph (what it does, who it's for)
-- Feature comparison tables (you vs. category, not just competitors)
-- Specific metrics ("processes 10,000 transactions/sec" not "blazing fast")
-- Customer count or social proof with numbers
-- Pricing transparency (AI cites pages with visible pricing) — add a `/pricing.md` file so AI agents can parse your plans without rendering your page (see "Machine-Readable Files" above)
-- FAQ section addressing common buyer questions
-
-### Blog Content
-
-**Goal:** Get cited as an authoritative source on topics in your space.
-
-**Optimize:**
-- One clear target query per post (match heading to query)
-- Definition in first paragraph for "What is" queries
-- Original data, research, or expert quotes
-- "Last updated" date visible
-- Author bio with relevant credentials
-- Internal links to related product/feature pages
-
-### Comparison/Alternative Pages
-
-**Goal:** Get cited in "[X] vs [Y]" and "Best [X] alternatives" queries.
-
-**Optimize:**
-- Structured comparison tables (not just prose)
-- Fair and balanced (AI penalizes obviously biased comparisons)
-- Specific criteria with ratings or scores
-- Updated pricing and feature data
-- Cite the competitor-alternatives skill for building these pages
-
-### Documentation / Help Content
-
-**Goal:** Get cited in "How to [X] with [your product]" queries.
-
-**Optimize:**
-- Step-by-step format with numbered lists
-- Code examples where relevant
-- HowTo schema markup
-- Screenshots with descriptive alt text
-- Clear prerequisites and expected outcomes
+Verificação manual mensal:
+1. Escolha suas 20 principais consultas
+2. Execute cada uma no ChatGPT, Perplexity e Google
+3. Registre: Você foi citado? Quem foi? Qual página?
+4. Anote em uma planilha, acompanhe mês a mês
 
 ---
 
-## Common Mistakes
+## AI SEO para Diferentes Tipos de Conteúdo
 
-- **Ignoring AI search entirely** — ~45% of Google searches now show AI Overviews, and ChatGPT/Perplexity are growing fast
-- **Treating AI SEO as separate from SEO** — Good traditional SEO is the foundation; AI SEO adds structure and authority on top
-- **Writing for AI, not humans** — If content reads like it was written to game an algorithm, it won't get cited or convert
-- **No freshness signals** — Undated content loses to dated content because AI systems weight recency heavily. Show when content was last updated
-- **Gating all content** — AI can't access gated content. Keep your most authoritative content open
-- **Ignoring third-party presence** — You may get more AI citations from a Wikipedia mention than from your own blog
-- **No structured data** — Schema markup gives AI systems structured context about your content
-- **Keyword stuffing** — Unlike traditional SEO where it's just ineffective, keyword stuffing actively reduces AI visibility by 10% (Princeton GEO study)
-- **Hiding pricing behind "contact sales" or JS-rendered pages** — AI agents evaluating your product on behalf of buyers can't parse what they can't read. Add a `/pricing.md` file
-- **Blocking AI bots** — If GPTBot, PerplexityBot, or ClaudeBot are blocked in robots.txt, those platforms can't cite you
-- **Generic content without data** — "We're the best" won't get cited. "Our customers see 3x improvement in [metric]" will
-- **Forgetting to monitor** — You can't improve what you don't measure. Check AI visibility monthly at minimum
+### Páginas de Produto SaaS
+
+**Objetivo:** Ser citado nas consultas "O que é [categoria]?" e "Melhores [categoria]".
+
+**Otimize:**
+- Descrição clara do produto no primeiro parágrafo (o que faz, para quem é)
+- Tabelas comparativas de funcionalidades (você vs. categoria, não apenas concorrentes)
+- Métricas específicas ("processa 10.000 transações/seg", não "extremamente rápido")
+- Contagem de clientes ou prova social com números
+- Transparência de preços (a IA cita páginas com preços visíveis) — adicione um arquivo `/pricing.md` para que agentes de IA possam analisar seus planos sem renderizar sua página (veja "Arquivos Legíveis por Máquina" acima)
+- Seção de FAQ respondendo perguntas comuns de compradores
+
+### Conteúdo de Blog
+
+**Objetivo:** Ser citado como fonte autoritativa sobre tópicos do seu segmento.
+
+**Otimize:**
+- Uma consulta-alvo clara por post (alinhar o título à consulta)
+- Definição no primeiro parágrafo para consultas "O que é"
+- Dados originais, pesquisas ou citações de especialistas
+- Data de "última atualização" visível
+- Biografia do autor com credenciais relevantes
+- Links internos para páginas relacionadas de produto/funcionalidade
+
+### Páginas de Comparação/Alternativas
+
+**Objetivo:** Ser citado nas consultas "[X] vs [Y]" e "Melhores alternativas ao [X]".
+
+**Otimize:**
+- Tabelas de comparação estruturadas (não apenas texto corrido)
+- Justo e equilibrado (a IA penaliza comparações obviamente tendenciosas)
+- Critérios específicos com avaliações ou pontuações
+- Dados de preços e funcionalidades atualizados
+- Consulte a skill competitor-alternatives para construir essas páginas
+
+### Documentação / Conteúdo de Ajuda
+
+**Objetivo:** Ser citado nas consultas "Como [X] com [seu produto]".
+
+**Otimize:**
+- Formato passo a passo com listas numeradas
+- Exemplos de código quando relevante
+- Schema markup HowTo
+- Capturas de tela com texto alternativo descritivo
+- Pré-requisitos claros e resultados esperados
 
 ---
 
-## Tool Integrations
+## Erros Comuns
 
-For implementation, see the [tools registry](../../tools/REGISTRY.md).
+- **Ignorar a busca por IA completamente** — ~45% das buscas do Google agora mostram AI Overviews, e ChatGPT/Perplexity estão crescendo rapidamente
+- **Tratar AI SEO como separado do SEO** — Um bom SEO tradicional é a base; AI SEO adiciona estrutura e autoridade por cima
+- **Escrever para a IA, não para humanos** — Se o conteúdo parece ter sido escrito para enganar um algoritmo, ele não será citado nem converterá
+- **Sem sinais de atualidade** — Conteúdo sem data perde para conteúdo datado porque os sistemas de IA valorizam a recência. Mostre quando o conteúdo foi atualizado pela última vez
+- **Bloquear todo o conteúdo** — A IA não consegue acessar conteúdo bloqueado. Mantenha o seu conteúdo mais autoritativo aberto
+- **Ignorar a presença em terceiros** — Você pode obter mais citações de IA de uma menção na Wikipedia do que do seu próprio blog
+- **Sem dados estruturados** — Schema markup fornece contexto estruturado aos sistemas de IA sobre o seu conteúdo
+- **Keyword stuffing** — Ao contrário do SEO tradicional, onde é apenas ineficaz, o keyword stuffing reduz ativamente a visibilidade em IA em 10% (estudo Princeton GEO)
+- **Esconder preços atrás de "fale com o comercial" ou páginas renderizadas em JS** — Agentes de IA avaliando seu produto em nome de compradores não conseguem analisar o que não conseguem ler. Adicione um arquivo `/pricing.md`
+- **Bloquear bots de IA** — Se GPTBot, PerplexityBot ou ClaudeBot estiverem bloqueados no robots.txt, essas plataformas não poderão citá-lo
+- **Conteúdo genérico sem dados** — "Somos os melhores" não será citado. "Nossos clientes veem 3x de melhoria em [métrica]" será
+- **Esquecer de monitorar** — Você não pode melhorar o que não mede. Verifique a visibilidade em IA mensalmente, no mínimo
 
-| Tool | Use For |
+---
+
+## Integrações de Ferramentas
+
+Para implementação, consulte o [registro de ferramentas](../../tools/REGISTRY.md).
+
+| Ferramenta | Uso |
 |------|---------|
-| `semrush` | AI Overview tracking, keyword research, content gap analysis |
-| `ahrefs` | Backlink analysis, content explorer, AI Overview data |
-| `gsc` | Search Console performance data, query tracking |
-| `ga4` | Referral traffic from AI sources |
+| `semrush` | Rastreamento de AI Overview, pesquisa de palavras-chave, análise de lacunas de conteúdo |
+| `ahrefs` | Análise de backlinks, explorador de conteúdo, dados de AI Overview |
+| `gsc` | Dados de desempenho do Search Console, rastreamento de consultas |
+| `ga4` | Tráfego de referência de fontes de IA |
 
 ---
 
-## Task-Specific Questions
+## Perguntas Específicas da Tarefa
 
-1. What are your top 10-20 most important queries?
-2. Have you checked if AI answers exist for those queries today?
-3. Do you have structured data (schema markup) on your site?
-4. What content types do you publish? (Blog, docs, comparisons, etc.)
-5. Are competitors being cited by AI where you're not?
-6. Do you have a Wikipedia page or presence on review sites?
+1. Quais são suas 10 a 20 consultas mais importantes?
+2. Você verificou se existem respostas de IA para essas consultas hoje?
+3. Você tem dados estruturados (schema markup) no seu site?
+4. Que tipos de conteúdo você publica? (Blog, documentação, comparativos, etc.)
+5. Os concorrentes estão sendo citados por IA onde você não está?
+6. Você tem uma página na Wikipedia ou presença em sites de avaliação?
 
 ---
 
-## Related Skills
+## Skills Relacionadas
 
-- **seo-audit**: For traditional technical and on-page SEO audits
-- **schema-markup**: For implementing structured data that helps AI understand your content
-- **content-strategy**: For planning what content to create
-- **competitor-alternatives**: For building comparison pages that get cited
-- **programmatic-seo**: For building SEO pages at scale
-- **copywriting**: For writing content that's both human-readable and AI-extractable
+- **seo-audit**: Para auditorias técnicas e on-page de SEO tradicionais
+- **schema-markup**: Para implementar dados estruturados que ajudam a IA a entender seu conteúdo
+- **content-strategy**: Para planejar qual conteúdo criar
+- **competitor-alternatives**: Para construir páginas comparativas que sejam citadas
+- **programmatic-seo**: Para criar páginas de SEO em escala
+- **copywriting**: Para escrever conteúdo que seja legível para humanos e extraível por IA

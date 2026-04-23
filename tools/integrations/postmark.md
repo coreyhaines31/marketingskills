@@ -1,8 +1,8 @@
 # Postmark
 
-Transactional email delivery service with fast delivery, templates, bounce management, and detailed analytics.
+Serviço de entrega de email transacional com envio rápido, templates, gestão de bounces e analytics detalhado.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,17 +11,17 @@ Transactional email delivery service with fast delivery, templates, bounce manag
 | CLI | ✓ | [postmark.js](../clis/postmark.js) |
 | SDK | ✓ | Node.js, Ruby, Python, PHP, Java, .NET, Go |
 
-## Authentication
+## Autenticação
 
-- **Type**: Server Token (or Account Token for account-level ops)
+- **Type**: Server Token (ou Account Token para ops em nível de conta)
 - **Header**: `X-Postmark-Server-Token: {server_token}` (server-level)
 - **Header**: `X-Postmark-Account-Token: {account_token}` (account-level)
 - **Get key**: API Tokens tab at https://account.postmarkapp.com/servers
-- **Note**: Server tokens are per-server; account tokens apply across all servers
+- **Note**: Server tokens são por servidor; account tokens se aplicam a todos os servidores
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Send single email
+### Enviar email único
 
 ```bash
 POST https://api.postmarkapp.com/email
@@ -38,7 +38,7 @@ POST https://api.postmarkapp.com/email
 }
 ```
 
-### Send with template
+### Enviar com template
 
 ```bash
 POST https://api.postmarkapp.com/email/withTemplate
@@ -55,7 +55,7 @@ POST https://api.postmarkapp.com/email/withTemplate
 }
 ```
 
-### Send batch emails
+### Enviar emails em batch
 
 ```bash
 POST https://api.postmarkapp.com/email/batch
@@ -76,19 +76,19 @@ POST https://api.postmarkapp.com/email/batch
 ]
 ```
 
-### List templates
+### Listar templates
 
 ```bash
 GET https://api.postmarkapp.com/templates?Count=100&Offset=0
 ```
 
-### Get template
+### Obter template
 
 ```bash
 GET https://api.postmarkapp.com/templates/{templateIdOrAlias}
 ```
 
-### Create template
+### Criar template
 
 ```bash
 POST https://api.postmarkapp.com/templates
@@ -102,61 +102,61 @@ POST https://api.postmarkapp.com/templates
 }
 ```
 
-### Get delivery stats
+### Obter stats de entrega
 
 ```bash
 GET https://api.postmarkapp.com/deliverystats
 ```
 
-### List bounces
+### Listar bounces
 
 ```bash
 GET https://api.postmarkapp.com/bounces?count=50&offset=0&type=HardBounce
 ```
 
-### Activate bounce (reactivate recipient)
+### Ativar bounce (reativar recipient)
 
 ```bash
 PUT https://api.postmarkapp.com/bounces/{bounceId}/activate
 ```
 
-### Search outbound messages
+### Buscar mensagens outbound
 
 ```bash
 GET https://api.postmarkapp.com/messages/outbound?count=50&offset=0&recipient=user@example.com
 ```
 
-### Get outbound stats overview
+### Obter visão geral de stats outbound
 
 ```bash
 GET https://api.postmarkapp.com/stats/outbound?fromdate=2025-01-01&todate=2025-01-31
 ```
 
-### Get open stats
+### Obter stats de abertura
 
 ```bash
 GET https://api.postmarkapp.com/stats/outbound/opens?fromdate=2025-01-01&todate=2025-01-31
 ```
 
-### Get click stats
+### Obter stats de clique
 
 ```bash
 GET https://api.postmarkapp.com/stats/outbound/clicks?fromdate=2025-01-01&todate=2025-01-31
 ```
 
-### Get server info
+### Obter informações do servidor
 
 ```bash
 GET https://api.postmarkapp.com/server
 ```
 
-### List suppressions
+### Listar suppressions
 
 ```bash
 GET https://api.postmarkapp.com/message-streams/outbound/suppressions/dump
 ```
 
-### Create suppression
+### Criar suppression
 
 ```bash
 POST https://api.postmarkapp.com/message-streams/outbound/suppressions
@@ -168,65 +168,65 @@ POST https://api.postmarkapp.com/message-streams/outbound/suppressions
 }
 ```
 
-## API Pattern
+## Padrão de API
 
-Postmark uses simple REST endpoints with PascalCase field names in request/response bodies. Authentication is via custom headers rather than Authorization. Pagination uses `Count` and `Offset` parameters. Email sending is synchronous with immediate delivery confirmation.
+A Postmark usa endpoints REST simples com nomes de campos em PascalCase nos request/response bodies. A autenticação é via headers custom em vez de Authorization. A paginação usa os parâmetros `Count` e `Offset`. O envio de email é síncrono, com confirmação imediata de entrega.
 
-## Key Metrics
+## Métricas principais
 
-### Delivery Metrics
-- `Sent` - Total emails sent
-- `Bounced` - Bounce count by type (hard, soft, transient)
-- `SpamComplaints` - Spam complaint count
-- `Opens` - Open count and unique opens
-- `Clicks` - Click count and unique clicks
+### Métricas de entrega
+- `Sent` - Total de emails enviados
+- `Bounced` - Quantidade de bounce por tipo (hard, soft, transient)
+- `SpamComplaints` - Quantidade de reclamações de spam
+- `Opens` - Quantidade de aberturas e aberturas únicas
+- `Clicks` - Quantidade de cliques e cliques únicos
 
-### Bounce Types
-- `HardBounce` - Permanent delivery failure
-- `SoftBounce` - Temporary delivery failure
-- `Transient` - Temporary issue (retry)
-- `SpamNotification` - Marked as spam
+### Tipos de bounce
+- `HardBounce` - Falha permanente de entrega
+- `SoftBounce` - Falha temporária de entrega
+- `Transient` - Problema temporário (retry)
+- `SpamNotification` - Marcado como spam
 
-### Message Fields
-- `MessageID` - Unique message identifier
-- `SubmittedAt` - Submission timestamp
-- `Status` - Delivery status
-- `Recipients` - Recipient list
+### Campos de mensagem
+- `MessageID` - Identificador único da mensagem
+- `SubmittedAt` - Timestamp de envio
+- `Status` - Status de entrega
+- `Recipients` - Lista de recipients
 
-## Parameters
+## Parâmetros
 
-### Email Parameters
-- `From` - Sender address (must be verified)
-- `To` - Recipient (comma-separated for multiple)
-- `Subject` - Email subject
-- `HtmlBody` / `TextBody` - Email content
-- `MessageStream` - outbound (transactional) or broadcast
-- `TrackOpens` - Enable open tracking (boolean)
+### Parâmetros de email
+- `From` - Endereço do remetente (deve estar verificado)
+- `To` - Recipient (separado por vírgulas para múltiplos)
+- `Subject` - Assunto do email
+- `HtmlBody` / `TextBody` - Conteúdo do email
+- `MessageStream` - outbound (transacional) ou broadcast
+- `TrackOpens` - Habilita rastreamento de abertura (boolean)
 - `TrackLinks` - None, HtmlAndText, HtmlOnly, TextOnly
-- `Tag` - Custom tag for categorization
+- `Tag` - Tag custom para categorização
 
-### Stats Parameters
-- `fromdate` - Start date (YYYY-MM-DD)
-- `todate` - End date (YYYY-MM-DD)
-- `tag` - Filter by tag
+### Parâmetros de stats
+- `fromdate` - Data inicial (YYYY-MM-DD)
+- `todate` - Data final (YYYY-MM-DD)
+- `tag` - Filtro por tag
 
-## When to Use
+## Quando usar
 
-- Transactional emails (password resets, order confirmations, notifications)
-- Template-based email sending with dynamic variables
-- Monitoring email deliverability and bounce rates
-- Tracking email engagement (opens, clicks)
-- Managing email suppressions and bounces
-- High-reliability email delivery with fast performance
+- Emails transacionais (password resets, confirmações de pedido, notifications)
+- Envio de email por template com variáveis dinâmicas
+- Monitorar deliverability de email e taxas de bounce
+- Rastrear engajamento de email (aberturas, cliques)
+- Gerenciar email suppressions e bounces
+- Entrega de email altamente confiável e com performance rápida
 
-## Rate Limits
+## Limites de taxa
 
 - 500 messages per batch request
 - 10 MB max per single message (including attachments)
 - 50 MB max per batch request
-- API rate limits vary by plan
+- Limites de taxa da API variam por plano
 
-## Relevant Skills
+## Skills relevantes
 
 - email-sequence
 - transactional-email

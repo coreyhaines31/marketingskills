@@ -1,8 +1,8 @@
 # SendGrid
 
-Email delivery platform for transactional and marketing emails.
+Plataforma de entrega de email para emails transacionais e de marketing.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,15 +11,15 @@ Email delivery platform for transactional and marketing emails.
 | CLI | - | Not available |
 | SDK | ✓ | Official libraries for most languages |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: Settings > API Keys in SendGrid dashboard
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Send email
+### Enviar email
 
 ```bash
 POST https://api.sendgrid.com/v3/mail/send
@@ -39,7 +39,7 @@ Authorization: Bearer {api_key}
 }
 ```
 
-### Send with template
+### Enviar com template
 
 ```bash
 POST https://api.sendgrid.com/v3/mail/send
@@ -57,7 +57,7 @@ POST https://api.sendgrid.com/v3/mail/send
 }
 ```
 
-### Add contact to list
+### Adicionar contato à lista
 
 ```bash
 PUT https://api.sendgrid.com/v3/marketing/contacts
@@ -72,7 +72,7 @@ PUT https://api.sendgrid.com/v3/marketing/contacts
 }
 ```
 
-### Search contacts
+### Buscar contatos
 
 ```bash
 POST https://api.sendgrid.com/v3/marketing/contacts/search
@@ -82,7 +82,7 @@ POST https://api.sendgrid.com/v3/marketing/contacts/search
 }
 ```
 
-### Get email statistics
+### Obter estatísticas de email
 
 ```bash
 GET https://api.sendgrid.com/v3/stats?start_date=2024-01-01&end_date=2024-01-31
@@ -90,7 +90,7 @@ GET https://api.sendgrid.com/v3/stats?start_date=2024-01-01&end_date=2024-01-31
 Authorization: Bearer {api_key}
 ```
 
-### Get bounces
+### Obter bounces
 
 ```bash
 GET https://api.sendgrid.com/v3/suppression/bounces
@@ -98,7 +98,7 @@ GET https://api.sendgrid.com/v3/suppression/bounces
 Authorization: Bearer {api_key}
 ```
 
-### Get spam reports
+### Obter relatórios de spam
 
 ```bash
 GET https://api.sendgrid.com/v3/suppression/spam_reports
@@ -106,7 +106,7 @@ GET https://api.sendgrid.com/v3/suppression/spam_reports
 Authorization: Bearer {api_key}
 ```
 
-### Validate email
+### Validar email
 
 ```bash
 POST https://api.sendgrid.com/v3/validations/email
@@ -116,18 +116,18 @@ POST https://api.sendgrid.com/v3/validations/email
 }
 ```
 
-## Webhook Events
+## Eventos de webhook
 
 | Event | Description |
 |-------|-------------|
-| `processed` | Email accepted |
-| `delivered` | Email delivered |
-| `open` | Email opened |
-| `click` | Link clicked |
+| `processed` | Email aceito |
+| `delivered` | Email entregue |
+| `open` | Email aberto |
+| `click` | Link clicado |
 | `bounce` | Hard/soft bounce |
-| `dropped` | Email dropped |
-| `spamreport` | Marked as spam |
-| `unsubscribe` | Unsubscribed |
+| `dropped` | Email descartado |
+| `spamreport` | Marcado como spam |
+| `unsubscribe` | Cancelou inscrição |
 
 ## Node.js SDK
 
@@ -143,19 +143,19 @@ await sgMail.send({
 });
 ```
 
-## When to Use
+## Quando usar
 
-- Transactional email at scale
-- Marketing email campaigns
-- Email validation
-- Deliverability management
+- Email transacional em escala
+- Campanhas de email marketing
+- Validação de email
+- Gestão de deliverability
 
-## Rate Limits
+## Limites de taxa
 
 - Free: 100 emails/day
-- Paid: Varies by plan (up to millions/month)
+- Pago: varia por plano (até milhões/mês)
 
-## Relevant Skills
+## Skills relevantes
 
 - email-sequence
 - analytics-tracking

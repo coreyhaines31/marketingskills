@@ -1,8 +1,8 @@
 # RB2B
 
-Website visitor identification platform that de-anonymizes B2B website traffic, revealing the individual people visiting your site with LinkedIn profiles, emails, and company data.
+Plataforma de identificação de visitantes de website que desanonimiza tráfego B2B, revelando as pessoas individuais que visitam seu site com perfis do LinkedIn, emails e dados de empresa.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,17 +11,17 @@ Website visitor identification platform that de-anonymizes B2B website traffic, 
 | CLI | - | Not available |
 | SDK | - | Not available |
 
-Most teams use RB2B via its native integrations (Slack, CRM push, Zapier, webhooks) rather than direct API access. A separate [API Partner Program](https://www.rb2b.com/apis) exists for programmatic access.
+A maioria dos times usa RB2B via integrações nativas (Slack, CRM push, Zapier, webhooks), em vez de acesso direto à API. Existe um [API Partner Program](https://www.rb2b.com/apis) separado para acesso programático.
 
-## Authentication
+## Autenticação
 
-- **Type**: Native integrations (no API key needed for standard use)
+- **Type**: Integrações nativas (não é necessária API key no uso padrão)
 - **API Partner Program**: Separate credentials via https://www.rb2b.com/apis
 - **Free tier**: Limited credits/month with Slack alerts
 
-## Pricing Tiers
+## Faixas de preço
 
-Pricing changes frequently — verify at https://www.rb2b.com/pricing.
+O pricing muda com frequência — confirme em https://www.rb2b.com/pricing.
 
 | Plan | Approx. Price | Key Features |
 |------|--------------|-------------|
@@ -30,80 +30,80 @@ Pricing changes frequently — verify at https://www.rb2b.com/pricing.
 | Pro | ~$129-349/mo | CSV export, CRM push, validated emails |
 | Pro+ | ~$299+/mo | All integrations, higher credit volume |
 
-## Key Integrations
+## Principais integrações
 
-RB2B pushes identified visitor data to 50+ tools:
+O RB2B envia dados de visitors identificados para mais de 50 ferramentas:
 - **CRM**: Salesforce, HubSpot
 - **Outreach**: Instantly, HeyReach, Lemlist
 - **Enrichment**: Clay, Apollo, Clearbit
 - **Automation**: Zapier, Make
-- **Alerts**: Slack (real-time notifications)
+- **Alerts**: Slack (notificações em tempo real)
 
-## What RB2B Reveals Per Visitor
+## O que o RB2B revela por visitor
 
-- Full name and LinkedIn profile URL
-- Job title and company
-- Validated business email (Pro+)
-- Pages visited and visit duration
-- Number of visits and return frequency
-- Company data (size, industry, location)
+- Nome completo e URL do perfil do LinkedIn
+- Cargo e empresa
+- Email corporativo validado (Pro+)
+- Páginas visitadas e duração da visita
+- Número de visitas e frequência de retorno
+- Dados da empresa (porte, setor, localização)
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Real-Time Visitor Alerts
+### Alertas de visitor em tempo real
 
-Configure Slack alerts for high-intent visitors:
-- Visitors who hit pricing page
-- Visitors who return 3+ times
-- Visitors from target account list
-- Visitors matching ICP job titles
+Configure alertas no Slack para visitors de alta intenção:
+- Visitors que acessam a pricing page
+- Visitors que retornam 3+ vezes
+- Visitors da lista de contas-alvo
+- Visitors com cargos alinhados ao ICP
 
-### Visitor-to-Outreach Pipeline
+### Pipeline Visitor-to-Outreach
 
 1. RB2B identifies visitor with LinkedIn + email
-2. Filter by ICP criteria (title, company size, pages visited)
-3. Route to outreach tool (Instantly, Lemlist) or CRM (HubSpot, Salesforce)
-4. Trigger personalized cold email referencing pages they visited
+2. Filtre por critérios de ICP (title, tamanho da empresa, páginas visitadas)
+3. Direcione para uma ferramenta de outreach (Instantly, Lemlist) ou CRM (HubSpot, Salesforce)
+4. Dispare cold email personalizado citando as páginas visitadas
 
-### Intent Scoring
+### Scoring de intenção
 
-Score visitors by behavior signals:
-- **High intent**: Pricing page, demo page, comparison pages, 3+ visits
-- **Medium intent**: Feature pages, case studies, 2 visits
-- **Low intent**: Blog only, single visit, bounced quickly
+Atribua score aos visitors por sinais de comportamento:
+- **High intent**: Pricing page, demo page, páginas de comparação, 3+ visitas
+- **Medium intent**: Páginas de features, case studies, 2 visitas
+- **Low intent**: Apenas blog, visita única, bounce rápido
 
-### Suppression Lists
+### Listas de supressão
 
-Prevent outreach to:
-- Existing customers (match against CRM)
-- Active deals in pipeline
-- Competitors and agencies
-- Recently contacted prospects
+Evite outreach para:
+- Customers existentes (comparar com CRM)
+- Deals ativos no pipeline
+- Concorrentes e agências
+- Prospects contatados recentemente
 
-## When to Use
+## Quando usar
 
-- Identifying anonymous website visitors for sales outreach
-- Building ABM (account-based marketing) target lists from site traffic
-- Understanding which companies are researching your product
-- Triggering personalized outreach based on page-level intent signals
-- Feeding enrichment tools (Clay, Apollo) with warm visitor data
+- Identificar visitors anônimos do website para outreach de vendas
+- Construir listas-alvo de ABM (account-based marketing) a partir do tráfego do site
+- Entender quais empresas estão pesquisando seu produto
+- Disparar outreach personalizado com base em sinais de intenção por página
+- Alimentar ferramentas de enrichment (Clay, Apollo) com dados de visitors quentes
 
-## Limitations
+## Limitações
 
-- Person-level identification works best for US B2B traffic
-- Not all visitors can be identified (typical match rates: 15-30%)
-- Requires sufficient website traffic to be cost-effective
-- Privacy considerations — ensure compliance with applicable regulations
-- Free tier limited to Slack alerts (no CRM push or email export)
+- A identificação em nível de pessoa funciona melhor para tráfego B2B dos EUA
+- Nem todos os visitors podem ser identificados (taxas típicas de match: 15-30%)
+- Requer tráfego suficiente no website para ser custo-efetivo
+- Considerações de privacidade — garanta conformidade com regulações aplicáveis
+- Plano gratuito limitado a alertas no Slack (sem CRM push ou export de email)
 
-## Relevant Skills
+## Skills relevantes
 
 - cold-email
 - revops
 - customer-research
 - paid-ads
 
-## Sources
+## Fontes
 
 - [RB2B pricing](https://www.rb2b.com/pricing)
 - [RB2B plans comparison](https://support.rb2b.com/en/articles/9173659-rb2b-plans-side-by-side-comparisons)

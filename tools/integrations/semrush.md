@@ -1,8 +1,8 @@
 # SEMrush
 
-SEO and competitive analysis platform for keyword research and site audits.
+Plataforma de SEO e análise competitiva para keyword research e auditorias de site.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,109 +11,109 @@ SEO and competitive analysis platform for keyword research and site audits.
 | CLI | - | Not available |
 | SDK | - | API-only |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key
 - **Parameter**: `key={api_key}` in query string
 - **Get key**: My Profile > API in SEMrush dashboard
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Domain overview
+### Visão geral do domínio
 
 ```bash
 GET https://api.semrush.com/?type=domain_ranks&key={api_key}&export_columns=Db,Dn,Rk,Or,Ot,Oc,Ad,At,Ac&domain=example.com
 ```
 
-### Organic keywords
+### Keywords orgânicas
 
 ```bash
 GET https://api.semrush.com/?type=domain_organic&key={api_key}&export_columns=Ph,Po,Pp,Pd,Nq,Cp,Ur,Tr,Tc,Co,Nr&domain=example.com&database=us&display_limit=100
 ```
 
-### Keyword overview
+### Visão geral da keyword
 
 ```bash
 GET https://api.semrush.com/?type=phrase_all&key={api_key}&export_columns=Ph,Nq,Cp,Co,Nr&phrase=keyword&database=us
 ```
 
-### Related keywords
+### Keywords relacionadas
 
 ```bash
 GET https://api.semrush.com/?type=phrase_related&key={api_key}&export_columns=Ph,Nq,Cp,Co,Nr,Td&phrase=keyword&database=us&display_limit=50
 ```
 
-### Keyword difficulty
+### Dificuldade da keyword
 
 ```bash
 GET https://api.semrush.com/?type=phrase_kdi&key={api_key}&export_columns=Ph,Kd&phrase=keyword&database=us
 ```
 
-### Backlinks overview
+### Visão geral de backlinks
 
 ```bash
 GET https://api.semrush.com/?type=backlinks_overview&key={api_key}&target=example.com&target_type=root_domain
 ```
 
-### Backlinks list
+### Lista de backlinks
 
 ```bash
 GET https://api.semrush.com/?type=backlinks&key={api_key}&target=example.com&target_type=root_domain&export_columns=source_url,source_title,target_url,anchor&display_limit=100
 ```
 
-### Competitors
+### Concorrentes
 
 ```bash
 GET https://api.semrush.com/?type=domain_organic_organic&key={api_key}&export_columns=Dn,Cr,Np,Or,Ot,Oc,Ad&domain=example.com&database=us&display_limit=20
 ```
 
-## Response Format
+## Formato de resposta
 
-Responses are CSV by default. Add `&export_escape=1` for proper escaping.
+As respostas são CSV por padrão. Adicione `&export_escape=1` para escaping adequado.
 
-## Export Columns
+## Colunas de export
 
-### Domain Report
+### Relatório de domínio
 - `Db` - Database
-- `Dn` - Domain
+- `Dn` - Domínio
 - `Rk` - Rank
-- `Or` - Organic keywords
-- `Ot` - Organic traffic
-- `Oc` - Organic cost
+- `Or` - Keywords orgânicas
+- `Ot` - Tráfego orgânico
+- `Oc` - Custo orgânico
 
-### Keyword Report
+### Relatório de keyword
 - `Ph` - Phrase/keyword
-- `Nq` - Search volume
+- `Nq` - Volume de busca
 - `Cp` - CPC
-- `Co` - Competition
-- `Kd` - Keyword difficulty
-- `Nr` - Number of results
+- `Co` - Concorrência
+- `Kd` - Dificuldade da keyword
+- `Nr` - Número de resultados
 
 ### Backlinks
-- `source_url` - Linking page
-- `target_url` - Target page
-- `anchor` - Anchor text
-- `source_title` - Page title
+- `source_url` - Página de origem do link
+- `target_url` - Página de destino
+- `anchor` - Texto âncora
+- `source_title` - Título da página
 
 ## Databases
 
-Use country code: `us`, `uk`, `de`, `fr`, `ca`, `au`, etc.
+Use código de país: `us`, `uk`, `de`, `fr`, `ca`, `au` etc.
 
-## When to Use
+## Quando usar
 
 - Keyword research
-- Competitive analysis
-- Backlink analysis
-- Site audits
+- Análise competitiva
+- Análise de backlinks
+- Auditorias de site
 - Rank tracking
-- Content gap analysis
+- Análise de lacunas de conteúdo
 
-## Rate Limits
+## Limites de taxa
 
-- Varies by plan (10-30K units/day)
-- Each API call costs units
+- Varia por plano (10-30K unidades/dia)
+- Cada chamada de API consome unidades
 
-## Relevant Skills
+## Skills relevantes
 
 - seo-audit
 - programmatic-seo

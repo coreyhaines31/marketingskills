@@ -1,25 +1,25 @@
 # Stripe
 
-Payment processing, subscriptions, and billing for internet businesses.
+Processamento de pagamentos, assinaturas e cobrança para negócios na internet.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | Comprehensive REST API |
-| MCP | ✓ | Available via Stripe MCP server |
-| CLI | ✓ | `stripe` CLI for testing and webhooks |
-| SDK | ✓ | Official SDKs for most languages |
+| MCP | ✓ | Disponível via servidor MCP do Stripe |
+| CLI | ✓ | `stripe` CLI para testes e webhooks |
+| SDK | ✓ | SDKs oficiais para a maioria das linguagens |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
+- **Tipo**: API Key
 - **Header**: `Authorization: Bearer sk_live_xxx` or `sk_test_xxx`
 - **Keys**: Secret key (server), Publishable key (client)
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List customers
+### Listar clientes
 
 ```bash
 GET https://api.stripe.com/v1/customers?limit=10
@@ -77,16 +77,16 @@ GET https://api.stripe.com/v1/invoices?customer={customer_id}&limit=10
 GET https://api.stripe.com/v1/payment_intents/{payment_intent_id}
 ```
 
-## Webhook Events
+## Eventos de Webhook
 
-Key events to handle:
+Principais eventos para tratar:
 
-| Event | When | Action |
+| Evento | Quando | Ação |
 |-------|------|--------|
-| `checkout.session.completed` | Successful checkout | Provision access |
-| `customer.subscription.created` | New subscription | Update user record |
-| `customer.subscription.updated` | Plan change | Update entitlements |
-| `customer.subscription.deleted` | Cancellation | Revoke access |
+| `checkout.session.completed` | Checkout concluído com sucesso | Provisionar acesso |
+| `customer.subscription.created` | Nova assinatura | Atualizar registro do usuário |
+| `customer.subscription.updated` | Mudança de plano | Atualizar permissões |
+| `customer.subscription.deleted` | Cancelamento | Revogar acesso |
 | `invoice.payment_failed` | Payment failed | Notify user, retry |
 | `invoice.paid` | Invoice paid | Confirm payment |
 
@@ -100,7 +100,7 @@ const event = stripe.webhooks.constructEvent(
 );
 ```
 
-## CLI Commands
+## Comandos CLI
 
 ```bash
 # Listen to webhooks locally
@@ -116,9 +116,9 @@ stripe events list --limit 10
 stripe customers retrieve cus_xxx
 ```
 
-## Key Objects
+## Objetos Principais
 
-- **Customer** - User billing profile
+- **Customer** - Perfil de cobrança do usuário
 - **Subscription** - Recurring billing
 - **Price** - Pricing configuration
 - **Product** - What you sell
@@ -126,22 +126,22 @@ stripe customers retrieve cus_xxx
 - **PaymentIntent** - One-time payment
 - **Checkout Session** - Hosted payment page
 
-## When to Use
+## Quando Usar
 
 - Processing payments
-- Managing subscriptions
+- Gerenciar assinaturas
 - Creating checkout flows
 - Handling billing portal
-- Querying customer data
+- Consultar dados de clientes
 - Revenue analytics
 
-## Rate Limits
+## Limites de Taxa
 
 - 100 read requests per second
 - 100 write requests per second
-- Higher limits available on request
+- Limites mais altos disponíveis sob solicitação
 
-## Relevant Skills
+## Skills Relevantes
 
 - pricing-strategy
 - referral-program (Stripe-integrated affiliate tools)

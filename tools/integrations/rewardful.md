@@ -1,8 +1,8 @@
 # Rewardful
 
-Affiliate and referral tracking for Stripe-based SaaS businesses.
+Rastreamento de afiliados e referral para negócios SaaS baseados em Stripe.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,57 +11,57 @@ Affiliate and referral tracking for Stripe-based SaaS businesses.
 | CLI | - | Not available |
 | SDK | - | API-only, JavaScript snippet for tracking |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_secret}`
 - **Get key**: Settings > API in Rewardful dashboard
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### List affiliates
+### Listar affiliates
 
 ```bash
 GET https://api.getrewardful.com/v1/affiliates
 ```
 
-### Get affiliate by ID
+### Obter affiliate por ID
 
 ```bash
 GET https://api.getrewardful.com/v1/affiliates/{affiliate_id}
 ```
 
-### Search affiliate by email
+### Buscar affiliate por email
 
 ```bash
 GET https://api.getrewardful.com/v1/affiliates?email=affiliate@example.com
 ```
 
-### Get referral by Stripe customer
+### Obter referral por Stripe customer
 
 ```bash
 GET https://api.getrewardful.com/v1/referrals?stripe_customer_id={customer_id}
 ```
 
-### List referrals for affiliate
+### Listar referrals do affiliate
 
 ```bash
 GET https://api.getrewardful.com/v1/referrals?affiliate_id={affiliate_id}
 ```
 
-### Get commission details
+### Obter detalhes da commission
 
 ```bash
 GET https://api.getrewardful.com/v1/commissions/{commission_id}
 ```
 
-### List commissions
+### Listar commissions
 
 ```bash
 GET https://api.getrewardful.com/v1/commissions?affiliate_id={affiliate_id}
 ```
 
-### Create affiliate link
+### Criar link de affiliate
 
 ```bash
 POST https://api.getrewardful.com/v1/affiliates/{affiliate_id}/links
@@ -72,7 +72,7 @@ POST https://api.getrewardful.com/v1/affiliates/{affiliate_id}/links
 }
 ```
 
-### Update affiliate
+### Atualizar affiliate
 
 ```bash
 PUT https://api.getrewardful.com/v1/affiliates/{affiliate_id}
@@ -84,9 +84,9 @@ PUT https://api.getrewardful.com/v1/affiliates/{affiliate_id}
 }
 ```
 
-## JavaScript Tracking
+## Tracking em JavaScript
 
-### Install snippet
+### Instalar snippet
 
 ```html
 <script>
@@ -95,53 +95,53 @@ PUT https://api.getrewardful.com/v1/affiliates/{affiliate_id}
 <script async src='https://r.wdfl.co/rw.js' data-rewardful='YOUR_API_KEY'></script>
 ```
 
-### Track conversion manually
+### Rastrear conversão manualmente
 
 ```javascript
 rewardful('convert', { email: 'customer@example.com' });
 ```
 
-## Webhook Events
+## Eventos de webhook
 
 | Event | When |
 |-------|------|
-| `affiliate.created` | New affiliate signs up |
-| `affiliate.approved` | Affiliate approved |
-| `referral.created` | New referral tracked |
-| `referral.converted` | Referral becomes customer |
-| `commission.created` | Commission generated |
-| `commission.paid` | Commission paid out |
+| `affiliate.created` | Novo affiliate se cadastra |
+| `affiliate.approved` | Affiliate aprovado |
+| `referral.created` | Novo referral rastreado |
+| `referral.converted` | Referral vira customer |
+| `commission.created` | Commission gerada |
+| `commission.paid` | Commission paga |
 
-## Key Objects
+## Objetos principais
 
-- **Affiliate** - Partner promoting your product
-- **Referral** - Tracked visit/lead from affiliate
-- **Commission** - Earned payment for affiliate
-- **Campaign** - Program with specific terms
-- **Link** - Tracking URL for affiliate
+- **Affiliate** - Partner que promove seu produto
+- **Referral** - Visita/lead rastreado vindo de affiliate
+- **Commission** - Pagamento ganho pelo affiliate
+- **Campaign** - Programa com termos específicos
+- **Link** - URL de tracking do affiliate
 
-## Integration with Stripe
+## Integração com Stripe
 
-Rewardful automatically:
-1. Tracks referral cookie when user visits via affiliate link
-2. Associates Stripe customer with referral on checkout
-3. Creates commissions when subscriptions are paid
-4. Handles recurring commissions for subscriptions
+A Rewardful automaticamente:
+1. Rastreia o cookie de referral quando o usuário visita via link de affiliate
+2. Associa o Stripe customer ao referral no checkout
+3. Cria commissions quando subscriptions são pagas
+4. Gerencia commissions recorrentes para subscriptions
 
-## When to Use
+## Quando usar
 
-- Setting up affiliate/referral programs for SaaS
-- Tracking referral attribution from Stripe payments
-- Managing affiliate relationships
-- Processing affiliate payouts
-- Analyzing referral program performance
+- Configurar programas de affiliate/referral para SaaS
+- Rastrear atribuição de referral em pagamentos do Stripe
+- Gerenciar relacionamento com affiliates
+- Processar pagamentos de affiliates
+- Analisar performance do programa de referral
 
-## Rate Limits
+## Limites de taxa
 
 - 120 requests per minute
-- Contact support for higher limits
+- Entre em contato com o suporte para limites maiores
 
-## Relevant Skills
+## Skills relevantes
 
 - referral-program
 - pricing-strategy

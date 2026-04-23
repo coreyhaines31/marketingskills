@@ -1,31 +1,31 @@
 # Firehose
 
-Real-time web data streaming API that monitors web pages and delivers matching content instantly via server-sent events (SSE). Built for competitive intelligence, brand monitoring, and news tracking without polling.
+API de streaming de dados da web em tempo real que monitora páginas e entrega conteúdo correspondente instantaneamente via server-sent events (SSE). Feita para inteligência competitiva, monitoramento de marca e acompanhamento de notícias sem necessidade de polling.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | RESTful endpoints for managing rules + SSE for streaming |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | - | Native AI agent skill available |
+| API | ✓ | Endpoints RESTful para gerenciar regras + SSE para streaming |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | - | Skill nativa para agente de IA disponível |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
-- **Currently**: Free beta — no credit card required
-- **Get access**: Sign up at firehose.com
+- **Tipo**: API Key
+- **Currently**: Beta gratuito — sem necessidade de cartão de crédito
+- **Obter acesso**: Cadastre-se em firehose.com
 
-## Core Concepts
+## Conceitos principais
 
-**Rules** — Filters that define what content to match. Uses Lucene query syntax.
+**Rules** — Filtros que definem qual conteúdo deve ser correspondido. Usa sintaxe de consulta Lucene.
 
-**Stream** — A server-sent event (SSE) connection that delivers matching content in real-time as it's published on the web.
+**Stream** — Uma conexão server-sent event (SSE) que entrega conteúdo correspondente em tempo real conforme ele é publicado na web.
 
-Instead of polling an endpoint on a schedule, you define rules once and receive a continuous stream of matches as they happen.
+Em vez de fazer polling em um endpoint em intervalos programados, você define as regras uma vez e recebe um fluxo contínuo de correspondências conforme acontecem.
 
-## Query Syntax (Lucene)
+## Sintaxe de consulta (Lucene)
 
 ```
 # Exact phrase
@@ -54,9 +54,9 @@ category:finance
 category:technology
 ```
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Create a monitoring rule
+### Criar uma regra de monitoramento
 
 ```bash
 POST https://api.firehose.com/rules
@@ -67,19 +67,19 @@ POST https://api.firehose.com/rules
 }
 ```
 
-### List active rules
+### Listar regras ativas
 
 ```bash
 GET https://api.firehose.com/rules
 ```
 
-### Delete a rule
+### Excluir uma regra
 
 ```bash
 DELETE https://api.firehose.com/rules/{rule_id}
 ```
 
-### Connect to the stream
+### Conectar ao stream
 
 ```bash
 GET https://api.firehose.com/stream
@@ -89,7 +89,7 @@ Authorization: Bearer {api_key}
 # data: {"url": "...", "title": "...", "publish_time": "...", "matched_rule": "..."}
 ```
 
-### Example: Node.js stream consumer
+### Exemplo: consumidor de stream em Node.js
 
 ```javascript
 import EventSource from 'eventsource';
@@ -104,53 +104,53 @@ stream.onmessage = (event) => {
 };
 ```
 
-## Use Cases for Marketing
+## Casos de uso para marketing
 
-### Competitive intelligence
-Monitor competitors' press coverage, product announcements, and funding news in real-time.
+### Inteligência competitiva
+Monitore cobertura de imprensa de concorrentes, anúncios de produto e notícias de captação em tempo real.
 
 ```
 query: "CompetitorName" AND (launch OR funding OR "product update" OR partnership)
 ```
 
-### Brand monitoring
-Track mentions of your brand across news and web content.
+### Monitoramento de marca
+Acompanhe menções à sua marca em notícias e conteúdo da web.
 
 ```
 query: "YourBrand" OR "YourProductName" NOT site:yourdomain.com
 ```
 
-### Category / market news
-Stay current on your market without manually checking sources.
+### Notícias de categoria / mercado
+Mantenha-se atualizado sobre seu mercado sem verificar fontes manualmente.
 
 ```
 query: category:technology AND ("no-code" OR "low-code") AND funding
 domain:techcrunch.com OR domain:venturebeat.com
 ```
 
-### Lead trigger monitoring
-Track signals that indicate a prospect is ready to buy (hiring, funding, tool mentions).
+### Monitoramento de gatilhos de lead
+Acompanhe sinais que indicam que um prospect está pronto para comprar (contratações, captação, menções a ferramentas).
 
 ```
 query: ("hiring" OR "we're growing") AND "RevOps" AND (HubSpot OR Salesforce)
 ```
 
-### PR and link building
-Get alerted when publications cover topics in your space, enabling timely outreach.
+### PR e link building
+Receba alertas quando publicações cobrirem temas do seu nicho, permitindo outreach no momento certo.
 
 ```
 query: "best [category] tools" OR "top [category] software" AND publish_time:[now-7d TO now]
 ```
 
-## When to Use
+## Quando usar
 
-- Real-time competitive intelligence (faster than Google Alerts)
-- Brand mention monitoring across news and web
-- Market signal tracking for sales prospecting
-- Automated content curation pipelines
-- Trigger-based workflows (new mention → Slack alert, CRM update, etc.)
+- Inteligência competitiva em tempo real (mais rápido que Google Alerts)
+- Monitoramento de menções de marca em notícias e web
+- Acompanhamento de sinais de mercado para prospecção comercial
+- Pipelines automatizados de curadoria de conteúdo
+- Workflows baseados em gatilhos (nova menção → alerta no Slack, atualização no CRM etc.)
 
-## Relevant Skills
+## Habilidades relevantes
 
 - competitor-alternatives
 - customer-research

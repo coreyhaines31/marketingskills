@@ -1,6 +1,6 @@
-# Platform Specs Reference
+# Referência de Especificações de Plataforma
 
-Complete character limits, format requirements, and best practices for each ad platform.
+Limites de caracteres completos, requisitos de formato e melhores práticas para cada plataforma de anúncios.
 
 ---
 
@@ -8,159 +8,159 @@ Complete character limits, format requirements, and best practices for each ad p
 
 ### Responsive Search Ads (RSAs)
 
-| Element | Character Limit | Required | Notes |
+| Elemento | Limite de Caracteres | Obrigatório | Observações |
 |---------|----------------|----------|-------|
-| Headline | 30 chars | 3 minimum, 15 max | Any 3 may be shown together |
-| Description | 90 chars | 2 minimum, 4 max | Any 2 may be shown together |
-| Display path 1 | 15 chars | Optional | Appears after domain in URL |
-| Display path 2 | 15 chars | Optional | Appears after path 1 |
-| Final URL | No limit | Required | Landing page URL |
+| Título | 30 chars | 3 mínimo, 15 máx. | Quaisquer 3 podem ser exibidos juntos |
+| Descrição | 90 chars | 2 mínimo, 4 máx. | Quaisquer 2 podem ser exibidos juntos |
+| Caminho de exibição 1 | 15 chars | Opcional | Aparece após o domínio na URL |
+| Caminho de exibição 2 | 15 chars | Opcional | Aparece após o caminho 1 |
+| URL final | Sem limite | Obrigatório | URL da landing page |
 
-**Combination rules:**
-- Google selects up to 3 headlines and 2 descriptions to show
-- Headlines appear separated by " | " or stacked
-- Any headline can appear in any position unless pinned
-- Pinning reduces Google's ability to optimize — use sparingly
+**Regras de combinação:**
+- Google seleciona até 3 títulos e 2 descrições para exibir
+- Os títulos aparecem separados por " | " ou empilhados
+- Qualquer título pode aparecer em qualquer posição, a menos que fixado
+- Fixar reduz a capacidade do Google de otimizar — use com moderação
 
-**Pinning strategy:**
-- Pin your brand name to position 1 if brand guidelines require it
-- Pin your strongest CTA to position 2 or 3
-- Leave most headlines unpinned for machine learning
+**Estratégia de fixação:**
+- Fixe o nome da marca na posição 1 se as diretrizes da marca exigirem
+- Fixe o CTA mais forte na posição 2 ou 3
+- Deixe a maioria dos títulos sem fixação para o machine learning
 
-**Headline mix recommendation (15 headlines):**
-- 3-4 keyword-focused (match search intent)
-- 3-4 benefit-focused (what they get)
-- 2-3 social proof (numbers, awards, customers)
-- 2-3 CTA-focused (action to take)
-- 1-2 differentiators (why you over competitors)
-- 1 brand name headline
+**Recomendação de mix de títulos (15 títulos):**
+- 3-4 focados em palavras-chave (correspondem à intenção de busca)
+- 3-4 focados em benefícios (o que o usuário ganha)
+- 2-3 de prova social (números, prêmios, clientes)
+- 2-3 focados em CTA (ação a tomar)
+- 1-2 diferenciais (por que você e não a concorrência)
+- 1 título com o nome da marca
 
-**Description mix recommendation (4 descriptions):**
-- 1 benefit + proof point
-- 1 feature + outcome
-- 1 social proof + CTA
-- 1 urgency/offer + CTA (if applicable)
+**Recomendação de mix de descrições (4 descrições):**
+- 1 benefício + ponto de prova
+- 1 funcionalidade + resultado
+- 1 prova social + CTA
+- 1 urgência/oferta + CTA (se aplicável)
 
 ### Performance Max
 
-| Element | Character Limit | Notes |
+| Elemento | Limite de Caracteres | Observações |
 |---------|----------------|-------|
-| Headline | 30 chars (5 required) | Short headlines for various placements |
-| Long headline | 90 chars (5 required) | Used in display, video, discover |
-| Description | 90 chars (1 required, 5 max) | Accompany various ad formats |
-| Business name | 25 chars | Required |
+| Título | 30 chars (5 obrigatórios) | Títulos curtos para vários posicionamentos |
+| Título longo | 90 chars (5 obrigatórios) | Usado em display, vídeo, discover |
+| Descrição | 90 chars (1 obrigatório, 5 máx.) | Acompanha vários formatos de anúncio |
+| Nome da empresa | 25 chars | Obrigatório |
 
 ### Display Ads
 
-| Element | Character Limit |
+| Elemento | Limite de Caracteres |
 |---------|----------------|
-| Headline | 30 chars |
-| Long headline | 90 chars |
-| Description | 90 chars |
-| Business name | 25 chars |
+| Título | 30 chars |
+| Título longo | 90 chars |
+| Descrição | 90 chars |
+| Nome da empresa | 25 chars |
 
 ---
 
 ## Meta Ads (Facebook & Instagram)
 
-### Single Image / Video / Carousel
+### Imagem Única / Vídeo / Carrossel
 
-| Element | Recommended | Maximum | Notes |
+| Elemento | Recomendado | Máximo | Observações |
 |---------|-------------|---------|-------|
-| Primary text | 125 chars | 2,200 chars | Text above image; truncated after ~125 |
-| Headline | 40 chars | 255 chars | Below image; truncated after ~40 |
-| Description | 30 chars | 255 chars | Below headline; may not show |
-| URL display link | 40 chars | N/A | Optional custom display URL |
+| Texto principal | 125 chars | 2.200 chars | Texto acima da imagem; truncado após ~125 |
+| Título | 40 chars | 255 chars | Abaixo da imagem; truncado após ~40 |
+| Descrição | 30 chars | 255 chars | Abaixo do título; pode não aparecer |
+| Link de exibição da URL | 40 chars | N/A | URL de exibição personalizada opcional |
 
-**Placement-specific notes:**
-- **Feed**: All elements show; primary text most visible
-- **Stories/Reels**: Primary text overlaid; keep under 72 chars
-- **Right column**: Only headline visible; skip description
-- **Audience Network**: Varies by publisher
+**Notas específicas por posicionamento:**
+- **Feed**: Todos os elementos aparecem; texto principal mais visível
+- **Stories/Reels**: Texto principal sobreposto; mantenha abaixo de 72 chars
+- **Coluna direita**: Apenas o título visível; ignore a descrição
+- **Audience Network**: Varia conforme o editor
 
-**Best practices:**
-- Front-load the hook in primary text (first 125 chars)
-- Use line breaks for readability in longer primary text
-- Emojis: test, but don't overuse — 1-2 per ad max
-- Questions in primary text increase engagement
-- Headline should be a clear CTA or value statement
+**Melhores práticas:**
+- Coloque o gancho no início do texto principal (primeiros 125 chars)
+- Use quebras de linha para melhor leitura em textos mais longos
+- Emojis: teste, mas não exagere — máx. 1-2 por anúncio
+- Perguntas no texto principal aumentam o engajamento
+- O título deve ser um CTA claro ou uma declaração de valor
 
 ### Lead Ads (Instant Form)
 
-| Element | Limit |
+| Elemento | Limite |
 |---------|-------|
-| Greeting headline | 60 chars |
-| Greeting description | 360 chars |
-| Privacy policy text | 200 chars |
+| Título de saudação | 60 chars |
+| Descrição de saudação | 360 chars |
+| Texto de política de privacidade | 200 chars |
 
 ---
 
 ## LinkedIn Ads
 
-### Single Image Ad
+### Anúncio de Imagem Única
 
-| Element | Recommended | Maximum | Notes |
+| Elemento | Recomendado | Máximo | Observações |
 |---------|-------------|---------|-------|
-| Intro text | 150 chars | 600 chars | Above the image; truncated after ~150 |
-| Headline | 70 chars | 200 chars | Below the image |
-| Description | 100 chars | 300 chars | Only shows on Audience Network |
+| Texto de introdução | 150 chars | 600 chars | Acima da imagem; truncado após ~150 |
+| Título | 70 chars | 200 chars | Abaixo da imagem |
+| Descrição | 100 chars | 300 chars | Aparece apenas no Audience Network |
 
-### Carousel Ad
+### Anúncio de Carrossel
 
-| Element | Limit |
+| Elemento | Limite |
 |---------|-------|
-| Intro text | 255 chars |
-| Card headline | 45 chars |
-| Card count | 2-10 cards |
+| Texto de introdução | 255 chars |
+| Título do card | 45 chars |
+| Quantidade de cards | 2-10 cards |
 
 ### Message Ad (InMail)
 
-| Element | Limit |
+| Elemento | Limite |
 |---------|-------|
-| Subject line | 60 chars |
-| Message body | 1,500 chars |
-| CTA button | 20 chars |
+| Linha de assunto | 60 chars |
+| Corpo da mensagem | 1.500 chars |
+| Botão CTA | 20 chars |
 
 ### Text Ad
 
-| Element | Limit |
+| Elemento | Limite |
 |---------|-------|
-| Headline | 25 chars |
-| Description | 75 chars |
+| Título | 25 chars |
+| Descrição | 75 chars |
 
-**LinkedIn-specific guidelines:**
-- Professional tone, but not boring
-- Use job-specific language the audience recognizes
-- Statistics and data points perform well
-- Avoid consumer-style hype ("Amazing!" "Incredible!")
-- First-person testimonials from peers resonate
+**Diretrizes específicas do LinkedIn:**
+- Tom profissional, mas não entediante
+- Use linguagem específica do cargo que o público reconhece
+- Estatísticas e dados têm bom desempenho
+- Evite hype estilo consumer ("Incrível!" "Extraordinário!")
+- Depoimentos em primeira pessoa de pares ressoam bem
 
 ---
 
 ## TikTok Ads
 
-### In-Feed Ads
+### Anúncios In-Feed
 
-| Element | Recommended | Maximum | Notes |
+| Elemento | Recomendado | Máximo | Observações |
 |---------|-------------|---------|-------|
-| Ad text | 80 chars | 100 chars | Above the video |
-| Display name | N/A | 40 chars | Brand name |
-| CTA button | Platform options | Predefined | Select from TikTok's options |
+| Texto do anúncio | 80 chars | 100 chars | Acima do vídeo |
+| Nome de exibição | N/A | 40 chars | Nome da marca |
+| Botão CTA | Opções da plataforma | Predefinido | Selecione entre as opções do TikTok |
 
-### Spark Ads (Boosted Organic)
+### Spark Ads (Orgânico Impulsionado)
 
-| Element | Notes |
+| Elemento | Observações |
 |---------|-------|
-| Caption | Uses original post caption |
-| CTA button | Added by advertiser |
-| Display name | Original creator's handle |
+| Legenda | Usa a legenda original da publicação |
+| Botão CTA | Adicionado pelo anunciante |
+| Nome de exibição | Handle original do criador |
 
-**TikTok-specific guidelines:**
-- Native content outperforms polished ads
-- First 2 seconds determine if they watch
-- Use trending sounds and formats
-- Text overlay is essential (most watch with sound off)
-- Vertical video only (9:16)
+**Diretrizes específicas do TikTok:**
+- Conteúdo nativo supera anúncios polidos
+- Os primeiros 2 segundos determinam se o usuário assiste
+- Use sons e formatos em alta
+- Texto sobreposto é essencial (a maioria assiste sem som)
+- Apenas vídeo vertical (9:16)
 
 ---
 
@@ -168,46 +168,46 @@ Complete character limits, format requirements, and best practices for each ad p
 
 ### Promoted Tweets
 
-| Element | Limit | Notes |
+| Elemento | Limite | Observações |
 |---------|-------|-------|
-| Tweet text | 280 chars | Full tweet with image/video |
-| Card headline | 70 chars | Website card |
-| Card description | 200 chars | Website card |
+| Texto do tweet | 280 chars | Tweet completo com imagem/vídeo |
+| Título do card | 70 chars | Website card |
+| Descrição do card | 200 chars | Website card |
 
 ### Website Cards
 
-| Element | Limit |
+| Elemento | Limite |
 |---------|-------|
-| Headline | 70 chars |
-| Description | 200 chars |
+| Título | 70 chars |
+| Descrição | 200 chars |
 
-**Twitter/X-specific guidelines:**
-- Conversational, casual tone
-- Short sentences work best
-- One clear message per tweet
-- Hashtags: 1-2 max (0 is often better for ads)
-- Threads can work for consideration-stage content
-
----
-
-## Character Counting Tips
-
-- **Spaces count** as characters on all platforms
-- **Emojis** count as 1-2 characters depending on platform
-- **Special characters** (|, &, etc.) count as 1 character
-- **URLs** in body text count against limits
-- **Dynamic keyword insertion** (`{KeyWord:default}`) can exceed limits — set safe defaults
-- Always verify in the platform's ad preview before launching
+**Diretrizes específicas do Twitter/X:**
+- Tom conversacional e casual
+- Frases curtas funcionam melhor
+- Uma mensagem clara por tweet
+- Hashtags: máx. 1-2 (0 frequentemente é melhor para anúncios)
+- Threads podem funcionar para conteúdo em fase de consideração
 
 ---
 
-## Multi-Platform Creative Adaptation
+## Dicas para Contagem de Caracteres
 
-When creating for multiple platforms simultaneously, start with the most restrictive format:
+- **Espaços contam** como caracteres em todas as plataformas
+- **Emojis** contam como 1-2 caracteres dependendo da plataforma
+- **Caracteres especiais** (|, &, etc.) contam como 1 caractere
+- **URLs** no corpo do texto contam contra os limites
+- **Dynamic keyword insertion** (`{KeyWord:default}`) pode exceder os limites — defina padrões seguros
+- Sempre verifique na pré-visualização de anúncio da plataforma antes de lançar
 
-1. **Google Search headlines** (30 chars) — forces the tightest messaging
-2. **Expand to Meta headlines** (40 chars) — add a word or two
-3. **Expand to LinkedIn intro text** (150 chars) — add context and proof
-4. **Expand to Meta primary text** (125+ chars) — full hook and value prop
+---
 
-This cascading approach ensures your core message works everywhere, then gets enriched for platforms that allow more space.
+## Adaptação de Criativos para Múltiplas Plataformas
+
+Ao criar para múltiplas plataformas simultaneamente, comece pelo formato mais restritivo:
+
+1. **Títulos de busca do Google** (30 chars) — força a mensagem mais concisa
+2. **Expanda para títulos Meta** (40 chars) — adicione uma ou duas palavras
+3. **Expanda para texto de introdução do LinkedIn** (150 chars) — adicione contexto e prova
+4. **Expanda para texto principal Meta** (125+ chars) — gancho completo e proposta de valor
+
+Esta abordagem em cascata garante que sua mensagem central funcione em todos os lugares e seja enriquecida para plataformas que permitem mais espaço.

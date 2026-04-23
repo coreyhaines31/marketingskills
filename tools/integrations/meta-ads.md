@@ -1,8 +1,8 @@
 # Meta Ads (Facebook/Instagram)
 
-Advertising platform for Facebook, Instagram, Messenger, and Audience Network.
+Plataforma de anúncios para Facebook, Instagram, Messenger e Audience Network.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,45 +11,45 @@ Advertising platform for Facebook, Instagram, Messenger, and Audience Network.
 | CLI | - | Not available |
 | SDK | ✓ | Official SDKs for Python, PHP, Node.js |
 
-## Authentication
+## Autenticação
 
 - **Type**: OAuth 2.0 Access Token
-- **Header**: Access token as query parameter
-- **Setup**: Create app in Meta Business Suite, generate System User token
+- **Header**: Access token como query parameter
+- **Setup**: Crie app no Meta Business Suite e gere um System User token
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Get ad accounts
+### Obter contas de anúncio
 
 ```bash
 GET https://graph.facebook.com/v18.0/me/adaccounts?access_token={access_token}&fields=id,name,account_status
 ```
 
-### Get campaigns
+### Obter campanhas
 
 ```bash
 GET https://graph.facebook.com/v18.0/act_{ad_account_id}/campaigns?access_token={access_token}&fields=id,name,status,objective,daily_budget
 ```
 
-### Get campaign insights
+### Obter insights da campanha
 
 ```bash
 GET https://graph.facebook.com/v18.0/{campaign_id}/insights?access_token={access_token}&fields=impressions,clicks,spend,actions,cost_per_action_type&date_preset=last_30d
 ```
 
-### Get ad sets
+### Obter conjuntos de anúncios
 
 ```bash
 GET https://graph.facebook.com/v18.0/act_{ad_account_id}/adsets?access_token={access_token}&fields=id,name,status,targeting,daily_budget,bid_amount
 ```
 
-### Get ads
+### Obter anúncios
 
 ```bash
 GET https://graph.facebook.com/v18.0/{ad_set_id}/ads?access_token={access_token}&fields=id,name,status,creative
 ```
 
-### Create campaign
+### Criar campanha
 
 ```bash
 POST https://graph.facebook.com/v18.0/act_{ad_account_id}/campaigns
@@ -61,7 +61,7 @@ access_token={access_token}
 &special_ad_categories=[]
 ```
 
-### Update campaign status
+### Atualizar status da campanha
 
 ```bash
 POST https://graph.facebook.com/v18.0/{campaign_id}
@@ -70,13 +70,13 @@ access_token={access_token}
 &status=ACTIVE
 ```
 
-### Get custom audiences
+### Obter custom audiences
 
 ```bash
 GET https://graph.facebook.com/v18.0/act_{ad_account_id}/customaudiences?access_token={access_token}&fields=id,name,approximate_count
 ```
 
-### Create lookalike audience
+### Criar lookalike audience
 
 ```bash
 POST https://graph.facebook.com/v18.0/act_{ad_account_id}/customaudiences
@@ -88,30 +88,30 @@ access_token={access_token}
 &lookalike_spec={"type":"similarity","country":"US"}
 ```
 
-## Key Metrics
+## Métricas principais
 
 | Metric | Description |
 |--------|-------------|
-| `impressions` | Ad impressions |
-| `clicks` | All clicks |
-| `spend` | Amount spent |
-| `reach` | Unique people reached |
-| `frequency` | Avg impressions per person |
-| `cpm` | Cost per 1000 impressions |
-| `cpc` | Cost per click |
-| `actions` | Conversions array |
-| `cost_per_action_type` | CPA by action |
+| `impressions` | Impressões de anúncio |
+| `clicks` | Todos os cliques |
+| `spend` | Valor gasto |
+| `reach` | Pessoas únicas alcançadas |
+| `frequency` | Média de impressões por pessoa |
+| `cpm` | Custo por 1000 impressões |
+| `cpc` | Custo por clique |
+| `actions` | Array de conversões |
+| `cost_per_action_type` | CPA por ação |
 
-## Campaign Objectives
+## Objetivos de campanha
 
-- `AWARENESS` - Brand awareness
-- `TRAFFIC` - Website traffic
-- `ENGAGEMENT` - Post engagement
-- `LEADS` - Lead generation
-- `APP_PROMOTION` - App installs
-- `SALES` - Conversions/catalog sales
+- `AWARENESS` - Reconhecimento de marca
+- `TRAFFIC` - Tráfego para o website
+- `ENGAGEMENT` - Engajamento em posts
+- `LEADS` - Geração de leads
+- `APP_PROMOTION` - Instalações de app
+- `SALES` - Conversões/vendas de catálogo
 
-## Targeting Options
+## Opções de segmentação
 
 ```json
 {
@@ -127,20 +127,20 @@ access_token={access_token}
 }
 ```
 
-## When to Use
+## Quando usar
 
-- Creating/managing Facebook and Instagram ads
-- Audience targeting and lookalikes
-- Campaign performance analysis
-- Retargeting setup
+- Criar/gerenciar anúncios no Facebook e Instagram
+- Segmentação de audiência e lookalikes
+- Análise de performance de campanha
+- Configuração de retargeting
 
-## Rate Limits
+## Limites de taxa
 
 - 200 calls/hour per ad account
 - 60 calls/hour for marketing API
-- Use batch requests for efficiency
+- Use batch requests para eficiência
 
-## Relevant Skills
+## Skills relevantes
 
 - paid-ads
 - analytics-tracking

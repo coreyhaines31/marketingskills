@@ -1,16 +1,16 @@
-## New Skill
+## Nova Skill
 
-**Skill name:** `skills/SKILL-NAME`
+**Nome da skill:** `skills/SKILL-NAME`
 
-## Summary
+## Resumo
 
-<!-- What does this skill do and when should it be used? -->
+<!-- O que essa skill faz e quando deve ser usada? -->
 
 ## Checklist
 
-- [ ] `name` matches directory name exactly
-- [ ] `name` follows naming rules (lowercase, hyphens, no `--`)
-- [ ] `description` is 1-1024 chars with trigger phrases
-- [ ] `SKILL.md` is under 500 lines
-- [ ] No sensitive data or credentials
-- [ ] Tested locally with AI agent
+- [ ] `name` corresponde exatamente ao nome do diretório
+- [ ] `name` segue as regras de nomenclatura (minúsculas, hífens, sem `--`)
+- [ ] `description` tem 1-1024 caracteres com frases de gatilho
+- [ ] `SKILL.md` tem menos de 500 linhas
+- [ ] Nenhum dado sensível ou credencial
+- [ ] Testado localmente com agente de IA

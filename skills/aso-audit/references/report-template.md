@@ -1,10 +1,10 @@
-# ASO Audit Report Template
+# Template de Relatório de ASO Audit
 
-Use this structure for all ASO audit reports.
+Use esta estrutura para todos os relatórios de ASO audit.
 
 ---
 
-## Header
+## Cabeçalho
 
 ```
 # ASO Audit: {App Name}
@@ -17,7 +17,7 @@ Use this structure for all ASO audit reports.
 
 ---
 
-## Score Card
+## Tabela de Pontuação
 
 ```
 | Dimension | Score | Grade | Key Issue |
@@ -31,20 +31,20 @@ Use this structure for all ASO audit reports.
 | **OVERALL** | **{weighted}/100** | **{grade}** | |
 ```
 
-Grade scale per dimension: 9-10 = A, 7-8 = B, 5-6 = C, 3-4 = D, 1-2 = F
+Escala de notas por dimensão: 9-10 = A, 7-8 = B, 5-6 = C, 3-4 = D, 1-2 = F
 
 ---
 
-## Top 3 Quick Wins
+## Top 3 Vitórias Rápidas
 
-Highest-impact changes that take under 1 hour:
+Mudanças de maior impacto que levam menos de 1 hora:
 
 ```
-### 1. {Action verb} — {specific change}
+### 1. {Verbo de ação} — {mudança específica}
 **Impact:** {High/Medium} | **Effort:** {<15 min / <30 min / <1 hour}
-**Current:** {what it is now}
-**Recommended:** {exact replacement, with character count}
-**Why:** {one sentence explaining the impact}
+**Current:** {o que é agora}
+**Recommended:** {substituição exata, com contagem de caracteres}
+**Why:** {uma frase explicando o impacto}
 
 ### 2. ...
 ### 3. ...
@@ -52,162 +52,162 @@ Highest-impact changes that take under 1 hour:
 
 ---
 
-## Detailed Findings
+## Análise Detalhada
 
-### Title & Subtitle Analysis
+### Análise de Título e Subtítulo
 
 ```
 **Current title:** "{title}" ({X}/30 chars used)
-**Current subtitle/short desc:** "{subtitle}" ({X}/30 or /80 chars used)
+**Current subtitle/short desc:** "{subtitle}" ({X}/30 ou /80 chars used)
 
-**Issues found:**
-- {issue 1}
-- {issue 2}
+**Problemas encontrados:**
+- {problema 1}
+- {problema 2}
 
-**Recommended title:** "{new title}" ({X}/30 chars) — {rationale}
-**Recommended subtitle:** "{new subtitle}" ({X}/30 or /80 chars) — {rationale}
+**Recommended title:** "{new title}" ({X}/30 chars) — {justificativa}
+**Recommended subtitle:** "{new subtitle}" ({X}/30 ou /80 chars) — {justificativa}
 ```
 
-### Description Analysis
+### Análise de Descrição
 
 ```
-**First 3 lines (above fold):**
-> {quoted text}
+**Primeiras 3 linhas (acima da dobra):**
+> {texto citado}
 
-**Issues found:**
-- {issue 1}
-- {issue 2}
+**Problemas encontrados:**
+- {problema 1}
+- {problema 2}
 
-**Keyword density (Google Play only):** {X}% — target: 2-3%
-**Top keywords found:** {keyword1} (Xn), {keyword2} (Xn), ...
-**Missing high-value keywords:** {keyword1}, {keyword2}, ...
+**Keyword density (Google Play only):** {X}% — alvo: 2-3%
+**Principais palavras-chave encontradas:** {keyword1} (Xn), {keyword2} (Xn), ...
+**Palavras-chave de alto valor ausentes:** {keyword1}, {keyword2}, ...
 
-**Recommended first 3 lines:**
-> {rewritten text}
+**Primeiras 3 linhas recomendadas:**
+> {texto reescrito}
 ```
 
-### Visual Assets Analysis
+### Análise de Ativos Visuais
 
 ```
-**Screenshots:** {count} ({store} shows first {3/all} in search)
-**Preview video:** {Yes/No}
-**Icon assessment:** {description}
-**Feature graphic (Google Play):** {Yes/No}
+**Screenshots:** {count} ({store} mostra os primeiros {3/todos} na busca)
+**Preview video:** {Sim/Não}
+**Avaliação do ícone:** {descrição}
+**Feature graphic (Google Play):** {Sim/Não}
 
-**Screenshot audit:**
-1. {screenshot 1 description} — {pass/issue}
-2. {screenshot 2 description} — {pass/issue}
+**Auditoria de screenshots:**
+1. {descrição do screenshot 1} — {aprovado/problema}
+2. {descrição do screenshot 2} — {aprovado/problema}
 ...
 
-**Recommendations:**
-- {specific visual change 1}
-- {specific visual change 2}
+**Recomendações:**
+- {mudança visual específica 1}
+- {mudança visual específica 2}
 ```
 
-### Ratings & Reviews Analysis
+### Análise de Avaliações e Reviews
 
 ```
-**Average rating:** {X.X} stars ({count} ratings)
-**Recent review sentiment:** {Positive/Mixed/Negative}
-**Common complaints:** {theme1}, {theme2}
-**Developer responses:** {Yes, active / Sporadic / None}
+**Avaliação média:** {X.X} estrelas ({count} avaliações)
+**Sentimento dos reviews recentes:** {Positivo/Misto/Negativo}
+**Reclamações comuns:** {tema1}, {tema2}
+**Respostas do desenvolvedor:** {Sim, ativo / Esporádico / Nenhum}
 
-**Recommendations:**
-- {specific action 1}
-- {specific action 2}
+**Recomendações:**
+- {ação específica 1}
+- {ação específica 2}
 ```
 
-### Metadata & Freshness
+### Metadados e Atualidade
 
 ```
-**Last updated:** {date} ({X days/months ago})
-**Localizations:** {count} languages
-**Category:** {current category}
-**In-app events/LiveOps:** {Yes/No}
+**Última atualização:** {data} ({X dias/meses atrás})
+**Localizações:** {count} idiomas
+**Categoria:** {categoria atual}
+**Eventos no app/LiveOps:** {Sim/Não}
 
-**Recommendations:**
-- {specific action 1}
-- {specific action 2}
+**Recomendações:**
+- {ação específica 1}
+- {ação específica 2}
 ```
 
-### Conversion Signals
+### Sinais de Conversão
 
 ```
-**Price model:** {Free / Freemium / Paid}
-**IAP count:** {count}
-**Downloads (Google Play):** {range}
-**Social proof visible:** {awards, press, badges — or "none"}
+**Modelo de preço:** {Gratuito / Freemium / Pago}
+**Quantidade de IAPs:** {count}
+**Downloads (Google Play):** {faixa}
+**Prova social visível:** {prêmios, imprensa, selos — ou "nenhum"}
 
-**Recommendations:**
-- {specific action 1}
-- {specific action 2}
+**Recomendações:**
+- {ação específica 1}
+- {ação específica 2}
 ```
 
 ---
 
-## Keyword Suggestions
+## Sugestões de Palavras-Chave
 
 ```
-| Keyword | Rationale | Where to Place | Priority |
-|---------|-----------|----------------|----------|
-| {keyword} | {why this keyword} | {title/subtitle/description/keyword field} | {High/Med/Low} |
+| Palavra-chave | Justificativa | Onde Colocar | Prioridade |
+|---------------|---------------|--------------|------------|
+| {keyword} | {por que esta palavra-chave} | {title/subtitle/description/keyword field} | {High/Med/Low} |
 | ... | ... | ... | ... |
 ```
 
-Note: Without paid ASO tools, exact search volume is unavailable. These
-suggestions are based on category analysis, competitor metadata, and semantic
-relevance. Validate with AppTweak, Sensor Tower, or MobileAction for volume data.
+Nota: Sem ferramentas de ASO pagas, o volume exato de busca não está disponível. Estas
+sugestões são baseadas na análise de categoria, metadados dos concorrentes e
+relevância semântica. Valide com AppTweak, Sensor Tower ou MobileAction para dados de volume.
 
 ---
 
-## Competitor Comparison (if applicable)
+## Comparação com Concorrentes (se aplicável)
 
 ```
-| Metric | {Your App} | {Competitor 1} | {Competitor 2} |
-|--------|-----------|----------------|----------------|
-| Title keywords | ... | ... | ... |
-| Rating | ... | ... | ... |
+| Métrica | {Seu App} | {Concorrente 1} | {Concorrente 2} |
+|---------|-----------|-----------------|-----------------|
+| Palavras-chave no título | ... | ... | ... |
+| Avaliação | ... | ... | ... |
 | Screenshots | ... | ... | ... |
-| Video | ... | ... | ... |
-| Description keywords | ... | ... | ... |
-| Last updated | ... | ... | ... |
-| Overall ASO score | ... | ... | ... |
+| Vídeo | ... | ... | ... |
+| Palavras-chave na descrição | ... | ... | ... |
+| Última atualização | ... | ... | ... |
+| Pontuação geral de ASO | ... | ... | ... |
 ```
 
 ---
 
-## Priority Action Plan
+## Plano de Ação Priorizado
 
-Ordered by impact (high to low), grouped by effort:
+Ordenado por impacto (alto para baixo), agrupado por esforço:
 
 ```
-### Do This Week (Quick Wins)
-1. {action} — {expected impact}
-2. {action} — {expected impact}
+### Faça Esta Semana (Vitórias Rápidas)
+1. {ação} — {impacto esperado}
+2. {ação} — {impacto esperado}
 
-### Do This Month (Medium Effort)
-3. {action} — {expected impact}
-4. {action} — {expected impact}
+### Faça Este Mês (Esforço Médio)
+3. {ação} — {impacto esperado}
+4. {ação} — {impacto esperado}
 
-### Plan for Next Quarter (High Effort)
-5. {action} — {expected impact}
-6. {action} — {expected impact}
+### Planeje para o Próximo Trimestre (Alto Esforço)
+5. {ação} — {impacto esperado}
+6. {ação} — {impacto esperado}
 ```
 
 ---
 
-## Limitations
+## Limitações
 
-Always include this section:
+Sempre inclua esta seção:
 
-> **What this audit cannot measure without paid ASO tools:**
+> **O que esta auditoria não consegue medir sem ferramentas de ASO pagas:**
 >
-> - Exact keyword search volume and difficulty scores
-> - Historical keyword ranking positions
-> - Download and revenue estimates
-> - Apple keyword field contents (hidden from public view)
-> - Install conversion rate data (only available to app owner in console)
-> - A/B test results from previous experiments
+> - Volume exato de busca por palavra-chave e pontuações de dificuldade
+> - Posições históricas de ranking de palavras-chave
+> - Estimativas de downloads e receita
+> - Conteúdo do campo de palavras-chave da Apple (oculto da visualização pública)
+> - Dados de taxa de conversão de instalação (disponíveis apenas para o proprietário do app no console)
+> - Resultados de testes A/B de experimentos anteriores
 >
-> For these data points, consider using AppTweak ($69/mo), Sensor Tower, or
-> MobileAction ($69/mo).
+> Para esses pontos de dados, considere usar AppTweak ($69/mês), Sensor Tower ou
+> MobileAction ($69/mês).

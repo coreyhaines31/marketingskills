@@ -1,8 +1,8 @@
 # Pendo
 
-Product analytics and in-app guidance platform for tracking user behavior, measuring feature adoption, and delivering targeted in-app messages.
+Plataforma de product analytics e in-app guidance para rastrear comportamento do usuário, medir adoção de funcionalidades e entregar mensagens in-app segmentadas.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,57 +11,57 @@ Product analytics and in-app guidance platform for tracking user behavior, measu
 | CLI | ✓ | [pendo.js](../clis/pendo.js) |
 | SDK | - | REST API only |
 
-## Authentication
+## Autenticação
 
 - **Type**: Integration Key
 - **Header**: `x-pendo-integration-key: {key}`
 - **Get key**: Settings > Integrations at https://app.pendo.io
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### List Features
+### Listar features
 
 ```bash
 GET https://app.pendo.io/api/v1/feature
 ```
 
-### Get Feature Details
+### Obter detalhes da feature
 
 ```bash
 GET https://app.pendo.io/api/v1/feature/{featureId}
 ```
 
-### List Pages
+### Listar páginas
 
 ```bash
 GET https://app.pendo.io/api/v1/page
 ```
 
-### Get Page Details
+### Obter detalhes da página
 
 ```bash
 GET https://app.pendo.io/api/v1/page/{pageId}
 ```
 
-### List Guides
+### Listar guides
 
 ```bash
 GET https://app.pendo.io/api/v1/guide?state=public
 ```
 
-### Get Guide Details
+### Obter detalhes do guide
 
 ```bash
 GET https://app.pendo.io/api/v1/guide/{guideId}
 ```
 
-### Get Visitor Data
+### Obter dados de visitor
 
 ```bash
 GET https://app.pendo.io/api/v1/visitor/{visitorId}
 ```
 
-### Search Visitors
+### Buscar visitors
 
 ```bash
 POST https://app.pendo.io/api/v1/aggregation
@@ -77,13 +77,13 @@ POST https://app.pendo.io/api/v1/aggregation
 }
 ```
 
-### Get Account Data
+### Obter dados de account
 
 ```bash
 GET https://app.pendo.io/api/v1/account/{accountId}
 ```
 
-### Search Accounts
+### Buscar accounts
 
 ```bash
 POST https://app.pendo.io/api/v1/aggregation
@@ -99,7 +99,7 @@ POST https://app.pendo.io/api/v1/aggregation
 }
 ```
 
-### Run Funnel Report
+### Executar relatório de funnel
 
 ```bash
 POST https://app.pendo.io/api/v1/aggregation
@@ -117,7 +117,7 @@ POST https://app.pendo.io/api/v1/aggregation
 }
 ```
 
-### List Metadata Fields
+### Listar campos de metadata
 
 ```bash
 GET https://app.pendo.io/api/v1/metadata/schema/visitor
@@ -125,82 +125,82 @@ GET https://app.pendo.io/api/v1/metadata/schema/account
 GET https://app.pendo.io/api/v1/metadata/schema/parentAccount
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Feature Data
-- `id` - Feature ID
-- `name` - Feature name
-- `kind` - Feature type
-- `elementPath` - CSS selector for the tracked element
-- `pageId` - Associated page ID
-- `numEvents` - Event count
-- `numVisitors` - Unique visitor count
+### Dados de feature
+- `id` - ID da feature
+- `name` - Nome da feature
+- `kind` - Tipo de feature
+- `elementPath` - Seletor CSS do elemento rastreado
+- `pageId` - ID da página associada
+- `numEvents` - Quantidade de eventos
+- `numVisitors` - Quantidade de visitors únicos
 
-### Page Data
-- `id` - Page ID
-- `name` - Page name
-- `rules` - URL matching rules
-- `numEvents` - Pageview count
-- `numVisitors` - Unique visitor count
+### Dados de página
+- `id` - ID da página
+- `name` - Nome da página
+- `rules` - Regras de correspondência de URL
+- `numEvents` - Quantidade de pageviews
+- `numVisitors` - Quantidade de visitors únicos
 
-### Guide Data
-- `id` - Guide ID
-- `name` - Guide name
-- `state` - Guide state (draft, staged, public, disabled)
-- `launchMethod` - How the guide is triggered
-- `steps` - Guide step definitions
-- `numSteps` - Number of steps
-- `numViews` - Total views
-- `numVisitors` - Unique visitors who saw the guide
+### Dados de guide
+- `id` - ID do guide
+- `name` - Nome do guide
+- `state` - Estado do guide (draft, staged, public, disabled)
+- `launchMethod` - Como o guide é acionado
+- `steps` - Definições de steps do guide
+- `numSteps` - Número de steps
+- `numViews` - Total de visualizações
+- `numVisitors` - Visitors únicos que viram o guide
 
-### Visitor Data
-- `visitorId` - Unique visitor identifier
-- `lastVisitedAt` - Last visit timestamp
-- `firstVisit` - First visit timestamp
-- `numEvents` - Total event count
-- `metadata` - Custom visitor metadata
+### Dados de visitor
+- `visitorId` - Identificador único de visitor
+- `lastVisitedAt` - Timestamp da última visita
+- `firstVisit` - Timestamp da primeira visita
+- `numEvents` - Quantidade total de eventos
+- `metadata` - Metadata custom de visitor
 
-### Account Data
-- `accountId` - Unique account identifier
-- `lastVisitedAt` - Last visit from any account member
-- `numVisitors` - Number of visitors in the account
-- `metadata` - Custom account metadata
+### Dados de account
+- `accountId` - Identificador único da account
+- `lastVisitedAt` - Última visita de qualquer membro da account
+- `numVisitors` - Número de visitors na account
+- `metadata` - Metadata custom da account
 
-## Parameters
+## Parâmetros
 
-### Guide Filtering
-- `state` - Filter by state: draft, staged, public, disabled
+### Filtro de guide
+- `state` - Filtrar por estado: draft, staged, public, disabled
 
-### Aggregation Queries
-- `source` - Data source: visitors, accounts, features, pages, guides
-- `filter` - Expression-based filtering
-- `sort` - Sort results
-- `limit` - Max results to return
-- `timeSeries` - Time range with period, first, last
+### Queries de agregação
+- `source` - Fonte de dados: visitors, accounts, features, pages, guides
+- `filter` - Filtro baseado em expressão
+- `sort` - Ordenação de resultados
+- `limit` - Máximo de resultados retornados
+- `timeSeries` - Intervalo de tempo com period, first, last
 
-### Metadata Kinds
-- `visitor` - Visitor metadata schema
-- `account` - Account metadata schema
-- `parentAccount` - Parent account metadata schema
+### Tipos de metadata
+- `visitor` - Schema de metadata de visitor
+- `account` - Schema de metadata de account
+- `parentAccount` - Schema de metadata de parent account
 
-## When to Use
+## Quando usar
 
-- Tracking feature adoption and usage patterns
-- Building and managing in-app onboarding guides
-- Analyzing user behavior across pages and features
-- Segmenting users by engagement level
-- Running funnel analysis on user journeys
-- Identifying at-risk accounts based on usage decline
-- A/B testing in-app messages and tooltips
+- Rastrear adoção de features e padrões de uso
+- Criar e gerenciar guides de onboarding in-app
+- Analisar comportamento do usuário entre páginas e features
+- Segmentar usuários por nível de engajamento
+- Rodar análise de funnel em jornadas de usuário
+- Identificar accounts em risco com base em queda de uso
+- Fazer A/B testing de mensagens in-app e tooltips
 
-## Rate Limits
+## Limites de taxa
 
-- Rate limits vary by plan
-- Standard: 500 requests per minute
-- Aggregation queries: may take longer for large datasets
-- Use pagination for large result sets
+- Limites de taxa variam por plano
+- Standard: 500 requests por minuto
+- Queries de agregação: podem levar mais tempo em datasets grandes
+- Use paginação para conjuntos grandes de resultados
 
-## Relevant Skills
+## Skills relevantes
 
 - analytics-tracking
 - onboarding-cro

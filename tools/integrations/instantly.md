@@ -1,26 +1,26 @@
 # Instantly.ai
 
-Cold email platform with built-in email warmup and campaign management at scale.
+Plataforma de cold email com warmup de email embutido e gestão de campanhas em escala.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for campaigns, leads, accounts, analytics |
-| MCP | - | Not available |
+| API | ✓ | REST API para campaigns, leads, accounts e analytics |
+| MCP | - | Não disponível |
 | CLI | [✓](../clis/instantly.js) | Zero-dependency Node.js CLI |
-| SDK | - | API-only |
+| SDK | - | somente API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key (query parameter)
-- **Parameter**: `api_key={key}`
+- **Tipo**: API Key (query parameter)
+- **Parâmetro**: `api_key={key}`
 - **Env var**: `INSTANTLY_API_KEY`
-- **Get key**: [Instantly Settings > Integrations > API](https://app.instantly.ai/app/settings/integrations)
+- **Obter chave**: [Instantly Settings > Integrations > API](https://app.instantly.ai/app/settings/integrations)
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Manage campaigns
+### Gerenciar campanhas
 
 ```bash
 # List campaigns
@@ -39,7 +39,7 @@ node tools/clis/instantly.js campaigns launch --id cam_abc123
 node tools/clis/instantly.js campaigns pause --id cam_abc123
 ```
 
-### Manage leads
+### Gerenciar leads
 
 ```bash
 # List leads in a campaign
@@ -55,7 +55,7 @@ node tools/clis/instantly.js leads delete --campaign-id cam_abc123 --email john@
 node tools/clis/instantly.js leads status --campaign-id cam_abc123 --email john@example.com
 ```
 
-### Manage email accounts
+### Gerenciar contas de email
 
 ```bash
 # List connected accounts
@@ -68,7 +68,7 @@ node tools/clis/instantly.js accounts status --account-id me@example.com
 node tools/clis/instantly.js accounts warmup-status --account-id me@example.com
 ```
 
-### View analytics
+### Visualizar analytics
 
 ```bash
 # Campaign analytics
@@ -81,7 +81,7 @@ node tools/clis/instantly.js analytics steps --campaign-id cam_abc123
 node tools/clis/instantly.js analytics account --start 2024-01-01 --end 2024-01-31
 ```
 
-### Manage blocklist
+### Gerenciar blocklist
 
 ```bash
 # List blocked emails/domains
@@ -91,14 +91,14 @@ node tools/clis/instantly.js blocklist list
 node tools/clis/instantly.js blocklist add --entries "competitor.com,spam@example.com"
 ```
 
-## Rate Limits
+## Limites de taxa
 
-- API rate limits vary by plan
-- Recommended: stay under 10 requests/second
+- Limites de taxa da API variam por plano
+- Recomendado: manter abaixo de 10 requisições/segundo
 
-## Use Cases
+## Casos de uso
 
-- **Link building at scale**: Run large-volume outreach campaigns with built-in warmup
-- **Campaign management**: Launch, pause, and monitor cold email campaigns
-- **Account health**: Monitor email account warmup and deliverability
-- **Analytics**: Track open rates, reply rates, and campaign performance
+- **Link building em escala**: Executar campanhas de prospecção de grande volume com warmup embutido
+- **Gestão de campanhas**: Iniciar, pausar e monitorar campanhas de cold email
+- **Saúde da conta**: Monitorar warmup e deliverability das contas de email
+- **Análises**: Acompanhar taxas de abertura, resposta e performance de campanha

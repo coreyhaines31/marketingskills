@@ -1,24 +1,24 @@
 # Amplitude
 
-Product analytics platform for user behavior, retention, and experimentation.
+Plataforma de product analytics para comportamento do usuário, retenção e experimentação.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | HTTP API for events, User Profile API, Export API |
-| MCP | - | Not available |
-| CLI | - | Not available |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | HTTP API para eventos, User Profile API, Export API |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
 | SDK | ✓ | JavaScript, iOS, Android, Python, etc. |
 
-## Authentication
+## Autenticação
 
-- **HTTP API**: API Key (public for events)
+- **HTTP API**: API Key (pública para eventos)
 - **Export/Dashboard API**: API Key + Secret Key
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Track event
+### Rastrear event
 
 ```bash
 POST https://api2.amplitude.com/2/httpapi
@@ -52,7 +52,7 @@ POST https://api2.amplitude.com/batch
 }
 ```
 
-### Get user activity
+### Obter user activity
 
 ```bash
 GET https://amplitude.com/api/2/useractivity?user={user_id}
@@ -68,7 +68,7 @@ GET https://amplitude.com/api/2/export?start=20240101T00&end=20240131T23
 Authorization: Basic {base64(api_key:secret_key)}
 ```
 
-### Get retention data
+### Obter dados de retenção
 
 ```bash
 GET https://amplitude.com/api/2/retention?e={"event_type":"signup_completed"}&start=20240101&end=20240131
@@ -76,9 +76,9 @@ GET https://amplitude.com/api/2/retention?e={"event_type":"signup_completed"}&st
 Authorization: Basic {base64(api_key:secret_key)}
 ```
 
-### Query with SQL (Snowflake)
+### Consultar com SQL (Snowflake)
 
-For Amplitude customers with SQL access:
+Para clientes Amplitude com acesso SQL:
 ```sql
 SELECT event_type, COUNT(*) as count
 FROM events
@@ -86,7 +86,7 @@ WHERE event_time > '2024-01-01'
 GROUP BY event_type
 ```
 
-## JavaScript SDK
+## SDK JavaScript
 
 ```javascript
 // Initialize
@@ -106,29 +106,29 @@ amplitude.track('Feature Used', {
 });
 ```
 
-## Key Concepts
+## Conceitos Principais
 
-- **Events** - User actions with properties
+- **Events** - Ações de usuário com propriedades
 - **User Properties** - Persistent user attributes
 - **Cohorts** - Behavioral segments
 - **Funnels** - Multi-step conversion analysis
-- **Retention** - User return patterns
+- **Retention** - Padrões de retorno de usuário
 - **Journeys** - User path analysis
 
-## When to Use
+## Quando Usar
 
-- Tracking product analytics
+- Rastreamento de product analytics
 - Analyzing user funnels
-- Cohort analysis and retention
-- Experimentation and A/B testing
+- Análise de cohort e retenção
+- Experimentação e teste A/B
 - User journey mapping
 
-## Rate Limits
+## Limites de Taxa
 
 - HTTP API: 1000 events/second
-- Export API: 360 requests/hour
+- Export API: 360 requisições/hora
 
-## Relevant Skills
+## Skills Relevantes
 
 - analytics-tracking
 - ab-test-setup

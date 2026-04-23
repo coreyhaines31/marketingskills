@@ -1,25 +1,25 @@
 # Mention Me
 
-Enterprise referral marketing platform for customer advocacy.
+Plataforma enterprise de referral marketing para advocacy de clientes.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for referrals, customers, rewards |
 | MCP | - | Not available |
 | CLI | - | Not available |
-| SDK | - | JavaScript widget for embedding |
+| SDK | - | JavaScript widget para embed |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
-- **Environment**: Separate keys for sandbox and production
+- **Environment**: Chaves separadas para sandbox e produção
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Create referral offer
+### Criar oferta de referral
 
 ```bash
 POST https://api.mention-me.com/api/v2/referrer-offer
@@ -34,13 +34,13 @@ POST https://api.mention-me.com/api/v2/referrer-offer
 }
 ```
 
-### Get referral link for customer
+### Obter link de referral para cliente
 
 ```bash
 GET https://api.mention-me.com/api/v2/referrer/{customer_id}/share-links
 ```
 
-### Record referee (referred customer)
+### Registrar referee (cliente indicado)
 
 ```bash
 POST https://api.mention-me.com/api/v2/referee
@@ -54,25 +54,25 @@ POST https://api.mention-me.com/api/v2/referee
 }
 ```
 
-### Get referral status
+### Obter status do referral
 
 ```bash
 GET https://api.mention-me.com/api/v2/referral/{referral_id}
 ```
 
-### List referrals for customer
+### Listar referrals do cliente
 
 ```bash
 GET https://api.mention-me.com/api/v2/referrer/{customer_id}/referrals
 ```
 
-### Get reward balance
+### Obter saldo de reward
 
 ```bash
 GET https://api.mention-me.com/api/v2/referrer/{customer_id}/rewards
 ```
 
-### Redeem reward
+### Resgatar reward
 
 ```bash
 POST https://api.mention-me.com/api/v2/referrer/{customer_id}/rewards/redeem
@@ -85,7 +85,7 @@ POST https://api.mention-me.com/api/v2/referrer/{customer_id}/rewards/redeem
 
 ## JavaScript Widget
 
-### Embed referral widget
+### Embed do widget de referral
 
 ```html
 <div id="mmWrapper"></div>
@@ -103,7 +103,7 @@ POST https://api.mention-me.com/api/v2/referrer/{customer_id}/rewards/redeem
 <script src="https://tag.mention-me.com/client/{partner_code}.js" async></script>
 ```
 
-### Name share widget
+### Widget de name share
 
 ```javascript
 MentionMe.push({
@@ -114,46 +114,46 @@ MentionMe.push({
 });
 ```
 
-## Webhook Events
+## Eventos de webhook
 
 | Event | When |
 |-------|------|
-| `referral.created` | New referral tracked |
-| `referral.converted` | Referral completed purchase |
-| `reward.earned` | Reward unlocked |
-| `reward.redeemed` | Reward used |
+| `referral.created` | Novo referral rastreado |
+| `referral.converted` | Referral concluiu compra |
+| `reward.earned` | Reward desbloqueada |
+| `reward.redeemed` | Reward usada |
 
-## Key Features
+## Principais recursos
 
-- **A/B testing** - Built-in experiment framework
-- **Fraud prevention** - Automatic fraud detection
-- **Multi-channel** - Share via link, email, social
-- **Name sharing** - Refer by name, not code
-- **Segmentation** - Different offers by segment
-- **Analytics** - Referral program reporting
+- **A/B testing** - Framework de experimentos nativo
+- **Fraud prevention** - Detecção automática de fraude
+- **Multi-channel** - Compartilhamento via link, email e social
+- **Name sharing** - Indicação por nome, não por código
+- **Segmentation** - Ofertas diferentes por segmento
+- **Analytics** - Relatórios de programa de referral
 
-## Key Objects
+## Objetos principais
 
-- **Referrer** - Customer who refers
-- **Referee** - Customer who is referred
-- **Referral** - Connection between referrer and referee
-- **Offer** - Referral program configuration
-- **Reward** - Incentive earned
+- **Referrer** - Cliente que indica
+- **Referee** - Cliente que foi indicado
+- **Referral** - Conexão entre referrer e referee
+- **Offer** - Configuração do programa de referral
+- **Reward** - Incentivo ganho
 
-## When to Use
+## Quando usar
 
-- Enterprise referral programs
-- Multi-market referral campaigns
-- A/B testing referral offers
-- Fraud-resistant referral tracking
-- Name-based sharing programs
+- Programas enterprise de referral
+- Campanhas de referral em múltiplos mercados
+- A/B testing de ofertas de referral
+- Rastreamento de referral resistente a fraude
+- Programas de compartilhamento por nome
 
-## Rate Limits
+## Limites de taxa
 
 - 1000 requests per minute
-- Contact for higher limits
+- Entre em contato para limites maiores
 
-## Relevant Skills
+## Skills relevantes
 
 - referral-program
 - pricing-strategy
