@@ -1,25 +1,25 @@
 # Close
 
-Sales CRM for SMBs with built-in calling, email, and pipeline management designed for high-velocity sales teams.
+CRM de vendas para SMBs com chamadas, email e gerenciamento de pipeline integrados, projetado para equipes de vendas de alta velocidade.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Leads, Contacts, Opportunities, Activities, Tasks |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [close.js](../clis/close.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas REST API |
 
-## Authentication
+## Autenticação
 
-- **Type**: Basic Auth
-- **Header**: `Authorization: Basic {base64(api_key + ':')}`
-- **Get key**: Settings > API Keys at https://app.close.com
+- **Tipo**: Basic Auth
+- **Cabeçalho**: `Authorization: Basic {base64(api_key + ':')}`
+- **Obter chave**: Settings > API Keys at https://app.close.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List Leads
+### Listar Leads
 
 ```bash
 GET https://api.close.com/api/v1/lead/
@@ -27,7 +27,7 @@ GET https://api.close.com/api/v1/lead/
 Authorization: Basic {base64(api_key + ':')}
 ```
 
-### Search Leads
+### Buscar Leads
 
 ```bash
 GET https://api.close.com/api/v1/lead/?query=company_name
@@ -35,7 +35,7 @@ GET https://api.close.com/api/v1/lead/?query=company_name
 Authorization: Basic {base64(api_key + ':')}
 ```
 
-### Create Lead
+### Criar Lead
 
 ```bash
 POST https://api.close.com/api/v1/lead/
@@ -47,7 +47,7 @@ POST https://api.close.com/api/v1/lead/
 }
 ```
 
-### Get Contact
+### Obter Contact
 
 ```bash
 GET https://api.close.com/api/v1/contact/{contact_id}/
@@ -55,7 +55,7 @@ GET https://api.close.com/api/v1/contact/{contact_id}/
 Authorization: Basic {base64(api_key + ':')}
 ```
 
-### Create Contact
+### Criar Contact
 
 ```bash
 POST https://api.close.com/api/v1/contact/
@@ -68,7 +68,7 @@ POST https://api.close.com/api/v1/contact/
 }
 ```
 
-### Create Opportunity
+### Criar Opportunity
 
 ```bash
 POST https://api.close.com/api/v1/opportunity/
@@ -80,7 +80,7 @@ POST https://api.close.com/api/v1/opportunity/
 }
 ```
 
-### List Activities
+### Listar Activities
 
 ```bash
 GET https://api.close.com/api/v1/activity/?lead_id=lead_xxx
@@ -88,7 +88,7 @@ GET https://api.close.com/api/v1/activity/?lead_id=lead_xxx
 Authorization: Basic {base64(api_key + ':')}
 ```
 
-### Create Task
+### Criar Task
 
 ```bash
 POST https://api.close.com/api/v1/task/
@@ -101,9 +101,9 @@ POST https://api.close.com/api/v1/task/
 }
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Lead Data
+### Dados de Lead
 - `id` - Lead ID
 - `display_name` - Lead name
 - `url` - Website URL
@@ -113,7 +113,7 @@ POST https://api.close.com/api/v1/task/
 - `opportunities` - Associated opportunities
 - `tasks` - Associated tasks
 
-### Contact Data
+### Dados de Contato
 - `id` - Contact ID
 - `lead_id` - Parent lead
 - `name` - Full name
@@ -121,7 +121,7 @@ POST https://api.close.com/api/v1/task/
 - `emails` - Email addresses array
 - `phones` - Phone numbers array
 
-### Opportunity Data
+### Dados de Oportunidade
 - `id` - Opportunity ID
 - `lead_id` - Parent lead
 - `value` - Value in cents
@@ -129,7 +129,7 @@ POST https://api.close.com/api/v1/task/
 - `confidence` - Win probability (0-100)
 - `date_won` - Close date
 
-### Task Data
+### Dados de Tarefa
 - `id` - Task ID
 - `lead_id` - Parent lead
 - `text` - Task description
@@ -137,54 +137,54 @@ POST https://api.close.com/api/v1/task/
 - `date` - Due date
 - `is_complete` - Completion status
 
-## Parameters
+## Parâmetros
 
 ### Leads
-- `query` - Search query string
-- `_skip` - Number of results to skip (pagination)
-- `_limit` - Max results to return (default: 100)
-- `_fields` - Comma-separated fields to return
+- `query` - String de query de busca
+- `_skip` - Número de resultados para pular (paginação)
+- `_limit` - Máximo de resultados para retornar (padrão: 100)
+- `_fields` - Campos separados por vírgula para retornar
 
-### Contacts
-- `lead_id` - Filter by parent lead
+### Contatos
+- `lead_id` - Filtrar por lead pai
 - `_skip` - Pagination offset
 - `_limit` - Max results
 
-### Opportunities
-- `lead_id` - Filter by parent lead
-- `status` - Filter by status type (active, won, lost)
+### Oportunidades
+- `lead_id` - Filtrar por lead pai
+- `status` - Filtrar por tipo de status (active, won, lost)
 - `_skip` - Pagination offset
 - `_limit` - Max results
 
-### Activities
-- `lead_id` - Filter by lead
-- `_type__type` - Filter by type (Email, Call, Note, SMS, Meeting)
-- `date_created__gt` - After date
-- `date_created__lt` - Before date
+### Atividades
+- `lead_id` - Filtrar por lead
+- `_type__type` - Filtrar por tipo (Email, Call, Note, SMS, Meeting)
+- `date_created__gt` - Após a data
+- `date_created__lt` - Antes da data
 
-### Tasks
-- `assigned_to` - Filter by user ID
-- `is_complete` - Filter by completion (true/false)
-- `lead_id` - Filter by lead
+### Tarefas
+- `assigned_to` - Filtrar por ID de usuário
+- `is_complete` - Filtrar por conclusão (true/false)
+- `lead_id` - Filtrar por lead
 - `_type` - Task type (lead)
 
-## When to Use
+## Quando Usar
 
-- Managing SMB sales pipelines with high-touch outreach
-- Tracking sales activities (calls, emails, meetings) per lead
-- Creating and managing tasks for sales follow-ups
-- Opportunity tracking and revenue forecasting
-- Building automated outreach workflows
+- Gerenciamento de pipelines de vendas SMB com outreach de alto contato
+- Rastreamento de atividades de vendas (calls, emails, meetings) por lead
+- Criação e gerenciamento de tarefas para follow-ups de vendas
+- Rastreamento de oportunidades e previsão de receita
+- Criação de workflows automatizados de outreach
 - Sales team performance reporting
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits based on organization plan
-- Standard: ~100 requests/minute
-- Responses include `ratelimit-limit` and `ratelimit-remaining` headers
-- 429 responses include `Retry-After` header
+- Limites de taxa baseados no plano da organização
+- Padrão: ~100 requisições/minuto
+- As respostas incluem os headers `ratelimit-limit` e `ratelimit-remaining`
+- Respostas 429 incluem o header `Retry-After`
 
-## Relevant Skills
+## Skills Relevantes
 
 - revops
 - sales-enablement

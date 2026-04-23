@@ -1,43 +1,43 @@
 # Coupler.io
 
-Data integration platform that connects marketing, sales, analytics, and e-commerce data sources to destinations like spreadsheets, BI tools, and data warehouses with automated scheduling.
+Plataforma de integração de dados que conecta fontes de dados de marketing, vendas, analytics e e-commerce a destinos como planilhas, ferramentas de BI e data warehouses com agendamento automatizado.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Importers, Runs, Sources, Destinations |
 | MCP | ✓ | [Claude connector](https://claude.com/connectors/coupler-io) |
 | CLI | ✓ | [coupler.js](../clis/coupler.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas REST API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
-- **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: Settings > API at https://app.coupler.io
+- **Tipo**: API Key
+- **Cabeçalho**: `Authorization: Bearer {api_key}`
+- **Obter chave**: Settings > API at https://app.coupler.io
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List Importers
+### Listar Importers
 
 ```bash
 GET https://api.coupler.io/v1/importers
 ```
 
-### Get Importer Details
+### Obter Importer Details
 
 ```bash
 GET https://api.coupler.io/v1/importers/{id}
 ```
 
-### Trigger an Importer Run
+### Disparar an Importer Run
 
 ```bash
 POST https://api.coupler.io/v1/importers/{id}/run
 ```
 
-### Create an Importer
+### Criar an Importer
 
 ```bash
 POST https://api.coupler.io/v1/importers
@@ -49,39 +49,39 @@ POST https://api.coupler.io/v1/importers
 }
 ```
 
-### Delete an Importer
+### Excluir an Importer
 
 ```bash
 DELETE https://api.coupler.io/v1/importers/{id}
 ```
 
-### List Runs for an Importer
+### Listar Runs de um Importer
 
 ```bash
 GET https://api.coupler.io/v1/importers/{id}/runs
 ```
 
-### Get Run Details
+### Obter Run Details
 
 ```bash
 GET https://api.coupler.io/v1/runs/{id}
 ```
 
-### List Available Sources
+### Listar Fontes Disponíveis
 
 ```bash
 GET https://api.coupler.io/v1/sources
 ```
 
-### List Available Destinations
+### Listar Destinos Disponíveis
 
 ```bash
 GET https://api.coupler.io/v1/destinations
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Importer Data
+### Dados de Importer
 - `id` - Importer ID
 - `name` - Importer name
 - `source_type` - Source connector type
@@ -90,7 +90,7 @@ GET https://api.coupler.io/v1/destinations
 - `status` - Current status
 - `last_run_at` - Last run timestamp
 
-### Run Data
+### Dados de Run
 - `id` - Run ID
 - `importer_id` - Parent importer
 - `status` - Run status (pending, running, completed, failed)
@@ -99,7 +99,7 @@ GET https://api.coupler.io/v1/destinations
 - `rows_imported` - Number of rows processed
 - `error` - Error message if failed
 
-## Parameters
+## Parâmetros
 
 ### Importer Creation
 - `source_type` - Source connector (e.g., google_analytics, google_ads, facebook_ads, hubspot, shopify, stripe, airtable)
@@ -107,35 +107,35 @@ GET https://api.coupler.io/v1/destinations
 - `name` - Importer name
 - `schedule` - Automation schedule (e.g., hourly, daily, weekly)
 
-### Supported Sources
+### Fontes Suportadas
 - **Analytics**: Google Analytics, Adobe Analytics
 - **Ads**: Google Ads, Facebook Ads, LinkedIn Ads, TikTok Ads
 - **CRM**: HubSpot, Salesforce, Pipedrive
 - **E-commerce**: Shopify, Stripe, WooCommerce
 - **Other**: Airtable, Google Sheets, BigQuery, MySQL, PostgreSQL
 
-### Supported Destinations
+### Destinos Suportados
 - **Spreadsheets**: Google Sheets, Excel Online
 - **BI Tools**: Looker Studio, Power BI, Tableau
 - **Data Warehouses**: BigQuery, Snowflake, Redshift
 - **Databases**: PostgreSQL, MySQL
 
-## When to Use
+## Quando Usar
 
-- Automating marketing data pipelines from ads and analytics platforms
-- Consolidating multi-channel campaign data into a single destination
-- Scheduling recurring data syncs from CRM to spreadsheets or BI tools
-- Building marketing dashboards with fresh data from multiple sources
-- Exporting e-commerce data for reporting and analysis
-- Connecting data sources without writing custom ETL code
+- Automação de pipelines de dados de marketing a partir de plataformas de ads e analytics
+- Consolidação de dados de campanhas multicanal em um único destino
+- Agendamento de sincronizações recorrentes de dados do CRM para planilhas ou ferramentas de BI
+- Criação de dashboards de marketing com dados atualizados de múltiplas fontes
+- Exportação de dados de e-commerce para relatórios e análise
+- Conexão de fontes de dados sem escrever código ETL customizado
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits vary by plan
-- Standard: API access available on Professional and higher plans
+- Os limites de taxa variam por plano
+- Padrão: Acesso à API disponível nos planos Professional e superiores
 - Importer run frequency depends on plan tier
 
-## Relevant Skills
+## Skills Relevantes
 
 - analytics-tracking
 - paid-ads

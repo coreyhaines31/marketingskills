@@ -1,54 +1,54 @@
 # Composio
 
-Managed OAuth and pre-built tool connectors for 500+ apps via a single MCP server. Provides agent-native access to marketing tools that lack native MCP support.
+OAuth gerenciado e conectores de ferramentas pré-construídos para 500+ apps por meio de um único servidor MCP. Fornece acesso agent-native a ferramentas de marketing que não têm suporte nativo a MCP.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | REST API for managing connections and triggering actions |
-| MCP | ✓ | Single MCP server exposes all connected tools |
-| CLI | ✓ | `npx composio` for managing apps, connections, and actions |
-| SDK | ✓ | TypeScript and Python SDKs |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | REST API para gerenciar conexões e disparar ações |
+| MCP | ✓ | Um único servidor MCP expõe todas as ferramentas conectadas |
+| CLI | ✓ | `npx composio` para gerenciar apps, conexões e ações |
+| SDK | ✓ | SDKs TypeScript e Python |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0 (per-tool, managed by Composio) or API Key
-- **Setup**: `npx @composio/mcp@latest setup` to install, then authenticate each tool via Connect Link in browser
-- **API Key** (optional): `COMPOSIO_API_KEY` env var for advanced/team usage
+- **Tipo**: OAuth 2.0 (por ferramenta, gerenciado pelo Composio) ou API Key
+- **Configuração**: `npx @composio/mcp@latest setup` para instalar, depois autenticar cada ferramenta via Connect Link no navegador
+- **API Key** (optional): `COMPOSIO_API_KEY` variável de ambiente para uso avançado/em equipe
 
-Composio handles OAuth token management, refresh, and storage for all connected tools. Individual tool auth types are listed in the Marketing Tools table below.
+Composio gerencia o gerenciamento, refresh e armazenamento de tokens OAuth para todas as ferramentas conectadas. Os tipos de autenticação de cada ferramenta estão listados na tabela Marketing Tools abaixo.
 
-## When to Use Composio vs. Native Tools
+## Quando Usar Composio vs. Ferramentas Nativas
 
-Composio is an **alternative integration method**, not a replacement. Use this decision guide:
+Composio é um **método alternativo de integração**, não um substituto. Use este guia de decisão:
 
 | Scenario | Use |
 |----------|-----|
-| Tool has native MCP server (GA4, Stripe, Mailchimp) | Native MCP server |
-| Tool has CLI but no MCP (Meta Ads, LinkedIn Ads, HubSpot) | Composio for MCP access |
-| OAuth-heavy tool with no CLI (Google Sheets, Slack, Notion) | Composio |
-| Need deep, customized integration | Native API + CLI |
-| Need quick read/write access across many tools | Composio |
-| Tool not covered by Composio | Native API guide |
+| A ferramenta tem servidor MCP nativo (GA4, Stripe, Mailchimp) | Servidor MCP nativo |
+| A ferramenta tem CLI, mas não MCP (Meta Ads, LinkedIn Ads, HubSpot) | Composio para acesso MCP |
+| Ferramenta com OAuth pesado e sem CLI (Google Sheets, Slack, Notion) | Composio |
+| Precisa de integração profunda e customizada | API nativa + CLI |
+| Precisa de acesso rápido de leitura/escrita em muitas ferramentas | Composio |
+| Ferramenta não coberta pelo Composio | Guia de API nativa |
 
-## Setup
+## Configuração
 
-### 1. Install the MCP server
+### 1. Instale o servidor MCP
 
 ```bash
 npx @composio/mcp@latest setup
 ```
 
-This adds the Composio MCP server to your Claude Code configuration.
+Isso adiciona o servidor MCP do Composio à sua configuração do Claude Code.
 
-### 2. Verify installation
+### 2. Verifique a instalação
 
-In Claude Code, run `/mcp` to confirm `composio` appears in your MCP server list.
+No Claude Code, execute `/mcp` para confirmar que `composio` aparece na lista de servidores MCP.
 
-### 3. Authenticate a tool
+### 3. Autentique uma ferramenta
 
-When you first use a Composio-backed tool, you'll receive a Connect Link. Open it in your browser to complete OAuth. The connection persists across sessions.
+Quando você usar uma ferramenta com suporte do Composio pela primeira vez, receberá um Connect Link. Abra no navegador para concluir o OAuth. A conexão persiste entre sessões.
 
 ```
 # Example: connect HubSpot
@@ -57,19 +57,19 @@ When you first use a Composio-backed tool, you'll receive a Connect Link. Open i
 # Click link → authorize → done
 ```
 
-### 4. API key (optional)
+### 4. API key (opcional)
 
-For advanced usage or team setups, set your Composio API key:
+Para uso avançado ou configurações em equipe, defina sua API key do Composio:
 
 ```bash
 export COMPOSIO_API_KEY=your_key_here
 ```
 
-## Marketing Tools Available via Composio
+## Ferramentas de Marketing Disponíveis via Composio
 
-### New MCP Coverage
+### Nova Cobertura MCP
 
-These tools have API guides in this repo but **no native MCP server**. Composio adds MCP access:
+Estas ferramentas têm guias de API neste repositório, mas **não têm servidor MCP nativo**. Composio adiciona acesso MCP:
 
 | Tool | Composio Toolkit | Auth Type | Coverage Depth |
 |------|-----------------|-----------|----------------|
@@ -86,33 +86,33 @@ These tools have API guides in this repo but **no native MCP server**. Composio 
 | Shopify | `SHOPIFY` | OAuth 2.0 | Deep (products, orders, customers) |
 | Gmail | `GMAIL` | OAuth 2.0 | Deep (read, send, labels, search) |
 
-### Alternative to Existing Tools
+### Alternativa às Ferramentas Existentes
 
-These tools **already have native MCP or CLI** in this repo. Composio provides an alternative path:
+Estas ferramentas **já têm MCP nativo ou CLI** neste repositório. Composio oferece um caminho alternativo:
 
-| Tool | Native Integration | Composio Toolkit | When to Use Composio |
+| Ferramenta | Integração Nativa | Composio Toolkit | Quando Usar Composio |
 |------|-------------------|-----------------|---------------------|
 | Mailchimp | MCP ✓, CLI ✓ | `MAILCHIMP` | If native MCP setup fails |
 | Google Ads | MCP ✓, CLI ✓ | `GOOGLEADS` | If OAuth is simpler via Composio |
-| Stripe | MCP ✓, CLI ✓ | `STRIPE` | Prefer native (deeper coverage) |
-| GA4 | MCP ✓, CLI ✓ | `GOOGLEANALYTICS` | Prefer native (deeper coverage) |
+| Stripe | MCP ✓, CLI ✓ | `STRIPE` | Prefira nativo (cobertura mais profunda) |
+| GA4 | MCP ✓, CLI ✓ | `GOOGLEANALYTICS` | Prefira nativo (cobertura mais profunda) |
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List available tools
+### Listar ferramentas disponíveis
 
 ```bash
 # Via Composio CLI
 npx composio apps list
 ```
 
-### Check connection status
+### Verificar status da conexão
 
 ```bash
 npx composio connections list
 ```
 
-### Trigger an action programmatically
+### Disparar uma ação programaticamente
 
 ```bash
 POST https://backend.composio.dev/api/v1/actions/{action_id}/execute
@@ -125,64 +125,64 @@ POST https://backend.composio.dev/api/v1/actions/{action_id}/execute
 }
 ```
 
-### Disconnect a tool
+### Desconectar uma ferramenta
 
 ```bash
 npx composio connections remove {connection_id}
 ```
 
-## Example Workflows
+## Workflows de Exemplo
 
-### Pull CRM data into a spreadsheet
+### Trazer dados de CRM para uma planilha
 
 ```
 > "Get my top 20 HubSpot contacts by last activity and add them to a Google Sheet"
 ```
-Agent uses Composio's `HUBSPOT` to fetch contacts and `GOOGLESHEETS` to write rows.
+O agente usa o `HUBSPOT` do Composio para buscar contatos e `GOOGLESHEETS` para gravar linhas.
 
-### Cross-platform ad reporting
+### Relatórios de anúncios cross-platform
 
 ```
 > "Compare my Meta Ads and LinkedIn Ads spend this month"
 ```
-Agent uses `FACEBOOKADS` and `LINKEDIN` toolkits to pull campaign data.
+O agente usa os toolkits `FACEBOOKADS` e `LINKEDIN` para buscar dados de campanha.
 
-### Notify team about new leads
+### Notificar a equipe sobre novos leads
 
 ```
 > "Get my Salesforce leads from today and post a summary in Slack #sales"
 ```
-Agent uses `SALESFORCE` to read leads and `SLACK` to post messages.
+O agente usa `SALESFORCE` para ler leads e `SLACK` para postar mensagens.
 
-## Limitations
+## Limitações
 
-- **Coverage depth varies** — some toolkits expose hundreds of actions (HubSpot, Google Sheets), others only a handful
-- **No customization** — you can't modify Composio's action schemas or add custom endpoints
-- **Vendor dependency** — if Composio's servers are down, all connected tools are unavailable
-- **Rate limits apply** — Composio enforces its own rate limits on top of each tool's native limits
-- **OAuth tokens** — managed by Composio; you don't control token refresh or storage
-- **Action naming** — Composio action names may differ from native API terminology
+- **A profundidade da cobertura varia** — alguns toolkits expõem centenas de ações (HubSpot, Google Sheets), outros apenas algumas
+- **Sem customização** — você não pode modificar os schemas de ação do Composio nem adicionar endpoints customizados
+- **Dependência de fornecedor** — se os servidores do Composio estiverem fora do ar, todas as ferramentas conectadas ficam indisponíveis
+- **Limites de taxa se aplicam** — Composio aplica seus próprios limites de taxa além dos limites nativos de cada ferramenta
+- **OAuth tokens** — gerenciados pelo Composio; você não controla refresh ou armazenamento dos tokens
+- **Nomenclatura de ações** — os nomes de ação do Composio podem diferir da terminologia da API nativa
 
-## Pricing
+## Preços
 
 | Plan | Monthly Price | API Calls | Notes |
 |------|--------------|-----------|-------|
-| Free | $0 | 20,000 | Good for exploration and personal use |
-| Growth | $29 | 200,000 | For regular use across multiple tools |
-| Business | $229 | 2,000,000 | For teams and heavy automation |
+| Free | $0 | 20,000 | Bom para exploração e uso pessoal |
+| Growth | $29 | 200,000 | Para uso regular em múltiplas ferramentas |
+| Business | $229 | 2,000,000 | Para equipes e automação intensa |
 
-## Rate Limits
+## Limites de Taxa
 
 - Free tier: 20,000 calls/month, 10 req/sec
 - Growth tier: 200,000 calls/month, 50 req/sec
 - Business tier: 2,000,000 calls/month, 100 req/sec
 
-## See Also
+## Veja Também
 
-- [Quick start guide](../composio/README.md) — install, connect, and use in 5 minutes
+- [Guia de início rápido](../composio/README.md) — instale, conecte e use em 5 minutos
 - [Marketing tools mapping](../composio/marketing-tools.md) — detailed toolkit-to-category reference
 
-## Relevant Skills
+## Skills Relevantes
 
 - analytics-tracking (cross-platform data via Composio connectors)
 - email-sequence (ActiveCampaign, Klaviyo access)

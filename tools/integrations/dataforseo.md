@@ -1,24 +1,24 @@
 # DataForSEO
 
-Comprehensive SEO data API for SERP results, keyword research, backlinks, and on-page analysis.
+API abrangente de dados de SEO para resultados de SERP, pesquisa de palavras-chave, backlinks e análise on-page.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | SERP, Keywords Data, Backlinks, On-Page, Labs |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [dataforseo.js](../clis/dataforseo.js) |
 | SDK | ✓ | Python, TypeScript, PHP, Java, C# |
 
-## Authentication
+## Autenticação
 
-- **Type**: Basic Auth
-- **Header**: `Authorization: Basic {base64(login:password)}`
-- **Get credentials**: API Access tab at https://app.dataforseo.com/api-access
-- **Note**: API password is auto-generated, different from account password
+- **Tipo**: Basic Auth
+- **Cabeçalho**: `Authorization: Basic {base64(login:password)}`
+- **Obter credenciais**: aba API Access em https://app.dataforseo.com/api-access
+- **Observação**: A senha da API é gerada automaticamente, diferente da senha da conta
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
 ### SERP - Google organic (live)
 
@@ -32,7 +32,7 @@ POST https://api.dataforseo.com/v3/serp/google/organic/live/regular
 }]
 ```
 
-### Keywords - Search volume (live)
+### Keywords - Volume de busca (live)
 
 ```bash
 POST https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live
@@ -44,7 +44,7 @@ POST https://api.dataforseo.com/v3/keywords_data/google_ads/search_volume/live
 }]
 ```
 
-### Keywords - Keywords for site (live)
+### Keywords - Keywords para site (live)
 
 ```bash
 POST https://api.dataforseo.com/v3/keywords_data/google_ads/keywords_for_site/live
@@ -68,7 +68,7 @@ POST https://api.dataforseo.com/v3/backlinks/summary/live
 }]
 ```
 
-### Backlinks - List
+### Backlinks - Lista
 
 ```bash
 POST https://api.dataforseo.com/v3/backlinks/backlinks/live
@@ -109,55 +109,55 @@ POST https://api.dataforseo.com/v3/on_page/instant_pages
 }]
 ```
 
-### SERP - Locations list
+### SERP - Lista de locais
 
 ```bash
 GET https://api.dataforseo.com/v3/serp/google/locations
 ```
 
-### SERP - Languages list
+### SERP - Lista de idiomas
 
 ```bash
 GET https://api.dataforseo.com/v3/serp/google/languages
 ```
 
-## API Pattern
+## Padrão da API
 
-DataForSEO uses two methods for most endpoints:
-- **Live** (`/live`) - Synchronous, results in same response
-- **Task-based** (`/task_post` + `/task_get/$id`) - Async for large requests
+DataForSEO usa dois métodos para a maioria dos endpoints:
+- **Live** (`/live`) - Síncrono, resultados na mesma resposta
+- **Task-based** (`/task_post` + `/task_get/$id`) - Assíncrono para requisições grandes
 
-Request bodies are always JSON arrays (even for single requests).
+Os corpos das requisições são sempre arrays JSON (mesmo para requisições únicas).
 
-## Key Metrics
+## Métricas Principais
 
-### Keyword Metrics
-- `search_volume` - Monthly search volume
+### Métricas de Palavra-chave
+- `search_volume` - Volume de busca mensal
 - `competition` - Competition level (0-1)
-- `cpc` - Cost per click
-- `monthly_searches` - Monthly breakdown array
+- `cpc` - Custo por clique
+- `monthly_searches` - Array com detalhamento mensal
 
-### Backlink Metrics
+### Métricas de Backlink
 - `total_backlinks` - Total backlink count
 - `referring_domains` - Unique referring domains
 - `domain_rank` - Domain authority score
 - `backlinks_spam_score` - Spam score
 
-## When to Use
+## Quando Usar
 
-- Programmatic SERP tracking at scale
-- Keyword research with search volume data
-- Backlink analysis and monitoring
+- Rastreamento programático de SERP em escala
+- Pesquisa de palavras-chave com dados de volume de busca
+- Análise e monitoramento de backlinks
 - On-page SEO audits
 - Competitor analysis
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limit headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`
-- Backlinks API: 2000 requests/minute, 30 simultaneous
-- Varies by endpoint and plan
+- Headers de limite de taxa: `X-RateLimit-Limit`, `X-RateLimit-Remaining`
+- Backlinks API: 2000 requisições/minuto, 30 simultâneas
+- Varia por endpoint e plano
 
-## Relevant Skills
+## Skills Relevantes
 
 - seo-audit
 - programmatic-seo

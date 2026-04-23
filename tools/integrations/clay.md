@@ -1,25 +1,25 @@
 # Clay
 
-Data enrichment and outbound automation platform for building lead lists with waterfall enrichment across 75+ data providers.
+Plataforma de enriquecimento de dados e automação outbound para criar listas de leads com waterfall enrichment em mais de 75 provedores de dados.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Tables, People Enrichment, Company Enrichment |
 | MCP | ✓ | [Claude connector](https://claude.com/connectors/clay) |
 | CLI | ✓ | [clay.js](../clis/clay.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas REST API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key (Bearer token)
-- **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: Settings > API at https://app.clay.com
+- **Tipo**: API Key (Bearer token)
+- **Cabeçalho**: `Authorization: Bearer {api_key}`
+- **Obter chave**: Settings > API at https://app.clay.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List Tables
+### Listar Tables
 
 ```bash
 GET https://api.clay.com/v3/tables
@@ -27,7 +27,7 @@ GET https://api.clay.com/v3/tables
 Authorization: Bearer {api_key}
 ```
 
-### Get Table Details
+### Obter Table Details
 
 ```bash
 GET https://api.clay.com/v3/tables/{table_id}
@@ -35,7 +35,7 @@ GET https://api.clay.com/v3/tables/{table_id}
 Authorization: Bearer {api_key}
 ```
 
-### Get Table Rows
+### Obter Table Rows
 
 ```bash
 GET https://api.clay.com/v3/tables/{table_id}/rows?page=1&per_page=25
@@ -43,7 +43,7 @@ GET https://api.clay.com/v3/tables/{table_id}/rows?page=1&per_page=25
 Authorization: Bearer {api_key}
 ```
 
-### Add Row to Table
+### Adicionar linha à tabela
 
 ```bash
 POST https://api.clay.com/v3/tables/{table_id}/rows
@@ -66,7 +66,7 @@ POST https://api.clay.com/v3/people/enrich
 }
 ```
 
-### Company Enrichment
+### Enriquecimento de Empresa
 
 ```bash
 POST https://api.clay.com/v3/companies/enrich
@@ -76,9 +76,9 @@ POST https://api.clay.com/v3/companies/enrich
 }
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Person Data
+### Dados de Pessoa
 - `first_name`, `last_name` - Name
 - `email` - Email address
 - `title` - Job title
@@ -87,7 +87,7 @@ POST https://api.clay.com/v3/companies/enrich
 - `location` - Location
 - `seniority` - Seniority level
 
-### Company Data
+### Dados de Empresa
 - `name` - Company name
 - `domain` - Website domain
 - `industry` - Industry
@@ -97,51 +97,51 @@ POST https://api.clay.com/v3/companies/enrich
 - `technologies` - Tech stack
 - `description` - Company description
 
-### Table Data
+### Dados de Tabela
 - `id` - Table ID
 - `name` - Table name
 - `row_count` - Number of rows
 - `columns` - Column definitions
-- `created_at` - Creation timestamp
-- `updated_at` - Last update timestamp
+- `created_at` - Timestamp de criação
+- `updated_at` - Timestamp da última atualização
 
-## Parameters
+## Parâmetros
 
-### Tables
-- `page` - Page number (default: 1)
-- `per_page` - Results per page (default: 25)
+### Tabelas
+- `page` - Número da página (padrão: 1)
+- `per_page` - Resultados por página (default: 25)
 
 ### People Enrichment
 - `email` - Email address
 - `linkedin_url` - LinkedIn profile URL
-- `first_name` + `last_name` - Name-based lookup
+- `first_name` + `last_name` - Busca baseada em nome
 
-### Company Enrichment
-- `domain` - Company domain (e.g., "acme.com")
+### Enriquecimento de Empresa
+- `domain` - Domínio da empresa (e.g., "acme.com")
 
-### Add Row
-- Fields are dynamic and match the table's column definitions
-- Pass data as key-value pairs matching column names
+### Adicionar Linha
+- Os campos são dinâmicos e correspondem às definições de coluna da tabela
+- Passe dados como pares chave-valor correspondentes aos nomes das colunas
 
-## When to Use
+## Quando Usar
 
-- Building enriched prospect lists with waterfall enrichment across multiple providers
-- Enriching leads with person and company data from 75+ sources
-- Automating outbound workflows with enriched data
+- Criação de listas de prospects enriquecidas com waterfall enrichment em múltiplos provedores
+- Enriquecimento de leads com dados de pessoa e empresa de mais de 75 fontes
+- Automação de workflows outbound com dados enriquecidos
 - Finding verified contact info (emails, phone numbers, social profiles)
-- Company research and firmographic analysis
+- Pesquisa de empresas e análise firmográfica
 - Triggering enrichment workflows via webhooks
-- Syncing enriched data back to CRM or outbound tools
+- Sincronização de dados enriquecidos de volta ao CRM ou ferramentas outbound
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits vary by plan
-- Standard: 100 requests/minute
-- Enterprise plans have higher limits
-- Enrichment credits consumed per lookup vary by data provider
-- Webhook endpoints accept data continuously
+- Os limites de taxa variam por plano
+- Padrão: 100 requests/minute
+- Planos Enterprise têm limites maiores
+- Créditos de enriquecimento consumidos por busca variam por provedor de dados
+- Endpoints de webhook aceitam dados continuamente
 
-## Relevant Skills
+## Skills Relevantes
 
 - cold-email
 - revops

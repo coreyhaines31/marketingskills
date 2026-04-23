@@ -1,55 +1,55 @@
 # Calendly
 
-Scheduling and booking platform API for managing event types, scheduled events, invitees, and availability.
+API da plataforma de agendamento e reservas para gerenciar tipos de evento, eventos agendados, convidados e disponibilidade.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | REST API v2 - event types, scheduled events, invitees, availability |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [calendly.js](../clis/calendly.js) |
-| SDK | ✓ | No official SDK; community libraries available |
+| SDK | ✓ | Sem SDK oficial; bibliotecas da comunidade disponíveis |
 
-## Authentication
+## Autenticação
 
-- **Type**: Bearer Token (Personal Access Token or OAuth 2.0)
-- **Header**: `Authorization: Bearer {token}`
-- **Get key**: https://calendly.com/integrations/api_webhooks (Personal Access Token)
+- **Tipo**: Bearer Token (Personal Access Token or OAuth 2.0)
+- **Cabeçalho**: `Authorization: Bearer {token}`
+- **Obter chave**: https://calendly.com/integrations/api_webhooks (Personal Access Token)
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get current user
+### Obter current user
 
 ```bash
 GET https://api.calendly.com/users/me
 ```
 
-### List event types
+### Listar event types
 
 ```bash
 GET https://api.calendly.com/event_types?user={user_uri}
 ```
 
-### List scheduled events
+### Listar scheduled events
 
 ```bash
 GET https://api.calendly.com/scheduled_events?user={user_uri}&min_start_time=2024-01-01T00:00:00Z&max_start_time=2024-12-31T23:59:59Z&status=active
 ```
 
-### Get a scheduled event
+### Obter a scheduled event
 
 ```bash
 GET https://api.calendly.com/scheduled_events/{event_uuid}
 ```
 
-### List invitees for an event
+### Listar convidados de um evento
 
 ```bash
 GET https://api.calendly.com/scheduled_events/{event_uuid}/invitees
 ```
 
-### Cancel a scheduled event
+### Cancelar a scheduled event
 
 ```bash
 POST https://api.calendly.com/scheduled_events/{event_uuid}/cancellation
@@ -59,25 +59,25 @@ POST https://api.calendly.com/scheduled_events/{event_uuid}/cancellation
 }
 ```
 
-### Get available times
+### Obter horários disponíveis
 
 ```bash
 GET https://api.calendly.com/event_type_available_times?event_type={event_type_uri}&start_time=2024-01-20T00:00:00Z&end_time=2024-01-27T00:00:00Z
 ```
 
-### Get user busy times
+### Obter user busy times
 
 ```bash
 GET https://api.calendly.com/user_busy_times?user={user_uri}&start_time=2024-01-20T00:00:00Z&end_time=2024-01-27T00:00:00Z
 ```
 
-### List organization members
+### Listar organization members
 
 ```bash
 GET https://api.calendly.com/organization_memberships?organization={organization_uri}
 ```
 
-### Create webhook subscription
+### Criar webhook subscription
 
 ```bash
 POST https://api.calendly.com/webhook_subscriptions
@@ -90,70 +90,70 @@ POST https://api.calendly.com/webhook_subscriptions
 }
 ```
 
-### List webhook subscriptions
+### Listar webhook subscriptions
 
 ```bash
 GET https://api.calendly.com/webhook_subscriptions?organization={organization_uri}&scope=organization
 ```
 
-### Delete webhook subscription
+### Excluir webhook subscription
 
 ```bash
 DELETE https://api.calendly.com/webhook_subscriptions/{webhook_uuid}
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Scheduled Event Data
+### Dados de Evento Agendado
 - `uri` - Unique event URI
 - `name` - Event type name
 - `status` - Event status (active, canceled)
 - `start_time` / `end_time` - Event timing
-- `event_type` - URI of the event type
+- `event_type` - URI do tipo de evento
 - `location` - Meeting location details
 - `invitees_counter` - Count of invitees (active, limit, total)
 
-### Invitee Data
+### Dados de Convidado
 - `name` - Invitee full name
 - `email` - Invitee email
 - `status` - active or canceled
-- `questions_and_answers` - Custom question responses
-- `tracking` - UTM parameters
+- `questions_and_answers` - Respostas de perguntas customizadas
+- `tracking` - Parâmetros UTM
 - `created_at` / `updated_at` - Timestamps
 
-## Parameters
+## Parâmetros
 
-### List Scheduled Events
-- `user` - User URI (required)
-- `min_start_time` / `max_start_time` - Date range filter (ISO 8601)
-- `status` - Filter by status (active, canceled)
-- `count` - Number of results (default 20, max 100)
+### Listar Eventos Agendados
+- `user` - URI do usuário (obrigatório)
+- `min_start_time` / `max_start_time` - Filtro de intervalo de datas (ISO 8601)
+- `status` - Filtrar por status (active, canceled)
+- `count` - Número de resultados (padrão 20, máx. 100)
 - `page_token` - Pagination token
 - `sort` - Sort order (start_time:asc or start_time:desc)
 
-### List Event Types
+### Listar Tipos de Evento
 - `user` - User URI
 - `organization` - Organization URI
-- `active` - Filter active/inactive
-- `count` - Results per page
+- `active` - Filtrar active/inactive
+- `count` - Resultados por página
 - `sort` - Sort order
 
-## When to Use
+## Quando Usar
 
-- Retrieving scheduled meeting data for CRM sync
-- Monitoring booking activity and conversion rates
+- Recuperação de dados de reuniões agendadas para sync com CRM
+- Monitoramento da atividade de reservas e taxas de conversão
 - Automating follow-up workflows after meetings
-- Checking availability before suggesting meeting times
-- Tracking meeting cancellations and no-shows
-- Building custom booking interfaces
+- Verificação de disponibilidade antes de sugerir horários de reunião
+- Rastreamento de cancelamentos de reunião e no-shows
+- Criação de interfaces de reserva customizadas
 
-## Rate Limits
+## Limites de Taxa
 
-- Not officially documented; implement retry logic with exponential backoff
-- Use conservative request rates (avoid bursting)
-- Monitor for HTTP 429 responses
+- Não oficialmente documentado; implemente lógica de retry com exponential backoff
+- Use taxas de requisição conservadoras (evite rajadas)
+- Monitore respostas HTTP 429
 
-## Relevant Skills
+## Skills Relevantes
 
 - lead-generation
 - sales-automation

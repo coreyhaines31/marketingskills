@@ -1,38 +1,38 @@
 # Beehiiv
 
-Newsletter platform with subscriber management, post publishing, automations, and referral programs.
+Plataforma de newsletter com gerenciamento de assinantes, publicação de posts, automações e programas de indicação.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | REST API v2 for publications, subscriptions, posts, segments |
-| MCP | - | Not available |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | REST API v2 para publications, subscriptions, posts, segments |
+| MCP | - | Não disponível |
 | CLI | ✓ | [beehiiv.js](../clis/beehiiv.js) |
-| SDK | - | No official SDK; OpenAPI spec available for codegen |
+| SDK | - | Sem SDK oficial; OpenAPI spec disponível para codegen |
 
-## Authentication
+## Autenticação
 
-- **Type**: Bearer Token
-- **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: Settings > API under Workspace Settings at https://app.beehiiv.com
-- **Note**: API key is only shown once on creation; copy and store it immediately
+- **Tipo**: Bearer Token
+- **Cabeçalho**: `Authorization: Bearer {api_key}`
+- **Obter chave**: Settings > API under Workspace Settings at https://app.beehiiv.com
+- **Observação**: A API key é exibida apenas uma vez na criação; copie e armazene imediatamente
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List publications
+### Listar publications
 
 ```bash
 GET https://api.beehiiv.com/v2/publications
 ```
 
-### Get publication details
+### Obter publication details
 
 ```bash
 GET https://api.beehiiv.com/v2/publications/{publicationId}
 ```
 
-### List subscriptions
+### Listar subscriptions
 
 ```bash
 GET https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions?limit=10&status=active
@@ -41,7 +41,7 @@ GET https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions?limit=
 GET https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions?email=user@example.com
 ```
 
-### Create subscription
+### Criar subscription
 
 ```bash
 POST https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions
@@ -55,7 +55,7 @@ POST https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions
 }
 ```
 
-### Update subscription
+### Atualizar subscription
 
 ```bash
 PUT https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subscriptionId}
@@ -65,19 +65,19 @@ PUT https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subsc
 }
 ```
 
-### Delete subscription
+### Excluir subscription
 
 ```bash
 DELETE https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subscriptionId}
 ```
 
-### List posts
+### Listar posts
 
 ```bash
 GET https://api.beehiiv.com/v2/publications/{publicationId}/posts?limit=10&status=confirmed
 ```
 
-### Create post (Enterprise only)
+### Criar post (somente Enterprise)
 
 ```bash
 POST https://api.beehiiv.com/v2/publications/{publicationId}/posts
@@ -90,66 +90,66 @@ POST https://api.beehiiv.com/v2/publications/{publicationId}/posts
 }
 ```
 
-### List segments
+### Listar segments
 
 ```bash
 GET https://api.beehiiv.com/v2/publications/{publicationId}/segments
 ```
 
-### List automations
+### Listar automations
 
 ```bash
 GET https://api.beehiiv.com/v2/publications/{publicationId}/automations
 ```
 
-### Get referral program
+### Obter referral program
 
 ```bash
 GET https://api.beehiiv.com/v2/publications/{publicationId}/referral_program
 ```
 
-## API Pattern
+## Padrão da API
 
-All endpoints are scoped to a publication. The publication ID is a required path parameter for most operations. Responses use cursor-based pagination with a `cursor` parameter for fetching subsequent pages.
+Todos os endpoints são escopados a uma publication. O ID da publication é um parâmetro de path obrigatório para a maioria das operações. As respostas usam paginação baseada em cursor com o parâmetro `cursor` para buscar páginas subsequentes.
 
-## Key Metrics
+## Métricas Principais
 
-### Subscription Fields
+### Campos de Assinatura
 - `status` - validating, invalid, pending, active, inactive
 - `tier` - free or premium
-- `created` - Subscription creation timestamp
-- `utm_source`, `utm_medium`, `utm_campaign` - Acquisition tracking
-- `referral_code` - Unique referral code for subscriber
+- `created` - Timestamp de criação da assinatura
+- `utm_source`, `utm_medium`, `utm_campaign` - Rastreamento de aquisição
+- `referral_code` - Código de indicação único do assinante
 
-### Post Fields
+### Campos de Post
 - `status` - draft, confirmed (scheduled), archived
-- `publish_date` - When the post was/will be published
-- `stats` - Open rate, click rate, subscriber count (with expand)
+- `publish_date` - Quando o post foi/será publicado
+- `stats` - Taxa de abertura, taxa de clique, contagem de assinantes (com expand)
 
-## Parameters
+## Parâmetros
 
-### Common Query Parameters
-- `limit` - Results per page (1-100, default 10)
-- `cursor` - Cursor for next page of results
-- `expand[]` - Include additional data: stats, custom_fields, referrals
-- `status` - Filter by subscription/post status
-- `tier` - Filter by subscription tier (free, premium)
+### Parâmetros de Query Comuns
+- `limit` - Resultados por página (1-100, padrão 10)
+- `cursor` - Cursor para a próxima página de resultados
+- `expand[]` - Incluir dados adicionais: stats, custom_fields, referrals
+- `status` - Filtrar por status da assinatura/post
+- `tier` - Filtrar por tier da assinatura (free, premium)
 
-## When to Use
+## Quando Usar
 
 - Managing newsletter subscribers programmatically
-- Syncing subscribers from external signup forms or landing pages
-- Building referral program integrations
-- Automating post creation and publishing workflows
-- Tracking subscriber growth and engagement metrics
+- Sincronização de assinantes de formulários de signup externos ou landing pages
+- Criação de integrações de programa de indicação
+- Automação de workflows de criação e publicação de posts
+- Rastreamento de crescimento de assinantes e métricas de engajamento
 
-## Rate Limits
+## Limites de Taxa
 
-- API rate limits apply per API key
-- Use cursor-based pagination for efficient data retrieval
-- Batch operations not available; iterate with individual requests
+- Os limites de taxa da API se aplicam por API key
+- Use paginação baseada em cursor para recuperação eficiente de dados
+- Operações em lote não disponíveis; itere com requisições individuais
 
-## Relevant Skills
+## Skills Relevantes
 
 - email-sequence
 - newsletter-growth

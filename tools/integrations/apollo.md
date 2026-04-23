@@ -1,25 +1,25 @@
 # Apollo.io
 
-B2B prospecting and data enrichment platform with 210M+ contacts and 35M+ companies for sales intelligence.
+Plataforma de prospecção B2B e enriquecimento de dados com 210M+ contatos e 35M+ empresas para sales intelligence.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
-| API | ✓ | People Search, Company Search, Enrichment, Sequences |
-| MCP | - | Not available |
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
+| API | ✓ | Busca de Pessoas, Busca de Empresas, Enriquecimento, Sequences |
+| MCP | - | Não disponível |
 | CLI | ✓ | [apollo.js](../clis/apollo.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas REST API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
-- **Header**: `x-api-key: {api_key}` or `Authorization: Bearer {token}`
-- **Get key**: Settings > Integrations > API at https://app.apollo.io
+- **Tipo**: API Key
+- **Cabeçalho**: `x-api-key: {api_key}` or `Authorization: Bearer {token}`
+- **Obter chave**: Settings > Integrations > API at https://app.apollo.io
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### People Search
+### Busca de Pessoas
 
 ```bash
 POST https://api.apollo.io/api/v1/mixed_people/api_search
@@ -32,7 +32,7 @@ POST https://api.apollo.io/api/v1/mixed_people/api_search
 }
 ```
 
-### Person Enrichment
+### Enriquecimento de Pessoa
 
 ```bash
 POST https://api.apollo.io/api/v1/people/match
@@ -44,7 +44,7 @@ POST https://api.apollo.io/api/v1/people/match
 }
 ```
 
-### Bulk People Enrichment
+### Enriquecimento em Lote de Pessoas
 
 ```bash
 POST https://api.apollo.io/api/v1/people/bulk_match
@@ -57,7 +57,7 @@ POST https://api.apollo.io/api/v1/people/bulk_match
 }
 ```
 
-### Organization Search
+### Busca de Organizações
 
 ```bash
 POST https://api.apollo.io/api/v1/mixed_companies/search
@@ -69,7 +69,7 @@ POST https://api.apollo.io/api/v1/mixed_companies/search
 }
 ```
 
-### Organization Enrichment
+### Enriquecimento de Organização
 
 ```bash
 POST https://api.apollo.io/api/v1/organizations/enrich
@@ -79,18 +79,18 @@ POST https://api.apollo.io/api/v1/organizations/enrich
 }
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Person Data
+### Dados de Pessoa
 - `first_name`, `last_name` - Name
 - `title` - Job title
 - `email` - Verified email
 - `linkedin_url` - LinkedIn profile
 - `organization` - Company details
 - `seniority` - Seniority level
-- `departments` - Department list
+- `departments` - Lista de departamentos
 
-### Organization Data
+### Dados de Organização
 - `name` - Company name
 - `website_url` - Website
 - `estimated_num_employees` - Employee count
@@ -99,47 +99,47 @@ POST https://api.apollo.io/api/v1/organizations/enrich
 - `technologies` - Tech stack
 - `funding_total` - Total funding
 
-## Parameters
+## Parâmetros
 
-### People Search
+### Busca de Pessoas
 - `person_titles` - Array of job titles
 - `person_locations` - Array of locations
 - `person_seniorities` - Array: owner, founder, c_suite, partner, vp, head, director, manager, senior, entry
 - `organization_num_employees_ranges` - Array of ranges (e.g., "1,100")
-- `organization_ids` - Filter by Apollo org IDs
-- `page` - Page number (default: 1)
-- `per_page` - Results per page (default: 25, max: 100)
+- `organization_ids` - Filtrar por IDs de org da Apollo
+- `page` - Número da página (padrão: 1)
+- `per_page` - Resultados por página (padrão: 25, máx: 100)
 
-### Person Enrichment
+### Enriquecimento de Pessoa
 - `email` - Email address
 - `first_name` + `last_name` + `domain` - Alternative lookup
 - `linkedin_url` - LinkedIn URL
 - `reveal_personal_emails` - Include personal emails
 - `reveal_phone_number` - Include phone numbers
 
-### Organization Search
+### Busca de Organizações
 - `organization_locations` - Array of locations
 - `organization_num_employees_ranges` - Employee count ranges
 - `organization_ids` - Specific org IDs
 - `page` - Page number
 
-## When to Use
+## Quando Usar
 
-- Building targeted prospect lists by role, seniority, and company size
-- Enriching leads with verified contact info
-- Finding decision-makers at target accounts
-- Company research and firmographic analysis
+- Criação de listas de prospects segmentadas por cargo, senioridade e tamanho da empresa
+- Enriquecimento de leads com informações de contato verificadas
+- Encontrar tomadores de decisão em contas-alvo
+- Pesquisa de empresas e análise firmográfica
 - ABM campaign targeting
-- Sales intelligence and outbound prospecting
+- Sales intelligence e prospecção outbound
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits vary by plan
-- Standard: 100 requests/minute for most endpoints
-- Bulk enrichment: up to 10 people per request
-- Search: max 50,000 records (100 per page, 500 pages)
+- Os limites de taxa variam por plano
+- Padrão: 100 requisições/minuto para a maioria dos endpoints
+- Enriquecimento em lote: até 10 pessoas por requisição
+- Busca: máx. 50.000 registros (100 por página, 500 páginas)
 
-## Relevant Skills
+## Skills Relevantes
 
 - abm-strategy
 - lead-enrichment
