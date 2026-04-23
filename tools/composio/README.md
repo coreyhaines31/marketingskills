@@ -79,7 +79,7 @@ npx composio apps list
 
 ### Autenticação expirada
 
-Tokens OAuth expiram. Se uma ferramenta parar de funcionar, re-autentique:
+Tokens OAuth expiram. Se uma ferramenta parar de funcionar, faça nova autenticação:
 
 ```bash
 npx composio connections list    # Encontre a conexão
