@@ -1,17 +1,17 @@
-# A/B Test Templates Reference
+# Referência de Templates de Teste A/B
 
-Templates for planning, documenting, and analyzing experiments.
+Templates para planejar, documentar e analisar experimentos.
 
-## Contents
-- Test Plan Template
-- Results Documentation Template
-- Test Repository Entry Template
-- Quick Test Brief Template
-- Stakeholder Update Template
-- Experiment Prioritization Scorecard
-- Hypothesis Bank Template
+## Conteúdo
+- Template de Plano de Teste
+- Template de Documentação de Resultados
+- Template de Entrada no Repositório de Testes
+- Template de Resumo Rápido de Teste
+- Template de Atualização para Stakeholders
+- Scorecard de Priorização de Experimentos
+- Template de Banco de Hipóteses
 
-## Test Plan Template
+## Template de Plano de Teste
 
 ```markdown
 # A/B Test: [Name]
@@ -96,7 +96,7 @@ We'll know this is true when [metrics].
 
 ---
 
-## Results Documentation Template
+## Template de Documentação de Resultados
 
 ```markdown
 # A/B Test Results: [Name]
@@ -193,9 +193,9 @@ We'll know this is true when [metrics].
 
 ---
 
-## Test Repository Entry Template
+## Template de Entrada no Repositório de Testes
 
-For tracking all tests in a central location:
+Para rastrear todos os testes em um local centralizado:
 
 ```markdown
 | Test ID | Name | Page | Dates | Primary Metric | Result | Lift | Link |
@@ -207,9 +207,9 @@ For tracking all tests in a central location:
 
 ---
 
-## Quick Test Brief Template
+## Template de Resumo Rápido de Teste
 
-For simple tests that don't need full documentation:
+Para testes simples que não precisam de documentação completa:
 
 ```markdown
 ## [Test Name]
@@ -224,7 +224,7 @@ For simple tests that don't need full documentation:
 
 ---
 
-## Stakeholder Update Template
+## Template de Atualização para Stakeholders
 
 ```markdown
 ## A/B Test Update: [Name]
@@ -247,26 +247,26 @@ For simple tests that don't need full documentation:
 
 ---
 
-## Experiment Prioritization Scorecard
+## Scorecard de Priorização de Experimentos
 
-For deciding which tests to run:
+Para decidir quais testes executar:
 
-| Factor | Weight | Test A | Test B | Test C |
-|--------|--------|--------|--------|--------|
-| Potential impact | 30% | | | |
-| Confidence in hypothesis | 25% | | | |
-| Ease of implementation | 20% | | | |
-| Risk if wrong | 15% | | | |
-| Strategic alignment | 10% | | | |
+| Fator | Peso | Teste A | Teste B | Teste C |
+|-------|------|---------|---------|---------|
+| Impacto potencial | 30% | | | |
+| Confiança na hipótese | 25% | | | |
+| Facilidade de implementação | 20% | | | |
+| Risco se estiver errado | 15% | | | |
+| Alinhamento estratégico | 10% | | | |
 | **Total** | | | | |
 
-Scoring: 1-5 (5 = best)
+Pontuação: 1–5 (5 = melhor)
 
 ---
 
-## Hypothesis Bank Template
+## Template de Banco de Hipóteses
 
-For collecting test ideas:
+Para coletar ideias de testes:
 
 ```markdown
 | ID | Page/Area | Observation | Hypothesis | Potential Impact | Status |
