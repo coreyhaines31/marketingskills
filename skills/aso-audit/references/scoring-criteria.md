@@ -1,201 +1,201 @@
-# ASO Scoring Criteria
+# Critérios de Pontuação de ASO
 
-Score each dimension 0-10 using the rubrics below.
-**Apply brand maturity tier adjustments** from Phase 1.5 of the main skill.
-
----
-
-## Brand Maturity Adjustments (apply to all dimensions)
-
-Before scoring, determine the app's tier: **Dominant**, **Established**, or **Challenger**.
-
-**Dominant apps (Instagram, Uber, Spotify, WhatsApp, Netflix):**
-
-- Brand-only titles score 8+ (the brand IS the keyword)
-- Lifestyle/brand screenshots score same as captioned UI screenshots
-- Generic What's New at weekly+ cadence scores 8+
-- Missing in-app events for utility apps is not a penalty
-- Description scored on conversion quality only, not keyword presence
-- Localization scored relative to actual market footprint
-- Missing preview video is acceptable if brand awareness is near-universal
-
-**Established apps (Duolingo, Strava, Notion, Calm, Cash App):**
-
-- Brand-first titles with 1-2 keywords score normally
-- Strategic description/visual choices get benefit of the doubt
-- All other dimensions scored normally
-
-**Challenger apps (most apps):**
-
-- Scored strictly against textbook ASO — every character and feature matters
-
-**Key principle:** Before docking points, ask: "Is this a mistake or a data-informed
-choice by a team with more information than I have?"
+Pontue cada dimensão de 0 a 10 usando as rubricas abaixo.
+**Aplique os ajustes de nível de maturidade da marca** da Fase 1.5 da skill principal.
 
 ---
 
-## 1. Title & Subtitle (Weight: 20%)
+## Ajustes de Maturidade da Marca (aplicar a todas as dimensões)
 
-**Challenger rubric:**
+Antes de pontuar, determine o nível do app: **Dominante**, **Estabelecido** ou **Desafiante**.
 
-| Score | Criteria                                                                                                                                                                |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9-10  | Brand + high-value keyword in title, complementary keywords in subtitle, no word repetition across fields, near max character usage, instantly communicates app purpose |
-| 7-8   | Good keyword presence, minor character waste (5+ unused chars), clear purpose                                                                                           |
-| 5-6   | Has keywords but poor placement, some repetition between fields, purpose somewhat clear                                                                                 |
-| 3-4   | Title is brand-only or generic, subtitle missing or weak, poor character usage                                                                                          |
-| 1-2   | No keyword strategy, title doesn't communicate purpose, major character waste                                                                                           |
-| 0     | Cannot assess (data unavailable)                                                                                                                                        |
+**Apps Dominantes (Instagram, Uber, Spotify, WhatsApp, Netflix):**
 
-**Dominant/Established adjustment:** Brand-only titles (e.g., "Instagram") are
-valid if the brand has high search volume. Score 8+ for Dominant apps where
-brand recognition eliminates the need for generic keywords. Evaluate whether
-unused characters represent waste or intentional simplicity.
+- Títulos apenas com a marca pontuam 8+ (a marca É a palavra-chave)
+- Screenshots de lifestyle/marca pontuam igual a screenshots de UI com legenda
+- "O Que Há de Novo" genérico em cadência semanal ou mais frequente pontua 8+
+- Ausência de eventos no app para apps utilitários não é penalidade
+- Descrição pontuada apenas na qualidade de conversão, não na presença de palavras-chave
+- Localização pontuada em relação ao alcance real do mercado
+- Ausência de vídeo de pré-visualização é aceitável se o reconhecimento da marca é quase universal
 
-**Check for:**
+**Apps Estabelecidos (Duolingo, Strava, Notion, Calm, Cash App):**
 
-- Characters used vs limit (title: 30, subtitle/short desc: 30/80). "Near max" = within 3 chars of the limit (27+/30, 77+/80)
-- Primary keyword in title
-- Keyword duplication between title and subtitle
-- Whether app purpose is immediately clear
-- Unnecessary words (articles, prepositions) consuming space
-- Special characters or claims ("#1", "best") that risk rejection (Apple)
+- Títulos com marca em primeiro lugar com 1-2 palavras-chave pontuam normalmente
+- Escolhas estratégicas de descrição/visuais recebem benefício da dúvida
+- Todas as outras dimensões pontuadas normalmente
+
+**Apps Desafiantes (a maioria dos apps):**
+
+- Pontuados rigorosamente de acordo com o ASO ideal — cada caractere e recurso importa
+
+**Princípio fundamental:** Antes de descontar pontos, pergunte: "Isso é um erro ou uma escolha
+baseada em dados por uma equipe com mais informações do que eu tenho?"
 
 ---
 
-## 2. Description (Weight: 15%)
+## 1. Título e Subtítulo (Peso: 20%)
+
+**Rubrica para Desafiante:**
+
+| Pontuação | Critérios                                                                                                                                                                              |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9-10      | Marca + palavra-chave de alto valor no título, palavras-chave complementares no subtítulo, sem repetição de palavras entre campos, uso próximo ao máximo de caracteres, comunica imediatamente o propósito do app |
+| 7-8       | Boa presença de palavras-chave, pequeno desperdício de caracteres (5+ não utilizados), propósito claro                                                                                |
+| 5-6       | Tem palavras-chave mas posicionamento fraco, alguma repetição entre campos, propósito relativamente claro                                                                             |
+| 3-4       | Título é apenas marca ou genérico, subtítulo ausente ou fraco, uso ruim de caracteres                                                                                                 |
+| 1-2       | Sem estratégia de palavras-chave, título não comunica o propósito, grande desperdício de caracteres                                                                                   |
+| 0         | Não é possível avaliar (dados indisponíveis)                                                                                                                                          |
+
+**Ajuste para Dominante/Estabelecido:** Títulos apenas com a marca (ex.: "Instagram") são
+válidos se a marca tem alto volume de busca. Pontue 8+ para apps Dominantes onde o
+reconhecimento da marca elimina a necessidade de palavras-chave genéricas. Avalie se os
+caracteres não utilizados representam desperdício ou simplicidade intencional.
+
+**Verifique:**
+
+- Caracteres usados vs limite (título: 30, subtítulo/desc. curta: 30/80). "Próximo ao máximo" = dentro de 3 chars do limite (27+/30, 77+/80)
+- Palavra-chave principal no título
+- Duplicação de palavras-chave entre título e subtítulo
+- Se o propósito do app é imediatamente claro
+- Palavras desnecessárias (artigos, preposições) consumindo espaço
+- Caracteres especiais ou afirmações ("#1", "melhor") que arriscam rejeição (Apple)
+
+---
+
+## 2. Descrição (Peso: 15%)
 
 ### Apple App Store
 
-| Score | Criteria                                                                                                                                               |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 9-10  | First 3 lines hook with clear value prop, structured with features/benefits/social proof/CTA, promotional text actively used, compelling and scannable |
-| 7-8   | Good opening, decent structure, could improve scannability or CTA                                                                                      |
-| 5-6   | Generic opening ("Welcome to..."), some structure, missing CTA or social proof                                                                         |
-| 3-4   | Wall of text, no clear value prop above fold, no promotional text                                                                                      |
-| 1-2   | Minimal or boilerplate description, no effort                                                                                                          |
-| 0     | Cannot assess                                                                                                                                          |
+| Pontuação | Critérios                                                                                                                                                        |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9-10      | Primeiras 3 linhas engajam com proposta de valor clara, estruturado com recursos/benefícios/prova social/CTA, texto promocional ativamente usado, atraente e escaneável |
+| 7-8       | Boa abertura, estrutura decente, poderia melhorar escaneabilidade ou CTA                                                                                        |
+| 5-6       | Abertura genérica ("Bem-vindo ao..."), alguma estrutura, CTA ou prova social ausente                                                                            |
+| 3-4       | Bloco de texto, sem proposta de valor clara acima da dobra, sem texto promocional                                                                               |
+| 1-2       | Descrição mínima ou padrão, sem esforço                                                                                                                         |
+| 0         | Não é possível avaliar                                                                                                                                          |
 
 ### Google Play
 
-| Score | Criteria                                                                                                                                     |
-| ----- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9-10  | Keywords in first 3 sentences, 2-3% natural density throughout, HTML formatting used, structured sections, strong CTA, keywords feel natural |
-| 7-8   | Good keyword presence, some structure, density slightly off (1-2% or 3-4%)                                                                   |
-| 5-6   | Keywords present but sparse (<1%) or stuffed (>5%), weak structure                                                                           |
-| 3-4   | No keyword strategy visible, poor formatting, wall of text                                                                                   |
-| 1-2   | Minimal description, no keywords, no structure                                                                                               |
-| 0     | Cannot assess                                                                                                                                |
+| Pontuação | Critérios                                                                                                                                              |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 9-10      | Palavras-chave nas primeiras 3 frases, densidade natural de 2-3% em todo o texto, formatação HTML usada, seções estruturadas, CTA forte, palavras-chave soam naturais |
+| 7-8       | Boa presença de palavras-chave, alguma estrutura, densidade levemente fora (1-2% ou 3-4%)                                                             |
+| 5-6       | Palavras-chave presentes mas esparsas (<1%) ou excessivas (>5%), estrutura fraca                                                                      |
+| 3-4       | Sem estratégia de palavras-chave visível, formatação ruim, bloco de texto                                                                             |
+| 1-2       | Descrição mínima, sem palavras-chave, sem estrutura                                                                                                   |
+| 0         | Não é possível avaliar                                                                                                                                |
 
-**Check for:**
+**Verifique:**
 
-- First 3 lines quality (visible before "Read More")
-- Feature-benefit framing (not just feature lists)
-- Social proof (downloads, awards, press mentions)
-- Call to action
-- Keyword density (Google Play only - count target keywords / total words)
-- HTML formatting usage (Google Play)
-- Promotional text presence and quality (Apple)
-
----
-
-## 3. Visual Assets (Weight: 25%)
-
-| Score | Criteria                                                                                                                                                                      |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9-10  | 8-10 screenshots with clear messaging/captions, preview video present, screenshots tell a story in sequence, each communicates one benefit, icon is distinctive and memorable |
-| 7-8   | 6-7 screenshots with captions, good icon, no video OR good video but some screenshot messaging unclear                                                                        |
-| 5-6   | 5+ screenshots but weak/no captions, basic icon, no video, screenshots are UI dumps                                                                                           |
-| 3-4   | 3-4 screenshots, no captions, generic icon, no storytelling                                                                                                                   |
-| 1-2   | Fewer than 3 screenshots, or screenshots are raw unedited UI, poor icon                                                                                                       |
-| 0     | Cannot assess                                                                                                                                                                 |
-
-**Check for:**
-
-- Screenshot count (minimum 5, ideal 8-10)
-- Caption/overlay text on screenshots (one message per screen, 5-7 words max)
-- First 3 screenshots (highest conversion impact on Apple)
-- Preview video presence and quality
-- Icon distinctiveness (no text in icon, bold shapes, stands out)
-- Feature graphic presence (Google Play - mandatory for featured placements)
-- Screenshot storytelling flow (do they tell a coherent story?)
-- Localized visual assets (for non-English markets)
-- Caption keywords (Apple - indexed since June 2025)
+- Qualidade das primeiras 3 linhas (visíveis antes de "Leia Mais")
+- Estrutura de recurso-benefício (não apenas listas de recursos)
+- Prova social (downloads, prêmios, menções na imprensa)
+- Chamada para ação
+- Densidade de palavras-chave (apenas Google Play - conte palavras-chave alvo / total de palavras)
+- Uso de formatação HTML (Google Play)
+- Presença e qualidade do texto promocional (Apple)
 
 ---
 
-## 4. Ratings & Reviews (Weight: 20%)
+## 3. Ativos Visuais (Peso: 25%)
 
-| Score | Criteria                                                                                               |
-| ----- | ------------------------------------------------------------------------------------------------------ |
-| 9-10  | 4.5+ stars, 10K+ ratings, recent reviews positive, developer responds to negatives, steady review flow |
-| 7-8   | 4.0-4.4 stars, 1K+ ratings, mostly positive recent reviews, some developer responses                   |
-| 5-6   | 3.5-3.9 stars, 500+ ratings, mixed recent reviews, no developer responses                              |
-| 3-4   | 3.0-3.4 stars, <500 ratings, negative themes in recent reviews                                         |
-| 1-2   | Below 3.0 stars, few ratings, no developer engagement, visible complaints                              |
-| 0     | No ratings yet or cannot assess                                                                        |
+| Pontuação | Critérios                                                                                                                                                                              |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9-10      | 8-10 screenshots com mensagens/legendas claras, vídeo de pré-visualização presente, screenshots contam uma história em sequência, cada um comunica um benefício, ícone é distinto e memorável |
+| 7-8       | 6-7 screenshots com legendas, bom ícone, sem vídeo OU bom vídeo mas algumas mensagens de screenshot pouco claras                                                                     |
+| 5-6       | 5+ screenshots mas legendas fracas/ausentes, ícone básico, sem vídeo, screenshots são dumps de UI                                                                                    |
+| 3-4       | 3-4 screenshots, sem legendas, ícone genérico, sem storytelling                                                                                                                      |
+| 1-2       | Menos de 3 screenshots, ou screenshots são UI bruta não editada, ícone ruim                                                                                                          |
+| 0         | Não é possível avaliar                                                                                                                                                               |
 
-**Check for:**
+**Verifique:**
 
-- Average rating (target: 4.0+ minimum, 4.5+ ideal)
-- Total rating count
-- Recent review sentiment (last 5-10 visible reviews)
-- Common complaint themes (bugs, crashes, pricing, UX)
-- Developer response presence and quality
-- Rating trend (improving or declining, if visible)
-- Review recency (fresh reviews signal active user base)
-
----
-
-## 5. Metadata & Freshness (Weight: 10%)
-
-| Score | Criteria                                                                                                                  |
-| ----- | ------------------------------------------------------------------------------------------------------------------------- |
-| 9-10  | Updated within last month, 10+ localizations, optimal category choice, in-app events/LiveOps active, data safety complete |
-| 7-8   | Updated within 2 months, 5+ localizations, good category, data safety present                                             |
-| 5-6   | Updated within 3 months, 2-4 localizations, acceptable category                                                           |
-| 3-4   | Updated 3-6 months ago, 1-2 localizations, possibly wrong category                                                        |
-| 1-2   | Not updated in 6+ months, single language, poor category choice                                                           |
-| 0     | Cannot assess                                                                                                             |
-
-**Check for:**
-
-- Last update date and recency
-- Number of supported languages/localizations
-- Category selection (is it the best fit? less competitive alternative?)
-- In-app events (Apple) or promotional content (Google) presence
-- Data safety / privacy nutrition label completeness
-- Age rating appropriateness
-- Version history quality (do release notes communicate value?)
-- What's New text quality
+- Quantidade de screenshots (mínimo 5, ideal 8-10)
+- Texto de legenda/sobreposição nos screenshots (uma mensagem por tela, máximo 5-7 palavras)
+- Primeiros 3 screenshots (maior impacto na conversão na Apple)
+- Presença e qualidade do vídeo de pré-visualização
+- Distintividade do ícone (sem texto no ícone, formas marcantes, se destaca)
+- Presença da imagem de destaque (Google Play — obrigatória para posicionamentos em destaque)
+- Fluxo narrativo dos screenshots (eles contam uma história coerente?)
+- Ativos visuais localizados (para mercados não anglófonos)
+- Palavras-chave nas legendas (Apple — indexadas desde junho de 2025)
 
 ---
 
-## 6. Conversion Signals (Weight: 10%)
+## 4. Avaliações e Reviews (Peso: 20%)
 
-| Score | Criteria                                                                                                                                                          |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9-10  | Clear value before download, transparent pricing/IAP, social proof visible (press, awards), download range suggests strong traction, developer credibility strong |
-| 7-8   | Good value communication, pricing clear, some social proof                                                                                                        |
-| 5-6   | Value prop exists but weak, pricing unclear or IAP heavy, limited social proof                                                                                    |
-| 3-4   | Unclear what user gets, confusing pricing, no social proof, low downloads visible                                                                                 |
-| 1-2   | No value communication, suspicious pricing, app looks abandoned                                                                                                   |
-| 0     | Cannot assess                                                                                                                                                     |
+| Pontuação | Critérios                                                                                                              |
+| --------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 9-10      | 4,5+ estrelas, 10K+ avaliações, reviews recentes positivos, desenvolvedor responde negativos, fluxo constante de reviews |
+| 7-8       | 4,0-4,4 estrelas, 1K+ avaliações, reviews recentes majoritariamente positivos, algumas respostas do desenvolvedor       |
+| 5-6       | 3,5-3,9 estrelas, 500+ avaliações, reviews recentes mistos, sem respostas do desenvolvedor                             |
+| 3-4       | 3,0-3,4 estrelas, <500 avaliações, temas negativos nos reviews recentes                                                |
+| 1-2       | Abaixo de 3,0 estrelas, poucas avaliações, sem engajamento do desenvolvedor, reclamações visíveis                      |
+| 0         | Sem avaliações ainda ou não é possível avaliar                                                                         |
 
-**Check for:**
+**Verifique:**
 
-- Price transparency (free, freemium, paid - is it clear?)
-- In-app purchase list quality (do IAP names communicate value?)
-- Download range (Google Play - 10K+, 100K+, 1M+ signals trust)
-- Developer name/brand recognition
-- "Editors' Choice" or featured badges
-- Press mentions or awards in description
-- Related apps from same developer (portfolio trust signal)
-- Privacy practices transparency
+- Avaliação média (alvo: mínimo 4,0+, ideal 4,5+)
+- Total de avaliações
+- Sentimento dos reviews recentes (últimos 5-10 reviews visíveis)
+- Temas comuns de reclamação (bugs, crashes, preços, UX)
+- Presença e qualidade das respostas do desenvolvedor
+- Tendência das avaliações (melhorando ou caindo, se visível)
+- Recência dos reviews (reviews recentes sinalizam base de usuários ativa)
 
 ---
 
-## Calculating Final Score
+## 5. Metadados e Atualidade (Peso: 10%)
+
+| Pontuação | Critérios                                                                                                                         |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 9-10      | Atualizado no último mês, 10+ localizações, escolha ótima de categoria, eventos no app/LiveOps ativos, segurança de dados completa |
+| 7-8       | Atualizado em 2 meses, 5+ localizações, boa categoria, segurança de dados presente                                                |
+| 5-6       | Atualizado em 3 meses, 2-4 localizações, categoria aceitável                                                                      |
+| 3-4       | Atualizado há 3-6 meses, 1-2 localizações, possivelmente categoria errada                                                        |
+| 1-2       | Não atualizado há 6+ meses, idioma único, má escolha de categoria                                                                |
+| 0         | Não é possível avaliar                                                                                                            |
+
+**Verifique:**
+
+- Data e recência da última atualização
+- Número de idiomas/localizações suportados
+- Seleção de categoria (é a melhor opção? existe alternativa menos competitiva?)
+- Presença de eventos no app (Apple) ou conteúdo promocional (Google)
+- Completude da segurança de dados / rótulo de nutrição de privacidade
+- Adequação da classificação etária
+- Qualidade do histórico de versões (as notas de versão comunicam valor?)
+- Qualidade do texto "O Que Há de Novo"
+
+---
+
+## 6. Sinais de Conversão (Peso: 10%)
+
+| Pontuação | Critérios                                                                                                                                                              |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9-10      | Valor claro antes do download, preço/IAP transparente, prova social visível (imprensa, prêmios), faixa de downloads sugere forte tração, credibilidade do desenvolvedor forte |
+| 7-8       | Boa comunicação de valor, preço claro, alguma prova social                                                                                                            |
+| 5-6       | Proposta de valor existe mas é fraca, preço pouco claro ou IAP pesado, prova social limitada                                                                         |
+| 3-4       | Não está claro o que o usuário recebe, preço confuso, sem prova social, poucos downloads visíveis                                                                    |
+| 1-2       | Sem comunicação de valor, preço suspeito, app parece abandonado                                                                                                      |
+| 0         | Não é possível avaliar                                                                                                                                               |
+
+**Verifique:**
+
+- Transparência de preço (gratuito, freemium, pago — está claro?)
+- Qualidade da lista de compras no app (os nomes de IAP comunicam valor?)
+- Faixa de downloads (Google Play — 10K+, 100K+, 1M+ sinaliza confiança)
+- Reconhecimento de nome/marca do desenvolvedor
+- Selos "Escolha dos Editores" ou em destaque
+- Menções na imprensa ou prêmios na descrição
+- Apps relacionados do mesmo desenvolvedor (sinal de confiança no portfólio)
+- Transparência de práticas de privacidade
+
+---
+
+## Cálculo da Pontuação Final
 
 ```
 Final Score = (Title * 0.20) + (Description * 0.15) + (Visuals * 0.25)
@@ -204,7 +204,7 @@ Final Score = (Title * 0.20) + (Description * 0.15) + (Visuals * 0.25)
 Scale to 100: Final Score * 10
 ```
 
-**Example:** Title: 7, Description: 6, Visuals: 8, Ratings: 9, Metadata: 5, Conversion: 7
+**Exemplo:** Title: 7, Description: 6, Visuals: 8, Ratings: 9, Metadata: 5, Conversion: 7
 
 ```
 (7 * 0.20) + (6 * 0.15) + (8 * 0.25) + (9 * 0.20) + (5 * 0.10) + (7 * 0.10)
