@@ -1,38 +1,38 @@
 # Marketing CLIs
 
-Zero-dependency, single-file CLI tools for marketing platforms that don't ship their own.
+Ferramentas CLI em arquivo único e sem dependências para plataformas de marketing que não oferecem a sua própria.
 
-Every CLI is a standalone Node.js script (Node 18+) with no `npm install` required — just `chmod +x` and go.
+Cada CLI é um script Node.js autônomo (Node 18+) sem necessidade de `npm install` — basta `chmod +x` e usar.
 
-## Install
+## Instalação
 
-### Option 1: Run directly
+### Opção 1: Executar diretamente
 
 ```bash
 node tools/clis/ahrefs.js backlinks list --target example.com
 ```
 
-### Option 2: Symlink for global access
+### Opção 2: Symlink para acesso global
 
 ```bash
-# Symlink any CLI you want available globally
+# Crie um symlink para qualquer CLI que queira disponível globalmente
 ln -sf "$(pwd)/tools/clis/ahrefs.js" ~/.local/bin/ahrefs
 ln -sf "$(pwd)/tools/clis/resend.js" ~/.local/bin/resend
 
-# Then use directly
+# Depois use diretamente
 ahrefs backlinks list --target example.com
 resend send --from you@example.com --to them@example.com --subject "Hello" --html "<p>Hi</p>"
 ```
 
-### Option 3: Add the whole directory to PATH
+### Opção 3: Adicionar o diretório inteiro ao PATH
 
 ```bash
 export PATH="$PATH:/path/to/marketingskills/tools/clis"
 ```
 
-## Authentication
+## Autenticação
 
-Every CLI reads credentials from environment variables:
+Cada CLI lê credenciais a partir de variáveis de ambiente:
 
 | CLI | Environment Variable |
 |-----|---------------------|
@@ -88,24 +88,24 @@ Every CLI reads credentials from environment variables:
 | `wistia` | `WISTIA_API_KEY` |
 | `zapier` | `ZAPIER_API_KEY` |
 
-## Security
+## Segurança
 
-**Never hardcode API keys or tokens in scripts.** All CLIs read credentials exclusively from environment variables.
+**Nunca insira chaves de API ou tokens diretamente nos scripts.** Todos os CLIs leem credenciais exclusivamente a partir de variáveis de ambiente.
 
-- Store keys in your shell profile (`~/.zshrc`, `~/.bashrc`) or a `.env` file
-- The `.env` file is gitignored — but double-check before committing
-- Use `--dry-run` on any command to preview the request without sending it (credentials are masked as `***`)
-- If you fork this repo, audit your commits to ensure no secrets are included
+- Armazene as chaves no perfil do seu shell (`~/.zshrc`, `~/.bashrc`) ou em um arquivo `.env`
+- O arquivo `.env` está no gitignore — mas verifique antes de fazer commit
+- Use `--dry-run` em qualquer comando para visualizar a requisição sem enviá-la (credenciais são mascaradas como `***`)
+- Se você fizer um fork deste repositório, audite seus commits para garantir que nenhum segredo está incluído
 
-## Command Pattern
+## Padrão de Comandos
 
-All CLIs follow the same structure:
+Todos os CLIs seguem a mesma estrutura:
 
 ```
 {tool} <resource> <action> [options]
 ```
 
-Examples:
+Exemplos:
 
 ```bash
 ahrefs backlinks list --target example.com --limit 50
@@ -115,73 +115,73 @@ resend send --from you@example.com --to them@example.com --subject "Hello" --htm
 dub links create --url https://example.com/landing --key summer-sale
 ```
 
-## Output
+## Saída
 
-All CLIs output JSON to stdout for easy piping:
+Todos os CLIs produzem JSON no stdout para fácil encadeamento:
 
 ```bash
-# Pipe to jq
+# Encadear com jq
 ahrefs backlinks list --target example.com | jq '.backlinks[].url_from'
 
-# Save to file
+# Salvar em arquivo
 semrush keywords overview --phrase "saas marketing" --database us > keywords.json
 
-# Use in scripts
+# Usar em scripts
 DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 ```
 
-## Available CLIs
+## CLIs Disponíveis
 
-| CLI | Category | Tool |
+| CLI | Categoria | Ferramenta |
 |-----|----------|------|
 | `activecampaign.js` | Email/CRM | [ActiveCampaign](https://activecampaign.com) |
 | `adobe-analytics.js` | Analytics | [Adobe Analytics](https://business.adobe.com/products/analytics) |
 | `ahrefs.js` | SEO | [Ahrefs](https://ahrefs.com) |
 | `amplitude.js` | Analytics | [Amplitude](https://amplitude.com) |
-| `apollo.js` | Data Enrichment | [Apollo.io](https://apollo.io) |
+| `apollo.js` | Enriquecimento de Dados | [Apollo.io](https://apollo.io) |
 | `beehiiv.js` | Newsletter | [Beehiiv](https://beehiiv.com) |
 | `brevo.js` | Email/SMS | [Brevo](https://brevo.com) |
 | `buffer.js` | Social | [Buffer](https://buffer.com) |
-| `calendly.js` | Scheduling | [Calendly](https://calendly.com) |
-| `clearbit.js` | Data Enrichment | [Clearbit](https://clearbit.com) |
+| `calendly.js` | Agendamento | [Calendly](https://calendly.com) |
+| `clearbit.js` | Enriquecimento de Dados | [Clearbit](https://clearbit.com) |
 | `customer-io.js` | Email | [Customer.io](https://customer.io) |
 | `dataforseo.js` | SEO | [DataForSEO](https://dataforseo.com) |
 | `demio.js` | Webinar | [Demio](https://demio.com) |
 | `dub.js` | Links | [Dub.co](https://dub.co) |
-| `g2.js` | Reviews | [G2](https://g2.com) |
+| `g2.js` | Avaliações | [G2](https://g2.com) |
 | `ga4.js` | Analytics | [Google Analytics 4](https://analytics.google.com) |
-| `google-ads.js` | Ads | [Google Ads](https://ads.google.com) |
+| `google-ads.js` | Anúncios | [Google Ads](https://ads.google.com) |
 | `google-search-console.js` | SEO | [Google Search Console](https://search.google.com/search-console) |
 | `hotjar.js` | CRO | [Hotjar](https://hotjar.com) |
-| `hunter.js` | Email Outreach | [Hunter.io](https://hunter.io) |
-| `instantly.js` | Email Outreach | [Instantly.ai](https://instantly.ai) |
-| `intercom.js` | Messaging | [Intercom](https://intercom.com) |
+| `hunter.js` | Prospecção por Email | [Hunter.io](https://hunter.io) |
+| `instantly.js` | Prospecção por Email | [Instantly.ai](https://instantly.ai) |
+| `intercom.js` | Mensagens | [Intercom](https://intercom.com) |
 | `keywords-everywhere.js` | SEO | [Keywords Everywhere](https://keywordseverywhere.com) |
 | `kit.js` | Email | [Kit](https://kit.com) |
 | `klaviyo.js` | Email/SMS | [Klaviyo](https://klaviyo.com) |
-| `lemlist.js` | Email Outreach | [Lemlist](https://lemlist.com) |
-| `linkedin-ads.js` | Ads | [LinkedIn Ads](https://business.linkedin.com/marketing-solutions/ads) |
+| `lemlist.js` | Prospecção por Email | [Lemlist](https://lemlist.com) |
+| `linkedin-ads.js` | Anúncios | [LinkedIn Ads](https://business.linkedin.com/marketing-solutions/ads) |
 | `livestorm.js` | Webinar | [Livestorm](https://livestorm.co) |
 | `mailchimp.js` | Email | [Mailchimp](https://mailchimp.com) |
-| `mention-me.js` | Referral | [Mention Me](https://www.mention-me.com) |
-| `meta-ads.js` | Ads | [Meta Ads](https://www.facebook.com/business/ads) |
+| `mention-me.js` | Indicação | [Mention Me](https://www.mention-me.com) |
+| `meta-ads.js` | Anúncios | [Meta Ads](https://www.facebook.com/business/ads) |
 | `mixpanel.js` | Analytics | [Mixpanel](https://mixpanel.com) |
 | `onesignal.js` | Push | [OneSignal](https://onesignal.com) |
-| `optimizely.js` | A/B Testing | [Optimizely](https://optimizely.com) |
-| `paddle.js` | Payments | [Paddle](https://paddle.com) |
-| `partnerstack.js` | Affiliate | [PartnerStack](https://partnerstack.com) |
+| `optimizely.js` | Testes A/B | [Optimizely](https://optimizely.com) |
+| `paddle.js` | Pagamentos | [Paddle](https://paddle.com) |
+| `partnerstack.js` | Afiliados | [PartnerStack](https://partnerstack.com) |
 | `plausible.js` | Analytics | [Plausible](https://plausible.io) |
 | `postmark.js` | Email | [Postmark](https://postmarkapp.com) |
 | `resend.js` | Email | [Resend](https://resend.com) |
-| `rewardful.js` | Referral | [Rewardful](https://www.getrewardful.com) |
-| `savvycal.js` | Scheduling | [SavvyCal](https://savvycal.com) |
+| `rewardful.js` | Indicação | [Rewardful](https://www.getrewardful.com) |
+| `savvycal.js` | Agendamento | [SavvyCal](https://savvycal.com) |
 | `segment.js` | Analytics | [Segment](https://segment.com) |
 | `semrush.js` | SEO | [SEMrush](https://semrush.com) |
 | `sendgrid.js` | Email | [SendGrid](https://sendgrid.com) |
-| `snov.js` | Email Outreach | [Snov.io](https://snov.io) |
-| `tiktok-ads.js` | Ads | [TikTok Ads](https://ads.tiktok.com) |
-| `tolt.js` | Referral | [Tolt](https://tolt.io) |
-| `trustpilot.js` | Reviews | [Trustpilot](https://trustpilot.com) |
-| `typeform.js` | Forms | [Typeform](https://typeform.com) |
-| `wistia.js` | Video | [Wistia](https://wistia.com) |
-| `zapier.js` | Automation | [Zapier](https://zapier.com) |
+| `snov.js` | Prospecção por Email | [Snov.io](https://snov.io) |
+| `tiktok-ads.js` | Anúncios | [TikTok Ads](https://ads.tiktok.com) |
+| `tolt.js` | Indicação | [Tolt](https://tolt.io) |
+| `trustpilot.js` | Avaliações | [Trustpilot](https://trustpilot.com) |
+| `typeform.js` | Formulários | [Typeform](https://typeform.com) |
+| `wistia.js` | Vídeo | [Wistia](https://wistia.com) |
+| `zapier.js` | Automação | [Zapier](https://zapier.com) |

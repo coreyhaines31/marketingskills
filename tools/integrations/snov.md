@@ -1,58 +1,58 @@
 # Snov.io
 
-Email finding, verification, and drip campaign platform for outreach.
+Plataforma de busca e verificação de email e campanhas de drip para outreach.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for email finding, verification, prospects, drip campaigns |
-| MCP | - | Not available |
+| API | ✓ | API REST para busca de emails, verificação, prospects e campanhas de drip |
+| MCP | - | Não disponível |
 | CLI | [✓](../clis/snov.js) | Zero-dependency Node.js CLI |
-| SDK | - | API-only |
+| SDK | - | Somente API |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth2 client credentials
-- **Flow**: POST to `/oauth/access_token` with client_id + client_secret
+- **Tipo**: OAuth2 client credentials
+- **Fluxo**: POST para `/oauth/access_token` com client_id + client_secret
 - **Env vars**: `SNOV_CLIENT_ID`, `SNOV_CLIENT_SECRET`
-- **Get keys**: [Snov.io > Integration > API](https://app.snov.io/integration/api)
+- **Obter chaves**: [Snov.io > Integration > API](https://app.snov.io/integration/api)
 
-The CLI handles token acquisition automatically.
+A CLI gerencia automaticamente a obtenção de token.
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Search emails by domain
+### Buscar emails por domínio
 
 ```bash
 node tools/clis/snov.js domain search --domain example.com --type all --limit 10
 ```
 
-### Find a specific person's email
+### Encontrar o email de uma pessoa específica
 
 ```bash
 node tools/clis/snov.js email find --domain example.com --first-name John --last-name Doe
 ```
 
-### Verify an email
+### Verificar um email
 
 ```bash
 node tools/clis/snov.js email verify --email john@example.com
 ```
 
-### Find prospect by email
+### Encontrar prospect por email
 
 ```bash
 node tools/clis/snov.js prospect find --email john@example.com
 ```
 
-### Add prospect to a list
+### Adicionar prospect a uma lista
 
 ```bash
 node tools/clis/snov.js prospect add --email john@example.com --first-name John --last-name Doe --list-id 12345
 ```
 
-### Manage prospect lists
+### Gerenciar listas de prospects
 
 ```bash
 # List all lists
@@ -62,13 +62,13 @@ node tools/clis/snov.js lists list
 node tools/clis/snov.js lists prospects --id 12345 --page 1 --per-page 50
 ```
 
-### Check domain technology stack
+### Verificar stack de tecnologia do domínio
 
 ```bash
 node tools/clis/snov.js technology check --domain example.com
 ```
 
-### Manage drip campaigns
+### Gerenciar campanhas de drip
 
 ```bash
 # List campaigns
@@ -81,14 +81,14 @@ node tools/clis/snov.js drips get --id 12345
 node tools/clis/snov.js drips add-prospect --id 12345 --email john@example.com
 ```
 
-## Rate Limits
+## Limites de Taxa
 
 - Rate limits vary by plan
 - OAuth tokens expire after a set period; CLI handles refresh automatically
 
-## Use Cases
+## Casos de Uso
 
-- **Link building**: Find contacts and run automated drip outreach
-- **Prospecting**: Build and manage prospect lists
+- **Link building**: Encontrar contatos e executar outreach automatizado com drip
+- **Prospecting**: Construir e gerenciar listas de prospects
 - **Technology research**: Check what tech stack a target domain uses
 - **Email verification**: Clean lists before sending

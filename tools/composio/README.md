@@ -1,23 +1,23 @@
 # Composio Quick Start
 
-Get MCP access to 500+ marketing tools through a single integration.
+Obtenha acesso MCP a mais de 500 ferramentas de marketing por meio de uma única integração.
 
-## Prerequisites
+## Pré-requisitos
 
 - Node.js 18+
-- Claude Code installed
+- Claude Code instalado
 
-## Install
+## Instalação
 
 ```bash
 npx @composio/mcp@latest setup
 ```
 
-Verify by running `/mcp` in Claude Code — `composio` should appear in the server list.
+Verifique executando `/mcp` no Claude Code — `composio` deve aparecer na lista de servidores.
 
-## Connect a Tool
+## Conectar uma Ferramenta
 
-When you ask the agent to use a Composio-backed tool for the first time, it will provide a Connect Link. Open the link in your browser, authorize the app, and you're set. The connection persists across sessions.
+Quando você pedir ao agente para usar uma ferramenta do Composio pela primeira vez, ele fornecerá um link de conexão. Abra o link no navegador, autorize o aplicativo e pronto. A conexão persiste entre sessões.
 
 ```
 You: "Get my top HubSpot contacts"
@@ -26,80 +26,80 @@ Agent: "Please connect HubSpot first: https://app.composio.dev/connect/..."
 Agent: "Here are your top contacts: ..."
 ```
 
-## Usage Examples
+## Exemplos de Uso
 
-### Pull CRM contacts
+### Buscar contatos do CRM
 
 ```
 "Show me my 10 most recent HubSpot contacts with their deal stages"
 ```
 
-### Get ad performance
+### Obter performance de anúncios
 
 ```
 "What's my Meta Ads spend and ROAS for the last 7 days?"
 ```
 
-### Write to a spreadsheet
+### Escrever em uma planilha
 
 ```
 "Add a row to my 'Campaign Tracker' Google Sheet with today's LinkedIn Ads metrics"
 ```
 
-### Cross-tool workflow
+### Fluxo de trabalho entre ferramentas
 
 ```
 "Find Salesforce leads from this week and post a summary in Slack #new-leads"
 ```
 
-## Available Marketing Tools
+## Ferramentas de Marketing Disponíveis
 
-See [marketing-tools.md](marketing-tools.md) for the full list of Composio toolkits mapped to marketing use cases.
+Veja [marketing-tools.md](marketing-tools.md) para a lista completa de toolkits do Composio mapeados para casos de uso de marketing.
 
-Key tools with new MCP access (no native MCP server in this repo):
-- **HubSpot** — contacts, deals, companies, lists
-- **Salesforce** — SOQL queries, leads, opportunities
-- **Meta Ads** — campaigns, ad sets, insights
-- **LinkedIn Ads** — campaigns, analytics
-- **Google Sheets** — read, write, create spreadsheets
-- **Slack** — messages, channels
-- **Notion** — pages, databases
-- **Klaviyo** — profiles, lists, campaigns
-- **ActiveCampaign** — contacts, automations
+Principais ferramentas com novo acesso MCP (sem servidor MCP nativo neste repositório):
+- **HubSpot** — contatos, negócios, empresas, listas
+- **Salesforce** — consultas SOQL, leads, oportunidades
+- **Meta Ads** — campanhas, conjuntos de anúncios, insights
+- **LinkedIn Ads** — campanhas, analytics
+- **Google Sheets** — leitura, escrita, criação de planilhas
+- **Slack** — mensagens, canais
+- **Notion** — páginas, bancos de dados
+- **Klaviyo** — perfis, listas, campanhas
+- **ActiveCampaign** — contatos, automações
 
-## Troubleshooting
+## Solução de Problemas
 
-### "Tool not found" error
+### Erro "Tool not found"
 
-The tool may not be connected yet. Ask the agent to connect it, or run:
+A ferramenta pode ainda não estar conectada. Peça ao agente para conectá-la, ou execute:
 
 ```bash
 npx composio apps list
 ```
 
-### Expired authentication
+### Autenticação expirada
 
-OAuth tokens expire. If a tool stops working, re-authenticate:
+Tokens OAuth expiram. Se uma ferramenta parar de funcionar, faça nova autenticação:
 
 ```bash
-npx composio connections list    # Find the connection
-npx composio connections remove {id}  # Remove it
-# Then ask the agent to use the tool again to trigger re-auth
+npx composio connections list    # Encontre a conexão
+npx composio connections remove {id}  # Remova-a
+# Depois peça ao agente para usar a ferramenta novamente para disparar a re-autenticação
 ```
 
-### Rate limit errors
+### Erros de limite de taxa
 
-Composio has its own rate limits (free: 20K calls/mo, 10 req/sec). If you hit them:
-- Reduce request frequency
-- Upgrade your Composio plan
-- Use native CLI tools for high-volume operations
+O Composio tem seus próprios limites de taxa (gratuito: 20K chamadas/mês, 10 req/s). Se você atingir o limite:
+- Reduza a frequência das requisições
+- Faça upgrade do seu plano no Composio
+- Use CLIs nativos para operações de alto volume
 
-### MCP server not appearing
+### Servidor MCP não aparecendo
 
-Re-run the setup command:
+Execute novamente o comando de configuração:
 
 ```bash
 npx @composio/mcp@latest setup
 ```
 
-Then restart Claude Code.
+Depois reinicie o Claude Code.

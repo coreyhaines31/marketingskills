@@ -1,23 +1,23 @@
 # TikTok Ads
 
-Advertising platform for TikTok's short-form video audience.
+Plataforma de anúncios para a audiência de vídeos curtos do TikTok.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Marketing API for campaigns, audiences, reporting |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | ✓ | Python SDK available |
+| API | ✓ | Marketing API para campanhas, audiências e relatórios |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | ✓ | SDK Python disponível |
 
-## Authentication
+## Autenticação
 
-- **Type**: Access Token
+- **Tipo**: Access Token
 - **Header**: `Access-Token: {access_token}`
-- **Setup**: Create app in TikTok for Business, get access token
+- **Setup**: Criar app no TikTok for Business e obter access token
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
 ### Get advertiser info
 
@@ -99,9 +99,9 @@ GET https://business-api.tiktok.com/open_api/v1.3/dmp/custom_audience/list/?adve
 Access-Token: {access_token}
 ```
 
-## Key Metrics
+## Métricas Principais
 
-| Metric | Description |
+| Métrica | Descrição |
 |--------|-------------|
 | `spend` | Amount spent |
 | `impressions` | Ad impressions |
@@ -111,19 +111,19 @@ Access-Token: {access_token}
 | `cpm` | Cost per 1000 impressions |
 | `conversion` | Conversions |
 | `cost_per_conversion` | CPA |
-| `video_play_actions` | Video views |
+| `video_play_actions` | Visualizações de vídeo |
 | `video_watched_6s` | 6s views |
 
-## Campaign Objectives
+## Objetivos de Campanha
 
 - `REACH` - Brand awareness
-- `TRAFFIC` - Website traffic
-- `VIDEO_VIEWS` - Video views
+- `TRAFFIC` - Tráfego de site
+- `VIDEO_VIEWS` - Visualizações de vídeo
 - `LEAD_GENERATION` - Lead forms
-- `CONVERSIONS` - Website conversions
+- `CONVERSIONS` - Conversões de site
 - `APP_PROMOTION` - App installs
 
-## Targeting Options
+## Opções de Segmentação
 
 ### Demographics
 - Age ranges
@@ -133,29 +133,29 @@ Access-Token: {access_token}
 
 ### Interests & Behavior
 - Interest categories
-- Video interactions
+- Interações com vídeo
 - Creator interactions
 - Hashtag interactions
 
 ### Custom Audiences
-- Customer file uploads
-- Website visitors (pixel)
+- Upload de arquivos de clientes
+- Visitantes de site (pixel)
 - App activity
 - Engagement audiences
 
-## When to Use
+## Quando Usar
 
 - Reaching younger demographics (18-34)
-- Video-first advertising
+- Publicidade com foco em vídeo
 - Viral/creative campaigns
 - App promotion
 
-## Rate Limits
+## Limites de Taxa
 
 - 10 requests/second
 - 100,000 requests/day
 
-## Relevant Skills
+## Skills Relevantes
 
 - paid-ads
 - analytics-tracking

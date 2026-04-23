@@ -1,32 +1,32 @@
 # Lemlist
 
-Cold email outreach platform with personalization and campaign management.
+Plataforma de outreach por cold email com personalização e gestão de campanhas.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for campaigns, leads, activities, webhooks |
-| MCP | - | Not available |
+| API | ✓ | REST API para campaigns, leads, activities e webhooks |
+| MCP | - | Não disponível |
 | CLI | [✓](../clis/lemlist.js) | Zero-dependency Node.js CLI |
-| SDK | - | API-only |
+| SDK | - | somente API |
 
-## Authentication
+## Autenticação
 
-- **Type**: Basic Auth (empty username, API key as password)
+- **Tipo**: Basic Auth (empty username, API key as password)
 - **Header**: `Authorization: Basic base64(:api_key)`
 - **Env var**: `LEMLIST_API_KEY`
-- **Get key**: [Lemlist Settings > Integrations](https://app.lemlist.com/settings/integrations)
+- **Obter chave**: [Lemlist Settings > Integrations](https://app.lemlist.com/settings/integrations)
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### List campaigns
+### Listar campanhas
 
 ```bash
 node tools/clis/lemlist.js campaigns list --offset 0 --limit 20
 ```
 
-### Get campaign details and stats
+### Buscar detalhes e estatísticas da campanha
 
 ```bash
 # Get campaign
@@ -39,7 +39,7 @@ node tools/clis/lemlist.js campaigns stats --id cam_abc123
 node tools/clis/lemlist.js campaigns export --id cam_abc123
 ```
 
-### Manage leads in a campaign
+### Gerenciar leads em uma campanha
 
 ```bash
 # List leads
@@ -55,7 +55,7 @@ node tools/clis/lemlist.js leads get --campaign-id cam_abc123 --email john@examp
 node tools/clis/lemlist.js leads delete --campaign-id cam_abc123 --email john@example.com
 ```
 
-### Manage unsubscribes
+### Gerenciar unsubscribes
 
 ```bash
 # List unsubscribed emails
@@ -68,7 +68,7 @@ node tools/clis/lemlist.js unsubscribes add --email john@example.com
 node tools/clis/lemlist.js unsubscribes delete --email john@example.com
 ```
 
-### View activities
+### Visualizar atividades
 
 ```bash
 # All activities
@@ -78,7 +78,7 @@ node tools/clis/lemlist.js activities list
 node tools/clis/lemlist.js activities list --campaign-id cam_abc123 --type emailsOpened
 ```
 
-### Manage webhooks
+### Gerenciar webhooks
 
 ```bash
 # List hooks
@@ -91,20 +91,20 @@ node tools/clis/lemlist.js hooks create --target-url https://example.com/webhook
 node tools/clis/lemlist.js hooks delete --id hook_123
 ```
 
-### Team info
+### Informações da equipe
 
 ```bash
 node tools/clis/lemlist.js team info
 ```
 
-## Rate Limits
+## Limites de taxa
 
-- API rate limits vary by plan
-- Recommended: stay under 10 requests/second
+- Limites de taxa da API variam por plano
+- Recomendado: manter abaixo de 10 requisições/segundo
 
-## Use Cases
+## Casos de uso
 
-- **Link building outreach**: Add prospects to campaigns for backlink requests
-- **Campaign management**: Monitor open/reply rates across outreach campaigns
-- **Lead management**: Add, remove, and track leads across campaigns
-- **Webhook integration**: Get real-time notifications for email events
+- **Link building outreach**: Adicionar prospects a campanhas para pedidos de backlink
+- **Gestão de campanhas**: Monitorar taxas de abertura/resposta entre campanhas de prospecção
+- **Lead management**: Adicionar, remover e rastrear leads em campanhas
+- **Integração de webhook**: Receber notificações em tempo real de eventos de email

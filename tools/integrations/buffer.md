@@ -1,26 +1,26 @@
 # Buffer
 
-Social media scheduling, publishing, and analytics platform for managing multiple social profiles.
+Plataforma de agendamento, publicação e analytics de mídias sociais para gerenciar múltiplos perfis sociais.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | REST API v1 for profiles, updates, scheduling |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [buffer.js](../clis/buffer.js) |
-| SDK | - | No official SDK; legacy API still supported |
+| SDK | - | Sem SDK oficial; API legada ainda suportada |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0 Bearer Token
-- **Header**: `Authorization: Bearer {access_token}`
-- **Get key**: Register app at https://buffer.com/developers/apps then complete OAuth flow
-- **Note**: Buffer is no longer accepting new developer app registrations; existing apps continue to work. New public API is in development at https://buffer.com/developer-api
+- **Tipo**: OAuth 2.0 Bearer Token
+- **Cabeçalho**: `Authorization: Bearer {access_token}`
+- **Obter chave**: Register app at https://buffer.com/developers/apps then complete OAuth flow
+- **Observação**: Buffer não está mais aceitando novos registros de developer app; apps existentes continuam funcionando. A nova API pública está em desenvolvimento em https://buffer.com/developer-api
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get user info
+### Obter user info
 
 ```bash
 GET https://api.bufferapp.com/1/user.json
@@ -28,7 +28,7 @@ GET https://api.bufferapp.com/1/user.json
 Authorization: Bearer {token}
 ```
 
-### List connected profiles
+### Listar connected profiles
 
 ```bash
 GET https://api.bufferapp.com/1/profiles.json
@@ -36,13 +36,13 @@ GET https://api.bufferapp.com/1/profiles.json
 Authorization: Bearer {token}
 ```
 
-### Get profile posting schedules
+### Obter profile posting schedules
 
 ```bash
 GET https://api.bufferapp.com/1/profiles/{profile_id}/schedules.json
 ```
 
-### Create a scheduled post
+### Criar a scheduled post
 
 ```bash
 POST https://api.bufferapp.com/1/updates/create.json
@@ -51,25 +51,25 @@ Content-Type: application/x-www-form-urlencoded
 profile_ids[]={profile_id}&text=Your+post+content&scheduled_at=2026-03-01T10:00:00Z
 ```
 
-### Get pending updates for a profile
+### Obter updates pendentes de um perfil
 
 ```bash
 GET https://api.bufferapp.com/1/profiles/{profile_id}/updates/pending.json?count=25
 ```
 
-### Get sent updates for a profile
+### Obter updates enviados de um perfil
 
 ```bash
 GET https://api.bufferapp.com/1/profiles/{profile_id}/updates/sent.json?count=25
 ```
 
-### Publish a pending update immediately
+### Publicar um update pendente imediatamente
 
 ```bash
 POST https://api.bufferapp.com/1/updates/{update_id}/share.json
 ```
 
-### Delete an update
+### Excluir um update
 
 ```bash
 POST https://api.bufferapp.com/1/updates/{update_id}/destroy.json
@@ -84,53 +84,53 @@ Content-Type: application/x-www-form-urlencoded
 order[]={update_id_1}&order[]={update_id_2}&order[]={update_id_3}
 ```
 
-## API Pattern
+## Padrão da API
 
-Buffer API v1 uses `.json` extensions on all endpoints. POST requests use `application/x-www-form-urlencoded` content type. Array parameters use bracket notation (e.g., `profile_ids[]`).
+A Buffer API v1 usa extensões `.json` em todos os endpoints. Requisições POST usam content type `application/x-www-form-urlencoded`. Parâmetros de array usam notação com colchetes (ex.: `profile_ids[]`).
 
-Responses include a `success` boolean for mutation operations.
+As respostas incluem um boolean `success` para operações de mutação.
 
-## Key Metrics
+## Métricas Principais
 
-### Profile Metrics
-- `followers` - Follower count for connected profile
-- `service` - Platform name (twitter, facebook, instagram, linkedin, etc.)
+### Métricas de Perfil
+- `followers` - Contagem de seguidores do perfil conectado
+- `service` - Nome da plataforma (twitter, facebook, instagram, linkedin, etc.)
 
-### Update Metrics (sent updates)
-- `statistics.reach` - Post reach
+### Métricas de Update (updates enviados)
+- `statistics.reach` - Alcance do post
 - `statistics.clicks` - Link clicks
 - `statistics.retweets` - Retweets/shares
 - `statistics.favorites` - Likes/favorites
 - `statistics.mentions` - Mentions
 
-## Parameters
+## Parâmetros
 
-### Update Create Parameters
-- `profile_ids[]` - Required. Array of profile IDs to post to
-- `text` - Required. Post content
-- `scheduled_at` - ISO 8601 timestamp for scheduling
-- `now` - Set to `true` to publish immediately
-- `top` - Set to `true` to add to top of queue
-- `shorten` - Set to `true` to auto-shorten links
-- `media[photo]` - URL to photo attachment
-- `media[thumbnail]` - URL to thumbnail
-- `media[link]` - URL for link attachment
+### Parâmetros de Criação de Update
+- `profile_ids[]` - Obrigatório. Array de IDs de perfil para publicar
+- `text` - Obrigatório. Conteúdo do post
+- `scheduled_at` - Timestamp ISO 8601 para agendamento
+- `now` - Defina como `true` para publicar imediatamente
+- `top` - Defina como `true` para adicionar no topo da fila
+- `shorten` - Defina como `true` para encurtar links automaticamente
+- `media[photo]` - URL do anexo de foto
+- `media[thumbnail]` - URL da thumbnail
+- `media[link]` - URL para anexo de link
 
-## When to Use
+## Quando Usar
 
-- Scheduling social media posts across multiple platforms
+- Agendamento de posts em mídias sociais em múltiplas plataformas
 - Managing social media content queues
-- Analyzing post performance across channels
+- Análise de desempenho de posts entre canais
 - Automating social media publishing workflows
 - Coordinating team social media activity
 
-## Rate Limits
+## Limites de Taxa
 
-- 60 authenticated requests per user per minute
-- Exceeding returns HTTP 429
-- Higher limits available by contacting hello@buffer.com
+- 60 requisições autenticadas por usuário por minuto
+- Exceder retorna HTTP 429
+- Limites maiores disponíveis entrando em contato com hello@buffer.com
 
-## Relevant Skills
+## Skills Relevantes
 
 - social-media-calendar
 - content-repurposing

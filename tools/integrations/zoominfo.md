@@ -1,27 +1,27 @@
 # ZoomInfo
 
-B2B contact database and intent data platform with 100M+ business contacts and company intelligence for sales and marketing teams.
+Base de dados de contatos B2B e plataforma de dados de intent com mais de 100 milhões de contatos comerciais e inteligência de empresas para times de vendas e marketing.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Contact Search, Company Search, Enrichment, Intent Data, Scoops |
+| API | ✓ | Busca de Contatos, Busca de Empresas, Enriquecimento, Dados de Intent, Scoops |
 | MCP | ✓ | [Claude connector](https://claude.com/connectors/zoominfo) |
 | CLI | ✓ | [zoominfo.js](../clis/zoominfo.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas API REST |
 
-## Authentication
+## Autenticação
 
-- **Type**: JWT Token (Bearer)
-- **Flow**: POST `/authenticate` with username + password, receive JWT token
+- **Tipo**: JWT Token (Bearer)
+- **Fluxo**: POST `/authenticate` com username + password, recebe JWT token
 - **Header**: `Authorization: Bearer {jwt_token}`
 - **Env vars**: `ZOOMINFO_USERNAME` + `ZOOMINFO_PRIVATE_KEY` or `ZOOMINFO_ACCESS_TOKEN`
-- **Get credentials**: Contact ZoomInfo sales or admin portal at https://app.zoominfo.com
+- **Obter credenciais**: Contate vendas da ZoomInfo ou o portal admin em https://app.zoominfo.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Authenticate
+### Autenticar
 
 ```bash
 POST https://api.zoominfo.com/authenticate
@@ -32,7 +32,7 @@ POST https://api.zoominfo.com/authenticate
 }
 ```
 
-### Contact Search
+### Busca de Contatos
 
 ```bash
 POST https://api.zoominfo.com/search/contact
@@ -46,7 +46,7 @@ POST https://api.zoominfo.com/search/contact
 }
 ```
 
-### Contact Enrichment
+### Enriquecimento de Contatos
 
 ```bash
 POST https://api.zoominfo.com/enrich/contact
@@ -56,7 +56,7 @@ POST https://api.zoominfo.com/enrich/contact
 }
 ```
 
-### Company Search
+### Busca de Empresas
 
 ```bash
 POST https://api.zoominfo.com/search/company
@@ -71,7 +71,7 @@ POST https://api.zoominfo.com/search/company
 }
 ```
 
-### Company Enrichment
+### Enriquecimento de Empresas
 
 ```bash
 POST https://api.zoominfo.com/enrich/company
@@ -81,7 +81,7 @@ POST https://api.zoominfo.com/enrich/company
 }
 ```
 
-### Intent Data Lookup
+### Dados de Intent Lookup
 
 ```bash
 POST https://api.zoominfo.com/lookup/intent
@@ -92,7 +92,7 @@ POST https://api.zoominfo.com/lookup/intent
 }
 ```
 
-### Scoops Lookup
+### Consulta de Scoops
 
 ```bash
 POST https://api.zoominfo.com/lookup/scoops
@@ -104,9 +104,9 @@ POST https://api.zoominfo.com/lookup/scoops
 }
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Contact Data
+### Dados de Contato
 - `firstName`, `lastName` - Name
 - `jobTitle` - Job title
 - `email` - Verified email
@@ -116,25 +116,25 @@ POST https://api.zoominfo.com/lookup/scoops
 - `managementLevel` - Seniority level
 - `department` - Department
 
-### Company Data
+### Dados da Empresa
 - `companyName` - Company name
-- `website` - Website URL
+- `website` - URL do site
 - `employeeCount` - Employee count
 - `industry` - Industry
 - `revenue` - Annual revenue
-- `techStack` - Technologies used
-- `fundingAmount` - Total funding
+- `techStack` - Tecnologias usadas
+- `fundingAmount` - Financiamento total
 - `companyCity`, `companyState`, `companyCountry` - Location
 
-### Intent Data
+### Dados de Intent
 - `topicName` - Intent topic
 - `signalScore` - Signal strength
-- `audienceStrength` - Audience engagement level
+- `audienceStrength` - Nível de engajamento da audiência
 - `firstSeenDate`, `lastSeenDate` - Signal timeframe
 
-## Parameters
+## Parâmetros
 
-### Contact Search
+### Busca de Contatos
 - `jobTitle` - Array of job titles
 - `companyName` - Array of company names
 - `managementLevel` - Array: C-Level, VP, Director, Manager, Staff
@@ -145,12 +145,12 @@ POST https://api.zoominfo.com/lookup/scoops
 - `rpp` - Results per page (default: 25, max: 100)
 - `page` - Page number (default: 1)
 
-### Contact Enrichment
+### Enriquecimento de Contatos
 - `matchEmail` - Array of email addresses
 - `personId` - Array of ZoomInfo person IDs
 - `matchFirstName` + `matchLastName` + `matchCompanyName` - Alternative lookup
 
-### Company Search
+### Busca de Empresas
 - `companyName` - Array of company names
 - `industry` - Array of industries
 - `employeeCountMin` / `employeeCountMax` - Employee count range
@@ -159,31 +159,31 @@ POST https://api.zoominfo.com/lookup/scoops
 - `rpp` - Results per page
 - `page` - Page number
 
-### Company Enrichment
+### Enriquecimento de Empresas
 - `matchCompanyWebsite` - Array of domains
 - `companyId` - Array of ZoomInfo company IDs
 
-### Intent Data
+### Dados de Intent
 - `topicId` - Array of intent topic IDs
 - `companyId` - Array of company IDs
 
-## When to Use
+## Quando Usar
 
-- Identifying in-market accounts with intent signals
-- Building targeted contact lists by role, seniority, and company
-- Enriching leads with verified contact data and firmographics
-- Finding decision-makers at target accounts for ABM
-- Tracking company news and leadership changes via scoops
+- Identificar contas in-market com sinais de intent
+- Construir listas de contatos segmentadas por função, senioridade e empresa
+- Enriquecer leads com dados de contato verificados e firmográficos
+- Encontrar decisores em contas-alvo para ABM
+- Rastrear notícias da empresa e mudanças de liderança via scoops
 - Prioritizing outreach based on buyer intent signals
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits vary by plan and endpoint
+- Limites de taxa variam por plano e endpoint
 - Standard: ~200 requests/minute
 - Bulk endpoints: batched requests recommended
 - Authentication tokens expire after ~12 hours
 
-## Relevant Skills
+## Skills Relevantes
 
 - cold-email
 - revops

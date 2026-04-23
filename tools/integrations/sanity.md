@@ -1,8 +1,8 @@
 # Sanity
 
-Headless CMS with real-time collaboration, GROQ query language, and schema-as-code.
+Headless CMS com colaboração em tempo real, linguagem de query GROQ e schema-as-code.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,36 +11,36 @@ Headless CMS with real-time collaboration, GROQ query language, and schema-as-co
 | CLI | ✓ | `sanity` CLI for studio, datasets, deployment |
 | SDK | ✓ | `@sanity/client`, `next-sanity`, `@sanity/image-url` |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Token (Bearer)
 - **Header**: `Authorization: Bearer skXXXXXX`
 - **Tokens**: Create in Sanity Manage → API → Tokens
-- **Permissions**: Read-only or Read+Write per token
+- **Permissions**: Read-only ou Read+Write por token
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Query documents (GROQ)
+### Consultar documentos (GROQ)
 
-URL-encode the `query` parameter value in practice.
+Na prática, faça URL-encode do valor do parâmetro `query`.
 
 ```bash
 GET https://{projectId}.api.sanity.io/v2024-01-01/data/query/{dataset}?query=*[_type == "post"]{title, slug, publishedAt}
 ```
 
-### Query with parameters
+### Consultar com parâmetros
 
 ```bash
 GET https://{projectId}.api.sanity.io/v2024-01-01/data/query/{dataset}?query=*[_type == "post" && slug.current == $slug][0]&$slug="my-post"
 ```
 
-### Get document by ID
+### Obter documento por ID
 
 ```bash
 GET https://{projectId}.api.sanity.io/v2024-01-01/data/doc/{dataset}/{documentId}
 ```
 
-### Create document (Mutations API)
+### Criar documento (Mutations API)
 
 ```bash
 POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
@@ -59,9 +59,9 @@ POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
 }
 ```
 
-Use `createOrReplace` instead if you want to upsert (requires `_id` field).
+Use `createOrReplace` se quiser fazer upsert (requer campo `_id`).
 
-### Delete document
+### Excluir documento
 
 ```bash
 POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
@@ -73,7 +73,7 @@ POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
 }
 ```
 
-### Patch document
+### Aplicar patch em documento
 
 ```bash
 POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
@@ -90,7 +90,7 @@ POST https://{projectId}.api.sanity.io/v2024-01-01/data/mutate/{dataset}
 }
 ```
 
-## CLI Commands
+## Comandos de CLI
 
 ```bash
 # Create a new Sanity project
@@ -115,33 +115,33 @@ sanity dataset list
 sanity documents query '*[_type == "post"][0..9]{title, slug}'
 ```
 
-## Key Objects
+## Objetos principais
 
-- **Document** — Top-level content item with `_id`, `_type`, `_rev`
-- **Asset** — Images and files stored in Sanity CDN
-- **Reference** — Link between documents (`{_type: "reference", _ref: "doc-id"}`)
-- **Portable Text** — Rich text as structured array of blocks
-- **Dataset** — Isolated content database (e.g., `production`, `staging`)
-- **Slug** — URL-friendly identifier (`{_type: "slug", current: "my-slug"}`)
+- **Document** — Item de conteúdo de nível superior com `_id`, `_type`, `_rev`
+- **Asset** — Imagens e arquivos armazenados no Sanity CDN
+- **Reference** — Link entre documentos (`{_type: "reference", _ref: "doc-id"}`)
+- **Portable Text** — Rich text como array estruturado de blocos
+- **Dataset** — Banco de conteúdo isolado (ex.: `production`, `staging`)
+- **Slug** — Identificador amigável para URL (`{_type: "slug", current: "my-slug"}`)
 
-## When to Use
+## Quando usar
 
-- Structured content for marketing sites and blogs
-- Multi-channel content delivery (web, mobile, email)
-- Real-time collaborative editing workflows
-- Content-heavy sites with complex models
-- Next.js or React-based frontends
+- Conteúdo estruturado para sites de marketing e blogs
+- Entrega de conteúdo multicanal (web, mobile, email)
+- Fluxos de edição colaborativa em tempo real
+- Sites com muito conteúdo e modelos complexos
+- Frontends baseados em Next.js ou React
 
-## Rate Limits
+## Limites de taxa
 
-Rate limits vary by plan. Documented defaults:
+Os limites de taxa variam por plano. Padrões documentados:
 
-- CDN API (queries): High throughput, globally distributed (no hard per-second cap published)
-- API (without CDN): Rate-limited per project (varies by plan)
-- Mutations: Rate-limited per project (varies by plan)
-- See [Sanity technical limits](https://www.sanity.io/docs/technical-limits) for current values
+- CDN API (queries): Alto throughput, distribuído globalmente (sem hard cap por segundo publicado)
+- API (sem CDN): Rate-limited por projeto (varia por plano)
+- Mutations: Rate-limited por projeto (varia por plano)
+- Veja [Sanity technical limits](https://www.sanity.io/docs/technical-limits) para os valores atuais
 
-## Relevant Skills
+## Skills relevantes
 
 - content-strategy (CMS selection, content modeling)
 - programmatic-seo (CMS as data source for generated pages)

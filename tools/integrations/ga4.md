@@ -1,25 +1,25 @@
 # Google Analytics 4 (GA4)
 
-Web analytics platform for tracking user behavior, conversions, and marketing performance.
+Plataforma de analytics web para rastrear o comportamento de usuários, conversões e desempenho de marketing.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Data API for reports, Admin API for configuration |
-| MCP | ✓ | Available via Google Analytics MCP server |
-| CLI | - | Use gcloud for some operations |
-| SDK | ✓ | gtag.js, Google Analytics SDK for mobile |
+| API | ✓ | Data API para relatórios, Admin API para configuração |
+| MCP | ✓ | Disponível via Google Analytics MCP server |
+| CLI | - | Use gcloud para algumas operações |
+| SDK | ✓ | gtag.js, Google Analytics SDK para mobile |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0 or Service Account
+- **Tipo**: OAuth 2.0 ou Service Account
 - **Scopes**: `https://www.googleapis.com/auth/analytics.readonly` (read), `https://www.googleapis.com/auth/analytics.edit` (write)
-- **Setup**: Create credentials in Google Cloud Console
+- **Setup**: Crie credenciais no Google Cloud Console
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Run a report (Data API)
+### Executar um relatório (Data API)
 
 ```bash
 POST https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport
@@ -31,7 +31,7 @@ POST https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runRep
 }
 ```
 
-### Get real-time data
+### Buscar dados em tempo real
 
 ```bash
 POST https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runRealtimeReport
@@ -42,13 +42,13 @@ POST https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runRea
 }
 ```
 
-### List conversion events
+### Listar eventos de conversão
 
 ```bash
 GET https://analyticsadmin.googleapis.com/v1beta/properties/{property_id}/conversionEvents
 ```
 
-### Create a conversion event
+### Criar um evento de conversão
 
 ```bash
 POST https://analyticsadmin.googleapis.com/v1beta/properties/{property_id}/conversionEvents
@@ -58,9 +58,9 @@ POST https://analyticsadmin.googleapis.com/v1beta/properties/{property_id}/conve
 }
 ```
 
-## Client-Side Tracking
+## Tracking no client-side
 
-### Send custom event (gtag.js)
+### Enviar evento customizado (gtag.js)
 
 ```javascript
 gtag('event', 'signup_completed', {
@@ -69,7 +69,7 @@ gtag('event', 'signup_completed', {
 });
 ```
 
-### Send event via Measurement Protocol
+### Enviar evento via Measurement Protocol
 
 ```bash
 POST https://www.google-analytics.com/mp/collect?measurement_id={measurement_id}&api_secret={api_secret}
@@ -86,39 +86,39 @@ POST https://www.google-analytics.com/mp/collect?measurement_id={measurement_id}
 }
 ```
 
-## Key Dimensions & Metrics
+## Principais dimensões e métricas
 
-### Common Dimensions
-- `sessionSource` - Traffic source
-- `sessionMedium` - Traffic medium
-- `sessionCampaignName` - Campaign name
-- `landingPage` - Entry page
-- `deviceCategory` - Device type
-- `country` - User country
+### Dimensões comuns
+- `sessionSource` - Origem do tráfego
+- `sessionMedium` - Meio do tráfego
+- `sessionCampaignName` - Nome da campanha
+- `landingPage` - Página de entrada
+- `deviceCategory` - Tipo de dispositivo
+- `country` - País do usuário
 
-### Common Metrics
-- `sessions` - Total sessions
-- `activeUsers` - Active users
-- `newUsers` - New users
-- `conversions` - Conversion events
-- `engagementRate` - Engaged sessions rate
-- `averageSessionDuration` - Session duration
+### Métricas comuns
+- `sessions` - Total de sessões
+- `activeUsers` - Usuários ativos
+- `newUsers` - Novos usuários
+- `conversions` - Eventos de conversão
+- `engagementRate` - Taxa de sessões engajadas
+- `averageSessionDuration` - Duração da sessão
 
-## When to Use
+## Quando usar
 
-- Tracking website traffic and user behavior
-- Measuring marketing campaign performance
-- Setting up conversion tracking
-- Analyzing user journeys and funnels
-- Attribution modeling
+- Rastrear tráfego do site e comportamento de usuários
+- Medir performance de campanhas de marketing
+- Configurar tracking de conversão
+- Analisar jornadas de usuários e funis
+- Fazer modelagem de atribuição
 
-## Rate Limits
+## Limites de taxa
 
-- Data API: 10 requests per second per property
-- Admin API: Varies by endpoint
-- Measurement Protocol: 1M hits/day for free tier
+- Data API: 10 requisições por segundo por propriedade
+- Admin API: varia por endpoint
+- Measurement Protocol: 1M hits/dia na camada gratuita
 
-## Relevant Skills
+## Habilidades relevantes
 
 - analytics-tracking
 - ab-test-setup

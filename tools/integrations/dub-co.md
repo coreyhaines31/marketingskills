@@ -1,25 +1,25 @@
 # Dub.co
 
-Link management and attribution platform for modern marketing teams.
+Plataforma de gestão de links e atribuição para equipes de marketing modernas.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for links, analytics, domains |
-| MCP | - | Not available |
-| CLI | - | Not available |
-| SDK | ✓ | TypeScript SDK available |
+| API | ✓ | REST API para links, analytics e domínios |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
+| SDK | ✓ | TypeScript SDK disponível |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
+- **Tipo**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: Settings > API Keys in Dub dashboard
+- **Obter chave**: Settings > API Keys no dashboard do Dub
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Create short link
+### Criar link curto
 
 ```bash
 POST https://api.dub.co/links
@@ -32,37 +32,37 @@ POST https://api.dub.co/links
 }
 ```
 
-### Get link by key
+### Buscar link por key
 
 ```bash
 GET https://api.dub.co/links?domain=link.example.com&key=summer-sale
 ```
 
-### List links
+### Listar links
 
 ```bash
 GET https://api.dub.co/links?domain=link.example.com&page=1
 ```
 
-### Get link analytics
+### Buscar analytics do link
 
 ```bash
 GET https://api.dub.co/analytics?domain=link.example.com&key=summer-sale&interval=30d
 ```
 
-### Get clicks by location
+### Buscar cliques por localização
 
 ```bash
 GET https://api.dub.co/analytics/country?domain=link.example.com&key=summer-sale
 ```
 
-### Get clicks by device
+### Buscar cliques por dispositivo
 
 ```bash
 GET https://api.dub.co/analytics/device?domain=link.example.com&key=summer-sale
 ```
 
-### Update link
+### Atualizar link
 
 ```bash
 PATCH https://api.dub.co/links/{link_id}
@@ -73,13 +73,13 @@ PATCH https://api.dub.co/links/{link_id}
 }
 ```
 
-### Delete link
+### Excluir link
 
 ```bash
 DELETE https://api.dub.co/links/{link_id}
 ```
 
-### Bulk create links
+### Criar links em massa
 
 ```bash
 POST https://api.dub.co/links/bulk
@@ -90,15 +90,15 @@ POST https://api.dub.co/links/bulk
 ]
 ```
 
-## TypeScript SDK
+## SDK TypeScript
 
-### Install
+### Instalar
 
 ```bash
 npm install dub
 ```
 
-### Usage
+### Uso
 
 ```typescript
 import { Dub } from "dub";
@@ -118,42 +118,42 @@ const analytics = await dub.analytics.retrieve({
 });
 ```
 
-## Key Features
+## Recursos principais
 
-- **Custom domains** - Use your own branded domains
-- **Link analytics** - Clicks, locations, devices, referrers
-- **Tags** - Organize links by campaign, channel, etc.
-- **QR codes** - Auto-generated for each link
-- **Password protection** - Secure sensitive links
-- **Expiration** - Time-limited links
-- **Geo-targeting** - Redirect based on location
+- **Domínios customizados** - Use os seus próprios domínios de marca
+- **Análises de links** - Cliques, localizações, dispositivos, referrers
+- **Tags** - Organize links por campanha, canal etc.
+- **QR codes** - Gerados automaticamente para cada link
+- **Password protection** - Proteja links sensíveis
+- **Expiration** - Links com prazo de expiração
+- **Geo-targeting** - Redirecionamento com base em localização
 
-## Analytics Dimensions
+## Dimensões de analytics
 
-- `clicks` - Total click count
-- `country` - Clicks by country
-- `city` - Clicks by city
-- `device` - Clicks by device type
-- `browser` - Clicks by browser
-- `os` - Clicks by operating system
-- `referer` - Clicks by referrer
+- `clicks` - Total de cliques
+- `country` - Cliques por país
+- `city` - Cliques por cidade
+- `device` - Cliques por tipo de dispositivo
+- `browser` - Cliques por navegador
+- `os` - Cliques por sistema operacional
+- `referer` - Cliques por origem (referrer)
 
-## When to Use
+## Quando usar
 
-- Creating trackable marketing links
-- Building referral link systems
-- Tracking campaign attribution
-- A/B testing landing pages via links
-- Generating branded short URLs
-- Analyzing link performance
+- Criar links de marketing rastreáveis
+- Construir sistemas de links de indicação
+- Rastrear atribuição de campanhas
+- Fazer A/B testing de landing pages via links
+- Gerar URLs curtas com marca
+- Analisar performance de links
 
-## Rate Limits
+## Limites de taxa
 
-- Free: 1,000 links, 5 API requests/second
-- Pro: Unlimited links, 50 API requests/second
-- Enterprise: Custom limits
+- Gratuito: 1,000 links, 5 API requests/second
+- Pro: links ilimitados, 50 API requests/second
+- Enterprise: Limites personalizados
 
-## Relevant Skills
+## Habilidades relevantes
 
 - referral-program
 - analytics-tracking

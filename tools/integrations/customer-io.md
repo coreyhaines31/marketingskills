@@ -1,25 +1,25 @@
 # Customer.io
 
-Behavior-based messaging platform for email, push, SMS, and in-app.
+Plataforma de mensagens baseada em comportamento para email, push, SMS e in-app.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Track API, App API, Journeys API |
-| MCP | - | Not available |
-| CLI | - | Not available |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
 | SDK | ✓ | JavaScript, iOS, Android, Ruby, Python |
 
-## Authentication
+## Autenticação
 
 - **Track API**: Site ID + API Key (Basic auth)
 - **App API**: Bearer token
-- **Header**: `Authorization: Basic {base64(site_id:api_key)}`
+- **Cabeçalho**: `Authorization: Basic {base64(site_id:api_key)}`
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Identify customer
+### Identificar customer
 
 ```bash
 PUT https://track.customer.io/api/v1/customers/{customer_id}
@@ -34,7 +34,7 @@ Authorization: Basic {base64(site_id:api_key)}
 }
 ```
 
-### Track event
+### Rastrear event
 
 ```bash
 POST https://track.customer.io/api/v1/customers/{customer_id}/events
@@ -50,7 +50,7 @@ Authorization: Basic {base64(site_id:api_key)}
 }
 ```
 
-### Track anonymous event
+### Rastrear anonymous event
 
 ```bash
 POST https://track.customer.io/api/v1/events
@@ -66,7 +66,7 @@ Authorization: Basic {base64(site_id:api_key)}
 }
 ```
 
-### Delete customer
+### Excluir customer
 
 ```bash
 DELETE https://track.customer.io/api/v1/customers/{customer_id}
@@ -74,7 +74,7 @@ DELETE https://track.customer.io/api/v1/customers/{customer_id}
 Authorization: Basic {base64(site_id:api_key)}
 ```
 
-### Get customer (App API)
+### Obter customer (App API)
 
 ```bash
 GET https://api.customer.io/v1/customers/{customer_id}/attributes
@@ -82,7 +82,7 @@ GET https://api.customer.io/v1/customers/{customer_id}/attributes
 Authorization: Bearer {app_api_key}
 ```
 
-### List campaigns
+### Listar campaigns
 
 ```bash
 GET https://api.customer.io/v1/campaigns
@@ -90,7 +90,7 @@ GET https://api.customer.io/v1/campaigns
 Authorization: Bearer {app_api_key}
 ```
 
-### Get campaign metrics
+### Obter campaign metrics
 
 ```bash
 GET https://api.customer.io/v1/campaigns/{campaign_id}/metrics
@@ -98,7 +98,7 @@ GET https://api.customer.io/v1/campaigns/{campaign_id}/metrics
 Authorization: Bearer {app_api_key}
 ```
 
-### Trigger broadcast
+### Disparar broadcast
 
 ```bash
 POST https://api.customer.io/v1/campaigns/{campaign_id}/triggers
@@ -113,7 +113,7 @@ Authorization: Bearer {app_api_key}
 }
 ```
 
-### Send transactional email
+### Enviar transactional email
 
 ```bash
 POST https://api.customer.io/v1/send/email
@@ -132,7 +132,7 @@ Authorization: Bearer {app_api_key}
 }
 ```
 
-## JavaScript SDK
+## SDK JavaScript
 
 ```javascript
 // Initialize
@@ -153,34 +153,34 @@ _cio.track('purchase', {
 _cio.page();
 ```
 
-## Key Concepts
+## Conceitos Principais
 
-- **People** - Customers and leads
-- **Segments** - Dynamic groups based on attributes/behavior
+- **People** - Clientes e leads
+- **Segments** - Grupos dinâmicos baseados em atributos/comportamento
 - **Campaigns** - Automated message sequences
 - **Broadcasts** - One-time sends
 - **Transactional** - Triggered messages
 
-## Attribute Types
+## Tipos de Atributo
 
-- Standard: `email`, `created_at`, `unsubscribed`
-- Custom: Any key you define
-- Computed: Aggregations from events
+- Padrão: `email`, `created_at`, `unsubscribed`
+- Custom: qualquer chave que você definir
+- Computed: Agregações de eventos
 
-## When to Use
+## Quando Usar
 
-- Behavior-based email automation
+- Automação de email baseada em comportamento
 - Multi-channel messaging (email, push, SMS)
 - Onboarding sequences
 - Re-engagement campaigns
 - Transactional messages
 
-## Rate Limits
+## Limites de Taxa
 
-- Track API: 100 requests/second
-- App API: 10 requests/second
+- Track API: 100 requisições/segundo
+- App API: 10 requisições/segundo
 
-## Relevant Skills
+## Skills Relevantes
 
 - email-sequence
 - onboarding-cro

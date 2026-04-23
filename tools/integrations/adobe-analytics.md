@@ -1,25 +1,25 @@
 # Adobe Analytics
 
-Enterprise analytics platform for cross-channel measurement and attribution.
+Plataforma de analytics empresarial para mensuração e atribuição cross-channel.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Reporting API 2.0, Data Insertion API |
-| MCP | - | Not available |
-| CLI | - | Not available |
+| MCP | - | Não disponível |
+| CLI | - | Não disponível |
 | SDK | ✓ | AppMeasurement.js, Mobile SDKs, Launch |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0 (Service Account JWT)
-- **Setup**: Create integration in Adobe Developer Console
-- **Header**: `Authorization: Bearer {access_token}`
+- **Tipo**: OAuth 2.0 (Service Account JWT)
+- **Configuração**: Crie a integração no Adobe Developer Console
+- **Cabeçalho**: `Authorization: Bearer {access_token}`
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### Get report suite info
+### Obter report suite info
 
 ```bash
 GET https://analytics.adobe.io/api/{company_id}/reportsuites
@@ -28,7 +28,7 @@ Authorization: Bearer {access_token}
 x-api-key: {client_id}
 ```
 
-### Get dimensions
+### Obter dimensions
 
 ```bash
 GET https://analytics.adobe.io/api/{company_id}/dimensions?rsid={report_suite_id}
@@ -37,7 +37,7 @@ Authorization: Bearer {access_token}
 x-api-key: {client_id}
 ```
 
-### Get metrics
+### Obter metrics
 
 ```bash
 GET https://analytics.adobe.io/api/{company_id}/metrics?rsid={report_suite_id}
@@ -46,7 +46,7 @@ Authorization: Bearer {access_token}
 x-api-key: {client_id}
 ```
 
-### Run report
+### Executar report
 
 ```bash
 POST https://analytics.adobe.io/api/{company_id}/reports
@@ -68,7 +68,7 @@ POST https://analytics.adobe.io/api/{company_id}/reports
 }
 ```
 
-### Get segments
+### Obter segments
 
 ```bash
 GET https://analytics.adobe.io/api/{company_id}/segments?rsid={report_suite_id}
@@ -77,7 +77,7 @@ Authorization: Bearer {access_token}
 x-api-key: {client_id}
 ```
 
-### Data Insertion (server-side)
+### Data Insertion (lado do servidor)
 
 ```bash
 POST https://{tracking_server}/b/ss/{report_suite_id}/0
@@ -111,13 +111,13 @@ s.t();
 s.tl(this, 'o', 'Button Click');
 ```
 
-## Key Concepts
+## Conceitos Principais
 
-- **Report Suite** - Data container
+- **Report Suite** - Contêiner de dados
 - **eVars** - Conversion variables (persistent)
 - **props** - Traffic variables (hit-level)
 - **Events** - Success metrics
-- **Segments** - User/visit filters
+- **Segments** - Filtros de usuário/visita
 - **Calculated Metrics** - Derived metrics
 
 ## Common Dimensions
@@ -136,20 +136,20 @@ s.tl(this, 'o', 'Button Click');
 - `metrics/orders` - Orders
 - `metrics/revenue` - Revenue
 
-## When to Use
+## Quando Usar
 
 - Enterprise-scale analytics
 - Cross-channel attribution
-- Integration with Adobe Experience Cloud
+- Integração com Adobe Experience Cloud
 - Advanced segmentation
-- Data warehouse exports
+- Exportações para data warehouse
 
-## Rate Limits
+## Limites de Taxa
 
-- 12 requests/second per company
-- 120 requests/minute
+- 12 requisições/segundo por empresa
+- 120 requisições/minuto
 
-## Relevant Skills
+## Skills Relevantes
 
 - analytics-tracking
 - ab-test-setup

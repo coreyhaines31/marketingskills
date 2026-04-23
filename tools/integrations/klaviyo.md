@@ -1,27 +1,27 @@
 # Klaviyo
 
-E-commerce email and SMS marketing platform with profiles, flows, campaigns, segments, and event tracking.
+Plataforma de marketing por email e SMS para e-commerce com profiles, flows, campaigns, segments e event tracking.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API with JSON:API spec, revision-versioned |
-| MCP | - | Not available |
+| API | ✓ | REST API com especificação JSON:API, versionada por revision |
+| MCP | - | Não disponível |
 | CLI | ✓ | [klaviyo.js](../clis/klaviyo.js) |
 | SDK | ✓ | Python, Node.js, Ruby, PHP, Java, C# |
 
-## Authentication
+## Autenticação
 
-- **Type**: Private API Key
+- **Tipo**: Private API Key
 - **Header**: `Authorization: Klaviyo-API-Key {private_api_key}`
-- **Revision Header**: `revision: 2024-10-15` (required on all requests)
-- **Get key**: Account Settings > API Keys at https://www.klaviyo.com/settings/account/api-keys
-- **Note**: Private keys are prefixed with `pk_`; public keys (6-char site ID) are for client-side only
+- **Revision Header**: `revision: 2024-10-15` (obrigatório em todas as requisições)
+- **Obter chave**: Account Settings > API Keys em https://www.klaviyo.com/settings/account/api-keys
+- **Note**: Chaves privadas têm prefixo `pk_`; chaves públicas (site ID de 6 caracteres) são apenas para client-side
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### List profiles
+### Listar profiles
 
 ```bash
 GET https://a.klaviyo.com/api/profiles/?page[size]=20
@@ -30,7 +30,7 @@ GET https://a.klaviyo.com/api/profiles/?page[size]=20
 GET https://a.klaviyo.com/api/profiles/?filter=equals(email,"user@example.com")
 ```
 
-### Create profile
+### Criar profile
 
 ```bash
 POST https://a.klaviyo.com/api/profiles/
@@ -48,7 +48,7 @@ POST https://a.klaviyo.com/api/profiles/
 }
 ```
 
-### Update profile
+### Atualizar profile
 
 ```bash
 PATCH https://a.klaviyo.com/api/profiles/{profileId}/
@@ -64,13 +64,13 @@ PATCH https://a.klaviyo.com/api/profiles/{profileId}/
 }
 ```
 
-### List all lists
+### Listar todas as lists
 
 ```bash
 GET https://a.klaviyo.com/api/lists/
 ```
 
-### Create list
+### Criar lista
 
 ```bash
 POST https://a.klaviyo.com/api/lists/
@@ -85,7 +85,7 @@ POST https://a.klaviyo.com/api/lists/
 }
 ```
 
-### Add profiles to list
+### Adicionar perfis à lista
 
 ```bash
 POST https://a.klaviyo.com/api/lists/{listId}/relationships/profiles/
@@ -98,7 +98,7 @@ POST https://a.klaviyo.com/api/lists/{listId}/relationships/profiles/
 }
 ```
 
-### Track event
+### Rastrear evento
 
 ```bash
 POST https://a.klaviyo.com/api/events/
@@ -129,19 +129,19 @@ POST https://a.klaviyo.com/api/events/
 }
 ```
 
-### List campaigns
+### Listar campaigns
 
 ```bash
 GET https://a.klaviyo.com/api/campaigns/?filter=equals(messages.channel,"email")
 ```
 
-### List flows
+### Listar flows
 
 ```bash
 GET https://a.klaviyo.com/api/flows/
 ```
 
-### Update flow status
+### Atualizar status do flow
 
 ```bash
 PATCH https://a.klaviyo.com/api/flows/{flowId}/
@@ -157,70 +157,70 @@ PATCH https://a.klaviyo.com/api/flows/{flowId}/
 }
 ```
 
-### List metrics
+### Listar métricas
 
 ```bash
 GET https://a.klaviyo.com/api/metrics/
 ```
 
-### List segments
+### Listar segments
 
 ```bash
 GET https://a.klaviyo.com/api/segments/
 ```
 
-## API Pattern
+## Padrão da API
 
-Klaviyo uses the JSON:API specification. All request/response bodies use `{ "data": { "type": "...", "attributes": {...} } }` format. Relationships are managed via `/relationships/` sub-endpoints. The `revision` header is required on every request and determines API behavior version.
+A Klaviyo usa a especificação JSON:API. Todos os corpos de request/response usam o formato `{ "data": { "type": "...", "attributes": {...} } }`. Relationships são gerenciados via sub-endpoints `/relationships/`. O header `revision` é obrigatório em todas as requisições e determina a versão de comportamento da API.
 
-## Key Metrics
+## Métricas principais
 
-### Profile Fields
-- `email` - Email address
-- `phone_number` - Phone for SMS
-- `first_name`, `last_name` - Name fields
-- `properties` - Custom properties object
-- `subscriptions` - Email/SMS subscription status
+### Campos de profile
+- `email` - Endereço de email
+- `phone_number` - Telefone para SMS
+- `first_name`, `last_name` - Campos de nome
+- `properties` - Objeto de propriedades customizadas
+- `subscriptions` - Status de inscrição de Email/SMS
 
-### Event Fields
-- `metric` - The metric/event name
-- `properties` - Custom event properties
-- `time` - Event timestamp
-- `value` - Monetary value (for revenue tracking)
+### Campos de evento
+- `metric` - Nome da métrica/evento
+- `properties` - Propriedades customizadas do evento
+- `time` - Timestamp do evento
+- `value` - Valor monetário (para revenue tracking)
 
-### Campaign/Flow Metrics
-- `send_count` - Number of sends
-- `open_rate` - Open percentage
-- `click_rate` - Click percentage
-- `revenue` - Attributed revenue
+### Métricas de Campaign/Flow
+- `send_count` - Número de envios
+- `open_rate` - Percentual de abertura
+- `click_rate` - Percentual de clique
+- `revenue` - Receita atribuída
 
-## Parameters
+## Parâmetros
 
-### Common Query Parameters
-- `page[size]` - Results per page (default 20, max 100)
-- `page[cursor]` - Cursor for pagination
-- `filter` - Filter expressions (e.g., `equals(email,"user@example.com")`)
-- `sort` - Sort field (prefix `-` for descending)
-- `include` - Include related resources
-- `fields[resource]` - Sparse fieldsets
+### Parâmetros de query comuns
+- `page[size]` - Resultados por página (padrão 20, máx 100)
+- `page[cursor]` - Cursor para paginação
+- `filter` - Expressões de filtro (ex.: `equals(email,"user@example.com")`)
+- `sort` - Campo de ordenação (prefixo `-` para descendente)
+- `include` - Incluir recursos relacionados
+- `fields[resource]` - Conjuntos de campos esparsos
 
-## When to Use
+## Quando usar
 
-- E-commerce email/SMS marketing automation
-- Syncing customer profiles from external systems
-- Tracking purchase events and customer behavior
-- Managing email flows and drip campaigns
-- Segmenting audiences for targeted campaigns
-- Reporting on campaign and flow performance
+- Automação de email/SMS marketing para e-commerce
+- Sincronizar profiles de clientes de sistemas externos
+- Rastrear eventos de compra e comportamento de clientes
+- Gerenciar flows de email e drip campaigns
+- Segmentar audiências para campanhas direcionadas
+- Gerar relatórios de performance de campaign e flow
 
-## Rate Limits
+## Limites de taxa
 
-- Steady-state: 75 requests/second for most endpoints
-- Burst: up to 700 requests in 1 minute
-- Rate limit headers: `RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset`
-- Lower limits on some write endpoints (profiles, events)
+- Steady-state: 75 requisições/segundo para a maioria dos endpoints
+- Burst: até 700 requisições em 1 minuto
+- Limite de taxa headers: `RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset`
+- Limites menores em alguns endpoints de escrita (profiles, events)
 
-## Relevant Skills
+## Habilidades relevantes
 
 - email-sequence
 - ecommerce-email

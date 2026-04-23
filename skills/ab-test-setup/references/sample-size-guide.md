@@ -1,252 +1,252 @@
-# Sample Size Guide
+# Guia de Tamanho de Amostra
 
-Reference for calculating sample sizes and test duration.
+Referência para calcular tamanhos de amostra e duração de testes.
 
-## Contents
-- Sample Size Fundamentals (required inputs, what these mean)
-- Sample Size Quick Reference Tables
-- Duration Calculator (formula, examples, minimum duration rules, maximum duration guidelines)
-- Online Calculators
-- Adjusting for Multiple Variants
-- Common Sample Size Mistakes
-- When Sample Size Requirements Are Too High
-- Sequential Testing
-- Quick Decision Framework
+## Conteúdo
+- Fundamentos do Tamanho de Amostra (entradas necessárias, o que significam)
+- Tabelas de Referência Rápida de Tamanho de Amostra
+- Calculadora de Duração (fórmula, exemplos, regras de duração mínima, diretrizes de duração máxima)
+- Calculadoras Online
+- Ajuste para Múltiplas Variantes
+- Erros Comuns de Tamanho de Amostra
+- Quando os Requisitos de Tamanho de Amostra São Muito Altos
+- Teste Sequencial
+- Framework de Decisão Rápida
 
-## Sample Size Fundamentals
+## Fundamentos do Tamanho de Amostra
 
-### Required Inputs
+### Entradas Necessárias
 
-1. **Baseline conversion rate**: Your current rate
-2. **Minimum detectable effect (MDE)**: Smallest change worth detecting
-3. **Statistical significance level**: Usually 95% (α = 0.05)
-4. **Statistical power**: Usually 80% (β = 0.20)
+1. **Taxa de conversão de linha de base**: Sua taxa atual
+2. **Efeito mínimo detectável (MDE)**: Menor mudança que vale a pena detectar
+3. **Nível de significância estatística**: Geralmente 95% (α = 0,05)
+4. **Poder estatístico**: Geralmente 80% (β = 0,20)
 
-### What These Mean
+### O que Significam
 
-**Baseline conversion rate**: If your page converts at 5%, that's your baseline.
+**Taxa de conversão de linha de base**: Se sua página converte a 5%, essa é sua linha de base.
 
-**MDE (Minimum Detectable Effect)**: The smallest improvement you care about detecting. Set this based on:
-- Business impact (is a 5% lift meaningful?)
-- Implementation cost (worth the effort?)
-- Realistic expectations (what have past tests shown?)
+**MDE (Efeito Mínimo Detectável)**: A menor melhoria que você quer ser capaz de detectar. Defina com base em:
+- Impacto no negócio (um lift de 5% é relevante?)
+- Custo de implementação (vale o esforço?)
+- Expectativas realistas (o que testes passados mostraram?)
 
-**Statistical significance (95%)**: Means there's less than 5% chance the observed difference is due to random chance.
+**Significância estatística (95%)**: Significa que há menos de 5% de chance de que a diferença observada seja fruto do acaso.
 
-**Statistical power (80%)**: Means if there's a real effect of size MDE, you have 80% chance of detecting it.
+**Poder estatístico (80%)**: Significa que, se houver um efeito real do tamanho do MDE, você tem 80% de chance de detectá-lo.
 
 ---
 
-## Sample Size Quick Reference Tables
+## Tabelas de Referência Rápida de Tamanho de Amostra
 
-### Conversion Rate: 1%
+### Taxa de Conversão: 1%
 
-| Lift to Detect | Sample per Variant | Total Sample |
-|----------------|-------------------|--------------|
-| 5% (1% → 1.05%) | 1,500,000 | 3,000,000 |
-| 10% (1% → 1.1%) | 380,000 | 760,000 |
-| 20% (1% → 1.2%) | 97,000 | 194,000 |
-| 50% (1% → 1.5%) | 16,000 | 32,000 |
-| 100% (1% → 2%) | 4,200 | 8,400 |
+| Lift a Detectar | Amostra por Variante | Amostra Total |
+|-----------------|---------------------|---------------|
+| 5% (1% → 1,05%) | 1.500.000 | 3.000.000 |
+| 10% (1% → 1,1%) | 380.000 | 760.000 |
+| 20% (1% → 1,2%) | 97.000 | 194.000 |
+| 50% (1% → 1,5%) | 16.000 | 32.000 |
+| 100% (1% → 2%) | 4.200 | 8.400 |
 
-### Conversion Rate: 3%
+### Taxa de Conversão: 3%
 
-| Lift to Detect | Sample per Variant | Total Sample |
-|----------------|-------------------|--------------|
-| 5% (3% → 3.15%) | 480,000 | 960,000 |
-| 10% (3% → 3.3%) | 120,000 | 240,000 |
-| 20% (3% → 3.6%) | 31,000 | 62,000 |
-| 50% (3% → 4.5%) | 5,200 | 10,400 |
-| 100% (3% → 6%) | 1,400 | 2,800 |
+| Lift a Detectar | Amostra por Variante | Amostra Total |
+|-----------------|---------------------|---------------|
+| 5% (3% → 3,15%) | 480.000 | 960.000 |
+| 10% (3% → 3,3%) | 120.000 | 240.000 |
+| 20% (3% → 3,6%) | 31.000 | 62.000 |
+| 50% (3% → 4,5%) | 5.200 | 10.400 |
+| 100% (3% → 6%) | 1.400 | 2.800 |
 
-### Conversion Rate: 5%
+### Taxa de Conversão: 5%
 
-| Lift to Detect | Sample per Variant | Total Sample |
-|----------------|-------------------|--------------|
-| 5% (5% → 5.25%) | 280,000 | 560,000 |
-| 10% (5% → 5.5%) | 72,000 | 144,000 |
-| 20% (5% → 6%) | 18,000 | 36,000 |
-| 50% (5% → 7.5%) | 3,100 | 6,200 |
-| 100% (5% → 10%) | 810 | 1,620 |
+| Lift a Detectar | Amostra por Variante | Amostra Total |
+|-----------------|---------------------|---------------|
+| 5% (5% → 5,25%) | 280.000 | 560.000 |
+| 10% (5% → 5,5%) | 72.000 | 144.000 |
+| 20% (5% → 6%) | 18.000 | 36.000 |
+| 50% (5% → 7,5%) | 3.100 | 6.200 |
+| 100% (5% → 10%) | 810 | 1.620 |
 
-### Conversion Rate: 10%
+### Taxa de Conversão: 10%
 
-| Lift to Detect | Sample per Variant | Total Sample |
-|----------------|-------------------|--------------|
-| 5% (10% → 10.5%) | 130,000 | 260,000 |
-| 10% (10% → 11%) | 34,000 | 68,000 |
-| 20% (10% → 12%) | 8,700 | 17,400 |
-| 50% (10% → 15%) | 1,500 | 3,000 |
+| Lift a Detectar | Amostra por Variante | Amostra Total |
+|-----------------|---------------------|---------------|
+| 5% (10% → 10,5%) | 130.000 | 260.000 |
+| 10% (10% → 11%) | 34.000 | 68.000 |
+| 20% (10% → 12%) | 8.700 | 17.400 |
+| 50% (10% → 15%) | 1.500 | 3.000 |
 | 100% (10% → 20%) | 400 | 800 |
 
-### Conversion Rate: 20%
+### Taxa de Conversão: 20%
 
-| Lift to Detect | Sample per Variant | Total Sample |
-|----------------|-------------------|--------------|
-| 5% (20% → 21%) | 60,000 | 120,000 |
-| 10% (20% → 22%) | 16,000 | 32,000 |
-| 20% (20% → 24%) | 4,000 | 8,000 |
-| 50% (20% → 30%) | 700 | 1,400 |
+| Lift a Detectar | Amostra por Variante | Amostra Total |
+|-----------------|---------------------|---------------|
+| 5% (20% → 21%) | 60.000 | 120.000 |
+| 10% (20% → 22%) | 16.000 | 32.000 |
+| 20% (20% → 24%) | 4.000 | 8.000 |
+| 50% (20% → 30%) | 700 | 1.400 |
 | 100% (20% → 40%) | 200 | 400 |
 
 ---
 
-## Duration Calculator
+## Calculadora de Duração
 
-### Formula
+### Fórmula
 
 ```
 Duration (days) = (Sample per variant × Number of variants) / (Daily traffic × % exposed)
 ```
 
-### Examples
+### Exemplos
 
-**Scenario 1: High-traffic page**
-- Need: 10,000 per variant (2 variants = 20,000 total)
-- Daily traffic: 5,000 visitors
-- 100% exposed to test
-- Duration: 20,000 / 5,000 = **4 days**
+**Cenário 1: Página de alto tráfego**
+- Necessário: 10.000 por variante (2 variantes = 20.000 no total)
+- Tráfego diário: 5.000 visitantes
+- 100% expostos ao teste
+- Duração: 20.000 / 5.000 = **4 dias**
 
-**Scenario 2: Medium-traffic page**
-- Need: 30,000 per variant (60,000 total)
-- Daily traffic: 2,000 visitors
-- 100% exposed
-- Duration: 60,000 / 2,000 = **30 days**
+**Cenário 2: Página de tráfego médio**
+- Necessário: 30.000 por variante (60.000 no total)
+- Tráfego diário: 2.000 visitantes
+- 100% expostos
+- Duração: 60.000 / 2.000 = **30 dias**
 
-**Scenario 3: Low-traffic with partial exposure**
-- Need: 15,000 per variant (30,000 total)
-- Daily traffic: 500 visitors
-- 50% exposed to test
-- Effective daily: 250
-- Duration: 30,000 / 250 = **120 days** (too long!)
+**Cenário 3: Baixo tráfego com exposição parcial**
+- Necessário: 15.000 por variante (30.000 no total)
+- Tráfego diário: 500 visitantes
+- 50% expostos ao teste
+- Efetivo diário: 250
+- Duração: 30.000 / 250 = **120 dias** (muito longo!)
 
-### Minimum Duration Rules
+### Regras de Duração Mínima
 
-Even with sufficient sample size, run tests for at least:
-- **1 full week**: To capture day-of-week variation
-- **2 business cycles**: If B2B (weekday vs. weekend patterns)
-- **Through paydays**: If e-commerce (beginning/end of month)
+Mesmo com tamanho de amostra suficiente, execute testes por no mínimo:
+- **1 semana completa**: Para capturar variação por dia da semana
+- **2 ciclos de negócio**: Se for B2B (padrões de dia útil vs. fim de semana)
+- **Incluindo dias de pagamento**: Se for e-commerce (início/fim do mês)
 
-### Maximum Duration Guidelines
+### Diretrizes de Duração Máxima
 
-Avoid running tests longer than 4-8 weeks:
-- Novelty effects wear off
-- External factors intervene
-- Opportunity cost of other tests
+Evite executar testes por mais de 4–8 semanas:
+- Efeitos de novidade se dissipam
+- Fatores externos interferem
+- Custo de oportunidade de outros testes
 
 ---
 
-## Online Calculators
+## Calculadoras Online
 
-### Recommended Tools
+### Ferramentas Recomendadas
 
-**Evan Miller's Calculator**
+**Calculadora do Evan Miller**
 https://www.evanmiller.org/ab-testing/sample-size.html
-- Simple interface
-- Bookmark-worthy
+- Interface simples
+- Salve nos favoritos
 
-**Optimizely's Calculator**
+**Calculadora da Optimizely**
 https://www.optimizely.com/sample-size-calculator/
-- Business-friendly language
-- Duration estimates
+- Linguagem orientada ao negócio
+- Estimativas de duração
 
-**AB Test Guide Calculator**
+**Calculadora do AB Test Guide**
 https://www.abtestguide.com/calc/
-- Includes Bayesian option
-- Multiple test types
+- Inclui opção Bayesian
+- Múltiplos tipos de teste
 
-**VWO Duration Calculator**
+**Calculadora de Duração da VWO**
 https://vwo.com/tools/ab-test-duration-calculator/
-- Duration-focused
-- Good for planning
+- Foco em duração
+- Ideal para planejamento
 
 ---
 
-## Adjusting for Multiple Variants
+## Ajuste para Múltiplas Variantes
 
-With more than 2 variants (A/B/n tests), you need more sample:
+Com mais de 2 variantes (testes A/B/n), você precisa de mais amostra:
 
-| Variants | Multiplier |
-|----------|------------|
+| Variantes | Multiplicador |
+|-----------|--------------|
 | 2 (A/B) | 1x |
-| 3 (A/B/C) | ~1.5x |
+| 3 (A/B/C) | ~1,5x |
 | 4 (A/B/C/D) | ~2x |
-| 5+ | Consider reducing variants |
+| 5+ | Considere reduzir as variantes |
 
-**Why?** More comparisons increase chance of false positives. You're comparing:
+**Por quê?** Mais comparações aumentam a chance de falsos positivos. Você está comparando:
 - A vs B
 - A vs C
-- B vs C (sometimes)
+- B vs C (às vezes)
 
-Apply Bonferroni correction or use tools that handle this automatically.
-
----
-
-## Common Sample Size Mistakes
-
-### 1. Underpowered tests
-**Problem**: Not enough sample to detect realistic effects
-**Fix**: Be realistic about MDE, get more traffic, or don't test
-
-### 2. Overpowered tests
-**Problem**: Waiting for sample size when you already have significance
-**Fix**: This is actually fine—you committed to sample size, honor it
-
-### 3. Wrong baseline rate
-**Problem**: Using wrong conversion rate for calculation
-**Fix**: Use the specific metric and page, not site-wide averages
-
-### 4. Ignoring segments
-**Problem**: Calculating for full traffic, then analyzing segments
-**Fix**: If you plan segment analysis, calculate sample for smallest segment
-
-### 5. Testing too many things
-**Problem**: Dividing traffic too many ways
-**Fix**: Prioritize ruthlessly, run fewer concurrent tests
+Aplique a correção de Bonferroni ou use ferramentas que lidam com isso automaticamente.
 
 ---
 
-## When Sample Size Requirements Are Too High
+## Erros Comuns de Tamanho de Amostra
 
-Options when you can't get enough traffic:
+### 1. Testes sub-potencializados
+**Problema**: Amostra insuficiente para detectar efeitos realistas
+**Solução**: Seja realista quanto ao MDE, obtenha mais tráfego ou não teste
 
-1. **Increase MDE**: Accept only detecting larger effects (20%+ lift)
-2. **Lower confidence**: Use 90% instead of 95% (risky, document it)
-3. **Reduce variants**: Test only the most promising variant
-4. **Combine traffic**: Test across multiple similar pages
-5. **Test upstream**: Test earlier in funnel where traffic is higher
-6. **Don't test**: Make decision based on qualitative data instead
-7. **Longer test**: Accept longer duration (weeks/months)
+### 2. Testes super-potencializados
+**Problema**: Esperando pelo tamanho de amostra quando já há significância
+**Solução**: Isso é aceitável — você se comprometeu com o tamanho de amostra, honre isso
+
+### 3. Taxa de linha de base errada
+**Problema**: Usar taxa de conversão errada para o cálculo
+**Solução**: Use a métrica e a página específicas, não médias de todo o site
+
+### 4. Ignorar segmentos
+**Problema**: Calcular para o tráfego total e depois analisar segmentos
+**Solução**: Se você planeja análise por segmento, calcule a amostra para o menor segmento
+
+### 5. Testar muitas coisas
+**Problema**: Dividir o tráfego em muitas partes
+**Solução**: Priorize rigorosamente, execute menos testes simultâneos
 
 ---
 
-## Sequential Testing
+## Quando os Requisitos de Tamanho de Amostra São Muito Altos
 
-If you must check results before reaching sample size:
+Opções quando você não consegue tráfego suficiente:
 
-### What is it?
-Statistical method that adjusts for multiple looks at data.
+1. **Aumente o MDE**: Aceite detectar apenas efeitos maiores (lift de 20%+)
+2. **Reduza a confiança**: Use 90% em vez de 95% (arriscado, documente isso)
+3. **Reduza as variantes**: Teste apenas a variante mais promissora
+4. **Combine tráfego**: Teste em múltiplas páginas semelhantes
+5. **Teste mais acima no funil**: Teste mais cedo, onde o tráfego é maior
+6. **Não teste**: Tome a decisão com base em dados qualitativos
+7. **Teste mais longo**: Aceite uma duração maior (semanas/meses)
 
-### When to use
-- High-risk changes
-- Need to stop bad variants early
-- Time-sensitive decisions
+---
 
-### Tools that support it
+## Teste Sequencial
+
+Se você precisar verificar os resultados antes de atingir o tamanho de amostra:
+
+### O que é?
+Método estatístico que ajusta para múltiplas verificações dos dados.
+
+### Quando usar
+- Mudanças de alto risco
+- Necessidade de interromper variantes ruins antecipadamente
+- Decisões sensíveis ao tempo
+
+### Ferramentas que suportam
 - Optimizely (Stats Accelerator)
 - VWO (SmartStats)
-- PostHog (Bayesian approach)
+- PostHog (abordagem Bayesian)
 
-### Tradeoff
-- More flexibility to stop early
-- Slightly larger sample size requirement
-- More complex analysis
+### Troca
+- Mais flexibilidade para encerrar antes
+- Requisito de tamanho de amostra levemente maior
+- Análise mais complexa
 
 ---
 
-## Quick Decision Framework
+## Framework de Decisão Rápida
 
-### Can I run this test?
+### Posso executar este teste?
 
 ```
 Daily traffic to page: _____

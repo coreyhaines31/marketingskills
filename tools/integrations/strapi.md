@@ -1,24 +1,24 @@
 # Strapi
 
-Open-source headless CMS with self-hosted option, REST and GraphQL APIs, and customizable admin panel. Targets Strapi 5.
+CMS headless open-source com opção self-hosted, APIs REST e GraphQL e painel admin personalizável. Voltado ao Strapi 5.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
 | API | ✓ | REST (default), GraphQL (plugin) |
-| MCP | - | No official MCP server |
-| CLI | ✓ | `strapi` CLI for project setup, content types, plugins |
+| MCP | - | Sem servidor MCP oficial |
+| CLI | ✓ | `strapi` CLI para setup de projeto, tipos de conteúdo e plugins |
 | SDK | ✓ | `@strapi/sdk-js`, `@strapi/blocks-react-renderer` |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Token or Users & Permissions JWT
+- **Tipo**: API Token ou JWT de Users & Permissions
 - **Header**: `Authorization: Bearer {api_token}`
-- **Tokens**: Create in Settings → API Tokens (full access, read-only, or custom)
-- **JWT**: `POST /api/auth/local` with identifier + password returns JWT
+- **Tokens**: Crie em Settings → API Tokens (acesso total, somente leitura ou customizado)
+- **JWT**: `POST /api/auth/local` with identifier + password retorna JWT
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
 ### List documents
 
@@ -100,7 +100,7 @@ GET http://localhost:1337/api/articles?status=draft
 Authorization: Bearer {api_token}
 ```
 
-Publishing and unpublishing are managed through the Strapi admin panel or Document Service API (server-side). The public REST API does not expose dedicated publish/unpublish endpoints.
+Publicação e despublicação são gerenciadas pelo painel admin do Strapi ou pela Document Service API (server-side). A API REST pública não expõe endpoints dedicados de publicar/despublicar.
 
 ### Populate relations and components
 
@@ -115,7 +115,7 @@ GET http://localhost:1337/api/articles?populate[0]=author&populate[1]=category
 GET http://localhost:1337/api/articles?populate[author][populate]=avatar
 ```
 
-## CLI Commands
+## Comandos CLI
 
 ```bash
 # Create new Strapi project
@@ -137,30 +137,30 @@ strapi generate controller
 npm install @strapi/plugin-graphql
 ```
 
-## Key Objects
+## Objetos Principais
 
-- **Content Type** — Schema definition (collection type or single type)
-- **Document** — Content item identified by `documentId` (Strapi 5 pattern)
+- **Content Tipo** — Definição de schema (collection type ou single type)
+- **Document** — Item de conteúdo identificado por `documentId` (padrão do Strapi 5)
 - **Component** — Reusable field group (e.g., SEO fields, CTA block)
-- **Dynamic Zone** — Flexible content area accepting multiple component types
-- **Media** — Files managed through the Media Library
-- **Locale** — i18n locale for content translation (plugin-based)
+- **Dynamic Zone** — Área flexível de conteúdo que aceita múltiplos tipos de componente
+- **Media** — Arquivos gerenciados pela Media Library
+- **Locale** — Locale i18n para tradução de conteúdo (baseado em plugin)
 
-## When to Use
+## Quando Usar
 
-- Self-hosted CMS with full data ownership
-- Budget-conscious projects (no per-seat pricing)
+- CMS self-hosted com total propriedade dos dados
+- Projetos com foco em orçamento (sem cobrança por assento)
 - Custom admin panel or plugin requirements
-- Teams with DevOps capability
-- Projects needing both REST and GraphQL access
+- Times com capacidade de DevOps
+- Projetos que precisam de acesso REST e GraphQL
 
-## Rate Limits
+## Limites de Taxa
 
-- Self-hosted: No built-in rate limits (configure via middleware or reverse proxy)
+- Self-hosted: Sem limites de taxa embutidos (configure via middleware ou reverse proxy)
 - Strapi Cloud: Varies by plan
-- Recommended: Add rate limiting middleware for production APIs
+- Recomendado: adicionar middleware de rate limiting para APIs em produção
 
-## Relevant Skills
+## Skills Relevantes
 
 - content-strategy (CMS selection, content modeling)
 - programmatic-seo (CMS as data source for generated pages)

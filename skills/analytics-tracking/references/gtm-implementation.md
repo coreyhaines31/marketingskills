@@ -1,36 +1,36 @@
-# Google Tag Manager Implementation Reference
+# Referência de Implementação do Google Tag Manager
 
-Detailed guide for implementing tracking via Google Tag Manager.
+Guia detalhado para implementação de rastreamento via Google Tag Manager.
 
-## Contents
-- Container Structure (tags, triggers, variables)
-- Naming Conventions
-- Data Layer Patterns
-- Common Tag Configurations (GA4 configuration tag, GA4 event tag, Facebook pixel)
-- Preview and Debug
-- Workspaces and Versioning
-- Consent Management
-- Advanced Patterns (tag sequencing, exception handling, custom JavaScript variables)
+## Índice
+- Estrutura do Container (tags, triggers, variables)
+- Convenções de Nomenclatura
+- Padrões de Data Layer
+- Configurações Comuns de Tags (tag de configuração GA4, tag de evento GA4, Facebook pixel)
+- Preview e Debug
+- Workspaces e Versionamento
+- Gerenciamento de Consentimento
+- Padrões Avançados (sequenciamento de tags, tratamento de exceções, variáveis JavaScript personalizadas)
 
-## Container Structure
+## Estrutura do Container
 
 ### Tags
 
-Tags are code snippets that execute when triggered.
+Tags são trechos de código que executam quando disparados.
 
-**Common tag types:**
-- GA4 Configuration (base setup)
-- GA4 Event (custom events)
+**Tipos comuns de tags:**
+- GA4 Configuration (configuração base)
+- GA4 Event (eventos personalizados)
 - Google Ads Conversion
 - Facebook Pixel
 - LinkedIn Insight Tag
-- Custom HTML (for other pixels)
+- Custom HTML (para outros pixels)
 
 ### Triggers
 
-Triggers define when tags fire.
+Triggers definem quando as tags disparam.
 
-**Built-in triggers:**
+**Triggers integrados:**
 - Page View: All Pages, DOM Ready, Window Loaded
 - Click: All Elements, Just Links
 - Form Submission
@@ -38,32 +38,32 @@ Triggers define when tags fire.
 - Timer
 - Element Visibility
 
-**Custom triggers:**
-- Custom Event (from dataLayer)
-- Trigger Groups (multiple conditions)
+**Triggers personalizados:**
+- Custom Event (do dataLayer)
+- Trigger Groups (múltiplas condições)
 
 ### Variables
 
-Variables capture dynamic values.
+Variables capturam valores dinâmicos.
 
-**Built-in (enable as needed):**
+**Integradas (habilitar conforme necessário):**
 - Click Text, Click URL, Click ID, Click Classes
 - Page Path, Page URL, Page Hostname
 - Referrer
 - Form Element, Form ID
 
-**User-defined:**
-- Data Layer variables
-- JavaScript variables
+**Definidas pelo usuário:**
+- Variables de Data Layer
+- Variables JavaScript
 - Lookup tables
-- RegEx tables
-- Constants
+- Tabelas RegEx
+- Constantes
 
 ---
 
-## Naming Conventions
+## Convenções de Nomenclatura
 
-### Recommended Format
+### Formato Recomendado
 
 ```
 [Type] - [Description] - [Detail]
@@ -88,9 +88,9 @@ LT - Campaign Source Map
 
 ---
 
-## Data Layer Patterns
+## Padrões de Data Layer
 
-### Basic Structure
+### Estrutura Básica
 
 ```javascript
 // Initialize (in <head> before GTM)
@@ -104,7 +104,7 @@ dataLayer.push({
 });
 ```
 
-### Page Load Data
+### Dados no Carregamento da Página
 
 ```javascript
 // Set on page load (before GTM container)
@@ -120,7 +120,7 @@ dataLayer.push({
 });
 ```
 
-### Form Submission
+### Envio de Formulário
 
 ```javascript
 document.querySelector('#contact-form').addEventListener('submit', function() {
@@ -132,7 +132,7 @@ document.querySelector('#contact-form').addEventListener('submit', function() {
 });
 ```
 
-### Button Click
+### Clique em Botão
 
 ```javascript
 document.querySelector('.cta-button').addEventListener('click', function() {
@@ -144,7 +144,7 @@ document.querySelector('.cta-button').addEventListener('click', function() {
 });
 ```
 
-### E-commerce Events
+### Eventos de E-commerce
 
 ```javascript
 // Product view
@@ -198,33 +198,33 @@ dataLayer.push({
 
 ---
 
-## Common Tag Configurations
+## Configurações Comuns de Tags
 
-### GA4 Configuration Tag
+### Tag de Configuração GA4
 
-**Tag Type:** Google Analytics: GA4 Configuration
+**Tipo de Tag:** Google Analytics: GA4 Configuration
 
-**Settings:**
+**Configurações:**
 - Measurement ID: G-XXXXXXXX
-- Send page view: Checked (for pageviews)
-- User Properties: Add any user-level dimensions
+- Send page view: Marcado (para pageviews)
+- User Properties: Adicione dimensões de nível de usuário
 
 **Trigger:** All Pages
 
-### GA4 Event Tag
+### Tag de Evento GA4
 
-**Tag Type:** Google Analytics: GA4 Event
+**Tipo de Tag:** Google Analytics: GA4 Event
 
-**Settings:**
-- Configuration Tag: Select your config tag
-- Event Name: {{DL - event_name}} or hardcode
-- Event Parameters: Add parameters from dataLayer
+**Configurações:**
+- Configuration Tag: Selecione sua tag de configuração
+- Event Name: {{DL - event_name}} ou valor fixo
+- Event Parameters: Adicione parâmetros do dataLayer
 
-**Trigger:** Custom Event with event name match
+**Trigger:** Custom Event com correspondência de nome do evento
 
 ### Facebook Pixel - Base
 
-**Tag Type:** Custom HTML
+**Tipo de Tag:** Custom HTML
 
 ```html
 <script>
@@ -243,9 +243,9 @@ dataLayer.push({
 
 **Trigger:** All Pages
 
-### Facebook Pixel - Event
+### Facebook Pixel - Evento
 
-**Tag Type:** Custom HTML
+**Tipo de Tag:** Custom HTML
 
 ```html
 <script>
@@ -259,57 +259,57 @@ dataLayer.push({
 
 ---
 
-## Preview and Debug
+## Preview e Debug
 
-### Preview Mode
+### Modo de Preview
 
-1. Click "Preview" in GTM
-2. Enter site URL
-3. GTM debug panel opens at bottom
+1. Clique em "Preview" no GTM
+2. Insira a URL do site
+3. O painel de debug do GTM abre na parte inferior
 
-**What to check:**
-- Tags fired on this event
-- Tags not fired (and why)
-- Variables and their values
-- Data layer contents
+**O que verificar:**
+- Tags disparadas neste evento
+- Tags não disparadas (e por quê)
+- Variables e seus valores
+- Conteúdo do data layer
 
-### Debug Tips
+### Dicas de Debug
 
-**Tag not firing:**
-- Check trigger conditions
-- Verify data layer push
-- Check tag sequencing
+**Tag não disparando:**
+- Verifique as condições do trigger
+- Confirme o push no data layer
+- Verifique o sequenciamento de tags
 
-**Wrong variable value:**
-- Check data layer structure
-- Verify variable path (nested objects)
-- Check timing (data may not exist yet)
+**Valor incorreto na variable:**
+- Verifique a estrutura do data layer
+- Confirme o caminho da variable (objetos aninhados)
+- Verifique o timing (os dados podem ainda não existir)
 
-**Multiple firings:**
-- Check trigger uniqueness
-- Look for duplicate tags
-- Check tag firing options
+**Disparos múltiplos:**
+- Verifique a unicidade do trigger
+- Procure tags duplicadas
+- Verifique as opções de disparo da tag
 
 ---
 
-## Workspaces and Versioning
+## Workspaces e Versionamento
 
 ### Workspaces
 
-Use workspaces for team collaboration:
-- Default workspace for production
-- Separate workspaces for large changes
-- Merge when ready
+Use workspaces para colaboração em equipe:
+- Workspace padrão para produção
+- Workspaces separados para grandes mudanças
+- Mescle quando estiver pronto
 
-### Version Management
+### Gerenciamento de Versões
 
-**Best practices:**
-- Name every version descriptively
-- Add notes explaining changes
-- Review changes before publish
-- Keep production version noted
+**Boas práticas:**
+- Nomeie cada versão de forma descritiva
+- Adicione notas explicando as alterações
+- Revise as mudanças antes de publicar
+- Mantenha a versão de produção registrada
 
-**Version notes example:**
+**Exemplo de notas de versão:**
 ```
 v15: Added purchase conversion tracking
 - New tag: GA4 - Event - Purchase
@@ -320,9 +320,9 @@ v15: Added purchase conversion tracking
 
 ---
 
-## Consent Management
+## Gerenciamento de Consentimento
 
-### Consent Mode Integration
+### Integração com Consent Mode
 
 ```javascript
 // Default state (before consent)
@@ -340,34 +340,34 @@ function grantConsent() {
 }
 ```
 
-### GTM Consent Overview
+### Visão Geral do Consentimento no GTM
 
-1. Enable Consent Overview in Admin
-2. Configure consent for each tag
-3. Tags respect consent state automatically
+1. Habilitar Consent Overview no Admin
+2. Configurar o consentimento para cada tag
+3. As tags respeitam automaticamente o estado do consentimento
 
 ---
 
-## Advanced Patterns
+## Padrões Avançados
 
-### Tag Sequencing
+### Sequenciamento de Tags
 
-**Setup tags to fire in order:**
+**Configure tags para disparar em ordem:**
 Tag Configuration > Advanced Settings > Tag Sequencing
 
-**Use cases:**
-- Config tag before event tags
-- Pixel initialization before tracking
-- Cleanup after conversion
+**Casos de uso:**
+- Tag de configuração antes das tags de evento
+- Inicialização de pixel antes do rastreamento
+- Limpeza após conversão
 
-### Exception Handling
+### Tratamento de Exceções
 
-**Trigger exceptions** - Prevent tag from firing:
-- Exclude certain pages
-- Exclude internal traffic
-- Exclude during testing
+**Exceções de trigger** — Impedem que a tag dispare:
+- Excluir determinadas páginas
+- Excluir tráfego interno
+- Excluir durante testes
 
-### Custom JavaScript Variables
+### Variables JavaScript Personalizadas
 
 ```javascript
 // Get URL parameter

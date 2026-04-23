@@ -1,18 +1,18 @@
-# Marketing Tools Registry
+# Registro de Ferramentas de Marketing
 
-Quick reference for AI agents to discover tool capabilities and integration methods.
+Referência rápida para agentes de IA descobrirem capacidades das ferramentas e métodos de integração.
 
-## How to Use This Registry
+## Como usar este registro
 
-1. **Find tools by category** - Browse sections below for tools in each domain
-2. **Check integration methods** - See what APIs, MCPs, CLIs, or SDKs are available
-3. **Read integration guides** - Detailed setup and common operations in `integrations/`
+1. **Encontre ferramentas por categoria** - Navegue pelas seções abaixo para ferramentas de cada domínio
+2. **Verifique métodos de integração** - Veja quais APIs, MCPs, CLIs ou SDKs estão disponíveis
+3. **Leia os guias de integração** - Configuração detalhada e operações comuns em `integrations/`
 
 ---
 
-## Tool Index
+## Índice de ferramentas
 
-| Tool | Category | API | MCP | CLI | SDK | Guide |
+| Ferramenta | Categoria | API | MCP | CLI | SDK | Guia |
 |------|----------|:---:|:---:|:---:|:---:|-------|
 | ga4 | Analytics | ✓ | ✓ | [✓](clis/ga4.js) | ✓ | [ga4.md](integrations/ga4.md) |
 | mixpanel | Analytics | ✓ | - | [✓](clis/mixpanel.js) | ✓ | [mixpanel.md](integrations/mixpanel.md) |
@@ -95,66 +95,66 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 
 ---
 
-## By Category
+## Por categoria
 
 ### Analytics
 
-Track user behavior, measure conversions, and analyze marketing performance.
+Acompanhe comportamento do usuário, meça conversões e analise a performance de marketing.
 
-| Tool | Best For | MCP Available |
+| Ferramenta | Melhor para | MCP disponível |
 |------|----------|:-------------:|
-| **ga4** | Web analytics, Google ecosystem | ✓ |
+| **ga4** | Analytics web, ecossistema Google | ✓ |
 | **mixpanel** | Product analytics, event tracking | - |
 | **amplitude** | Product analytics, cohort analysis | - |
 | **posthog** | Open-source analytics, session replay | - |
 | **segment** | Customer data platform, routing | - |
-| **adobe-analytics** | Enterprise analytics | - |
-| **plausible** | Privacy-focused analytics | - |
+| **adobe-analytics** | Analytics enterprise | - |
+| **plausible** | Analytics focado em privacidade | - |
 
-**Agent recommendation**: Start with GA4 if using Google ecosystem. Use Mixpanel or Amplitude for deeper product analytics. Plausible for privacy-focused sites.
+**Recomendação para agentes**: Comece com GA4 se usar o ecossistema Google. Use Mixpanel ou Amplitude para product analytics mais profundo. Use Plausible em sites com foco em privacidade.
 
 ### SEO
 
-Search engine optimization tools for keyword research, rank tracking, and site audits.
+Ferramentas de SEO para pesquisa de palavras-chave, acompanhamento de ranking e auditorias de site.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
-| **google-search-console** | Free, authoritative search data | Direct from Google |
-| **semrush** | Competitive analysis, keyword research | Comprehensive |
-| **ahrefs** | Backlink analysis, content research | Best for links |
-| **dataforseo** | SERP tracking, backlinks, on-page audits | Comprehensive API |
-| **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
+| **google-search-console** | Dados de busca gratuitos e oficiais | Direto do Google |
+| **semrush** | Análise competitiva, pesquisa de palavras-chave | Completo |
+| **ahrefs** | Análise de backlinks, pesquisa de conteúdo | Melhor para links |
+| **dataforseo** | SERP tracking, backlinks, auditorias on-page | API abrangente |
+| **keywords-everywhere** | Pesquisa rápida de palavras-chave, estimativas de tráfego | Baseado em créditos |
 
-**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups.
+**Recomendação para agentes**: Google Search Console é essencial (gratuito). Adicione Semrush ou Ahrefs para pesquisa competitiva. Use DataForSEO para dados programáticos de SERP. Use Keywords Everywhere para consultas rápidas de keywords.
 
 ### CRM
 
-Customer relationship management and sales tools.
+Ferramentas de CRM e gestão de vendas.
 
-| Tool | Best For | CLI Available |
+| Ferramenta | Melhor para | CLI disponível |
 |------|----------|:-------------:|
 | **hubspot** | SMB, marketing + sales alignment | ✓ |
 | **salesforce** | Enterprise, complex sales processes | ✓ |
 | **close** | SMB, high-velocity sales | [✓](clis/close.js) |
 
-**Agent recommendation**: HubSpot for startups/SMBs. Close for high-velocity inside sales. Salesforce for enterprise.
+**Recomendação para agentes**: HubSpot para startups/SMBs. Close para inside sales de alta cadência. Salesforce para enterprise.
 
 ### Payments
 
-Payment processing and subscription management.
+Processamento de pagamentos e gestão de assinaturas.
 
-| Tool | Best For | MCP Available |
+| Ferramenta | Melhor para | MCP disponível |
 |------|----------|:-------------:|
 | **stripe** | SaaS subscriptions, developer-friendly | ✓ |
 | **paddle** | SaaS billing with tax handling | - |
 
-**Agent recommendation**: Stripe is the default for SaaS. Paddle for built-in tax compliance.
+**Recomendação para agentes**: Stripe é o padrão para SaaS. Paddle para conformidade fiscal integrada.
 
 ### Referral & Affiliate
 
-Tools for referral programs, affiliate tracking, and partner management.
+Ferramentas para programas de indicação, rastreamento de afiliados e gestão de parceiros.
 
-| Tool | Best For | Stripe Integration |
+| Ferramenta | Melhor para | Integração com Stripe |
 |------|----------|:------------------:|
 | **rewardful** | Stripe-native affiliate programs | ✓ |
 | **tolt** | SaaS affiliate programs | ✓ |
@@ -162,13 +162,13 @@ Tools for referral programs, affiliate tracking, and partner management.
 | **dub-co** | Link tracking, attribution | - |
 | **partnerstack** | Enterprise partner programs | ✓ |
 
-**Agent recommendation**: Rewardful or Tolt for Stripe-based SaaS. PartnerStack for enterprise partner programs. Dub.co for link attribution.
+**Recomendação para agentes**: Rewardful or Tolt for Stripe-based SaaS. PartnerStack for enterprise partner programs. Dub.co for link attribution.
 
 ### Email
 
-Email marketing, transactional email, and automation platforms.
+Plataformas de email marketing, email transacional e automação.
 
-| Tool | Best For | MCP Available |
+| Ferramenta | Melhor para | MCP disponível |
 |------|----------|:-------------:|
 | **mailchimp** | SMB email marketing | ✓ |
 | **customer-io** | Behavior-based messaging | - |
@@ -181,248 +181,248 @@ Email marketing, transactional email, and automation platforms.
 | **brevo** | Email + SMS, popular in EU | - |
 | **activecampaign** | Email automation + CRM | - |
 
-**Agent recommendation**: Resend for transactional (dev-friendly). Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
+**Recomendação para agentes**: Resend for transactional (dev-friendly). Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
 
 ### Advertising
 
-Paid advertising platforms and campaign management.
+Plataformas de mídia paga e gestão de campanhas.
 
-| Tool | Best For | MCP Available |
+| Ferramenta | Melhor para | MCP disponível |
 |------|----------|:-------------:|
 | **google-ads** | Search intent, high-intent traffic | ✓ |
 | **meta-ads** | Demand gen, visual products, B2C | - |
 | **linkedin-ads** | B2B, job title targeting | - |
 | **tiktok-ads** | Younger demographics, video | - |
 
-**Agent recommendation**: Google Ads for search intent. Meta for demand generation. LinkedIn for B2B.
+**Recomendação para agentes**: Google Ads for search intent. Meta for demand generation. LinkedIn for B2B.
 
 ### Automation
 
-Workflow automation and integration platforms.
+Plataformas de automação de fluxos e integrações.
 
-| Tool | Best For | MCP Available |
+| Ferramenta | Melhor para | MCP disponível |
 |------|----------|:-------------:|
 | **zapier** | No-code integrations + SDK for 8,000+ apps | ✓ |
 
-**Agent recommendation**: Zapier SDK for agents that need to interact with any app directly. Zaps for always-on automations.
+**Recomendação para agentes**: Zapier SDK for agents that need to interact with any app directly. Zaps for always-on automations.
 
 ### CRO & A/B Testing
 
-Conversion rate optimization, heatmaps, and experimentation.
+Otimização de taxa de conversão, heatmaps e experimentação.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **hotjar** | Heatmaps, recordings, surveys | Visual behavior data |
 | **optimizely** | A/B testing, feature flags | Enterprise experimentation |
 
-**Agent recommendation**: Hotjar for understanding user behavior. Optimizely for running experiments.
+**Recomendação para agentes**: Hotjar for understanding user behavior. Optimizely for running experiments.
 
 ### Scheduling
 
-Booking and appointment scheduling tools.
+Ferramentas de agendamento de reuniões e compromissos.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **calendly** | Meeting scheduling, lead gen | Most popular |
 | **savvycal** | Personalized scheduling | Developer-friendly |
 
-**Agent recommendation**: Calendly for general use. SavvyCal for personalized booking experiences.
+**Recomendação para agentes**: Calendly for general use. SavvyCal for personalized booking experiences.
 
 ### Forms & Surveys
 
-Form builders and survey platforms.
+Construtores de formulários e plataformas de pesquisa.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **typeform** | Interactive forms, surveys | Conversational UX |
 
-**Agent recommendation**: Typeform for engaging forms and surveys.
+**Recomendação para agentes**: Typeform for engaging forms and surveys.
 
 ### Messaging
 
-In-app messaging, chat, and customer communication.
+Mensageria in-app, chat e comunicação com clientes.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **intercom** | In-app messaging, support, product tours | Full customer platform |
 
-**Agent recommendation**: Intercom for in-app messaging and customer support.
+**Recomendação para agentes**: Intercom for in-app messaging and customer support.
 
 ### Social Media
 
-Social media scheduling, management, and analytics.
+Agendamento, gestão e analytics de redes sociais.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
-| **buffer** | Social scheduling, analytics | Multi-platform |
+| **buffer** | Agendamento social, analytics | Multi-plataforma |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Recomendação para agentes**: Use Buffer para agendamento e analytics em múltiplas redes sociais.
 
 ### Video
 
-Video hosting, analytics, and engagement.
+Hospedagem de vídeo, analytics e engajamento.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
-| **wistia** | Video hosting, marketing analytics | Best for marketing video |
+| **wistia** | Hospedagem de vídeo, marketing analytics | Melhor para vídeo de marketing |
 
-**Agent recommendation**: Wistia for marketing video hosting with analytics.
+**Recomendação para agentes**: Use Wistia para hospedagem de vídeo de marketing com analytics.
 
 ### Data Enrichment
 
-Company and person data enrichment for sales and marketing.
+Enriquecimento de dados de empresas e pessoas para vendas e marketing.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
-| **clearbit** | Company/person enrichment | Now HubSpot Breeze |
-| **apollo** | B2B prospecting, email finding | Large database |
-| **zoominfo** | B2B contacts, intent data | Enterprise-grade |
-| **clay** | Waterfall enrichment, outbound | 75+ data providers |
+| **clearbit** | Enriquecimento de empresas/pessoas | Agora HubSpot Breeze |
+| **apollo** | Prospecção B2B, descoberta de emails | Base ampla |
+| **zoominfo** | Contatos B2B, dados de intenção | Nível enterprise |
+| **clay** | Enriquecimento em waterfall, outbound | 75+ provedores de dados |
 
-**Agent recommendation**: Clearbit for enrichment. Apollo for prospecting and outbound. ZoomInfo for enterprise B2B data with intent signals. Clay for waterfall enrichment across multiple providers.
+**Recomendação para agentes**: Use Clearbit para enrichment. Apollo para prospecção e outbound. ZoomInfo para dados B2B enterprise com sinais de intenção. Clay para enrichment em waterfall com múltiplos provedores.
 
 ### Reviews
 
-Review management and social proof platforms.
+Plataformas de gestão de avaliações e prova social.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
-| **trustpilot** | Consumer business reviews | Most recognized |
-| **g2** | Software/B2B reviews | Best for SaaS |
+| **trustpilot** | Avaliações de negócios B2C | Mais reconhecido |
+| **g2** | Avaliações de software/B2B | Melhor para SaaS |
 
-**Agent recommendation**: Trustpilot for consumer products. G2 for B2B software.
+**Recomendação para agentes**: Use Trustpilot para produtos de consumo. G2 para software B2B.
 
 ### Push Notifications
 
-Push notification delivery platforms.
+Plataformas de envio de push notifications.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **onesignal** | Multi-channel push notifications | Web + mobile |
 
-**Agent recommendation**: OneSignal for web and mobile push notifications.
+**Recomendação para agentes**: Use OneSignal para push notifications web e mobile.
 
 ### Webinar
 
-Webinar and virtual event platforms.
+Plataformas de webinar e eventos virtuais.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **demio** | Marketing webinars | Simple, focused |
 | **livestorm** | Video engagement, webinars | Full event platform |
 
-**Agent recommendation**: Demio for marketing-focused webinars. Livestorm for full event engagement.
+**Recomendação para agentes**: Demio for marketing-focused webinars. Livestorm for full event engagement.
 
 ### Sales Engagement
 
-Sales engagement and outreach automation platforms.
+Plataformas de engajamento comercial e automação de prospecção.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **outreach** | Enterprise sales engagement | Sequences, tasks, analytics |
 
-**Agent recommendation**: Outreach for enterprise sales teams managing multi-touch sequences at scale.
+**Recomendação para agentes**: Outreach for enterprise sales teams managing multi-touch sequences at scale.
 
 ### Product Analytics
 
-Product analytics, feature adoption tracking, and in-app guidance.
+Analytics de produto, acompanhamento de adoção de funcionalidades e orientação in-app.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **pendo** | Feature adoption, in-app guides | Product-led growth |
 
-**Agent recommendation**: Pendo for tracking feature adoption and delivering targeted in-app guidance.
+**Recomendação para agentes**: Pendo for tracking feature adoption and delivering targeted in-app guidance.
 
 ### Competitive Intelligence
 
-Traffic analytics, competitor benchmarking, and market research.
+Analytics de tráfego, benchmark de concorrentes e pesquisa de mercado.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **similarweb** | Website traffic, competitor analysis | Traffic sources, keywords |
 
-**Agent recommendation**: Similarweb for competitor traffic analysis and market benchmarking.
+**Recomendação para agentes**: Similarweb for competitor traffic analysis and market benchmarking.
 
 ### Audience Research
 
-Audience intelligence and behavioral research tools.
+Ferramentas de inteligência de audiência e pesquisa comportamental.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **sparktoro** | Audience affinities, behavioral data | Clickstream + social data |
 
-**Agent recommendation**: SparkToro for discovering where your ICP spends time — what they read, watch, listen to, follow, and search for. Essential for customer research, content strategy, and media buying decisions.
+**Recomendação para agentes**: SparkToro for discovering where your ICP spends time — what they read, watch, listen to, follow, and search for. Essential for customer research, content strategy, and media buying decisions.
 
 ### Visitor Identification
 
-Website visitor de-anonymization for B2B sales and marketing.
+Desanonimização de visitantes de site para vendas e marketing B2B.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **rb2b** | Person-level visitor ID, intent signals | LinkedIn profiles, emails, page-level data |
 
-**Agent recommendation**: RB2B for identifying anonymous B2B website visitors and routing high-intent visitors to outreach tools. Pairs well with Clay for enrichment and Instantly/Lemlist for cold email.
+**Recomendação para agentes**: RB2B for identifying anonymous B2B website visitors and routing high-intent visitors to outreach tools. Pairs well with Clay for enrichment and Instantly/Lemlist for cold email.
 
 ### Revenue Intelligence
 
-Sales conversation analytics, call recording, and deal intelligence.
+Analytics de conversas de vendas, gravação de chamadas e inteligência de negócios.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **gong** | Call recording, transcript analysis, deal insights | REST API, 10k API calls/day |
 
-**Agent recommendation**: Gong for mining sales call transcripts for customer research, competitive intelligence, and coaching insights. Essential for revenue attribution and win/loss analysis.
+**Recomendação para agentes**: Gong for mining sales call transcripts for customer research, competitive intelligence, and coaching insights. Essential for revenue attribution and win/loss analysis.
 
 ### AI Content
 
-AI-powered content generation and optimization platforms.
+Plataformas de geração e otimização de conteúdo com IA.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **airops** | AI content workflows, SEO content | Flow-based automation |
 
-**Agent recommendation**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
+**Recomendação para agentes**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
 ### Partner Ecosystem
 
-Partner data sharing, co-sell, and ecosystem management.
+Compartilhamento de dados de parceiros, co-sell e gestão de ecossistema.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **crossbeam** | Account overlaps, co-sell | Now part of Reveal |
 | **introw** | Partner management, deal registration, QBRs | MCP-enabled PRM |
 
-**Agent recommendation**: Crossbeam for identifying partner account overlaps and co-sell opportunities. Introw for full partner relationship management — partner pipeline, commissions, tasks, and automated business review prep.
+**Recomendação para agentes**: Crossbeam for identifying partner account overlaps and co-sell opportunities. Introw for full partner relationship management — partner pipeline, commissions, tasks, and automated business review prep.
 
 ### Email Outreach
 
-Cold email outreach and email finding tools for link building and sales prospecting.
+Ferramentas de prospecção por cold email e busca de emails para link building e vendas.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **hunter** | Email finding, domain search | Largest email database |
 | **snov** | Email finding, drip campaigns | Built-in sequences |
 | **lemlist** | Cold email campaigns | Personalization features |
 | **instantly** | Cold email at scale | Email warmup built-in |
 
-**Agent recommendation**: Hunter for finding emails. Lemlist or Instantly for sending cold email campaigns. Snov for combined finding + outreach.
+**Recomendação para agentes**: Hunter for finding emails. Lemlist or Instantly for sending cold email campaigns. Snov for combined finding + outreach.
 
 ### Data Aggregation
 
-Marketing data pipeline tools that connect multiple platforms for unified reporting.
+Ferramentas de pipeline de dados de marketing que conectam múltiplas plataformas para relatórios unificados.
 
-| Tool | Best For | Notes |
+| Ferramenta | Melhor para | Observações |
 |------|----------|-------|
 | **supermetrics** | Cross-platform data pulling | 200+ connectors |
 | **coupler** | Automated data flows to sheets/BI | Scheduled pipelines |
 
-**Agent recommendation**: Supermetrics for pulling data from multiple marketing platforms into unified reports. Coupler.io for automated data flows to spreadsheets and BI tools.
+**Recomendação para agentes**: Supermetrics for pulling data from multiple marketing platforms into unified reports. Coupler.io for automated data flows to spreadsheets and BI tools.
 
 ### Commerce & CMS
 
-E-commerce platforms and content management systems.
+Plataformas de e-commerce e sistemas de gestão de conteúdo.
 
-| Tool | Best For | CLI Available |
+| Ferramenta | Melhor para | CLI disponível |
 |------|----------|:-------------:|
 | **shopify** | E-commerce, product sales | ✓ |
 | **wordpress** | Blogs, content sites | ✓ |
@@ -431,25 +431,25 @@ E-commerce platforms and content management systems.
 | **contentful** | Enterprise headless CMS, multi-locale | ✓ |
 | **strapi** | Open-source headless CMS, self-hosted | ✓ |
 
-**Agent recommendation**: Shopify for e-commerce. Webflow for marketing sites. WordPress for blogs. For headless CMS: Sanity for developer-flexible content, Contentful for enterprise multi-locale, Strapi for self-hosted/budget-conscious. See [headless CMS guide](../skills/content-strategy/references/headless-cms.md) for selection criteria.
+**Recomendação para agentes**: Shopify for e-commerce. Webflow for marketing sites. WordPress for blogs. For headless CMS: Sanity for developer-flexible content, Contentful for enterprise multi-locale, Strapi for self-hosted/budget-conscious. See [headless CMS guide](../skills/content-strategy/references/headless-cms.md) for selection criteria.
 
 ---
 
-## CLI Tools
+## Ferramentas CLI
 
-Zero-dependency, single-file Node.js CLIs for tools that don't ship their own. See [`clis/README.md`](clis/README.md) for install instructions and usage.
+CLIs em Node.js de arquivo único e sem dependências para ferramentas que não fornecem CLI própria. Veja [`clis/README.md`](clis/README.md) para instruções de instalação e uso.
 
-All CLIs follow a consistent pattern:
-- **No dependencies** — Node 18+ only, uses native `fetch`
-- **JSON output** — pipe to `jq`, save to file, or use in scripts
-- **Env var auth** — set `{TOOL}_API_KEY` and go
-- **Consistent commands** — `{tool} <resource> <action> [options]`
+Todas as CLIs seguem um padrão consistente:
+- **Sem dependências** — apenas Node 18+, usando `fetch` nativo
+- **Saída JSON** — use pipe para `jq`, salve em arquivo ou use em scripts
+- **Autenticação por variável de ambiente** — defina `{TOOL}_API_KEY` e use
+- **Comandos consistentes** — `{tool} <resource> <action> [options]`
 
 ---
 
-## MCP-Enabled Tools
+## Ferramentas com MCP
 
-These tools have Model Context Protocol servers available, enabling direct agent interaction:
+Estas ferramentas têm servidores Model Context Protocol disponíveis, permitindo interação direta com agentes:
 
 - **ga4** - Google Analytics 4 data access
 - **stripe** - Payment and subscription management
@@ -465,38 +465,38 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 
-To use MCP tools, ensure the appropriate MCP server is configured in your environment.
+Para usar ferramentas MCP, garanta que o servidor MCP apropriado está configurado no seu ambiente.
 
-### Composio Integration
+### Integração com Composio
 
-[Composio](integrations/composio.md) provides managed OAuth and pre-built connectors for 500+ tools via a single MCP server. It adds MCP access to tools that don't have native MCP servers, including HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion, and more.
+[Composio](integrations/composio.md) fornece OAuth gerenciado e conectores prontos para mais de 500 ferramentas por meio de um único servidor MCP. Ele adiciona acesso MCP a ferramentas sem servidores MCP nativos, incluindo HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion e outras.
 
 - **Setup**: `npx @composio/mcp@latest setup`
-- **Quick start**: See [tools/composio/README.md](composio/README.md)
-- **Marketing tool mapping**: See [tools/composio/marketing-tools.md](composio/marketing-tools.md)
+- **Início rápido**: veja [tools/composio/README.md](composio/README.md)
+- **Mapeamento de ferramentas de marketing**: veja [tools/composio/marketing-tools.md](composio/marketing-tools.md)
 
-Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP servers (GA4, Stripe, Mailchimp, etc.) when available — they have deeper coverage.
+Use Composio quando precisar de acesso MCP a ferramentas com OAuth pesado. Prefira servidores MCP nativos (GA4, Stripe, Mailchimp etc.) quando disponíveis — eles têm cobertura mais profunda.
 
 ---
 
-## Quick Start by Use Case
+## Início rápido por caso de uso
 
-### Setting up analytics tracking
+### Configurando rastreamento de analytics
 1. Read [ga4.md](integrations/ga4.md) for web analytics
 2. Read [segment.md](integrations/segment.md) if routing to multiple tools
 
-### Launching a referral program
+### Lançando um programa de indicação
 1. Read [rewardful.md](integrations/rewardful.md) or [tolt.md](integrations/tolt.md) for Stripe-based programs
 2. Read [dub-co.md](integrations/dub-co.md) for link tracking
 
-### Setting up email automation
+### Configurando automação de email
 1. Read [customer-io.md](integrations/customer-io.md) for behavior-based automation
 2. Read [resend.md](integrations/resend.md) for transactional email
 
-### Running email outreach for backlinks
+### Executando outreach por email para backlinks
 1. Read [hunter.md](integrations/hunter.md) for finding emails
 2. Read [lemlist.md](integrations/lemlist.md) or [instantly.md](integrations/instantly.md) for sending campaigns
 
-### Running paid ads
+### Executando campanhas pagas
 1. Read [google-ads.md](integrations/google-ads.md) for search campaigns
 2. Read [meta-ads.md](integrations/meta-ads.md) for social campaigns

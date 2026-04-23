@@ -1,26 +1,26 @@
 # Google Ads
 
-Pay-per-click advertising platform for search, display, and video campaigns.
+Plataforma de publicidade pay-per-click para campanhas de search, display e vídeo.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | Google Ads API for campaign management |
-| MCP | ✓ | Available via Google Ads MCP server |
-| CLI | - | Use gcloud or API scripts |
-| SDK | ✓ | Client libraries for multiple languages |
+| API | ✓ | Google Ads API para gestão de campanhas |
+| MCP | ✓ | Disponível via Google Ads MCP server |
+| CLI | - | Use gcloud ou scripts de API |
+| SDK | ✓ | Bibliotecas client para múltiplas linguagens |
 
-## Authentication
+## Autenticação
 
-- **Type**: OAuth 2.0
+- **Tipo**: OAuth 2.0
 - **Scopes**: `https://www.googleapis.com/auth/adwords`
-- **Setup**: Create credentials in Google Cloud Console, link to Google Ads account
-- **Headers**: `developer-token`, `login-customer-id` (for MCC)
+- **Setup**: Crie credenciais no Google Cloud Console e vincule à conta do Google Ads
+- **Headers**: `developer-token`, `login-customer-id` (para MCC)
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Get account info
+### Buscar informações da conta
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
@@ -30,7 +30,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 }
 ```
 
-### List campaigns
+### Listar campanhas
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
@@ -40,7 +40,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 }
 ```
 
-### Get campaign performance
+### Buscar performance da campanha
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
@@ -50,7 +50,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 }
 ```
 
-### Get ad group performance
+### Buscar performance do ad group
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
@@ -60,7 +60,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 }
 ```
 
-### Get keyword performance
+### Buscar performance de keyword
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
@@ -70,7 +70,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 }
 ```
 
-### Pause campaign
+### Pausar campanha
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaigns:mutate
@@ -86,7 +86,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaigns:muta
 }
 ```
 
-### Update budget
+### Atualizar orçamento
 
 ```bash
 POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaignBudgets:mutate
@@ -102,26 +102,26 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaignBudget
 }
 ```
 
-## Key Metrics
+## Métricas principais
 
-| Metric | Description |
-|--------|-------------|
-| `metrics.impressions` | Ad impressions |
-| `metrics.clicks` | Clicks |
-| `metrics.cost_micros` | Cost in micros (divide by 1M) |
-| `metrics.conversions` | Conversions |
-| `metrics.conversions_value` | Conversion value |
-| `metrics.average_cpc` | Average cost per click |
-| `metrics.ctr` | Click-through rate |
-| `metrics.conversion_rate` | Conversion rate |
+| Métrica | Descrição |
+|---------|-----------|
+| `metrics.impressions` | Impressões de anúncios |
+| `metrics.clicks` | Cliques |
+| `metrics.cost_micros` | Custo em micros (dividir por 1M) |
+| `metrics.conversions` | Conversões |
+| `metrics.conversions_value` | Valor de conversão |
+| `metrics.average_cpc` | Custo médio por clique |
+| `metrics.ctr` | Taxa de cliques |
+| `metrics.conversion_rate` | Taxa de conversão |
 
-## Campaign Types
+## Tipos de campanha
 
-- `SEARCH` - Search network text ads
-- `DISPLAY` - Display network
-- `SHOPPING` - Product shopping ads
-- `VIDEO` - YouTube video ads
-- `PERFORMANCE_MAX` - AI-optimized across channels
+- `SEARCH` - Anúncios de texto na rede de pesquisa
+- `DISPLAY` - Rede de display
+- `SHOPPING` - Anúncios de produtos
+- `VIDEO` - Anúncios em vídeo no YouTube
+- `PERFORMANCE_MAX` - Otimização com AI entre canais
 - `DEMAND_GEN` - Discovery/Demand Gen
 
 ## GAQL (Google Ads Query Language)
@@ -139,20 +139,20 @@ ORDER BY metrics.conversions DESC
 LIMIT 10
 ```
 
-## When to Use
+## Quando usar
 
-- Managing search advertising campaigns
-- Analyzing campaign performance
-- Adjusting budgets and bids
-- Keyword research and management
-- Conversion tracking analysis
+- Gerenciar campanhas de anúncios de pesquisa
+- Analisar performance de campanhas
+- Ajustar orçamentos e lances
+- Fazer pesquisa e gestão de keywords
+- Analisar tracking de conversão
 
-## Rate Limits
+## Limites de taxa
 
-- 15,000 operations per day (basic)
-- Higher limits with developer token levels
+- 15.000 operações por dia (básico)
+- Limites maiores conforme nível do developer token
 
-## Relevant Skills
+## Habilidades relevantes
 
 - paid-ads
 - analytics-tracking

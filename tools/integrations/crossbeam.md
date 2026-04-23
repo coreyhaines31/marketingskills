@@ -1,96 +1,96 @@
 # Crossbeam
 
-Partner ecosystem platform (now part of Reveal) for sharing account data with partners to identify co-sell opportunities, overlapping customers, and partner-sourced pipeline.
+Plataforma de ecossistema de parceiros (agora parte da Reveal) para compartilhar dados de contas com parceiros e identificar oportunidades de co-sell, clientes sobrepostos e pipeline gerado por parceiros.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Partners, Populations, Overlaps, Reports, Threads |
 | MCP | ✓ | [Claude connector](https://claude.com/connectors/crossbeam) |
 | CLI | ✓ | [crossbeam.js](../clis/crossbeam.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas REST API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key
-- **Header**: `Authorization: Bearer {api_key}`
-- **Get key**: Settings > API at https://app.crossbeam.com
+- **Tipo**: API Key
+- **Cabeçalho**: `Authorization: Bearer {api_key}`
+- **Obter chave**: Settings > API at https://app.crossbeam.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List Partners
+### Listar Partners
 
 ```bash
 GET https://api.crossbeam.com/v1/partners
 Authorization: Bearer {api_key}
 ```
 
-### Get Partner Details
+### Obter Partner Details
 
 ```bash
 GET https://api.crossbeam.com/v1/partners/{id}
 Authorization: Bearer {api_key}
 ```
 
-### List Populations
+### Listar Populations
 
 ```bash
 GET https://api.crossbeam.com/v1/populations
 Authorization: Bearer {api_key}
 ```
 
-### List Overlaps
+### Listar Overlaps
 
 ```bash
 GET https://api.crossbeam.com/v1/overlaps?partner_id={partner_id}&population_id={population_id}
 Authorization: Bearer {api_key}
 ```
 
-### Get Overlap Details
+### Obter Overlap Details
 
 ```bash
 GET https://api.crossbeam.com/v1/overlaps/{id}
 Authorization: Bearer {api_key}
 ```
 
-### Search Accounts
+### Buscar Accounts
 
 ```bash
 GET https://api.crossbeam.com/v1/accounts/search?domain={domain}
 Authorization: Bearer {api_key}
 ```
 
-### List Reports
+### Listar Reports
 
 ```bash
 GET https://api.crossbeam.com/v1/reports
 Authorization: Bearer {api_key}
 ```
 
-### List Collaboration Threads
+### Listar Collaboration Threads
 
 ```bash
 GET https://api.crossbeam.com/v1/threads
 Authorization: Bearer {api_key}
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Partner Data
+### Dados de Parceiro
 - `id` - Partner ID
 - `name` - Partner company name
 - `status` - Partnership status (active, pending, etc.)
-- `created_at` - When the partnership was established
+- `created_at` - Quando a parceria foi estabelecida
 - `populations_shared` - Number of shared populations
 
-### Population Data
+### Dados de Population
 - `id` - Population ID
 - `name` - Population name (e.g., "Customers", "Open Opportunities")
 - `record_count` - Number of records in population
-- `partner_visibility` - What partners can see
+- `partner_visibility` - O que os parceiros podem ver
 
-### Overlap Data
+### Dados de Overlap
 - `id` - Overlap ID
 - `partner_id` - Partner involved
 - `population_id` - Population matched
@@ -98,38 +98,38 @@ Authorization: Bearer {api_key}
 - `overlap_type` - Type of overlap (customer, prospect, etc.)
 - `match_confidence` - Match confidence score
 
-### Report Data
+### Dados de Relatório
 - `id` - Report ID
 - `name` - Report name
 - `type` - Report type
-- `created_at` - Creation date
-- `results` - Report results data
+- `created_at` - Data de criação
+- `results` - Dados de resultados do relatório
 
-## Parameters
+## Parâmetros
 
-### Overlaps List
-- `partner_id` - Filter by specific partner
-- `population_id` - Filter by specific population
+### Lista de Overlaps
+- `partner_id` - Filtrar por parceiro específico
+- `population_id` - Filtrar por population específica
 
-### Accounts Search
-- `domain` - Company domain to search for
+### Busca de Contas
+- `domain` - Domínio da empresa para buscar
 
-## When to Use
+## Quando Usar
 
-- Identifying co-sell opportunities with channel partners
-- Finding overlapping customers and prospects across partner ecosystems
-- Building partner-sourced pipeline by matching accounts
-- Tracking partner influence on deals
-- Creating account mapping reports for partner meetings
-- Prioritizing which partners to engage based on overlap data
+- Identificação de oportunidades de co-sell com parceiros de canal
+- Identificação de clientes e prospects sobrepostos em ecossistemas de parceiros
+- Construção de pipeline originado por parceiros por meio de matching de contas
+- Rastreamento da influência de parceiros em deals
+- Criação de relatórios de account mapping para reuniões com parceiros
+- Priorização de parceiros para engajamento com base em dados de overlap
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits vary by plan
-- Standard: 100 requests/minute
-- Pagination supported on list endpoints
+- Os limites de taxa variam por plano
+- Padrão: 100 requests/minute
+- Paginação suportada nos endpoints de listagem
 
-## Relevant Skills
+## Skills Relevantes
 
 - revops
 - sales-enablement

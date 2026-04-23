@@ -1,8 +1,8 @@
 # Optimizely
 
-A/B testing and experimentation platform with a REST API for managing projects, experiments, campaigns, and results.
+Plataforma de A/B testing e experimentação com REST API para gerenciar projetos, experimentos, campanhas e resultados.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,45 +11,45 @@ A/B testing and experimentation platform with a REST API for managing projects, 
 | CLI | ✓ | [optimizely.js](../clis/optimizely.js) |
 | SDK | ✓ | JavaScript, Python, Ruby, Java, Go, C#, PHP, React, Swift, Android |
 
-## Authentication
+## Autenticação
 
 - **Type**: Bearer Token (Personal Access Token or OAuth 2.0)
 - **Header**: `Authorization: Bearer {personal_token}`
 - **Get token**: https://app.optimizely.com/v2/profile/api > Generate New Token
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### List Projects
+### Listar projetos
 
 ```bash
 GET https://api.optimizely.com/v2/projects
 ```
 
-### Get Project
+### Obter projeto
 
 ```bash
 GET https://api.optimizely.com/v2/projects/{project_id}
 ```
 
-### List Experiments
+### Listar experimentos
 
 ```bash
 GET https://api.optimizely.com/v2/experiments?project_id={project_id}
 ```
 
-### Get Experiment
+### Obter experimento
 
 ```bash
 GET https://api.optimizely.com/v2/experiments/{experiment_id}
 ```
 
-### Get Experiment Results
+### Obter resultados do experimento
 
 ```bash
 GET https://api.optimizely.com/v2/experiments/{experiment_id}/results
 ```
 
-### Create Experiment
+### Criar experimento
 
 ```bash
 POST https://api.optimizely.com/v2/experiments
@@ -67,7 +67,7 @@ POST https://api.optimizely.com/v2/experiments
 }
 ```
 
-### Update Experiment
+### Atualizar experimento
 
 ```bash
 PATCH https://api.optimizely.com/v2/experiments/{experiment_id}
@@ -77,92 +77,92 @@ PATCH https://api.optimizely.com/v2/experiments/{experiment_id}
 }
 ```
 
-### List Campaigns
+### Listar campanhas
 
 ```bash
 GET https://api.optimizely.com/v2/campaigns?project_id={project_id}
 ```
 
-### Get Campaign Results
+### Obter resultados da campanha
 
 ```bash
 GET https://api.optimizely.com/v2/campaigns/{campaign_id}/results
 ```
 
-### List Audiences
+### Listar audiences
 
 ```bash
 GET https://api.optimizely.com/v2/audiences?project_id={project_id}
 ```
 
-### List Events
+### Listar eventos
 
 ```bash
 GET https://api.optimizely.com/v2/events?project_id={project_id}
 ```
 
-### List Pages
+### Listar páginas
 
 ```bash
 GET https://api.optimizely.com/v2/pages?project_id={project_id}
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Experiment Results
-- `variation_id` - Variation identifier
-- `variation_name` - Variation display name
-- `visitors` - Unique visitors per variation
-- `conversions` - Conversion count
-- `conversion_rate` - Rate as decimal
-- `improvement` - Percentage improvement vs. control
-- `statistical_significance` - Confidence level
-- `is_baseline` - Whether this is the control
+### Resultados do experimento
+- `variation_id` - Identificador da variação
+- `variation_name` - Nome de exibição da variação
+- `visitors` - Visitantes únicos por variação
+- `conversions` - Quantidade de conversões
+- `conversion_rate` - Taxa em decimal
+- `improvement` - Percentual de melhoria vs. controle
+- `statistical_significance` - Nível de confiança
+- `is_baseline` - Se esta é a variação de controle
 
-### Experiment Properties
-- `name` - Experiment name
+### Propriedades do experimento
+- `name` - Nome do experimento
 - `status` - not_started, running, paused, archived
 - `type` - a/b, multivariate, personalization
-- `traffic_allocation` - Percentage of traffic (0-10000 = 0-100%)
-- `variations` - Array of variations with weights
+- `traffic_allocation` - Percentual de tráfego (0-10000 = 0-100%)
+- `variations` - Array de variações com pesos
 
-## Parameters
+## Parâmetros
 
-### List Experiments
-- `project_id` (required) - Project to list experiments for
-- `page` - Page number
-- `per_page` - Results per page (default: 25)
-- `status` - Filter by status
+### Listar experimentos
+- `project_id` (required) - Projeto para listar os experimentos
+- `page` - Número da página
+- `per_page` - Resultados por página (default: 25)
+- `status` - Filtro por status
 
-### Get Results
-- `start_time` - Results start time (ISO 8601)
-- `end_time` - Results end time (ISO 8601)
+### Obter resultados
+- `start_time` - Horário inicial dos resultados (ISO 8601)
+- `end_time` - Horário final dos resultados (ISO 8601)
 
-### Create Experiment
-- `project_id` (required) - Parent project
-- `name` (required) - Experiment name
-- `type` - Experiment type (default: a/b)
-- `variations` (required) - Array of variations with name and weight
-- `metrics` - Array of metric/event configurations
-- `audience_conditions` - Targeting conditions
-- `traffic_allocation` - Traffic percentage (0-10000)
+### Criar experimento
+- `project_id` (required) - Projeto pai
+- `name` (required) - Nome do experimento
+- `type` - Tipo de experimento (default: a/b)
+- `variations` (required) - Array de variações com nome e peso
+- `metrics` - Array de configurações de metric/event
+- `audience_conditions` - Condições de segmentação
+- `traffic_allocation` - Percentual de tráfego (0-10000)
 
-## When to Use
+## Quando usar
 
-- Running A/B tests on web pages and features
-- Managing experimentation programs at scale
-- Pulling experiment results for analysis
-- Automating experiment creation and monitoring
-- Feature flag management
-- Personalization campaigns
+- Rodar A/B tests em páginas web e funcionalidades
+- Gerenciar programas de experimentação em escala
+- Buscar resultados de experimentos para análise
+- Automatizar criação e monitoramento de experimentos
+- Gerenciamento de feature flags
+- Campanhas de personalização
 
-## Rate Limits
+## Limites de taxa
 
 - 50 requests/second per personal token
 - Pagination via `page` and `per_page` parameters
 - OpenAPI spec available at https://api.optimizely.com/v2/swagger.json
 
-## Relevant Skills
+## Skills relevantes
 
 - ab-test-setup
 - page-cro

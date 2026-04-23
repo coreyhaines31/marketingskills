@@ -1,38 +1,38 @@
 # AirOps
 
-AI content platform for crafting content that wins AI search. Build and execute AI workflows (flows) for SEO content generation, data enrichment, and automation.
+Plataforma de conteúdo com IA para criar conteúdo que performa em busca por IA. Construa e execute workflows de IA (flows) para geração de conteúdo SEO, enriquecimento de dados e automação.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
-|-------------|-----------|-------|
+| Integração | Disponível | Notas |
+|-------------|------------|-------|
 | API | ✓ | Flows, Workflows, Runs |
-| MCP | - | Not available |
+| MCP | - | Não disponível |
 | CLI | ✓ | [airops.js](../clis/airops.js) |
-| SDK | - | REST API only |
+| SDK | - | Apenas REST API |
 
-## Authentication
+## Autenticação
 
-- **Type**: API Key + Workspace ID
-- **Header**: `Authorization: Bearer {api_key}`
-- **Env vars**: `AIROPS_API_KEY`, `AIROPS_WORKSPACE_ID`
-- **Get key**: Settings > API Keys at https://app.airops.com
+- **Tipo**: API Key + Workspace ID
+- **Cabeçalho**: `Authorization: Bearer {api_key}`
+- **Variáveis de ambiente**: `AIROPS_API_KEY`, `AIROPS_WORKSPACE_ID`
+- **Obter chave**: Settings > API Keys at https://app.airops.com
 
-## Common Agent Operations
+## Operações Comuns do Agente
 
-### List Flows
+### Listar Flows
 
 ```bash
 GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows
 ```
 
-### Get Flow Details
+### Obter Flow Details
 
 ```bash
 GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_id}
 ```
 
-### Execute a Flow
+### Executar a Flow
 
 ```bash
 POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_id}/execute
@@ -45,25 +45,25 @@ POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_
 }
 ```
 
-### List Runs for a Flow
+### Listar Runs de um Flow
 
 ```bash
 GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_id}/runs
 ```
 
-### Get Run Status
+### Obter Run Status
 
 ```bash
 GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/runs/{run_id}
 ```
 
-### List Workflows
+### Listar Workflows
 
 ```bash
 GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows
 ```
 
-### Execute a Workflow
+### Executar a Workflow
 
 ```bash
 POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows/{workflow_id}/execute
@@ -76,51 +76,51 @@ POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows/{w
 }
 ```
 
-## Key Metrics
+## Métricas Principais
 
-### Flow Data
+### Dados de Flow
 - `id` - Flow identifier
 - `name` - Flow name
 - `description` - Flow description
 - `status` - Active/inactive status
-- `created_at` - Creation timestamp
-- `updated_at` - Last modified timestamp
+- `created_at` - Timestamp de criação
+- `updated_at` - Timestamp da última modificação
 
-### Run Data
+### Dados de Run
 - `id` - Run identifier
 - `flow_id` - Parent flow ID
 - `status` - pending, running, completed, failed
 - `inputs` - Input parameters used
-- `outputs` - Generated results
+- `outputs` - Resultados gerados
 - `started_at` - Run start time
 - `completed_at` - Run completion time
 
-## Parameters
+## Parâmetros
 
-### Flow Execution
-- `inputs` - JSON object of key-value pairs matching the flow's expected inputs
-- Input keys vary per flow (e.g., `keyword`, `topic`, `url`, `target_audience`)
+### Execução de Flow
+- `inputs` - Objeto JSON de pares chave-valor que correspondem aos inputs esperados do flow
+- As chaves de input variam por flow (e.g., `keyword`, `topic`, `url`, `target_audience`)
 
-### Workflow Execution
-- `inputs` - JSON object of key-value pairs matching the workflow's expected inputs
+### Execução de Workflow
+- `inputs` - Objeto JSON de pares chave-valor que correspondem aos inputs esperados do workflow
 
-## When to Use
+## Quando Usar
 
-- Bulk content generation for SEO at scale
-- SEO-optimized article creation with AI workflows
-- Data enrichment pipelines for marketing lists
-- Keyword research automation
-- Content optimization and rewriting
+- Geração em massa de conteúdo para SEO em escala
+- Criação de artigos otimizados para SEO com workflows de IA
+- Pipelines de enriquecimento de dados para listas de marketing
+- Pesquisa de palavras-chave automation
+- Otimização e reescrita de conteúdo
 - Programmatic SEO page generation
-- AI-powered content briefs and outlines
+- Briefings e outlines de conteúdo com IA
 
-## Rate Limits
+## Limites de Taxa
 
-- Rate limits vary by plan
-- Concurrent execution limits depend on workspace tier
-- Check AirOps dashboard for current usage and limits
+- Os limites de taxa variam por plano
+- Limites de execução concorrente dependem do tier do workspace
+- Verifique o dashboard do AirOps para uso e limites atuais
 
-## Relevant Skills
+## Skills Relevantes
 
 - ai-seo
 - content-strategy

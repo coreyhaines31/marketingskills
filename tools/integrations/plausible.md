@@ -1,8 +1,8 @@
 # Plausible Analytics
 
-Privacy-focused, open-source web analytics with a simple API for stats queries without cookies or personal data collection.
+Web analytics open-source com foco em privacidade e API simples para consultas de stats sem cookies ou coleta de dados pessoais.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,16 +11,16 @@ Privacy-focused, open-source web analytics with a simple API for stats queries w
 | CLI | ✓ | [plausible.js](../clis/plausible.js) |
 | SDK | - | REST API only |
 
-## Authentication
+## Autenticação
 
 - **Type**: Bearer Token
 - **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: https://plausible.io/settings > API Keys
-- **Note**: Sites API requires Enterprise plan
+- **Note**: A Sites API requer plano Enterprise
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Stats Query (v2)
+### Query de stats (v2)
 
 ```bash
 POST https://plausible.io/api/v2/query
@@ -32,7 +32,7 @@ POST https://plausible.io/api/v2/query
 }
 ```
 
-### Top Pages
+### Top páginas
 
 ```bash
 POST https://plausible.io/api/v2/query
@@ -45,7 +45,7 @@ POST https://plausible.io/api/v2/query
 }
 ```
 
-### Traffic Sources
+### Fontes de tráfego
 
 ```bash
 POST https://plausible.io/api/v2/query
@@ -58,7 +58,7 @@ POST https://plausible.io/api/v2/query
 }
 ```
 
-### Time Series
+### Série temporal
 
 ```bash
 POST https://plausible.io/api/v2/query
@@ -71,7 +71,7 @@ POST https://plausible.io/api/v2/query
 }
 ```
 
-### Breakdown by Country
+### Quebra por país
 
 ```bash
 POST https://plausible.io/api/v2/query
@@ -84,7 +84,7 @@ POST https://plausible.io/api/v2/query
 }
 ```
 
-### Filtered Query (specific page)
+### Query filtrada (página específica)
 
 ```bash
 POST https://plausible.io/api/v2/query
@@ -97,78 +97,78 @@ POST https://plausible.io/api/v2/query
 }
 ```
 
-### Realtime Visitors (v1)
+### Visitors em tempo real (v1)
 
 ```bash
 GET https://plausible.io/api/v1/stats/realtime/visitors?site_id=example.com
 ```
 
-### List Sites
+### Listar sites
 
 ```bash
 GET https://plausible.io/api/v1/sites
 ```
 
-## Key Metrics
+## Métricas principais
 
-### Available Metrics
-- `visitors` - Unique visitors
-- `visits` - Total visits (sessions)
-- `pageviews` - Total page views
-- `views_per_visit` - Pages per session
-- `bounce_rate` - Bounce rate percentage
-- `visit_duration` - Average session duration (seconds)
-- `events` - Total events
-- `conversion_rate` - Goal conversion rate
-- `time_on_page` - Average time on page
-- `scroll_depth` - Average scroll depth
-- `percentage` - Share of total
+### Métricas disponíveis
+- `visitors` - Visitantes únicos
+- `visits` - Total de visitas (sessions)
+- `pageviews` - Total de visualizações de página
+- `views_per_visit` - Páginas por sessão
+- `bounce_rate` - Percentual de bounce rate
+- `visit_duration` - Duração média da sessão (segundos)
+- `events` - Total de eventos
+- `conversion_rate` - Taxa de conversão de meta
+- `time_on_page` - Tempo médio na página
+- `scroll_depth` - Profundidade média de scroll
+- `percentage` - Participação no total
 
-### Available Dimensions
-- `event:page` - Page path
-- `event:goal` - Goal name
-- `visit:source` - Traffic source
-- `visit:referrer` - Referrer URL
-- `visit:channel` - Traffic channel
+### Dimensões disponíveis
+- `event:page` - Path da página
+- `event:goal` - Nome da meta
+- `visit:source` - Fonte de tráfego
+- `visit:referrer` - URL de referrer
+- `visit:channel` - Canal de tráfego
 - `visit:utm_source`, `visit:utm_medium`, `visit:utm_campaign` - UTM params
-- `visit:device` - Device type
-- `visit:browser` - Browser name
-- `visit:os` - Operating system
-- `visit:country`, `visit:region`, `visit:city` - Location
-- `visit:entry_page`, `visit:exit_page` - Entry/exit pages
-- `time`, `time:day`, `time:week`, `time:month` - Time periods
+- `visit:device` - Tipo de dispositivo
+- `visit:browser` - Nome do browser
+- `visit:os` - Sistema operacional
+- `visit:country`, `visit:region`, `visit:city` - Localização
+- `visit:entry_page`, `visit:exit_page` - Páginas de entrada/saída
+- `time`, `time:day`, `time:week`, `time:month` - Períodos de tempo
 
-## Parameters
+## Parâmetros
 
-### Stats Query (v2)
-- `site_id` (required) - Domain registered in Plausible
-- `metrics` (required) - Array of metrics to return
-- `date_range` (required) - Time period: "day", "7d", "30d", "month", "6mo", "12mo", "year", or custom ["2024-01-01", "2024-01-31"]
-- `dimensions` - Array of dimensions to group by
-- `filters` - Array of filter conditions: `[operator, dimension, values]`
-- `order_by` - Array of sort specs: `[[metric, "desc"]]`
+### Query de stats (v2)
+- `site_id` (required) - Domínio registrado no Plausible
+- `metrics` (required) - Array de métricas para retornar
+- `date_range` (required) - Período: "day", "7d", "30d", "month", "6mo", "12mo", "year" ou custom ["2024-01-01", "2024-01-31"]
+- `dimensions` - Array de dimensões para agrupar
+- `filters` - Array de condições de filtro: `[operator, dimension, values]`
+- `order_by` - Array de regras de ordenação: `[[metric, "desc"]]`
 - `pagination` - `{ "limit": 100, "offset": 0 }`
 
-### Filter Operators
-- `is` / `is_not` - Exact match
-- `contains` / `contains_not` - Substring match
-- `matches` / `matches_not` - Wildcard match
+### Operadores de filtro
+- `is` / `is_not` - Correspondência exata
+- `contains` / `contains_not` - Correspondência por substring
+- `matches` / `matches_not` - Correspondência por wildcard
 
-## When to Use
+## Quando usar
 
-- Privacy-first web analytics without cookies
-- Simple, lightweight traffic analysis
-- UTM campaign performance tracking
-- Goal and conversion tracking
-- Geographic and device breakdown
-- GDPR/CCPA-compliant analytics alternative to GA4
+- Web analytics privacy-first sem cookies
+- Análise de tráfego simples e leve
+- Rastreamento de performance de campanhas UTM
+- Rastreamento de metas e conversões
+- Quebra por geografia e dispositivo
+- Alternativa de analytics ao GA4 em conformidade com GDPR/CCPA
 
-## Rate Limits
+## Limites de taxa
 
 - 600 requests/hour per API key
-- All requests must be over HTTPS
+- Todas as requests devem usar HTTPS
 
-## Relevant Skills
+## Skills relevantes
 
 - analytics-tracking
 - content-strategy

@@ -1,8 +1,8 @@
 # Segment
 
-Customer data platform for collecting, routing, and activating user data.
+Customer data platform para coletar, rotear e ativar dados de usuários.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,15 +11,15 @@ Customer data platform for collecting, routing, and activating user data.
 | CLI | - | Not available |
 | SDK | ✓ | analytics.js, iOS, Android, server libraries |
 
-## Authentication
+## Autenticação
 
-- **Tracking**: Write Key (per source)
+- **Tracking**: Write Key (por source)
 - **API**: Access Token (OAuth 2.0)
 - **Header**: `Authorization: Bearer {access_token}`
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Track event
+### Rastrear evento
 
 ```bash
 POST https://api.segment.io/v1/track
@@ -36,7 +36,7 @@ Authorization: Basic {base64(write_key:)}
 }
 ```
 
-### Identify user
+### Identificar usuário
 
 ```bash
 POST https://api.segment.io/v1/identify
@@ -53,7 +53,7 @@ Authorization: Basic {base64(write_key:)}
 }
 ```
 
-### Track page view
+### Rastrear page view
 
 ```bash
 POST https://api.segment.io/v1/page
@@ -70,7 +70,7 @@ Authorization: Basic {base64(write_key:)}
 }
 ```
 
-### Batch events
+### Eventos em batch
 
 ```bash
 POST https://api.segment.io/v1/batch
@@ -85,7 +85,7 @@ Authorization: Basic {base64(write_key:)}
 }
 ```
 
-### Get user profile (Profile API)
+### Obter perfil de usuário (Profile API)
 
 ```bash
 GET https://profiles.segment.com/v1/spaces/{space_id}/collections/users/profiles/user_id:{user_id}/traits
@@ -93,7 +93,7 @@ GET https://profiles.segment.com/v1/spaces/{space_id}/collections/users/profiles
 Authorization: Basic {base64(access_token:)}
 ```
 
-### Get user events
+### Obter eventos do usuário
 
 ```bash
 GET https://profiles.segment.com/v1/spaces/{space_id}/collections/users/profiles/user_id:{user_id}/events
@@ -122,16 +122,16 @@ analytics.track('Feature Used', {
 analytics.page('Pricing');
 ```
 
-## Key Concepts
+## Conceitos principais
 
-- **Sources** - Where data comes from (website, app, server)
-- **Destinations** - Where data goes (analytics, CRM, ads)
-- **Tracking Plan** - Schema for events and properties
-- **Protocols** - Data governance and validation
-- **Personas** - Unified user profiles
-- **Audiences** - Computed user segments
+- **Sources** - De onde os dados vêm (website, app, server)
+- **Destinations** - Para onde os dados vão (analytics, CRM, ads)
+- **Tracking Plan** - Schema para eventos e properties
+- **Protocols** - Governança e validação de dados
+- **Personas** - Perfis de usuário unificados
+- **Audiences** - Segmentos computados de usuários
 
-## Common Destinations
+## Destinations comuns
 
 - Analytics: GA4, Mixpanel, Amplitude
 - CRM: HubSpot, Salesforce
@@ -139,20 +139,20 @@ analytics.page('Pricing');
 - Ads: Google Ads, Meta
 - Data Warehouse: BigQuery, Snowflake
 
-## When to Use
+## Quando usar
 
-- Centralizing event tracking
-- Routing data to multiple tools
-- Maintaining consistent tracking
-- Building unified user profiles
-- Syncing audiences across platforms
+- Centralizar event tracking
+- Rotear dados para múltiplas ferramentas
+- Manter tracking consistente
+- Criar perfis de usuário unificados
+- Sincronizar audiences entre plataformas
 
-## Rate Limits
+## Limites de taxa
 
 - 500 requests/second per source
 - Batch up to 500KB or 32KB per event
 
-## Relevant Skills
+## Skills relevantes
 
 - analytics-tracking
 - email-sequence

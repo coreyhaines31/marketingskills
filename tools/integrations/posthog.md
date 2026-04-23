@@ -1,8 +1,8 @@
 # PostHog
 
-Open-source product analytics with session replay and feature flags.
+Product analytics open-source com session replay e feature flags.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,15 +11,15 @@ Open-source product analytics with session replay and feature flags.
 | CLI | ✓ | `posthog` CLI for local development |
 | SDK | ✓ | JavaScript, Python, Ruby, Go, etc. |
 
-## Authentication
+## Autenticação
 
 - **Type**: API Key (Personal or Project)
 - **Header**: `Authorization: Bearer {api_key}`
-- **For capture**: Project API Key in payload
+- **For capture**: Project API Key no payload
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Capture event
+### Capturar evento
 
 ```bash
 POST https://app.posthog.com/capture/
@@ -35,7 +35,7 @@ POST https://app.posthog.com/capture/
 }
 ```
 
-### Batch events
+### Eventos em batch
 
 ```bash
 POST https://app.posthog.com/batch/
@@ -49,7 +49,7 @@ POST https://app.posthog.com/batch/
 }
 ```
 
-### Get person by distinct_id
+### Obter pessoa por distinct_id
 
 ```bash
 GET https://app.posthog.com/api/projects/{project_id}/persons/?distinct_id=user_123
@@ -57,7 +57,7 @@ GET https://app.posthog.com/api/projects/{project_id}/persons/?distinct_id=user_
 Authorization: Bearer {api_key}
 ```
 
-### Query events (HogQL)
+### Consultar eventos (HogQL)
 
 ```bash
 POST https://app.posthog.com/api/projects/{project_id}/query/
@@ -70,7 +70,7 @@ POST https://app.posthog.com/api/projects/{project_id}/query/
 }
 ```
 
-### Get feature flag value
+### Obter valor de feature flag
 
 ```bash
 POST https://app.posthog.com/decide?v=3
@@ -81,7 +81,7 @@ POST https://app.posthog.com/decide?v=3
 }
 ```
 
-### Get insights
+### Obter insights
 
 ```bash
 GET https://app.posthog.com/api/projects/{project_id}/insights/
@@ -89,7 +89,7 @@ GET https://app.posthog.com/api/projects/{project_id}/insights/
 Authorization: Bearer {api_key}
 ```
 
-### Get session recordings
+### Obter gravações de sessão
 
 ```bash
 GET https://app.posthog.com/api/projects/{project_id}/session_recordings/
@@ -122,29 +122,29 @@ if (posthog.isFeatureEnabled('new-pricing')) {
 }
 ```
 
-## Key Features
+## Principais recursos
 
 - **Event tracking** - Product analytics
-- **Session replay** - Watch user sessions
-- **Feature flags** - Control feature rollout
-- **A/B testing** - Built-in experiments
-- **HogQL** - SQL-like query language
-- **Self-hostable** - Run on your infrastructure
+- **Session replay** - Visualizar sessões de usuários
+- **Feature flags** - Controlar rollout de funcionalidades
+- **A/B testing** - Experimentos nativos
+- **HogQL** - Linguagem de query similar a SQL
+- **Self-hostable** - Rodar na sua infraestrutura
 
-## When to Use
+## Quando usar
 
-- Product analytics with privacy focus
-- Session replay for UX insights
-- Feature flag management
-- Self-hosted analytics needs
-- Open-source requirements
+- Product analytics com foco em privacidade
+- Session replay para insights de UX
+- Gerenciamento de feature flags
+- Necessidade de analytics self-hosted
+- Requisitos de open-source
 
-## Rate Limits
+## Limites de taxa
 
 - Cloud: 10,000 events/second
 - Self-hosted: Unlimited
 
-## Relevant Skills
+## Skills relevantes
 
 - analytics-tracking
 - ab-test-setup

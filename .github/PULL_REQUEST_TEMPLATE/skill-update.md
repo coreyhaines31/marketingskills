@@ -1,21 +1,21 @@
-## Skill Update
+## Atualização de Skill
 
 **Skill:** `skills/SKILL-NAME`
 
-## Summary
+## Resumo
 
-<!-- What changes are you making and why? -->
+<!-- Quais alterações você está fazendo e por quê? -->
 
-## Type of update
+## Tipo de atualização
 
-- [ ] Bug fix
-- [ ] Improved instructions
-- [ ] Added references/scripts
-- [ ] Other
+- [ ] Correção de bug
+- [ ] Instruções melhoradas
+- [ ] Adição de references/scripts
+- [ ] Outro
 
 ## Checklist
 
-- [ ] Changes are focused and minimal
-- [ ] `SKILL.md` is still under 500 lines
-- [ ] No sensitive data or credentials
-- [ ] Tested locally with AI agent
+- [ ] As alterações são focadas e mínimas
+- [ ] `SKILL.md` ainda tem menos de 500 linhas
+- [ ] Nenhum dado sensível ou credencial
+- [ ] Testado localmente com agente de IA

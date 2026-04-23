@@ -1,25 +1,25 @@
 # HubSpot
 
-CRM platform for marketing, sales, and customer service.
+Plataforma de CRM para marketing, vendas e atendimento ao cliente.
 
-## Capabilities
+## Capacidades
 
-| Integration | Available | Notes |
+| Integração | Disponível | Observações |
 |-------------|-----------|-------|
-| API | ✓ | REST API for CRM, Marketing, Sales |
-| MCP | - | Not available |
-| CLI | ✓ | `hs` CLI for local development |
-| SDK | ✓ | Official client libraries |
+| API | ✓ | REST API para CRM, Marketing e Sales |
+| MCP | - | Não disponível |
+| CLI | ✓ | `hs` CLI para desenvolvimento local |
+| SDK | ✓ | Client libraries oficiais |
 
-## Authentication
+## Autenticação
 
-- **Type**: Private App Token or OAuth 2.0
+- **Tipo**: Private App Token ou OAuth 2.0
 - **Header**: `Authorization: Bearer {access_token}`
-- **Get token**: Settings > Integrations > Private Apps
+- **Obter token**: Settings > Integrations > Private Apps
 
-## Common Agent Operations
+## Operações comuns de agent
 
-### Get contacts
+### Buscar contatos
 
 ```bash
 GET https://api.hubapi.com/crm/v3/objects/contacts?limit=10
@@ -27,7 +27,7 @@ GET https://api.hubapi.com/crm/v3/objects/contacts?limit=10
 Authorization: Bearer {access_token}
 ```
 
-### Search contacts
+### Pesquisar contatos
 
 ```bash
 POST https://api.hubapi.com/crm/v3/objects/contacts/search
@@ -43,7 +43,7 @@ POST https://api.hubapi.com/crm/v3/objects/contacts/search
 }
 ```
 
-### Create contact
+### Criar contato
 
 ```bash
 POST https://api.hubapi.com/crm/v3/objects/contacts
@@ -58,7 +58,7 @@ POST https://api.hubapi.com/crm/v3/objects/contacts
 }
 ```
 
-### Update contact
+### Atualizar contato
 
 ```bash
 PATCH https://api.hubapi.com/crm/v3/objects/contacts/{contact_id}
@@ -70,7 +70,7 @@ PATCH https://api.hubapi.com/crm/v3/objects/contacts/{contact_id}
 }
 ```
 
-### Get deals
+### Buscar deals
 
 ```bash
 GET https://api.hubapi.com/crm/v3/objects/deals?limit=10&properties=dealname,amount,dealstage
@@ -78,7 +78,7 @@ GET https://api.hubapi.com/crm/v3/objects/deals?limit=10&properties=dealname,amo
 Authorization: Bearer {access_token}
 ```
 
-### Create deal
+### Criar deal
 
 ```bash
 POST https://api.hubapi.com/crm/v3/objects/deals
@@ -93,13 +93,13 @@ POST https://api.hubapi.com/crm/v3/objects/deals
 }
 ```
 
-### Associate contact with deal
+### Associar contato a deal
 
 ```bash
 PUT https://api.hubapi.com/crm/v3/objects/deals/{deal_id}/associations/contacts/{contact_id}/deal_to_contact
 ```
 
-### Get form submissions
+### Buscar envios de formulário
 
 ```bash
 GET https://api.hubapi.com/form-integrations/v1/submissions/forms/{form_guid}
@@ -107,7 +107,7 @@ GET https://api.hubapi.com/form-integrations/v1/submissions/forms/{form_guid}
 Authorization: Bearer {access_token}
 ```
 
-### Get marketing emails
+### Buscar emails de marketing
 
 ```bash
 GET https://api.hubapi.com/marketing/v3/emails?limit=10
@@ -115,7 +115,7 @@ GET https://api.hubapi.com/marketing/v3/emails?limit=10
 Authorization: Bearer {access_token}
 ```
 
-## CLI Commands
+## Comandos de CLI
 
 ```bash
 # Install
@@ -134,44 +134,44 @@ hs watch src dest
 hs accounts list
 ```
 
-## Key Objects
+## Objetos principais
 
-- **Contacts** - People in CRM
-- **Companies** - Organizations
-- **Deals** - Sales opportunities
-- **Tickets** - Support tickets
-- **Products** - Items for sale
-- **Line Items** - Deal line items
+- **Contacts** - Pessoas no CRM
+- **Companies** - Organizações
+- **Deals** - Oportunidades de vendas
+- **Tickets** - Tickets de suporte
+- **Products** - Itens à venda
+- **Line Items** - Itens de linha de deals
 
-## Common Properties
+## Propriedades comuns
 
-### Contact Properties
-- `email` - Email address
-- `firstname`, `lastname` - Name
-- `lifecyclestage` - Funnel stage
-- `hs_lead_status` - Lead status
+### Propriedades de contato
+- `email` - Endereço de email
+- `firstname`, `lastname` - Nome
+- `lifecyclestage` - Estágio do funil
+- `hs_lead_status` - Status do lead
 
-### Deal Properties
-- `dealname` - Deal name
-- `amount` - Deal value
-- `dealstage` - Pipeline stage
-- `closedate` - Expected close
+### Propriedades de deal
+- `dealname` - Nome do deal
+- `amount` - Valor do deal
+- `dealstage` - Estágio do pipeline
+- `closedate` - Fechamento esperado
 
-## When to Use
+## Quando usar
 
-- Managing contacts and leads
-- Tracking sales deals
-- Marketing automation
-- Form submissions
-- Email campaigns
-- Customer service tickets
+- Gerenciar contatos e leads
+- Acompanhar deals de vendas
+- Automação de marketing
+- Envios de formulários
+- Campanhas de email marketing
+- Tickets de atendimento ao cliente
 
-## Rate Limits
+## Limites de taxa
 
-- 100 requests per 10 seconds
-- Higher limits on enterprise plans
+- 100 requisições por 10 segundos
+- Limites maiores em planos enterprise
 
-## Relevant Skills
+## Habilidades relevantes
 
 - email-sequence
 - analytics-tracking

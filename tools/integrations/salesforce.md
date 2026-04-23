@@ -1,8 +1,8 @@
 # Salesforce
 
-Enterprise CRM platform for sales, service, and marketing.
+Plataforma enterprise de CRM para vendas, atendimento e marketing.
 
-## Capabilities
+## Capacidades
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
@@ -11,15 +11,15 @@ Enterprise CRM platform for sales, service, and marketing.
 | CLI | ✓ | Salesforce CLI (`sf`) |
 | SDK | ✓ | JSforce, simple-salesforce, etc. |
 
-## Authentication
+## Autenticação
 
 - **Type**: OAuth 2.0 (Web Server Flow or JWT Bearer)
 - **Header**: `Authorization: Bearer {access_token}`
-- **Instance URL**: Use instance_url from auth response
+- **Instance URL**: Use o instance_url da resposta de autenticação
 
-## Common Agent Operations
+## Operações comuns do agente
 
-### Query records (SOQL)
+### Consultar registros (SOQL)
 
 ```bash
 GET https://{instance}.salesforce.com/services/data/v59.0/query?q=SELECT+Id,Name,Email+FROM+Contact+LIMIT+10
@@ -27,7 +27,7 @@ GET https://{instance}.salesforce.com/services/data/v59.0/query?q=SELECT+Id,Name
 Authorization: Bearer {access_token}
 ```
 
-### Get record by ID
+### Obter registro por ID
 
 ```bash
 GET https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact/{record_id}
@@ -35,7 +35,7 @@ GET https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact/{reco
 Authorization: Bearer {access_token}
 ```
 
-### Create record
+### Criar registro
 
 ```bash
 POST https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact
@@ -48,7 +48,7 @@ POST https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact
 }
 ```
 
-### Update record
+### Atualizar registro
 
 ```bash
 PATCH https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact/{record_id}
@@ -58,7 +58,7 @@ PATCH https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact/{re
 }
 ```
 
-### Search records (SOSL)
+### Buscar registros (SOSL)
 
 ```bash
 GET https://{instance}.salesforce.com/services/data/v59.0/search?q=FIND+{searchTerm}+IN+ALL+FIELDS+RETURNING+Contact(Id,Name,Email)
@@ -66,7 +66,7 @@ GET https://{instance}.salesforce.com/services/data/v59.0/search?q=FIND+{searchT
 Authorization: Bearer {access_token}
 ```
 
-### Get opportunities
+### Obter oportunidades
 
 ```bash
 GET https://{instance}.salesforce.com/services/data/v59.0/query?q=SELECT+Id,Name,Amount,StageName,CloseDate+FROM+Opportunity+WHERE+IsClosed=false
@@ -74,7 +74,7 @@ GET https://{instance}.salesforce.com/services/data/v59.0/query?q=SELECT+Id,Name
 Authorization: Bearer {access_token}
 ```
 
-### Describe object
+### Descrever objeto
 
 ```bash
 GET https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact/describe
@@ -82,7 +82,7 @@ GET https://{instance}.salesforce.com/services/data/v59.0/sobjects/Contact/descr
 Authorization: Bearer {access_token}
 ```
 
-## CLI Commands
+## Comandos de CLI
 
 ```bash
 # Authenticate
@@ -101,7 +101,7 @@ sf project deploy start
 sf apex run --file script.apex
 ```
 
-## SOQL Examples
+## Exemplos de SOQL
 
 ```sql
 -- Get contacts with accounts
@@ -121,29 +121,29 @@ WHERE CreatedDate = LAST_N_DAYS:30
 ORDER BY CreatedDate DESC
 ```
 
-## Key Objects
+## Objetos principais
 
-- **Lead** - Potential customer
-- **Contact** - Person at account
-- **Account** - Company/organization
-- **Opportunity** - Sales deal
-- **Case** - Support ticket
-- **Campaign** - Marketing campaign
+- **Lead** - Cliente potencial
+- **Contact** - Pessoa da account
+- **Account** - Empresa/organização
+- **Opportunity** - Deal de vendas
+- **Case** - Ticket de suporte
+- **Campaign** - Campanha de marketing
 
-## When to Use
+## Quando usar
 
-- Enterprise CRM operations
-- Complex sales processes
-- Multi-object relationships
-- Custom object management
-- Marketing campaign tracking
+- Operações enterprise de CRM
+- Processos de venda complexos
+- Relacionamentos entre múltiplos objetos
+- Gerenciamento de objetos custom
+- Rastreamento de campanhas de marketing
 
-## Rate Limits
+## Limites de taxa
 
 - 15,000 API calls per 24 hours (Enterprise)
-- Higher limits available
+- Limites maiores disponíveis
 
-## Relevant Skills
+## Skills relevantes
 
 - email-sequence
 - analytics-tracking
