@@ -260,6 +260,10 @@ Found a way to improve a skill? Have a new skill to suggest? PRs and issues welc
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving skills.
 
+## Related Awesome Lists
+
+- [ai-skill](https://github.com/anomalyco/ai-skill) - AI skill discovery and management system
+
 ## License
 
 [MIT](LICENSE) - Use these however you want.
