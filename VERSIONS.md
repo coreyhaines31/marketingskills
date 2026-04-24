@@ -41,9 +41,20 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 1.2.0 | 2026-03-14 |
 | signup-flow-cro | 1.2.0 | 2026-03-14 |
 | site-architecture | 1.2.0 | 2026-03-14 |
-| social-content | 1.2.0 | 2026-03-14 |
+| social-content | 1.3.0 | 2026-04-24 |
+| image | 1.0.0 | 2026-04-24 |
+| video | 1.0.0 | 2026-04-24 |
 
 ## Recent Changes
+
+### 2026-04-24
+- Added `image` skill for AI image generation, design tools, profile/listing banners, and optimization
+- Added `video` skill for AI video production (Hyperframes, HeyGen, Veo, Runway, Kling)
+- Added short-form video section to `social-content` (1.3.0) — TikTok, Reels, Shorts frameworks
+- Added HeyGen and Hyperframes tool integration guides
+- Fixed plugin marketplace: `source` field now passes Claude Code schema validation (#270)
+- Added proper `plugin.json` manifest with `"skills": "./skills"`
+- Total skills: 40
 
 ### 2026-04-21
 - Added `directory-submissions` skill for Product Hunt, G2, AI directories, and backlink strategy
