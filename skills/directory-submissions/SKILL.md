@@ -90,12 +90,18 @@ Full catalog in `references/directory-list.md`. Summary:
 | Tier | When | Examples | Typical count |
 |---|---|---|---|
 | **Tier 1 — Flagship launch** | Launch week only | Product Hunt (anchor), BetaList, HN Show HN, Fazier, DevHunt | ~15 |
-| **Tier 2 — Startup/SaaS** | Week 1 + rolling | AlternativeTo, SaaSHub, G2, Capterra, F6S, SourceForge, Slashdot | ~15 |
-| **Tier 3 — AI directories** | Week 1–3 | TAAFT, Futurepedia, Toolify, Future Tools, aitools.inc, AIStage | ~25 |
+| **Tier 2 — Startup/SaaS** | Week 1 + rolling | AlternativeTo, SaaSHub, G2, Capterra, F6S, SourceForge, Slashdot | ~50 |
+| **Tier 3 — AI directories** | Week 1–3 | TAAFT, Futurepedia, Toolify, Future Tools, aitools.inc, AIStage | ~40 |
 | **Tier 4 — Agent/MCP registries** | Week 1–3 (if MCP) | Glama, APITracker, LF MCP Registry, AI Agents List | ~10 |
-| **Tier 5 — No-code directories** | Week 1–3 (if no-code) | NoCodeFinder, No Code MBA, We Are No Code | ~6 |
+| **Tier 5 — No-code directories** | Week 1–3 (if no-code) | NoCodeFinder, No Code MBA, We Are No Code, MakerPad | ~8 |
 | **Tier 6 — "Best of" listicles** | Rolling outreach | Cold outreach to DR 40+ blog posts | ~10 inclusions |
 | **Tier 7 — Integration marketplaces** | When integrations ship | Zapier, HubSpot, Slack, Airtable, Notion | ~5 |
+| **Tier 8 — Profile & content platforms** | Rolling | GitHub, WordPress.com, Substack, Dev.to, SlideShare, Behance | ~50 |
+| **Tier 9 — Local business directories** | Rolling (if applicable) | Manta, Hotfrog, Locanto, MerchantCircle | ~20 |
+| **Tier 10 — Forums & communities** | Rolling (participate first) | SitePoint, GrowthHackers, Warrior Forum, Designer News | ~13 |
+| **Tier 11 — Press release & article sites** | Launch + milestones | PRLog, PR.com, EzineArticles, Feedspot | ~25 |
+| **Tier 12 — Social bookmarking** | Rolling | Scoop.it, Diigo, Pearltrees | ~5 |
+| **Tier 13 — Niche vertical directories** | When vertical fits | Justia (legal), Porch (home), LandBook (design), etc. | ~20 |
 
 **Triage rule:** Only submit where the product is a genuine fit. Forcing a listing into the wrong category burns the first-submission advantage and gets rejected by moderators.
 
