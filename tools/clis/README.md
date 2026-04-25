@@ -50,6 +50,7 @@ Every CLI reads credentials from environment variables:
 | `dataforseo` | `DATAFORSEO_LOGIN`, `DATAFORSEO_PASSWORD` |
 | `demio` | `DEMIO_API_KEY`, `DEMIO_API_SECRET` |
 | `dub` | `DUB_API_KEY` |
+| `exa` | `EXA_API_KEY` |
 | `g2` | `G2_API_TOKEN` |
 | `ga4` | `GA4_ACCESS_TOKEN` |
 | `google-ads` | `GOOGLE_ADS_TOKEN`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` |
@@ -148,6 +149,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `dataforseo.js` | SEO | [DataForSEO](https://dataforseo.com) |
 | `demio.js` | Webinar | [Demio](https://demio.com) |
 | `dub.js` | Links | [Dub.co](https://dub.co) |
+| `exa.js` | AI Search | [Exa](https://exa.ai) |
 | `g2.js` | Reviews | [G2](https://g2.com) |
 | `ga4.js` | Analytics | [Google Analytics 4](https://analytics.google.com) |
 | `google-ads.js` | Ads | [Google Ads](https://ads.google.com) |
