@@ -94,6 +94,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | contentful | Headless CMS | ✓ | - | ✓ | ✓ | [contentful.md](integrations/contentful.md) |
 | strapi | Headless CMS | ✓ | - | ✓ | ✓ | [strapi.md](integrations/strapi.md) |
 | composio | Integration Layer | ✓ | ✓ | ✓ | ✓ | [composio.md](integrations/composio.md) |
+| cogny | Integration Layer | - | ✓ | - | - | [cogny.md](integrations/cogny.md) |
 
 ---
 
@@ -480,6 +481,16 @@ To use MCP tools, ensure the appropriate MCP server is configured in your enviro
 - **Marketing tool mapping**: See [tools/composio/marketing-tools.md](composio/marketing-tools.md)
 
 Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP servers (GA4, Stripe, Mailchimp, etc.) when available — they have deeper coverage.
+
+### Cogny Integration
+
+[Cogny](integrations/cogny.md) is a hosted MCP gateway focused on marketing channels — one federated MCP URL with managed OAuth across every channel you've connected. Narrower than Composio (marketing-only) and useful when you want SEO, paid social, and privacy-friendly analytics behind a single MCP login.
+
+- **Setup**: connect channels at [cogny.com](https://cogny.com), then in Claude.ai go to Settings → Connectors → Add custom connector and paste `https://app.cogny.com/mcp`
+- **Channels**: Search Console, Bing Webmaster, Semrush, LinkedIn Ads, Reddit Ads, TikTok Ads, Plausible, Fathom
+- **Pricing**: Solo plan starts at $9/mo (7-day trial)
+
+Use Cogny when you only need marketing channels and want to avoid running your own OAuth proxy. Prefer native APIs when you need deep, custom control of a single tool.
 
 ---
 
