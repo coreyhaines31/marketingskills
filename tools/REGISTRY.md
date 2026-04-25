@@ -484,9 +484,9 @@ Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP se
 
 ### Cogny Integration
 
-[Cogny](integrations/cogny.md) is a hosted MCP gateway focused on marketing channels — one URL per channel, managed OAuth, and a single bearer token. It's narrower than Composio (marketing-only) and useful when you want SEO, paid social, and privacy-friendly analytics behind one MCP login.
+[Cogny](integrations/cogny.md) is a hosted MCP gateway focused on marketing channels — one federated MCP URL with managed OAuth across every channel you've connected. Narrower than Composio (marketing-only) and useful when you want SEO, paid social, and privacy-friendly analytics behind a single MCP login.
 
-- **Setup**: connect channels in the Cogny dashboard at [cogny.com](https://cogny.com)
+- **Setup**: connect channels at [cogny.com](https://cogny.com), then in Claude.ai go to Settings → Connectors → Add custom connector and paste `https://app.cogny.com/mcp`
 - **Channels**: Search Console, Bing Webmaster, Semrush, LinkedIn Ads, Reddit Ads, TikTok Ads, Plausible, Fathom
 - **Pricing**: Solo plan starts at $9/mo (7-day trial)
 

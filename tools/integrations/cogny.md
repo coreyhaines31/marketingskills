@@ -7,25 +7,25 @@ Hosted MCP gateway that bundles several marketing tools behind one URL with mana
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | - | Access is via MCP, not a public REST API |
-| MCP | ✓ | One MCP URL per channel, bearer-token auth |
+| MCP | ✓ | One federated MCP URL, OAuth-managed per channel |
 | CLI | - | Connect tools via the Cogny dashboard |
-| SDK | - | Use any MCP-capable client (Claude API, Claude CLI, etc.) |
+| SDK | - | Use any MCP-capable client (Claude.ai, Claude API, Claude CLI, ChatGPT, etc.) |
 
 ## How it works
 
 ```
-┌──────────────────┐      ┌────────────────────┐      ┌───────────────────┐
-│  Claude API /    │──────│  mcp.cogny.com     │──────│  Channel API      │
-│  Claude CLI /    │      │  (per-channel URL) │      │  (LinkedIn, GSC,  │
-│  ChatGPT, etc.   │      │                    │      │   TikTok, …)      │
-└──────────────────┘      └────────────────────┘      └───────────────────┘
-        │                          │
-        │  Authorization:          │  OAuth tokens stored
-        │  Bearer <cogny_token>    │  per workspace, refreshed
-        ▼                          ▼  automatically
+┌──────────────────┐      ┌──────────────────────┐      ┌───────────────────┐
+│  Claude.ai /     │──────│  app.cogny.com/mcp   │──────│  Channel API      │
+│  Claude CLI /    │      │  (federated MCP      │      │  (LinkedIn, GSC,  │
+│  ChatGPT, etc.   │      │   endpoint)          │      │   TikTok, …)      │
+└──────────────────┘      └──────────────────────┘      └───────────────────┘
+                                    │
+                                    │  Federates per-channel
+                                    │  mcp.cogny.com endpoints
+                                    ▼  with managed OAuth
 ```
 
-You authenticate once per channel in the Cogny dashboard. Each channel exposes a stable MCP URL that any MCP-capable client can call with a Cogny bearer token.
+`https://app.cogny.com/mcp` is a single federated endpoint that fans out to the per-channel `mcp.cogny.com` MCP servers — you connect once and every channel you've authorized in the dashboard becomes available.
 
 ## When to Use Cogny vs. Native or Composio
 
@@ -43,74 +43,56 @@ Cogny is narrower than Composio — it focuses on marketing channels — but the
 
 ## Setup
 
-### 1. Connect a channel
+### 1. Connect your channels
 
 1. Sign up at [cogny.com](https://cogny.com) and create a workspace.
 2. In the dashboard, connect the channels you want (OAuth flow per tool).
-3. Copy your Cogny access token and your workspace (warehouse) ID.
 
-### 2. Wire the MCP server into Claude
+### 2. Add Cogny as a custom connector
 
-Each channel has its own MCP URL of the form `https://mcp.cogny.com/<channel>/<workspace_id>`. Example with the Claude API:
+In Claude.ai:
 
-```python
-from anthropic import Anthropic
+1. Go to **Settings → Connectors → Add custom connector**.
+2. Enter name **Cogny** and paste your MCP URL:
 
-client = Anthropic()
+   ```
+   https://app.cogny.com/mcp
+   ```
 
-response = client.messages.create(
-    model="claude-sonnet-4-5",
-    mcp_servers=[{
-        "type": "url",
-        "url": f"https://mcp.cogny.com/search_console/{workspace_id}",
-        "name": "Search Console",
-        "authorization_token": cogny_access_token,
-    }],
-    tools=[{"type": "mcp_toolset", "mcp_server_name": "Search Console"}],
-    messages=[{"role": "user", "content": "What pages lost the most clicks last week?"}],
-)
-```
+3. Complete the OAuth handshake when prompted.
 
-Or with Claude CLI:
-
-```bash
-claude --mcp-server https://mcp.cogny.com/linkedin_ads/<workspace_id> \
-       --mcp-auth "Bearer <cogny_access_token>" \
-       "Show my LinkedIn campaigns with CTR under 0.4%"
-```
+The same `https://app.cogny.com/mcp` URL works in any MCP-capable client (Claude API, Claude CLI, ChatGPT custom connectors, etc.) — Cogny handles auth and routes each tool call to the right underlying channel.
 
 ## Channels Available via Cogny
 
-Coverage changes over time — check the Cogny dashboard for the current list. The channels below are what's live today and not gated behind a vendor approval queue.
+Coverage changes over time — check the Cogny dashboard for the current list.
 
 ### SEO
 
-| Channel | Path | Typical use |
-|---------|------|-------------|
-| Search Console | `/search_console/<wid>` | Search analytics, URL inspection, sitemap submission |
-| Bing Webmaster | `/bing_webmaster/<wid>` | Coverage, query stats, URL submission quota |
-| Semrush | `/semrush/<wid>` | Keyword research, competitor checks (subject to Semrush plan) |
+| Channel | Typical use |
+|---------|-------------|
+| Search Console | Search analytics, URL inspection, sitemap submission |
+| Bing Webmaster | Coverage, query stats, URL submission quota |
+| Semrush | Keyword research, competitor checks (subject to Semrush plan) |
 
 ### Paid Social
 
-| Channel | Path | Typical use |
-|---------|------|-------------|
-| LinkedIn Ads | `/linkedin_ads/<wid>` | Campaign reporting, audience overlap, creative checks |
-| Reddit Ads | `/reddit_ads/<wid>` | Campaign reporting, audience and conversion lookups |
-| TikTok Ads | `/tiktok_ads/<wid>` | Campaign reporting, ad group / creative health |
+| Channel | Typical use |
+|---------|-------------|
+| LinkedIn Ads | Campaign reporting, audience overlap, creative checks |
+| Reddit Ads | Campaign reporting, audience and conversion lookups |
+| TikTok Ads | Campaign reporting, ad group / creative health |
 
 ### Analytics
 
-| Channel | Path | Typical use |
-|---------|------|-------------|
-| Plausible | `/plausible/<wid>` | Privacy-friendly site analytics, goal reporting |
-| Fathom | `/fathom/<wid>` | Privacy-friendly site analytics |
-
-Other channels (e.g. Meta Ads, Google Ads, X Ads) are in various stages of vendor review and may appear in the dashboard but are not promoted here until they're broadly available.
+| Channel | Typical use |
+|---------|-------------|
+| Plausible | Privacy-friendly site analytics, goal reporting |
+| Fathom | Privacy-friendly site analytics |
 
 ## Common Agent Operations
 
-These work the same way as calling any MCP server — the agent picks tools by name once the MCP server is attached.
+Once `https://app.cogny.com/mcp` is wired up, the agent picks tools by name across every channel you've connected.
 
 ### Search Console — pages losing clicks
 
@@ -150,8 +132,7 @@ These work the same way as calling any MCP server — the agent picks tools by n
 ## Limitations
 
 - **Marketing-only scope** — Cogny ships marketing channels; for CRM, productivity, or dev tools use [Composio](composio.md) or the relevant native integration.
-- **Vendor-gated channels** — some platforms (Meta, Google Ads, X) require vendor app approvals; availability varies and isn't guaranteed.
-- **Hosted dependency** — if `mcp.cogny.com` is down, the connected channels are unavailable through this path.
+- **Hosted dependency** — if `app.cogny.com` is down, the connected channels are unavailable through this path.
 - **Coverage depth varies** — read-heavy and reporting tools generally have more depth than write/mutation tools.
 - **OAuth tokens** — managed by Cogny; you don't control token refresh or storage directly.
 
