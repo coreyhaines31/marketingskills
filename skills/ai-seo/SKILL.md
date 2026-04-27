@@ -257,7 +257,7 @@ Add these machine-readable files to your site root:
 - AI agents increasingly compare products programmatically before a human ever visits your site
 - Opaque pricing gets filtered out of AI-mediated buying journeys
 - A simple markdown file is trivially parseable by any LLM — no rendering, no JavaScript, no login walls
-- Same principle as `robots.txt` (for crawlers), `llms.txt` (for AI context), and `AGENTS.md` (for agent capabilities)
+- Same principle as `robots.txt` (for crawlers) and `AGENTS.md` (for agent capabilities)
 
 **Best practices:**
 - Use consistent units (monthly vs. annual, per-seat vs. flat)
@@ -265,10 +265,6 @@ Add these machine-readable files to your site root:
 - List what's included at each tier, not just what's different
 - Keep it updated — stale pricing is worse than no file
 - Link to it from your sitemap and main pricing page
-
-**`/llms.txt`** — Context file for AI systems (see [llmstxt.org](https://llmstxt.org))
-
-If you don't have one yet, add an `llms.txt` that gives AI systems a quick overview of what your product does, who it's for, and links to key pages (including your pricing).
 
 ### Schema Markup for AI
 
