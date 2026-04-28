@@ -1,0 +1,107 @@
+[
+  {
+    "venue_name": "O2 Academy Brixton",
+    "slug": "o2-academy-brixton",
+    "url": "https://www.academymusicgroup.com/o2academybrixton",
+    "region": "London",
+    "geo_score": 74.8,
+    "aeo_score": 67.0,
+    "geo_band": "good",
+    "aeo_band": "moderate",
+    "geo_components": {
+      "entity_clarity": {"score": 85, "weighted": 17.0, "findings": ["Venue name, address, city and O2 brand all clearly identified."]},
+      "content_chunking": {"score": 65, "weighted": 9.75, "findings": ["4 H2-delimited sections, average paragraph length ~22 words — LLM-friendly."]},
+      "topical_completeness": {"score": 100, "weighted": 20.0, "findings": ["All six key topics covered: identity, capacity, history, accessibility, transport, events."]},
+      "external_corroboration": {"score": 90, "weighted": 9.0, "findings": ["O2 brand association plus address enables cross-referencing with Knowledge Graph."]},
+      "structured_data_richness": {"score": 20, "weighted": 3.0, "findings": ["Only LocalBusiness schema with 4 properties — upgrade to MusicVenue with full property set."]},
+      "prompt_relevance": {"score": 80, "weighted": 16.0, "findings": ["6/6 query intents covered. Add FAQ to push past 80."]}
+    },
+    "aeo_components": {
+      "structured_data": {"score": 20, "weighted": 4.0, "findings": ["Generic LocalBusiness only — should be MusicVenue + Event + FAQPage."]},
+      "faq_qa_content": {"score": 0, "weighted": 0.0, "findings": ["No FAQ or Q&A content detected — significant AEO gap."]},
+      "heading_semantic": {"score": 100, "weighted": 15.0, "findings": ["Single H1, 4 H2s, 3 H3s — perfect heading hierarchy."]},
+      "internal_linking": {"score": 100, "weighted": 10.0, "findings": ["22 internal links including venue info and accessibility pages."]},
+      "page_speed_proxy": {"score": 80, "weighted": 8.0, "findings": ["Meta description present; verify Core Web Vitals via Lighthouse."]},
+      "content_clarity": {"score": 100, "weighted": 30.0, "findings": ["520 words covering capacity, transport, accessibility, address."]}
+    },
+    "summary": "O2 Academy Brixton scores 67/100 for AEO (moderate) and 75/100 for GEO (good). The page lacks all rich structured data — the single highest-impact fix available. No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers.",
+    "strengths": ["Heading Semantic: 100/100", "Internal Linking: 100/100", "Content Clarity: 100/100", "Topical Completeness: 100/100", "External Corroboration: 90/100", "Entity Clarity: 85/100", "Prompt Relevance: 80/100"],
+    "weaknesses": ["Structured Data: 20/100", "FAQ QA Content: 0/100", "Structured Data Richness: 20/100"],
+    "quick_wins": ["Upgrade existing LocalBusiness schema to MusicVenue and add maximumAttendeeCapacity, image, sameAs (Wikidata/Wikipedia/socials), geo coordinates. ~30 min, +12 AEO points."],
+    "priority_fixes": ["[CRITICAL] Implement MusicVenue + Event + FAQPage JSON-LD. Estimated AEO impact: +14 points.", "[HIGH] Build a FAQ section answering capacity, accessibility, transport, age policy, bag policy. Wrap in FAQPage schema. Estimated AEO impact: +12 points."],
+    "schema_recommendations": ["Replace LocalBusiness with MusicVenue (@type) including alternateName, maximumAttendeeCapacity, openingHoursSpecification, sameAs.", "Add Event schema for each listed gig with performer, startDate, offers.", "Add FAQPage schema with the top 6 venue queries.", "Add sameAs array linking to Wikidata Q488029 (Brixton Academy), Wikipedia article, and official social profiles."],
+    "content_recommendations": ["Add a FAQ block answering: capacity, transport, accessibility, age policy, bag policy, food/drink rules.", "Add a 150-word 'About Brixton Academy' section covering 1929 opening, conversion from Astoria Cinema, and notable performances.", "Add explicit 'Capacity: 4,921 standing' as a labelled stat in a Venue Facts box."],
+    "internal_linking_recommendations": ["Cross-link from each event listing to the venue info, accessibility, and getting-here pages using consistent anchor text.", "Add a 'Sister venues' section linking to other O2 Academy venues — builds portfolio topical authority."],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "O2 Academy Islington",
+    "slug": "o2-academy-islington",
+    "url": "https://www.academymusicgroup.com/o2academyislington",
+    "region": "London",
+    "geo_score": 36.4,
+    "aeo_score": 23.3,
+    "geo_band": "weak",
+    "aeo_band": "critical",
+    "geo_components": {
+      "entity_clarity": {"score": 85, "weighted": 17.0, "findings": ["Venue name and city clear, O2 brand present in title."]},
+      "content_chunking": {"score": 45, "weighted": 6.75, "findings": ["Only 2 H2 sections — content is not chunked into discrete LLM-extractable topics."]},
+      "topical_completeness": {"score": 20, "weighted": 4.0, "findings": ["Only 1/6 key topics covered (identity). Missing: capacity, history, accessibility, transport, events."]},
+      "external_corroboration": {"score": 60, "weighted": 6.0, "findings": ["O2 brand provides some corroboration; no schema or address to anchor entity identity."]},
+      "structured_data_richness": {"score": 0, "weighted": 0.0, "findings": ["No JSON-LD found — primary machine-readable format missing."]},
+      "prompt_relevance": {"score": 13, "weighted": 2.6, "findings": ["Only 1/6 natural language query intents addressed."]}
+    },
+    "aeo_components": {
+      "structured_data": {"score": 0, "weighted": 0.0, "findings": ["No JSON-LD structured data detected — critical gap for AEO."]},
+      "faq_qa_content": {"score": 0, "weighted": 0.0, "findings": ["No FAQ or Q&A content detected."]},
+      "heading_semantic": {"score": 75, "weighted": 11.25, "findings": ["Valid H1+H2 structure but only 2 H2 sections."]},
+      "internal_linking": {"score": 40, "weighted": 4.0, "findings": ["12 internal links but none point to dedicated venue info pages."]},
+      "page_speed_proxy": {"score": 80, "weighted": 8.0, "findings": ["Meta description present; verify Core Web Vitals."]},
+      "content_clarity": {"score": 0, "weighted": 0.0, "findings": ["Thin content (180 words). No capacity, transport, accessibility or address text."]}
+    },
+    "summary": "O2 Academy Islington scores 23/100 for AEO (critical) and 36/100 for GEO (weak). The page lacks all structured data, has no FAQ content, and provides no extractable answers for capacity, accessibility, or transport queries.",
+    "strengths": ["Entity Clarity: 85/100"],
+    "weaknesses": ["Structured Data: 0/100", "FAQ QA Content: 0/100", "Content Clarity: 0/100", "Internal Linking: 40/100", "Topical Completeness: 20/100", "Structured Data Richness: 0/100", "Prompt Relevance: 13/100", "Content Chunking: 45/100"],
+    "quick_wins": ["Add a meta description naming the venue, city and capacity (e.g. 'O2 Academy Islington — intimate 800-capacity music venue in North London').", "Add visible NAP (Name, Address, Phone) text — costs nothing, immediately improves entity clarity.", "Add capacity as a labelled field — answers the highest-volume venue query.", "Add a 'Getting Here' section with nearest tube/bus — directly answers voice search queries.", "Add basic Organization + MusicVenue JSON-LD."],
+    "priority_fixes": ["[CRITICAL] Implement MusicVenue JSON-LD schema with name, url, address, telephone, description, maximumAttendeeCapacity, image, sameAs. Estimated AEO impact: +14 points.", "[HIGH] Build a FAQ section answering capacity, transport, accessibility, age policy, bag policy. Wrap in FAQPage schema. Estimated AEO impact: +12 points.", "[HIGH] Add explicit capacity (800) as a labelled data point in both visible text and schema.", "[MEDIUM] Add a venue history section covering opening year and significant events.", "[MEDIUM] Add an Accessibility section: step-free access, hearing loops, BSL, wheelchair spaces."],
+    "schema_recommendations": ["Implement MusicVenue schema with all applicable properties: name, alternateName, url, address (PostalAddress), telephone, description, maximumAttendeeCapacity, image, openingHoursSpecification, sameAs, geo (GeoCoordinates).", "Add Event schema for each listed event.", "Implement FAQPage schema with top 5–8 venue queries.", "Add sameAs array linking to Wikidata, Wikipedia, social profiles."],
+    "content_recommendations": ["Expand venue description to at least 400 words (currently ~180).", "Add an 'About O2 Academy Islington' section covering opening year and notable performances.", "Create a FAQ section answering capacity, transport, accessibility, age, bag policy, food/drink.", "Add a dedicated Accessibility section.", "Add a 'Getting Here' section with tube/rail/bus.", "State the venue capacity prominently in a Venue Facts summary."],
+    "internal_linking_recommendations": ["Add contextual internal links from event pages to venue info, accessibility, and getting here pages.", "Increase internal link density — cross-link homepage, events, venue info, FAQ.", "Use consistent anchor text — always 'O2 Academy Islington', never 'click here'.", "Add a 'Sister O2 venues' section linking to portfolio venues."],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Edinburgh Corn Exchange",
+    "slug": "edinburgh-corn-exchange",
+    "url": "https://www.edinburghcornexchange.co.uk",
+    "region": "Scotland",
+    "geo_score": 71.75,
+    "aeo_score": 60.5,
+    "geo_band": "good",
+    "aeo_band": "moderate",
+    "geo_components": {
+      "entity_clarity": {"score": 80, "weighted": 16.0, "findings": ["Name, address, city and phone all present. Lacks the strong O2 portfolio brand bonus."]},
+      "content_chunking": {"score": 65, "weighted": 9.75, "findings": ["4 H2 sections with concise paragraphs (~22 words avg)."]},
+      "topical_completeness": {"score": 100, "weighted": 20.0, "findings": ["All six key topics covered including accessibility and history."]},
+      "external_corroboration": {"score": 70, "weighted": 7.0, "findings": ["Schema and address present, but no portfolio brand anchor like O2."]},
+      "structured_data_richness": {"score": 20, "weighted": 3.0, "findings": ["Organization schema present with 3 properties — upgrade to MusicVenue and add sameAs."]},
+      "prompt_relevance": {"score": 80, "weighted": 16.0, "findings": ["6/6 natural language query intents addressed."]}
+    },
+    "aeo_components": {
+      "structured_data": {"score": 20, "weighted": 4.0, "findings": ["Organization schema only — should be MusicVenue + Event + FAQPage."]},
+      "faq_qa_content": {"score": 0, "weighted": 0.0, "findings": ["No FAQ or Q&A content detected."]},
+      "heading_semantic": {"score": 100, "weighted": 15.0, "findings": ["Single H1, 4 H2s, 3 H3s — perfect hierarchy."]},
+      "internal_linking": {"score": 80, "weighted": 8.0, "findings": ["18 internal links with venue info and accessibility coverage."]},
+      "page_speed_proxy": {"score": 80, "weighted": 8.0, "findings": ["Meta description present; verify Core Web Vitals."]},
+      "content_clarity": {"score": 85, "weighted": 25.5, "findings": ["420 words covering capacity, transport, accessibility, address."]}
+    },
+    "summary": "Edinburgh Corn Exchange scores 60.5/100 for AEO (moderate) and 71.75/100 for GEO (good). The standalone domain has stronger content depth than most AMG template pages but still lacks rich schema and FAQ content.",
+    "strengths": ["Heading Semantic: 100/100", "Topical Completeness: 100/100", "Content Clarity: 85/100", "Internal Linking: 80/100", "Entity Clarity: 80/100", "Prompt Relevance: 80/100", "External Corroboration: 70/100", "Content Chunking: 65/100"],
+    "weaknesses": ["FAQ QA Content: 0/100", "Structured Data: 20/100", "Structured Data Richness: 20/100"],
+    "quick_wins": ["Upgrade Organization schema to MusicVenue with maximumAttendeeCapacity, sameAs (Wikidata, Wikipedia, socials), geo coordinates, openingHours."],
+    "priority_fixes": ["[CRITICAL] Replace Organization schema with MusicVenue and add Event + FAQPage schemas.", "[HIGH] Build a FAQ section answering capacity, accessibility, transport, parking, age policy."],
+    "schema_recommendations": ["Replace Organization with MusicVenue including maximumAttendeeCapacity, openingHoursSpecification, geo, sameAs.", "Add Event schema for each gig with performer, startDate, offers.", "Add FAQPage schema with top venue queries.", "Add sameAs array to Wikidata, Wikipedia, social profiles."],
+    "content_recommendations": ["Add a FAQ block answering capacity, transport, accessibility, parking, food/drink, age policy.", "Expand the existing history section with notable past performances and architectural heritage."],
+    "internal_linking_recommendations": ["Cross-link event pages to venue info, accessibility, getting here.", "Use consistent anchor text — always 'Edinburgh Corn Exchange'."],
+    "crawl_errors": []
+  }
+]
