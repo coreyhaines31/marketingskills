@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getVenue, venues } from "@/lib/data";
+import { getVenueHistory, getScoreDeltas } from "@/lib/history";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { RadarChart } from "@/components/RadarChart";
 import { RecommendationPanel } from "@/components/RecommendationPanel";
+import TrendChart from "@/components/TrendChart";
 import { AEO_LABELS, GEO_LABELS } from "@/types/venue";
 
 export function generateStaticParams() {
@@ -22,6 +24,9 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
     metric: GEO_LABELS[k] ?? k,
     score: c.score,
   }));
+
+  const history = getVenueHistory(params.slug);
+  const deltas = getScoreDeltas(params.slug);
 
   return (
     <div className="space-y-6">
@@ -47,6 +52,21 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
         <RadarChart title="GEO breakdown" data={geoRadar} color="#9333ea" />
       </section>
 
+      {history.length > 1 && (
+        <section className="bg-white rounded-lg border border-slate-200 p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-medium text-slate-700">Score trend — last 4 weeks</h2>
+            {deltas && (
+              <div className="flex gap-4 text-xs">
+                <DeltaBadge label="AEO" delta={deltas.aeo} />
+                <DeltaBadge label="GEO" delta={deltas.geo} />
+              </div>
+            )}
+          </div>
+          <TrendChart data={history} />
+        </section>
+      )}
+
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ComponentList title="AEO components" components={v.aeo_components} labels={AEO_LABELS} />
         <ComponentList title="GEO components" components={v.geo_components} labels={GEO_LABELS} />
@@ -64,6 +84,15 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
         <RecommendationPanel title="Internal linking" items={v.internal_linking_recommendations} accent="blue" />
       </section>
     </div>
+  );
+}
+
+function DeltaBadge({ label, delta }: { label: string; delta: number }) {
+  const positive = delta >= 0;
+  return (
+    <span className={`font-mono ${positive ? "text-emerald-600" : "text-red-500"}`}>
+      {label}: {positive ? "+" : ""}{delta}
+    </span>
   );
 }
 

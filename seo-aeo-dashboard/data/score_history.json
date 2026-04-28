@@ -1,0 +1,522 @@
+{
+  "o2-academy-brixton": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 59.6,
+      "geo_score": 71.1
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 62.9,
+      "geo_score": 73.8
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 64.1,
+      "geo_score": 74.7
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 67.0,
+      "geo_score": 74.8
+    }
+  ],
+  "o2-academy-islington": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 20.3,
+      "geo_score": 33.5
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 20.4,
+      "geo_score": 34.3
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 21.4,
+      "geo_score": 36.3
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "edinburgh-corn-exchange": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 52.3,
+      "geo_score": 66.6
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 55.9,
+      "geo_score": 69.4
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 59.5,
+      "geo_score": 69.4
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 60.5,
+      "geo_score": 71.8
+    }
+  ],
+  "o2-forum-kentish-town": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 14.8,
+      "geo_score": 32.3
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 18.6,
+      "geo_score": 34.7
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 19.0,
+      "geo_score": 35.1
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "o2-shepherds-bush-empire": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 37.5,
+      "geo_score": 54.6
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 41.2,
+      "geo_score": 57.1
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 42.9,
+      "geo_score": 59.3
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 45.3,
+      "geo_score": 63.2
+    }
+  ],
+  "o2-academy-birmingham": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 40.7,
+      "geo_score": 55.1
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 41.1,
+      "geo_score": 56.0
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 42.1,
+      "geo_score": 57.2
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 45.3,
+      "geo_score": 57.4
+    }
+  ],
+  "o2-institute-birmingham": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 17.5,
+      "geo_score": 30.4
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 18.7,
+      "geo_score": 34.1
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 20.4,
+      "geo_score": 34.9
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "o2-academy-leicester": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 17.3,
+      "geo_score": 29.4
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 21.8,
+      "geo_score": 32.0
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 22.5,
+      "geo_score": 33.5
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "o2-academy-oxford": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 26.1,
+      "geo_score": 40.9
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 27.5,
+      "geo_score": 42.0
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 28.5,
+      "geo_score": 42.1
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 32.3,
+      "geo_score": 45.2
+    }
+  ],
+  "o2-academy-bournemouth": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 7.4,
+      "geo_score": 29.7
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 11.5,
+      "geo_score": 31.5
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 14.4,
+      "geo_score": 33.1
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 18.3,
+      "geo_score": 34.4
+    }
+  ],
+  "o2-academy-bristol": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 38.4,
+      "geo_score": 51.8
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 40.2,
+      "geo_score": 52.7
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 42.8,
+      "geo_score": 56.3
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 45.3,
+      "geo_score": 57.4
+    }
+  ],
+  "o2-guildhall-southampton": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 18.8,
+      "geo_score": 32.0
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 22.4,
+      "geo_score": 33.7
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 22.9,
+      "geo_score": 36.2
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "o2-academy-liverpool": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 36.3,
+      "geo_score": 49.0
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 36.4,
+      "geo_score": 51.9
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 40.8,
+      "geo_score": 55.3
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 45.3,
+      "geo_score": 57.4
+    }
+  ],
+  "o2-ritz-manchester": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 19.6,
+      "geo_score": 28.3
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 21.6,
+      "geo_score": 32.1
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 22.1,
+      "geo_score": 33.8
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "o2-victoria-warehouse-manchester": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 36.1,
+      "geo_score": 50.6
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 37.4,
+      "geo_score": 53.2
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 41.5,
+      "geo_score": 56.7
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 43.8,
+      "geo_score": 57.4
+    }
+  ],
+  "o2-apollo-manchester": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 45.1,
+      "geo_score": 63.2
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 45.1,
+      "geo_score": 64.5
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 48.6,
+      "geo_score": 66.6
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 52.0,
+      "geo_score": 68.8
+    }
+  ],
+  "o2-academy-leeds": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 34.4,
+      "geo_score": 50.1
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 38.4,
+      "geo_score": 53.9
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 39.8,
+      "geo_score": 54.1
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 43.8,
+      "geo_score": 57.4
+    }
+  ],
+  "o2-academy-sheffield": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 12.5,
+      "geo_score": 28.7
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 14.6,
+      "geo_score": 30.9
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 18.0,
+      "geo_score": 31.4
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 18.3,
+      "geo_score": 34.4
+    }
+  ],
+  "o2-city-hall-newcastle": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 18.1,
+      "geo_score": 31.5
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 19.0,
+      "geo_score": 32.7
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 21.4,
+      "geo_score": 35.6
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 23.3,
+      "geo_score": 36.4
+    }
+  ],
+  "o2-academy-glasgow": [
+    {
+      "date": "2026-04-07",
+      "week": 1,
+      "aeo_score": 41.3,
+      "geo_score": 52.0
+    },
+    {
+      "date": "2026-04-14",
+      "week": 2,
+      "aeo_score": 42.8,
+      "geo_score": 54.4
+    },
+    {
+      "date": "2026-04-21",
+      "week": 3,
+      "aeo_score": 43.3,
+      "geo_score": 55.3
+    },
+    {
+      "date": "2026-04-28",
+      "week": 4,
+      "aeo_score": 45.3,
+      "geo_score": 57.4
+    }
+  ]
+}

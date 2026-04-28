@@ -87,7 +87,7 @@ Visit `http://localhost:3000`.
 - [x] **Chunk 1** — Scaffold + crawler + scoring engine + sample JSON
 - [x] **Chunk 1** — Next.js dashboard (overview + venue detail)
 - [ ] **Chunk 2** — Live crawl run against all 20 venues, replace `venues_sample.json`
-- [ ] **Chunk 3** — Score history persistence (Postgres) + trend charts
+- [x] **Chunk 3** — Score history persistence (Postgres) + trend charts
 - [ ] **Chunk 4** — LLM simulation: feed venue content + prompts to GPT/Claude/Gemini, measure citation rate
 - [ ] **Chunk 5** — Competitor benchmarking against non-O2 UK venues
 

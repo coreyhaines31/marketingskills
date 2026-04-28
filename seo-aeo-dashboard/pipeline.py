@@ -11,6 +11,7 @@ Usage:
 import argparse
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -59,6 +60,17 @@ def main() -> None:
     output_path.write_text(json.dumps(reports, indent=2, ensure_ascii=False))
 
     logger.info("Reports written to %s", output_path)
+
+    # Persist to Postgres if DATABASE_URL is configured
+    if os.environ.get("DATABASE_URL"):
+        try:
+            from db.store import store_all_reports
+            run_id = store_all_reports(reports, note=f"pipeline run — {len(reports)} venues")
+            logger.info("Scores persisted to Postgres (run_id=%d)", run_id)
+        except Exception as exc:
+            logger.warning("Postgres persistence failed (non-fatal): %s", exc)
+    else:
+        logger.info("DATABASE_URL not set — skipping Postgres persistence")
 
     # Print summary table
     print(f"\n{'Venue':<40} {'AEO':>5} {'GEO':>5} {'AEO Band':<12} {'GEO Band'}")
