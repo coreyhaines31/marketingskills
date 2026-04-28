@@ -2,10 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getVenue, venues } from "@/lib/data";
 import { getVenueHistory, getScoreDeltas } from "@/lib/history";
+import { getVenueCitations, getPromptDetails, citationMeta, citationBandBg } from "@/lib/citations";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { RadarChart } from "@/components/RadarChart";
 import { RecommendationPanel } from "@/components/RecommendationPanel";
 import TrendChart from "@/components/TrendChart";
+import CitationBar from "@/components/CitationBar";
 import { AEO_LABELS, GEO_LABELS } from "@/types/venue";
 
 export function generateStaticParams() {
@@ -27,6 +29,9 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
 
   const history = getVenueHistory(params.slug);
   const deltas = getScoreDeltas(params.slug);
+  const citations = getVenueCitations(params.slug);
+  const citedPrompts = citations ? getPromptDetails(citations.cited_by_prompts) : [];
+  const missedPrompts = citations ? getPromptDetails(citations.missed_by_prompts) : [];
 
   return (
     <div className="space-y-6">
@@ -71,6 +76,62 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
         <ComponentList title="AEO components" components={v.aeo_components} labels={AEO_LABELS} />
         <ComponentList title="GEO components" components={v.geo_components} labels={GEO_LABELS} />
       </section>
+
+      {citations && (
+        <section className="bg-white rounded-lg border border-slate-200 p-4">
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <h2 className="text-sm font-medium text-slate-700">LLM citation performance</h2>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Model: {citationMeta.model} · {citationMeta.total_prompts} test prompts · {citationMeta.run_date}
+              </p>
+            </div>
+            <span className={`px-2 py-1 rounded text-xs font-medium ${citationBandBg(citations.citation_band)}`}>
+              {citations.citation_band}
+            </span>
+          </div>
+          <div className="mb-4">
+            <CitationBar
+              rate={citations.citation_rate}
+              band={citations.citation_band}
+              count={citations.citation_count}
+              total={citationMeta.total_prompts}
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            {citedPrompts.length > 0 && (
+              <div>
+                <p className="font-medium text-emerald-700 mb-2">
+                  Cited in {citedPrompts.length} prompt{citedPrompts.length !== 1 ? "s" : ""}
+                </p>
+                <ul className="space-y-1.5">
+                  {citedPrompts.map(p => (
+                    <li key={p.id} className="flex gap-2">
+                      <span className="text-emerald-500 mt-0.5">✓</span>
+                      <span className="text-slate-600">{p.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {missedPrompts.length > 0 && (
+              <div>
+                <p className="font-medium text-red-600 mb-2">
+                  Missed in {missedPrompts.length} prompt{missedPrompts.length !== 1 ? "s" : ""}
+                </p>
+                <ul className="space-y-1.5">
+                  {missedPrompts.map(p => (
+                    <li key={p.id} className="flex gap-2">
+                      <span className="text-red-400 mt-0.5">✗</span>
+                      <span className="text-slate-500">{p.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <RecommendationPanel title="Quick wins" items={v.quick_wins} accent="green" />

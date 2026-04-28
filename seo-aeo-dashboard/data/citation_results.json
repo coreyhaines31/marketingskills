@@ -1,0 +1,542 @@
+{
+  "run_date": "2026-04-28",
+  "model": "claude-opus-4-5 (simulated)",
+  "total_prompts": 12,
+  "venues": {
+    "o2-academy-brixton": {
+      "citation_count": 5,
+      "citation_rate": 41.7,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p01",
+        "p04",
+        "p08",
+        "p09",
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p02",
+        "p03",
+        "p05",
+        "p06",
+        "p07",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-academy-islington": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p01"
+      ],
+      "missed_by_prompts": [
+        "p02",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "edinburgh-corn-exchange": {
+      "citation_count": 4,
+      "citation_rate": 33.3,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p01",
+        "p05",
+        "p08",
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p02",
+        "p03",
+        "p04",
+        "p06",
+        "p07",
+        "p09",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-forum-kentish-town": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-shepherds-bush-empire": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-academy-birmingham": {
+      "citation_count": 3,
+      "citation_rate": 25.0,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p03",
+        "p05",
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p04",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-institute-birmingham": {
+      "citation_count": 2,
+      "citation_rate": 16.7,
+      "citation_band": "weak",
+      "cited_by_prompts": [
+        "p03",
+        "p11"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p12"
+      ]
+    },
+    "o2-academy-leicester": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p11"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p12"
+      ]
+    },
+    "o2-academy-oxford": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p02"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-academy-bournemouth": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p03"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-academy-bristol": {
+      "citation_count": 2,
+      "citation_rate": 16.7,
+      "citation_band": "weak",
+      "cited_by_prompts": [
+        "p09",
+        "p11"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p10",
+        "p12"
+      ]
+    },
+    "o2-guildhall-southampton": {
+      "citation_count": 3,
+      "citation_rate": 25.0,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p03",
+        "p08",
+        "p09"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-academy-liverpool": {
+      "citation_count": 3,
+      "citation_rate": 25.0,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p03",
+        "p04",
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-ritz-manchester": {
+      "citation_count": 3,
+      "citation_rate": 25.0,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p03",
+        "p04",
+        "p08"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p05",
+        "p06",
+        "p07",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-victoria-warehouse-manchester": {
+      "citation_count": 2,
+      "citation_rate": 16.7,
+      "citation_band": "weak",
+      "cited_by_prompts": [
+        "p04",
+        "p08"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p03",
+        "p05",
+        "p06",
+        "p07",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-apollo-manchester": {
+      "citation_count": 4,
+      "citation_rate": 33.3,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p03",
+        "p04",
+        "p05",
+        "p12"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11"
+      ]
+    },
+    "o2-academy-leeds": {
+      "citation_count": 3,
+      "citation_rate": 25.0,
+      "citation_band": "moderate",
+      "cited_by_prompts": [
+        "p03",
+        "p04",
+        "p10"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-academy-sheffield": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p08"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p03",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-city-hall-newcastle": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p03"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    },
+    "o2-academy-glasgow": {
+      "citation_count": 1,
+      "citation_rate": 8.3,
+      "citation_band": "critical",
+      "cited_by_prompts": [
+        "p03"
+      ],
+      "missed_by_prompts": [
+        "p01",
+        "p02",
+        "p04",
+        "p05",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10",
+        "p11",
+        "p12"
+      ]
+    }
+  },
+  "prompts": [
+    {
+      "id": "p01",
+      "text": "What are the best music venues in London for mid-size concerts?",
+      "venues_cited": [
+        "o2-academy-brixton",
+        "o2-academy-islington",
+        "edinburgh-corn-exchange"
+      ]
+    },
+    {
+      "id": "p02",
+      "text": "Where can I see live music in Manchester? Looking for a great atmosphere.",
+      "venues_cited": [
+        "o2-academy-oxford"
+      ]
+    },
+    {
+      "id": "p03",
+      "text": "Which UK music venues are best known for indie and alternative gigs?",
+      "venues_cited": [
+        "o2-academy-birmingham",
+        "o2-institute-birmingham",
+        "o2-academy-bournemouth",
+        "o2-guildhall-southampton",
+        "o2-academy-liverpool",
+        "o2-ritz-manchester",
+        "o2-apollo-manchester",
+        "o2-academy-leeds",
+        "o2-city-hall-newcastle",
+        "o2-academy-glasgow"
+      ]
+    },
+    {
+      "id": "p04",
+      "text": "I'm planning a UK tour. Which cities and venues should I consider for 3,000\u20135,000 capacity shows?",
+      "venues_cited": [
+        "o2-academy-brixton",
+        "o2-academy-liverpool",
+        "o2-ritz-manchester",
+        "o2-victoria-warehouse-manchester",
+        "o2-apollo-manchester",
+        "o2-academy-leeds"
+      ]
+    },
+    {
+      "id": "p05",
+      "text": "What are the top live music venues in Scotland?",
+      "venues_cited": [
+        "edinburgh-corn-exchange",
+        "o2-academy-birmingham",
+        "o2-apollo-manchester"
+      ]
+    },
+    {
+      "id": "p06",
+      "text": "Best music venues in Birmingham for a night out?",
+      "venues_cited": []
+    },
+    {
+      "id": "p07",
+      "text": "Where do major UK tours usually play in London?",
+      "venues_cited": []
+    },
+    {
+      "id": "p08",
+      "text": "What are the most iconic live music venues in the UK?",
+      "venues_cited": [
+        "o2-academy-brixton",
+        "edinburgh-corn-exchange",
+        "o2-guildhall-southampton",
+        "o2-ritz-manchester",
+        "o2-victoria-warehouse-manchester",
+        "o2-academy-sheffield"
+      ]
+    },
+    {
+      "id": "p09",
+      "text": "I'm visiting Bristol \u2014 where should I go to see live music?",
+      "venues_cited": [
+        "o2-academy-brixton",
+        "o2-academy-bristol",
+        "o2-guildhall-southampton"
+      ]
+    },
+    {
+      "id": "p10",
+      "text": "Which venues in Leeds and Sheffield have the best live music scenes?",
+      "venues_cited": [
+        "o2-academy-leeds"
+      ]
+    },
+    {
+      "id": "p11",
+      "text": "What are the best standing-only music venues in the UK for an intimate gig experience?",
+      "venues_cited": [
+        "o2-institute-birmingham",
+        "o2-academy-leicester",
+        "o2-academy-bristol"
+      ]
+    },
+    {
+      "id": "p12",
+      "text": "I want to see a big-name artist live in the UK without going to a stadium. What venues should I consider?",
+      "venues_cited": [
+        "o2-academy-brixton",
+        "edinburgh-corn-exchange",
+        "o2-forum-kentish-town",
+        "o2-shepherds-bush-empire",
+        "o2-academy-birmingham",
+        "o2-academy-liverpool",
+        "o2-apollo-manchester"
+      ]
+    }
+  ]
+}
