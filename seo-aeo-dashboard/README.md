@@ -89,7 +89,7 @@ Visit `http://localhost:3000`.
 - [ ] **Chunk 2** — Live crawl run against all 20 venues, replace `venues_sample.json`
 - [x] **Chunk 3** — Score history persistence (Postgres) + trend charts
 - [x] **Chunk 4** — LLM simulation: feed venue content + prompts to GPT/Claude/Gemini, measure citation rate
-- [ ] **Chunk 5** — Competitor benchmarking against non-O2 UK venues
+- [x] **Chunk 5** — Competitor benchmarking against non-O2 UK venues
 
 ## Output JSON schema
 

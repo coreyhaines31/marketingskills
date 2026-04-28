@@ -1,0 +1,1614 @@
+[
+  {
+    "venue_name": "Roundhouse",
+    "slug": "roundhouse",
+    "url": "https://www.roundhouse.org.uk",
+    "region": "London",
+    "geo_score": 88.5,
+    "aeo_score": 83.0,
+    "geo_band": "strong",
+    "aeo_band": "good",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 80,
+        "weighted": 16.0,
+        "findings": [
+          "Venue entity name clearly identified: 'Roundhouse'.",
+          "Location data present: Chalk Farm Road, London.",
+          "Phone number present — supports NAP consistency signals.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "6 H2-delimited content sections — well-chunked for LLM extraction.",
+          "Average paragraph length ~23 words — concise, LLM-friendly.",
+          "FAQ section contributes to chunked, extractable content."
+        ]
+      },
+      "topical_completeness": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (3,300).",
+          "History/heritage: mentioned — supports LLM contextualisation.",
+          "Accessibility: information present.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 6/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 70,
+        "weighted": 10.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~7 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "sameAs links found (2) — excellent for LLM entity disambiguation."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Prompt intent coverage: 6/6 natural language query types addressed.",
+          "FAQ/Q&A content present — directly maps to conversational query formats used by LLMs."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 80,
+        "weighted": 12.0,
+        "findings": [
+          "FAQ/Q&A content found with ~8 items.",
+          "Good FAQ depth (5+ items) — strong for featured snippet extraction."
+        ]
+      },
+      "heading_semantic": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "Single H1 present: 'Roundhouse'",
+          "6 H2 tags provide good semantic sectioning.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 100,
+        "weighted": 10.0,
+        "findings": [
+          "28 internal links — good navigation coverage.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 100,
+        "weighted": 30.0,
+        "findings": [
+          "Good content volume (680 words).",
+          "Capacity information present: 3,300.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "Accessibility information present.",
+          "Address present: Chalk Farm Road."
+        ]
+      }
+    },
+    "summary": "Roundhouse scores 83/100 for AEO (good) and 88/100 for GEO (strong).",
+    "strengths": [
+      "Faq Qa Content: 80/100",
+      "Heading Semantic: 100/100",
+      "Internal Linking: 100/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 100/100",
+      "Entity Clarity: 80/100",
+      "Content Chunking: 100/100",
+      "Topical Completeness: 100/100",
+      "External Corroboration: 70/100",
+      "Structured Data Richness: 70/100",
+      "Prompt Relevance: 100/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "KOKO",
+    "slug": "koko-london",
+    "url": "https://koko.uk.com",
+    "region": "London",
+    "geo_score": 76.2,
+    "aeo_score": 71.0,
+    "geo_band": "good",
+    "aeo_band": "good",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'KOKO'.",
+          "Location data present: 1A Camden High Street, London.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 65,
+        "weighted": 9.75,
+        "findings": [
+          "5 H2 sections — moderate chunking. Add sections for: Capacity, Getting Here, History, FAQs, Accessibility.",
+          "Average paragraph length ~22 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (1,500).",
+          "History/heritage: mentioned — supports LLM contextualisation.",
+          "Accessibility: information present.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 6/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 70,
+        "weighted": 10.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~4 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "sameAs links found (1) — excellent for LLM entity disambiguation."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 80,
+        "weighted": 16.0,
+        "findings": [
+          "Prompt intent coverage: 6/6 natural language query types addressed."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "Single H1 present: 'KOKO'",
+          "4 H2 tags provide good semantic sectioning.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 100,
+        "weighted": 10.0,
+        "findings": [
+          "22 internal links — good navigation coverage.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 100,
+        "weighted": 30.0,
+        "findings": [
+          "Good content volume (540 words).",
+          "Capacity information present: 1,500.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "Accessibility information present.",
+          "Address present: 1A Camden High Street."
+        ]
+      }
+    },
+    "summary": "KOKO scores 71/100 for AEO (good) and 76/100 for GEO (good). No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers.",
+    "strengths": [
+      "Heading Semantic: 100/100",
+      "Internal Linking: 100/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 100/100",
+      "Entity Clarity: 65/100",
+      "Content Chunking: 65/100",
+      "Topical Completeness: 100/100",
+      "External Corroboration: 70/100",
+      "Structured Data Richness: 70/100",
+      "Prompt Relevance: 80/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100",
+      "Faq Qa Content: 0/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points."
+    ],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'."
+    ],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Electric Ballroom",
+    "slug": "electric-ballroom",
+    "url": "https://electricballroom.co.uk",
+    "region": "London",
+    "geo_score": 67.5,
+    "aeo_score": 57.8,
+    "geo_band": "moderate",
+    "aeo_band": "moderate",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'Electric Ballroom'.",
+          "Location data present: 184 Camden High Street, London.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 65,
+        "weighted": 9.75,
+        "findings": [
+          "3 H2 sections — moderate chunking. Add sections for: Capacity, Getting Here, History, FAQs, Accessibility.",
+          "Average paragraph length ~23 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 85,
+        "weighted": 17.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (1,500).",
+          "History/heritage: mentioned — supports LLM contextualisation.",
+          "Accessibility: no information found — add a dedicated section for voice/assistant queries.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 5/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 50,
+        "weighted": 7.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~2 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "No sameAs links — add Wikipedia, Wikidata, and social profile URLs to anchor entity identity."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 66,
+        "weighted": 13.2,
+        "findings": [
+          "Prompt intent coverage: 5/6 natural language query types addressed.",
+          "Missing intent: 'Accessibility' — LLMs cannot answer queries about this topic from the current page content."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 85,
+        "weighted": 12.75,
+        "findings": [
+          "Single H1 present: 'Electric Ballroom'",
+          "Only 3 H2 tags — more sectioning would improve answer extraction.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "16 internal links — moderate. Add contextual links to venue info.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 70,
+        "weighted": 21.0,
+        "findings": [
+          "Moderate content (320 words) — expand venue description to 500+ words for better AEO.",
+          "Capacity information present: 1,500.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "No accessibility information — add accessible venue details for voice and assistant queries.",
+          "Address present: 184 Camden High Street."
+        ]
+      }
+    },
+    "summary": "Electric Ballroom scores 58/100 for AEO (moderate) and 68/100 for GEO (moderate). No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers.",
+    "strengths": [
+      "Heading Semantic: 85/100",
+      "Internal Linking: 80/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 70/100",
+      "Entity Clarity: 65/100",
+      "Content Chunking: 65/100",
+      "Topical Completeness: 85/100",
+      "External Corroboration: 70/100",
+      "Prompt Relevance: 66/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100",
+      "Faq Qa Content: 0/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points.",
+      "[MEDIUM] Add an Accessibility section: step-free access, hearing loops, BSL, wheelchair spaces. Boosts both AEO (voice search) and GEO (topical completeness)."
+    ],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add sameAs array to venue entity linking to: Wikidata item, Wikipedia article (if exists), official social profiles (Facebook, Instagram, Twitter/X). This is the primary LLM entity disambiguation mechanism.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Expand venue description to at least 400 words (currently ~320). Cover: venue history, atmosphere, programming genres, notable past acts, location advantages.",
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'.",
+      "Add a dedicated Accessibility page or section. Include: step-free access routes, accessible toilets, hearing loop, BSL interpretation, companion ticket policy, viewing platforms."
+    ],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Fabric",
+    "slug": "fabric-london",
+    "url": "https://www.fabriclondon.com",
+    "region": "London",
+    "geo_score": 48.8,
+    "aeo_score": 45.2,
+    "geo_band": "weak",
+    "aeo_band": "weak",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'fabric'.",
+          "Location data present: 77A Charterhouse Street, London.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 45,
+        "weighted": 6.75,
+        "findings": [
+          "Only 2 H2 section(s) — content is not chunked into discrete topics that LLMs can isolate.",
+          "Average paragraph length ~22 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 70,
+        "weighted": 14.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (1,500).",
+          "History: no heritage or founding date mentioned — LLMs prize provenance for citation confidence.",
+          "Accessibility: no information found — add a dedicated section for voice/assistant queries.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 4/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "1 JSON-LD block(s) with ~2 total properties.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "No sameAs links — add Wikipedia, Wikidata, and social profile URLs to anchor entity identity."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Prompt intent coverage: 3/6 natural language query types addressed.",
+          "Missing intent: 'Event Discovery' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'Accessibility' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'History Context' — LLMs cannot answer queries about this topic from the current page content."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "Schema types found: NightClub"
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 75,
+        "weighted": 11.25,
+        "findings": [
+          "Single H1 present: 'fabric'",
+          "Only 3 H2 tags — more sectioning would improve answer extraction.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 50,
+        "weighted": 5.0,
+        "findings": [
+          "14 internal links — moderate. Add contextual links to venue info.",
+          "No links to venue-specific info pages — add links to accessibility, directions, and FAQ pages."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 70,
+        "weighted": 21.0,
+        "findings": [
+          "Moderate content (220 words) — expand venue description to 500+ words for better AEO.",
+          "Capacity information present: 1,500.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "No accessibility information — add accessible venue details for voice and assistant queries.",
+          "Address present: 77A Charterhouse Street."
+        ]
+      }
+    },
+    "summary": "Fabric scores 45/100 for AEO (weak) and 49/100 for GEO (weak). No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers. Capacity is not stated, missing one of the most queried facts about a live music venue.",
+    "strengths": [
+      "Heading Semantic: 75/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 70/100",
+      "Entity Clarity: 65/100",
+      "Topical Completeness: 70/100",
+      "External Corroboration: 70/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 0/100",
+      "Faq Qa Content: 0/100",
+      "Structured Data Richness: 0/100",
+      "Prompt Relevance: 40/100"
+    ],
+    "quick_wins": [
+      "Add capacity to the page as a clearly labelled field (e.g. a <dl> or a dedicated 'Venue Facts' section with Capacity: X). This answers one of the highest-volume venue queries instantly."
+    ],
+    "priority_fixes": [
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points.",
+      "[HIGH] Add explicit capacity as a labelled data point in both visible text and schema (maximumAttendeeCapacity property). This answers the #1 factual venue query.",
+      "[MEDIUM] Add a 100–200 word venue history section: opening year, significant events, cultural significance. LLMs prize provenance data for citation confidence. Estimated GEO impact: +5–8 points.",
+      "[MEDIUM] Add an Accessibility section: step-free access, hearing loops, BSL, wheelchair spaces. Boosts both AEO (voice search) and GEO (topical completeness)."
+    ],
+    "schema_recommendations": [
+      "Implement MusicVenue schema (@type: MusicVenue) with all applicable properties: name, alternateName, url, address (PostalAddress), telephone, description, maximumAttendeeCapacity, image, openingHoursSpecification, sameAs, geo (GeoCoordinates).",
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add sameAs array to venue entity linking to: Wikidata item, Wikipedia article (if exists), official social profiles (Facebook, Instagram, Twitter/X). This is the primary LLM entity disambiguation mechanism.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Expand venue description to at least 400 words (currently ~220). Cover: venue history, atmosphere, programming genres, notable past acts, location advantages.",
+      "Add a 'About [Venue Name]' section covering: year opened, original purpose (if converted), significant performances, architectural/cultural heritage. Provides LLMs with citation-worthy provenance.",
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'.",
+      "Add a dedicated Accessibility page or section. Include: step-free access routes, accessible toilets, hearing loop, BSL interpretation, companion ticket policy, viewing platforms."
+    ],
+    "internal_linking_recommendations": [
+      "Add contextual internal links from event pages to the venue info page (e.g. 'Venue information', 'Accessibility', 'Getting Here'). This builds crawl authority for venue-specific pages.",
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Manchester Academy",
+    "slug": "manchester-academy",
+    "url": "https://www.manchesteracademy.net",
+    "region": "North West",
+    "geo_score": 72.5,
+    "aeo_score": 66.5,
+    "geo_band": "good",
+    "aeo_band": "moderate",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 85,
+        "weighted": 17.0,
+        "findings": [
+          "Venue entity name clearly identified: 'Manchester Academy'.",
+          "Location data present: Oxford Road, Manchester.",
+          "No phone number found — add for NAP consistency across citations.",
+          "O2/Academy brand clearly present in title — strong brand entity signal for LLMs.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 65,
+        "weighted": 9.75,
+        "findings": [
+          "4 H2 sections — moderate chunking. Add sections for: Capacity, Getting Here, History, FAQs, Accessibility.",
+          "Average paragraph length ~24 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 85,
+        "weighted": 17.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (2,600).",
+          "History: no heritage or founding date mentioned — LLMs prize provenance for citation confidence.",
+          "Accessibility: information present.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 5/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 50,
+        "weighted": 7.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~3 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "No sameAs links — add Wikipedia, Wikidata, and social profile URLs to anchor entity identity."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 66,
+        "weighted": 13.2,
+        "findings": [
+          "Prompt intent coverage: 5/6 natural language query types addressed.",
+          "Missing intent: 'History Context' — LLMs cannot answer queries about this topic from the current page content."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "Single H1 present: 'Manchester Academy'",
+          "4 H2 tags provide good semantic sectioning.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 100,
+        "weighted": 10.0,
+        "findings": [
+          "20 internal links — good navigation coverage.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 85,
+        "weighted": 25.5,
+        "findings": [
+          "Moderate content (430 words) — expand venue description to 500+ words for better AEO.",
+          "Capacity information present: 2,600.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "Accessibility information present.",
+          "Address present: Oxford Road."
+        ]
+      }
+    },
+    "summary": "Manchester Academy scores 66/100 for AEO (moderate) and 72/100 for GEO (good). No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers.",
+    "strengths": [
+      "Heading Semantic: 100/100",
+      "Internal Linking: 100/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 85/100",
+      "Entity Clarity: 85/100",
+      "Content Chunking: 65/100",
+      "Topical Completeness: 85/100",
+      "External Corroboration: 80/100",
+      "Prompt Relevance: 66/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100",
+      "Faq Qa Content: 0/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points.",
+      "[MEDIUM] Add a 100–200 word venue history section: opening year, significant events, cultural significance. LLMs prize provenance data for citation confidence. Estimated GEO impact: +5–8 points."
+    ],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add sameAs array to venue entity linking to: Wikidata item, Wikipedia article (if exists), official social profiles (Facebook, Instagram, Twitter/X). This is the primary LLM entity disambiguation mechanism.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Add a 'About [Venue Name]' section covering: year opened, original purpose (if converted), significant performances, architectural/cultural heritage. Provides LLMs with citation-worthy provenance.",
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'."
+    ],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Band on the Wall",
+    "slug": "band-on-the-wall",
+    "url": "https://bandonthewall.org",
+    "region": "North West",
+    "geo_score": 81.8,
+    "aeo_score": 83.0,
+    "geo_band": "good",
+    "aeo_band": "good",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'Band on the Wall'.",
+          "Location data present: 25 Swan Street, Manchester.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 75,
+        "weighted": 11.25,
+        "findings": [
+          "5 H2 sections — moderate chunking. Add sections for: Capacity, Getting Here, History, FAQs, Accessibility.",
+          "Average paragraph length ~23 words — concise, LLM-friendly.",
+          "FAQ section contributes to chunked, extractable content."
+        ]
+      },
+      "topical_completeness": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (500).",
+          "History/heritage: mentioned — supports LLM contextualisation.",
+          "Accessibility: information present.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 6/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 70,
+        "weighted": 10.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~5 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "sameAs links found (1) — excellent for LLM entity disambiguation."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Prompt intent coverage: 6/6 natural language query types addressed.",
+          "FAQ/Q&A content present — directly maps to conversational query formats used by LLMs."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 80,
+        "weighted": 12.0,
+        "findings": [
+          "FAQ/Q&A content found with ~6 items.",
+          "Good FAQ depth (5+ items) — strong for featured snippet extraction."
+        ]
+      },
+      "heading_semantic": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "Single H1 present: 'Band on the Wall'",
+          "5 H2 tags provide good semantic sectioning.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 100,
+        "weighted": 10.0,
+        "findings": [
+          "20 internal links — good navigation coverage.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 100,
+        "weighted": 30.0,
+        "findings": [
+          "Good content volume (510 words).",
+          "Capacity information present: 500.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "Accessibility information present.",
+          "Address present: 25 Swan Street."
+        ]
+      }
+    },
+    "summary": "Band on the Wall scores 83/100 for AEO (good) and 82/100 for GEO (good).",
+    "strengths": [
+      "Faq Qa Content: 80/100",
+      "Heading Semantic: 100/100",
+      "Internal Linking: 100/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 100/100",
+      "Entity Clarity: 65/100",
+      "Content Chunking: 75/100",
+      "Topical Completeness: 100/100",
+      "External Corroboration: 70/100",
+      "Structured Data Richness: 70/100",
+      "Prompt Relevance: 100/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "The Leadmill",
+    "slug": "leadmill-sheffield",
+    "url": "https://www.leadmill.co.uk",
+    "region": "Yorkshire",
+    "geo_score": 67.5,
+    "aeo_score": 57.0,
+    "geo_band": "moderate",
+    "aeo_band": "moderate",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'The Leadmill'.",
+          "Location data present: 6 Leadmill Road, Sheffield.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 65,
+        "weighted": 9.75,
+        "findings": [
+          "3 H2 sections — moderate chunking. Add sections for: Capacity, Getting Here, History, FAQs, Accessibility.",
+          "Average paragraph length ~22 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 85,
+        "weighted": 17.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (900).",
+          "History/heritage: mentioned — supports LLM contextualisation.",
+          "Accessibility: information present.",
+          "Getting here: no transport info — 'how to get to [venue]' is a top voice search query.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 5/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 50,
+        "weighted": 7.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~3 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "No sameAs links — add Wikipedia, Wikidata, and social profile URLs to anchor entity identity."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 66,
+        "weighted": 13.2,
+        "findings": [
+          "Prompt intent coverage: 5/6 natural language query types addressed.",
+          "Missing intent: 'Location Directions' — LLMs cannot answer queries about this topic from the current page content."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "Single H1 present: 'The Leadmill'",
+          "4 H2 tags provide good semantic sectioning.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 50,
+        "weighted": 5.0,
+        "findings": [
+          "14 internal links — moderate. Add contextual links to venue info.",
+          "No links to venue-specific info pages — add links to accessibility, directions, and FAQ pages."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 70,
+        "weighted": 21.0,
+        "findings": [
+          "Moderate content (310 words) — expand venue description to 500+ words for better AEO.",
+          "Capacity information present: 900.",
+          "No transport or directions content — add a dedicated Getting Here section.",
+          "Accessibility information present.",
+          "Address present: 6 Leadmill Road."
+        ]
+      }
+    },
+    "summary": "The Leadmill scores 57/100 for AEO (moderate) and 68/100 for GEO (moderate). No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers.",
+    "strengths": [
+      "Heading Semantic: 100/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 70/100",
+      "Entity Clarity: 65/100",
+      "Content Chunking: 65/100",
+      "Topical Completeness: 85/100",
+      "External Corroboration: 70/100",
+      "Prompt Relevance: 66/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100",
+      "Faq Qa Content: 0/100"
+    ],
+    "quick_wins": [
+      "Add a 'Getting Here' section with nearest tube/bus/train. Directly answers 'how to get to [venue]' queries in voice search and LLM responses."
+    ],
+    "priority_fixes": [
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points."
+    ],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add sameAs array to venue entity linking to: Wikidata item, Wikipedia article (if exists), official social profiles (Facebook, Instagram, Twitter/X). This is the primary LLM entity disambiguation mechanism.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Expand venue description to at least 400 words (currently ~310). Cover: venue history, atmosphere, programming genres, notable past acts, location advantages.",
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'.",
+      "Add a 'Getting Here' section with: nearest tube/rail stations and walking time, bus routes, parking options, cycling infrastructure. Format as bullet points for easy LLM extraction."
+    ],
+    "internal_linking_recommendations": [
+      "Add contextual internal links from event pages to the venue info page (e.g. 'Venue information', 'Accessibility', 'Getting Here'). This builds crawl authority for venue-specific pages.",
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Brudenell Social Club",
+    "slug": "brudenell-social-club",
+    "url": "https://brudenellsocialclub.co.uk",
+    "region": "Yorkshire",
+    "geo_score": 31.4,
+    "aeo_score": 24.2,
+    "geo_band": "weak",
+    "aeo_band": "critical",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'Brudenell Social Club'.",
+          "Location data present: 33 Queen's Road, Leeds.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 45,
+        "weighted": 6.75,
+        "findings": [
+          "Only 2 H2 section(s) — content is not chunked into discrete topics that LLMs can isolate.",
+          "Average paragraph length ~20 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 20,
+        "weighted": 4.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: not mentioned — 'capacity of [venue]' is a common LLM query; answer it explicitly.",
+          "History: no heritage or founding date mentioned — LLMs prize provenance for citation confidence.",
+          "Accessibility: no information found — add a dedicated section for voice/assistant queries.",
+          "Getting here: no transport info — 'how to get to [venue]' is a top voice search query.",
+          "Events/programming: thin content suggests event information is absent or dynamically loaded.",
+          "Topical coverage: 1/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 50,
+        "weighted": 5.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No JSON-LD found — this is the primary machine-readable format for LLMs and knowledge graphs."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 13,
+        "weighted": 2.6,
+        "findings": [
+          "Prompt intent coverage: 1/6 natural language query types addressed.",
+          "Missing intent: 'Capacity Query' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'Location Directions' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'Event Discovery' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'Accessibility' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'History Context' — LLMs cannot answer queries about this topic from the current page content."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No JSON-LD structured data detected — critical gap for AEO."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 65,
+        "weighted": 9.75,
+        "findings": [
+          "Single H1 present: 'Brudenell Social Club'",
+          "Only 2 H2 tags — more sectioning would improve answer extraction.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 20,
+        "weighted": 2.0,
+        "findings": [
+          "Only 8 internal links detected — sparse linking structure.",
+          "No links to venue-specific info pages — add links to accessibility, directions, and FAQ pages."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 15,
+        "weighted": 4.5,
+        "findings": [
+          "Thin content (160 words) — LLMs and answer engines need substantive text to extract answers.",
+          "Capacity not explicitly stated — add this as a clearly labelled field (e.g. 'Capacity: 4,921').",
+          "No transport or directions content — add a dedicated Getting Here section.",
+          "No accessibility information — add accessible venue details for voice and assistant queries.",
+          "Address present: 33 Queen's Road."
+        ]
+      }
+    },
+    "summary": "Brudenell Social Club scores 24/100 for AEO (critical) and 31/100 for GEO (weak). The page lacks all structured data — the single highest-impact fix available. No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers. Capacity is not stated, missing one of the most queried facts about a live music venue.",
+    "strengths": [
+      "Heading Semantic: 65/100",
+      "Page Speed Proxy: 80/100",
+      "Entity Clarity: 65/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 0/100",
+      "Faq Qa Content: 0/100",
+      "Internal Linking: 20/100",
+      "Content Clarity: 15/100",
+      "Topical Completeness: 20/100",
+      "Structured Data Richness: 0/100",
+      "Prompt Relevance: 13/100"
+    ],
+    "quick_wins": [
+      "Add capacity to the page as a clearly labelled field (e.g. a <dl> or a dedicated 'Venue Facts' section with Capacity: X). This answers one of the highest-volume venue queries instantly.",
+      "Add a 'Getting Here' section with nearest tube/bus/train. Directly answers 'how to get to [venue]' queries in voice search and LLM responses.",
+      "Add basic Organization + MusicVenue JSON-LD. A minimal 10-property block can be added in under 30 minutes and yields immediate structured data scoring."
+    ],
+    "priority_fixes": [
+      "[CRITICAL] Implement MusicVenue JSON-LD schema with: name, url, address, telephone, description, maximumAttendeeCapacity, image, sameAs (Wikidata/Wikipedia/social). Estimated AEO impact: +12–16 points.",
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points.",
+      "[HIGH] Add explicit capacity as a labelled data point in both visible text and schema (maximumAttendeeCapacity property). This answers the #1 factual venue query.",
+      "[MEDIUM] Add a 100–200 word venue history section: opening year, significant events, cultural significance. LLMs prize provenance data for citation confidence. Estimated GEO impact: +5–8 points.",
+      "[MEDIUM] Add an Accessibility section: step-free access, hearing loops, BSL, wheelchair spaces. Boosts both AEO (voice search) and GEO (topical completeness)."
+    ],
+    "schema_recommendations": [
+      "Implement MusicVenue schema (@type: MusicVenue) with all applicable properties: name, alternateName, url, address (PostalAddress), telephone, description, maximumAttendeeCapacity, image, openingHoursSpecification, sameAs, geo (GeoCoordinates).",
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add sameAs array to venue entity linking to: Wikidata item, Wikipedia article (if exists), official social profiles (Facebook, Instagram, Twitter/X). This is the primary LLM entity disambiguation mechanism.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Expand venue description to at least 400 words (currently ~160). Cover: venue history, atmosphere, programming genres, notable past acts, location advantages.",
+      "Add a 'About [Venue Name]' section covering: year opened, original purpose (if converted), significant performances, architectural/cultural heritage. Provides LLMs with citation-worthy provenance.",
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'.",
+      "Add a dedicated Accessibility page or section. Include: step-free access routes, accessible toilets, hearing loop, BSL interpretation, companion ticket policy, viewing platforms.",
+      "Add a 'Getting Here' section with: nearest tube/rail stations and walking time, bus routes, parking options, cycling infrastructure. Format as bullet points for easy LLM extraction.",
+      "State the venue capacity prominently — ideally in a 'Venue Facts' summary box or as a labelled stat (Capacity: 4,921 standing / 2,300 seated). This data point is queried millions of times across voice, LLM, and featured snippet surfaces."
+    ],
+    "internal_linking_recommendations": [
+      "Add contextual internal links from event pages to the venue info page (e.g. 'Venue information', 'Accessibility', 'Getting Here'). This builds crawl authority for venue-specific pages.",
+      "Increase internal link density. Add cross-links between: venue homepage, events listing, venue info, FAQ, accessibility, and directions pages.",
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "SWX Bristol",
+    "slug": "swx-bristol",
+    "url": "https://www.swxbristol.com",
+    "region": "South",
+    "geo_score": 59.2,
+    "aeo_score": 57.8,
+    "geo_band": "moderate",
+    "aeo_band": "moderate",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 65,
+        "weighted": 13.0,
+        "findings": [
+          "Venue entity name clearly identified: 'SWX Bristol'.",
+          "Location data present: 15 Nelson Street, Bristol.",
+          "No phone number found — add for NAP consistency across citations.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 65,
+        "weighted": 9.75,
+        "findings": [
+          "3 H2 sections — moderate chunking. Add sections for: Capacity, Getting Here, History, FAQs, Accessibility.",
+          "Average paragraph length ~22 words — concise, LLM-friendly."
+        ]
+      },
+      "topical_completeness": {
+        "score": 70,
+        "weighted": 14.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (1,500).",
+          "History: no heritage or founding date mentioned — LLMs prize provenance for citation confidence.",
+          "Accessibility: no information found — add a dedicated section for voice/assistant queries.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 4/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 50,
+        "weighted": 7.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~3 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "No sameAs links — add Wikipedia, Wikidata, and social profile URLs to anchor entity identity."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Prompt intent coverage: 3/6 natural language query types addressed.",
+          "Missing intent: 'Event Discovery' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'Accessibility' — LLMs cannot answer queries about this topic from the current page content.",
+          "Missing intent: 'History Context' — LLMs cannot answer queries about this topic from the current page content."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 0,
+        "weighted": 0.0,
+        "findings": [
+          "No FAQ or Q&A content detected — significant AEO gap."
+        ]
+      },
+      "heading_semantic": {
+        "score": 85,
+        "weighted": 12.75,
+        "findings": [
+          "Single H1 present: 'SWX'",
+          "Only 3 H2 tags — more sectioning would improve answer extraction.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "13 internal links — moderate. Add contextual links to venue info.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 70,
+        "weighted": 21.0,
+        "findings": [
+          "Moderate content (270 words) — expand venue description to 500+ words for better AEO.",
+          "Capacity information present: 1,500.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "No accessibility information — add accessible venue details for voice and assistant queries.",
+          "Address present: 15 Nelson Street."
+        ]
+      }
+    },
+    "summary": "SWX Bristol scores 58/100 for AEO (moderate) and 59/100 for GEO (moderate). No FAQ content was found, leaving the page unable to surface in featured snippets or voice answers.",
+    "strengths": [
+      "Heading Semantic: 85/100",
+      "Internal Linking: 80/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 70/100",
+      "Entity Clarity: 65/100",
+      "Content Chunking: 65/100",
+      "Topical Completeness: 70/100",
+      "External Corroboration: 70/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100",
+      "Faq Qa Content: 0/100",
+      "Prompt Relevance: 40/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [
+      "[HIGH] Build a FAQ section answering: 'What is the capacity?', 'How do I get there?', 'Is the venue accessible?', 'What is the age policy?', 'Is there parking nearby?'. Wrap in FAQPage schema. Estimated AEO impact: +10–14 points.",
+      "[MEDIUM] Add a 100–200 word venue history section: opening year, significant events, cultural significance. LLMs prize provenance data for citation confidence. Estimated GEO impact: +5–8 points.",
+      "[MEDIUM] Add an Accessibility section: step-free access, hearing loops, BSL, wheelchair spaces. Boosts both AEO (voice search) and GEO (topical completeness)."
+    ],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add sameAs array to venue entity linking to: Wikidata item, Wikipedia article (if exists), official social profiles (Facebook, Instagram, Twitter/X). This is the primary LLM entity disambiguation mechanism.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [
+      "Expand venue description to at least 400 words (currently ~270). Cover: venue history, atmosphere, programming genres, notable past acts, location advantages.",
+      "Add a 'About [Venue Name]' section covering: year opened, original purpose (if converted), significant performances, architectural/cultural heritage. Provides LLMs with citation-worthy provenance.",
+      "Create a FAQ section with: 'What is the capacity?', 'What are the nearest transport links?', 'Is the venue accessible for wheelchair users?', 'Can I bring my own food/drink?', 'What is the bag policy?', 'Is there an age restriction?'.",
+      "Add a dedicated Accessibility page or section. Include: step-free access routes, accessible toilets, hearing loop, BSL interpretation, companion ticket policy, viewing platforms."
+    ],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  },
+  {
+    "venue_name": "Usher Hall",
+    "slug": "usher-hall-edinburgh",
+    "url": "https://www.usherhall.co.uk",
+    "region": "Scotland",
+    "geo_score": 88.5,
+    "aeo_score": 83.0,
+    "geo_band": "strong",
+    "aeo_band": "good",
+    "geo_components": {
+      "entity_clarity": {
+        "score": 80,
+        "weighted": 16.0,
+        "findings": [
+          "Venue entity name clearly identified: 'Usher Hall'.",
+          "Location data present: Lothian Road, Edinburgh.",
+          "Phone number present — supports NAP consistency signals.",
+          "Brand name not prominent in title tag — ensure canonical brand name appears in title.",
+          "Meta description provides entity context for LLM crawlers."
+        ]
+      },
+      "content_chunking": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "6 H2-delimited content sections — well-chunked for LLM extraction.",
+          "Average paragraph length ~23 words — concise, LLM-friendly.",
+          "FAQ section contributes to chunked, extractable content."
+        ]
+      },
+      "topical_completeness": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Identity: venue name and location covered.",
+          "Capacity: mentioned on page (2,900).",
+          "History/heritage: mentioned — supports LLM contextualisation.",
+          "Accessibility: information present.",
+          "Transport/directions: information present.",
+          "Events/programming: content volume suggests events are covered.",
+          "Topical coverage: 6/6 key topics present."
+        ]
+      },
+      "external_corroboration": {
+        "score": 70,
+        "weighted": 7.0,
+        "findings": [
+          "External corroboration scored via proxy (brand signals). Full scoring requires external link analysis (Wikipedia, Wikidata, Google Knowledge Panel, press coverage).",
+          "Structured data increases machine-readable credibility signals.",
+          "Explicit address enables cross-referencing with Google Maps / Knowledge Graph."
+        ]
+      },
+      "structured_data_richness": {
+        "score": 70,
+        "weighted": 10.5,
+        "findings": [
+          "1 JSON-LD block(s) with ~7 total properties.",
+          "Rich schema types (MusicVenue/Event/FAQPage) present — high GEO value.",
+          "Low property count — schema exists but is largely empty; add all recommended MusicVenue properties.",
+          "sameAs links found (2) — excellent for LLM entity disambiguation."
+        ]
+      },
+      "prompt_relevance": {
+        "score": 100,
+        "weighted": 20.0,
+        "findings": [
+          "Prompt intent coverage: 6/6 natural language query types addressed.",
+          "FAQ/Q&A content present — directly maps to conversational query formats used by LLMs."
+        ]
+      }
+    },
+    "aeo_components": {
+      "structured_data": {
+        "score": 40,
+        "weighted": 8.0,
+        "findings": [
+          "Schema types found: MusicVenue",
+          "MusicVenue/EventVenue schema present — strong AEO signal."
+        ]
+      },
+      "faq_qa_content": {
+        "score": 80,
+        "weighted": 12.0,
+        "findings": [
+          "FAQ/Q&A content found with ~7 items.",
+          "Good FAQ depth (5+ items) — strong for featured snippet extraction."
+        ]
+      },
+      "heading_semantic": {
+        "score": 100,
+        "weighted": 15.0,
+        "findings": [
+          "Single H1 present: 'Usher Hall'",
+          "6 H2 tags provide good semantic sectioning.",
+          "Heading hierarchy is valid (H1 → H2 → H3)."
+        ]
+      },
+      "internal_linking": {
+        "score": 100,
+        "weighted": 10.0,
+        "findings": [
+          "26 internal links — good navigation coverage.",
+          "Links to venue info / accessibility pages detected."
+        ]
+      },
+      "page_speed_proxy": {
+        "score": 80,
+        "weighted": 8.0,
+        "findings": [
+          "Meta description present — basic technical hygiene satisfied.",
+          "Note: page speed scored via structural proxy — run real Lighthouse audit for accuracy."
+        ]
+      },
+      "content_clarity": {
+        "score": 100,
+        "weighted": 30.0,
+        "findings": [
+          "Good content volume (620 words).",
+          "Capacity information present: 2,900.",
+          "Transport / directions information present — supports 'how to get there' queries.",
+          "Accessibility information present.",
+          "Address present: Lothian Road."
+        ]
+      }
+    },
+    "summary": "Usher Hall scores 83/100 for AEO (good) and 88/100 for GEO (strong).",
+    "strengths": [
+      "Faq Qa Content: 80/100",
+      "Heading Semantic: 100/100",
+      "Internal Linking: 100/100",
+      "Page Speed Proxy: 80/100",
+      "Content Clarity: 100/100",
+      "Entity Clarity: 80/100",
+      "Content Chunking: 100/100",
+      "Topical Completeness: 100/100",
+      "External Corroboration: 70/100",
+      "Structured Data Richness: 70/100",
+      "Prompt Relevance: 100/100"
+    ],
+    "weaknesses": [
+      "Structured Data: 40/100"
+    ],
+    "quick_wins": [],
+    "priority_fixes": [],
+    "schema_recommendations": [
+      "Add Event schema for each listed event: name, startDate, location (MusicVenue), performer (MusicGroup), offers (Offer with price and availability), image.",
+      "Implement FAQPage schema with Question/Answer pairs for the top 5–8 venue queries. This is directly read by Google's Featured Snippets and People Also Ask.",
+      "Add BreadcrumbList schema to reflect navigation hierarchy (e.g. Home > Venues > London > O2 Academy Brixton)."
+    ],
+    "content_recommendations": [],
+    "internal_linking_recommendations": [
+      "Ensure each venue page links to its own canonical URL and uses consistent anchor text (e.g. always 'O2 Academy Brixton', never 'click here' or 'this venue').",
+      "Add a 'You may also like' or 'Other O2 venues' section linking to sister venues — this builds topical authority across the portfolio and helps LLMs understand the brand network."
+    ],
+    "crawl_errors": []
+  }
+]

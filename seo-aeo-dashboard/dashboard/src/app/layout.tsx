@@ -16,7 +16,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/" className="font-semibold text-lg text-slate-900">
               AEO + GEO Dashboard
             </Link>
-            <span className="text-xs text-slate-500">UK Music Venues — prototype</span>
+            <nav className="flex items-center gap-6">
+              <Link href="/" className="text-sm text-slate-600 hover:text-slate-900">Overview</Link>
+              <Link href="/benchmarking" className="text-sm text-slate-600 hover:text-slate-900">Benchmarking</Link>
+              <span className="text-xs text-slate-400">UK Music Venues — prototype</span>
+            </nav>
           </div>
         </header>
         <main className="max-w-7xl mx-auto px-6 py-8">{children}</main>

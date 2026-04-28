@@ -3,7 +3,7 @@ Report generator.
 Combines AEO + GEO scores into the structured JSON output format.
 """
 
-from ..crawler.extractor import PageSignals
+from crawler.extractor import PageSignals
 from .aeo_scorer import score_aeo
 from .geo_scorer import score_geo
 from .weights import band_label

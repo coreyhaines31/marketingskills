@@ -3,7 +3,7 @@ AEO (Answer Engine Optimisation) scorer.
 Takes a PageSignals object and returns a score breakdown (0–100).
 """
 
-from ..crawler.extractor import PageSignals
+from crawler.extractor import PageSignals
 from .weights import AEO_WEIGHTS
 
 
