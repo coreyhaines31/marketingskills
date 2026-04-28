@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 import { getVenue, venues } from "@/lib/data";
 import { getVenueHistory, getScoreDeltas } from "@/lib/history";
 import { getVenueCitations, getPromptDetails, citationMeta, citationBandBg } from "@/lib/citations";
+import { generateMusicVenueSchema, generateFaqSchema } from "@/lib/schema-snippets";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { RadarChart } from "@/components/RadarChart";
 import { RecommendationPanel } from "@/components/RecommendationPanel";
 import TrendChart from "@/components/TrendChart";
 import CitationBar from "@/components/CitationBar";
+import SchemaSnippet from "@/components/SchemaSnippet";
 import { AEO_LABELS, GEO_LABELS } from "@/types/venue";
 
 export function generateStaticParams() {
@@ -32,6 +34,8 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
   const citations = getVenueCitations(params.slug);
   const citedPrompts = citations ? getPromptDetails(citations.cited_by_prompts) : [];
   const missedPrompts = citations ? getPromptDetails(citations.missed_by_prompts) : [];
+  const musicVenueSchema = generateMusicVenueSchema(v);
+  const faqSchema = generateFaqSchema(v);
 
   return (
     <div className="space-y-6">
@@ -143,6 +147,26 @@ export default function VenueDetail({ params }: { params: { slug: string } }) {
         <RecommendationPanel title="Schema / Technical" items={v.schema_recommendations} accent="blue" />
         <RecommendationPanel title="Content" items={v.content_recommendations} accent="amber" />
         <RecommendationPanel title="Internal linking" items={v.internal_linking_recommendations} accent="blue" />
+      </section>
+
+      <section className="space-y-4">
+        <div>
+          <h2 className="text-lg font-medium text-slate-900">Schema code snippets</h2>
+          <p className="text-sm text-slate-500 mt-1">
+            Copy-paste ready JSON-LD. Replace <code className="bg-slate-100 px-1 rounded text-xs">REPLACE_WITH_*</code> placeholders before deploying.
+            Add both blocks inside the <code className="bg-slate-100 px-1 rounded text-xs">&lt;head&gt;</code> of the venue page.
+          </p>
+        </div>
+        <SchemaSnippet
+          title="MusicVenue schema"
+          code={musicVenueSchema}
+          note="Update address, telephone, and geo coordinates with real values. Add sameAs Wikidata/Wikipedia links where the venue has a Wikipedia article."
+        />
+        <SchemaSnippet
+          title="FAQPage schema"
+          code={faqSchema}
+          note="Replace every [FILL IN …] placeholder with real venue-specific answers before publishing."
+        />
       </section>
     </div>
   );

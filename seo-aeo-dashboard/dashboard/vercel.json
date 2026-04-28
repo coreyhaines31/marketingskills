@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "out",
+  "framework": "nextjs",
+  "rewrites": [
+    { "source": "/venue/:slug/", "destination": "/venue/:slug/index.html" }
+  ]
+}

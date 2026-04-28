@@ -98,13 +98,12 @@ export default function Benchmarking() {
                 >
                   <td className="px-4 py-3 text-slate-400 text-xs">{i + 1}</td>
                   <td className="px-4 py-3 font-medium text-slate-900">
-                    {v.type === "portfolio" ? (
-                      <Link href={`/venue/${v.slug}`} className="hover:text-blue-600 hover:underline">
-                        {v.venue_name}
-                      </Link>
-                    ) : (
-                      v.venue_name
-                    )}
+                    <Link
+                      href={v.type === "portfolio" ? `/venue/${v.slug}` : `/competitor/${v.slug}`}
+                      className="hover:text-blue-600 hover:underline"
+                    >
+                      {v.venue_name}
+                    </Link>
                   </td>
                   <td className="px-4 py-3 text-slate-500">{v.region}</td>
                   <td className="px-4 py-3">

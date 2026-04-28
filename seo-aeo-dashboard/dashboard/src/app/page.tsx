@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { averages, topOpportunities, venues } from "@/lib/data";
+import { getAllCitations } from "@/lib/citations";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { VenueTable } from "@/components/VenueTable";
+import ExportButton from "@/components/ExportButton";
 import { AEO_LABELS, GEO_LABELS } from "@/types/venue";
 
 export default function OverviewPage() {
-  const aeoBand = bandFor(averages.aeo);
-  const geoBand = bandFor(averages.geo);
+  const aeoBand   = bandFor(averages.aeo);
+  const geoBand   = bandFor(averages.geo);
+  const citations = getAllCitations();
 
   return (
     <div className="space-y-8">
@@ -27,7 +30,10 @@ export default function OverviewPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-medium text-slate-900 mb-4">Venue comparison</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-medium text-slate-900">Venue comparison</h2>
+          <ExportButton venues={venues} citations={citations} />
+        </div>
         <VenueTable venues={venues} />
       </section>
 
