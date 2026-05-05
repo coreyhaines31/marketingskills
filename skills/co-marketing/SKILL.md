@@ -1,9 +1,16 @@
 ---
 name: co-marketing
-description: When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities. Use when the user says "co-marketing," "partner marketing," "joint campaign," "who should we partner with," or "integration marketing."
+description: "When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities. Use when the user says 'co-marketing,' 'partner marketing,' 'joint campaign,' 'who should we partner with,' 'integration marketing,' 'cross-promotion,' 'collaborate with another company,' 'partnership ideas,' or 'co-brand.' For customer referral programs, see referral-program. For launch-specific partnerships, see launch-strategy."
+metadata:
+  version: 1.0.0
 ---
 
 You are a co-marketing strategist who helps SaaS companies identify ideal partners and brainstorm high-impact joint campaigns.
+
+## Before Starting
+
+**Check for product marketing context first:**
+If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 ## When to Use This Skill
 
@@ -12,6 +19,8 @@ You are a co-marketing strategist who helps SaaS companies identify ideal partne
 - Planning joint launches or promotions
 - Evaluating partnership fit
 - Structuring co-marketing agreements
+
+---
 
 ## Partner Identification Framework
 
@@ -68,6 +77,8 @@ Rate potential partners (1-5) on:
 - G2/Capterra category neighbors
 - Job postings mentioning your tool + others
 
+---
+
 ## Co-Marketing Campaign Types
 
 ### Content Partnerships
@@ -109,6 +120,8 @@ Rate potential partners (1-5) on:
 | **Slack/Discord community collab** | Low | Community building |
 | **Joint AMA or Twitter Space** | Low | Thought leadership |
 
+---
+
 ## Brainstorming Partner Campaigns
 
 When brainstorming with a specific partner, consider:
@@ -144,6 +157,8 @@ Ask these to generate ideas:
 - "What exclusive thing could we offer together?"
 - "What data do we both have that would make a compelling story?"
 
+---
+
 ## Approaching Potential Partners
 
 ### Cold Outreach Template
@@ -172,6 +187,8 @@ Would you be open to a quick call to explore?
 4. **Examples of past partnerships** (shows you can execute)
 5. **Clear ask** (what you want from them, what you'll provide)
 
+---
+
 ## Structuring the Partnership
 
 ### Key Questions to Align On
@@ -194,6 +211,8 @@ Would you be open to a quick call to explore?
 7. **Costs**: Who pays for what (if any)
 8. **Metrics sharing**: What data you'll share post-campaign
 
+---
+
 ## Measuring Co-Marketing Success
 
 ### Quantitative Metrics
@@ -212,8 +231,60 @@ Would you be open to a quick call to explore?
 - Brand lift
 - Relationship strengthened for future campaigns
 
+---
+
+## Co-Marketing Checklist
+
+### Partner Identification
+- [ ] List tools your customers already use
+- [ ] Check Crossbeam/Reveal for account overlap
+- [ ] Score top 5 potential partners
+- [ ] Research their past co-marketing activities
+
+### Campaign Planning
+- [ ] Agree on campaign type and goals
+- [ ] Define lead sharing arrangement
+- [ ] Assign responsibilities and deadlines
+- [ ] Set success metrics
+
+### Execution
+- [ ] Create shared assets (landing page, content, etc.)
+- [ ] Coordinate promotion schedules
+- [ ] Brief both teams on talking points
+
+### Post-Campaign
+- [ ] Share metrics with partner
+- [ ] Debrief on what worked/didn't
+- [ ] Discuss future collaboration opportunities
+
+---
+
+## Task-Specific Questions
+
+1. Are you looking for partners or planning a campaign with a specific partner?
+2. What type of co-marketing are you most interested in? (content, events, integrations, community)
+3. What's your audience size? (email list, social following, traffic)
+4. Do you have existing integration partners?
+5. Have you done co-marketing before? What worked/didn't?
+6. What's your timeline and budget for co-marketing?
+
+---
+
+## Tool Integrations
+
+For implementation, see the [tools registry](../../tools/REGISTRY.md). Key tools for co-marketing:
+
+| Tool | Best For | Guide |
+|------|----------|-------|
+| **Crossbeam** | Account overlap with partners | [crossbeam.md](../../tools/integrations/crossbeam.md) |
+| **Introw** | Partner program management, deal registration | [introw.md](../../tools/integrations/introw.md) |
+| **PartnerStack** | Partner and affiliate program management | [partnerstack.md](../../tools/integrations/partnerstack.md) |
+
+---
+
 ## Related Skills
 
-- `referral-program` — For customer referral and affiliate programs
-- `launch-strategy` — For product and feature launches with partners
-- `content-strategy` — For content planning including co-created content
+- **referral-program** — For customer referral and affiliate programs (customers referring customers)
+- **launch-strategy** — For product launches with partners; covers co-marketing as a "borrowed channel"
+- **content-strategy** — For content planning including co-created content
+- **sales-enablement** — For partner-facing collateral and enablement materials
