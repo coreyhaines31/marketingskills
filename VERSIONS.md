@@ -45,8 +45,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | image | 1.0.0 | 2026-04-24 |
 | video | 1.0.0 | 2026-04-24 |
 | co-marketing | 1.0.0 | 2026-05-04 |
+| blog-automation | 1.0.0 | 2026-05-07 |
 
 ## Recent Changes
+
+### 2026-05-07
+- Added `blog-automation` skill for automated blog pipelines: Reddit topic discovery, Claude content generation, gpt-image-1 images with alt text, and Shopify draft publishing
+- Added `tools/clis/fragrance-blog.js` CLI (discover / generate / images / publish / run commands)
+- Added `tools/integrations/fragrance-blog.md` setup guide with Shopify API, cron scheduling, and content calendar
+- Total skills: 42
 
 ### 2026-05-04
 - Added `co-marketing` skill for partner identification, joint campaigns, and co-marketing strategy

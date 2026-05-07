@@ -96,6 +96,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [site-architecture](skills/site-architecture/) | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal... |
 | [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
 | [video](skills/video/) | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use... |
+| [blog-automation](skills/blog-automation/) | When the user wants to automate blog content creation, generate SEO blog posts at scale, find trending topics, create blog images, or publish articles to Shopify in draft mode. Use when the user says 'automate my blog,' 'generate a blog post,' 'blog pipeline,' or references the fragrance-blog CLI. |
 <!-- SKILLS:END -->
 
 ## Installation
