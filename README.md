@@ -1,27 +1,27 @@
-# Marketing Skills for AI Agents
+# Marketing Skills para Agentes de IA
 
-Uma coleção de skills para agentes de IA focadas em tarefas de marketing. Desenvolvida para profissionais de marketing técnico e fundadores que querem que agentes de IA auxiliem com otimização de conversão, copywriting, SEO, analytics e growth engineering. Compatível com Claude Code, OpenAI Codex, Cursor, Windsurf e qualquer agente que suporte a [especificação Agent Skills](https://agentskills.io).
+Uma biblioteca de *skills* (habilidades) focada em tarefas de marketing para agentes de IA. Criada sob medida para profissionais de marketing técnico, *growth hackers* e fundadores que desejam transformar agentes de IA em assistentes de otimização de conversão (CRO), *copywriting*, SEO, *analytics* e engenharia de *growth*. Totalmente compatível com Claude Code, OpenAI Codex, Cursor, Windsurf e qualquer agente que suporte a [especificação Agent Skills](https://agentskills.io).
 
-Desenvolvido por [Corey Haines](https://corey.co?ref=marketingskills). Precisa de ajuda prática? Conheça a [Conversion Factory](https://conversionfactory.co?ref=marketingskills) — a agência de Corey para otimização de conversão, landing pages e estratégia de crescimento. Quer aprender mais sobre marketing? Assine a [Swipe Files](https://swipefiles.com?ref=marketingskills). Quer um agente de IA autônomo que use essas skills como seu CMO? Experimente o [Magister](https://magistermarketing.com?ref=marketingskills).
+Desenvolvido por [Corey Haines](https://corey.co?ref=marketingskills). Precisa de ajuda prática com o seu projeto? Conheça a [Conversion Factory](https://conversionfactory.co?ref=marketingskills) — a agência do Corey especializada em CRO, *landing pages* e estratégias de crescimento. Quer aprofundar seus conhecimentos em marketing? Assine a [Swipe Files](https://swipefiles.com?ref=marketingskills). Prefere um agente de IA autônomo atuando como seu próprio CMO utilizando essas *skills*? Experimente o [Magister](https://magistermarketing.com?ref=marketingskills).
 
-Novo no terminal e em agentes de código? Confira o guia complementar [Coding for Marketers](https://codingformarketers.com?ref=marketingskills).
+Ainda não tem familiaridade com o terminal ou agentes de código? Dê uma olhada no guia prático[Coding for Marketers](https://codingformarketers.com?ref=marketingskills).
 
-**Contribuições são bem-vindas!** Encontrou uma forma de melhorar uma skill ou tem uma nova para adicionar? [Abra um PR](#contributing).
+🤝 **Contribuições são super bem-vindas!** Descobriu como melhorar uma *skill* ou tem uma ideia para adicionar uma nova?[Abra um PR](#contributing).
 
-Encontrou algum problema ou tem uma dúvida? [Abra uma issue](https://github.com/coreyhaines31/marketingskills/issues) — estamos felizes em ajudar.
+Encontrou algum *bug* ou tem alguma dúvida?[Abra uma *issue*](https://github.com/coreyhaines31/marketingskills/issues) — será um prazer ajudar.
 
-## O que são Skills?
+## O que são *Skills*?
 
-Skills são arquivos markdown que fornecem aos agentes de IA conhecimento especializado e fluxos de trabalho para tarefas específicas. Ao adicioná-las ao seu projeto, o agente consegue identificar quando você está trabalhando em uma tarefa de marketing e aplicar os frameworks e boas práticas corretos.
+*Skills* são arquivos em Markdown que equipam os agentes de IA com conhecimento especializado e fluxos de trabalho para tarefas específicas. Ao adicioná-las ao seu projeto, o agente entende imediatamente o contexto de marketing em que você está trabalhando e aplica os *frameworks* e as melhores práticas corretas do mercado.
 
-## Como as Skills Funcionam em Conjunto
+## Como as *Skills* funcionam em conjunto
 
-As skills se referenciam entre si e se constroem sobre um contexto compartilhado. A skill `product-marketing-context` é a base — todas as outras skills a consultam primeiro para entender seu produto, público e posicionamento antes de fazer qualquer coisa.
+As *skills* conversam entre si e constroem-se sobre um contexto compartilhado. A *skill* `product-marketing-context` é a espinha dorsal — todas as outras *skills* a consultam primeiro para entender o seu produto, público-alvo e posicionamento antes de executar qualquer ação.
 
-```
+```text
                             ┌──────────────────────────────────────┐
                             │      product-marketing-context       │
-                            │    (read by all other skills first)  │
+                            │    (lido por todas as skills antes)  │
                             └──────────────────┬───────────────────┘
                                                │
     ┌──────────────┬─────────────┬─────────────┼─────────────┬──────────────┬──────────────┐
@@ -41,94 +41,94 @@ As skills se referenciam entre si e se constroem sobre um contexto compartilhado
      │            │            │              │             │              │              │
      └────────────┴─────┬──────┴──────────────┴─────────────┴──────────────┴──────────────┘
                         │
-         Skills cross-reference each other:
+         Skills se cruzam e fazem referências mútuas:
            copywriting ↔ page-cro ↔ ab-test-setup
            revops ↔ sales-enablement ↔ cold-email
            seo-audit ↔ schema-markup ↔ ai-seo
            customer-research → copywriting, page-cro, competitor-alternatives
 ```
 
-Veja a seção **Related Skills** de cada skill para o mapa completo de dependências.
+Consulte a seção **Related Skills** dentro de cada *skill* para ver o mapa completo de dependências.
 
-## Skills Disponíveis
+## *Skills* Disponíveis
 
 <!-- SKILLS:START -->
 | Skill | Descrição |
 |-------|-------------|
-| [ab-test-setup](skills/ab-test-setup/) | When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program.... |
-| [ad-creative](skills/ad-creative/) | When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad... |
-| [ai-seo](skills/ai-seo/) | When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers.... |
-| [analytics-tracking](skills/analytics-tracking/) | When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions... |
-| [aso-audit](skills/aso-audit/) | When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions 'ASO... |
-| [churn-prevention](skills/churn-prevention/) | When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or... |
-| [cold-email](skills/cold-email/) | Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails,... |
-| [community-marketing](skills/community-marketing/) | Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to create a... |
-| [competitor-alternatives](skills/competitor-alternatives/) | When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when... |
-| [competitor-profiling](skills/competitor-profiling/) | When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions... |
-| [content-strategy](skills/content-strategy/) | When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also... |
-| [copy-editing](skills/copy-editing/) | When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the... |
-| [copywriting](skills/copywriting/) | When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,... |
-| [customer-research](skills/customer-research/) | When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer... |
-| [directory-submissions](skills/directory-submissions/) | When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for... |
-| [email-sequence](skills/email-sequence/) | When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email... |
-| [form-cro](skills/form-cro/) | When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms,... |
-| [free-tool-strategy](skills/free-tool-strategy/) | When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or... |
-| [launch-strategy](skills/launch-strategy/) | When the user wants to plan a product launch, feature announcement, or release strategy. Also use when the user... |
-| [lead-magnets](skills/lead-magnets/) | When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the... |
-| [marketing-ideas](skills/marketing-ideas/) | When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the... |
-| [marketing-psychology](skills/marketing-psychology/) | When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when... |
-| [onboarding-cro](skills/onboarding-cro/) | When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also... |
-| [page-cro](skills/page-cro/) | When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing... |
-| [paid-ads](skills/paid-ads/) | When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X,... |
-| [paywall-upgrade-cro](skills/paywall-upgrade-cro/) | When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use... |
-| [popup-cro](skills/popup-cro/) | When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also... |
-| [pricing-strategy](skills/pricing-strategy/) | When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions... |
-| [product-marketing-context](skills/product-marketing-context/) | When the user wants to create or update their product marketing context document. Also use when the user mentions... |
-| [programmatic-seo](skills/programmatic-seo/) | When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions... |
-| [referral-program](skills/referral-program/) | When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy.... |
-| [revops](skills/revops/) | When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes.... |
-| [sales-enablement](skills/sales-enablement/) | When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also... |
-| [schema-markup](skills/schema-markup/) | When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user... |
-| [seo-audit](skills/seo-audit/) | When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO... |
-| [signup-flow-cro](skills/signup-flow-cro/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
-| [site-architecture](skills/site-architecture/) | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal... |
-| [social-content](skills/social-content/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
+| [ab-test-setup](skills/ab-test-setup/) | Quando o usuário quiser planejar, desenhar ou implementar um teste A/B, ou criar um programa de experimentação de *growth*... |
+| [ad-creative](skills/ad-creative/) | Quando o usuário quiser gerar, iterar ou escalar criativos de anúncios — títulos, descrições, textos principais ou anúncios completos... |
+| [ai-seo](skills/ai-seo/) | Quando o usuário quiser otimizar conteúdo para motores de busca baseados em IA, ser citado por LLMs ou aparecer em respostas geradas por IA... |
+| [analytics-tracking](skills/analytics-tracking/) | Quando o usuário quiser configurar, melhorar ou auditar o rastreamento e as métricas de *analytics* do projeto... |
+| [aso-audit](skills/aso-audit/) | Quando o usuário quiser auditar ou otimizar o ranqueamento de um app na App Store ou Google Play (ASO)... |
+| [churn-prevention](skills/churn-prevention/) | Quando o usuário quiser reduzir cancelamentos (*churn*), criar fluxos de retenção, recuperar pagamentos falhos ou reter clientes... |
+| [cold-email](skills/cold-email/) | Para escrever *cold emails* B2B e sequências de *follow-up* com alta taxa de resposta... |
+| [community-marketing](skills/community-marketing/) | Para construir e engajar comunidades online com o objetivo de impulsionar o crescimento do produto e a lealdade à marca... |
+| [competitor-alternatives](skills/competitor-alternatives/) | Quando o usuário quiser criar páginas comparativas com concorrentes ou de "alternativas" voltadas para SEO e vendas... |
+|[competitor-profiling](skills/competitor-profiling/) | Quando o usuário quiser pesquisar, mapear ou analisar concorrentes diretamente pelas URLs deles... |
+| [content-strategy](skills/content-strategy/) | Quando o usuário quiser planejar uma estratégia de conteúdo, definir pautas ou descobrir quais tópicos abordar... |
+| [copy-editing](skills/copy-editing/) | Quando o usuário quiser editar, revisar ou aprimorar uma *copy* de marketing já existente, ou atualizar conteúdos antigos... |
+| [copywriting](skills/copywriting/) | Quando o usuário quiser escrever, reescrever ou melhorar a *copy* de qualquer página — incluindo *homepages*, *landing pages*, etc... |
+| [customer-research](skills/customer-research/) | Quando o usuário quiser conduzir, analisar ou sintetizar pesquisas com usuários e clientes... |
+| [directory-submissions](skills/directory-submissions/) | Quando o usuário quiser enviar seu produto para diretórios de *startups*, SaaS, IA, *no-code* ou sites de *reviews*... |
+| [email-sequence](skills/email-sequence/) | Quando o usuário quiser criar ou otimizar uma sequência de e-mails, *drip campaigns*, fluxos automatizados ou e-mails de ciclo de vida... |
+| [form-cro](skills/form-cro/) | Quando o usuário quiser otimizar qualquer formulário que NÃO seja de cadastro/login — incluindo captura de *leads*, contato ou agendamentos... |
+|[free-tool-strategy](skills/free-tool-strategy/) | Quando o usuário quiser planejar ou criar uma ferramenta gratuita como isca de marketing — geração de *leads*, valor de SEO, etc... |
+| [launch-strategy](skills/launch-strategy/) | Quando o usuário quiser planejar o lançamento de um produto, anúncio de nova *feature* ou estratégia de *release*... |
+| [lead-magnets](skills/lead-magnets/) | Quando o usuário quiser planejar, criar ou otimizar uma isca digital (*lead magnet*) para captação de e-mails e contatos... |
+| [marketing-ideas](skills/marketing-ideas/) | Quando o usuário precisar de ideias, inspirações ou estratégias de marketing inovadoras para seu SaaS ou produto de software... |
+| [marketing-psychology](skills/marketing-psychology/) | Quando o usuário quiser aplicar princípios de psicologia, modelos mentais ou ciência comportamental na sua estratégia de marketing... |
+| [onboarding-cro](skills/onboarding-cro/) | Quando o usuário quiser otimizar o *onboarding* (pós-cadastro), a ativação do usuário, a primeira experiência ou o tempo até o valor (TTV)... |
+| [page-cro](skills/page-cro/) | Quando o usuário quiser otimizar, melhorar ou aumentar as conversões em qualquer página — *homepage*, *landing pages*, preços... |
+| [paid-ads](skills/paid-ads/) | Quando o usuário precisar de ajuda com campanhas de mídia paga no Google Ads, Meta (Facebook/Instagram), LinkedIn, X... |
+| [paywall-upgrade-cro](skills/paywall-upgrade-cro/) | Quando o usuário quiser criar ou otimizar *paywalls* no aplicativo, telas de *upgrade*, modais de *upsell* ou bloqueio de recursos extras... |
+| [popup-cro](skills/popup-cro/) | Quando o usuário quiser criar ou otimizar *popups*, modais, *overlays* ou *banners* com foco em conversão... |
+| [pricing-strategy](skills/pricing-strategy/) | Quando o usuário precisar de ajuda com decisões de preço, pacotes (*packaging*) ou estratégias de monetização... |
+|[product-marketing-context](skills/product-marketing-context/) | Quando o usuário quiser criar ou atualizar o documento principal de contexto de marketing do produto (*core context*)... |
+| [programmatic-seo](skills/programmatic-seo/) | Quando o usuário quiser criar páginas focadas em SEO em larga escala utilizando *templates* e dados (*SEO Programático*)... |
+| [referral-program](skills/referral-program/) | Quando o usuário quiser criar, otimizar ou analisar um programa de indicação, afiliação ou estratégias de "boca a boca"... |
+|[revops](skills/revops/) | Quando o usuário precisar de ajuda com operações de receita (*RevOps*), ciclo de vida do *lead* ou processo de passagem de marketing para vendas... |
+| [sales-enablement](skills/sales-enablement/) | Quando o usuário quiser criar materiais de apoio a vendas, *pitch decks*, *one-pagers*, documentos de objeções ou scripts de *demo*... |
+| [schema-markup](skills/schema-markup/) | Quando o usuário quiser adicionar, corrigir ou otimizar as marcações de *schema* e dados estruturados no código do site... |
+| [seo-audit](skills/seo-audit/) | Quando o usuário quiser auditar, revisar ou diagnosticar problemas técnicos de SEO na sua página... |
+| [signup-flow-cro](skills/signup-flow-cro/) | Quando o usuário quiser otimizar o fluxo de cadastro, registro, criação de conta ou ativação de período de testes (*trial*)... |
+| [site-architecture](skills/site-architecture/) | Quando o usuário quiser planejar, mapear ou reestruturar a hierarquia de páginas do site, menus de navegação ou arquitetura de URLs... |
+| [social-content](skills/social-content/) | Quando o usuário precisar de ajuda para criar, agendar ou otimizar conteúdos nas redes sociais (LinkedIn, Twitter/X, Instagram)... |
 <!-- SKILLS:END -->
 
 ## Instalação
 
 ### Opção 1: Instalação via CLI (Recomendado)
 
-Use [npx skills](https://github.com/vercel-labs/skills) para instalar skills diretamente:
+Use o [npx skills](https://github.com/vercel-labs/skills) para instalar as *skills* diretamente no seu projeto:
 
 ```bash
-# Instalar todas as skills
+# Instalar todas as skills de uma vez
 npx skills add coreyhaines31/marketingskills
 
-# Instalar skills específicas
+# Instalar apenas skills específicas
 npx skills add coreyhaines31/marketingskills --skill page-cro copywriting
 
-# Listar skills disponíveis
+# Listar todas as skills disponíveis
 npx skills add coreyhaines31/marketingskills --list
 ```
 
-Isso instala automaticamente no diretório `.agents/skills/` (e cria symlinks em `.claude/skills/` para compatibilidade com Claude Code).
+Isso fará a instalação automática no diretório `.agents/skills/` (e criará *symlinks* na pasta `.claude/skills/` para manter compatibilidade com o Claude Code).
 
 ### Opção 2: Plugin do Claude Code
 
-Instale pelo sistema de plugins integrado do Claude Code:
+Instale através do sistema de plugins nativo do Claude Code:
 
 ```bash
-# Adicionar o marketplace
+# Adicionar o repositório ao marketplace
 /plugin marketplace add coreyhaines31/marketingskills
 
-# Instalar todas as marketing skills
+# Instalar todas as skills de marketing
 /plugin install marketing-skills
 ```
 
-### Opção 3: Clone e Cópia
+### Opção 3: Clone manual
 
-Clone o repositório completo e copie a pasta de skills:
+Clone o repositório completo e copie a pasta de *skills* para o seu projeto:
 
 ```bash
 git clone https://github.com/coreyhaines31/marketingskills.git
@@ -137,23 +137,23 @@ cp -r marketingskills/skills/* .agents/skills/
 
 ### Opção 4: Git Submodule
 
-Adicione como submódulo para atualizações fáceis:
+Adicione como um submódulo no seu Git para facilitar futuras atualizações:
 
 ```bash
 git submodule add https://github.com/coreyhaines31/marketingskills.git .agents/marketingskills
 ```
 
-Depois referencie as skills em `.agents/marketingskills/skills/`.
+Depois, basta referenciar as *skills* a partir de `.agents/marketingskills/skills/`.
 
 ### Opção 5: Fork e Personalização
 
-1. Faça um fork deste repositório
-2. Personalize as skills para suas necessidades específicas
-3. Clone seu fork nos seus projetos
+1. Faça um *fork* deste repositório;
+2. Personalize as *skills* para as necessidades específicas do seu negócio;
+3. Clone o seu *fork* diretamente nos seus projetos.
 
-### Opção 6: SkillKit (Multi-Agente)
+### Opção 6: SkillKit (Para múltiplos agentes)
 
-Use o [SkillKit](https://github.com/rohitg00/skillkit) para instalar skills em múltiplos agentes de IA (Claude Code, Cursor, Copilot, etc.):
+Use o[SkillKit](https://github.com/rohitg00/skillkit) para instalar *skills* em diferentes agentes de IA (Claude Code, Cursor, Copilot, etc.) de uma só vez:
 
 ```bash
 # Instalar todas as skills
@@ -168,98 +168,98 @@ npx skillkit install coreyhaines31/marketingskills --list
 
 ## Atualizando a partir da v1.0
 
-As skills agora usam `.agents/` em vez de `.claude/` para o arquivo de contexto de marketing de produto. Mova seu arquivo de contexto existente:
+As *skills* agora utilizam a pasta `.agents/` em vez de `.claude/` para guardar o arquivo de contexto de marketing do produto. Mova seu arquivo de contexto existente rodando:
 
 ```bash
 mkdir -p .agents
 mv .claude/product-marketing-context.md .agents/product-marketing-context.md
 ```
 
-As skills ainda verificam `.claude/` como fallback, então nada quebra se você não fizer isso.
+*Nota: As skills continuam verificando a pasta `.claude/` como fallback (plano B), então nada vai quebrar se você esquecer de fazer isso.*
 
-## Uso
+## Como usar
 
-Uma vez instaladas, basta pedir ao seu agente ajuda com tarefas de marketing:
+Uma vez instaladas, basta pedir ao seu agente (em inglês ou português) ajuda com tarefas de marketing:
 
+```text
+"Me ajude a otimizar as conversões dessa landing page"
+→ O agente utilizará a skill 'page-cro'
+
+"Escreva a copy da homepage para o meu SaaS"
+→ O agente utilizará a skill 'copywriting'
+
+"Configure o rastreamento de cadastros no GA4"
+→ O agente utilizará a skill 'analytics-tracking'
+
+"Crie uma sequência de boas-vindas de 5 e-mails"
+→ O agente utilizará a skill 'email-sequence'
 ```
-"Help me optimize this landing page for conversions"
-→ Uses page-cro skill
 
-"Write homepage copy for my SaaS"
-→ Uses copywriting skill
+Você também pode forçar a invocação de *skills* diretamente no prompt:
 
-"Set up GA4 tracking for signups"
-→ Uses analytics-tracking skill
-
-"Create a 5-email welcome sequence"
-→ Uses email-sequence skill
-```
-
-Você também pode invocar skills diretamente:
-
-```
+```text
 /page-cro
 /email-sequence
 /seo-audit
 ```
 
-## Categorias de Skills
+## Categorias de *Skills*
 
-### Otimização de Conversão
-- `page-cro` - Qualquer página de marketing
-- `signup-flow-cro` - Fluxos de registro
-- `onboarding-cro` - Ativação pós-cadastro
-- `form-cro` - Formulários de captura de leads
-- `popup-cro` - Modais e overlays
-- `paywall-upgrade-cro` - Momentos de upgrade no app
+### Otimização de Conversão (CRO)
+- `page-cro` - Para qualquer página de marketing.
+- `signup-flow-cro` - Fluxos de registro e cadastro.
+- `onboarding-cro` - Ativação e experiência do usuário após o cadastro.
+- `form-cro` - Formulários de captura de *leads*.
+- `popup-cro` - Modais, *overlays* e *pop-ups*.
+- `paywall-upgrade-cro` - Telas de conversão para planos pagos dentro do app.
 
-### Conteúdo & Copy
-- `copywriting` - Copy para páginas de marketing
-- `copy-editing` - Editar e polir copy existente
-- `cold-email` - E-mails de prospecção B2B e sequências
-- `email-sequence` - Fluxos de e-mail automatizados
-- `social-content` - Conteúdo para redes sociais
+### Conteúdo & Copywriting
+- `copywriting` - Criação de textos (*copy*) para páginas de marketing.
+- `copy-editing` - Edição e polimento de *copies* já existentes.
+- `cold-email` - E-mails de prospecção B2B e sequências.
+- `email-sequence` - Fluxos de e-mail e automações de marketing.
+- `social-content` - Conteúdo focado em redes sociais.
 
 ### SEO & Descoberta
-- `seo-audit` - SEO técnico e on-page
-- `ai-seo` - Otimização para busca com IA (AEO, GEO, LLMO)
-- `programmatic-seo` - Geração de páginas em escala
-- `site-architecture` - Hierarquia de páginas, navegação, estrutura de URL
-- `competitor-alternatives` - Páginas de comparação e alternativas
-- `schema-markup` - Dados estruturados
+- `seo-audit` - SEO técnico e *on-page*.
+- `ai-seo` - Otimização para busca gerada por IA (AEO, GEO, LLMO).
+- `programmatic-seo` - Geração inteligente de páginas em escala.
+- `site-architecture` - Hierarquia de páginas, navegação e estrutura de URLs.
+- `competitor-alternatives` - Páginas focadas em "alternativa ao concorrente X".
+- `schema-markup` - Dados estruturados e marcação *schema*.
 
 ### Mídia Paga & Distribuição
-- `paid-ads` - Campanhas no Google, Meta, LinkedIn
-- `ad-creative` - Geração e iteração de criativos em volume
-- `social-content` - Agendamento e estratégia de redes sociais
+- `paid-ads` - Campanhas estruturadas no Google, Meta, LinkedIn, etc.
+- `ad-creative` - Geração e iteração de criativos e anúncios em volume.
+- `social-content` - Estratégia e agendamento para redes sociais.
 
-### Mensuração & Testes
-- `analytics-tracking` - Configuração de rastreamento de eventos
-- `ab-test-setup` - Design de experimentos
+### Dados & Testes
+- `analytics-tracking` - Configuração de eventos e rastreamento de métricas.
+- `ab-test-setup` - Design e estruturação de experimentos/Testes A/B.
 
 ### Retenção
-- `churn-prevention` - Fluxos de cancelamento, ofertas de salvamento, dunning, recuperação de pagamentos
+- `churn-prevention` - Fluxos de cancelamento, ofertas de resgate, réguas de cobrança (*dunning*) e recuperação de pagamentos.
 
-### Growth Engineering
-- `free-tool-strategy` - Ferramentas de marketing e calculadoras
-- `referral-program` - Programas de indicação e afiliados
+### Engenharia de *Growth*
+- `free-tool-strategy` - Criação de calculadoras e ferramentas gratuitas para aquisição.
+- `referral-program` - Estruturação de programas de indicação e afiliados.
 
 ### Estratégia & Monetização
-- `marketing-ideas` - 140 ideias de marketing para SaaS
-- `marketing-psychology` - Modelos mentais e psicologia
-- `launch-strategy` - Lançamentos de produto e anúncios
-- `pricing-strategy` - Precificação, empacotamento e monetização
+- `marketing-ideas` - Banco com 140 ideias de marketing para SaaS.
+- `marketing-psychology` - Modelos mentais, vieses e psicologia aplicada.
+- `launch-strategy` - Estratégia para lançamentos de produtos e anúncios ao mercado.
+- `pricing-strategy` - Estruturação de preços, planos e monetização.
 
 ### Vendas & RevOps
-- `revops` - Ciclo de vida de leads, pontuação, roteamento, gestão de pipeline
-- `sales-enablement` - Decks de vendas, one-pagers, docs de objeções, scripts de demo
+- `revops` - Gestão do ciclo de vida do *lead*, *lead scoring*, roteamento e gestão de *pipeline*.
+- `sales-enablement` - *Decks* de vendas, *one-pagers*, documentos para contorno de objeções e roteiros de demonstração.
 
 ## Contribuindo
 
-Encontrou uma forma de melhorar uma skill? Tem uma nova skill para sugerir? PRs e issues são bem-vindos!
+Descobriu uma maneira inteligente de melhorar uma *skill*? Tem uma ideia de *skill* que ainda não está aqui? PRs e *issues* são sempre bem-vindos!
 
-Veja [CONTRIBUTING.md](CONTRIBUTING.md) para diretrizes sobre como adicionar ou melhorar skills.
+Leia o arquivo[CONTRIBUTING.md](CONTRIBUTING.md) para diretrizes sobre como adicionar ou melhorar o projeto.
 
 ## Licença
 
-[MIT](LICENSE) - Use como quiser.
+[MIT](LICENSE) - Código aberto. Use como quiser!
