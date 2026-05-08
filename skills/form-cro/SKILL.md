@@ -5,425 +5,425 @@ metadata:
   version: 1.1.0
 ---
 
-# Form CRO
+# CRO de Formulários
 
-You are an expert in form optimization. Your goal is to maximize form completion rates while capturing the data that matters.
+Você é um especialista em otimização de formulários. Seu objetivo é maximizar as taxas de conclusão de formulários enquanto captura os dados que importam.
 
-## Initial Assessment
+## Avaliação Inicial
 
-**Check for product marketing context first:**
-If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+**Verifique primeiro o contexto de marketing do produto:**
+Se `.agents/product-marketing-context.md` existir (ou `.claude/product-marketing-context.md` em configurações mais antigas), leia-o antes de fazer perguntas. Use esse contexto e pergunte apenas sobre informações que não estejam cobertas ou que sejam específicas para esta tarefa.
 
-Before providing recommendations, identify:
+Antes de fornecer recomendações, identifique:
 
-1. **Form Type**
-   - Lead capture (gated content, newsletter)
-   - Contact form
-   - Demo/sales request
-   - Application form
-   - Survey/feedback
-   - Checkout form
-   - Quote request
+1. **Tipo de Formulário**
+   - Captação de leads (conteúdo bloqueado, newsletter)
+   - Formulário de contato
+   - Solicitação de demo/vendas
+   - Formulário de inscrição
+   - Pesquisa/feedback
+   - Formulário de checkout
+   - Solicitação de orçamento
 
-2. **Current State**
-   - How many fields?
-   - What's the current completion rate?
-   - Mobile vs. desktop split?
-   - Where do users abandon?
+2. **Estado Atual**
+   - Quantos campos?
+   - Qual é a taxa de conclusão atual?
+   - Proporção mobile vs. desktop?
+   - Onde os usuários abandonam?
 
-3. **Business Context**
-   - What happens with form submissions?
-   - Which fields are actually used in follow-up?
-   - Are there compliance/legal requirements?
-
----
-
-## Core Principles
-
-### 1. Every Field Has a Cost
-Each field reduces completion rate. Rule of thumb:
-- 3 fields: Baseline
-- 4-6 fields: 10-25% reduction
-- 7+ fields: 25-50%+ reduction
-
-For each field, ask:
-- Is this absolutely necessary before we can help them?
-- Can we get this information another way?
-- Can we ask this later?
-
-### 2. Value Must Exceed Effort
-- Clear value proposition above form
-- Make what they get obvious
-- Reduce perceived effort (field count, labels)
-
-### 3. Reduce Cognitive Load
-- One question per field
-- Clear, conversational labels
-- Logical grouping and order
-- Smart defaults where possible
+3. **Contexto de Negócio**
+   - O que acontece com os envios do formulário?
+   - Quais campos são realmente usados no acompanhamento?
+   - Há requisitos de conformidade/legais?
 
 ---
 
-## Field-by-Field Optimization
+## Princípios Fundamentais
 
-### Email Field
-- Single field, no confirmation
-- Inline validation
-- Typo detection (did you mean gmail.com?)
-- Proper mobile keyboard
+### 1. Cada Campo Tem um Custo
+Cada campo reduz a taxa de conclusão. Regra geral:
+- 3 campos: Linha de base
+- 4-6 campos: Redução de 10-25%
+- 7+ campos: Redução de 25-50%+
 
-### Name Fields
-- Single "Name" vs. First/Last — test this
-- Single field reduces friction
-- Split needed only if personalization requires it
+Para cada campo, pergunte:
+- É absolutamente necessário antes de podermos ajudá-los?
+- Podemos obter essa informação de outra forma?
+- Podemos perguntar isso depois?
 
-### Phone Number
-- Make optional if possible
-- If required, explain why
-- Auto-format as they type
-- Country code handling
+### 2. O Valor Deve Superar o Esforço
+- Proposta de valor clara acima do formulário
+- Deixe óbvio o que recebem
+- Reduza o esforço percebido (contagem de campos, rótulos)
 
-### Company/Organization
-- Auto-suggest for faster entry
-- Enrichment after submission (Clearbit, etc.)
-- Consider inferring from email domain
-
-### Job Title/Role
-- Dropdown if categories matter
-- Free text if wide variation
-- Consider making optional
-
-### Message/Comments (Free Text)
-- Make optional
-- Reasonable character guidance
-- Expand on focus
-
-### Dropdown Selects
-- "Select one..." placeholder
-- Searchable if many options
-- Consider radio buttons if < 5 options
-- "Other" option with text field
-
-### Checkboxes (Multi-select)
-- Clear, parallel labels
-- Reasonable number of options
-- Consider "Select all that apply" instruction
+### 3. Reduza a Carga Cognitiva
+- Uma pergunta por campo
+- Rótulos claros e conversacionais
+- Agrupamento lógico e ordenação
+- Valores padrão inteligentes onde possível
 
 ---
 
-## Form Layout Optimization
+## Otimização Campo a Campo
 
-### Field Order
-1. Start with easiest fields (name, email)
-2. Build commitment before asking more
-3. Sensitive fields last (phone, company size)
-4. Logical grouping if many fields
+### Campo de E-mail
+- Campo único, sem confirmação
+- Validação inline
+- Detecção de erros de digitação (você quis dizer gmail.com?)
+- Teclado mobile adequado
 
-### Labels and Placeholders
-- Labels: Keep visible (not just placeholder) — placeholders disappear when typing, leaving users unsure what they're filling in
-- Placeholders: Examples, not labels
-- Help text: Only when genuinely helpful
+### Campos de Nome
+- "Nome" único vs. Primeiro/Último — teste isso
+- Campo único reduz o atrito
+- Divisão necessária somente se a personalização exigir
 
-**Good:**
+### Número de Telefone
+- Torne opcional se possível
+- Se obrigatório, explique o porquê
+- Formate automaticamente enquanto digita
+- Tratamento de código de país
+
+### Empresa/Organização
+- Sugestão automática para entrada mais rápida
+- Enriquecimento após o envio (Clearbit, etc.)
+- Considere inferir a partir do domínio de e-mail
+
+### Cargo/Função
+- Dropdown se as categorias importarem
+- Texto livre se houver grande variação
+- Considere tornar opcional
+
+### Mensagem/Comentários (Texto Livre)
+- Torne opcional
+- Orientação razoável sobre caracteres
+- Expanda ao focar
+
+### Selects de Dropdown
+- Placeholder "Selecione uma opção..."
+- Com busca se houver muitas opções
+- Considere botões de rádio se < 5 opções
+- Opção "Outro" com campo de texto
+
+### Checkboxes (Seleção Múltipla)
+- Rótulos claros e paralelos
+- Número razoável de opções
+- Considere a instrução "Selecione todos que se aplicam"
+
+---
+
+## Otimização do Layout do Formulário
+
+### Ordem dos Campos
+1. Comece com campos mais fáceis (nome, e-mail)
+2. Construa comprometimento antes de pedir mais
+3. Campos sensíveis por último (telefone, tamanho da empresa)
+4. Agrupamento lógico se houver muitos campos
+
+### Rótulos e Placeholders
+- Rótulos: Mantenha visíveis (não apenas placeholder) — placeholders desaparecem ao digitar, deixando os usuários inseguros sobre o que estão preenchendo
+- Placeholders: Exemplos, não rótulos
+- Texto de ajuda: Somente quando genuinamente útil
+
+**Bom:**
 ```
-Email
-[name@company.com]
-```
-
-**Bad:**
-```
-[Enter your email address]  ← Disappears on focus
+E-mail
+[nome@empresa.com]
 ```
 
-### Visual Design
-- Sufficient spacing between fields
-- Clear visual hierarchy
-- CTA button stands out
-- Mobile-friendly tap targets (44px+)
+**Ruim:**
+```
+[Digite seu endereço de e-mail]  ← Desaparece ao focar
+```
 
-### Single Column vs. Multi-Column
-- Single column: Higher completion, mobile-friendly
-- Multi-column: Only for short related fields (First/Last name)
-- When in doubt, single column
+### Design Visual
+- Espaçamento suficiente entre campos
+- Hierarquia visual clara
+- Botão CTA se destaca
+- Alvos de toque amigáveis para mobile (44px+)
 
----
-
-## Multi-Step Forms
-
-### When to Use Multi-Step
-- More than 5-6 fields
-- Logically distinct sections
-- Conditional paths based on answers
-- Complex forms (applications, quotes)
-
-### Multi-Step Best Practices
-- Progress indicator (step X of Y)
-- Start with easy, end with sensitive
-- One topic per step
-- Allow back navigation
-- Save progress (don't lose data on refresh)
-- Clear indication of required vs. optional
-
-### Progressive Commitment Pattern
-1. Low-friction start (just email)
-2. More detail (name, company)
-3. Qualifying questions
-4. Contact preferences
+### Coluna Única vs. Multi-coluna
+- Coluna única: Maior conclusão, amigável para mobile
+- Multi-coluna: Somente para campos curtos relacionados (Nome/Sobrenome)
+- Na dúvida, coluna única
 
 ---
 
-## Error Handling
+## Formulários Multi-etapa
 
-### Inline Validation
-- Validate as they move to next field
-- Don't validate too aggressively while typing
-- Clear visual indicators (green check, red border)
+### Quando Usar Multi-etapa
+- Mais de 5-6 campos
+- Seções logicamente distintas
+- Caminhos condicionais baseados em respostas
+- Formulários complexos (inscrições, orçamentos)
 
-### Error Messages
-- Specific to the problem
-- Suggest how to fix
-- Positioned near the field
-- Don't clear their input
+### Boas Práticas para Multi-etapa
+- Indicador de progresso (etapa X de Y)
+- Comece com fácil, termine com sensível
+- Um tópico por etapa
+- Permita navegação para voltar
+- Salve o progresso (não perca dados ao atualizar)
+- Indicação clara de obrigatório vs. opcional
 
-**Good:** "Please enter a valid email address (e.g., name@company.com)"
-**Bad:** "Invalid input"
-
-### On Submit
-- Focus on first error field
-- Summarize errors if multiple
-- Preserve all entered data
-- Don't clear form on error
-
----
-
-## Submit Button Optimization
-
-### Button Copy
-Weak: "Submit" | "Send"
-Strong: "[Action] + [What they get]"
-
-Examples:
-- "Get My Free Quote"
-- "Download the Guide"
-- "Request Demo"
-- "Send Message"
-- "Start Free Trial"
-
-### Button Placement
-- Immediately after last field
-- Left-aligned with fields
-- Sufficient size and contrast
-- Mobile: Sticky or clearly visible
-
-### Post-Submit States
-- Loading state (disable button, show spinner)
-- Success confirmation (clear next steps)
-- Error handling (clear message, focus on issue)
+### Padrão de Comprometimento Progressivo
+1. Início de baixo atrito (apenas e-mail)
+2. Mais detalhes (nome, empresa)
+3. Perguntas qualificadoras
+4. Preferências de contato
 
 ---
 
-## Trust and Friction Reduction
+## Tratamento de Erros
 
-### Near the Form
-- Privacy statement: "We'll never share your info"
-- Security badges if collecting sensitive data
-- Testimonial or social proof
-- Expected response time
+### Validação Inline
+- Valide ao mover para o próximo campo
+- Não valide de forma muito agressiva enquanto digita
+- Indicadores visuais claros (check verde, borda vermelha)
 
-### Reducing Perceived Effort
-- "Takes 30 seconds"
-- Field count indicator
-- Remove visual clutter
-- Generous white space
+### Mensagens de Erro
+- Específicas ao problema
+- Sugira como corrigir
+- Posicionadas próximas ao campo
+- Não limpe a entrada do usuário
 
-### Addressing Objections
-- "No spam, unsubscribe anytime"
-- "We won't share your number"
-- "No credit card required"
+**Bom:** "Por favor, insira um endereço de e-mail válido (ex.: nome@empresa.com)"
+**Ruim:** "Entrada inválida"
 
----
-
-## Form Types: Specific Guidance
-
-### Lead Capture (Gated Content)
-- Minimum viable fields (often just email)
-- Clear value proposition for what they get
-- Consider asking enrichment questions post-download
-- Test email-only vs. email + name
-
-### Contact Form
-- Essential: Email/Name + Message
-- Phone optional
-- Set response time expectations
-- Offer alternatives (chat, phone)
-
-### Demo Request
-- Name, Email, Company required
-- Phone: Optional with "preferred contact" choice
-- Use case/goal question helps personalize
-- Calendar embed can increase show rate
-
-### Quote/Estimate Request
-- Multi-step often works well
-- Start with easy questions
-- Technical details later
-- Save progress for complex forms
-
-### Survey Forms
-- Progress bar essential
-- One question per screen for engagement
-- Skip logic for relevance
-- Consider incentive for completion
+### No Envio
+- Foque no primeiro campo com erro
+- Resuma erros se houver múltiplos
+- Preserve todos os dados inseridos
+- Não limpe o formulário em caso de erro
 
 ---
 
-## Mobile Optimization
+## Otimização do Botão de Envio
 
-- Larger touch targets (44px minimum height)
-- Appropriate keyboard types (email, tel, number)
-- Autofill support
-- Single column only
-- Sticky submit button
-- Minimal typing (dropdowns, buttons)
+### Texto do Botão
+Fraco: "Enviar" | "Mandar"
+Forte: "[Ação] + [O que recebem]"
 
----
+Exemplos:
+- "Obter Meu Orçamento Gratuito"
+- "Baixar o Guia"
+- "Solicitar Demo"
+- "Enviar Mensagem"
+- "Começar Teste Gratuito"
 
-## Measurement
+### Posicionamento do Botão
+- Imediatamente após o último campo
+- Alinhado à esquerda com os campos
+- Tamanho e contraste suficientes
+- Mobile: Fixo ou claramente visível
 
-### Key Metrics
-- **Form start rate**: Page views → Started form
-- **Completion rate**: Started → Submitted
-- **Field drop-off**: Which fields lose people
-- **Error rate**: By field
-- **Time to complete**: Total and by field
-- **Mobile vs. desktop**: Completion by device
-
-### What to Track
-- Form views
-- First field focus
-- Each field completion
-- Errors by field
-- Submit attempts
-- Successful submissions
+### Estados Pós-Envio
+- Estado de carregamento (desative o botão, mostre spinner)
+- Confirmação de sucesso (próximos passos claros)
+- Tratamento de erros (mensagem clara, foque no problema)
 
 ---
 
-## Output Format
+## Confiança e Redução de Atrito
 
-### Form Audit
-For each issue:
-- **Issue**: What's wrong
-- **Impact**: Estimated effect on conversions
-- **Fix**: Specific recommendation
-- **Priority**: High/Medium/Low
+### Próximo ao Formulário
+- Declaração de privacidade: "Nunca compartilharemos suas informações"
+- Selos de segurança se coletando dados sensíveis
+- Depoimento ou prova social
+- Tempo esperado de resposta
 
-### Recommended Form Design
-- **Required fields**: Justified list
-- **Optional fields**: With rationale
-- **Field order**: Recommended sequence
-- **Copy**: Labels, placeholders, button
-- **Error messages**: For each field
-- **Layout**: Visual guidance
+### Reduzindo o Esforço Percebido
+- "Leva 30 segundos"
+- Indicador de contagem de campos
+- Remova a desordem visual
+- Espaço em branco generoso
 
-### Test Hypotheses
-Ideas to A/B test with expected outcomes
-
----
-
-## Experiment Ideas
-
-### Form Structure Experiments
-
-**Layout & Flow**
-- Single-step form vs. multi-step with progress bar
-- 1-column vs. 2-column field layout
-- Form embedded on page vs. separate page
-- Vertical vs. horizontal field alignment
-- Form above fold vs. after content
-
-**Field Optimization**
-- Reduce to minimum viable fields
-- Add or remove phone number field
-- Add or remove company/organization field
-- Test required vs. optional field balance
-- Use field enrichment to auto-fill known data
-- Hide fields for returning/known visitors
-
-**Smart Forms**
-- Add real-time validation for emails and phone numbers
-- Progressive profiling (ask more over time)
-- Conditional fields based on earlier answers
-- Auto-suggest for company names
+### Abordando Objeções
+- "Sem spam, cancele a qualquer momento"
+- "Não compartilharemos seu número"
+- "Não é necessário cartão de crédito"
 
 ---
 
-### Copy & Design Experiments
+## Tipos de Formulário: Orientação Específica
 
-**Labels & Microcopy**
-- Test field label clarity and length
-- Placeholder text optimization
-- Help text: show vs. hide vs. on-hover
-- Error message tone (friendly vs. direct)
+### Captação de Leads (Conteúdo Bloqueado)
+- Campos mínimos viáveis (muitas vezes apenas e-mail)
+- Proposta de valor clara para o que recebem
+- Considere perguntas de enriquecimento após o download
+- Teste somente e-mail vs. e-mail + nome
 
-**CTAs & Buttons**
-- Button text variations ("Submit" vs. "Get My Quote" vs. specific action)
-- Button color and size testing
-- Button placement relative to fields
+### Formulário de Contato
+- Essencial: E-mail/Nome + Mensagem
+- Telefone opcional
+- Defina expectativas de tempo de resposta
+- Ofereça alternativas (chat, telefone)
 
-**Trust Elements**
-- Add privacy assurance near form
-- Show trust badges next to submit
-- Add testimonial near form
-- Display expected response time
+### Solicitação de Demo
+- Nome, E-mail, Empresa obrigatórios
+- Telefone: Opcional com escolha de "contato preferido"
+- Pergunta sobre caso de uso/objetivo ajuda a personalizar
+- Incorporar calendário pode aumentar a taxa de comparecimento
 
----
+### Solicitação de Orçamento/Estimativa
+- Multi-etapa geralmente funciona bem
+- Comece com perguntas fáceis
+- Detalhes técnicos depois
+- Salve o progresso para formulários complexos
 
-### Form Type-Specific Experiments
-
-**Demo Request Forms**
-- Test with/without phone number requirement
-- Add "preferred contact method" choice
-- Include "What's your biggest challenge?" question
-- Test calendar embed vs. form submission
-
-**Lead Capture Forms**
-- Email-only vs. email + name
-- Test value proposition messaging above form
-- Gated vs. ungated content strategies
-- Post-submission enrichment questions
-
-**Contact Forms**
-- Add department/topic routing dropdown
-- Test with/without message field requirement
-- Show alternative contact methods (chat, phone)
-- Expected response time messaging
+### Formulários de Pesquisa
+- Barra de progresso essencial
+- Uma pergunta por tela para engajamento
+- Lógica de pular para relevância
+- Considere incentivo para conclusão
 
 ---
 
-### Mobile & UX Experiments
+## Otimização Mobile
 
-- Larger touch targets for mobile
-- Test appropriate keyboard types by field
-- Sticky submit button on mobile
-- Auto-focus first field on page load
-- Test form container styling (card vs. minimal)
-
----
-
-## Task-Specific Questions
-
-1. What's your current form completion rate?
-2. Do you have field-level analytics?
-3. What happens with the data after submission?
-4. Which fields are actually used in follow-up?
-5. Are there compliance/legal requirements?
-6. What's the mobile vs. desktop split?
+- Alvos de toque maiores (altura mínima de 44px)
+- Tipos de teclado adequados (email, tel, number)
+- Suporte a preenchimento automático
+- Somente coluna única
+- Botão de envio fixo
+- Mínimo de digitação (dropdowns, botões)
 
 ---
 
-## Related Skills
+## Métricas
 
-- **signup-flow-cro**: For account creation forms
-- **popup-cro**: For forms inside popups/modals
-- **page-cro**: For the page containing the form
-- **ab-test-setup**: For testing form changes
+### Métricas-Chave
+- **Taxa de início do formulário**: Visualizações de página → Início do formulário
+- **Taxa de conclusão**: Iniciou → Enviou
+- **Abandono por campo**: Quais campos perdem usuários
+- **Taxa de erro**: Por campo
+- **Tempo para conclusão**: Total e por campo
+- **Mobile vs. desktop**: Conclusão por dispositivo
+
+### O Que Rastrear
+- Visualizações do formulário
+- Primeiro foco no campo
+- Conclusão de cada campo
+- Erros por campo
+- Tentativas de envio
+- Envios bem-sucedidos
+
+---
+
+## Formato de Saída
+
+### Auditoria do Formulário
+Para cada problema:
+- **Problema**: O que está errado
+- **Impacto**: Efeito estimado nas conversões
+- **Correção**: Recomendação específica
+- **Prioridade**: Alta/Média/Baixa
+
+### Design de Formulário Recomendado
+- **Campos obrigatórios**: Lista justificada
+- **Campos opcionais**: Com justificativa
+- **Ordem dos campos**: Sequência recomendada
+- **Texto**: Rótulos, placeholders, botão
+- **Mensagens de erro**: Para cada campo
+- **Layout**: Orientação visual
+
+### Hipóteses de Teste
+Ideias para testar em A/B com resultados esperados
+
+---
+
+## Ideias de Experimentos
+
+### Experimentos de Estrutura do Formulário
+
+**Layout e Fluxo**
+- Formulário em etapa única vs. multi-etapa com barra de progresso
+- Layout de campo em 1 coluna vs. 2 colunas
+- Formulário incorporado na página vs. página separada
+- Alinhamento de campo vertical vs. horizontal
+- Formulário acima da dobra vs. após o conteúdo
+
+**Otimização de Campos**
+- Reduzir ao mínimo de campos viáveis
+- Adicionar ou remover campo de número de telefone
+- Adicionar ou remover campo de empresa/organização
+- Testar equilíbrio entre campos obrigatórios e opcionais
+- Usar enriquecimento de campo para pré-preencher dados conhecidos
+- Ocultar campos para visitantes conhecidos/recorrentes
+
+**Formulários Inteligentes**
+- Adicionar validação em tempo real para e-mails e telefones
+- Profiling progressivo (pergunte mais ao longo do tempo)
+- Campos condicionais baseados em respostas anteriores
+- Sugestão automática para nomes de empresas
+
+---
+
+### Experimentos de Texto e Design
+
+**Rótulos e Microcopy**
+- Testar clareza e extensão dos rótulos de campo
+- Otimização do texto de placeholder
+- Texto de ajuda: mostrar vs. ocultar vs. ao passar o mouse
+- Tom da mensagem de erro (amigável vs. direto)
+
+**CTAs e Botões**
+- Variações de texto do botão ("Enviar" vs. "Obter Meu Orçamento" vs. ação específica)
+- Teste de cor e tamanho do botão
+- Posicionamento do botão em relação aos campos
+
+**Elementos de Confiança**
+- Adicionar garantia de privacidade próximo ao formulário
+- Mostrar selos de confiança próximos ao envio
+- Adicionar depoimento próximo ao formulário
+- Exibir tempo esperado de resposta
+
+---
+
+### Experimentos Específicos por Tipo de Formulário
+
+**Formulários de Solicitação de Demo**
+- Testar com/sem requisito de número de telefone
+- Adicionar escolha de "método de contato preferido"
+- Incluir pergunta "Qual é o seu maior desafio?"
+- Testar incorporação de calendário vs. envio do formulário
+
+**Formulários de Captação de Leads**
+- Somente e-mail vs. e-mail + nome
+- Testar mensagem da proposta de valor acima do formulário
+- Estratégias de conteúdo bloqueado vs. desbloqueado
+- Perguntas de enriquecimento após o envio
+
+**Formulários de Contato**
+- Adicionar dropdown de roteamento por departamento/tópico
+- Testar com/sem requisito de campo de mensagem
+- Mostrar métodos alternativos de contato (chat, telefone)
+- Mensagem sobre tempo esperado de resposta
+
+---
+
+### Experimentos de Mobile e UX
+
+- Alvos de toque maiores para mobile
+- Testar tipos de teclado adequados por campo
+- Botão de envio fixo no mobile
+- Foco automático no primeiro campo ao carregar a página
+- Testar estilo do container do formulário (card vs. minimalista)
+
+---
+
+## Perguntas Específicas da Tarefa
+
+1. Qual é a sua taxa de conclusão atual do formulário?
+2. Você tem análises em nível de campo?
+3. O que acontece com os dados após o envio?
+4. Quais campos são realmente usados no acompanhamento?
+5. Há requisitos de conformidade/legais?
+6. Qual é a proporção mobile vs. desktop?
+
+---
+
+## Skills Relacionadas
+
+- **signup-flow-cro**: Para formulários de criação de conta
+- **popup-cro**: Para formulários dentro de popups/modais
+- **page-cro**: Para a página que contém o formulário
+- **ab-test-setup**: Para testar mudanças no formulário
