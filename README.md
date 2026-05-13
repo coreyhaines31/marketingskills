@@ -36,7 +36,7 @@ Skills reference each other and build on shared context. The `product-marketing-
 │programm  │ │form-cro  │ │email-seq │ │analytics   │ │ prevent  │ │pricing      │ │ research  │
 │schema    │ │popup-cro │ │social    │ │            │ │community │ │comp-alts    │ │           │
 │content   │ │paywall   │ │video     │ │            │ │lead-magnt│ │comp-profile │ │           │
-│aso-audit │ │          │ │image     │ │            │ │          │ │directory    │ │           │
+│aso-audit │ │          │ │image     │ │            │ │co-mktg   │ │directory    │ │           │
 └────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬──────┘ └────┬─────┘ └──────┬──────┘ └─────┬─────┘
      │            │            │              │             │              │              │
      └────────────┴─────┬──────┴──────────────┴─────────────┴──────────────┴──────────────┘
@@ -62,6 +62,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [aso-audit](skills/aso-audit/) | When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions 'ASO... |
 | [churn-prevention](skills/churn-prevention/) | When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or... |
 | [cold-email](skills/cold-email/) | Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails,... |
+| [co-marketing](skills/co-marketing/) | When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities.... |
 | [community-marketing](skills/community-marketing/) | Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to create a... |
 | [competitor-alternatives](skills/competitor-alternatives/) | When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when... |
 | [competitor-profiling](skills/competitor-profiling/) | When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions... |
@@ -244,6 +245,7 @@ You can also invoke skills directly:
 - `churn-prevention` - Cancel flows, save offers, dunning, payment recovery
 
 ### Growth Engineering
+- `co-marketing` - Partner identification and joint campaigns
 - `free-tool-strategy` - Marketing tools and calculators
 - `referral-program` - Referral and affiliate programs
 

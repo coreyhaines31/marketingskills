@@ -44,8 +44,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | social-content | 1.3.0 | 2026-04-24 |
 | image | 1.0.0 | 2026-04-24 |
 | video | 1.0.0 | 2026-04-24 |
+| co-marketing | 1.0.0 | 2026-05-04 |
 
 ## Recent Changes
+
+### 2026-05-04
+- Added `co-marketing` skill for partner identification, joint campaigns, and co-marketing strategy
+- Total skills: 41
 
 ### 2026-04-24
 - Added `image` skill for AI image generation, design tools, profile/listing banners, and optimization
