@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "I need marketing ideas for my SaaS product. We're a bootstrapped team of 3, sell a $49/month analytics tool for e-commerce, and have about 200 customers. Budget is tight — maybe $500/month for marketing.",
-      "expected_output": "Should check for product-marketing-context.md first. Should filter ideas by low budget and early-stage constraints. Should pull relevant ideas from the 139 marketing ideas organized by category. Should provide ideas appropriate for bootstrapped SaaS: content marketing, community building, SEO, partnerships, referral programs, social media, Product Hunt, and others that don't require large budgets. Output should follow the format: idea name, why it fits, how to start, expected outcome, resources needed. Should prioritize by likely impact given their stage.",
+      "expected_output": "Should check for product-marketing.md first. Should filter ideas by low budget and early-stage constraints. Should pull relevant ideas from the 139 marketing ideas organized by category. Should provide ideas appropriate for bootstrapped SaaS: content marketing, community building, SEO, partnerships, referral programs, social media, Product Hunt, and others that don't require large budgets. Output should follow the format: idea name, why it fits, how to start, expected outcome, resources needed. Should prioritize by likely impact given their stage.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Filters ideas by low budget constraint",
         "Provides ideas from the 139 marketing ideas catalog",
         "Ideas are appropriate for bootstrapped SaaS stage",
@@ -77,10 +77,10 @@
     {
       "id": 6,
       "prompt": "We want to set up a referral program. How should we structure it?",
-      "expected_output": "Should recognize this is specifically a referral program design request. Should defer to or cross-reference the referral-program skill, which provides detailed guidance on referral loop design, incentive structures, implementation, and optimization. May briefly mention referral programs as a marketing idea but should make clear that referral-program is the right skill for detailed program design.",
+      "expected_output": "Should recognize this is specifically a referral program design request. Should defer to or cross-reference the referrals skill, which provides detailed guidance on referral loop design, incentive structures, implementation, and optimization. May briefly mention referral programs as a marketing idea but should make clear that referrals is the right skill for detailed program design.",
       "assertions": [
         "Recognizes this as a referral program design request",
-        "References or defers to referral-program skill",
+        "References or defers to referrals skill",
         "Does not attempt detailed referral program design",
         "May briefly mention as a marketing idea"
       ],

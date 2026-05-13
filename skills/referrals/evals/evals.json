@@ -1,12 +1,12 @@
 {
-  "skill_name": "referral-program",
+  "skill_name": "referrals",
   "evals": [
     {
       "id": 1,
       "prompt": "Help me design a referral program for our SaaS product. We're a $49/month project management tool with about 1,000 customers. We want to encourage word-of-mouth growth.",
-      "expected_output": "Should check for product-marketing-context.md first. Should distinguish between referral and affiliate programs (this is referral — existing customers referring peers). Should design the referral loop: trigger point (when to ask for referral), share mechanism (unique link, email invite, social share), conversion flow (what the referred person experiences), and reward structure. Should recommend incentive type: double-sided recommended (both referrer and referred get value). Should suggest specific incentives appropriate for $49/month SaaS (e.g., free month for both). Should include the launch checklist. Should recommend tool integrations (Rewardful, Tolt, etc.).",
+      "expected_output": "Should check for product-marketing.md first. Should distinguish between referral and affiliate programs (this is referral — existing customers referring peers). Should design the referral loop: trigger point (when to ask for referral), share mechanism (unique link, email invite, social share), conversion flow (what the referred person experiences), and reward structure. Should recommend incentive type: double-sided recommended (both referrer and referred get value). Should suggest specific incentives appropriate for $49/month SaaS (e.g., free month for both). Should include the launch checklist. Should recommend tool integrations (Rewardful, Tolt, etc.).",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Distinguishes referral from affiliate",
         "Designs the referral loop (trigger, share, convert, reward)",
         "Recommends double-sided incentive structure",
@@ -76,11 +76,11 @@
     {
       "id": 6,
       "prompt": "Can you write the referral invitation emails? I need the email that goes out when someone shares their referral link.",
-      "expected_output": "Should recognize this overlaps with email writing. Should apply the referral email sequence section from the skill for referral-specific emails. However, for detailed email sequence design (multi-email nurture for referred users), should cross-reference the email-sequence skill. Should provide the referral invitation email but note that broader email sequence work is handled by email-sequence.",
+      "expected_output": "Should recognize this overlaps with email writing. Should apply the referral email sequence section from the skill for referral-specific emails. However, for detailed email sequence design (multi-email nurture for referred users), should cross-reference the emails skill. Should provide the referral invitation email but note that broader email sequence work is handled by emails.",
       "assertions": [
         "Applies referral email section from the skill",
         "Provides referral invitation email guidance",
-        "Cross-references email-sequence for broader email work",
+        "Cross-references emails for broader email work",
         "Provides specific referral email copy or template"
       ],
       "files": []

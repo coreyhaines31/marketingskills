@@ -1,12 +1,12 @@
 {
-  "skill_name": "ab-test-setup",
+  "skill_name": "ab-testing",
   "evals": [
     {
       "id": 1,
       "prompt": "I want to A/B test our homepage headline. We currently say 'The All-in-One Project Management Tool' and want to test something benefit-focused. We get about 15,000 visitors/month and our current signup rate is 3.2%.",
-      "expected_output": "Should check for product-marketing-context.md first. Should build a proper hypothesis using the framework: 'Because [observation], we believe [change] will cause [outcome], which we'll measure by [metric].' Should identify this as an A/B test (two variants). Should calculate or reference sample size needs based on 15,000 monthly visitors and 3.2% baseline. Should define primary metric (signup rate), secondary metrics, and guardrail metrics. Should warn about the peeking problem and recommend a fixed test duration. Should provide the test plan in the structured output format.",
+      "expected_output": "Should check for product-marketing.md first. Should build a proper hypothesis using the framework: 'Because [observation], we believe [change] will cause [outcome], which we'll measure by [metric].' Should identify this as an A/B test (two variants). Should calculate or reference sample size needs based on 15,000 monthly visitors and 3.2% baseline. Should define primary metric (signup rate), secondary metrics, and guardrail metrics. Should warn about the peeking problem and recommend a fixed test duration. Should provide the test plan in the structured output format.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Uses the hypothesis framework with observation, belief, outcome, and metric",
         "Identifies as A/B test type",
         "Addresses sample size calculation based on traffic and baseline rate",

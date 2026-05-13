@@ -40,8 +40,8 @@ for skill_dir in "$SKILLS_DIR"/*/; do
         continue
     fi
 
-    # Extract frontmatter
-    frontmatter=$(sed -n '/^---$/,/^---$/p' "$skill_file" | head -n -1 | tail -n +2)
+    # Extract frontmatter (between the first two `---` markers, exclusive)
+    frontmatter=$(awk '/^---$/{count++; next} count==1' "$skill_file")
 
     # Validate frontmatter exists
     if [[ -z "$frontmatter" ]]; then

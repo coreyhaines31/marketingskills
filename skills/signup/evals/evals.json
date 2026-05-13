@@ -1,12 +1,12 @@
 {
-  "skill_name": "signup-flow-cro",
+  "skill_name": "signup",
   "evals": [
     {
       "id": 1,
       "prompt": "Audit our signup flow. We have a 3-step process: Step 1 asks for email, password, and full name. Step 2 asks for company name, company size, role, and industry. Step 3 asks for use case and how they heard about us. Current completion rate is 45%.",
-      "expected_output": "Should check for product-marketing-context.md first. Should identify the flow type (likely B2B SaaS trial). Should apply the core principles: minimize required fields (which of these are genuinely needed before they can use the product?). Should evaluate each step: Step 1 is reasonable, Step 2 fields are mostly deferrable to progressive profiling, Step 3 is entirely deferrable. Should recommend cutting to Step 1 only or at most 2 steps. Should provide audit findings in structured format (Issue, Impact, Fix, Priority). Should include Quick Wins, High-Impact Changes, and Test Hypotheses.",
+      "expected_output": "Should check for product-marketing.md first. Should identify the flow type (likely B2B SaaS trial). Should apply the core principles: minimize required fields (which of these are genuinely needed before they can use the product?). Should evaluate each step: Step 1 is reasonable, Step 2 fields are mostly deferrable to progressive profiling, Step 3 is entirely deferrable. Should recommend cutting to Step 1 only or at most 2 steps. Should provide audit findings in structured format (Issue, Impact, Fix, Priority). Should include Quick Wins, High-Impact Changes, and Test Hypotheses.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Identifies flow type",
         "Applies minimize required fields principle",
         "Evaluates each field for necessity",
@@ -33,7 +33,7 @@
     {
       "id": 3,
       "prompt": "our signup form is just email and password but we still only get 35% of visitors to complete it. what else could be wrong?",
-      "expected_output": "Should trigger on casual phrasing. Should investigate beyond just form fields since the form is already minimal. Should apply trust and friction reduction guidance: is there a 'No credit card required' message? Privacy assurance? Testimonial near the form? Should check form-level issues: error handling, password requirements clarity, submit button copy. Should also look at pre-form factors: is the value proposition clear? Is the page optimized? (cross-reference page-cro). Should provide diagnostic checklist and recommendations.",
+      "expected_output": "Should trigger on casual phrasing. Should investigate beyond just form fields since the form is already minimal. Should apply trust and friction reduction guidance: is there a 'No credit card required' message? Privacy assurance? Testimonial near the form? Should check form-level issues: error handling, password requirements clarity, submit button copy. Should also look at pre-form factors: is the value proposition clear? Is the page optimized? (cross-reference cro). Should provide diagnostic checklist and recommendations.",
       "assertions": [
         "Triggers on casual phrasing",
         "Investigates beyond form fields",
@@ -62,25 +62,25 @@
     {
       "id": 5,
       "prompt": "What experiments should we run on our signup page? We want to improve our trial signup rate.",
-      "expected_output": "Should apply the experiment ideas section. Should provide experiments across categories: form design experiments (layout, field count, SSO), copy and messaging experiments (headline, CTA text, trust elements), trial and commitment experiments (credit card required vs not, trial length), and post-submit experiments. Should prioritize experiments by likely impact. Should cross-reference ab-test-setup for proper experiment design.",
+      "expected_output": "Should apply the experiment ideas section. Should provide experiments across categories: form design experiments (layout, field count, SSO), copy and messaging experiments (headline, CTA text, trust elements), trial and commitment experiments (credit card required vs not, trial length), and post-submit experiments. Should prioritize experiments by likely impact. Should cross-reference ab-testing for proper experiment design.",
       "assertions": [
         "Applies experiment ideas section",
         "Covers form design experiments",
         "Covers copy and messaging experiments",
         "Covers trial and commitment experiments",
         "Prioritizes by likely impact",
-        "Cross-references ab-test-setup skill"
+        "Cross-references ab-testing skill"
       ],
       "files": []
     },
     {
       "id": 6,
       "prompt": "Users sign up fine but then never activate. Only 20% complete onboarding. What do we do?",
-      "expected_output": "Should recognize this is a post-signup onboarding problem, not a signup flow problem. Should defer to or cross-reference the onboarding-cro skill, which handles post-signup activation and onboarding optimization. Signup-flow-cro covers getting users through the signup form, not what happens after.",
+      "expected_output": "Should recognize this is a post-signup onboarding problem, not a signup flow problem. Should defer to or cross-reference the onboarding skill, which handles post-signup activation and onboarding optimization. Signup-flow-cro covers getting users through the signup form, not what happens after.",
       "assertions": [
         "Recognizes this as post-signup onboarding, not signup flow",
-        "References or defers to onboarding-cro skill",
-        "Explains signup-flow-cro covers the signup form, not post-signup"
+        "References or defers to onboarding skill",
+        "Explains signup covers the signup form, not post-signup"
       ],
       "files": []
     }

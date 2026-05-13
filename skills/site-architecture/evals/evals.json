@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "Help me plan the site architecture for our new SaaS marketing website. We have a homepage, product page, pricing page, about page, blog, and want to add competitor comparison pages and integration pages.",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply the page hierarchy design principles (3-click rule, flat vs deep). Should create an ASCII tree showing the full site structure. Should organize pages logically: main nav (Home, Product, Pricing, About, Blog), comparison pages section, integrations hub. Should recommend URL structure patterns for each section. Should provide navigation design recommendations (4-7 header items). Should include internal linking strategy (hub-and-spoke for comparisons and integrations). Should provide the full deliverable set: hierarchy, URL map, nav spec.",
+      "expected_output": "Should check for product-marketing.md first. Should apply the page hierarchy design principles (3-click rule, flat vs deep). Should create an ASCII tree showing the full site structure. Should organize pages logically: main nav (Home, Product, Pricing, About, Blog), comparison pages section, integrations hub. Should recommend URL structure patterns for each section. Should provide navigation design recommendations (4-7 header items). Should include internal linking strategy (hub-and-spoke for comparisons and integrations). Should provide the full deliverable set: hierarchy, URL map, nav spec.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies 3-click rule and flat vs deep principles",
         "Creates ASCII tree for site structure",
         "Organizes pages logically",

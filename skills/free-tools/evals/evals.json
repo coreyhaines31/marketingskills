@@ -1,12 +1,12 @@
 {
-  "skill_name": "free-tool-strategy",
+  "skill_name": "free-tools",
   "evals": [
     {
       "id": 1,
       "prompt": "We want to build a free tool to drive leads for our SEO software. We're thinking about an SEO audit tool or a keyword research tool. Which would be better and how should we approach it?",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply the evaluation scorecard to compare both tool ideas across dimensions (audience alignment, lead quality, build effort, SEO value, maintenance burden, competitive differentiation). Should reference the tool types from the skill (analyzers, testers). Should recommend the stronger option with rationale. Should discuss lead capture gating strategy (what's free vs what requires email). Should address MVP scope — what's the minimum valuable version. Should provide implementation recommendations.",
+      "expected_output": "Should check for product-marketing.md first. Should apply the evaluation scorecard to compare both tool ideas across dimensions (audience alignment, lead quality, build effort, SEO value, maintenance burden, competitive differentiation). Should reference the tool types from the skill (analyzers, testers). Should recommend the stronger option with rationale. Should discuss lead capture gating strategy (what's free vs what requires email). Should address MVP scope — what's the minimum valuable version. Should provide implementation recommendations.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies evaluation scorecard to compare options",
         "References tool types from the skill",
         "Recommends one option with clear rationale",
@@ -77,10 +77,10 @@
     {
       "id": 6,
       "prompt": "How do I optimize the landing page for our free tool to get more signups? The tool itself is great but nobody finds it.",
-      "expected_output": "Should recognize this is a landing page conversion optimization task, not a free tool strategy task. Should defer to or cross-reference the page-cro skill for optimizing the tool's landing page conversion rate. May provide free-tool-specific context (gating strategy, value demonstration) but should make clear that page-cro is the right skill for page conversion optimization.",
+      "expected_output": "Should recognize this is a landing page conversion optimization task, not a free tool strategy task. Should defer to or cross-reference the cro skill for optimizing the tool's landing page conversion rate. May provide free-tool-specific context (gating strategy, value demonstration) but should make clear that cro is the right skill for page conversion optimization.",
       "assertions": [
         "Recognizes this as page CRO, not free tool strategy",
-        "References or defers to page-cro skill",
+        "References or defers to cro skill",
         "May provide free-tool-specific context",
         "Does not attempt full page CRO using free tool strategy patterns"
       ],

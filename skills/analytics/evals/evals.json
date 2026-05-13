@@ -1,12 +1,12 @@
 {
-  "skill_name": "analytics-tracking",
+  "skill_name": "analytics",
   "evals": [
     {
       "id": 1,
       "prompt": "Help me set up analytics tracking for our B2B SaaS product. We use GA4 and GTM. We need to track signups, feature usage, and upgrade events.",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply the 'track for decisions' principle — ask what decisions the tracking will inform. Should use the event naming convention (object_action, lowercase with underscores). Should define essential events for SaaS: signup_completed, trial_started, feature_used, plan_upgraded, etc. Should provide GA4 implementation details with proper event parameters. Should include GTM data layer push examples. Should organize output as a tracking plan with event name, trigger, parameters, and purpose for each event.",
+      "expected_output": "Should check for product-marketing.md first. Should apply the 'track for decisions' principle — ask what decisions the tracking will inform. Should use the event naming convention (object_action, lowercase with underscores). Should define essential events for SaaS: signup_completed, trial_started, feature_used, plan_upgraded, etc. Should provide GA4 implementation details with proper event parameters. Should include GTM data layer push examples. Should organize output as a tracking plan with event name, trigger, parameters, and purpose for each event.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies 'track for decisions' principle",
         "Uses object_action naming convention",
         "Defines essential SaaS events (signup, feature usage, upgrade)",
@@ -77,10 +77,10 @@
     {
       "id": 6,
       "prompt": "Help me set up tracking for our A/B test. We want to measure which version of our pricing page converts better.",
-      "expected_output": "Should recognize this overlaps with A/B test setup, not just analytics tracking. Should defer to or cross-reference the ab-test-setup skill for the experiment design, hypothesis, and statistical analysis. May help with the tracking implementation (events to fire, parameters to include) but should make clear that ab-test-setup is the right skill for the experiment framework.",
+      "expected_output": "Should recognize this overlaps with A/B test setup, not just analytics tracking. Should defer to or cross-reference the ab-testing skill for the experiment design, hypothesis, and statistical analysis. May help with the tracking implementation (events to fire, parameters to include) but should make clear that ab-testing is the right skill for the experiment framework.",
       "assertions": [
         "Recognizes overlap with A/B test setup",
-        "References or defers to ab-test-setup skill",
+        "References or defers to ab-testing skill",
         "May help with tracking implementation specifics",
         "Does not attempt to design the full experiment"
       ],

@@ -1,12 +1,12 @@
 {
-  "skill_name": "social-content",
+  "skill_name": "social",
   "evals": [
     {
       "id": 1,
       "prompt": "Help me create a LinkedIn content strategy. I'm a SaaS founder building in public and want to grow my personal brand to drive awareness for my product. I currently have 500 followers and post maybe once a week.",
-      "expected_output": "Should check for product-marketing-context.md first. Should establish content pillars (3-5) appropriate for a SaaS founder building in public: industry insights, behind-the-scenes, educational content, personal stories, promotional (minimal). Should apply the platform quick reference for LinkedIn (3-5x/week recommended, carousels and stories perform well). Should provide hook formulas for LinkedIn posts. Should create a weekly content calendar. Should include engagement strategy (daily 30-min routine). Should address going from 1x/week to 3-5x/week with a batching strategy.",
+      "expected_output": "Should check for product-marketing.md first. Should establish content pillars (3-5) appropriate for a SaaS founder building in public: industry insights, behind-the-scenes, educational content, personal stories, promotional (minimal). Should apply the platform quick reference for LinkedIn (3-5x/week recommended, carousels and stories perform well). Should provide hook formulas for LinkedIn posts. Should create a weekly content calendar. Should include engagement strategy (daily 30-min routine). Should address going from 1x/week to 3-5x/week with a batching strategy.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Establishes 3-5 content pillars",
         "Applies LinkedIn platform guidance",
         "Provides hook formulas",
@@ -79,10 +79,10 @@
     {
       "id": 6,
       "prompt": "Write me a 5-email welcome sequence for new email subscribers who came from my LinkedIn audience.",
-      "expected_output": "Should recognize this is an email sequence task, not social content. Should defer to or cross-reference the email-sequence skill, which handles welcome sequences, drip campaigns, and lifecycle emails. May note the social-to-email bridge context but should make clear that email-sequence is the right skill for writing email sequences.",
+      "expected_output": "Should recognize this is an email sequence task, not social content. Should defer to or cross-reference the emails skill, which handles welcome sequences, drip campaigns, and lifecycle emails. May note the social-to-email bridge context but should make clear that emails is the right skill for writing email sequences.",
       "assertions": [
         "Recognizes this as email sequence work",
-        "References or defers to email-sequence skill",
+        "References or defers to emails skill",
         "Does not attempt to write email sequence using social content patterns",
         "May note social-to-email bridge context"
       ],

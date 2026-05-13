@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "Our SaaS product has a 7% monthly churn rate and we need to bring it down. We're a $49/month project management tool with about 2,000 paying customers. Can you help us design a churn prevention strategy?",
-      "expected_output": "Should check for product-marketing-context.md first. Should address both voluntary and involuntary churn. Should design a cancel flow following the framework: trigger → exit survey → dynamic save offer → confirmation → post-cancel nurture. Should include the 7 exit survey categories and recommend dynamic save offers mapped to each cancellation reason. Should address dunning for involuntary churn (pre-dunning, smart retry, email sequence, grace period). Should recommend a health score model. Should provide prioritized implementation plan.",
+      "expected_output": "Should check for product-marketing.md first. Should address both voluntary and involuntary churn. Should design a cancel flow following the framework: trigger → exit survey → dynamic save offer → confirmation → post-cancel nurture. Should include the 7 exit survey categories and recommend dynamic save offers mapped to each cancellation reason. Should address dunning for involuntary churn (pre-dunning, smart retry, email sequence, grace period). Should recommend a health score model. Should provide prioritized implementation plan.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Addresses both voluntary and involuntary churn",
         "Designs cancel flow with proper stages",
         "Includes exit survey with multiple categories",
@@ -80,10 +80,10 @@
     {
       "id": 6,
       "prompt": "We want to set up a win-back email sequence for customers who already cancelled. Can you help write those emails?",
-      "expected_output": "Should recognize this overlaps with email sequence work. Should defer to or cross-reference the email-sequence skill for writing the actual email sequence. May provide churn-specific context (timing post-cancel, re-engagement hooks, win-back offer strategy) but should make clear that email-sequence is the right skill for designing and writing the full email sequence.",
+      "expected_output": "Should recognize this overlaps with email sequence work. Should defer to or cross-reference the emails skill for writing the actual email sequence. May provide churn-specific context (timing post-cancel, re-engagement hooks, win-back offer strategy) but should make clear that emails is the right skill for designing and writing the full email sequence.",
       "assertions": [
         "Recognizes overlap with email sequence work",
-        "References or defers to email-sequence skill",
+        "References or defers to emails skill",
         "May provide churn-specific context for the sequence",
         "Does not attempt to write a full email sequence"
       ],

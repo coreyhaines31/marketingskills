@@ -1,12 +1,12 @@
 {
-  "skill_name": "page-cro",
+  "skill_name": "cro",
   "evals": [
     {
       "id": 1,
       "prompt": "Here's my SaaS landing page: https://example.com/product. We get about 5,000 visitors/month from Google Ads but only 1.2% convert to free trial signups. Can you help me figure out what's wrong?",
-      "expected_output": "Should check for product-marketing-context.md first. Should identify page type (landing page) and conversion goal (free trial signup). Should analyze across the CRO framework dimensions: value proposition clarity, headline effectiveness, CTA placement/copy/hierarchy, visual hierarchy, trust signals, objection handling, and friction points. Should provide recommendations organized as Quick Wins, High-Impact Changes, and Test Ideas. Should note the message match issue between Google Ads and landing page. Should provide 2-3 headline and CTA copy alternatives with rationale.",
+      "expected_output": "Should check for product-marketing.md first. Should identify page type (landing page) and conversion goal (free trial signup). Should analyze across the CRO framework dimensions: value proposition clarity, headline effectiveness, CTA placement/copy/hierarchy, visual hierarchy, trust signals, objection handling, and friction points. Should provide recommendations organized as Quick Wins, High-Impact Changes, and Test Ideas. Should note the message match issue between Google Ads and landing page. Should provide 2-3 headline and CTA copy alternatives with rationale.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Identifies page type as landing page",
         "Identifies conversion goal as free trial signup",
         "Analyzes value proposition clarity",
@@ -84,18 +84,18 @@
     {
       "id": 6,
       "prompt": "Our signup form has too many fields and people keep abandoning it halfway through. Can you help optimize it?",
-      "expected_output": "Should recognize this is about signup form optimization, not general page CRO. Should defer to or cross-reference the signup-flow-cro skill, which specifically handles signup, registration, and account creation flows. May provide some general friction reduction advice but should make clear that signup-flow-cro is the right skill for this task.",
+      "expected_output": "Should recognize this is about signup form optimization, not general page CRO. Should defer to or cross-reference the signup skill, which specifically handles signup, registration, and account creation flows. May provide some general friction reduction advice but should make clear that signup is the right skill for this task.",
       "assertions": [
         "Recognizes this as signup flow optimization",
-        "References or defers to signup-flow-cro skill",
-        "Does not attempt full page-cro analysis on a form"
+        "References or defers to signup skill",
+        "Does not attempt full cro analysis on a form"
       ],
       "files": []
     },
     {
       "id": 7,
       "prompt": "Review this feature page for our API monitoring tool. Most traffic comes from organic search for 'API monitoring tools'. We want them to start a free trial.",
-      "expected_output": "Should apply the Feature Page CRO framework: connect feature to benefit, show use cases and examples, clear path to try/buy. Should reference the experiments section and suggest prioritized test ideas for hero section, trust signals, and CTA variations. Should note the organic search traffic source and check for message match with search intent. Should cross-reference ab-test-setup skill for proper test implementation.",
+      "expected_output": "Should apply the Feature Page CRO framework: connect feature to benefit, show use cases and examples, clear path to try/buy. Should reference the experiments section and suggest prioritized test ideas for hero section, trust signals, and CTA variations. Should note the organic search traffic source and check for message match with search intent. Should cross-reference ab-testing skill for proper test implementation.",
       "assertions": [
         "Applies Feature Page CRO framework",
         "Connects features to benefits",
@@ -103,7 +103,7 @@
         "Provides clear path to try/buy",
         "Notes organic traffic source and search intent match",
         "Suggests specific experiment hypotheses",
-        "Cross-references ab-test-setup skill"
+        "Cross-references ab-testing skill"
       ],
       "files": []
     }

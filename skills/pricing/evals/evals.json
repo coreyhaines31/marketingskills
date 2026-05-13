@@ -1,12 +1,12 @@
 {
-  "skill_name": "pricing-strategy",
+  "skill_name": "pricing",
   "evals": [
     {
       "id": 1,
       "prompt": "Help me figure out pricing for our new SaaS product. It's a customer support platform for e-commerce stores. We're not sure whether to charge per agent, per ticket, or flat rate. Currently thinking $49-199/month range.",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply the three pricing axes framework: packaging (what's included in each tier), pricing metric (per agent, per ticket, flat rate — evaluate each), price point ($49-199 range evaluation). Should discuss value metrics and which aligns best with value delivered (per agent is common in support, but per ticket aligns with usage). Should recommend a good-better-best tier structure. Should address pricing psychology. Should provide a specific pricing recommendation with rationale.",
+      "expected_output": "Should check for product-marketing.md first. Should apply the three pricing axes framework: packaging (what's included in each tier), pricing metric (per agent, per ticket, flat rate — evaluate each), price point ($49-199 range evaluation). Should discuss value metrics and which aligns best with value delivered (per agent is common in support, but per ticket aligns with usage). Should recommend a good-better-best tier structure. Should address pricing psychology. Should provide a specific pricing recommendation with rationale.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies three pricing axes framework",
         "Evaluates multiple pricing metrics",
         "Discusses which metric aligns with value delivered",
@@ -63,25 +63,25 @@
     {
       "id": 5,
       "prompt": "What pricing psychology tactics should we use on our pricing page? We want the $79 plan to be the most popular.",
-      "expected_output": "Should apply the pricing psychology section: anchoring (show the $79 plan next to a higher-priced plan), decoy effect (make the lower plan look less valuable), visual emphasis (highlight or 'recommend' the $79 plan), charm pricing ($79 vs $80), Rule of 100 (percentage discounts below $100, dollar discounts above), loss framing (show what lower plans miss). Should provide specific pricing page design recommendations. Should cross-reference page-cro for broader pricing page optimization.",
+      "expected_output": "Should apply the pricing psychology section: anchoring (show the $79 plan next to a higher-priced plan), decoy effect (make the lower plan look less valuable), visual emphasis (highlight or 'recommend' the $79 plan), charm pricing ($79 vs $80), Rule of 100 (percentage discounts below $100, dollar discounts above), loss framing (show what lower plans miss). Should provide specific pricing page design recommendations. Should cross-reference cro for broader pricing page optimization.",
       "assertions": [
         "Applies pricing psychology tactics",
         "Applies anchoring effect",
         "Applies decoy effect or visual emphasis",
         "Applies charm pricing or Rule of 100",
         "Provides specific pricing page recommendations",
-        "Cross-references page-cro or marketing-psychology"
+        "Cross-references cro or marketing-psychology"
       ],
       "files": []
     },
     {
       "id": 6,
       "prompt": "Our pricing page conversion rate is only 1.5%. Can you review the page and suggest improvements?",
-      "expected_output": "Should recognize this is a pricing page conversion optimization task, not a pricing strategy task. Should defer to or cross-reference the page-cro skill, which handles pricing page conversion rate optimization including plan comparison clarity, CTA optimization, and trust signals. Pricing-strategy focuses on the actual pricing decisions (what to charge, how to package), not the page design.",
+      "expected_output": "Should recognize this is a pricing page conversion optimization task, not a pricing strategy task. Should defer to or cross-reference the cro skill, which handles pricing page conversion rate optimization including plan comparison clarity, CTA optimization, and trust signals. Pricing-strategy focuses on the actual pricing decisions (what to charge, how to package), not the page design.",
       "assertions": [
         "Recognizes this as pricing page CRO, not pricing strategy",
-        "References or defers to page-cro skill",
-        "Explains that pricing-strategy is about pricing decisions",
+        "References or defers to cro skill",
+        "Explains that pricing is about pricing decisions",
         "Does not attempt full page CRO audit"
       ],
       "files": []

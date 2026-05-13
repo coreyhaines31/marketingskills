@@ -1,12 +1,12 @@
 {
-  "skill_name": "paywall-upgrade-cro",
+  "skill_name": "paywalls",
   "evals": [
     {
       "id": 1,
       "prompt": "Help me design the upgrade paywall for our project management tool. Free users can have 3 projects, and we want to show an upgrade screen when they try to create a 4th project.",
-      "expected_output": "Should check for product-marketing-context.md first. Should identify this as a usage limit trigger point. Should apply the paywall screen components: headline (communicate the value of upgrading, not just the limit), value demonstration (show what they get with paid plan), plan comparison (free vs paid), social proof, CTA (specific and action-oriented), and escape hatch (option to go back). Should provide specific copy recommendations. Should address the emotional state of the user at this moment (frustrated by the limit). Should warn against anti-patterns.",
+      "expected_output": "Should check for product-marketing.md first. Should identify this as a usage limit trigger point. Should apply the paywall screen components: headline (communicate the value of upgrading, not just the limit), value demonstration (show what they get with paid plan), plan comparison (free vs paid), social proof, CTA (specific and action-oriented), and escape hatch (option to go back). Should provide specific copy recommendations. Should address the emotional state of the user at this moment (frustrated by the limit). Should warn against anti-patterns.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Identifies as usage limit trigger",
         "Applies paywall screen components framework",
         "Includes headline, value demo, comparison, social proof, CTA",
@@ -80,11 +80,11 @@
     {
       "id": 6,
       "prompt": "Can you help me optimize our public pricing page? We want more visitors to choose the Pro plan over the Basic plan.",
-      "expected_output": "Should recognize this is a public pricing page optimization task, not an in-app paywall task. Should defer to or cross-reference the page-cro skill for pricing page CRO. Paywall-upgrade-cro specifically handles in-app upgrade prompts for existing users, not public-facing pricing pages.",
+      "expected_output": "Should recognize this is a public pricing page optimization task, not an in-app paywall task. Should defer to or cross-reference the cro skill for pricing page CRO. Paywall-upgrade-cro specifically handles in-app upgrade prompts for existing users, not public-facing pricing pages.",
       "assertions": [
         "Recognizes this as public pricing page optimization",
-        "References or defers to page-cro skill",
-        "Explains that paywall-upgrade-cro is for in-app upgrade prompts",
+        "References or defers to cro skill",
+        "Explains that paywalls is for in-app upgrade prompts",
         "Does not attempt public pricing page optimization"
       ],
       "files": []

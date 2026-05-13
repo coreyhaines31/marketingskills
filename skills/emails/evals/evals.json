@@ -1,12 +1,12 @@
 {
-  "skill_name": "email-sequence",
+  "skill_name": "emails",
   "evals": [
     {
       "id": 1,
       "prompt": "Create a welcome email sequence for new users who sign up for our project management tool's free trial. The trial is 14 days. We want to get them to their aha moment (creating their first project and inviting a team member).",
-      "expected_output": "Should check for product-marketing-context.md first. Should create a welcome sequence (5-7 emails) following the core principles: one email one job, value before ask. Should map each email to a specific goal in the 14-day trial journey. Should include timing/delays between emails. Each email should follow the email copy structure: hook → context → value → CTA → sign-off. Should include subject lines following the subject line strategy. Should align sequence with the aha moment (first project + team invite). Output should follow the structured format with sequence overview and per-email specs.",
+      "expected_output": "Should check for product-marketing.md first. Should create a welcome sequence (5-7 emails) following the core principles: one email one job, value before ask. Should map each email to a specific goal in the 14-day trial journey. Should include timing/delays between emails. Each email should follow the email copy structure: hook → context → value → CTA → sign-off. Should include subject lines following the subject line strategy. Should align sequence with the aha moment (first project + team invite). Output should follow the structured format with sequence overview and per-email specs.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Creates 5-7 email welcome sequence",
         "Follows one email one job principle",
         "Maps emails to trial timeline (14 days)",
@@ -80,10 +80,10 @@
     {
       "id": 6,
       "prompt": "Help me optimize our post-signup onboarding experience. Users sign up but 60% never complete setup.",
-      "expected_output": "Should recognize this is an in-app onboarding optimization task, not an email sequence task. Should defer to or cross-reference the onboarding-cro skill, which handles in-app onboarding flows, checklists, and activation optimization. May offer to help with the email component of onboarding but should make clear that onboarding-cro is the primary skill for this task.",
+      "expected_output": "Should recognize this is an in-app onboarding optimization task, not an email sequence task. Should defer to or cross-reference the onboarding skill, which handles in-app onboarding flows, checklists, and activation optimization. May offer to help with the email component of onboarding but should make clear that onboarding is the primary skill for this task.",
       "assertions": [
         "Recognizes this as in-app onboarding optimization",
-        "References or defers to onboarding-cro skill",
+        "References or defers to onboarding skill",
         "Does not attempt full onboarding redesign using email patterns",
         "May offer email component support"
       ],

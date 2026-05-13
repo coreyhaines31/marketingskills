@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "Help me create a sales deck for our B2B SaaS product. We sell an employee engagement platform to HR directors at companies with 500-5000 employees. Our main differentiator is real-time pulse surveys with AI-powered insights.",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply the 10-12 slide sales deck framework: Title, Problem/Stakes, Current Solutions Failing, Vision, Product/Solution, How It Works, Proof (case studies/metrics), Pricing, Why Now, and Next Steps. Should tailor the deck to the HR director audience and employee engagement space. Should incorporate the differentiator (real-time pulse surveys + AI insights). Should provide slide-by-slide content recommendations with speaker notes. Should recommend visual direction.",
+      "expected_output": "Should check for product-marketing.md first. Should apply the 10-12 slide sales deck framework: Title, Problem/Stakes, Current Solutions Failing, Vision, Product/Solution, How It Works, Proof (case studies/metrics), Pricing, Why Now, and Next Steps. Should tailor the deck to the HR director audience and employee engagement space. Should incorporate the differentiator (real-time pulse surveys + AI insights). Should provide slide-by-slide content recommendations with speaker notes. Should recommend visual direction.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies 10-12 slide framework",
         "Includes Problem, Solution, Proof, Pricing, Next Steps slides",
         "Tailors to HR director audience",
@@ -78,10 +78,10 @@
     {
       "id": 6,
       "prompt": "We need a public comparison page showing how we stack up against Zendesk and Intercom.",
-      "expected_output": "Should recognize this is a public-facing competitor comparison page, not internal sales collateral. Should defer to or cross-reference the competitor-alternatives skill, which handles public comparison and alternatives pages. Sales-enablement covers internal materials (battle cards, objection handling) while competitor-alternatives handles SEO-focused public comparison content.",
+      "expected_output": "Should recognize this is a public-facing competitor comparison page, not internal sales collateral. Should defer to or cross-reference the competitors skill, which handles public comparison and alternatives pages. Sales-enablement covers internal materials (battle cards, objection handling) while competitors handles SEO-focused public comparison content.",
       "assertions": [
         "Recognizes this as a public comparison page",
-        "References or defers to competitor-alternatives skill",
+        "References or defers to competitors skill",
         "Explains the distinction between internal and public collateral",
         "Does not attempt public SEO comparison page using sales enablement patterns"
       ],

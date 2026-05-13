@@ -1,12 +1,12 @@
 {
-  "skill_name": "onboarding-cro",
+  "skill_name": "onboarding",
   "evals": [
     {
       "id": 1,
       "prompt": "Help me optimize our onboarding flow. We have a project management tool and only 30% of trial users create their first project within the first week. We need to get them to value faster.",
-      "expected_output": "Should check for product-marketing-context.md first. Should start by defining the activation/aha moment — in this case, creating a first project. Should evaluate the current time-to-value and identify friction points. Should recommend an onboarding flow approach (product-first, guided setup, or value-first). Should apply the checklist pattern (3-7 items for onboarding completion). Should address empty states as opportunities to guide users. Should provide experiment ideas for testing improvements. Should include measurement metrics.",
+      "expected_output": "Should check for product-marketing.md first. Should start by defining the activation/aha moment — in this case, creating a first project. Should evaluate the current time-to-value and identify friction points. Should recommend an onboarding flow approach (product-first, guided setup, or value-first). Should apply the checklist pattern (3-7 items for onboarding completion). Should address empty states as opportunities to guide users. Should provide experiment ideas for testing improvements. Should include measurement metrics.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Defines the activation/aha moment",
         "Evaluates time-to-value",
         "Recommends onboarding flow approach",
@@ -36,14 +36,14 @@
     {
       "id": 3,
       "prompt": "our users sign up but then never come back. like 50% don't even log in a second time. what do we do?",
-      "expected_output": "Should trigger on casual phrasing. Should address this as a stalled users problem. Should apply the handling stalled users framework: identify drop-off points, re-engagement triggers, multi-channel outreach (email, in-app, push). Should investigate root causes: is the first-run experience too complex? Is value not immediately apparent? Is the setup too long? Should recommend immediate improvements to the first session experience. Should suggest multi-channel onboarding (email sequences to bring them back). Should cross-reference email-sequence for re-engagement emails.",
+      "expected_output": "Should trigger on casual phrasing. Should address this as a stalled users problem. Should apply the handling stalled users framework: identify drop-off points, re-engagement triggers, multi-channel outreach (email, in-app, push). Should investigate root causes: is the first-run experience too complex? Is value not immediately apparent? Is the setup too long? Should recommend immediate improvements to the first session experience. Should suggest multi-channel onboarding (email sequences to bring them back). Should cross-reference emails for re-engagement emails.",
       "assertions": [
         "Triggers on casual phrasing",
         "Applies stalled users framework",
         "Identifies potential root causes for drop-off",
         "Recommends first-session experience improvements",
         "Suggests multi-channel onboarding",
-        "Cross-references email-sequence for re-engagement",
+        "Cross-references emails for re-engagement",
         "Provides specific re-engagement triggers"
       ],
       "files": []
@@ -79,11 +79,11 @@
     {
       "id": 6,
       "prompt": "Our signup form has 8 fields and people keep dropping off. Can you help us fix the signup flow?",
-      "expected_output": "Should recognize this is a signup flow optimization task, not post-signup onboarding. Should defer to or cross-reference the signup-flow-cro skill, which handles signup form optimization, field reduction, and registration flow design. Onboarding-cro covers what happens after signup. Should make this distinction clear.",
+      "expected_output": "Should recognize this is a signup flow optimization task, not post-signup onboarding. Should defer to or cross-reference the signup skill, which handles signup form optimization, field reduction, and registration flow design. Onboarding-cro covers what happens after signup. Should make this distinction clear.",
       "assertions": [
         "Recognizes this as signup flow optimization, not onboarding",
-        "References or defers to signup-flow-cro skill",
-        "Explains that onboarding-cro covers post-signup",
+        "References or defers to signup skill",
+        "Explains that onboarding covers post-signup",
         "Does not attempt signup form redesign using onboarding patterns"
       ],
       "files": []

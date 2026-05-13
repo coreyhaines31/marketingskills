@@ -1,12 +1,12 @@
 {
-  "skill_name": "schema-markup",
+  "skill_name": "schema",
   "evals": [
     {
       "id": 1,
       "prompt": "Add schema markup to our SaaS product's homepage. We're a project management tool called TaskFlow. We need Organization schema and any other relevant types.",
-      "expected_output": "Should check for product-marketing-context.md first. Should implement Organization schema in JSON-LD format with all required and recommended properties (name, url, logo, description, sameAs for social profiles). Should recommend additional schema types for a SaaS homepage: WebSite (with SearchAction if applicable), SoftwareApplication or Product. Should use @graph for multiple schema types on one page. Should provide the complete JSON-LD code ready to implement. Should recommend validation with Google's Rich Results Test and Schema.org validator.",
+      "expected_output": "Should check for product-marketing.md first. Should implement Organization schema in JSON-LD format with all required and recommended properties (name, url, logo, description, sameAs for social profiles). Should recommend additional schema types for a SaaS homepage: WebSite (with SearchAction if applicable), SoftwareApplication or Product. Should use @graph for multiple schema types on one page. Should provide the complete JSON-LD code ready to implement. Should recommend validation with Google's Rich Results Test and Schema.org validator.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Implements Organization schema in JSON-LD",
         "Includes required and recommended properties",
         "Recommends additional relevant schema types",

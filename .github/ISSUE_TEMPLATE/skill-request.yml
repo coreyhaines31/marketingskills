@@ -69,6 +69,6 @@ body:
     attributes:
       label: Related existing skills
       description: Are there existing skills this relates to or differs from?
-      placeholder: "Similar to page-cro but focused on..."
+      placeholder: "Similar to cro but focused on..."
     validations:
       required: false
