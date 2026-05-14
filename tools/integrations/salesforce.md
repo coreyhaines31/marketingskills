@@ -147,4 +147,4 @@ ORDER BY CreatedDate DESC
 
 - emails
 - analytics
-- paid-ads
+- ads

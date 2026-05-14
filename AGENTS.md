@@ -189,7 +189,7 @@ Skills reference relevant tools for implementation. For example:
 - `referrals` skill → rewardful, tolt, dub-co, mention-me guides
 - `analytics` skill → ga4, mixpanel, segment guides
 - `emails` skill → customer-io, mailchimp, resend guides
-- `paid-ads` skill → google-ads, meta-ads, linkedin-ads guides
+- `ads` skill → google-ads, meta-ads, linkedin-ads guides
 
 For tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion), Composio provides MCP access via a single server. See `tools/integrations/composio.md` for setup and `tools/composio/marketing-tools.md` for the full toolkit mapping.
 

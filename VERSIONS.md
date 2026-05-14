@@ -29,7 +29,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-ideas | 2.0.0 | 2026-05-05 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | onboarding | 2.0.0 | 2026-05-05 |
-| paid-ads | 2.0.0 | 2026-05-05 |
+| ads | 2.0.0 | 2026-05-05 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.0.0 | 2026-05-05 |
@@ -51,7 +51,7 @@ Current versions of all skills. Agents can compare against local versions to che
 
 **Breaking changes** — Users must reinstall skills after this update.
 
-#### Skill Renames (16)
+#### Skill Renames (17)
 | Old Name | New Name |
 |----------|----------|
 | ab-test-setup | ab-testing |
@@ -62,6 +62,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | free-tool-strategy | free-tools |
 | launch-strategy | launch |
 | onboarding-cro | onboarding |
+| paid-ads | ads |
 | paywall-upgrade-cro | paywalls |
 | popup-cro | popups |
 | pricing-strategy | pricing |
@@ -99,7 +100,7 @@ Current versions of all skills. Agents can compare against local versions to che
 - Added `directory-submissions` skill for Product Hunt, G2, AI directories, and backlink strategy
 - Added `competitor-profiling` skill for competitive intelligence research
 - Added international SEO & localization section to `seo-audit` (1.2.0)
-- Added conversion tracking reference to `paid-ads` (cross-platform pixel setup)
+- Added conversion tracking reference to `ads` (cross-platform pixel setup)
 - Added Zapier SDK integration for 8,000+ app access
 - Fixed plugin loading: removed `./` prefix from marketplace.json skill paths (#243)
 - Hardened CLI tools: Supermetrics API key moved to header, ZoomInfo JWT masked by default

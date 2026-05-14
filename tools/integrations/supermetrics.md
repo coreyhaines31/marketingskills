@@ -139,7 +139,7 @@ GET https://api.supermetrics.com/enterprise/v2/users
 ## Relevant Skills
 
 - analytics
-- paid-ads
+- ads
 - seo-audit
 - content-strategy
 - social

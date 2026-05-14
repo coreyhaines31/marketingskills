@@ -30,7 +30,7 @@ Skills reference each other and build on shared context. The `product-marketing`
 │  SEO &   │ │   CRO    │ │Content & │ │  Paid &    │ │ Growth & │ │  Sales &    │ │ Strategy  │
 │ Content  │ │          │ │   Copy   │ │Measurement │ │Retention │ │    GTM      │ │           │
 ├──────────┤ ├──────────┤ ├──────────┤ ├────────────┤ ├──────────┤ ├─────────────┤ ├───────────┤
-│seo-audit │ │cro       │ │copywritng│ │paid-ads    │ │referrals │ │revops       │ │mktg-ideas │
+│seo-audit │ │cro       │ │copywritng│ │ads    │ │referrals │ │revops       │ │mktg-ideas │
 │ai-seo    │ │signup    │ │copy-edit │ │ad-creative │ │free-tools│ │sales-enable │ │mktg-psych │
 │site-arch │ │onboarding│ │cold-email│ │ab-testing  │ │churn-    │ │launch       │ │customer-  │
 │programm  │ │popups    │ │emails    │ │analytics   │ │ prevent  │ │pricing      │ │ research  │
@@ -80,7 +80,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [marketing-ideas](skills/marketing-ideas/) | When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the... |
 | [marketing-psychology](skills/marketing-psychology/) | When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when... |
 | [onboarding](skills/onboarding/) | When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also... |
-| [paid-ads](skills/paid-ads/) | When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X,... |
+| [ads](skills/ads/) | When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X,... |
 | [paywalls](skills/paywalls/) | When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use... |
 | [popups](skills/popups/) | When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also... |
 | [pricing](skills/pricing/) | When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions... |
@@ -231,7 +231,7 @@ You can also invoke skills directly:
 - `schema` - Structured data
 
 ### Paid & Distribution
-- `paid-ads` - Google, Meta, LinkedIn ad campaigns
+- `ads` - Google, Meta, LinkedIn ad campaigns
 - `ad-creative` - Bulk ad creative generation and iteration
 - `social` - Social media scheduling and strategy
 

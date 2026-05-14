@@ -77,12 +77,12 @@
     {
       "id": 6,
       "prompt": "Should I run a Custom Product Page experiment on iOS for our paid search campaigns?",
-      "expected_output": "Should reference Apple-specific facts: Custom Product Pages (CPP) — up to 70 — appear in organic search since July 2025 with +5.9% average conversion lift. Should explain CPPs let you test variants of screenshots, video, and promotional text against specific traffic sources (e.g., paid search keywords). Should recommend matching CPP variants to the keyword intent for the campaign. Should cross-reference the ab-testing skill for proper experiment design and the paid-ads skill for the campaign side. Should note this is an iOS-only feature (Google Play has Store Listing Experiments and Custom Store Listings as equivalents).",
+      "expected_output": "Should reference Apple-specific facts: Custom Product Pages (CPP) — up to 70 — appear in organic search since July 2025 with +5.9% average conversion lift. Should explain CPPs let you test variants of screenshots, video, and promotional text against specific traffic sources (e.g., paid search keywords). Should recommend matching CPP variants to the keyword intent for the campaign. Should cross-reference the ab-testing skill for proper experiment design and the ads skill for the campaign side. Should note this is an iOS-only feature (Google Play has Store Listing Experiments and Custom Store Listings as equivalents).",
       "assertions": [
         "Identifies Custom Product Pages as iOS-specific",
         "Cites +5.9% conversion lift benchmark",
         "Explains CPP can match traffic source intent",
-        "Cross-references ab-testing or paid-ads skill",
+        "Cross-references ab-testing or ads skill",
         "Notes Google Play equivalents"
       ],
       "files": []

@@ -186,5 +186,5 @@ Agent uses `SALESFORCE` to read leads and `SLACK` to post messages.
 
 - analytics (cross-platform data via Composio connectors)
 - emails (ActiveCampaign, Klaviyo access)
-- paid-ads (Meta Ads, LinkedIn Ads MCP access)
+- ads (Meta Ads, LinkedIn Ads MCP access)
 - referrals (Shopify integration)

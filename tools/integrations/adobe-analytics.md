@@ -153,4 +153,4 @@ s.tl(this, 'o', 'Button Click');
 
 - analytics
 - ab-testing
-- paid-ads
+- ads

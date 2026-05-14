@@ -154,6 +154,6 @@ LIMIT 10
 
 ## Relevant Skills
 
-- paid-ads
+- ads
 - analytics
 - cro

@@ -146,5 +146,5 @@ GET https://api.similarweb.com/v1/website/example.com/geo/traffic-by-country?api
 
 - seo-audit
 - competitors
-- paid-ads
+- ads
 - content-strategy

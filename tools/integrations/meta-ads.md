@@ -142,6 +142,6 @@ access_token={access_token}
 
 ## Relevant Skills
 
-- paid-ads
+- ads
 - analytics
 - cro

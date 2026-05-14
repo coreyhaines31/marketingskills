@@ -157,4 +157,4 @@ const analytics = await dub.analytics.retrieve({
 
 - referrals
 - analytics
-- paid-ads
+- ads

@@ -156,4 +156,4 @@ analytics.page('Pricing');
 
 - analytics
 - emails
-- paid-ads
+- ads

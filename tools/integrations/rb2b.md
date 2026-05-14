@@ -101,7 +101,7 @@ Prevent outreach to:
 - cold-email
 - revops
 - customer-research
-- paid-ads
+- ads
 
 ## Sources
 

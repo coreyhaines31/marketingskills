@@ -211,7 +211,7 @@ Don't waste the thank you page. After they've converted:
 - Google Ads for high-intent lead magnets (templates, tools)
 - LinkedIn for B2B lead magnets
 - Retarget blog visitors with lead magnet ads
-- **See paid-ads** for campaign strategy
+- **See ads** for campaign strategy
 
 ### Partner Co-Promotion
 
@@ -306,5 +306,5 @@ When creating a lead magnet strategy, provide:
 - **cro**: For optimizing capture forms
 - **content-strategy**: For content planning and topic selection
 - **analytics**: For measuring lead magnet performance
-- **paid-ads**: For paid promotion of lead magnets
+- **ads**: For paid promotion of lead magnets
 - **social**: For social media promotion
