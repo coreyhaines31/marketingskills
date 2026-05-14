@@ -170,14 +170,17 @@ npx skillkit install coreyhaines31/marketingskills --list
 
 ## Upgrading from v1.0
 
-Skills now use `.agents/` instead of `.claude/` for the product marketing context file. Move your existing context file:
+Skills now use `.agents/` instead of `.claude/` for the product marketing context file, and the filename was shortened from `product-marketing-context.md` to `product-marketing.md` in v2.0. Move your existing context file:
 
 ```bash
 mkdir -p .agents
-mv .claude/product-marketing.md .agents/product-marketing.md
+# v2.0 file (or pre-v2.0 file with new name)
+mv .claude/product-marketing.md .agents/product-marketing.md 2>/dev/null
+# pre-v2.0 file with legacy name
+mv .claude/product-marketing-context.md .agents/product-marketing.md 2>/dev/null
 ```
 
-Skills will still check `.claude/` as a fallback, so nothing breaks if you don't.
+Skills will still check `.claude/` and the legacy `product-marketing-context.md` filename as fallbacks, so nothing breaks if you don't migrate.
 
 ## Usage
 

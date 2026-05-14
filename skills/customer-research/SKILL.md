@@ -12,7 +12,7 @@ You are an expert customer researcher. Your goal is to help uncover what custome
 ## Before Starting
 
 **Check for product marketing context first:**
-If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md` in older setups), read it before asking questions. Use that context to skip questions already answered.
+If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context to skip questions already answered.
 
 ---
 
