@@ -1,0 +1,93 @@
+{
+  "skill_name": "social-benchmarking",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Every Friday I send a competitor social pulse. Compare our LinkedIn, Instagram, and Facebook activity against these 5 competitors for the last 7 days.",
+      "expected_output": "Should check for product-marketing.md first. Should use the same seven-day window for every account and compare like-for-like platforms rather than blending platform metrics into one leaderboard. Should compare cadence, format mix, engagement efficiency, follower or audience context when available, top post patterns, gaps, and practical tests for the next week.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Uses the same 7-day window for all accounts",
+        "Compares like-for-like platforms",
+        "Avoids a blended cross-platform leaderboard",
+        "Compares cadence and format mix",
+        "Compares engagement efficiency",
+        "Identifies top post patterns and gaps",
+        "Recommends tests for the next week"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Our CEO wants one slide: are we ahead or behind competitors on LinkedIn?",
+      "expected_output": "Should produce an executive read without a simplistic winner ranking. Should normalize by followers, posts, reach, or impressions when those denominators are available, state the denominator used for each rate, and label confidence if public or partial data limits the comparison. Should summarize where the user is ahead, behind, or inconclusive and identify the most important action to take next.",
+      "assertions": [
+        "Avoids simplistic winner ranking",
+        "Normalizes by available denominators",
+        "States denominators used for rates",
+        "Labels confidence and data limitations",
+        "Summarizes ahead, behind, and inconclusive areas",
+        "Provides an executive-ready read",
+        "Identifies the most important next action"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "A competitor's launch video blew up on YouTube yesterday. Should we copy their approach?",
+      "expected_output": "Should separate a one-off spike from a repeatable content pattern. Should analyze the video's title or hook, thumbnail, format, proof points, CTA, timing, audience fit, and relationship to the competitor's launch narrative. Should recommend adapting the underlying pattern to the user's positioning and audience instead of copying the content directly.",
+      "assertions": [
+        "Separates one-off spike from repeatable pattern",
+        "Analyzes title or hook",
+        "Analyzes thumbnail and format",
+        "Analyzes proof points and CTA",
+        "Considers timing and audience fit",
+        "Connects the post to the launch narrative",
+        "Recommends adapting rather than copying"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "We're heavy on Instagram. Three competitors are on Instagram too, but one is LinkedIn-only. Compare everyone.",
+      "expected_output": "Should recommend like-for-like platform comparisons and refuse to produce a single cross-platform engagement-rate leaderboard that mixes Instagram and LinkedIn. Should produce per-platform scorecards, explain why metric definitions and audience behavior are not directly comparable, and suggest adding platform-matched competitors if the user wants a LinkedIn benchmark.",
+      "assertions": [
+        "Requires like-for-like platform comparison",
+        "Refuses cross-platform engagement-rate ranking",
+        "Produces per-platform scorecards",
+        "Explains metric-definition differences",
+        "Explains audience behavior differences",
+        "Suggests adding platform-matched competitors"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I grabbed screenshots of 6 competitor posts from the last month. Who is winning?",
+      "expected_output": "Should call out that 6 screenshot posts from a month is a small and likely uneven sample. Should label confidence as low, avoid declaring a winner, and separate visible observations from rankings. Should recommend collecting a larger, consistent sample across the same date range, platform, and metrics before drawing conclusions.",
+      "assertions": [
+        "Labels sample-size limitations",
+        "Labels confidence as low",
+        "Avoids declaring a winner",
+        "Separates visible observations from rankings",
+        "Recommends a larger consistent sample",
+        "Specifies matching date range, platform, and metrics"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Add this new TikTok competitor to our weekly benchmark tracker and include them in the next report.",
+      "expected_output": "Should treat modifying a tracker or external system as a write action requiring confirmation before proceeding. Should confirm the competitor profile, platform, benchmark set, and reporting window. Should explain how the new competitor will be included in future comparisons and ensure they are compared only against platform-matched accounts.",
+      "assertions": [
+        "Identifies tracker modification as a write action",
+        "Requires confirmation before proceeding",
+        "Confirms competitor profile and platform",
+        "Confirms benchmark set and reporting window",
+        "Explains how the competitor enters future reports",
+        "Maintains platform-matched comparisons"
+      ],
+      "files": []
+    }
+  ]
+}
