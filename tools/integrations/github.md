@@ -135,7 +135,8 @@ node tools/clis/github-prospects.js rate-limit
 ```
 
 **Flags**:
-- `--limit N`: cap total results
+- `--limit N`: cap total results pulled from the list endpoint
+- `--target N`: when filtering with `--with-*`, stop enriching as soon as N users match (saves quota on restrictive filters)
 - `--enrich`: fetch full profile per user (1 extra request each)
 - `--with-email` / `--with-company` / `--with-blog`: filter to users with these fields set (implies `--enrich`)
 - `--type User|Organization`: filter by account type
