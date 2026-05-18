@@ -43,9 +43,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | social | 2.0.0 | 2026-05-05 |
+| social-skill-gap | 1.0.0 | 2026-05-15 |
 | video | 2.0.0 | 2026-05-05 |
 
 ## Recent Changes
+
+### 2026-05-15
+- Added `social-skill-gap` skill for honest, data-driven social media skill gap audits: ranking creator weaknesses across hook strength, consistency, format fit, CTA clarity, niche authority, analytics literacy, and monetization — with personalized improvement plans
+- Total skills: 42
 
 ### 2.0.0 (2026-05-05)
 

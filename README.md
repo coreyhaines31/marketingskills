@@ -37,6 +37,8 @@ Skills reference each other and build on shared context. The `product-marketing`
 │schema    │ │paywalls  │ │social    │ │            │ │community │ │competitors  │ │           │
 │content   │ │          │ │video     │ │            │ │lead-magnt│ │comp-profile │ │           │
 │aso       │ │          │ │image     │ │            │ │co-mktg   │ │directory    │ │           │
+│          │ │          │ │          │ │            │ │social-   │ │             │ │           │
+│          │ │          │ │          │ │            │ │ skill-gap│ │             │ │           │
 └────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬──────┘ └────┬─────┘ └──────┬──────┘ └─────┬─────┘
      │            │            │              │             │              │              │
      └────────────┴─────┬──────┴──────────────┴─────────────┴──────────────┴──────────────┘
@@ -94,6 +96,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [signup](skills/signup/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
 | [site-architecture](skills/site-architecture/) | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal... |
 | [social](skills/social/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
+| [social-skill-gap](skills/social-skill-gap/) | When the user wants an honest, data-driven diagnosis of where they are weakest in social media content creation or content strategy, and how to fix it... |
 | [video](skills/video/) | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use... |
 <!-- SKILLS:END -->
 
@@ -263,6 +266,7 @@ You can also invoke skills directly:
 - `cold-email` - B2B cold outreach emails and sequences
 - `emails` - Automated email flows
 - `social` - Social media content
+- `social-skill-gap` - Honest, data-driven skill gap audit for social media creators and content strategists
 - `image` - AI image generation, design tools, and optimization
 
 ### SEO & Discovery
@@ -281,6 +285,7 @@ You can also invoke skills directly:
 ### Measurement & Testing
 - `analytics` - Event tracking setup
 - `ab-testing` - Experiment design
+- `social-skill-gap` - Data-driven audit of social media skill gaps and improvement plan
 
 ### Retention
 - `churn-prevention` - Cancel flows, save offers, dunning, payment recovery
@@ -289,6 +294,7 @@ You can also invoke skills directly:
 - `co-marketing` - Partner identification and joint campaigns
 - `free-tools` - Marketing tools and calculators
 - `referrals` - Referral and affiliate programs
+- `social-skill-gap` - Diagnose content creation weaknesses blocking growth
 
 ### Strategy & Monetization
 - `marketing-ideas` - 140 SaaS marketing ideas

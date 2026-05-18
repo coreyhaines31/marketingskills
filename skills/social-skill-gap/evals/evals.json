@@ -1,0 +1,77 @@
+{
+  "skill": "social-skill-gap",
+  "version": "1.0.0",
+  "evals": [
+    {
+      "id": "ssg-001",
+      "description": "Identifies hook weakness as top gap when impressions are high but watch time and dwell time are low",
+      "prompt": "My TikTok impressions are around 50k/month but my average watch time is only 2 seconds and engagement rate is 1.2%. I mostly start my videos with 'Hey guys, today I want to talk about...'",
+      "expected_behaviors": [
+        "Ranks hook strength as the #1 skill gap",
+        "Cites the low watch time and generic opener as evidence",
+        "Does not guess other gaps without data",
+        "Provides concrete hook fix steps, not generic advice",
+        "States a leading indicator to watch within 30 days"
+      ]
+    },
+    {
+      "id": "ssg-002",
+      "description": "Ranks monetization gap highest when creator has strong reach but no income",
+      "prompt": "I have 45k Instagram followers and my posts average 8% engagement rate. I've been consistent for 2 years. But I've only landed 3 paid brand deals total and they were all under $200. Why am I not making money?",
+      "expected_behaviors": [
+        "Monetization and offer alignment is ranked as a top gap",
+        "Hook strength and format fit are not flagged as primary gaps given strong engagement data",
+        "Asks for or references portfolio, niche signal, and rate structure",
+        "Improvement plan is specific to converting audience into income",
+        "Does not simply say 'post more'"
+      ]
+    },
+    {
+      "id": "ssg-003",
+      "description": "Flags analytics literacy gap when creator cannot describe their own performance data",
+      "prompt": "I post 4 times a week on LinkedIn and have been for 8 months. I don't really check analytics much. I just feel like my content isn't growing. Can you tell me what I'm doing wrong?",
+      "expected_behaviors": [
+        "Identifies analytics literacy as a confirmed gap",
+        "Asks for performance data before ranking other gaps",
+        "Does not fabricate gap rankings without evidence",
+        "Explains what data to collect and how to use it",
+        "States clearly that other gaps cannot be ranked without data"
+      ]
+    },
+    {
+      "id": "ssg-004",
+      "description": "Limits ranked gaps to top 3 only and does not prescribe all 7 dimensions",
+      "prompt": "I post daily on Instagram Reels. My engagement rate is 3.5%, saves are around 1% of reach, my niche is home organization. I get decent views but barely any follows. I've been doing this 6 months. I want more brand deals.",
+      "expected_behaviors": [
+        "Ranks no more than 3 gaps",
+        "Prioritizes gaps relevant to brand deals as stated goal",
+        "Does not list all 7 dimensions as gaps without evidence",
+        "Identifies low follow conversion as a CTA or niche authority signal",
+        "Provides 30-day focus action"
+      ]
+    },
+    {
+      "id": "ssg-005",
+      "description": "Does not confuse this skill with content creation — redirects to social skill for creation tasks",
+      "prompt": "Can you write me some TikTok hooks and a content calendar for next month?",
+      "expected_behaviors": [
+        "Does not write hooks or a content calendar",
+        "Explains that social-skill-gap is for diagnosing weakness, not creating content",
+        "Redirects to the social skill for content creation",
+        "Asks if the user wants a gap audit instead"
+      ]
+    },
+    {
+      "id": "ssg-006",
+      "description": "Protects existing strengths in the improvement plan",
+      "prompt": "My LinkedIn posts consistently get 5% engagement and I've grown from 2k to 18k followers in 12 months. But I never post a CTA and I rarely reply to comments. I want to turn this into client leads.",
+      "expected_behaviors": [
+        "Identifies CTA gap and low engagement follow-through as key gaps",
+        "Notes follower growth and engagement as a strength to protect",
+        "Does not recommend changing what is working",
+        "Improvement plan is additive, not a full reset",
+        "Improvement steps connect to client lead generation, not just vanity metrics"
+      ]
+    }
+  ]
+}
