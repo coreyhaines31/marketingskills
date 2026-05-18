@@ -35,6 +35,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.0.0 | 2026-05-05 |
 | product-marketing | 2.0.0 | 2026-05-05 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
+| prospecting | 1.0.0 | 2026-05-15 |
 | referrals | 2.0.0 | 2026-05-05 |
 | revops | 2.0.0 | 2026-05-05 |
 | sales-enablement | 2.0.0 | 2026-05-05 |
@@ -46,6 +47,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.0 | 2026-05-05 |
 
 ## Recent Changes
+
+### 2.1.0 (2026-05-15)
+- Added `prospecting` skill for building qualified prospect lists across SaaS, B2B, and local SMB motions. Includes shared 5-phase framework (ICP → discovery → qualify → score → output) plus branch-specific references (saas-prospecting.md, b2b-prospecting.md, local-prospecting.md), data-sources guide covering Apollo / Clay / ZoomInfo / Clearbit / Hunter / Snov / Truelist / RB2B / Sales Nav / BuiltWith / Crunchbase, and compliance reference (CAN-SPAM, GDPR, CASL, platform ToS).
+- Added `truelist` tool integration for email deliverability validation.
+- Total skills: 41
 
 ### 2.0.0 (2026-05-05)
 
