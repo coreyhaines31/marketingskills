@@ -56,8 +56,21 @@ Combine 2+ sources for cross-verification.
 
 - **Job boards** (LinkedIn Jobs, Indeed, AngelList): role openings as signals
 - **RB2B / Clearbit Reveal**: visitor identification (warm anonymous traffic)
+- **GitHub stars/forks of competitor or adjacent repos**: developer-level intent signal (see `tools/integrations/github.md` and the `github-prospects.js` CLI). Especially strong for dev-tool SaaS — a developer who starred `vercel/next.js` last week is in-market for adjacent Next.js infrastructure.
 - **Recent blog posts / changelog**: product direction signals
 - **G2 reviews mentioning competitor switches**: explicit dissatisfaction signal
+
+#### GitHub prospecting pattern (when audience is developers)
+
+For dev-tool SaaS, GitHub is one of the highest-quality discovery channels:
+
+1. Identify 3–5 "anchor" repos: your direct competitors, your category leader, complementary tools your buyer uses
+2. Pull stargazers (or forks for stronger intent) via `node tools/clis/github-prospects.js stargazers <owner/repo> --enrich --with-company --format csv`
+3. Filter to users with `company` set — these are the easiest to enrich downstream
+4. Pair with Apollo/Clay/Hunter to lookup email by name + company
+5. Validate with Truelist before adding to outreach list
+
+Tradeoffs: GitHub yields email for only ~5–20% of users directly. The strength is the signal quality — a stargazer of a niche dev tool is genuinely in-market in a way Apollo firmographics alone can't tell you.
 
 ---
 

@@ -56,6 +56,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | hunter | Email Outreach | ✓ | - | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
 | truelist | Email Verification | ✓ | - | - | - | [truelist.md](integrations/truelist.md) |
+| github | Developer Intent | ✓ | - | [✓](clis/github-prospects.js) | ✓ | [github.md](integrations/github.md) |
 | lemlist | Email Outreach | ✓ | - | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |
 | instantly | Email Outreach | ✓ | - | [✓](clis/instantly.js) | - | [instantly.md](integrations/instantly.md) |
 | google-ads | Ads | ✓ | ✓ | [✓](clis/google-ads.js) | ✓ | [google-ads.md](integrations/google-ads.md) |
@@ -295,6 +296,16 @@ Pre-outreach email deliverability validation.
 | **truelist** | Bulk + single email deliverability validation | Pay-per-email; classifies as Deliverable/Risky/Undeliverable/Unknown |
 
 **Agent recommendation**: Truelist for any prospect list before outreach — Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
+
+### Developer Intent / GitHub
+
+Discovery channel for dev-tool SaaS prospecting via GitHub stargazers, forkers, and watchers.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **github** | Stargazers / forks / watchers of competitor or adjacent repos | Public API; pair with Apollo/Clay/Hunter for email enrichment |
+
+**Agent recommendation**: Use `github-prospects.js` CLI to pull stargazers/forks of 3–5 anchor repos (competitors, category leaders, complementary tools). Filter to users with `company` field set, then enrich missing emails via Apollo or Hunter, then validate via Truelist before outreach.
 
 ### Reviews
 

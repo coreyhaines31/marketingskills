@@ -137,6 +137,7 @@ Full breakdown in [references/data-sources.md](references/data-sources.md). Quic
 | **LinkedIn Sales Navigator** | Decision-maker mapping (manual, no scraping) |
 | **BuiltWith / Wappalyzer** | Tech stack qualification (SaaS branch) |
 | **Crunchbase** | Funding signals (SaaS branch) |
+| **GitHub** | Stargazers / forks of competitor or adjacent repos (dev-tool SaaS branch) |
 | **Google Maps + browser** | Local SMB discovery |
 
 **If the user has no enrichment tools**: lean on browser-assisted research with public sources — company website, About page, LinkedIn company page, news mentions. Slower but works.
@@ -237,6 +238,7 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key prosp
 | **Truelist** | Email deliverability validation | - | [truelist.md](../../tools/integrations/truelist.md) |
 | **Outreach** | Sales engagement (post-list) | ✓ | [outreach.md](../../tools/integrations/outreach.md) |
 | **RB2B** | Visitor identification (warm intent) | - | [rb2b.md](../../tools/integrations/rb2b.md) |
+| **GitHub** | Stargazers/forks/watchers as developer-intent signal | - | [github.md](../../tools/integrations/github.md) |
 
 ---
 

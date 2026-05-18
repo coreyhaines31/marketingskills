@@ -187,6 +187,26 @@ Cross-reference both for high-confidence tech stack signals.
 
 ---
 
+## GitHub (stargazers / forks / watchers)
+
+**Use for**: Developer-intent prospecting. Especially powerful for dev-tool SaaS — stargazers of competitor or category-defining repos are in-market signal.
+
+**Strengths**:
+- Public API, no scraping concerns
+- High signal quality (a starred repo = explicit interest)
+- Forks are an even stronger signal (intent to modify, not just bookmark)
+- Bundled `github-prospects.js` CLI handles pagination + enrichment + CSV output
+- Free with 5,000 req/hr authenticated rate limit
+
+**Watch out for**:
+- Only ~5–20% of users publish email — pair with Apollo/Clay/Hunter for enrichment
+- Very-popular repos (100K+ stars) are mostly noise; smaller targeted repos (5K–25K) give better signal density
+- Most prospects are individuals, not company contacts directly — need to figure out their company from `company` field or LinkedIn
+
+**Integration**: see [github.md](../../../tools/integrations/github.md)
+
+---
+
 ## RB2B / Clearbit Reveal
 
 **Use for**: Identifying anonymous site visitors as warm intent signals.
