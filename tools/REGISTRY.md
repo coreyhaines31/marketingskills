@@ -79,6 +79,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| sociality | Social | - | ✓ | - | - | [sociality.md](integrations/sociality.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -257,8 +258,9 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **sociality** | Live social analytics and competitor benchmarking | MCP server available |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Agent recommendation**: Sociality MCP for automated social analytics, post-level insights, and competitor benchmarking. Buffer for scheduling and queue management.
 
 ### Video
 
@@ -468,6 +470,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **outreach** - Sales engagement sequences
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
+- **sociality** - Social media account analytics, post insights, and competitor benchmarking
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 
@@ -488,6 +491,14 @@ Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP se
 ### Setting up analytics tracking
 1. Read [ga4.md](integrations/ga4.md) for web analytics
 2. Read [segment.md](integrations/segment.md) if routing to multiple tools
+
+### Analyzing social media performance
+1. Read [sociality.md](integrations/sociality.md) for live account analytics and post insights
+2. Use exports or spreadsheets if no live social data integration is connected
+
+### Benchmarking social competitors
+1. Read [sociality.md](integrations/sociality.md) for tracked competitor stats and posts
+2. Use exports, public profile data, or manual collection if no live social integration is connected. [similarweb.md](integrations/similarweb.md) covers website traffic benchmarking, not social.
 
 ### Launching a referral program
 1. Read [rewardful.md](integrations/rewardful.md) or [tolt.md](integrations/tolt.md) for Stripe-based programs

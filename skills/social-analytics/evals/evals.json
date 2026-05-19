@@ -1,0 +1,94 @@
+{
+  "skill_name": "social-analytics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "It's Monday. I need a weekly Facebook and Instagram performance report from this export: followers, reach, impressions, likes, comments, shares, saves, clicks, post type, content pillar, and published date.",
+      "expected_output": "Should check for product-marketing.md first. Should treat the export as the data source, normalize columns across Facebook and Instagram, and label any fields that are missing or defined differently by platform. Should produce a social analytics report with an executive summary, KPI snapshot, top and bottom posts, format and content pillar patterns, recommendations tied to observed data, and next tests for the coming week.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Uses the export as the data source",
+        "Normalizes Facebook and Instagram columns",
+        "Labels missing or platform-specific fields",
+        "Produces an executive summary and KPI snapshot",
+        "Identifies top and bottom posts",
+        "Analyzes format and content pillar patterns",
+        "Provides recommendations and next tests tied to data"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "LinkedIn impressions were up 42% last week, but engagement rate dropped from 3.8% to 1.9%. What's going on?",
+      "expected_output": "Should diagnose the conflicting metrics instead of treating the result as simply good or bad. Should explain that higher impressions with lower engagement rate can indicate broader but less relevant distribution, weaker hooks, format or topic mismatch, cadence effects, or audience quality issues. Should ask for or use post-level data, compare top and bottom posts, and recommend specific tests around hooks, formats, topics, timing, and posting cadence.",
+      "assertions": [
+        "Interprets conflicting metrics",
+        "Does not treat impressions growth as automatically positive",
+        "Explains possible causes of lower engagement rate",
+        "Requests or uses post-level data",
+        "Compares top and bottom posts",
+        "Recommends specific tests",
+        "Keeps recommendations tied to data"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We ran a product launch campaign across YouTube, Instagram, and TikTok last week. I need a recap for the growth meeting.",
+      "expected_output": "Should check for product-marketing.md first. Should structure the recap around awareness, engagement, traffic, and conversion signals, while keeping each platform's metric definitions separate. Should compare against a prior or campaign baseline if available, identify the strongest launch content patterns, call out underperforming formats or messages, and avoid over-attributing downstream conversions unless attribution data is provided.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Separates awareness, engagement, traffic, and conversion signals",
+        "Keeps YouTube, Instagram, and TikTok metric definitions separate",
+        "Compares against baseline if available",
+        "Identifies best launch content patterns",
+        "Calls out underperforming formats or messages",
+        "Avoids over-attributing conversions without attribution data"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Should we spend next month making more Reels, carousels, or text posts? Here's the last 60 days of post data.",
+      "expected_output": "Should analyze the last 60 days by format using goal-relevant rates and averages, not raw totals only. Should account for sample size, content pillar mix, posting frequency, and platform differences before recommending allocation. Should distinguish proven patterns from hypotheses, identify what to scale versus what to test, and propose a focused next-month content experiment with success metrics.",
+      "assertions": [
+        "Compares formats using goal-relevant rates",
+        "Does not rely only on raw totals",
+        "Labels sample-size limitations",
+        "Considers content pillar mix and posting frequency",
+        "Accounts for platform differences",
+        "Distinguishes proven patterns from tests",
+        "Recommends a focused next-month experiment"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "How did Instagram do?",
+      "expected_output": "Should not produce a generic dashboard from an underspecified request. Should ask for the missing period, business goal, data source, and desired output format or decision. Should explain that the answer changes depending on whether the user cares about awareness, engagement quality, traffic, leads, sales, retention, or launch support.",
+      "assertions": [
+        "Recognizes the request is underspecified",
+        "Asks for the date range",
+        "Asks for the business goal",
+        "Asks for the available data source",
+        "Asks what decision or output format is needed",
+        "Does not invent a default reporting window",
+        "Does not produce a generic dashboard"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Turn this weekly report into next month's content calendar and write the posts.",
+      "expected_output": "Should recognize that content calendar creation and post writing belong primarily to the social skill. Should extract the relevant analytics insights, patterns, and recommended content tests from the report, then cross-reference or hand off to social for the calendar and post-writing work. Should not use social-analytics as the main content creation framework.",
+      "assertions": [
+        "Recognizes the skill boundary",
+        "Extracts usable insights from the report",
+        "References or hands off to social",
+        "Does not use social-analytics as the main post creation framework",
+        "Preserves analytics findings for the content brief"
+      ],
+      "files": []
+    }
+  ]
+}
