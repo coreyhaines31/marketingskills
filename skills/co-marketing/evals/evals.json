@@ -1,0 +1,84 @@
+{
+  "skill_name": "co-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We make a project management tool for design agencies. Who should we look for as co-marketing partners?",
+      "expected_output": "Should check for product-marketing.md first. Should apply the Partner Identification Framework with audience overlap analysis. Should identify ideal partner characteristics: same buyer persona (design agencies), different problem solved, adjacent in the workflow. Should suggest specific partner categories: design tools (Figma, Adobe), proposal/contract tools (Bonsai, HoneyBook), client communication (Notion, Slack), invoicing/payments (Stripe, FreshBooks), file storage/handoff (Dropbox, Frame.io). Should recommend audience scoring criteria. Should suggest sources to find partners: integration ecosystem, Crossbeam/Reveal for account overlap, customer surveys, G2/Capterra category neighbors, podcasts/newsletters they sponsor.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Identifies same persona / different problem characteristic",
+        "Suggests specific partner categories in workflow",
+        "Mentions Crossbeam or account overlap data",
+        "Lists multiple sources to find partners",
+        "Applies scoring criteria"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We're partnering with a competitor — wait, not a competitor, a complementary CRM company. Help us brainstorm 5 campaign ideas we could run together.",
+      "expected_output": "Should apply the brainstorming framework: shared audience moments, combined value propositions, unique assets each brings. Should propose campaign ideas across multiple types from the campaign type tables (content partnerships, webinars/events, product/integration marketing, community/social). Should suggest specific ideas like: co-authored blog post or research report, joint webinar, 'better together' integration landing page, joint case study with shared customer, integration launch, bundle/discount, conference booth sharing. Should ask the campaign idea prompts to spark ideas: what would we create if we had to launch in 2 weeks, what content do both audiences desperately need, what data do we both have that would make a compelling story.",
+      "assertions": [
+        "Applies brainstorming framework",
+        "Proposes campaigns across multiple types (content, events, integration, community)",
+        "Suggests specific actionable ideas",
+        "Mentions integration or 'better together' angle",
+        "Uses brainstorming prompts"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Draft a cold outreach email to a potential co-marketing partner. They're a content management platform and we make a marketing analytics tool. Both serve B2B marketing teams.",
+      "expected_output": "Should use the cold outreach template structure. Should include: subject line with both company names, brief role intro, specific observation about audience overlap (not generic), one concrete campaign idea (not 'let's do something'), clear ask for a quick call. Should keep it short and personal. Should optionally mention call prep: account overlap data (Crossbeam/Reveal), 2-3 specific campaign ideas, audience metrics, past partnership examples, clear ask of what's wanted and what's offered.",
+      "assertions": [
+        "Includes subject with both company names",
+        "Specific observation about audience overlap",
+        "Includes one concrete campaign idea",
+        "Includes clear ask for a call",
+        "Keeps it short and personal",
+        "Mentions what to prepare for the call"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "We've identified 5 potential partners but only have time for one campaign this quarter. How should we pick?",
+      "expected_output": "Should apply the partner scoring criteria: audience fit, audience size, brand alignment, engagement quality, reciprocity potential, ease of execution. Should recommend scoring each partner 1-5 across these criteria. Should weight by current goal (e.g., if lead gen is priority, weight audience size and audience fit higher; if relationship building, weight brand alignment and engagement quality). Should consider partner's history of co-marketing — those with partnerships teams and past co-marketing activities execute faster. Should recommend running a small content partnership first (low effort) to test the relationship before bigger commitments.",
+      "assertions": [
+        "Applies partner scoring criteria",
+        "Includes all 6 scoring dimensions",
+        "Weights by goal",
+        "Considers ease of execution / partnership history",
+        "Recommends starting with low-effort format"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Our partnership webinar with another SaaS company got 200 signups. How do we split the leads?",
+      "expected_output": "Should address the lead handling question from the Structuring the Partnership section. Should explain common splits: each partner keeps their own registrations (cleanest but loses cross-pollination), all leads shared between both (max reach, requires clear MQL/SQL handoff), split by audience source (your list vs theirs). Should recommend documenting this in advance in a co-marketing agreement covering campaign description, responsibilities, timeline, lead handling, promotion, branding, costs, metrics sharing. Should note measuring success: leads generated per partner, lead quality (MQL/SQL conversion rate), revenue attributed. Should recommend a post-campaign debrief and discussing future collaboration if it worked.",
+      "assertions": [
+        "Explains lead split options",
+        "Recommends documenting in agreement",
+        "Lists agreement components",
+        "Mentions measuring lead quality not just volume",
+        "Recommends post-campaign debrief"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Our customer success team wants us to launch a referral program. Can you help us design one?",
+      "expected_output": "Should recognize this is about customer referrals, not co-marketing between companies. Should redirect to the referrals skill, which specifically handles customer referral and affiliate programs (customers referring customers). Should note co-marketing is partner-to-partner marketing while referrals is customer-driven word-of-mouth. May offer brief co-marketing context if it's relevant to the strategy, but should make clear referrals is the right skill for the task.",
+      "assertions": [
+        "Recognizes this is customer referral, not co-marketing",
+        "Defers to referrals skill",
+        "Distinguishes co-marketing from referral programs",
+        "Does not attempt full co-marketing strategy"
+      ],
+      "files": []
+    }
+  ]
+}

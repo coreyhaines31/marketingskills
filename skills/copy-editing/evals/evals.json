@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "Edit this homepage copy for us: 'Welcome to CloudSync! We are very excited to offer you an innovative, cutting-edge platform that seamlessly integrates with your existing tools. Our powerful solution helps businesses of all sizes optimize their workflows and drive meaningful results. Get started today and experience the difference!'",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply the Seven Sweeps Framework systematically. Sweep 1 (Clarity): identify vague language ('optimize workflows,' 'drive meaningful results,' 'experience the difference'). Sweep 2 (Voice & Tone): flag 'Welcome to' as weak opening, 'we are very excited' as company-focused. Sweep 3 (So What): question what specific value is being offered. Sweep 4 (Prove It): note no proof points, stats, or evidence. Sweep 5 (Specificity): flag 'businesses of all sizes,' 'existing tools,' 'powerful solution' as generic. Sweep 6 (Heightened Emotion): assess emotional impact. Sweep 7 (Zero Risk): check for trust signals. Should provide a rewritten version addressing all issues.",
+      "expected_output": "Should check for product-marketing.md first. Should apply the Seven Sweeps Framework systematically. Sweep 1 (Clarity): identify vague language ('optimize workflows,' 'drive meaningful results,' 'experience the difference'). Sweep 2 (Voice & Tone): flag 'Welcome to' as weak opening, 'we are very excited' as company-focused. Sweep 3 (So What): question what specific value is being offered. Sweep 4 (Prove It): note no proof points, stats, or evidence. Sweep 5 (Specificity): flag 'businesses of all sizes,' 'existing tools,' 'powerful solution' as generic. Sweep 6 (Heightened Emotion): assess emotional impact. Sweep 7 (Zero Risk): check for trust signals. Should provide a rewritten version addressing all issues.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies Seven Sweeps Framework",
         "Identifies vague language (Clarity sweep)",
         "Flags weak opening and company-focused language (Voice & Tone sweep)",

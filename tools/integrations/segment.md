@@ -154,6 +154,6 @@ analytics.page('Pricing');
 
 ## Relevant Skills
 
-- analytics-tracking
-- email-sequence
-- paid-ads
+- analytics
+- emails
+- ads

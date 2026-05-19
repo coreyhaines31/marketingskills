@@ -121,6 +121,6 @@ Check [heygen.com/pricing](https://www.heygen.com/pricing) for current prices â€
 ## Relevant Skills
 
 - video
-- social-content
+- social
 - ad-creative
 - sales-enablement

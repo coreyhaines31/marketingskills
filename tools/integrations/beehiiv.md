@@ -151,7 +151,7 @@ All endpoints are scoped to a publication. The publication ID is a required path
 
 ## Relevant Skills
 
-- email-sequence
+- emails
 - newsletter-growth
-- referral-program
+- referrals
 - content-strategy

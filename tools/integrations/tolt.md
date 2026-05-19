@@ -140,5 +140,5 @@ window.tolt.identify(stripeCustomerId);
 
 ## Relevant Skills
 
-- referral-program
-- pricing-strategy
+- referrals
+- pricing

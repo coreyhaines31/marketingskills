@@ -130,6 +130,6 @@ amplitude.track('Feature Used', {
 
 ## Relevant Skills
 
-- analytics-tracking
-- ab-test-setup
-- onboarding-cro
+- analytics
+- ab-testing
+- onboarding

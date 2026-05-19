@@ -176,5 +176,5 @@ const frames = metrics.map(m => ({
 ## Relevant Skills
 
 - video
-- social-content
+- social
 - ad-creative

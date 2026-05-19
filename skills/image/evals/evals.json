@@ -1,0 +1,89 @@
+{
+  "skill_name": "image",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need a hero image for a blog post about email deliverability. Make it visually striking.",
+      "expected_output": "Should check for product-marketing.md first. Should recommend AI generation as the approach for a one-off blog hero. Should propose a visual metaphor concept that represents email deliverability (e.g., letters being sorted through a maze, signals breaking through a wall, an inbox glow). Should specify 1200x630 (works for both hero and OG image). Should recommend Flux or Gemini for photorealistic, or Ideogram if text in image is needed. Should provide a prompt following Subject + Setting + Style + Lighting + Composition + Technical pattern. Should mention WebP optimization (target <200KB, JPEG fallback). Should not suggest using AI for product UI screenshots.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Recommends AI generation for one-off hero",
+        "Proposes visual metaphor for topic",
+        "Specifies 1200x630 dimensions",
+        "Recommends Flux, Gemini, or Ideogram",
+        "Provides structured prompt",
+        "Mentions WebP optimization"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Generate me an image of our app's dashboard.",
+      "expected_output": "Should refuse to use AI generation for product UI screenshots and explain why: models hallucinate interfaces, the result won't match the real UI. Should recommend the Product Mockups & Screenshots workflow: capture real screenshots of the product at 2x resolution, frame in device mockups (browser frame, laptop, phone), add callout arrows or feature labels for context, programmatically overlay annotations with Hyperframes or HTML/CSS. Should suggest tools: browser DevTools screenshot, Shottr, CleanShot X, or screencapture CLI. Should warn this is Common Mistake #1: using AI for product UI.",
+      "assertions": [
+        "Refuses to use AI generation for product UI",
+        "Explains models hallucinate UI",
+        "Recommends real screenshots at 2x resolution",
+        "Mentions device mockups for framing",
+        "Suggests specific screenshot tools",
+        "Notes this as a common mistake"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Need a Twitter/X header banner for our company. We just want to show our product and tagline.",
+      "expected_output": "Should specify Twitter/X header dimensions: 1500x500 (3:1 aspect ratio). Should warn the banner is partially obscured by the avatar — center critical content and avoid important elements near the avatar overlap area. Should recommend keeping text minimal (seen at small sizes on mobile). Should suggest design tools (Canva or Figma) over AI generation since brand consistency matters. Should recommend Ideogram if heavy text rendering is needed since other AI models butcher text. Should suggest using brand colors + tagline + optional product shot. Should remind to test at actual display size by zooming out.",
+      "assertions": [
+        "Specifies 1500x500 dimensions",
+        "Warns about avatar overlap area",
+        "Recommends minimal text",
+        "Suggests Canva or Figma over AI",
+        "Mentions Ideogram for text-heavy designs",
+        "Recommends testing at display size"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I need 5 versions of the same hero image for Twitter, LinkedIn, Instagram feed, Instagram stories, and Facebook. What's the fastest way?",
+      "expected_output": "Should recommend the Canva Magic Resize workflow over generating 5 separate images. Should list dimensions: Twitter/X 1200x675 (16:9), LinkedIn 1200x627 (1.91:1), Instagram feed 1080x1080 (1:1 — note 1080x1350 / 4:5 also strong), Instagram Stories 1080x1920 (9:16), Facebook 1200x630 (1.91:1). Should explain workflow: create the hero concept at highest resolution needed, use Canva Magic Resize for variants, manually crop if needed, add text overlays programmatically if required (Ideogram or post-processing), export at each platform's specs. Should note this is what Canva Magic Resize is specifically designed for.",
+      "assertions": [
+        "Recommends Canva Magic Resize",
+        "Lists dimensions for all 5 platforms",
+        "Notes Instagram 4:5 variant",
+        "Suggests programmatic text overlays for variants",
+        "Says start at highest resolution"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "What's the best image format for our website?",
+      "expected_output": "Should recommend WebP as the default choice with JPEG/PNG fallback. Should explain the format guide: WebP for photos and graphics (lossy + lossless, ~96% browser support), AVIF for highest compression (~94% support, newer), JPEG as universal fallback (lossy only), PNG for transparency and screenshots (lossless, universal), SVG for logos and icons (vector, scales, universal). Should reference the optimization checklist: resize to display size, compress (target quality 75-85% for photos), lazy load below-the-fold, set explicit width/height attributes (prevents CLS), use a CDN with auto-optimization (Cloudflare, Vercel, Imgix, Cloudinary), add descriptive alt text. Should provide a quick cwebp or mogrify command. Should note skipping image optimization is the #1 page speed killer.",
+      "assertions": [
+        "Recommends WebP as default",
+        "Mentions JPEG/PNG fallback strategy",
+        "Lists optimization checklist items",
+        "Mentions lazy loading",
+        "Mentions explicit dimensions to prevent CLS",
+        "Provides command line tool example"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "We're a SaaS that just launched. Need OG images for every blog post we ship — about 2 per week. Doing it manually is killing us.",
+      "expected_output": "Should recommend Dynamic OG Images programmatic approach. Should explain options: Vercel OG (@vercel/og) generates images at the edge using JSX — best for programmatic SEO since you can dynamically pull post title, author, image into a template; Satori converts HTML/CSS to SVG (powers Vercel OG); Cloudinary for URL-based text overlay on template images. Should explain you build the template once with your branding then it generates unique OG images per page using post metadata. Should mention required meta tags: og:image (1200x630), og:image:width, og:image:height, twitter:card summary_large_image, twitter:image. Should note this is best for programmatic SEO.",
+      "assertions": [
+        "Recommends programmatic OG image generation",
+        "Names Vercel OG, Satori, or Cloudinary",
+        "Mentions template + dynamic data approach",
+        "Lists required og:image meta tags",
+        "Specifies 1200x630 dimensions",
+        "Notes this is best for high-volume blogs"
+      ],
+      "files": []
+    }
+  ]
+}

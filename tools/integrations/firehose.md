@@ -152,7 +152,7 @@ query: "best [category] tools" OR "top [category] software" AND publish_time:[no
 
 ## Relevant Skills
 
-- competitor-alternatives
+- competitors
 - customer-research
 - content-strategy
 - cold-email

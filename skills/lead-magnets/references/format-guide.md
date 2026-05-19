@@ -171,7 +171,7 @@ Detailed creation guidance for each lead magnet format.
 
 **Implementation**: Gate results behind email capture. The quiz itself is ungated — the personalized results require an email.
 
-**For building interactive quizzes**: See **free-tool-strategy** skill for technical implementation guidance.
+**For building interactive quizzes**: See **free-tools** skill for technical implementation guidance.
 
 ---
 

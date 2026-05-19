@@ -163,5 +163,5 @@ POST https://api.convertkit.com/v3/broadcasts
 
 ## Relevant Skills
 
-- email-sequence
+- emails
 - content-strategy

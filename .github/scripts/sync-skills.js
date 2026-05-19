@@ -132,27 +132,29 @@ function updateReadme(skills) {
 }
 
 /**
- * Update marketplace.json with skills list
+ * Update marketplace.json — refresh the skill count in the plugin description
+ * and strip any `skills` array if present. Claude Code's plugin schema discovers
+ * skills via the `skills/` directory; the explicit array fails validation, so
+ * this script must never (re-)introduce it.
  */
 function updateMarketplace(skills) {
   const marketplace = JSON.parse(fs.readFileSync(MARKETPLACE_FILE, "utf8"));
   const plugin = marketplace.plugins[0];
-  const existingSkills = plugin.skills || [];
-  const currentSkills = skills.map((s) => s.path);
 
-  if (JSON.stringify(currentSkills) === JSON.stringify(existingSkills)) {
+  const oldDescription = plugin.description;
+  const newDescription = updateSkillCount(plugin.description, skills.length);
+  const hadStaleSkillsArray = "skills" in plugin;
+
+  if (newDescription === oldDescription && !hadStaleSkillsArray) {
     return { updated: false };
   }
 
-  plugin.skills = currentSkills;
-  plugin.description = updateSkillCount(plugin.description, currentSkills.length);
+  plugin.description = newDescription;
+  delete plugin.skills;
 
   fs.writeFileSync(MARKETPLACE_FILE, JSON.stringify(marketplace, null, 2) + "\n");
 
-  const added = currentSkills.filter((s) => !existingSkills.includes(s));
-  const removed = existingSkills.filter((s) => !currentSkills.includes(s));
-
-  return { updated: true, added, removed };
+  return { updated: true, removedSkillsArray: hadStaleSkillsArray };
 }
 
 function main() {
@@ -167,11 +169,8 @@ function main() {
   }
 
   if (marketplaceResult.updated) {
-    if (marketplaceResult.added.length) {
-      console.log(`Added: ${marketplaceResult.added.join(", ")}`);
-    }
-    if (marketplaceResult.removed.length) {
-      console.log(`Removed: ${marketplaceResult.removed.join(", ")}`);
+    if (marketplaceResult.removedSkillsArray) {
+      console.log("Stripped stale `skills` array from marketplace.json");
     }
     console.log(`Updated marketplace.json (${skills.length} skills)`);
   }

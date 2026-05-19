@@ -195,4 +195,4 @@ webflow devlink sync
 
 - programmatic-seo
 - content-strategy
-- page-cro
+- cro

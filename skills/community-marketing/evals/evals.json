@@ -1,0 +1,89 @@
+{
+  "skill_name": "community-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're a B2B SaaS that wants to start a community. Should we use Discord or Slack?",
+      "expected_output": "Should check for product-marketing.md first. Should apply the platform selection guide. Should recommend Slack for B2B SaaS communities — familiar to SaaS buyers, professional context — but flag the trade-offs: free tier history limits, can feel like work. Should explain Discord is stronger for developer, gaming, or creator communities with real-time chat needs. Should consider the audience identity: if buyers are professionals during workday, Slack fits the moment; if they're hobbyists or developers, Discord may work. Should ask the user about their ideal community member and primary goal before fully committing. Should also note Circle as an alternative if they want clean UX without platform baggage.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Recommends Slack for B2B context",
+        "Notes Slack free tier limitations",
+        "Compares Discord use case",
+        "Mentions Circle or other alternatives",
+        "Asks about audience identity or goal"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We just launched our community 3 weeks ago. We have 40 members but only 2-3 people post regularly. Everyone else just lurks. What do we do?",
+      "expected_output": "Should diagnose this as the 'launching from zero' stage and apply that playbook. Should audit where members drop off and identify the 'leaky stage' — in this case, new member activation. Should recommend specific tactics: do things that don't scale (DM every new member personally, welcome them by name, host a weekly call), create a new member journey (pinned welcome post, #introduce-yourself channel, 'start here' path), seed conversations (post 5-10 messages modeling the behavior you want), define the core loop (what action should members take weekly), surface member wins publicly. Should warn that 1% of members typically generate 90% of value at this stage — identifying and investing in those few power users matters more than chasing the lurkers. Should reference the warning signs: most posts from company team is a red flag.",
+      "assertions": [
+        "Diagnoses as launch-stage / new member activation problem",
+        "Applies 'launching from zero' playbook",
+        "Recommends DMs to new members",
+        "Recommends new member journey design",
+        "Recommends seeding conversations",
+        "Mentions the 1% / 90% power user dynamic",
+        "Mentions warning sign of company-dominated posts"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Help me write community guidelines for our Discord. We're building a community for indie game developers.",
+      "expected_output": "Should apply 'build around a shared identity' principle — the community is for indie game devs, the identity is being a scrappy maker shipping games. Should write guidelines that describe the *vibe*, not just the rules. Should answer: what does great participation look like here? Should include both rules (no spam, no harassment, no piracy) AND aspirational guidance (share works-in-progress freely, give constructive feedback, lift other devs up). Should reinforce the identity throughout. Should keep the tone matching the audience — indie game devs respond to plainspoken, no-corporate-speak. May suggest channels structure that reinforces the identity (e.g., #devlog, #playtest-requests, #publishing-tips).",
+      "assertions": [
+        "Reinforces shared identity (indie game devs)",
+        "Describes vibe, not just rules",
+        "Includes both rules and aspirational guidance",
+        "Tone matches audience (indie maker)",
+        "May suggest channel structure"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Design an ambassador program for our community. We have about 5,000 members and a few that always help others. Want to give them more recognition.",
+      "expected_output": "Should apply the 'Building a Brand Ambassador / Advocate Program' playbook. Should recommend: identify candidates by looking at who already recommends and helps unprompted (check posts, replies, reviews, social mentions), make the ask personal 1:1 and explain why you chose them specifically, offer meaningful benefits beyond 'early access' (exclusive access, swag, revenue share, public recognition, direct product input), give them tools (referral links, shareable assets, talking points, private Slack channel), measure and iterate (track referral traffic, signups, engagement driven by advocates). Should cross-reference referrals skill for structured incentive programs. Should warn against generic forms and impersonal asks.",
+      "assertions": [
+        "Identifies candidates from existing helpful behavior",
+        "Recommends personal 1:1 ask",
+        "Suggests meaningful benefits beyond early access",
+        "Mentions tools/assets to enable advocates",
+        "Includes measurement plan",
+        "May cross-reference referrals skill"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Our community feels dead. Members joined 6 months ago but most haven't posted in months. How do I tell if it's salvageable?",
+      "expected_output": "Should run the Health Audit Report output format. Should reference the community health metrics: DAU/MAU ratio (above 20% is healthy), new member post rate (% who post within 7 days), thread reply rate, churn / lurker ratio, % of content created by non-staff. Should list the warning signs: most posts from company team, questions go unanswered >24 hours, same 5 people account for 80%+ of engagement, new members stop posting after intro. Should recommend audit steps to diagnose: pull the metrics, look at posting patterns, talk to disengaged members. Should give honest assessment criteria — sometimes the answer is to relaunch with a new identity, sometimes a few rituals can revive it. Should propose the top 3 priorities to fix based on common patterns.",
+      "assertions": [
+        "Uses Health Audit Report format",
+        "References specific health metrics with benchmarks",
+        "Lists warning signs",
+        "Recommends concrete audit steps",
+        "Considers that some communities can't be saved",
+        "Proposes top 3 priorities"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "We use our community mainly for support. How do we reduce ticket volume without making customers feel ignored?",
+      "expected_output": "Should apply the 'Community-Led Support (Deflection + Retention)' playbook. Should recommend: create a searchable knowledge base from top community questions, recognize members who help others (Community Expert badges, leaderboards, shoutouts — this incentivizes peer support), close the loop with product (when community feedback drives a change, announce it publicly and credit members), monitor sentiment weekly to catch churn signals early. Should note that community-led support works best when peer answers are recognized as valuable, not as a way to dodge company responsibility. Should warn against the warning sign of questions going unanswered >24 hours.",
+      "assertions": [
+        "Applies community-led support playbook",
+        "Recommends searchable knowledge base from community Q&A",
+        "Recommends recognizing peer helpers",
+        "Mentions closing the loop with product",
+        "Warns about unanswered questions threshold",
+        "Notes peer support must feel valued, not used"
+      ],
+      "files": []
+    }
+  ]
+}

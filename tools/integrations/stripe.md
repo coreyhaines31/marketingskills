@@ -143,6 +143,6 @@ stripe customers retrieve cus_xxx
 
 ## Relevant Skills
 
-- pricing-strategy
-- referral-program (Stripe-integrated affiliate tools)
-- analytics-tracking (revenue tracking)
+- pricing
+- referrals (Stripe-integrated affiliate tools)
+- analytics (revenue tracking)

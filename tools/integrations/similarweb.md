@@ -145,6 +145,6 @@ GET https://api.similarweb.com/v1/website/example.com/geo/traffic-by-country?api
 ## Relevant Skills
 
 - seo-audit
-- competitor-alternatives
-- paid-ads
+- competitors
+- ads
 - content-strategy

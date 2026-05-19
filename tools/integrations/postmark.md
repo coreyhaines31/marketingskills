@@ -228,7 +228,7 @@ Postmark uses simple REST endpoints with PascalCase field names in request/respo
 
 ## Relevant Skills
 
-- email-sequence
+- emails
 - transactional-email
 - email-deliverability
 - onboarding-email

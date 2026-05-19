@@ -1,8 +1,8 @@
 ---
 name: lead-magnets
-description: When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions "lead magnet," "gated content," "content upgrade," "downloadable," "ebook," "cheat sheet," "checklist," "template download," "opt-in," "freebie," "PDF download," "resource library," "content offer," "email capture content," "Notion template," "spreadsheet template," or "what should I give away for emails." Use this for planning what to create and how to distribute it. For interactive tools as lead magnets, see free-tool-strategy. For writing the actual content, see copywriting. For the email sequence after capture, see email-sequence.
+description: When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions "lead magnet," "gated content," "content upgrade," "downloadable," "ebook," "cheat sheet," "checklist," "template download," "opt-in," "freebie," "PDF download," "resource library," "content offer," "email capture content," "Notion template," "spreadsheet template," or "what should I give away for emails." Use this for planning what to create and how to distribute it. For interactive tools as lead magnets, see free-tools. For writing the actual content, see copywriting. For the email sequence after capture, see emails.
 metadata:
-  version: 1.0.0
+  version: 2.0.0
 ---
 
 # Lead Magnets
@@ -12,7 +12,7 @@ You are an expert in lead magnet strategy. Your goal is to help plan lead magnet
 ## Before Planning
 
 **Check for product marketing context first:**
-If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Gather this context (ask if not provided):
 
@@ -116,7 +116,7 @@ Goal: Help implement. Remove friction to purchase.
 | Template | "Ready-to-Use Sales Email Templates" |
 | Free trial | "14-Day Free Trial" |
 | Implementation guide | "Migration Checklist: Switch in 30 Minutes" |
-| ROI calculator | "Calculate Your Savings" (→ see **free-tool-strategy**) |
+| ROI calculator | "Calculate Your Savings" (→ see **free-tools**) |
 
 ---
 
@@ -147,8 +147,8 @@ Rule of thumb: Ask for the minimum needed. Every extra field reduces conversion 
 - Add social proof: "Downloaded by 5,000+ marketers"
 - Reduce risk: "No spam. Unsubscribe anytime."
 
-**For form optimization**: See **form-cro** skill
-**For popup implementation**: See **popup-cro** skill
+**For form optimization**: See **cro** skill
+**For popup implementation**: See **popups** skill
 
 ---
 
@@ -163,7 +163,7 @@ Rule of thumb: Ask for the minimum needed. Every extra field reduces conversion 
 5. **Form** — Minimal fields, clear CTA button
 6. **FAQ** — Address hesitations (Is it really free? What format?)
 
-**For landing page optimization**: See **page-cro** skill
+**For landing page optimization**: See **cro** skill
 
 ### Delivery Methods
 
@@ -196,14 +196,14 @@ Don't waste the thank you page. After they've converted:
 
 - Trigger on exit intent or scroll depth
 - Match the popup offer to the page content
-- **See popup-cro** for implementation
+- **See popups** for implementation
 
 ### Social Media
 
 - Share snippets and teasers from the lead magnet
 - Create carousel posts from key points
 - Use the lead magnet as the CTA in your bio/profile
-- **See social-content** for social strategy
+- **See social** for social strategy
 
 ### Paid Promotion
 
@@ -211,7 +211,7 @@ Don't waste the thank you page. After they've converted:
 - Google Ads for high-intent lead magnets (templates, tools)
 - LinkedIn for B2B lead magnets
 - Retarget blog visitors with lead magnet ads
-- **See paid-ads** for campaign strategy
+- **See ads** for campaign strategy
 
 ### Partner Co-Promotion
 
@@ -298,13 +298,13 @@ When creating a lead magnet strategy, provide:
 
 ## Related Skills
 
-- **free-tool-strategy**: For interactive tools as lead magnets (calculators, graders, quizzes)
+- **free-tools**: For interactive tools as lead magnets (calculators, graders, quizzes)
 - **copywriting**: For writing the lead magnet content itself
-- **email-sequence**: For nurture sequences after lead capture
-- **page-cro**: For optimizing lead magnet landing pages
-- **popup-cro**: For popup-based lead capture
-- **form-cro**: For optimizing capture forms
+- **emails**: For nurture sequences after lead capture
+- **cro**: For optimizing lead magnet landing pages
+- **popups**: For popup-based lead capture
+- **cro**: For optimizing capture forms
 - **content-strategy**: For content planning and topic selection
-- **analytics-tracking**: For measuring lead magnet performance
-- **paid-ads**: For paid promotion of lead magnets
-- **social-content**: For social media promotion
+- **analytics**: For measuring lead magnet performance
+- **ads**: For paid promotion of lead magnets
+- **social**: For social media promotion

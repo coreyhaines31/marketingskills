@@ -1,0 +1,87 @@
+{
+  "skill_name": "lead-magnets",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're a B2B SaaS selling project management software to marketing agencies. What lead magnet should we create?",
+      "expected_output": "Should check for product-marketing.md first. Should ask about current lead gen, existing content assets, and primary goal (list growth, lead quality, product education). Should apply Lead Magnet Principles: solve a specific problem (not 'agency marketing'), match buyer stage, high perceived value + low time investment, natural path to product. Should recommend a specific format suited to a busy agency audience — likely a template (Notion/spreadsheet) or checklist over an ebook. Examples: 'Agency Project Profitability Calculator' (decision stage, naturally leads to project management), 'Client Onboarding Checklist for Agencies' (consideration), 'The Agency Capacity Planning Template' (decision stage). Should justify the choice by matching buyer stage and effort/value ratio. Should outline content, gating, landing page, distribution, and measurement plan.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Asks about buyer stage and goal",
+        "Applies the 5 principles",
+        "Recommends specific format with rationale",
+        "Examples match the audience and product",
+        "Outlines all 5 output sections (recommendation, content, gating, distribution, measurement)"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We have a 50-page ebook we spent 3 months writing. Conversion on the landing page is only 4%. Should we keep iterating?",
+      "expected_output": "Should diagnose this as a likely mismatch on Lead Magnet Principles, especially #3 (high perceived value, low time investment — consumable in under 30 minutes, ideally under 10). Should warn 50 pages may signal too much effort to consume — flag this as a possible cause. Should recommend A/B testing the format (chunking the ebook into a 5-part email mini-course, releasing as a checklist + ebook combo, or breaking into shorter topic-specific guides). Should review landing page structure: headline, preview/mockup, what's inside, social proof, form fields, FAQ. Should suggest testing partial gate (preview first 5 pages) vs full gate. Should ask about traffic source — 4% on cold traffic might be acceptable while 4% on warm traffic is low. Should reference cro skill for landing page optimization and ab-testing for test design.",
+      "assertions": [
+        "Diagnoses likely cause as length/effort mismatch",
+        "Recommends format A/B test",
+        "Suggests breaking into shorter formats",
+        "Reviews landing page structure",
+        "Asks about traffic source (cold vs warm)",
+        "Cross-references cro or ab-testing skill"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our lead form asks for name, email, company, role, company size, and phone. We're not getting enough signups. Could the form be the problem?",
+      "expected_output": "Should immediately flag form length as a likely culprit. Should cite the rule of thumb: every extra field reduces conversion 5-10%. Should recommend reducing to the minimum needed: ideally email only (highest conversion), or email + name if personalization matters. Should explain when multi-field is justified (only for high-value offers like webinars or demos). Should ask what information is actually used in follow-up — fields that aren't used should be removed. Should suggest progressive profiling: capture email now, ask for more fields later via enrichment or follow-up forms. Should reference cro skill for form optimization specifically.",
+      "assertions": [
+        "Flags form length as likely culprit",
+        "Cites 5-10% per field rule",
+        "Recommends reducing to email or email + name",
+        "Asks what fields are actually used",
+        "Suggests progressive profiling",
+        "Cross-references cro skill"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "What's the difference between a lead magnet and a free tool? Should I build one or the other?",
+      "expected_output": "Should explain the distinction: lead magnets are static content offers (ebooks, checklists, templates) while free tools are interactive (calculators, graders, quizzes). Should explain when to build which. Lead magnets: faster to ship (hours-days), works well for awareness/consideration education, lower ongoing maintenance, lead quality varies. Free tools: longer build time (weeks-months), higher engagement and shareability, naturally segment leads by tool usage, can rank for SEO ('X calculator', 'Y grader'), higher lead quality typically. Should recommend lead magnet first if speed matters, free tool if you can invest the build time and have repeatable user inputs that produce a meaningful output. Should defer to free-tools skill for tool strategy specifically.",
+      "assertions": [
+        "Distinguishes static content from interactive tool",
+        "Compares effort to build",
+        "Compares SEO and shareability characteristics",
+        "Recommends based on speed vs investment trade-off",
+        "Defers to free-tools skill"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "We have a top-performing blog post on email subject lines. Can we use it as a lead magnet?",
+      "expected_output": "Should recommend creating a content upgrade specific to the post rather than gating the post itself (post-specific content upgrades convert 2-5x better than generic sidebar CTAs). Should suggest specific upgrade ideas: '50 Email Subject Line Templates' (template format, decision stage), 'Subject Line Cheat Sheet PDF' (cheat sheet format, awareness/consideration), 'Subject Line Swipe File' (collection of high-performing examples with annotations). Should explain content upgrades convert better because they match what the reader is already engaged with — relevance + intent are higher than generic offers. Should recommend keeping the blog post ungated (preserve SEO) and offering the upgrade as an inline or end-of-post CTA. Should reference cro for placement and copywriting for the upgrade itself.",
+      "assertions": [
+        "Recommends content upgrade over gating the post",
+        "Cites 2-5x improvement vs generic CTAs",
+        "Suggests specific upgrade formats with rationale",
+        "Keeps blog post ungated to preserve SEO",
+        "Explains why upgrades convert better"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Our checklist gets a lot of downloads but very few of them ever sign up for a trial. Is the lead magnet broken?",
+      "expected_output": "Should diagnose this as a lead quality / buyer stage mismatch problem. Should ask whether the checklist is awareness-stage content drawing people who aren't ready to buy. Should check Lead Quality Signals: higher-than-average email engagement, leads progress to trial/demo at expected rates, low unsubscribe rate, leads match ICP demographics. Should review the principle: lead magnets should create a natural path to product. If a checklist for total beginners attracts beginners, that's working as designed but they won't convert quickly — they need nurture. Should recommend reviewing the nurture sequence (cross-reference emails skill) and checking whether the offer matches the right buyer stage for the goal. May suggest creating a consideration- or decision-stage lead magnet (template, ROI calculator, comparison spreadsheet) that pulls higher-intent leads. Should track time to conversion by lead magnet source.",
+      "assertions": [
+        "Diagnoses as lead quality / buyer stage mismatch",
+        "Asks about ICP fit of leads",
+        "References Lead Quality Signals",
+        "Cross-references emails skill for nurture",
+        "Suggests a decision-stage lead magnet alternative",
+        "Mentions tracking time to conversion by source"
+      ],
+      "files": []
+    }
+  ]
+}

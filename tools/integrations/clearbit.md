@@ -139,4 +139,4 @@ Standard endpoints return `202 Accepted` if data is being processed (use webhook
 - personalization
 - abm-strategy
 - lead-enrichment
-- competitor-alternatives
+- competitors

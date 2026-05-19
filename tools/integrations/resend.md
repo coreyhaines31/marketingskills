@@ -208,5 +208,5 @@ await resend.emails.send({
 
 ## Relevant Skills
 
-- email-sequence
-- onboarding-cro
+- emails
+- onboarding

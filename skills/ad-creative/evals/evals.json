@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "Generate ad creative for our Meta (Facebook/Instagram) campaign. We sell an AI writing assistant for content marketers. Main value prop: write blog posts 5x faster. Target audience: content marketing managers at B2B SaaS companies. Budget: $5k/month.",
-      "expected_output": "Should check for product-marketing-context.md first. Should generate creative following the angle-based approach: identify 3-5 angles (speed, quality, ROI, pain of blank page, competitive edge). For each angle, should generate primary text (≤125 chars), headline (≤40 chars), and description (≤30 chars) respecting Meta character limits. Should provide multiple variations per angle. Should suggest image/visual direction for each. Should organize output with angle name, hook, body, CTA for each variation. Should recommend which angles to test first.",
+      "expected_output": "Should check for product-marketing.md first. Should generate creative following the angle-based approach: identify 3-5 angles (speed, quality, ROI, pain of blank page, competitive edge). For each angle, should generate primary text (≤125 chars), headline (≤40 chars), and description (≤30 chars) respecting Meta character limits. Should provide multiple variations per angle. Should suggest image/visual direction for each. Should organize output with angle name, hook, body, CTA for each variation. Should recommend which angles to test first.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Uses angle-based generation approach",
         "Identifies multiple angles (3-5)",
         "Respects Meta character limits (125/40/30)",
@@ -78,10 +78,10 @@
     {
       "id": 6,
       "prompt": "Help me plan our overall paid advertising strategy. We have a $20k monthly budget and want to figure out which platforms to use and how to allocate spend.",
-      "expected_output": "Should recognize this is a paid advertising strategy task, not ad creative generation. Should defer to or cross-reference the paid-ads skill, which handles campaign strategy, platform selection, and budget allocation. May briefly mention creative considerations but should make clear that paid-ads is the right skill for strategy.",
+      "expected_output": "Should recognize this is a paid advertising strategy task, not ad creative generation. Should defer to or cross-reference the ads skill, which handles campaign strategy, platform selection, and budget allocation. May briefly mention creative considerations but should make clear that ads is the right skill for strategy.",
       "assertions": [
         "Recognizes this as paid ads strategy, not creative generation",
-        "References or defers to paid-ads skill",
+        "References or defers to ads skill",
         "Does not attempt full campaign strategy using creative generation patterns"
       ],
       "files": []

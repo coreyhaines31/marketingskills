@@ -146,4 +146,4 @@ POST https://api.clay.com/v3/companies/enrich
 - cold-email
 - revops
 - sales-enablement
-- competitor-alternatives
+- competitors

@@ -1,8 +1,8 @@
 ---
 name: image
-description: "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets. Also use when the user mentions 'AI image generation,' 'generate an image,' 'create a graphic,' 'product mockup,' 'hero image,' 'social media graphic,' 'banner image,' 'cover photo,' 'profile banner,' 'listing screenshot,' 'Flux,' 'Midjourney,' 'DALL-E,' 'GPT Image,' 'Ideogram,' 'Gemini image,' 'Canva,' 'Figma,' 'image optimization,' 'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video."
+description: "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets. Also use when the user mentions 'AI image generation,' 'generate an image,' 'create a graphic,' 'product mockup,' 'hero image,' 'social media graphic,' 'banner image,' 'cover photo,' 'profile banner,' 'listing screenshot,' 'Flux,' 'Flux Kontext,' 'Midjourney,' 'DALL-E,' 'GPT Image,' 'ChatGPT Images,' 'Ideogram,' 'Gemini image,' 'Nano Banana,' 'Recraft,' 'Stable Diffusion,' 'Canva,' 'Figma,' 'image optimization,' 'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video."
 metadata:
-  version: 1.0.0
+  version: 2.0.1
 ---
 
 # Image
@@ -12,7 +12,7 @@ You are an expert visual content producer who helps create marketing images usin
 ## Before Starting
 
 **Check for product marketing context first:**
-If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Gather this context (ask if not provided):
 
@@ -55,36 +55,41 @@ Generate original images from text prompts. The fastest way to create unique mar
 
 | Model | Best For | Text in Images | API | Cost |
 |-------|----------|:-:|-----|------|
-| **Gemini Image** (Google) | All-around, editing, text rendering | Good | [Gemini API](https://ai.google.dev/gemini-api/docs/image-generation) | Check [pricing](https://ai.google.dev/gemini-api/docs/pricing) |
-| **Flux** (Black Forest Labs) | Photorealism, brand consistency, batch | Limited | [BFL API](https://docs.bfl.ai/), Replicate, fal.ai | Check [pricing](https://docs.bfl.ai/quick_start/pricing) |
-| **Ideogram** | Typography, branded graphics | Best | [Ideogram API](https://developer.ideogram.ai/) | Check [pricing](https://about.ideogram.ai/api-pricing) |
-| **GPT Image** (OpenAI) | General purpose, ChatGPT integration | Good | [OpenAI API](https://platform.openai.com/docs/guides/image-generation) | Check [pricing](https://platform.openai.com/docs/pricing) |
-| **Midjourney** | Artistic, high-aesthetic | Poor | No official API | Subscription-based |
-| **Stable Diffusion** | Self-hosted, customizable | Varies | Open source | Free (GPU costs) |
+| **Gemini Image** (Google, "Nano Banana" / Nano Banana Pro) | All-around, editing, multi-image reference, text rendering | Good | [Gemini API](https://ai.google.dev/gemini-api/docs/image-generation) | Check [pricing](https://ai.google.dev/gemini-api/docs/pricing) |
+| **Flux** (Black Forest Labs — Pro 1.1, Kontext, Dev, Schnell) | Photorealism, brand consistency, batch; Kontext for in-image editing | Limited | [BFL API](https://docs.bfl.ai/), Replicate, fal.ai | Check [pricing](https://docs.bfl.ai/quick_start/pricing) |
+| **Ideogram 3.0** | Typography, branded graphics, accurate text rendering | Best | [Ideogram API](https://developer.ideogram.ai/) | Check [pricing](https://about.ideogram.ai/api-pricing) |
+| **ChatGPT Images 2.0 / GPT Image** (OpenAI) | General purpose, ChatGPT integration, native editing | Good | [OpenAI API](https://platform.openai.com/docs/guides/image-generation) | Check [pricing](https://platform.openai.com/docs/pricing) |
+| **Midjourney v7** | Artistic, high-aesthetic, art-directed visuals | Improved | No official API; Discord + Web | Subscription-based |
+| **Recraft V3** | Vector + brand-consistent illustrations, design assets | Strong | [Recraft API](https://www.recraft.ai/docs) | Per-credit |
+| **Stable Diffusion 3.5 / SDXL** | Self-hosted, customizable, fine-tunable | Varies | Open source | Free (GPU costs) |
 
-**Note:** DALL-E 3 is deprecated. OpenAI's current image models are the GPT Image family (`gpt-image-1`, etc.).
+**Note:** DALL-E 3 is fully deprecated. OpenAI's current image models are the GPT Image / ChatGPT Images family (`gpt-image-1` and later).
 
 ### When to Use Which
 
 ```
 Need text/headlines in the image?
-├── Yes → Ideogram (best), Gemini (good), GPT Image (decent)
+├── Yes → Ideogram 3.0 (best), Gemini (good), GPT Image / ChatGPT Images (decent)
 └── No ↓
 
-Need product/brand consistency across images?
-├── Yes → Flux (multi-image reference)
+Need product/brand consistency across many images?
+├── Yes → Flux (multi-image reference), Gemini Nano Banana Pro, Recraft V3
 └── No ↓
 
-Need to edit an existing image?
-├── Yes → Gemini (native editing), Flux Flex
+Need to edit an existing image (in-place)?
+├── Yes → Gemini (native editing), Flux Kontext, ChatGPT Images
 └── No ↓
 
-Need highest visual quality?
-├── Yes → Flux Pro, Midjourney
+Need vector / illustrative brand assets?
+├── Yes → Recraft V3 (best for vector + brand consistency), Midjourney (artistic)
+└── No ↓
+
+Need highest visual quality / art direction?
+├── Yes → Flux Pro 1.1, Midjourney v7
 └── No ↓
 
 Need volume at low cost?
-└── Flux Klein, Gemini Flash
+└── Flux Schnell, Gemini Flash, Stable Diffusion (self-hosted)
 ```
 
 ### Prompting Basics
@@ -201,7 +206,7 @@ Banners for profiles, directory listings, and marketplace pages. Often the first
 | Product Hunt gallery | 1270x760 | 5:3, up to 6 images |
 | G2 profile | 1280x720 | 16:9, product screenshots preferred |
 | GitHub social preview | 1280x640 | 2:1, shows in link cards |
-| App Store screenshots | Varies by device | See aso-audit skill for full specs |
+| App Store screenshots | Varies by device | See aso skill for full specs |
 | Google Play feature graphic | 1024x500 | ~2:1, required for store listing |
 
 **Best practices:**
@@ -328,8 +333,8 @@ Generate OG images programmatically for pages with dynamic content (blog posts, 
 
 - **ad-creative**: For paid ad image creative, platform-specific ad specs, and scaled ad production
 - **video**: For AI video production and programmatic video
-- **social-content**: For what to post and content strategy
-- **page-cro**: For image placement and conversion optimization on landing pages
+- **social**: For what to post and content strategy
+- **cro**: For image placement and conversion optimization on landing pages
 - **seo-audit**: For image SEO (alt text, file names, lazy loading)
-- **aso-audit**: For app store screenshot specs and optimization
+- **aso**: For app store screenshot specs and optimization
 - **directory-submissions**: For Product Hunt gallery images and directory listing visuals

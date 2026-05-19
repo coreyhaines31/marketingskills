@@ -121,7 +121,7 @@ SparkToro aggregates from three sources:
 
 - customer-research
 - content-strategy
-- competitor-alternatives
-- paid-ads
-- social-content
+- competitors
+- ads
+- social
 - cold-email

@@ -133,7 +133,7 @@ GET /v2/flows/{id}/analytics
 
 - customer-research
 - sales-enablement
-- competitor-alternatives
+- competitors
 - revops
 - cold-email
 

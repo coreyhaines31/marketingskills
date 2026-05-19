@@ -151,6 +151,6 @@ s.tl(this, 'o', 'Button Click');
 
 ## Relevant Skills
 
-- analytics-tracking
-- ab-test-setup
-- paid-ads
+- analytics
+- ab-testing
+- ads

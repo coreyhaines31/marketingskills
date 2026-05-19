@@ -184,7 +184,7 @@ Agent uses `SALESFORCE` to read leads and `SLACK` to post messages.
 
 ## Relevant Skills
 
-- analytics-tracking (cross-platform data via Composio connectors)
-- email-sequence (ActiveCampaign, Klaviyo access)
-- paid-ads (Meta Ads, LinkedIn Ads MCP access)
-- referral-program (Shopify integration)
+- analytics (cross-platform data via Composio connectors)
+- emails (ActiveCampaign, Klaviyo access)
+- ads (Meta Ads, LinkedIn Ads MCP access)
+- referrals (Shopify integration)

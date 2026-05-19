@@ -330,7 +330,7 @@ ActiveCampaign uses REST with resource wrapping (e.g., `{ "contact": {...} }`). 
 
 ## Relevant Skills
 
-- email-sequence
+- emails
 - lifecycle-marketing
 - crm-integration
 - sales-pipeline

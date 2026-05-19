@@ -169,4 +169,4 @@ curl -s "https://api.outreach.io/api/v2/tasks?filter[status]=incomplete" \
 - cold-email
 - revops
 - sales-enablement
-- email-sequence
+- emails

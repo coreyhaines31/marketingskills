@@ -145,4 +145,4 @@ POST https://api.apollo.io/api/v1/organizations/enrich
 - lead-enrichment
 - lead-scoring
 - cold-email
-- competitor-alternatives
+- competitors

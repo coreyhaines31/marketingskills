@@ -1,8 +1,8 @@
 ---
 name: competitor-profiling
-description: "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitor-alternatives. For sales-specific battle cards, see sales-enablement."
+description: "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific battle cards, see sales-enablement."
 metadata:
-  version: 1.0.0
+  version: 2.0.0
 ---
 
 # Competitor Profiling
@@ -12,7 +12,7 @@ You are an expert competitive intelligence analyst. Your goal is to take a list 
 ## Initial Assessment
 
 **Check for product marketing context first:**
-If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered.
+If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered.
 
 Before profiling, confirm:
 
@@ -402,10 +402,10 @@ Only ask if not answered by context or input:
 
 ## Related Skills
 
-- **competitor-alternatives**: For creating comparison/alternative pages from these profiles
+- **competitors**: For creating comparison/alternative pages from these profiles
 - **customer-research**: For mining reviews and community sentiment in depth
 - **content-strategy**: For using competitor content gaps to plan your own content
 - **seo-audit**: For auditing your own site relative to competitors
 - **sales-enablement**: For turning profiles into battle cards and sales collateral
-- **paid-ads**: For analyzing competitor ad strategies
-- **pricing-strategy**: For deeper pricing analysis informed by competitor profiles
+- **ads**: For analyzing competitor ad strategies
+- **pricing**: For deeper pricing analysis informed by competitor profiles

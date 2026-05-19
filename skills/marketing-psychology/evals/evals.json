@@ -4,9 +4,9 @@
     {
       "id": 1,
       "prompt": "How can I use psychology to increase conversions on our pricing page? We sell a B2B SaaS tool with three tiers ($29, $79, $199/month).",
-      "expected_output": "Should check for product-marketing-context.md first. Should apply relevant pricing psychology models: anchoring (show the highest plan first or use a decoy), charm pricing (consider $29 vs $30), Rule of 100 (percentage vs dollar discounts), Good-Better-Best framing, loss aversion (show what they miss on lower tiers). Should also apply broader persuasion models: social proof near pricing, scarcity for limited-time offers, default effect (pre-select recommended plan). Should provide specific, actionable recommendations tied to their price points.",
+      "expected_output": "Should check for product-marketing.md first. Should apply relevant pricing psychology models: anchoring (show the highest plan first or use a decoy), charm pricing (consider $29 vs $30), Rule of 100 (percentage vs dollar discounts), Good-Better-Best framing, loss aversion (show what they miss on lower tiers). Should also apply broader persuasion models: social proof near pricing, scarcity for limited-time offers, default effect (pre-select recommended plan). Should provide specific, actionable recommendations tied to their price points.",
       "assertions": [
-        "Checks for product-marketing-context.md",
+        "Checks for product-marketing.md",
         "Applies pricing psychology models (anchoring, charm pricing, Rule of 100)",
         "Applies Good-Better-Best framing",
         "Applies loss aversion to tier differentiation",
@@ -75,10 +75,10 @@
     {
       "id": 6,
       "prompt": "Help me run an A/B test on which psychological principle works better for our CTA — scarcity vs social proof.",
-      "expected_output": "Should recognize this is an A/B test setup task, not a psychology task. Should defer to or cross-reference the ab-test-setup skill for the experiment design. May provide psychological context on both principles to inform the hypothesis, but should make clear that ab-test-setup is the right skill for designing and running the experiment.",
+      "expected_output": "Should recognize this is an A/B test setup task, not a psychology task. Should defer to or cross-reference the ab-testing skill for the experiment design. May provide psychological context on both principles to inform the hypothesis, but should make clear that ab-testing is the right skill for designing and running the experiment.",
       "assertions": [
         "Recognizes this as an A/B test setup task",
-        "References or defers to ab-test-setup skill",
+        "References or defers to ab-testing skill",
         "May provide psychological context for hypothesis",
         "Does not attempt full test design using psychology patterns"
       ],
