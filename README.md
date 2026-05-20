@@ -19,28 +19,28 @@ Skills are markdown files that give AI agents specialized knowledge and workflow
 Skills reference each other and build on shared context. The `product-marketing` skill is the foundation — every other skill checks it first to understand your product, audience, and positioning before doing anything.
 
 ```
-                            ┌──────────────────────────────────────┐
-                            │          product-marketing           │
-                            │    (read by all other skills first)  │
-                            └──────────────────┬───────────────────┘
-                                               │
-    ┌──────────────┬─────────────┬─────────────┼─────────────┬──────────────┬──────────────┐
-    ▼              ▼             ▼             ▼             ▼              ▼              ▼
-┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────────┐ ┌──────────┐ ┌─────────────┐ ┌───────────┐
-│  SEO &   │ │   CRO    │ │Content & │ │  Paid &    │ │ Growth & │ │  Sales &    │ │ Strategy  │
-│ Content  │ │          │ │   Copy   │ │Measurement │ │Retention │ │    GTM      │ │           │
-├──────────┤ ├──────────┤ ├──────────┤ ├────────────┤ ├──────────┤ ├─────────────┤ ├───────────┤
-│seo-audit │ │cro       │ │copywritng│ │ads         │ │referrals │ │revops       │ │mktg-ideas │
-│ai-seo    │ │signup    │ │copy-edit │ │ad-creative │ │free-tools│ │sales-enable │ │mktg-psych │
-│site-arch │ │onboarding│ │cold-email│ │ab-testing  │ │churn-    │ │launch       │ │customer-  │
-│programm  │ │popups    │ │emails    │ │analytics   │ │ prevent  │ │pricing      │ │ research  │
-│schema    │ │paywalls  │ │social    │ │            │ │community │ │competitors  │ │           │
-│content   │ │          │ │video     │ │            │ │lead-magnt│ │comp-profile │ │           │
-│aso       │ │          │ │image     │ │            │ │co-mktg   │ │directory    │ │           │
-└────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬──────┘ └────┬─────┘ └──────┬──────┘ └─────┬─────┘
-     │            │            │              │             │              │              │
-     └────────────┴─────┬──────┴──────────────┴─────────────┴──────────────┴──────────────┘
-                        │
+                       ┌──────────────────────────────────────┐
+                       │          product-marketing           │
+                       │    (read by all other skills first)  │
+                       └──────────────────┬───────────────────┘
+                                          │
+    ┌─────────────┬───────────┬───────────┼────────────┬─────────────┬─────────────┐
+    ▼             ▼           ▼           ▼            ▼             ▼             ▼
+┌──────────┐┌──────────┐┌──────────┐┌────────────┐┌──────────┐┌─────────────┐┌───────────┐
+│  SEO &   ││   CRO    ││Content & ││  Paid &    ││ Growth & ││  Sales &    ││ Strategy  │
+│ Content  ││          ││   Copy   ││Measurement ││Retention ││    GTM      ││           │
+├──────────┤├──────────┤├──────────┤├────────────┤├──────────┤├─────────────┤├───────────┤
+│seo-audit ││cro       ││copywritng││ads         ││referrals ││revops       ││mktg-ideas │
+│ai-seo    ││signup    ││copy-edit ││ad-creative ││free-tools││sales-enable ││mktg-psych │
+│site-arch ││onboarding││cold-email││ab-testing  ││churn-    ││launch       ││customer-  │
+│programm  ││popups    ││emails    ││analytics   ││ prevent  ││pricing      ││ research  │
+│schema    ││paywalls  ││social    ││            ││community ││competitors  ││           │
+│content   ││          ││video     ││            ││lead-magnt││comp-profile ││           │
+│aso       ││          ││image     ││            ││co-mktg   ││directory    ││           │
+└────┬─────┘└────┬─────┘└────┬─────┘└─────┬──────┘└────┬─────┘└──────┬──────┘└─────┬─────┘
+     │           │           │            │            │             │             │
+     └───────────┴─────┬─────┴────────────┴────────────┴─────────────┴─────────────┘
+                       │
          Skills cross-reference each other:
            copywriting ↔ cro ↔ ab-testing
            revops ↔ sales-enablement ↔ cold-email
