@@ -37,6 +37,7 @@ Skills reference each other and build on shared context. The `product-marketing`
 │schema    ││paywalls  ││social    ││            ││community ││competitors  ││           │
 │content   ││          ││video     ││            ││lead-magnt││comp-profile ││           │
 │aso       ││          ││image     ││            ││co-mktg   ││directory    ││           │
+│          ││          ││sms       ││            ││          ││             ││           │
 └────┬─────┘└────┬─────┘└────┬─────┘└─────┬──────┘└────┬─────┘└──────┬──────┘└─────┬─────┘
      │           │           │            │            │             │             │
      └───────────┴─────┬─────┴────────────┴────────────┴─────────────┴─────────────┘
@@ -93,6 +94,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [seo-audit](skills/seo-audit/) | When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO... |
 | [signup](skills/signup/) | When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the... |
 | [site-architecture](skills/site-architecture/) | When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal... |
+| [sms](skills/sms/) | When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts,... |
 | [social](skills/social/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
 | [video](skills/video/) | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use... |
 <!-- SKILLS:END -->

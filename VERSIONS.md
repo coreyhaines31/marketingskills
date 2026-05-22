@@ -42,10 +42,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 2.0.0 | 2026-05-05 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
+| sms | 1.0.0 | 2026-05-21 |
 | social | 2.0.0 | 2026-05-05 |
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.1.0 (2026-05-21)
+- Added `sms` skill for SMS/MMS marketing — welcome flows, abandoned cart, post-purchase, win-back, promotional sends, and transactional/auth. Includes compliance reference (TCPA, A2P 10DLC, GDPR, CASL), sequence templates with character counts, and platform comparison (Klaviyo, Postscript, Attentive, Twilio, Brevo, SimpleTexting, Customer.io).
+- Total skills: 41
 
 ### 2.0.1 (2026-05-18)
 

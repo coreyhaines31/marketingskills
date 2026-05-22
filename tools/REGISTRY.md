@@ -54,6 +54,11 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | postmark | Email | ✓ | - | [✓](clis/postmark.js) | ✓ | [postmark.md](integrations/postmark.md) |
 | brevo | Email/SMS | ✓ | - | [✓](clis/brevo.js) | ✓ | [brevo.md](integrations/brevo.md) |
 | activecampaign | Email/CRM | ✓ | - | [✓](clis/activecampaign.js) | ✓ | [activecampaign.md](integrations/activecampaign.md) |
+| twilio | SMS/Voice | ✓ | - | ✓ | ✓ | [twilio.md](integrations/twilio.md) |
+| plivo | SMS/Voice | ✓ | - | - | ✓ | [plivo.md](integrations/plivo.md) |
+| postscript | SMS | ✓ | - | - | - | [postscript.md](integrations/postscript.md) |
+| attentive | SMS | ✓ | - | - | - | [attentive.md](integrations/attentive.md) |
+| audiencetap | SMS/Email | ✓ | - | - | - | [audiencetap.md](integrations/audiencetap.md) |
 | hunter | Email Outreach | ✓ | - | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
 | lemlist | Email Outreach | ✓ | - | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |
@@ -188,6 +193,23 @@ Email marketing, transactional email, and automation platforms.
 | **activecampaign** | Email automation + CRM | - |
 
 **Agent recommendation**: Resend for transactional (dev-friendly). Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
+
+### SMS / Messaging
+
+SMS and MMS marketing platforms and programmable messaging APIs.
+
+| Tool | Best For | MCP Available |
+|------|----------|:-------------:|
+| **klaviyo** | DTC ecom already on Klaviyo email | - |
+| **postscript** | Shopify DTC, SMS-first depth | - |
+| **attentive** | Mid-market+ DTC, full-service | - |
+| **twilio** | Custom API builds, transactional, dev-first | - |
+| **plivo** | Twilio alternative, lower per-send cost | - |
+| **audiencetap** | DTC with AI-forward creative + on-pack QR opt-in | - |
+| **brevo** | EU SMB email + SMS combo | - |
+| **customer-io** | Behavior-based SMS automation | - |
+
+**Agent recommendation**: Klaviyo SMS for ecom already on Klaviyo email. Postscript for Shopify-first depth. Attentive for mid-market+ wanting concierge support. Twilio (or Plivo for lower cost) for custom builds and transactional/auth. AudienceTap when AI creative or on-pack QR opt-in matters.
 
 ### Advertising
 
