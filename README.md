@@ -72,6 +72,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [content-strategy](skills/content-strategy/)           | When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also... |
 | [copy-editing](skills/copy-editing/)                   | When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the... |
 | [copywriting](skills/copywriting/)                     | When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,...      |
+| [create-spec](skills/create-spec/)                     | When the user wants to create a new marketing specification or update an existing one. Also use when the user mentions...  |
 | [cro](skills/cro/)                                     | When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage,...   |
 | [customer-research](skills/customer-research/)         | When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer...          |
 | [directory-submissions](skills/directory-submissions/) | When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for...        |
@@ -98,7 +99,6 @@ See each skill's **Related Skills** section for the full dependency map.
 | [sms](skills/sms/)                                     | When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts,...   |
 | [social](skills/social/)                               | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,...   |
 | [video](skills/video/)                                 | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use...   |
-| [create-spec](skills/create-spec/)                     | When the user wants to create a new marketing specification or update an existing one. Also use when the user mentions...  |
 
 <!-- SKILLS:END -->
 
