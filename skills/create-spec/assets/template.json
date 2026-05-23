@@ -1,0 +1,28 @@
+{
+  "document_control_defaults": {
+    "prepared_by": "Growth Ops Team",
+    "status": "Draft",
+    "classification": "CONFIDENTIAL",
+    "version": "1.0"
+  },
+  "required_martech_sections": [
+    "1.0_campaign_overview_and_growth_hypothesis",
+    "2.0_user_experience_and_consent_states",
+    "3.0_data_schemas_and_event_tracking_matrices",
+    "4.0_growth_engines_and_scoring_logic",
+    "5.0_martech_architecture_and_integrations",
+    "8.0_edge_case_and_exception_handling_matrix",
+    "9.0_marketing_telemetry_and_performance_dashboards"
+  ],
+  "tracking_event_property_blueprint": {
+    "event_name": "string (lowercase_snake_case)",
+    "trigger_condition": "string",
+    "properties": {
+      "utm_source": "string",
+      "utm_medium": "string",
+      "utm_campaign": "string",
+      "client_timestamp": "string (ISO-8601)",
+      "cookie_consent_status": "boolean"
+    }
+  }
+}
