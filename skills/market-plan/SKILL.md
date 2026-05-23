@@ -145,6 +145,7 @@ When someone has a brand new product with zero marketing assets, they're overwhe
 Do **not** try to run all phases at once. You'll confuse positioning while testing ads, or realize your pricing is wrong after you've already spent on acquisition.
 
 The sequence is strict for a reason:
+
 - Phase 1 informs Phase 2
 - Phase 2 informs Phase 3 messaging
 - Phase 3 infrastructure is ready before Phase 4 traffic
@@ -154,24 +155,28 @@ The sequence is strict for a reason:
 ## Phase Completion Criteria
 
 ### Phase 1: Complete When
+
 - [ ] `.agents/product-marketing.md` exists and is comprehensive
 - [ ] You can articulate your ICP in 1-2 sentences
 - [ ] You understand the top 3 customer pain points
 - [ ] You have a positioning hypothesis (primary message)
 
 ### Phase 2: Complete When
+
 - [ ] You've profiled at least 5 competitors
 - [ ] You understand pricing models in your space
 - [ ] You've set your own pricing (even if tentative)
 - [ ] You can explain how you're different (vs. alternatives)
 
 ### Phase 3: Complete When
+
 - [ ] Homepage and key landing pages have final copy
 - [ ] Signup flow is optimized and tested
 - [ ] Analytics infrastructure is deployed (events tracked, funnels instrumented)
 - [ ] You have a measurement dashboard set up
 
 ### Phase 4: Complete When
+
 - [ ] You've executed a launch
 - [ ] You're running at least one acquisition channel (paid or organic)
 - [ ] You're seeing early users and learning from them
@@ -196,13 +201,13 @@ This skill orchestrates all other marketing skills. Here's how they relate:
 
 Use this skill when the user says:
 
-- *"I just built an app, how do I start marketing it?"*
-- *"Give me a step-by-step marketing plan for a new launch."*
-- *"I have a brand new product with zero marketing assets."*
-- *"Which skills should I combine to build my go-to-market strategy?"*
-- *"I'm overwhelmed by all these marketing skills. What order do I use them in?"*
-- *"What's the sequence for building a marketing foundation from scratch?"*
-- *"I don't know what to do first."*
+- _"I just built an app, how do I start marketing it?"_
+- _"Give me a step-by-step marketing plan for a new launch."_
+- _"I have a brand new product with zero marketing assets."_
+- _"Which skills should I combine to build my go-to-market strategy?"_
+- _"I'm overwhelmed by all these marketing skills. What order do I use them in?"_
+- _"What's the sequence for building a marketing foundation from scratch?"_
+- _"I don't know what to do first."_
 
 ---
 
@@ -218,6 +223,7 @@ If the user gets to Phase 3 and realizes they need to adjust positioning from Ph
 At the end of each phase, confirm: "Phase X is complete. Ready to move to Phase Y?"
 
 **Customization Based on Product Type:**
+
 - **B2B SaaS:** All four phases apply (customer-research especially critical)
 - **Consumer app:** Phase 1 is shorter (you may already know your users), Phase 4 emphasizes social + viral loops
 - **Marketplace:** Phase 2 (competitor profiling) is critical; Phase 3 needs two landing pages (supply-side and demand-side)
