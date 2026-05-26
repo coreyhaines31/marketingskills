@@ -11,6 +11,7 @@ const path = require("path");
 
 const SKILLS_DIR = "skills";
 const MARKETPLACE_FILE = ".claude-plugin/marketplace.json";
+const PLUGIN_FILE = ".claude-plugin/plugin.json";
 const README_FILE = "README.md";
 
 /**
@@ -157,13 +158,36 @@ function updateMarketplace(skills) {
   return { updated: true, removedSkillsArray: hadStaleSkillsArray };
 }
 
+/**
+ * Update plugin.json's `version` field to match marketplace.json's
+ * `metadata.version`. Claude Code uses plugin.json's version for the update
+ * check (`claude plugin update`); if it drifts from marketplace.json the
+ * update path silently breaks.
+ */
+function updatePluginVersion() {
+  if (!fs.existsSync(PLUGIN_FILE)) return { updated: false };
+
+  const marketplace = JSON.parse(fs.readFileSync(MARKETPLACE_FILE, "utf8"));
+  const plugin = JSON.parse(fs.readFileSync(PLUGIN_FILE, "utf8"));
+  const marketplaceVersion = marketplace.metadata && marketplace.metadata.version;
+
+  if (!marketplaceVersion) return { updated: false };
+  if (plugin.version === marketplaceVersion) return { updated: false };
+
+  const oldVersion = plugin.version;
+  plugin.version = marketplaceVersion;
+  fs.writeFileSync(PLUGIN_FILE, JSON.stringify(plugin, null, 2) + "\n");
+  return { updated: true, oldVersion, newVersion: marketplaceVersion };
+}
+
 function main() {
   const skills = getSkillsWithMetadata();
 
   const marketplaceResult = updateMarketplace(skills);
   const readmeUpdated = updateReadme(skills);
+  const pluginResult = updatePluginVersion();
 
-  if (!marketplaceResult.updated && !readmeUpdated) {
+  if (!marketplaceResult.updated && !readmeUpdated && !pluginResult.updated) {
     console.log("Everything is already in sync");
     return;
   }
@@ -173,6 +197,10 @@ function main() {
       console.log("Stripped stale `skills` array from marketplace.json");
     }
     console.log(`Updated marketplace.json (${skills.length} skills)`);
+  }
+
+  if (pluginResult.updated) {
+    console.log(`Bumped plugin.json version: ${pluginResult.oldVersion} → ${pluginResult.newVersion}`);
   }
 
   if (readmeUpdated) {

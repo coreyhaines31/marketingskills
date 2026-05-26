@@ -8,7 +8,7 @@ Reference for using AI image generators, video generators, and code-based video 
 
 | Need | Tool Category | Best Fit |
 |------|---------------|----------|
-| Static ad images (banners, social) | Image generation | Nano Banana Pro, Flux, Ideogram |
+| Static ad images (banners, social) | Image generation | ChatGPT Images 2.0, Nano Banana Pro, Flux, Ideogram |
 | Ad images with text overlays | Image generation (text-capable) | Ideogram, Nano Banana Pro |
 | Short video ads (6-30 sec) | Video generation | Veo, Kling, Runway, Sora, Seedance |
 | Video ads with voiceover | Video gen + voice | Veo/Sora (native), or Runway + ElevenLabs |
