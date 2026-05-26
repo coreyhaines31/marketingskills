@@ -47,6 +47,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | customer-io | Email | ✓ | - | [✓](clis/customer-io.js) | ✓ | [customer-io.md](integrations/customer-io.md) |
 | sendgrid | Email | ✓ | - | [✓](clis/sendgrid.js) | ✓ | [sendgrid.md](integrations/sendgrid.md) |
 | resend | Email | ✓ | ✓ | [✓](clis/resend.js) | ✓ | [resend.md](integrations/resend.md) |
+| sequenzy | Email | ✓ | ✓ | ✓ | - | [sequenzy.md](integrations/sequenzy.md) |
 | nitrosend | Email | ✓ | ✓ | - | - | [nitrosend.md](integrations/nitrosend.md) |
 | kit | Email | ✓ | - | [✓](clis/kit.js) | ✓ | [kit.md](integrations/kit.md) |
 | beehiiv | Newsletter | ✓ | - | [✓](clis/beehiiv.js) | - | [beehiiv.md](integrations/beehiiv.md) |
@@ -189,6 +190,7 @@ Email marketing, transactional email, and automation platforms.
 | **customer-io** | Behavior-based messaging | - |
 | **sendgrid** | Transactional email at scale | - |
 | **resend** | Developer-friendly transactional | ✓ |
+| **sequenzy** | Lifecycle email, sequences, transactional email | ✓ |
 | **kit** | Creator/newsletter focused | - |
 | **beehiiv** | Newsletter platform | - |
 | **klaviyo** | E-commerce email + SMS | - |
@@ -196,7 +198,7 @@ Email marketing, transactional email, and automation platforms.
 | **brevo** | Email + SMS, popular in EU | - |
 | **activecampaign** | Email automation + CRM | - |
 
-**Agent recommendation**: Resend for transactional (dev-friendly). Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
+**Agent recommendation**: Resend for transactional (dev-friendly). Sequenzy for lifecycle email, sequences, and agent-driven email marketing. Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
 
 ### SMS / Messaging
 
