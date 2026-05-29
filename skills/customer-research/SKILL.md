@@ -269,3 +269,4 @@ Don't ask all five at once — lead with #1 and #2, then follow up as needed.
 | Writing cold email using research on pain/trigger | `cold-email` |
 | Translating customer research into an ICP for outbound | `prospecting` |
 | Planning content based on discovered topics | `content-strategy` |
+| Rolling research into a comprehensive marketing plan | `marketing-plan` |

@@ -160,6 +160,7 @@ When recommending ideas, provide for each:
 
 ## Related Skills
 
+- **marketing-plan**: When the user wants a comprehensive plan instead of standalone ideas. Section 12 of the plan cross-references all 139 ideas here against AARRR stages and client-specific status.
 - **programmatic-seo**: For scaling SEO content (#4)
 - **competitors**: For comparison pages (#11)
 - **emails**: For email marketing tactics

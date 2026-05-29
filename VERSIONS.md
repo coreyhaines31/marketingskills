@@ -27,6 +27,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | launch | 2.0.0 | 2026-05-05 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-ideas | 2.0.0 | 2026-05-05 |
+| marketing-plan | 1.0.0 | 2026-05-27 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | onboarding | 2.0.0 | 2026-05-05 |
 | ads | 2.0.1 | 2026-05-26 |
@@ -48,6 +49,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.3.0 (2026-05-27)
+
+- Added `marketing-plan` skill — comprehensive AARRR-structured marketing plan generator. Produces a 13-section Notion-paste-ready plan document (executive summary, strategic frame, current state, AARRR breakdown, 90-day roadmap, 12-month outlook with funding-stage capability unlocks, marketing operations stack mapping skills + MCPs to AARRR stages, tactical idea bank cross-referencing all 139 `marketing-ideas` to AARRR + client-specific status, measurement framework, RACI, open decisions). Customized for current budget, team, stage, and tooling stack. Three-phase workflow: INIT (research + intake), REVIEW (section-by-section walkthrough), FINALIZE (compile + verify + optional publish to shared repo). References include methodology, plan-template, aarrr-framework, current-state-rubric (mapping CF's audit-marketing 17-section rubric), ops-stack-mapping, idea-cross-reference (139-idea AARRR mapping), funding-stage-unlocks, measurement-framework, client-types (variations by B2B SaaS / D2C / hardware-hybrid / marketplace / dev tool / clinical / commerce), and example-quietude (anonymized canonical reference plan, based on a real fCMO engagement with names/identifying details changed).
+- Total skills: 43.
 
 ### 2.2.0 (2026-05-26)
 

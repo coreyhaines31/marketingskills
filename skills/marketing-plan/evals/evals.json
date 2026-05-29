@@ -1,0 +1,96 @@
+{
+  "skill_name": "marketing-plan",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm starting a fractional CMO engagement with a Series A B2B SaaS doing $2M ARR, 12-person team with 1 marketer, $20K/month marketing budget. They want a marketing plan we can share with the team and the board. Build it.",
+      "expected_output": "Should check for product-marketing.md first. Should ask for client name or use a slug. Should walk through three-phase workflow (INIT → REVIEW → FINALIZE), starting with intake covering funding state, team, budget, channels, what's done, in-flight, tooling stack. Should produce a 13-section AARRR-structured plan: executive summary, strategic frame, current state (scored against the embedded 17-section rubric), Acquisition, Activation, Retention, Referral, Revenue, 90-day roadmap with owner-assigned moves, 12-month outlook with funding-stage capability unlocks, marketing operations stack mapping skills + MCPs to AARRR stages, tactical idea bank cross-referencing all 139 marketing-ideas to AARRR + client-specific status, measurement framework with north-star + leading indicators + RACI + open decisions. Should be ~8–12K words, Notion-paste-ready. Should be specific to the client (their budget, team, channels), not generic.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Asks for client name or uses a slug",
+        "Walks through INIT phase with structured intake",
+        "Produces 13-section plan structured by AARRR",
+        "Section 3 scores against the embedded 17-section rubric",
+        "Section 9 (90-day roadmap) has owner-assigned moves, not just actions",
+        "Section 10 names funding-stage capability unlocks explicitly",
+        "Section 11 maps marketing skills + MCPs to each AARRR stage",
+        "Section 12 cross-references all 139 marketing-ideas with client-specific status",
+        "Output is Notion-paste-ready markdown",
+        "Plan is specific to the client (their budget, team, current channels), not generic"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We're pre-seed bootstrapped, $0 paid marketing budget, 4-person team building a D2C consumer app. Founder wants a 90-day plan + 12-month roadmap they can show investors during the upcoming raise. The product is in beta.",
+      "expected_output": "Should recognize Tier 1 funding profile (pre-seed) and skip paid acquisition recommendations until budget unlocks. Should lean Acquisition heavy on organic + lifecycle + ambassador moves. Should explicitly map what unlocks when seed closes (paid test budget $5–15K/mo, first marketing hire, etc.). Should respect that the product is in beta and account for activation/throttling gates. Should include the AARRR diagnostic — likely binding constraint at this stage is Activation (onboarding) and Referral. Plan must be investor-friendly: exec summary can be lifted into an update.",
+      "assertions": [
+        "Recognizes pre-seed tier and uses Tier 1 budget profile",
+        "Skips paid acquisition recommendations until budget unlocks",
+        "Leans Acquisition on organic + lifecycle + ambassador",
+        "Names what unlocks when seed closes",
+        "Accounts for product being in beta",
+        "Identifies binding-constraint AARRR stage (likely Activation or Referral)",
+        "Executive summary can be lifted into an investor update",
+        "Plan is operationally honest — doesn't pretend paid budget exists"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "we have an audit already done — can you take that and turn it into a real plan",
+      "expected_output": "Should ask for the audit output (file path or paste). Should recognize that current-state scoring already exists and ingest it directly into Section 3 — don't re-score. Should note scoring date in case material has shifted since. Should proceed with full 13-section plan generation using audit findings to inform 90-day roadmap and AARRR sections (gaps from audit become moves in the plan).",
+      "assertions": [
+        "Asks for the audit output",
+        "Ingests prior audit scoring directly into Section 3",
+        "Does not re-score what's already been scored",
+        "Notes the scoring date and flags any shifted material",
+        "Uses audit gaps to inform 90-day roadmap and AARRR section moves",
+        "Still produces a full 13-section plan, not just Section 3"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "/marketing-plan acme-saas — pick up where we left off",
+      "expected_output": "Should read ~/marketing-plans/acme-saas/progress.md to determine state machine phase. Should resume from the next unfinished section in REVIEW phase, or transition to FINALIZE if all sections approved. Should NOT silently restart from scratch. If progress.md is missing or shows 'finalized', should ask: revise as v{N+1}, start fresh, or re-open a section.",
+      "assertions": [
+        "Reads ~/marketing-plans/acme-saas/progress.md",
+        "Resumes from next unfinished section based on state machine",
+        "Does not silently restart from scratch",
+        "Handles finalized state by asking user how to proceed (revise / fresh / re-open)",
+        "Saves each newly confirmed section to the progress file"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I need a plan for a hybrid hardware+software wellness company. They sell a physical product and a subscription app. Series A, $100K/month marketing budget, 8-person team including a marketing lead.",
+      "expected_output": "Should recognize hybrid hardware+software archetype and consult references/client-types.md for archetype-specific emphases. Acquisition leans PR + retail + Amazon + Shopify SEO + paid. Activation = unboxing + setup + first session + paywall. Retention = lifecycle + community. Referral = gifting + reviews. Revenue = blended LTV (hardware + subscription + accessories). Should recognize Series A tier and recommend appropriate paid spend. Should include cross-cutting brand + customer-research moves. Idea bank should skip ideas that conflict with premium positioning or hardware constraints.",
+      "assertions": [
+        "Recognizes hybrid hardware+software archetype",
+        "Acquisition leans on PR, retail, Amazon, Shopify SEO, paid",
+        "Activation covers unboxing, setup, first session, paywall",
+        "Retention covers lifecycle, community",
+        "Referral covers gifting, reviews",
+        "Revenue covers blended LTV with hardware + subscription + accessories",
+        "Recognizes Series A tier in budget recommendations",
+        "Idea bank skips ideas that conflict with brand fit, with explicit rationale"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Just give me a quick marketing plan. Don't make it long.",
+      "expected_output": "Should resist defaulting to a short plan. Should explain that a marketing-plan is the comprehensive fCMO-deliverable artifact (~10K words) and that for a single-channel quick plan, the channel-specific skill is the right tool (emails, ads, seo-audit, etc.). Should offer alternatives: (a) full marketing-plan as designed, or (b) point to a specific skill for the user's actual need. Should NOT silently produce a stripped-down 3K-word plan that misses the ops stack or the idea bank.",
+      "assertions": [
+        "Resists short-plan request and explains why",
+        "Names marketing-plan as the comprehensive fCMO artifact",
+        "Recommends channel-specific skills for single-channel quick plans",
+        "Offers alternatives clearly",
+        "Does not silently produce a stripped-down plan"
+      ],
+      "files": []
+    }
+  ]
+}
