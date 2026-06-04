@@ -22,6 +22,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | customer-research | 2.0.0 | 2026-05-05 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
 | emails | 2.0.0 | 2026-05-05 |
+| feature-demo | 1.0.0 | 2026-06-04 |
 | free-tools | 2.0.0 | 2026-05-05 |
 | image | 2.0.1 | 2026-05-18 |
 | launch | 2.0.0 | 2026-05-05 |
@@ -49,6 +50,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.4.0 (2026-06-04)
+
+- Added `feature-demo` skill for recording Playwright-driven demo videos of an in-app flow (signup, onboarding, settings, dashboard interactions) — branded title card, on-screen subtitles, an animated mouse cursor, and optional ElevenLabs TTS narration, delivered as an MP4. Ships a recorder template (copy in, then edit the BRAND / TITLE_CARD / FEATURE STEPS blocks) and a generic narrator that muxes voiceover onto the silent capture, plus references for scene-timing modes (`before` / `during` / `after`) and common local-app recording gotchas (HTTP cookie flags, CSP, demo-state reset). For AI-generated/marketing video, see `video`.
+- Total skills: 44.
 
 ### 2.3.0 (2026-05-27)
 

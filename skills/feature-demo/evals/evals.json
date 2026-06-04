@@ -1,0 +1,84 @@
+{
+  "skill_name": "feature-demo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Make a demo video of our signup flow.",
+      "expected_output": "Should ask clarifying questions before writing code: which entry URL, list of scenes/captions, whether the demo needs narration (and if so prompt for ELEVENLABS_API_KEY), and what auth state to start in. Should NOT start coding the recorder until those answers are in. Should mention that the recorder is created by copying scripts/recorder.template.mjs to scripts/record-<feature>.mjs and editing the BRAND, TITLE_CARD, and FEATURE STEPS sections.",
+      "assertions": [
+        "Asks about the entry URL / feature being recorded",
+        "Asks for the per-scene caption list before scaffolding",
+        "Asks about narration (defaults to silent)",
+        "Asks about auth state (logged in vs. anonymous)",
+        "References the recorder template at scripts/recorder.template.mjs",
+        "Does not start writing a recorder script until clarifications are answered"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Record a tutorial showing how to add a team member, with voiceover narration. The brand is 'YourApp', dark navy bg, lime green accent. Logo at public/img/logo.svg.",
+      "expected_output": "Should scaffold the recorder by copying scripts/recorder.template.mjs into scripts/. Should fill the BRAND block with name='YourApp', backgroundColor=<dark navy hex>, accentColor=<lime green hex>, logoPath='public/img/logo.svg'. Should ask for ELEVENLABS_API_KEY (or read it from env). Should set TITLE_CARD to a sensible title/subtitle/intro for the tutorial. Should pick mode='before' for transition-style clicks and mode='during' for in-place actions like filling the email field. Should use clickWithCursor / fillWithCursor in step fn bodies.",
+      "assertions": [
+        "Copies the recorder template into scripts/",
+        "Fills the BRAND block with the user-supplied values",
+        "Sets logoPath to public/img/logo.svg",
+        "Asks for or uses ELEVENLABS_API_KEY",
+        "Writes a TITLE_CARD with title/subtitle/intro",
+        "Picks mode='before' for navigation clicks",
+        "Picks mode='during' for form-fill scenes",
+        "Uses clickWithCursor / fillWithCursor helpers (not raw locator.click / locator.fill)"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Just record a quick silent demo of /pricing — no narration needed.",
+      "expected_output": "Should still scaffold the recorder (BRAND, captions for the subtitle bar) but should NOT require ELEVENLABS_API_KEY. After running the recorder, should suggest the one-liner ffmpeg invocation that stacks the chrome PNG on the silent webm without involving narrate.mjs. The TITLE_CARD block can be left out or set with a short title; the title card only renders when intro narration is configured.",
+      "assertions": [
+        "Does not require / ask for ELEVENLABS_API_KEY",
+        "Captions are still written for each scene (subtitle bar still appears)",
+        "Suggests the silent ffmpeg one-liner from SKILL.md instead of narrate.mjs",
+        "Does not call narrate.mjs in the final delivery"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "The narration is finishing a sentence about the previous page while the demo has already moved on to the next page. How do I fix this?",
+      "expected_output": "Should diagnose this as scene-mode misalignment — the navigation click is firing before the narration finishes, leaving the speaker describing a page the viewer can no longer see. Should recommend changing the affected step's mode to 'before' so narration plays in full while the current page is visible, then fn() runs (and the transition happens silently between scenes). Should reference references/step-modes.md for the full decision matrix.",
+      "assertions": [
+        "Identifies the cause as a step-mode issue",
+        "Recommends switching to mode='before' for the transition step",
+        "Explains how mode='before' changes the timing (narration first, then fn())",
+        "References step-modes.md or the mode picker in SKILL.md"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "When I re-run this recorder, the demo user already has the AI Call step from the last run. My click is landing on the existing step card instead of the modal option.",
+      "expected_output": "Should diagnose this as DB state accumulating between runs and a selector ambiguity (':has-text' matching both the existing card and the modal option). Should recommend adding a resetDemoState() block at the top of the recorder that wipes the rows the demo creates (using spawnSync + the user's stack's CLI — php artisan tinker, rails runner, etc.). Should also recommend tightening the selector to getByRole('button', { name: 'AI Call', exact: true }) so the modal option matches uniquely.",
+      "assertions": [
+        "Diagnoses both DB state accumulation AND selector ambiguity",
+        "Recommends adding a resetDemoState() block before recording starts",
+        "References the commented resetDemoState example in the template",
+        "Suggests tightening the selector with exact: true or a more specific locator chain",
+        "Notes that spawnSync should use array-form args so the shell doesn't expand $vars"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "The video starts with a blank screen for about a second before the page appears.",
+      "expected_output": "Should explain that Playwright video recording starts at context.newPage() while the page is still about:blank, and that the narrator already trims this by anchoring the trim to (firstSubtitleOffset - 150ms). If blank still leaks through, the page isn't fully rendered by the time subtitle() is called — fix is to wait for a real selector + small settle (e.g. 500ms) AFTER navigation BEFORE calling subtitle() for the first time. The opener block in the template shows this pattern.",
+      "assertions": [
+        "Explains the about:blank → first-paint → first-subtitle timing",
+        "Notes the narrator already trims based on first-subtitle offset minus pre-roll",
+        "Recommends a waitForSelector + small waitForTimeout after page.goto in the opener",
+        "References the opener pattern in the recorder template"
+      ],
+      "files": []
+    }
+  ]
+}
