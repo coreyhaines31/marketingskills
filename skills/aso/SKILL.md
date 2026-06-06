@@ -1,8 +1,8 @@
 ---
 name: aso
-description: "When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions 'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'improve app visibility,' 'app store ranking,' 'audit my listing,' 'why aren't people downloading my app,' 'improve my app conversion,' 'keyword optimization for app,' or 'compare my app to competitors.' Use when the user shares an App Store or Google Play URL and wants to improve it."
+description: "When the user wants to audit or optimize an App Store or Google Play listing, improve app downloads, or increase conversion rates on their app listing. Also use when the user mentions 'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'improve app visibility,' 'app store ranking,' 'audit my listing,' 'why aren't people downloading my app,' 'improve my app conversion,' 'keyword optimization for app,' 'compare my app to competitors,' 'app store screenshots,' 'app icon optimization,' 'app store description,' 'A/B test app store,' 'custom product page,' 'Google Play optimization,' 'app store preview video,' or 'improve my app rating.' Use this even if the user just shares an App Store or Google Play URL without a specific request — default to running a full audit. For web landing pages that drive app installs, see cro. For app install ad creative, see ad-creative."
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # ASO Audit
@@ -10,13 +10,6 @@ metadata:
 Analyze App Store and Google Play listings against ASO best practices. Fetches
 live listing data, scores metadata, visuals, and ratings, then produces a
 prioritized action plan.
-
-## When to Use
-
-- User shares an App Store or Google Play URL
-- User asks to audit or optimize an app listing
-- User wants to compare their app against competitors
-- User asks about app store ranking, visibility, or download conversion
 
 ## Before Auditing
 

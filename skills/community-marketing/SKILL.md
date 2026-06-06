@@ -1,8 +1,8 @@
 ---
 name: community-marketing
-description: "Build and leverage online communities to drive product growth and brand loyalty. Use when the user wants to create a community strategy, grow a Discord or Slack community, manage a forum or subreddit, build brand advocates, increase word-of-mouth, drive community-led growth, engage users post-signup, or turn customers into evangelists. Trigger phrases: \"build a community,\" \"community strategy,\" \"Discord community,\" \"Slack community,\" \"community-led growth,\" \"brand advocates,\" \"user community,\" \"forum strategy,\" \"community engagement,\" \"grow our community,\" \"ambassador program,\" \"community flywheel.\""
+description: "When the user wants to build, launch, or grow an online community to drive product growth, retention, or word-of-mouth. Also use when the user mentions 'build a community,' 'community strategy,' 'Discord community,' 'Slack community,' 'community-led growth,' 'brand advocates,' 'user community,' 'forum strategy,' 'community engagement,' 'grow our community,' 'ambassador program,' 'community flywheel,' 'how do I keep users engaged,' 'turn customers into advocates,' 'Circle community,' 'brand evangelists,' or 'community from scratch.' Use this even if the user is unsure what platform to use — start with platform selection and identity definition before tactics. For structured referral incentive programs, see referrals. For post-cancel win-back and retention, see churn-prevention. For social media content creation, see social."
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Community Marketing
