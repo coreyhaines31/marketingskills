@@ -78,8 +78,10 @@ skills/your-skill-name/
 
 ## Skill Quality Checklist
 
-- [ ] `name` matches directory name
-- [ ] `description` clearly explains when to use the skill
+- [ ] `name` matches directory name exactly
+- [ ] `name` follows naming rules (lowercase, hyphens only, no consecutive `--`)
+- [ ] `description` is 1-1024 chars and includes trigger phrases
+- [ ] `SKILL.md` is under 500 lines (move details to `references/`)
 - [ ] Instructions are clear and actionable
 - [ ] No sensitive data or credentials
 - [ ] Follows existing skill patterns in the repo
