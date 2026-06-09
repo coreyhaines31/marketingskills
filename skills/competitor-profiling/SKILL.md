@@ -234,6 +234,30 @@ For each competitor URL:
 
 ---
 
+## Scan label and output path rules
+
+When Firecrawl is available but DataForSEO is unavailable, use this exact user-facing scan label:
+
+Firecrawl content scan without SEO/backlink data
+
+Do not shorten this to "quick scan", "no SEO scan", or "firecrawl-content-scan-no-seo" in user-facing reports.
+
+Save raw Firecrawl outputs under:
+
+raw/firecrawl/{competitor-slug}/{YYYY-MM-DD}/
+
+Save synthesized competitor profiles under:
+
+competitor-profiles/{competitor-slug}.md
+
+Save the multi-competitor summary under:
+
+competitor-profiles/_summary.md
+
+Do not nest raw Firecrawl outputs under competitor-profiles/raw/.
+
+---
+
 ## Optional AI SEO handoff
 
 When the `ai-seo` skill is available and the user asks for AI visibility, AI search, GEO, AEO, LLMO, ChatGPT visibility, Perplexity visibility, Google AI Overviews, or content citation opportunities, use the scraped Firecrawl content as input for an AI SEO assessment.
