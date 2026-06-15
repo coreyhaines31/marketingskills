@@ -34,6 +34,8 @@ Google AI Overviews pull from Google's own index and lean heavily on E-E-A-T sig
 - Get into Google's Knowledge Graph where possible (an accurate Wikipedia entry helps)
 - Target "how to" and "what is" query patterns — these trigger AI Overviews most often
 
+**Watch for OKF.** In June 2026 Google introduced the [Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) — a markdown spec for agent-readable site bundles. There is no confirmed signal that AI Overviews factor it in today, but the spec is published, the GitHub repo lives under `GoogleCloudPlatform`, and it ships inside Knowledge Catalog. For protocol-layer "register early" plays, it has the same shape as early schema.org adoption did a decade ago. See **Machine-Readable Files for AI Agents** in the main `SKILL.md` for how to generate and serve a bundle.
+
 ---
 
 ## ChatGPT
