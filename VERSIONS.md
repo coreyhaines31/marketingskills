@@ -49,8 +49,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | sms | 1.0.0 | 2026-05-21 |
 | social | 2.1.0 | 2026-06-10 |
 | video | 2.0.1 | 2026-05-18 |
+| x-source-research | 1.0.0 | 2026-06-17 |
 
 ## Recent Changes
+
+### 2.5.2 (2026-06-17)
+
+- Added `x-source-research` skill for source-backed X/Twitter research. It covers brand monitoring, competitor monitoring, customer language mining, content opportunity research, and campaign evidence workflows. Includes query design, source packet capture, evidence confidence rules, synthesis steps, and output templates for theme summaries, content opportunities, and claim support matrices.
+- Total skills: 46.
 
 ### 2.5.1 (2026-06-16)
 
