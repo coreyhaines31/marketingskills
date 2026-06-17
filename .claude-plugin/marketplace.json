@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Marketing skills for AI agents — conversion optimization, copywriting, SEO, paid ads, and growth",
-    "version": "2.4.2",
+    "version": "2.5.0",
     "repository": "https://github.com/coreyhaines31/marketingskills"
   },
   "plugins": [
     {
       "name": "marketing-skills",
-      "description": "44 marketing skills for technical marketers and founders: CRO, copywriting, cold email, prospecting, SEO, AI SEO, paid ads, SMS, ad creative, video production, image generation, co-marketing, churn prevention, pricing, referrals, revenue operations, sales enablement, customer research, site architecture, comprehensive AARRR-structured marketing plans, public relations and earned media, and more",
+      "description": "45 marketing skills for technical marketers and founders: CRO, copywriting, cold email, prospecting, SEO, AI SEO, paid ads, SMS, ad creative, video production, image generation, co-marketing, churn prevention, pricing, referrals, revenue operations, sales enablement, customer research, X source research, site architecture, comprehensive AARRR-structured marketing plans, public relations and earned media, and more",
       "source": "./"
     }
   ]
