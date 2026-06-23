@@ -18,6 +18,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | content-strategy | 2.0.0 | 2026-05-05 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.1 | 2026-06-16 |
+| crisis-communications | 1.0.0 | 2026-06-23 |
 | cro | 2.0.0 | 2026-05-05 |
 | customer-research | 2.0.0 | 2026-05-05 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
@@ -38,7 +39,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | product-marketing | 2.0.0 | 2026-05-05 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
 | prospecting | 1.0.0 | 2026-05-26 |
-| public-relations | 1.0.0 | 2026-06-10 |
+| public-relations | 1.0.1 | 2026-06-23 |
 | referrals | 2.0.0 | 2026-05-05 |
 | revops | 2.0.0 | 2026-05-05 |
 | sales-enablement | 2.0.1 | 2026-06-16 |
@@ -47,10 +48,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.1.0 | 2026-06-10 |
+| social | 2.2.0 | 2026-06-23 |
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### Unreleased
+
+- Added `crisis-communications` skill for reactive, time-sensitive incident response — data breaches, product outages, executive controversy, viral customer-harm stories, billing errors, and leaked layoffs. Distinct from `public-relations` (proactive/earned media on your own timeline) — this skill is reactive and time-compressed, where the story is already running. Covers a severity-triage table (Tier 1-4), a first-60-minutes checklist, channel sequencing (notify affected parties before going public), a common-crisis-types table with playbook notes, an explicit "what not to do" list (non-apologies, going dark, deleting criticism, public speculation), and post-crisis retro/trust-rebuild guidance. Includes `references/statement-templates.md` with adaptable templates for a holding statement, full incident statement, data breach notification, outage statement, customer-harm apology, billing-error statement, and public postmortem. Cross-referenced from `public-relations` (1.0.0 → 1.0.1, description-only change). Total skills: 46.
+- **social** (2.1.0 → 2.2.0): extracted the inline "Content Repurposing System" section into `references/repurposing.md` to match the pattern used by `platforms.md`, `platform-limits.md`, `post-templates.md`, and `short-form-video.md`. The reference keeps all existing tables (Blog Post → Social, Podcast/Video → Social atom types, Webinar → Social, Newsletter → Social) and the 6-step workflow, and adds three new sections: a repurposing tools table (transcript, clip extraction, captioning, graphics, scheduling), a "repurposing math" table giving a realistic atom-count and derivative-post-count per pillar format (so a thin pillar piece doesn't get force-extracted into more posts than its content supports), and a before/after example showing the same content atom reframed for Twitter/X vs. LinkedIn. `SKILL.md`'s Content Repurposing System section is now a short summary that links to the reference, consistent with how other reference-backed sections are presented.
 
 ### 2.5.1 (2026-06-16)
 
