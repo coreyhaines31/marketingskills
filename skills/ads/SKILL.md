@@ -128,6 +128,51 @@ LI_LeadGen_CMOs-SaaS_Whitepaper_Mar24
 
 ---
 
+## Modern Meta playbook (Andromeda era — 2026+)
+
+Meta launched the **Andromeda** algorithm in 2025, which fundamentally changed Meta ads. The old playbook (interest stacking, polished video creative, single-winner scaling) underperforms. The new playbook:
+
+### Creative volume is the constraint (statics > polished video)
+- Andromeda is "a hungry panda" — it needs constant fresh creative or it fatigues
+- **Statics often outperform video in 2026** because:
+  - Meta's algorithm has a bias toward statics — it can show more statics per session per user, so they're cheaper to deliver
+  - Static creative is 10x cheaper and faster to produce than video, enabling the volume Andromeda needs
+  - Even top advertisers running 17+ VSLs report that down-and-dirty native statics often beat 2.5-month-production VSLs
+- **Dedicate 1 hour per week** to producing fresh creatives for your winning offer. Volume > polish.
+
+### Creative IS the targeting (broad audience + specific creative)
+- The old playbook: stack interests, narrow the audience, hope to find the right buyer
+- The new playbook: target broadly (just the country) and let the creative do the targeting
+- **Long-form ad copy works better than short-form** in 2026 — gives Meta a wider context window to understand who to show the ad to
+- Test it: take your best winning ad with interest-stacked targeting, duplicate it, remove all targeting (just pick the country), run side-by-side for 7 days. Check CPAs. Broad typically wins.
+
+### The one-keyword hack (identity-trigger keywords)
+- Take your winning ad
+- Duplicate it with a niche/identity keyword inserted in the headline or body copy
+- *"Here's how to get 462 leads per week on autopilot"* → *"Here's how to get 462 **dental** leads per week on autopilot"* / *"...**lawyer** leads..."* / *"...**property investment** leads..."*
+- The keyword is an **identity trigger** for the viewer AND a targeting signal for Andromeda
+- Dramatically drops CPL and opens audience pockets you couldn't reach with a generic ad
+
+### AI variant farming (the 100-people test)
+- Take your winning ad
+- Feed to Claude/ChatGPT/Kong with the prompt:
+  > *"I want you to read this ad and be the author. If I show the next ad I'm going to ask you to write to 100 people, not 1 in 100 would be able to tell you it's written by a different person. Now write this for [demographic/niche]."*
+- The output should read essentially the same with subtle relevance shifts for the target
+- Apply in sequence: body copy → headlines → creative
+- Drop all variants in a CBO, let Meta's AI allocate spend
+
+### Zombie campaigns
+- After running a CBO, Meta will give 80% of variants no spend
+- Take the dead variants you have **high conviction** about
+- Launch them in a separate ad set ("zombie campaign")
+- Typically resurrects 20% as winners that Meta's first allocation passed over
+
+### Don't make ads look like ads
+- Hundreds of millions of people have ad blockers — the polished-ad aesthetic kills performance
+- Study what content **natively performs** in your niche on TikTok/Instagram/YouTube → produce ads that match that aesthetic
+- **Burner account technique:** create a clean Instagram/TikTok account, follow all influencers and pages in your niche, like their content. Your feed becomes a curated view of what's natively winning. Produce ads that match.
+- If you have an organic video with millions of views, **run that exact video as a paid ad** — proven content + paid distribution = the highest-leverage move
+
 ## Creative Best Practices
 
 ### Image Ads
@@ -219,7 +264,52 @@ LI_LeadGen_CMOs-SaaS_Whitepaper_Mar24
 - Bounced visitors (<10 sec)
 - Irrelevant pages (careers, support)
 
+### Retarget with DIFFERENT offers (not the same one)
+
+The conventional retargeting playbook re-shows the same product/offer to people who didn't buy. The Sabri Suby principle: **the #1 reason someone didn't buy is the offer wasn't right for them.** Re-showing the same thing harder doesn't help.
+
+Instead, retarget with **different** products, services, or offers from your catalog:
+- Visitor clicked on protein powder, didn't buy → retarget with creatine (totally different category)
+- Visitor downloaded a lead magnet, didn't book a call → retarget with a different lead magnet on a related topic
+- Visitor viewed pricing, didn't sign up → retarget with a free audit or assessment instead
+
+The lift from this is often dramatic — a 2-3 ROAS audience on the original offer can hit 6+ ROAS on a different offer.
+
+### The 4-component retargeting framework
+
+Build out your retargeting layer with these 4 ad types running simultaneously:
+
+1. **Objection-handling ad** — directly addresses the most common reasons people didn't buy. To find these, **outbound call every lead** who didn't convert and ask why. The verbatim objections become the headline of this ad.
+2. **Proof testimonial carousel** — multi-image/multi-slide carousel of testimonials and proof that supports the claims of your original ad
+3. **Other-offers CBO** — your other best-performing ads for other products/services in one CBO, retargeted to the same audience
+4. **Value-first audit/assessment ad** — wraps your call in a free piece of value. Whether they buy or not, they leave with something useful. Lowers the friction to engage.
+
+These four together, retargeting the same audience that didn't convert from the top-of-funnel ad, dramatically lift the ROAS of the entire funnel.
+
 ---
+
+## Landing Page Alignment (the headline-mirror trick)
+
+Ad-to-landing-page congruence is the single most underrated lever in paid ads. Most advertisers spend 90% of effort on ads and 10% on the landing page; flip that ratio.
+
+### Headline mirroring
+
+Meta is the best split-testing tool that exists — your ad headlines are exposed to ~1000x the audience that actually clicks through to your landing page. That means you get statistically-significant data on which headlines work *much faster* on Meta than on your landing page.
+
+The play:
+
+1. Run **20-40 different headlines** as ad variations
+2. Identify the best-performing headline (by CTR + downstream conversion)
+3. **Mirror that winning headline on your landing page** — exact wording in the H1, sub-headline, and lead-in copy of the body
+4. Expect a **15-20% minimum lift** in landing-page conversion rate from this single change
+
+This works because the viewer who clicked is expecting *that specific promise*. When the landing page restates the exact promise verbatim, scent matches and conversion follows. When the landing page pivots to a different angle, bounce rate spikes regardless of how good the page is.
+
+### Three split tests minimum at all times
+
+A standing discipline: **at any given moment, you should have at least 3 split tests running** somewhere in your funnel — ad creative, landing page, offer, or post-conversion flow. If you don't, you've capped your improvement curve.
+
+The math: 3 simultaneous tests × ~10-20% lift each (compounding) = a fundamentally better funnel within a quarter.
 
 ## Reporting & Analysis
 
@@ -236,6 +326,33 @@ LI_LeadGen_CMOs-SaaS_Whitepaper_Mar24
 - Use UTM parameters consistently
 - Compare platform data to GA4
 - Look at blended CAC, not just platform CPA
+
+### Scaling discipline (net cash > ROAS percentage)
+
+The most common scaling failure: a business at a 40 ROAS spending $5k/month, refusing to scale because "if I spend more, my ROAS will drop." This is the wrong frame.
+
+**Net cash flow > ROAS percentage at the business level:**
+- ROAS dropping from 10 → 5 sounds bad
+- But if spend goes from $10k → $100k, you net dramatically more total profit
+- The number to optimize is **blended ROAS at the business level**, not per-ad-set ROAS
+- Even better: optimize **net free cash flow**, not ROAS at all
+
+**Find your break-even ROAS:**
+1. Calculate the absolute maximum you can pay to acquire a customer and still be profitable (factoring LTV)
+2. That's your break-even ROAS / CPA ceiling
+3. **Scale until you approach that ceiling**, not until your ad-account ROAS drops below an arbitrary preference
+
+**The 3-hour founder review:**
+- Block out **3 hours per month** in the calendar to physically review the numbers yourself
+- Not what your data analyst says. Not what your media buyer says. You, going through the actual data
+- The confidence this generates is irreplaceable — and confidence is what lets you scale with conviction
+- "Data gives you confidence. Confidence gives you speed."
+
+**Outbound-call your leads who didn't convert:**
+- Every lead that downloaded a lead magnet or hit your funnel but didn't buy gets a call
+- Ask why they didn't book, what was confusing, what the actual blocker was
+- These verbatim answers become objection-handling ads (see Retargeting section)
+- Massive insight-to-creative loop that most advertisers skip
 
 ---
 
