@@ -24,18 +24,21 @@ Then:
 
 ## Anatomy of a Marketing Loop
 
-Every loop in the catalog has these parts. When you author or adapt one, fill all of them — a loop missing a stop condition or a self-check is a liability, not an asset.
+Every loop in the catalog has these nine parts. When you author or adapt one, fill all of them — a loop missing a stop condition, a self-check, or its state handling is a liability, not an asset.
 
 | Part | What it defines |
 |------|-----------------|
-| **Cadence** | How often it runs (weekly / daily / on-trigger). Match it to signal speed. |
-| **Trigger** | Time-based (every Monday 9am) or event-based (a metric crosses a threshold). |
+| **Check cadence** | How often the loop *looks* (weekly / daily / on-trigger). Match it to signal speed. |
+| **Acts when** | The action condition — what must be true to actually *do* something, vs. just check and skip. Most runs of a good loop are "checked, nothing to do." |
 | **Purpose** | The one outcome this loop exists to move. |
 | **Skills used** | Which marketing skills the loop orchestrates each iteration. |
 | **Loop body** | The ordered steps run each iteration. |
-| **Self-check** | The verification done *before* acting — so the loop doesn't act on noise or ship junk. |
-| **Stop / bail-out** | When the loop halts, escalates to a human, or skips this iteration. Every loop needs one. |
+| **Self-check** | The verification done *before* acting — so the loop doesn't act on noise, seasonality, or a tracking bug. |
+| **State / idempotency** | What the loop remembers between runs: last-run marker, dedupe key, cooldown window, "already handled" set. Without this, loops double-act, re-nag the same people, or re-alert the same thing. Non-negotiable for anything scheduled. |
+| **Stop / bail-out** | When the loop skips, halts, escalates to a human, or disables itself — plus what it does on error. Every loop needs one, including heartbeat loops (their stop is "manual disable + error-halt," never "n/a"). |
 | **Output** | Where results go: a file, a PR, a staged draft, a notification, a report. |
+
+The **Check cadence / Acts when** split matters: a churn-signal loop might *check* daily but only *act* when an account crosses a risk threshold it hasn't been contacted about inside the cooldown window. Conflating the two produces loops that either miss the window or spam.
 
 ## The cadence rule
 
@@ -74,7 +77,7 @@ Default to time-of-day cron for review-style loops (weekly review, ranking watch
 
 ## The Catalog
 
-`references/loop-catalog.md` holds the full library — ~20 marketing loops organized by funnel stage (AARRR) plus ongoing ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
+`references/loop-catalog.md` holds the full library — 43 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
 
 ## Anti-patterns
 
