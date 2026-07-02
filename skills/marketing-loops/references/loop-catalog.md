@@ -653,4 +653,4 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 
 ## Adapting and authoring loops
 
-To adapt a loop: keep all nine anatomy parts, swap skills/thresholds for the user's stack, and re-tune cadence to signal speed. To author a new one: start from the closest catalog entry, and do not ship it until every part is filled — especially **State / idempotency**, **Self-check**, and **Stop / bail-out**. A loop without those isn't a system; it's a way to do the wrong thing on a schedule, repeatedly, to the same people.
+To adapt a loop: keep all nine anatomy parts, swap skills/thresholds for the user's stack, and re-tune cadence to signal speed. To author a brand-new one: use `loop-template.md` (copy-paste template + fill-in prompts + worked example + ship checklist). Either way, do not ship a loop until every part is filled — especially **State / idempotency**, **Self-check**, and **Stop / bail-out**. A loop without those isn't a system; it's a way to do the wrong thing on a schedule, repeatedly, to the same people.
