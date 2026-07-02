@@ -1,0 +1,101 @@
+{
+  "skill_name": "marketing-loops",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to set up a recurring loop that watches our SEO and tells me what to do each week. We're a B2B SaaS with a content-heavy site.",
+      "expected_output": "Should check for product-marketing.md first. Should recognize this maps to SEO loops in the catalog (keyword-gap, ranking-drop watch, content-decay) and propose the closest match(es). Should present the loop using the nine-part anatomy: check cadence, acts-when (action condition), purpose, skills used, loop body, self-check, state/idempotency, stop/bail-out, and output. Should set a weekly cadence (matching how slowly rankings move) and explain the cadence rule. Should include a stop/bail-out and note that most runs may find no action. Should reference the seo-audit skill for execution.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Selects appropriate SEO loop(s) from the catalog",
+        "Presents the loop with the nine-part anatomy",
+        "Includes state/idempotency (last-run marker or dedupe)",
+        "Includes an explicit stop/bail-out condition",
+        "Sets a weekly cadence and justifies it via the cadence rule",
+        "References seo-audit or related skills for execution"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I want to automate my marketing so it basically runs itself. Where do I start?",
+      "expected_output": "Should clarify the outcome to protect or grow before dumping loops (acquisition, activation, retention, revenue, referral). Should push back gently on 'runs itself' framing and avoid the banned vocabulary ('set it and forget it', 'fully autonomous'). Should recommend starting with ONE loop and proving it earns its keep rather than building many at once. Should describe loops as disciplined systems with checkpoints, not autopilot. Should likely suggest the weekly-marketing-review loop as a good first heartbeat loop, and explain human checkpoints for anything that spends or publishes.",
+      "assertions": [
+        "Asks about the target outcome / funnel stage before recommending",
+        "Avoids banned autopilot vocabulary",
+        "Recommends starting with one loop, not many",
+        "Frames loops as systems with checkpoints, not magic",
+        "Emphasizes human checkpoints for spend/publish actions",
+        "May suggest the weekly-marketing-review loop as a starting point"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Set up a newsjacking loop that finds trending stories and automatically posts our take to X and pitches journalists.",
+      "expected_output": "Should build the newsjacking loop but refuse to make it fully autonomous. Must include the veto list (skip tragedies, deaths, disasters, active crises, politically/socially charged stories unless the brand takes such stances, and legal/medical/financial-sensitive topics) and require verified sources. Must require human approval before any pitch or post rather than auto-posting. Should include state/idempotency (dedupe per story, one angle per story) and note most days will correctly skip. Should reference the public-relations skill.",
+      "assertions": [
+        "Builds the newsjacking loop with the nine-part anatomy",
+        "Includes an explicit veto list for sensitive story types",
+        "Requires human approval before pitching or posting",
+        "Does not enable fully autonomous posting",
+        "Includes dedupe/state so stories aren't re-pitched",
+        "References the public-relations skill"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "How do I actually schedule these loops so they run on their own?",
+      "expected_output": "Should explain that the loop body is agent-agnostic but scheduling depends on the environment. Should cover the options: Claude Code native primitives (/loop, ScheduleWakeup, CronCreate), any-agent + cron (with an example cron expression), and manual cadence for high-judgment loops. Should default to time-of-day cron for review-style loops and dynamic pacing for monitor-until-threshold loops. Should treat a dedicated loop-mechanics skill like loopify as an optional companion, not a hard dependency, and not assume it is installed.",
+      "assertions": [
+        "Explains scheduling is environment-dependent",
+        "Covers Claude Code native options and plain cron",
+        "Includes manual cadence as a valid option",
+        "Gives cron vs dynamic-pacing default guidance",
+        "Treats loopify as optional, not a required dependency"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Can you make me a loop that continuously improves our brand positioning and comes up with our big campaign ideas?",
+      "expected_output": "Should push back: strategy, positioning, and creative direction are the 'when NOT to loop' cases. Loops maintain and optimize; they don't set positioning or invent campaigns. Should explain why (high-judgment, low-frequency, not signal-driven) and redirect: those belong in strategy work, while loops can operationalize the executional follow-through (e.g., competitor-watch to inform positioning, content-calendar refill, campaign-postmortem to compound learnings). Should not fabricate a positioning loop as if it were a good fit.",
+      "assertions": [
+        "Identifies this as a 'when NOT to loop' case",
+        "Explains loops optimize/maintain rather than set strategy or creative",
+        "Redirects strategy/creative to the appropriate non-loop work",
+        "Suggests adjacent operational loops that genuinely fit",
+        "Does not force an ill-fitting positioning/campaign-ideation loop"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "We keep losing customers to failed payments and expired cards. Set up something to recover that revenue automatically.",
+      "expected_output": "Should select the failed-payment/dunning loop. Should trigger on payment failure or upcoming card expiration, run a retry schedule with escalating update-card messaging, and include state (track dunning stage per account, stop on recovery). Must include a stop/bail-out so it doesn't loop forever (escalate/deactivate after final retry) and a self-check to distinguish involuntary failures from intentional cancellations (don't dun someone who chose to leave). Should reference revops and emails skills. May note this is often the highest-ROI retention loop.",
+      "assertions": [
+        "Selects the failed-payment/dunning loop",
+        "Triggers on failed payment or card expiration",
+        "Includes a retry schedule with dunning stage state",
+        "Has a stop condition so it does not loop forever",
+        "Self-check separates involuntary failures from intentional cancels",
+        "References revops and/or emails skills"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I want a loop that keeps our A/B testing program running — generating hypotheses, running tests, and analyzing results every week.",
+      "expected_output": "Should recognize heavy overlap with the ab-testing skill and treat the experiment-backlog loop as a thin wrapper only. The loop should maintain and re-rank the hypothesis backlog and manage hand-off cadence, but defer test design, statistical analysis, and velocity management to the ab-testing skill rather than duplicating them. Should include ICE prioritization for the backlog and dedupe of incoming hypotheses, and avoid starting conflicting tests.",
+      "assertions": [
+        "Recognizes overlap with the ab-testing skill",
+        "Keeps the loop as a thin wrapper that defers to ab-testing",
+        "Does not duplicate test design or statistical analysis in the loop",
+        "Includes backlog prioritization (ICE) and hypothesis dedupe",
+        "References the ab-testing skill as the owner of execution"
+      ],
+      "files": []
+    }
+  ]
+}
