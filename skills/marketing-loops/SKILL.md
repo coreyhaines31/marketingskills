@@ -19,8 +19,10 @@ Then:
 1. **Clarify the job.** What outcome should this loop protect or grow? (rankings, ad efficiency, activation, retention, revenue, referrals)
 2. **Pick a loop** from the catalog in `references/loop-catalog.md` — or adapt the closest one.
 3. **Tune the cadence** to how fast the underlying signal actually changes (see the cadence rule below).
-4. **Confirm the human checkpoint.** Decide what the loop does autonomously vs. what it stages for human approval before publishing or spending.
+4. **Confirm the human checkpoint.** Decide what the loop does autonomously vs. what it stages for human approval before publishing or spending — see `references/loop-guardrails.md`.
 5. **Schedule it** (see "Scheduling a loop" below).
+
+Building more than one loop, or a whole marketing operating system? See `references/loop-orchestration.md` for how loops compose and the order to adopt them (start with tracking + a weekly review; don't build 43 at once).
 
 ## Anatomy of a Marketing Loop
 
@@ -34,7 +36,7 @@ Every loop in the catalog has these nine parts. When you author or adapt one, fi
 | **Skills used** | Which marketing skills the loop orchestrates each iteration. |
 | **Loop body** | The ordered steps run each iteration. |
 | **Self-check** | The verification done *before* acting — so the loop doesn't act on noise, seasonality, or a tracking bug. |
-| **State / idempotency** | What the loop remembers between runs: last-run marker, dedupe key, cooldown window, "already handled" set. Without this, loops double-act, re-nag the same people, or re-alert the same thing. Non-negotiable for anything scheduled. |
+| **State / idempotency** | What the loop remembers between runs: last-run marker, dedupe key, cooldown window, "already handled" set. Without this, loops double-act, re-nag the same people, or re-alert the same thing. Non-negotiable for anything scheduled — see `references/loop-state.md` for where state lives and the idempotency patterns. |
 | **Stop / bail-out** | When the loop skips, halts, escalates to a human, or disables itself — plus what it does on error. Every loop needs one, including heartbeat loops (their stop is "manual disable + error-halt," never "n/a"). |
 | **Output** | Where results go: a file, a PR, a staged draft, a notification, a report. |
 
@@ -64,6 +66,8 @@ Not everything should be automated on a cadence. Skip a loop — or add a mandat
 - **The action publishes or spends without review.** Auto-*drafting* an ad, email, or post is fine. Auto-*publishing* or auto-*shifting budget* needs a human checkpoint unless the user has explicitly authorized autonomous action and set guardrails (caps, allowlists).
 - **The signal is too sparse to be significant.** A weekly conversion-rate loop on 40 visitors/week is measuring noise.
 - **It's a vanity loop.** If nobody acts on the output, delete the loop. A loop that emails a dashboard nobody reads is worse than nothing.
+
+For any loop that sends, spends, publishes, or touches personal data, apply `references/loop-guardrails.md` — the two-tier action model (autonomous-safe vs. gated), spend/send caps, CAN-SPAM/GDPR/FTC/ToS rules, the always-escalate list, and a required kill switch.
 
 ## Scheduling a loop
 
