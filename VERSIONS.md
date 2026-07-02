@@ -31,7 +31,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.0 | 2026-06-16 |
 | onboarding | 2.0.0 | 2026-05-05 |
-| ads | 2.0.1 | 2026-05-26 |
+| ads | 2.1.0 | 2026-07-01 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.0.1 | 2026-06-16 |
@@ -51,6 +51,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.6.0 (2026-07-01)
+
+- **ads** (2.0.1 → 2.1.0): reframed the skill around the "audience knowledge → creative first, targeting filters second" shift, plus a new modern Meta playbook. Rewrote the **Audience Understanding & Targeting** section — audience research is still the highest-leverage work, but where you apply that knowledge has changed: as ad-platform algorithms have improved at matching, feeding audience identifiers into the *creative* (headlines, copy, hooks, examples) now outperforms jamming them into *targeting filters*. Added a platform-by-platform table splitting how much audience knowledge should go to creative vs. targeting (Meta post-Andromeda 80%+ creative; Google Search 60% targeting; PMax/Demand Gen 70% creative; LinkedIn 60% targeting; TikTok 70% creative; Twitter/X 50/50), guidance on applying each kind of audience identifier to creative, and a "trying to fix weak creative with hyper-precise targeting" failure-mode callout. Added a **Modern Meta playbook (Andromeda era — 2026+)** section covering Meta's 2025 Andromeda algorithm change: creative volume as the binding constraint (statics > polished video, ~1 hr/week of fresh creative for the winning offer), creative-as-targeting (broad audience + specific creative, with a duplicate-and-strip-targeting A/B test), and the 4-component retargeting framework (segment by funnel stage, retarget with different offers). Interest-stacking is now flagged as actively harmful on Meta. Skill body only; frontmatter description unchanged.
 
 ### 2.5.1 (2026-06-16)
 
