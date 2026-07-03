@@ -91,6 +91,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| contentstudio | Social | ✓ | ✓ | ✓ | - | [contentstudio.md](integrations/contentstudio.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -289,8 +290,9 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **contentstudio** | Scheduling, content categories, approvals, analytics | Multi-platform; API + MCP + CLI |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Agent recommendation**: Buffer for a lightweight scheduling queue. ContentStudio when you want API/MCP/CLI automation, content categories, approval workflows, and per-platform publishing across social channels.
 
 ### Video
 
@@ -542,6 +544,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 - **exa** - AI-powered web search for LLMs and agents
+- **contentstudio** - Social media scheduling, publishing, and analytics
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 

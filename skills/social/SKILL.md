@@ -2,7 +2,7 @@
 name: social
 description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' or 'find people asking for.' Use this for social media content creation, repurposing, scheduling, short-form video scripting, and social listening. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Social Content
@@ -400,6 +400,17 @@ Tools: CapCut (free), Descript, Captions.ai, Premiere Pro
 4. What content has performed well in the past?
 5. How much time can you dedicate weekly?
 6. Are you building personal brand, company brand, or both?
+
+---
+
+## Tool Integrations
+
+| Tool | Type | MCP | Guide |
+|------|------|:---:|-------|
+| **Buffer** | Social scheduling & analytics | - | [buffer.md](../../tools/integrations/buffer.md) |
+| **ContentStudio** | Social scheduling, categories, approvals, analytics | Yes | [contentstudio.md](../../tools/integrations/contentstudio.md) |
+
+For implementation details, see the [tools registry](../../tools/REGISTRY.md).
 
 ---
 
