@@ -83,6 +83,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | crossbeam | Partner Ecosystem | ✓ | ✓ | [✓](clis/crossbeam.js) | - | [crossbeam.md](integrations/crossbeam.md) |
 | introw | Partner Ecosystem | - | ✓ | - | - | [introw.md](integrations/introw.md) |
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
+| appniche | Competitive Intelligence | ✓ | ✓ | - | - | [appniche.md](integrations/appniche.md) |
 | similarweb | Competitive Intelligence | ✓ | - | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
@@ -406,9 +407,10 @@ Traffic analytics, competitor benchmarking, and market research.
 
 | Tool | Best For | Notes |
 |------|----------|-------|
+| **appniche** | App Store revenue, downloads, ASO keywords, and reviews | REST API + HTTP MCP tools |
 | **similarweb** | Website traffic, competitor analysis | Traffic sources, keywords |
 
-**Agent recommendation**: Similarweb for competitor traffic analysis and market benchmarking.
+**Agent recommendation**: Similarweb for website traffic analysis and market benchmarking. AppNiche for iOS/App Store competitor research, ASO keyword scoring, review signals, and niche validation.
 
 ### Audience Research
 
@@ -542,6 +544,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 - **exa** - AI-powered web search for LLMs and agents
+- **appniche** - App Store intelligence, ASO keyword scoring, and review signals
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 
