@@ -8,8 +8,10 @@ Web scraping API that turns single pages or full sites into clean LLM-ready mark
 |-------------|-----------|-------|
 | API | ✓ | REST API + Python/Node SDKs |
 | MCP | ✓ | Official Firecrawl MCP server |
-| CLI | - | None official |
+| CLI | ✓ | [firecrawl.js](../clis/firecrawl.js) |
 | SDK | ✓ | Node, Python, Go, Rust |
+
+Full API reference: https://docs.firecrawl.dev
 
 ## Authentication
 
@@ -24,7 +26,7 @@ Web scraping API that turns single pages or full sites into clean LLM-ready mark
 ### Scrape a single page
 
 ```bash
-POST https://api.firecrawl.dev/v1/scrape
+POST https://api.firecrawl.dev/v2/scrape
 Authorization: Bearer fc-YOUR_API_KEY
 
 {
@@ -38,7 +40,7 @@ Returns the page as clean markdown (LLM-ready, no nav cruft) plus optional raw H
 ### Map a site (discover all URLs)
 
 ```bash
-POST https://api.firecrawl.dev/v1/map
+POST https://api.firecrawl.dev/v2/map
 
 {
   "url": "https://example.com",
@@ -51,7 +53,7 @@ Returns a list of URLs found on the site. Use this to identify key pages (`/pric
 ### Crawl multiple pages
 
 ```bash
-POST https://api.firecrawl.dev/v1/crawl
+POST https://api.firecrawl.dev/v2/crawl
 
 {
   "url": "https://example.com",
@@ -67,7 +69,7 @@ Crawls multiple pages from a single site. **Use sparingly** — costs scale with
 ### Extract structured data
 
 ```bash
-POST https://api.firecrawl.dev/v1/extract
+POST https://api.firecrawl.dev/v2/extract
 
 {
   "urls": ["https://joescoffeeshop.com"],
@@ -85,7 +87,7 @@ Returns data matching the schema — useful when you want consistent fields acro
 ### Search the web
 
 ```bash
-POST https://api.firecrawl.dev/v1/search
+POST https://api.firecrawl.dev/v2/search
 
 {
   "query": "\"Joe's Coffee Shop\" Boulder Colorado",
@@ -93,7 +95,7 @@ POST https://api.firecrawl.dev/v1/search
 }
 ```
 
-Web search + scrape of top results. Useful for cross-source verification (find a business's official site when you only have a name + location).
+Web search useful for cross-source verification (find a business's official site when you only have a name + location). v2 groups results by source under `data.web` / `data.news` / `data.images`; add `scrapeOptions` to also pull page content for each result (billed separately).
 
 ## MCP Tools (when used via MCP server)
 
@@ -104,6 +106,25 @@ Web search + scrape of top results. Useful for cross-source verification (find a
 | `firecrawl_crawl` | Multi-page crawl |
 | `firecrawl_extract` | Schema-driven structured data |
 | `firecrawl_search` | Web search + scrape |
+
+## CLI
+
+A zero-dependency Node CLI ships in [`tools/clis/firecrawl.js`](../clis/firecrawl.js). Set `FIRECRAWL_API_KEY` and run any of `scrape`, `search`, `map`, `crawl`, or `crawl-status`. Output is JSON on stdout (pipe to `jq`); add `--dry-run` to preview a request without sending it.
+
+```bash
+# Scrape a single business site to markdown
+node tools/clis/firecrawl.js scrape --url https://joescoffeeshop.com
+
+# Find a business's official site
+node tools/clis/firecrawl.js search "\"Joe's Coffee Shop\" Boulder Colorado" --limit 5
+
+# Discover a site's key pages before scraping
+node tools/clis/firecrawl.js map --url https://example.com --search pricing
+
+# Crawl a section, then poll the async job
+node tools/clis/firecrawl.js crawl --url https://example.com --limit 20 --include-paths /pricing,/about
+node tools/clis/firecrawl.js crawl-status --id <crawlId>
+```
 
 ## When to Use
 
