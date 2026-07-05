@@ -23,6 +23,7 @@ Quick reference for the Firecrawl and DataForSEO MCP tools used in competitor pr
 **When to use**: After mapping, scrape each key page individually.
 **Key output**: Page content in markdown format — headlines, body text, structured data.
 **Tip**: Scrape homepage first — it reveals positioning, audience, and social proof in one shot.
+**Structured data**: For consistent data points (pricing tiers, feature lists), request the `json` format with a schema in the same scrape call — more reliable than parsing raw markdown.
 
 ### firecrawl_search
 **Purpose**: Search the web for specific content about a competitor.
@@ -36,11 +37,6 @@ Quick reference for the Firecrawl and DataForSEO MCP tools used in competitor pr
 **Purpose**: Crawl multiple pages from a site in one operation.
 **When to use**: Deep profiles where you want to analyze many pages (e.g., all feature pages, all blog posts). More expensive — use selectively.
 **Tip**: Set page limits to avoid crawling entire sites. Target specific URL patterns.
-
-### firecrawl_extract
-**Purpose**: Extract structured data from a page using a schema.
-**When to use**: When you need specific data points in a consistent format (e.g., pricing tier details, feature lists).
-**Tip**: Define a clear schema for what you want extracted — more reliable than parsing raw markdown.
 
 ---
 

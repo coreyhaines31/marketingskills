@@ -151,7 +151,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `demio.js` | Webinar | [Demio](https://demio.com) |
 | `dub.js` | Links | [Dub.co](https://dub.co) |
 | `exa.js` | AI Search | [Exa](https://exa.ai) |
-| `firecrawl.js` | Site Scraping | [Firecrawl](https://firecrawl.dev) |
+| `firecrawl.js` | Web data | [Firecrawl](https://firecrawl.dev) |
 | `g2.js` | Reviews | [G2](https://g2.com) |
 | `ga4.js` | Analytics | [Google Analytics 4](https://analytics.google.com) |
 | `google-ads.js` | Ads | [Google Ads](https://ads.google.com) |

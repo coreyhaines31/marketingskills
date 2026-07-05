@@ -66,23 +66,30 @@ POST https://api.firecrawl.dev/v2/crawl
 
 Crawls multiple pages from a single site. **Use sparingly** — costs scale with pages. Set `limit` and `includePaths` to target specific URL patterns.
 
-### Extract structured data
+### Structured data (scrape JSON mode)
 
 ```bash
-POST https://api.firecrawl.dev/v2/extract
+POST https://api.firecrawl.dev/v2/scrape
 
 {
-  "urls": ["https://joescoffeeshop.com"],
-  "schema": {
-    "phone": "string",
-    "address": "string",
-    "hours": "string",
-    "email": "string"
-  }
+  "url": "https://joescoffeeshop.com",
+  "formats": [{
+    "type": "json",
+    "prompt": "Extract the business contact details",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "hours": { "type": "string" },
+        "email": { "type": "string" }
+      }
+    }
+  }]
 }
 ```
 
-Returns data matching the schema — useful when you want consistent fields across many sites rather than raw markdown.
+Returns structured data under `data.json` matching the schema — useful when you want consistent fields across many sites rather than raw markdown.
 
 ### Search the web
 
@@ -104,7 +111,6 @@ Web search useful for cross-source verification (find a business's official site
 | `firecrawl_scrape` | Single-page extraction |
 | `firecrawl_map` | URL discovery on a site |
 | `firecrawl_crawl` | Multi-page crawl |
-| `firecrawl_extract` | Schema-driven structured data |
 | `firecrawl_search` | Web search + scrape |
 
 ## CLI
