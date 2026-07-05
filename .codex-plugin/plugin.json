@@ -1,0 +1,44 @@
+{
+  "name": "marketing-skills",
+  "version": "2.3.0",
+  "description": "Marketing skills for AI agents: CRO, copywriting, SEO, paid ads, ad creative, analytics, and growth.",
+  "author": {
+    "name": "Corey Haines",
+    "url": "https://corey.co/"
+  },
+  "homepage": "https://github.com/coreyhaines31/marketingskills",
+  "repository": "https://github.com/coreyhaines31/marketingskills",
+  "license": "MIT",
+  "keywords": [
+    "marketing",
+    "growth",
+    "cro",
+    "copywriting",
+    "seo",
+    "analytics",
+    "paid-ads",
+    "codex",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Marketing Skills",
+    "shortDescription": "Plan and execute marketing work with 43 agent skills",
+    "longDescription": "Use Marketing Skills in Codex to optimize landing pages and signup flows, write marketing copy, plan SEO and AI SEO work, set up analytics, improve paid ads, create email and SMS sequences, research customers and competitors, plan launches, build marketing plans, and run growth experiments. The plugin bundles the same Agent Skills under ./skills/ for Codex plugin selection and direct skill use.",
+    "developerName": "Corey Haines",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/coreyhaines31/marketingskills",
+    "defaultPrompt": [
+      "Audit this landing page for conversion wins.",
+      "Write homepage copy for this SaaS product.",
+      "Create a marketing plan from our product context."
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}

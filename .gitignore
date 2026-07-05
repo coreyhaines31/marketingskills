@@ -3,6 +3,9 @@ node_modules/
 
 # Skill install artifacts (npx skills add)
 .agents/
+!.agents/
+!.agents/plugins/
+!.agents/plugins/marketplace.json
 .claude/
 skills-lock.json
 

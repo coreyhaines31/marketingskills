@@ -1,0 +1,43 @@
+name: Validate Plugin Metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".codex-plugin/**"
+      - ".agents/plugins/**"
+      - "distribution/**"
+      - "scripts/validate-codex-plugin.mjs"
+      - ".claude-plugin/plugin.json"
+      - ".claude-plugin/marketplace.json"
+      - ".github/scripts/sync-skills.js"
+      - ".github/workflows/validate-plugin.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - ".codex-plugin/**"
+      - ".agents/plugins/**"
+      - "distribution/**"
+      - "scripts/validate-codex-plugin.mjs"
+      - ".claude-plugin/plugin.json"
+      - ".claude-plugin/marketplace.json"
+      - ".github/scripts/sync-skills.js"
+      - ".github/workflows/validate-plugin.yml"
+
+concurrency:
+  group: validate-plugin-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-slim
+    if: github.event.pull_request.draft != true && github.actor != 'dependabot[bot]'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Validate Codex plugin metadata
+        run: node scripts/validate-codex-plugin.mjs
+
+      - name: Verify plugin discovery
+        run: npx plugins discover . --remote --target codex

@@ -1,0 +1,52 @@
+{
+  "name": "marketing-skills",
+  "version": "2.3.0",
+  "repository": "https://github.com/coreyhaines31/marketingskills",
+  "lastUpdated": "2026-06-05",
+  "platforms": [
+    {
+      "id": "codex",
+      "name": "Codex CLI / Codex App",
+      "claim": "verified",
+      "runtime": "plugin",
+      "install": "npx plugins add https://github.com/coreyhaines31/marketingskills --target codex",
+      "invoke": "$marketing-skills in Codex CLI; select Marketing Skills from Plugins in Codex App",
+      "commands": "not_claimed",
+      "evidence": "npx plugins discover . --remote --target codex + .codex-plugin/plugin.json + .agents/plugins/marketplace.json",
+      "lastVerified": "2026-06-05"
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "claim": "install-target",
+      "runtime": "plugin",
+      "install": "npx plugins add https://github.com/coreyhaines31/marketingskills --target claude-code",
+      "alternateInstall": "/plugin marketplace add coreyhaines31/marketingskills",
+      "invoke": "/cro, /copywriting, /seo-audit, /marketing-plan",
+      "commands": "not_claimed",
+      "evidence": ".claude-plugin/plugin.json + .claude-plugin/marketplace.json",
+      "lastVerified": "2026-06-05"
+    },
+    {
+      "id": "skills-npx",
+      "name": "skills.sh / npx skills",
+      "claim": "context-only",
+      "runtime": "agent_skill",
+      "install": "npx skills add coreyhaines31/marketingskills",
+      "invoke": "/cro, /copywriting, /seo-audit, /marketing-plan",
+      "commands": "not_claimed",
+      "evidence": "root skills/**",
+      "lastVerified": "2026-06-05"
+    },
+    {
+      "id": "generic-agent-importers",
+      "name": "Cursor / Windsurf / generic repo importers",
+      "claim": "install-target",
+      "runtime": "repo_import",
+      "install": "Install or import https://github.com/coreyhaines31/marketingskills.git in the host tool.",
+      "commands": "host_dependent",
+      "evidence": "root skills/**",
+      "lastVerified": "2026-06-05"
+    }
+  ]
+}

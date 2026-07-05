@@ -106,7 +106,33 @@ See each skill's **Related Skills** section for the full dependency map.
 
 ## Installation
 
-### Option 1: CLI Install (Recommended)
+### Option 1: Plugin Install (Recommended for Codex and Claude Code)
+
+Install the Marketing Skills plugin into Codex:
+
+```bash
+npx plugins add https://github.com/coreyhaines31/marketingskills --target codex
+```
+
+Install the Marketing Skills plugin into Claude Code:
+
+```bash
+npx plugins add https://github.com/coreyhaines31/marketingskills --target claude-code
+```
+
+If you only use one detected agent tool on the machine, you can let `plugins` choose the target:
+
+```bash
+npx plugins add https://github.com/coreyhaines31/marketingskills
+```
+
+After installation, use the plugin from your agent:
+
+- **Codex CLI:** type `$marketing-skills`
+- **Codex App:** click the **+** button in the chat input, choose **Plugins**, then choose **Marketing Skills**
+- **Claude Code:** use direct skills such as `/cro`, `/copywriting`, `/seo-audit`, and `/marketing-plan`
+
+### Option 2: Skills CLI Install
 
 Use [npx skills](https://github.com/vercel-labs/skills) to install skills directly:
 
@@ -123,7 +149,7 @@ npx skills add coreyhaines31/marketingskills --list
 
 This automatically installs to your `.agents/skills/` directory (and symlinks into `.claude/skills/` for Claude Code compatibility).
 
-### Option 2: Claude Code Plugin
+### Option 3: Claude Code Marketplace
 
 Install via Claude Code's built-in plugin system:
 
@@ -135,7 +161,7 @@ Install via Claude Code's built-in plugin system:
 /plugin install marketing-skills
 ```
 
-### Option 3: Clone and Copy
+### Option 4: Clone and Copy
 
 Clone the entire repo and copy the skills folder:
 
@@ -144,7 +170,7 @@ git clone https://github.com/coreyhaines31/marketingskills.git
 cp -r marketingskills/skills/* .agents/skills/
 ```
 
-### Option 4: Git Submodule
+### Option 5: Git Submodule
 
 Add as a submodule for easy updates:
 
@@ -154,13 +180,13 @@ git submodule add https://github.com/coreyhaines31/marketingskills.git .agents/m
 
 Then reference skills from `.agents/marketingskills/skills/`.
 
-### Option 5: Fork and Customize
+### Option 6: Fork and Customize
 
 1. Fork this repository
 2. Customize skills for your specific needs
 3. Clone your fork into your projects
 
-### Option 6: SkillKit (Multi-Agent)
+### Option 7: SkillKit (Multi-Agent)
 
 Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across multiple AI agents (Claude Code, Cursor, Copilot, etc.):
 
@@ -173,6 +199,23 @@ npx skillkit install coreyhaines31/marketingskills --skill cro copywriting
 
 # List available skills
 npx skillkit install coreyhaines31/marketingskills --list
+```
+
+## Plugin Distribution
+
+The Codex plugin integration follows the OpenAI plugin manifest shape used by `npx plugins`:
+
+- [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) contains Codex plugin identity, interface copy, default prompts, and the root `./skills/` pointer.
+- [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) registers this repo-local plugin for local Codex marketplace testing.
+- [`distribution/platforms.json`](distribution/platforms.json) records platform support claims and verification evidence.
+- [`scripts/validate-codex-plugin.mjs`](scripts/validate-codex-plugin.mjs) validates the Codex manifest, repo marketplace, distribution registry, and Claude manifest parity.
+
+Validate plugin metadata before publishing or changing distribution files:
+
+```bash
+node scripts/validate-codex-plugin.mjs
+node .github/scripts/sync-skills.js
+npx plugins discover . --remote --target codex
 ```
 
 ## Upgrading from v1.x to v2.0

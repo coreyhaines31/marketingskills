@@ -6,6 +6,9 @@ on:
     paths:
       - 'skills/**'
       - '.claude-plugin/marketplace.json'
+      - '.codex-plugin/plugin.json'
+      - 'distribution/platforms.json'
+      - '.github/scripts/sync-skills.js'
 
 jobs:
   sync:
@@ -28,4 +31,4 @@ jobs:
           commit_user_name: Coreybot
           commit_user_email: coreybot+github-actions[bot]@users.noreply.github.com
           commit_message: "chore: sync skills with marketplace.json, plugin.json, and README"
-          file_pattern: ".claude-plugin/marketplace.json .claude-plugin/plugin.json README.md"
+          file_pattern: ".claude-plugin/marketplace.json .claude-plugin/plugin.json .codex-plugin/plugin.json distribution/platforms.json README.md"

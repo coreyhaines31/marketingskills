@@ -4,7 +4,7 @@ Guidelines for AI agents working in this repository.
 
 ## Repository Overview
 
-This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). Skills install to `.agents/skills/` (the cross-agent standard). This repo also serves as a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
+This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). Skills install to `.agents/skills/` (the cross-agent standard). This repo also serves as a **Codex plugin** via `.codex-plugin/plugin.json` and a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
 
 - **Name**: Marketing Skills
 - **GitHub**: [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
@@ -17,9 +17,18 @@ This repository contains **Agent Skills** for AI agents following the [Agent Ski
 marketingskills/
 ├── .claude-plugin/
 │   └── marketplace.json   # Claude Code plugin marketplace manifest
+├── .codex-plugin/
+│   └── plugin.json        # Codex plugin manifest
+├── .agents/
+│   └── plugins/
+│       └── marketplace.json # Repo-local Codex marketplace manifest
+├── distribution/
+│   └── platforms.json     # Platform support registry
 ├── skills/                # Agent Skills
 │   └── skill-name/
 │       └── SKILL.md       # Required skill file
+├── scripts/
+│   └── validate-codex-plugin.mjs # Codex plugin metadata validation
 ├── tools/
 │   ├── clis/              # Zero-dependency Node.js CLI tools (51 tools)
 │   ├── composio/          # Composio integration layer (quick start + toolkit mapping)
@@ -43,6 +52,12 @@ marketingskills/
 node --check tools/clis/<name>.js   # Syntax check
 node tools/clis/<name>.js           # Show usage (no args = help)
 node tools/clis/<name>.js <cmd> --dry-run  # Preview request without sending
+```
+
+**Codex plugin metadata** is zero-dependency Node.js. Verify with:
+```bash
+node scripts/validate-codex-plugin.mjs
+npx plugins discover . --remote --target codex
 ```
 
 ## Agent Skills Specification
@@ -126,6 +141,22 @@ The `description` is critical for skill discovery. Include:
 ```yaml
 description: When the user wants to optimize conversions on any marketing page. Use when the user says "CRO," "conversion rate optimization," "this page isn't converting." For signup flows, see signup.
 ```
+
+## Codex Plugin
+
+This repo can install as a Codex plugin through `npx plugins`:
+
+```bash
+npx plugins add https://github.com/coreyhaines31/marketingskills --target codex
+```
+
+Distribution files:
+- `.codex-plugin/plugin.json` contains plugin identity and interface metadata
+- `.agents/plugins/marketplace.json` registers this repo-local plugin for local Codex marketplace testing
+- `distribution/platforms.json` records support claims and verification evidence
+- `scripts/validate-codex-plugin.mjs` validates metadata consistency
+
+Root `skills/**` remains the only skill source for plugin and skill-installer flows.
 
 ## Claude Code Plugin
 

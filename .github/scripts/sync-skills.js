@@ -12,6 +12,8 @@ const path = require("path");
 const SKILLS_DIR = "skills";
 const MARKETPLACE_FILE = ".claude-plugin/marketplace.json";
 const PLUGIN_FILE = ".claude-plugin/plugin.json";
+const CODEX_PLUGIN_FILE = ".codex-plugin/plugin.json";
+const DISTRIBUTION_FILE = "distribution/platforms.json";
 const README_FILE = "README.md";
 
 /**
@@ -77,7 +79,7 @@ function getSkillsWithMetadata() {
  * Update skill count in description
  */
 function updateSkillCount(description, count) {
-  return description.replace(/\d+ marketing skills/, `${count} marketing skills`);
+  return description.replace(/\d+ ((?:marketing|agent) skills)/, `${count} $1`);
 }
 
 /**
@@ -180,14 +182,77 @@ function updatePluginVersion() {
   return { updated: true, oldVersion, newVersion: marketplaceVersion };
 }
 
+/**
+ * Keep the Codex plugin manifest aligned with the canonical version and
+ * visible skill count. The Codex manifest is a separate file because it carries
+ * interface metadata for Codex plugin discovery.
+ */
+function updateCodexPlugin(skills) {
+  if (!fs.existsSync(CODEX_PLUGIN_FILE)) return { updated: false };
+
+  const marketplace = JSON.parse(fs.readFileSync(MARKETPLACE_FILE, "utf8"));
+  const plugin = JSON.parse(fs.readFileSync(CODEX_PLUGIN_FILE, "utf8"));
+  const marketplaceVersion = marketplace.metadata && marketplace.metadata.version;
+  let updated = false;
+  const changes = [];
+
+  if (marketplaceVersion && plugin.version !== marketplaceVersion) {
+    changes.push(`version ${plugin.version} -> ${marketplaceVersion}`);
+    plugin.version = marketplaceVersion;
+    updated = true;
+  }
+
+  const shortDescription = plugin.interface && plugin.interface.shortDescription;
+  const newShortDescription = updateSkillCount(shortDescription || "", skills.length);
+  if (plugin.interface && shortDescription !== newShortDescription) {
+    changes.push(`${skills.length} skills`);
+    plugin.interface.shortDescription = newShortDescription;
+    updated = true;
+  }
+
+  if (!updated) return { updated: false };
+
+  fs.writeFileSync(CODEX_PLUGIN_FILE, JSON.stringify(plugin, null, 2) + "\n");
+  return { updated: true, changes };
+}
+
+/**
+ * Keep the distribution registry version aligned with plugin manifests.
+ */
+function updateDistributionVersion() {
+  if (!fs.existsSync(DISTRIBUTION_FILE) || !fs.existsSync(CODEX_PLUGIN_FILE)) {
+    return { updated: false };
+  }
+
+  const plugin = JSON.parse(fs.readFileSync(CODEX_PLUGIN_FILE, "utf8"));
+  const distribution = JSON.parse(fs.readFileSync(DISTRIBUTION_FILE, "utf8"));
+
+  if (distribution.version === plugin.version) {
+    return { updated: false };
+  }
+
+  const oldVersion = distribution.version;
+  distribution.version = plugin.version;
+  fs.writeFileSync(DISTRIBUTION_FILE, JSON.stringify(distribution, null, 2) + "\n");
+  return { updated: true, oldVersion, newVersion: plugin.version };
+}
+
 function main() {
   const skills = getSkillsWithMetadata();
 
   const marketplaceResult = updateMarketplace(skills);
   const readmeUpdated = updateReadme(skills);
   const pluginResult = updatePluginVersion();
+  const codexPluginResult = updateCodexPlugin(skills);
+  const distributionResult = updateDistributionVersion();
 
-  if (!marketplaceResult.updated && !readmeUpdated && !pluginResult.updated) {
+  if (
+    !marketplaceResult.updated &&
+    !readmeUpdated &&
+    !pluginResult.updated &&
+    !codexPluginResult.updated &&
+    !distributionResult.updated
+  ) {
     console.log("Everything is already in sync");
     return;
   }
@@ -201,6 +266,14 @@ function main() {
 
   if (pluginResult.updated) {
     console.log(`Bumped plugin.json version: ${pluginResult.oldVersion} → ${pluginResult.newVersion}`);
+  }
+
+  if (codexPluginResult.updated) {
+    console.log(`Updated Codex plugin metadata: ${codexPluginResult.changes.join(", ")}`);
+  }
+
+  if (distributionResult.updated) {
+    console.log(`Bumped distribution version: ${distributionResult.oldVersion} → ${distributionResult.newVersion}`);
   }
 
   if (readmeUpdated) {
