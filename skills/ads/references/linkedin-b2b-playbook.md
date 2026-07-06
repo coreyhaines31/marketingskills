@@ -54,7 +54,6 @@ Audience penetration (reached ÷ audience size) is the scaling trigger, not spen
 - 30-day penetration **<25%** → room to raise budget on this audience.
 - **25–35%** → hold; let penetration accumulate before adding spend.
 - **~35%+** = healthy saturation → scale horizontally (new audiences), not vertically.
-- Still under ~35% after 60 days *despite* budget headroom → the budget is too small for the audience (or the audience too large for the budget); raise spend or shrink the audience.
 - Expect diminishing returns: doubling budget grows penetration ~50–70%, not 100%.
 - One campaign at 35%+ penetration beats three campaigns at 12% each — consolidate before multiplying.
 - **Spend rising but reach flat (frequency climbing)?** Either competitors outbid you or ad quality is dragging your auction price. Strong ads → raise budget/bids; weak ads → fix creative first, more money just buys the same people again.

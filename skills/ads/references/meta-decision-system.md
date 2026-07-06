@@ -110,7 +110,7 @@ Scale only when all: proven-ad count meets the next budget level's minimum; acco
 
 - **Rate:** +20% every 5 days. Never +30% or more in one move — that resets learning.
 - **Rollback trigger:** cost per QL >1.5× TCPL after a scale step → cut budget 20–30% immediately, stabilize 2 weeks, resume at +10% per week.
-- **Hitting the wall** (frequency >3.5 account-wide): expand lookalikes 1% → 2–3%, add new seed audiences, test broad, activate cross-channel UTM audiences (see [ABM playbook](abm-playbook.md)), re-open remarketing.
+- **Hitting the wall** (account-wide average frequency >3.5 — an account-level *scale* guardrail, distinct from the per-ad fatigue bands above): expand lookalikes 1% → 2–3%, add new seed audiences, test broad, activate cross-channel UTM audiences (see [ABM playbook](abm-playbook.md)), re-open remarketing.
 
 ## Weekly cadence
 
