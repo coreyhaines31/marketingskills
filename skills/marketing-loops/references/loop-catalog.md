@@ -133,6 +133,22 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 - **Stop / bail-out**: Never auto-shift budget or publish without a human checkpoint unless spend caps + an allowlist are explicitly authorized. Halt if daily spend exceeds its cap.
 - **Output**: Staged creative drafts + a recommended budget move.
 
+### The daily-creative-drop loop
+- **Check cadence**: Daily (early morning, so the batch is ready when the media buyer sits down)
+- **Acts when**: The grounded inputs corpus exists and is populated — winning ads, reviews, ad comments, brand voice doc. If any required input is empty, the loop asks for inputs instead of generating.
+- **Purpose**: Keep creative volume ahead of fatigue — a standing batch of fresh static concepts to test, so scaling never stalls waiting on production.
+- **Skills used**: `ad-creative` (Mode 3 + static ad template library), `customer-research`
+- **Loop body**:
+  1. Read the inputs corpus: `winning-ads/`, `reviews/`, `comments/`, `brand/`.
+  2. Generate the batch (e.g., 50 concepts) cycling all 15 static templates, 3-4 variations each, every concept grounded in a cited source.
+  3. Generate images if an image tool is configured; otherwise deliver concepts + image prompts.
+  4. Save to `outputs/YYYY-MM-DD/` with an `INDEX.md` (template type + grounding per concept).
+- **Self-check**: Are concepts actually grounded (spot-check citations against sources)? Is template coverage spread across the library, not clustered on 2-3? Does copy match the brand voice doc rather than generic DR voice?
+- **State / idempotency**: One batch per day — skip if today's output folder already exists. Track angle/headline hashes across recent batches to avoid regenerating near-duplicates of concepts already delivered.
+- **Stop / bail-out**: Missing or empty required inputs → stop and request them; never generate ungrounded. Human picks the 5-10 to upload — this loop stages creative and **never publishes to the ad account**. If batches go unreviewed for a week, pause and ask whether to continue (unpicked batches are a vanity loop).
+- **Output**: A dated folder of grounded static ad concepts + index, ready for human selection.
+- **Input freshness (companion cadence)**: Weekly, refresh `winning-ads/` with anything that scaled and prune stale examples; monthly, refresh reviews/comments and re-check the voice doc. Stale inputs are this loop's failure mode — output quality tracks input freshness, not run count.
+
 ### The paid-search query-mining loop
 - **Check cadence**: Weekly
 - **Acts when**: Search-term reports reveal wasted spend or new intent.

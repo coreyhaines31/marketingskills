@@ -2,7 +2,7 @@
 name: ad-creative
 description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'ad performance optimization,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' or 'I need more ad variations.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting."
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Ad Creative
@@ -59,6 +59,35 @@ The core loop:
 ```
 Pull performance data → Identify winning patterns → Generate new variations → Validate specs → Deliver
 ```
+
+### Mode 3: Scaled Static Batches (Grounded)
+For recurring static ad production at volume (e.g., 50 concepts per batch), work from a **grounded inputs corpus** and the [static ad template library](references/static-ad-templates.md). Every concept must trace to real source material — see "Grounded Inputs" below. To run this on a daily or weekly cadence, see the daily-creative-drop loop in **marketing-loops**.
+
+---
+
+## Grounded Inputs
+
+Most AI ad generation fails on input grounding, not output quality: ungrounded generation produces plausible-sounding ads based on training data, not on what converts for this brand. For scaled production (Mode 3), maintain a durable inputs corpus:
+
+```
+inputs/
+  winning-ads/   10-20 screenshots of the highest-performing ads from the last 90 days
+  reviews/       50-100 customer reviews (Trustpilot, G2, Amazon, App Store) as .md/.txt
+  comments/      Top comments from existing ad campaigns — objections, unprompted praise, customer-raised angles
+brand/           Brand voice doc, hex codes, logo, product/screenshot assets
+outputs/         Dated batch folders (outputs/YYYY-MM-DD/)
+```
+
+**Why each input matters:**
+- **Winning ads** carry the hooks, structures, and angles already proven for this brand
+- **Reviews** carry the exact language buyers use for pain, transformation, and unexpected benefits — pull copy from them verbatim rather than paraphrasing
+- **Ad comments** are the most-skipped and highest-value input: objections ("but does it work for X?") become FAQ Card ads, and unprompted praise surfaces angles you didn't write
+
+**Grounding rules:**
+- Every concept cites its source (which review, winning ad, or comment it traces to)
+- No invented claims, stats, or testimonials — ever
+- If `winning-ads/` or `reviews/` is empty, stop and ask the user to populate it before generating. Do not generate ungrounded concepts as a fallback.
+- Inputs decay: refresh winning ads as new ones scale, refresh reviews/comments monthly
 
 ---
 
@@ -119,7 +148,9 @@ For detailed specs and format variations, see [references/platform-specs.md](ref
 
 ## Generating Ad Visuals
 
-For image and video ad creative, use generative AI tools and code-based video rendering. See [references/generative-tools.md](references/generative-tools.md) for the complete guide covering:
+**For static ad structure**, use the 15-template library in [references/static-ad-templates.md](references/static-ad-templates.md) — layout frameworks (Us vs. Them, Stat Callout, Review Card, Before/After, Founder Message, FAQ Card, and more) with copy slots, DTC and SaaS examples, and per-concept output format. Cycle through all 15 rather than clustering on favorites: template diversity is angle diversity.
+
+For image and video generation tools, see [references/generative-tools.md](references/generative-tools.md) for the complete guide covering:
 
 - **Image generation** — Nano Banana Pro (Gemini), Flux, Ideogram for static ad images
 - **Video generation** — Veo, Kling, Runway, Sora, Seedance, Higgsfield for video ads
@@ -273,6 +304,19 @@ headline_1,headline_2,headline_3,description_1,description_2,platform
 "Stop Manual Reporting","Automate in 5 Minutes","Join 10K+ Teams","Save 10+ hrs/week on reports. Start free.","Connect data sources once. Reports forever.","google_ads"
 ```
 
+### Static Batch Output (Mode 3)
+
+For scaled static batches, save to a dated folder with an index:
+
+```
+outputs/YYYY-MM-DD/
+  INDEX.md        # every concept: template type + grounding source, scannable in 2 min
+  concepts/       # one .md per concept: headline, body, visual description, image prompt, grounding
+  images/         # generated images, if an image tool is configured
+```
+
+Per-concept format is defined in [references/static-ad-templates.md](references/static-ad-templates.md). The human workflow this supports: open the folder, scan INDEX.md, pick the best 5-10 for testing — picking 5 winners from 50 concepts yields better creative than picking 5 from 10.
+
 ### Iteration Report
 
 When iterating, include a summary:
@@ -323,6 +367,8 @@ For large-scale creative production (Anthropic's growth team generates 100+ vari
 - **No CTA headlines** — RSAs need action-oriented headlines to drive clicks; include at least 2-3
 - **Generic descriptions** — "Learn more about our solution" wastes the slot
 - **Iterating without data** — Gut feelings are less reliable than metrics
+- **Generating without grounding** — Ungrounded concepts read like every other ad in the feed; feed the skill winning ads, reviews, and comments first
+- **Skipping the comments input** — Ad comments hold the objections and angles customers raise themselves; those usually convert best
 - **Testing too many things at once** — Change one variable per test cycle
 - **Retiring creative too early** — Allow 1,000+ impressions before judging
 
@@ -356,6 +402,8 @@ node tools/clis/google-ads.js reports get --type ad_performance --date-range las
 ## Related Skills
 
 - **ads**: For campaign strategy, targeting, budgets, and optimization
+- **marketing-loops**: For running static batch generation on a recurring cadence (the daily-creative-drop loop)
+- **customer-research**: For mining reviews and comments when building the grounded inputs corpus
 - **copywriting**: For landing page copy (where ad traffic lands)
 - **ab-testing**: For structuring creative tests with statistical rigor
 - **marketing-psychology**: For psychological principles behind high-performing creative
