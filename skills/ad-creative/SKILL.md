@@ -46,7 +46,7 @@ Gather this context (ask if not provided):
 
 ## How This Skill Works
 
-This skill supports two modes:
+This skill supports three modes:
 
 ### Mode 1: Generate from Scratch
 When starting fresh, you generate a full set of ad creative based on product context, audience insights, and platform best practices.

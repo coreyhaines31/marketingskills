@@ -135,11 +135,11 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 
 ### The daily-creative-drop loop
 - **Check cadence**: Daily (early morning, so the batch is ready when the media buyer sits down)
-- **Acts when**: The grounded inputs corpus exists and is populated — winning ads, reviews, ad comments, brand voice doc. If any required input is empty, the loop asks for inputs instead of generating.
+- **Acts when**: The grounded inputs corpus exists and the required inputs are populated — `inputs/winning-ads/` and `inputs/reviews/` (required; `inputs/comments/` and `brand/` strongly recommended, matching ad-creative's grounding rules). If a required input is empty, the loop asks for inputs instead of generating.
 - **Purpose**: Keep creative volume ahead of fatigue — a standing batch of fresh static concepts to test, so scaling never stalls waiting on production.
 - **Skills used**: `ad-creative` (Mode 3 + static ad template library), `customer-research`
 - **Loop body**:
-  1. Read the inputs corpus: `winning-ads/`, `reviews/`, `comments/`, `brand/`.
+  1. Read the inputs corpus: `inputs/winning-ads/`, `inputs/reviews/`, `inputs/comments/`, and `brand/`.
   2. Generate the batch (e.g., 50 concepts) cycling all 15 static templates, 3-4 variations each, every concept grounded in a cited source.
   3. Generate images if an image tool is configured; otherwise deliver concepts + image prompts.
   4. Save to `outputs/YYYY-MM-DD/` with an `INDEX.md` (template type + grounding per concept).

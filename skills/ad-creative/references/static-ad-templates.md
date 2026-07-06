@@ -189,7 +189,7 @@ Each generated concept follows this structure:
 **Headline**: [the headline copy]
 **Body**: [supporting copy, if the template uses it]
 **Visual**: [layout description specific enough to design or generate from]
-**Image prompt**: [prompt for the image tool, if generating — see references/generative-tools.md]
+**Image prompt**: [prompt for the image tool, if generating — see generative-tools.md]
 **Grounded in**: [which review / winning ad / comment this traces to, quoted or named]
 ```
 
