@@ -86,8 +86,8 @@ outputs/         Dated batch folders (outputs/YYYY-MM-DD/)
 **Grounding rules:**
 - Every concept cites its source (which review, winning ad, or comment it traces to)
 - No invented claims, stats, or testimonials — ever
-- If `winning-ads/` or `reviews/` is empty, stop and ask the user to populate it before generating. Do not generate ungrounded concepts as a fallback.
-- Inputs decay: refresh winning ads as new ones scale, refresh reviews/comments monthly
+- If `inputs/winning-ads/` or `inputs/reviews/` is empty, stop and ask the user to populate it before generating. Do not generate ungrounded concepts as a fallback.
+- Inputs decay: refresh `inputs/winning-ads/` as new ads scale; refresh `inputs/reviews/` and `inputs/comments/` monthly
 
 ---
 

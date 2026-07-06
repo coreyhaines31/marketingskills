@@ -147,7 +147,7 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 - **State / idempotency**: One batch per day — skip if today's output folder already exists. Track angle/headline hashes across recent batches to avoid regenerating near-duplicates of concepts already delivered.
 - **Stop / bail-out**: Missing or empty required inputs → stop and request them; never generate ungrounded. Human picks the 5-10 to upload — this loop stages creative and **never publishes to the ad account**. If batches go unreviewed for a week, pause and ask whether to continue (unpicked batches are a vanity loop).
 - **Output**: A dated folder of grounded static ad concepts + index, ready for human selection.
-- **Input freshness (companion cadence)**: Weekly, refresh `winning-ads/` with anything that scaled and prune stale examples; monthly, refresh reviews/comments and re-check the voice doc. Stale inputs are this loop's failure mode — output quality tracks input freshness, not run count.
+- **Input freshness (companion cadence)**: Weekly, refresh `inputs/winning-ads/` with anything that scaled and prune stale examples; monthly, refresh `inputs/reviews/` and `inputs/comments/` and re-check the voice doc. Stale inputs are this loop's failure mode — output quality tracks input freshness, not run count.
 
 ### The paid-search query-mining loop
 - **Check cadence**: Weekly
