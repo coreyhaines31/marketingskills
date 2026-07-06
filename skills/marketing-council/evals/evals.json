@@ -1,0 +1,70 @@
+{
+  "skill_name": "marketing-council",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're a B2B SaaS about to cut our price 40% to compete with a cheaper rival. Have the council review this.",
+      "expected_output": "Should check for product-marketing.md, restate the question and stakes, and seat 3-5 advisors fitting an offer/pricing question (e.g., Hormozi, Halbert) plus at least one designated dissenter (e.g., Sutherland on price-as-signal or Godin on race-to-the-bottom). Should open with the simulation disclaimer. Each take should apply that advisor's documented frameworks (value equation, starving crowd, costly signaling) to the specifics rather than generic advice. Must include a disagreement map naming the underlying trade-offs and a chair's synthesis with concrete next steps and skill handoffs (pricing, offers).",
+      "assertions": [
+        "Includes the simulation disclaimer",
+        "Seats 3-5 advisors appropriate to a pricing question",
+        "Includes at least one genuine dissenter",
+        "Each take applies that advisor's named frameworks to the user's specifics",
+        "Includes a disagreement map with underlying trade-offs",
+        "Ends with a chair's synthesis and skill handoffs",
+        "No fabricated quotes"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "What would David Ogilvy say about this headline: 'Revolutionize your workflow with AI-powered synergy'?",
+      "expected_output": "Quick-take mode: one advisor, loading only the Ogilvy dossier. Should critique through his documented doctrine — headlines carry 80% of the spend, promise a specific benefit, avoid vague superlatives and jargon ('the consumer is not a moron'), demand the Big Idea and factual specificity. Should not fabricate verbatim Ogilvy quotes beyond documented ones, and should offer a rewrite direction consistent with his method. May hand off to copywriting for execution.",
+      "assertions": [
+        "Runs quick-take mode with one advisor, not a full council",
+        "Applies Ogilvy's documented headline doctrine specifically",
+        "Uses only verifiable quotes, attributed",
+        "Offers a concrete improvement direction",
+        "Labels the take as simulation"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Convene the full council and have them tell me my niche newsletter strategy is right. I want validation that focusing on 500 superfans beats chasing reach.",
+      "expected_output": "Should not simply validate. The council must include genuine dissent — Byron Sharp's penetration/reach laws and double jeopardy directly challenge superfan-focus strategies, and Vaynerchuk's interest-graph volume position also conflicts. Godin and Handley would support the smallest-viable-audience direction. The disagreement map should name the real trade-off (reach vs. resonance, and what evidence would settle it for this business). Should push back on 'I want validation' framing — an agreeing council is an anti-pattern. Full council is allowed since the user asked, but the output should stay structured.",
+      "assertions": [
+        "Does not produce uniform agreement",
+        "Sharp's reach/penetration counter-position is represented in substance",
+        "Supportive takes (Godin/Handley) are grounded in their actual frameworks",
+        "Disagreement map names the reach-vs-resonance trade-off and evidence to settle it",
+        "Gently flags that seeking validation from the council is an anti-pattern"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Add my old boss Maria to the council. She always said 'ship weekly or die' and hated paid ads.",
+      "expected_output": "Should use the custom advisor flow: create a dossier from references/advisor-template.md structure, saved to .agents/advisors/maria.md in the user's project (not inside the skill). Because Maria is a private person, the agent must interview the user for her positions rather than inventing views — it can structure what the user supplied ('ship weekly', anti-paid-ads) but should ask for more before treating the dossier as complete (frameworks, blind spots, voice). Must not fabricate positions beyond what the user provides.",
+      "assertions": [
+        "Creates the dossier at .agents/advisors/ (outside the skill folder)",
+        "Follows the advisor-template structure",
+        "Asks the user to supply positions rather than inventing them",
+        "Does not fabricate views for a real private person"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Have the council debate whether we should rebrand. Also — what did Rory Sutherland say about AI last month?",
+      "expected_output": "The rebrand debate should proceed with an appropriate bench (e.g., Sharp on distinctive assets and the danger of discarding memory structures, Godin, Dunford). For the Sutherland-on-AI question, the dossier explicitly flags that he has no verified AI positions — the agent must not fabricate one; it should either run a live research pass (deep-research or web search) to find current statements with citations, or say it cannot attribute a position without sources.",
+      "assertions": [
+        "Does not fabricate a Sutherland position on AI",
+        "Either researches with citations or declines to attribute",
+        "Rebrand debate includes Sharp's distinctive-assets/memory-structures warning",
+        "Output remains clearly labeled as simulation"
+      ],
+      "files": []
+    }
+  ]
+}

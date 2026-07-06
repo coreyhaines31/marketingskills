@@ -26,6 +26,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | image | 2.0.1 | 2026-05-18 |
 | launch | 2.0.1 | 2026-06-16 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
+| marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.0 | 2026-05-05 |
 | marketing-loops | 1.1.0 | 2026-07-05 |
 | marketing-plan | 1.1.0 | 2026-05-29 |
@@ -52,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.0 (2026-07-06)
+
+- Added `marketing-council` skill — a simulated board of advisors staffed by twelve legendary marketers, built so their lenses deliberately collide: Seth Godin, David Ogilvy, Eugene Schwartz, Claude Hopkins, Gary Halbert, Russell Brunson, Alex Hormozi, April Dunford, Rory Sutherland, Byron Sharp, Ann Handley, and Gary Vaynerchuk. Three session modes (quick take / 3-5 seat council session / full council), a seating table mapping question types to strong fits plus **designated dissenters** (an agreeing council is an anti-pattern — e.g., Sharp dissents on niche strategies, Godin on funnel pressure, Hopkins on unmeasurable brand plays), and a session protocol ending in a **disagreement map** (each conflict named as its underlying trade-off plus the evidence that would settle it) and a chair's synthesis with skill handoffs. Per-advisor dossiers in `references/advisors/` were research-grounded via parallel web-research passes: each carries lens, frameworks with verified attributions (incl. misattribution flags — Dream 100 is Chet Holmes's, "salesmanship in print" is John E. Kennedy's coinage, brand image originated with Gardner & Levy, AIDA predates Halbert), documented positions with named sources, signature questions, best-for/blind-spots (with documented criticisms so dissent is honest), voice notes, and key works. Hard grounding rules: output labeled as simulation; no fabricated quotes (verifiable quotes with source, else paraphrase attributed to the work); no implied endorsements of the user's specific company; extra care for the eight living advisors including explicit do-not-fabricate flags (e.g., no verified Sutherland AI positions; Hormozi launch figures are self-reported). Optional live research pass integrates deep-research / watch-video / last30days-style skills when installed, degrading to web search. `references/advisor-template.md` supports custom advisors saved to `.agents/advisors/` with a two-tier grounding standard (public figures need sources; private advisors' positions must come from the user, never invented). Includes an `evals/evals.json` suite covering dissent enforcement, quote discipline, custom-advisor flow, and the do-not-fabricate rule. Closes #391. Total skills: 47.
 
 ### 2.7.0 (2026-07-05)
 
