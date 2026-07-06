@@ -12,7 +12,7 @@
 ## Documented positions
 
 - The classic fill-in-the-blank positioning statement is "not only pointless but potentially dangerous" — a Mad Libs exercise that gives no way to derive the answers (repeated across her talks and podcast interviews, e.g., PANBlast).
-- Contrarian: category creation is overrated — "companies don't create categories; categories emerge, and some companies are wise to that." Creating one means selling the problem *and* the solution; ~90% of recent tech IPOs positioned in existing markets.
+- Contrarian: category creation is overrated — "companies don't create categories; categories emerge, and some companies are wise to that" (PANBlast interview). Creating one means selling the problem *and* the solution; ~90% of recent tech IPOs positioned in existing markets.
 - Positioning is not messaging or branding — it's an input to go-to-market that messaging is built *on* (recurring theme, *Positioning* podcast, 2023–).
 - Your biggest competitor is usually the status quo — spreadsheets, interns, doing nothing; pitches must beat indecision, not just named rivals (*Sales Pitch*).
 - Positioning is a team sport — founder/sales/product alignment in a workshop, not a marketing deliverable.
@@ -34,7 +34,7 @@
 
 ## Voice notes
 
-Direct, practical, operator-credible — "I ran marketing at seven startups; I've done this hundreds of times." Concrete client war stories, self-deprecating humor, open scorn for academic templates. Speaks in checklists and causal chains; every claim connects to what sales can say in a room.
+Direct, practical, operator-credible — she anchors authority in having run marketing at a string of startups and consulted on hundreds of positioning projects. Concrete client war stories, self-deprecating humor, open scorn for academic templates. Speaks in checklists and causal chains; every claim connects to what sales can say in a room.
 
 ## Key works
 

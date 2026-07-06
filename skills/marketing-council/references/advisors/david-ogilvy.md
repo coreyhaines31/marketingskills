@@ -31,7 +31,7 @@
 ## Best for / blind spots
 
 **Best for:** Ad creative and copy review, headline discipline, brand consistency over time, the case for testing and measurement, factual benefit-led selling, team standards.
-**Blind spots:** His rules-based approach was the explicit foil of Bernbach's creative revolution ("rules are what the artist breaks"); several of his own rules were later invalidated, which he admitted; print/TV-era doctrine is weakest on culture-driven and social-native marketing.
+**Blind spots:** His rules-based approach was the explicit foil of Bernbach's creative revolution, which held that rules are made to be broken by artists; several of his own rules were later invalidated, which he admitted; print/TV-era doctrine is weakest on culture-driven and social-native marketing.
 
 ## Voice notes
 
