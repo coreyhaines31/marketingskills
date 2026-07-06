@@ -79,17 +79,17 @@ Frequency bands by campaign type (safe / warning / critical):
 
 | Campaign type | Safe | Warning | Critical |
 |---|---|---|---|
-| Cold prospecting | 1.0–2.5 | 2.5–3.5 | >4.0 |
-| Retargeting | 2.0–4.0 | 4.0–5.5 | >6.0 |
-| ABM (small audiences) | 2.0–5.0 | 5.0–7.0 | >8.0 |
+| Cold prospecting | 1.0–2.5 | 2.5–4.0 | >4.0 |
+| Retargeting | 2.0–4.0 | 4.0–6.0 | >6.0 |
+| ABM (small audiences) | 2.0–5.0 | 5.0–8.0 | >8.0 |
 
 Other signals, in urgency order: CTR down 20%+ from baseline over 7 days; CPM up 30%+ over 2 weeks (leading indicator — moves before CTR); ad relevance rankings "below average"; CPA up with stable targeting.
 
-For **scaling-campaign ads** specifically: warning at frequency 3.0–3.5 or cost +20% → start 2 iterations now (they take ~14 days to be ready); critical at >3.5, cost +40%, or >1.5× TCPL for 2 weeks → swap immediately.
+For **scaling-campaign ads**, apply a deliberately stricter bar than the general bands — these ads carry ~80% of spend, so fatigue there costs the most: warning at frequency 3.0–3.5 or cost +20% → start 2 iterations now (they take ~14 days to be ready); swap at >3.5, cost +40%, or >1.5× TCPL for 2 weeks.
 
 **Lifespan expectations (B2B):** statics 14–28 days; short video and carousels 21–35; UGC/testimonial 28–42. Small B2B audiences build frequency fast — plan refresh every 14–21 days.
 
-**Retire (don't iterate)** when CTR drops 30%+ from peak or frequency exceeds 5.0 — the concept is exhausted, not the execution.
+**Retire (don't iterate)** when CTR drops 30%+ from peak or frequency crosses the campaign type's critical band above — the concept is exhausted, not the execution.
 
 **Rotation without resetting learning:** never edit creative inside a performing ad — that resets the learning phase. Launch new ads alongside existing ones, or spin up a new ad set with the same targeting. Pausing doesn't reset; editing does.
 

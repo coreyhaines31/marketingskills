@@ -102,7 +102,7 @@ LI_LeadGen_CMOs-SaaS_Whitepaper_Mar24
 
 **Scaling phase:**
 - Consolidate budget into winning combinations
-- Increase budgets 20-30% at a time
+- Increase budgets ~20% at a time — never 30%+ in one move (resets platform learning)
 - Wait 3-5 days between increases for algorithm learning
 
 ---
