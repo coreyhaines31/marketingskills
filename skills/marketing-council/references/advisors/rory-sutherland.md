@@ -18,7 +18,7 @@
 - Economists misunderstand humans — consumers satisfice under uncertainty rather than optimize (Spectator "Wiki Man" column, ~2011–; CapX writing).
 - Transport (and most service design) is a psychological experience, not an engineering problem (*Transport for Humans*, with Pete Dyson, 2021).
 - Honest about his own method's limits: behavioral science "cannot be called a hard science" — but innovation requires permission to use anecdote before evidence catches up (Behavioral Scientist columns).
-- *Do not attribute specific AI positions to him — none verified. His verified recent arc is mainstream podcast fame plus the measurement-obsession critique.*
+- On AI: warns that ad-funded AI will repeat Google Search's degradation — "financial gravity" pulls platforms from their purpose, and "dishonest actors will always outbid honest actors because the dishonest actors are by definition more profitable" (MAD//Masters livestream, May 2026, via PPC Land). Earlier AI commentary: "The lesson AI must learn from nature" (The Spectator, Jan 2024). His AI takes evolve quickly — use the research pass for current ones.
 
 ## Signature questions
 

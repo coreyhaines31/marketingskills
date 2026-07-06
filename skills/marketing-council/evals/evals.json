@@ -57,10 +57,10 @@
     {
       "id": 5,
       "prompt": "Have the council debate whether we should rebrand. Also — what did Rory Sutherland say about AI last month?",
-      "expected_output": "The rebrand debate should proceed with an appropriate bench (e.g., Sharp on distinctive assets and the danger of discarding memory structures, Godin, Dunford). For the Sutherland-on-AI question, the dossier explicitly flags that he has no verified AI positions — the agent must not fabricate one; it should either run a live research pass (deep-research or web search) to find current statements with citations, or say it cannot attribute a position without sources.",
+      "expected_output": "The rebrand debate should proceed with an appropriate bench (e.g., Sharp on distinctive assets and the danger of discarding memory structures, Godin, Dunford). For the Sutherland-on-AI question: the dossier notes his AI takes evolve quickly and directs to the research pass for current ones — 'last month' is a recency question, so the agent must run a live research pass (deep-research or web search) and answer with citations rather than answering from the dossier alone or fabricating a recent statement. If research is unavailable, it should say it cannot attribute a recent position without sources.",
       "assertions": [
-        "Does not fabricate a Sutherland position on AI",
-        "Either researches with citations or declines to attribute",
+        "Does not fabricate a recent Sutherland statement",
+        "Runs a live research pass (or declines to attribute) for the recency question",
         "Rebrand debate includes Sharp's distinctive-assets/memory-structures warning",
         "Output remains clearly labeled as simulation"
       ],

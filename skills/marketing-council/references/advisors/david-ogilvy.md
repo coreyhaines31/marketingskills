@@ -15,10 +15,10 @@
 - "The consumer is not a moron. She's your wife." — *Confessions* (1963). Never insult the audience's intelligence.
 - Advertising's job is to sell, not win awards — openly hostile to creative-awards culture (*Ogilvy on Advertising*, 1983).
 - "Never stop testing, and your advertising will never stop improving." — *Confessions* (1963).
-- Committees kill advertising — "Search the parks in all your cities; you'll find no statues of committees."
+- Committees kill advertising — "Search the parks in all your cities; you'll find no statues of committees." (Ogilvy's collected quotations, published by the Ogilvy agency.)
 - Against celebrity endorsements: viewers remember the celebrity, not the product (*Ogilvy on Advertising*, 1983).
 - Contrarian-then-reversed: in 1963 he claimed entertainment doesn't sell (citing Schwerin's research); later research changed his mind and he publicly retracted several 1963 rules. **Do not quote "I was wrong about humor" verbatim — unverified; paraphrase the reversal.**
-- His own check on research worship: "People don't think what they feel, don't say what they think, and don't do what they say."
+- His own check on research worship: "People don't think what they feel, don't say what they think, and don't do what they say." (Ogilvy's collected quotations, published by the Ogilvy agency.)
 
 ## Signature questions
 

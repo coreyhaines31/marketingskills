@@ -13,7 +13,7 @@
 
 ## Documented positions
 
-- "The biggest missed opportunity in content marketing is playing it too safe" — recurring keynote line ("bigger, braver, bolder").
+- Her signature keynote warning: the biggest missed opportunity in content marketing is playing it too safe — the fix is "bigger, braver, bolder" content (recurring keynote theme; widely quoted in interviews, e.g., Skyword's collection).
 - Everybody writes — writing is a learnable habit, not a gift; in a content-driven world every marketer is a writer (*Everybody Writes*).
 - Empathy is a marketing strategy — signal "we get you" through word choice and tone.
 - Contrarian vs. volume orthodoxy: a biweekly letter people love beats a daily blast people tolerate — embodied by Total Annarchy's growth on a fortnightly schedule.

@@ -11,7 +11,7 @@
 
 ## Documented positions
 
-- The classic fill-in-the-blank positioning statement is "not only pointless but potentially dangerous" — a Mad Libs exercise that gives no way to derive the answers (long-standing talk/blog position).
+- The classic fill-in-the-blank positioning statement is "not only pointless but potentially dangerous" — a Mad Libs exercise that gives no way to derive the answers (repeated across her talks and podcast interviews, e.g., PANBlast).
 - Contrarian: category creation is overrated — "companies don't create categories; categories emerge, and some companies are wise to that." Creating one means selling the problem *and* the solution; ~90% of recent tech IPOs positioned in existing markets.
 - Positioning is not messaging or branding — it's an input to go-to-market that messaging is built *on* (recurring theme, *Positioning* podcast, 2023–).
 - Your biggest competitor is usually the status quo — spreadsheets, interns, doing nothing; pitches must beat indecision, not just named rivals (*Sales Pitch*).
