@@ -1,8 +1,8 @@
 ---
 name: ads
-description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' or 'should I run ads.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
+description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' or 'when should I kill an ad.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Paid Ads
@@ -37,6 +37,22 @@ Gather this context (ask if not provided):
 - Have you run ads before? What worked/didn't?
 - Do you have existing pixel/conversion data?
 - What's your current funnel conversion rate?
+
+---
+
+## Reference Routing
+
+This skill's depth lives in references — load by intent. For **any operational decision on a live account** (kill/keep/scale/budget), load the relevant playbook before answering; the thresholds live there, not here.
+
+| User intent | Load | Covers |
+|---|---|---|
+| B2B strategy, funnel stages, budget splits, kill rules, lead quality, breakeven math | [b2b-paid-playbook.md](references/b2b-paid-playbook.md) | Demand lifecycle, leading/lagging signals, kill rules, offline conversion loop, U/B/F lead scoring, scaling quadrant |
+| Meta operations: when to kill/graduate/scale an ad, fatigue, testing structure | [meta-decision-system.md](references/meta-decision-system.md) | TCPL-anchored decision tree, ad-count ceiling, 80/20 CBO structure, fatigue bands, lead forms, Advantage+ transition |
+| LinkedIn operations: bidding, audience sizing, scaling, benchmarks, TLAs, formats | [linkedin-b2b-playbook.md](references/linkedin-b2b-playbook.md) | Bidding progression, penetration scaling, sizing rules, funnel benchmarks, document/conversation ads, audit shortlist |
+| Google Search: what to spend on first, structure, match types, negatives, PMax | [google-search-playbook.md](references/google-search-playbook.md) | Intent ladder, account structure, match-type gates, negatives, bidding by volume, offline conversions, PMax guardrails |
+| Named-account targeting, pipeline acceleration, cross-channel retargeting | [abm-playbook.md](references/abm-playbook.md) | LinkedIn/Meta ABM, list mechanics, acceleration campaigns, UTM cross-channel remarketing, ABM measurement |
+| Generating Google RSAs | [rsa-output-spec.md](references/rsa-output-spec.md) | Mandatory output spec — limits, sidecars, template, self-check |
+| Audience setup, tracking setup, launch checklists, copy formulas | [audience-targeting.md](references/audience-targeting.md) · [conversion-tracking.md](references/conversion-tracking.md) · [platform-setup-checklists.md](references/platform-setup-checklists.md) · [ad-copy-templates.md](references/ad-copy-templates.md) | Existing foundations |
 
 ---
 
@@ -232,6 +248,8 @@ Meta launched the **Andromeda** algorithm in 2025, which fundamentally changed M
 
 ## Campaign Optimization
 
+For hard kill/keep/scale thresholds, use the platform playbooks (see Reference Routing): the kill rules and breakeven CPL/CPC math live in [b2b-paid-playbook.md](references/b2b-paid-playbook.md), and Meta's full decision tree lives in [meta-decision-system.md](references/meta-decision-system.md).
+
 ### Key Metrics by Objective
 
 | Objective | Primary Metrics |
@@ -403,92 +421,7 @@ Before launching campaigns, ensure proper tracking and account setup.
 
 ## Google RSA Output Spec (mandatory when generating RSAs)
 
-When the user requests Google Ads RSAs (Responsive Search Ads), output MUST comply with these platform limits and structural requirements. Do not output any RSA that violates them.
-
-### Hard limits per RSA (enforce before responding)
-
-- **Headlines:** exactly **15** per RSA, each **≤ 30 characters** (count characters, including spaces). Render as `1. ... (NN chars)` so the reader can verify.
-- **Descriptions:** exactly **4** per RSA, each **≤ 90 characters**.
-- **Paths:** up to 2 path fields, each **≤ 15 characters**.
-- **Final URL:** present, https.
-- **Pinning:** state any pinned positions explicitly. Default = unpinned unless user asks.
-- **Per-account guardrail:** Google enforces **3 RSAs max per ad group**. When the user asks for >3, group them by ad group.
-
-### Required sidecar artifacts (always include with RSA request)
-
-1. **Ad group structure**, labeled `Ad group structure:` — list each ad group with its theme, target keywords (match types), and which RSAs map to it.
-2. **Negative keyword list**, labeled `Negative keywords:` — minimum **8** entries, group-level vs campaign-level called out.
-3. **Sitelinks** (≥ 4), **Callouts** (≥ 4 ≤25 chars), **Structured snippets** if relevant.
-
-### Medical / CFM compliance (when product context indicates pt-BR medical practice)
-
-If `.agents/product-marketing.md` indicates a Brazilian medical practice (CFM-regulated), the following terms are **forbidden** in headlines, descriptions, sitelinks, and callouts:
-
-- Superlatives: `#1`, `melhor`, `o melhor`, `melhor do brasil`, `top`, `referência`
-- Outcome promises: `garantido`, `garantia`, `cura`, `cura definitiva`, `100%`, `resultado garantido`, `livre da dor`
-- Comparative claims vs other doctors/clinics
-
-Use neutral framing: `atendimento`, `consulta`, `avaliação`, `segunda opinião`, `agende sua consulta`, `tire suas dúvidas`. Geo modifier (`Porto Alegre`, `POA`, `Zona Sul POA`) required where the prompt specifies a region.
-
-### Output ORDER (mandatory — emit in this order to avoid truncation)
-
-1. **Ad group structure** (short)
-2. **Negative keywords** (≥8, MANDATORY — emit BEFORE RSAs so it isn't dropped if output runs long)
-3. **Sitelinks** (≥4)
-4. **Callouts** (≥4)
-5. **RSA1, RSA2, RSA3** (largest section, last — safe to truncate gracefully)
-
-### Output template (mandatory shape)
-
-```
-Ad group structure:
-- AG1 [theme]: keywords (match types) → RSA1, RSA2
-- AG2 [theme]: ...
-
-Negative keywords:
-  Campaign-level:
-    - <kw>
-    - <kw>
-    (≥4 here)
-  Ad-group level:
-    - AG1: <kw>, <kw>
-    - AG2: <kw>, <kw>
-    (≥4 more here — TOTAL ≥8 entries)
-
-Sitelinks (≥4):
-  - <title (≤25)> | <desc1 (≤35)> | <desc2 (≤35)> | URL
-
-Callouts (≥4, each ≤25 chars):
-  - <callout>
-
-RSA1 — [ad group name]
-  Final URL: https://...
-  Path1: ...   Path2: ...
-  Headlines (15, each ≤30 chars):
-    1. <headline> (NN chars)
-    ...
-    15. <headline> (NN chars)
-  Descriptions (4, each ≤90 chars):
-    1. <description> (NN chars)
-    ...
-    4. <description> (NN chars)
-  Pinning: H1=none; H2=none; ...   (or explicit pins)
-
-RSA2 — ...
-RSA3 — ...
-```
-
-### Self-check before responding
-
-Before sending the output, run this checklist mentally:
-
-- [ ] Each RSA has exactly 15 headlines, exactly 4 descriptions.
-- [ ] Every headline is ≤30 chars; every description is ≤90 chars. Character counts printed.
-- [ ] Negative keyword list labeled and ≥8 entries.
-- [ ] Ad group structure labeled.
-- [ ] If medical (CFM): no forbidden superlative/outcome words; geo modifier present where required; language is pt-BR.
-
-If any check fails, rewrite before responding. Do not ship partial RSAs.
+When the user requests Google Ads RSAs, load [references/rsa-output-spec.md](references/rsa-output-spec.md) and follow it exactly — hard character limits, required sidecar artifacts (ad groups, negatives, sitelinks, callouts), output order, template shape, CFM medical compliance, and the pre-send self-check. Do not output any RSA that violates it.
 
 ---
 
@@ -546,6 +479,8 @@ For tracking setup, see [references/conversion-tracking.md](references/conversio
 ## Related Skills
 
 - **ad-creative**: For generating and iterating ad headlines, descriptions, and creative at scale
+- **revops**: For the CRM side of ABM — lead scoring, routing, and the offline conversion loop
+- **customer-research**: For the voice-of-customer inputs that feed ad copy and creative angles
 - **copywriting**: For landing page copy that converts ad traffic
 - **analytics**: For proper conversion tracking setup
 - **ab-testing**: For landing page testing to improve ROAS
