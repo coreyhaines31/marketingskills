@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.1.0 | 2026-07-05 |
+| ad-creative | 2.2.0 | 2026-07-08 |
 | ai-seo | 2.1.0 | 2026-06-15 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.9.0 (2026-07-08)
+
+- **ad-creative** (2.1.0 → 2.2.0): added the **iMessage chat-reveal video ad format**. New `references/imessage-video-ads.md` — an original distillation of the format popularized by Shiv Sakhuja / Gooseworks (their open `create-imessage-video-ad` skill; the repo carries no license, so content was re-expressed with credit rather than copied): a 9:16 video where a scripted iMessage thread unfolds bubble-by-bubble — screenshot hook → friend reacts → "what app is that?" → brand + promo-code reveal → static end card. Covers when to use it and when not (considered B2B, nothing screenshot-able, regulated-industry compliance), a compliance/grounding section tying dramatized conversations to the skill's Grounded Inputs rules (facts in the thread must be real; never frame the thread as a real testimonial), the six concept angles (result-as-screenshot, setup flex, cancellation moment, feature-as-punchline, friend-asks-friend inverse, receipt-as-hook), ad anatomy with script + pacing rules (8–14 bubbles, texting voice, brand appears once and late, rhythm not metronome, link-underlined promo code), three production routes (off-the-shelf Gooseworks skill; code-based HTML mockup + one continuous Playwright recording + ffmpeg stitch; Remotion for templated scale), the craft rules that sell the illusion (real Apple SFX — CC0 on BigSoundBank; silent typing indicators; composer-typed text must equal sent text; static end card with the real logo SVG; native 1080×1920 recording; HTML-mimic real app UIs for hook screenshots instead of AI-generating them), a ship checklist, and an iteration order (hook attachment first). SKILL.md wires the reference into Generating Ad Visuals and adds 'iMessage ad,' 'chat reveal ad,' 'text message ad,' and 'fake DM ad' description triggers. Closes #411.
 
 ### 2.8.0 (2026-07-06)
 

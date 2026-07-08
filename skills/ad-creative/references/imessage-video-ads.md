@@ -1,0 +1,147 @@
+# iMessage Chat-Reveal Video Ads
+
+A 9:16 social-native video format that recreates an iMessage conversation unfolding in real time: someone sends a screenshot of a result or product, a friend reacts and asks what it is, and the conversation reveals the brand — usually with a promo code. Message bubbles pop in over ~15–22 seconds with authentic send/receive sounds, then a static brand end card lands the CTA.
+
+The format works because it borrows the most-read UI on earth. A chat thread in the feed reads as content, not advertising — the viewer processes it as eavesdropping on a real recommendation, and word-of-mouth is the highest-trust message in marketing. The CTA arrives conversationally ("use code FREEPACK") instead of as a hard sell, which keeps the ad-skip reflex from firing until the pitch has already landed.
+
+Credit: this reference distills the format popularized by Shiv Sakhuja and the Gooseworks team ([@shivsakhuja](https://x.com/shivsakhuja), [gooseworks-ai/gooseworks-ads-skills](https://github.com/gooseworks-ai/gooseworks-ads-skills)), who report the format performing strongly on Meta.
+
+---
+
+## When to Use This Format
+
+**Good fit:**
+- Reaction/discovery ads where the punchline is the recipient's curiosity ("wait, what app is that?")
+- Promo-code offers — the conversational delivery feels far less ad-like than a code on a slate
+- Products with a screenshot-able result: a number, a dashboard, a receipt, a before/after
+- UGC-style angles when you don't have UGC creators on tap
+
+**Poor fit:**
+- Considered B2B purchases where a casual text exchange undercuts credibility
+- Products with nothing visual or numeric to screenshot (fix the hook first, not the format)
+- Brands whose compliance review can't approve dramatized conversations (regulated industries — check first)
+
+**Platform fit:** Built for Meta Reels/Stories placements (9:16, 1080×1920) with a 1:1 center-crop variant for feed. Works on TikTok and YouTube Shorts with the same master file.
+
+---
+
+## Compliance and Grounding
+
+This is a **dramatization** — a scripted conversation, not a real one. That's a standard, legitimate ad device, but two rules keep it honest and on the right side of FTC guidance:
+
+1. **Every claim in the thread must be true of the product.** The race time, the savings math, the "5 minutes a day" — ground each one in a real customer result, review, or verifiable product fact, exactly as the Grounded Inputs rules in SKILL.md require. The conversation is fictional; the facts inside it can't be.
+2. **Don't present the thread as a real testimonial.** No real customer names, no "this is an actual text from a customer" framing, no fabricated endorsements. The format persuades through recognizability, not through pretending to be found footage.
+
+If a claim needs a disclaimer on your landing page, it needs one on this ad too.
+
+---
+
+## Concept Angles
+
+Most iMessage ads fit one of six angles. Pick the angle before writing any copy — the most common failure mode ("script is fine but the ad feels off") is an angle mismatch, not bad lines. The strongest hooks share one of three traits: a specific number, a small act of self-trust, or a physically novel product mechanic.
+
+| Angle | The hook attachment | The reveal |
+|---|---|---|
+| **Result-as-screenshot** | A number that brags by itself — race time, app summary, dashboard stat | "X minutes a day. that's it." |
+| **Setup flex** | A photo of your space — tiny apartment gym, race-kit corner, desk setup | "this is the whole setup" |
+| **Cancellation moment** | A confirmation receipt — gym cancellation email, "subscription cancelled" page | "$X/mo → $Y/mo. do the math" |
+| **Feature-as-punchline** | A short clip of the product mechanic in motion | The mechanic *is* the brand |
+| **Friend-asks-friend (inverse)** | The *peer* opens with the wow — "how are you doing this 😭" | *You* reply with the brand |
+| **Receipt-as-hook** | A mundane financial document — statement, App Store receipt | A small act of self-trust |
+
+---
+
+## Anatomy of the Ad
+
+```
+0:00  Hook attachment lands (the screenshot the whole chat is about)
+      ↓ short reactions, 250–450ms apart ("bro no way" / "wait is that real")
+0:06  The question — "what app is that??"
+      ↓ typing indicator … then the brand-name reply
+0:12  The pitch, in texting voice — one or two bubbles max
+0:15  The code — "use FREEPACK, first pack's free" (code renders link-underlined)
+0:17  Beat of silence, then the closer — "bet" / "ok downloading"
+0:18  300ms crossfade → static brand end card: logo, code, tagline (~3s)
+```
+
+**Script rules:**
+
+- **8–14 bubbles total.** Shorter reads thin; longer loses the scroll-past viewer.
+- **Write in real texting voice.** Lowercase, fragments, one emoji max per message, no marketing adjectives. Read it aloud as two friends — any bubble that sounds like ad copy gets cut.
+- **The brand appears once, late.** The thread is about the *result* until someone asks. Naming the brand in bubble two kills the reveal.
+- **Pacing has rhythm, not a metronome.** One-word reactions fire 250–450ms apart; sentence replies get 600–900ms of air after them; leave ~600ms of silence before the final reaction so it lands.
+- **Typing indicators go before sentence-length peer replies**, optional before short reactions. The indicator appearing is silent (see SFX rules below).
+- **The promo code goes inside a bubble**, styled with iOS's link-detection underline, *and* on the end card. Conversational delivery first, reinforcement second.
+
+---
+
+## Production Routes
+
+Three ways to produce it, in order of control:
+
+### Route 1: Off-the-shelf skill (fastest)
+
+Gooseworks open-sourced their full pipeline — `npx gooseworks install --all`, then `/goose-ads` in Claude/Claude Code. Their `create-imessage-video-ad` skill handles rendering, recording, SFX, and stitching. Use this to validate the format before building anything custom.
+
+### Route 2: Code-based pipeline (full control)
+
+The architecture that produces a convincing result: render the chat as HTML/CSS mimicking the iMessage UI, drive the animation with a timeline script, record it headlessly with Playwright, and assemble audio + end card with ffmpeg.
+
+1. **Script as data.** Store the thread as JSON: participants (peer name, initials, avatar color), ordered messages (`from`, `text`, attachment paths, typing-indicator flags), theme, header. The script is reviewable and re-renderable without touching code.
+2. **Render the chat UI in HTML/CSS.** Dark theme reads most native. Two variants: full-bleed chat, or the chat inside an iPhone frame (status bar + Dynamic Island) over a brand-relevant background photo — the framed variant reads more native in-feed and is the better default.
+3. **Animate with a timeline, record in ONE continuous session.** All bubbles exist in the DOM but hidden (`display: none` — not `opacity: 0`, or the thread pre-allocates space and never "grows"). A driver script walks a timeline array revealing each bubble, driving the composer, and auto-scrolling. Never record scene-by-scene and concat — every page reload causes a visible micro-flicker.
+4. **Type the composer for every sent bubble.** The typed text must exactly equal the sent text (a mismatch reads fake on second watch). Pace ~12–15 chars/sec with ±30% per-character jitter so it feels like thumbs, not a script.
+5. **Record at native output resolution** (viewport = recording size = 1080×1920). Recording small and upscaling ships soft, blurry bubble text.
+6. **Layer audio with ffmpeg.** SFX cues computed deterministically from the same timeline that drove the recording, so sounds land exactly on bubble pops.
+7. **Stitch: chat → 300ms crossfade → static end card.** Export 9:16 master plus a 1:1 center crop.
+
+### Route 3: Remotion (templated scale)
+
+Once a winning script structure emerges, rebuild it as a Remotion composition (see [generative-tools.md](generative-tools.md)) with the thread JSON as props. Then variations — new hooks, new codes, new personas — are data changes, not re-productions. Right move at the "we're testing 10 script variants a week" stage, not for the first ad.
+
+---
+
+## Craft Rules (the details that sell the illusion)
+
+These are the difference between "feels like a real chat" and "feels like a mockup":
+
+- **Real Apple SFX, never generic notification sounds.** The iMessage feel is mostly the audio. Apple's sounds are available CC0 on BigSoundBank: send whoosh (`bigsoundbank.com/UPLOAD/mp3/1313.mp3`, ~0.5s) and receive tritone (`bigsoundbank.com/UPLOAD/mp3/1111.mp3` — trim to ~1.4s with a 400ms fade). Normalize loud (≈ -9 LUFS) so they cut through the music.
+- **No sound on the typing indicator.** iOS is silent when someone starts typing. Play the receive sound only when the actual bubble replaces the dots. This is the single most common tell.
+- **Music bed: quiet lofi/hip-hop instrumental.** ~30% volume, highpass around 60Hz to clear room for the SFX, fade out ~1.5s before the code reveal so the CTA lands in relative silence.
+- **Static end card — no zoom, no Ken Burns drift.** The brand slate must land hard; a drifting end card reads as filler.
+- **Real brand logo SVG on the end card, never CSS-styled text.** Font-approximated wordmarks look amateur even when close. Pull the official SVG from the brand's press kit, Wikimedia, or brandfetch.com.
+- **Hook screenshots: mimic the real app's UI, don't AI-generate it.** AI-generated app UIs ship garbled chrome that reads as slop. Build a small HTML page copying the actual app's brand colors, typography, and layout conventions (the Strava-orange strip, the "Public · 2h ago" timestamp) and screenshot it. Reserve AI image generation for *photographic* hooks — a beach photo, a lifestyle shot, the framed variant's background.
+- **Audio mixing gotcha:** ffmpeg's `amix` divides volume by input count by default — pass `normalize=0` or the whole mix comes out mysteriously quiet, then limit to peak at 0dB.
+
+---
+
+## Quality Checklist
+
+Before shipping:
+
+- [ ] Every factual claim in the thread traces to a real review, result, or product fact (Grounded Inputs)
+- [ ] Script reads as real texting voice when read aloud — no marketing adjectives in bubbles
+- [ ] Brand name appears only after the peer asks
+- [ ] No sound on any typing indicator; receive SFX fires when the text bubble lands
+- [ ] SFX land exactly on bubble pops (spot-check first and last)
+- [ ] Every sent bubble had a full composer drive; typed text equals sent text
+- [ ] No micro-flicker anywhere in the chat — the only cut is chat → end card (300ms crossfade)
+- [ ] Promo code is link-underlined in its bubble and repeated on the end card
+- [ ] End card is static with the real logo SVG
+- [ ] Master is native 1080×1920; 1:1 variant is a crop, not a squeeze
+- [ ] Final bubble gets ~600–800ms of air before the crossfade
+- [ ] Audio peaks at 0dB without clipping; music never fights the SFX
+
+---
+
+## Iterating the Format
+
+Treat the thread as the variable and the pipeline as fixed. Test in this order — hook first, everything else after:
+
+1. **Hook attachment** — the screenshot is the thumbnail and the first 2 seconds; it decides the scroll-stop
+2. **Angle** — result-flex vs. cancellation vs. inverse changes who the viewer identifies with
+3. **Code reveal phrasing** — "first pack's free with FREEPACK" vs. "FREEPACK gets you one free"
+4. **Peer persona** — name, avatar, and texting style shift the perceived audience
+5. **Length** — try a 12-bubble and an 8-bubble cut of the same script
+
+The same architecture extends to other chat surfaces — a ChatGPT conversation reveal, WhatsApp, Slack — same timeline-driven recording, different UI shell. Start with iMessage; it has the highest recognition and the strongest audio identity.

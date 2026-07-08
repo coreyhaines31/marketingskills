@@ -85,6 +85,21 @@
         "Does not attempt full campaign strategy using creative generation patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I want to make one of those iMessage-style video ads for Meta — the ones where a fake text conversation reveals the product and a promo code. We sell a sleep tracking ring. Our promo code is RESTED.",
+      "expected_output": "Should load references/imessage-video-ads.md. Should start by picking a concept angle from the six-angle catalog (result-as-screenshot, setup flex, cancellation moment, feature-as-punchline, friend-asks-friend inverse, receipt-as-hook) before writing bubbles — likely result-as-screenshot (a sleep score) for this product. Should draft an 8-14 bubble script in real texting voice where the brand appears only after the peer asks, with the RESTED code delivered conversationally inside a bubble and repeated on a static end card. Should apply grounding rules: any sleep-improvement claim in the thread must trace to a real customer result or product fact, and the thread must not be framed as a real testimonial. Should present production route options (off-the-shelf skill, Playwright+ffmpeg pipeline, or Remotion) rather than assuming one, and mention key craft rules (real Apple SFX, silent typing indicators, 9:16 1080x1920).",
+      "assertions": [
+        "Loads or applies the imessage-video-ads reference",
+        "Selects a concept angle before writing the script",
+        "Script is 8-14 bubbles in authentic texting voice",
+        "Brand name appears only after the peer asks about it",
+        "Promo code RESTED appears in a bubble and on the end card",
+        "Applies grounding rules — no fabricated claims, not framed as a real testimonial",
+        "Mentions at least one production route and key craft rules (SFX, silent typing indicator, 9:16)"
+      ],
+      "files": []
     }
   ]
 }
