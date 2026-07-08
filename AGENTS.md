@@ -45,6 +45,22 @@ node tools/clis/<name>.js           # Show usage (no args = help)
 node tools/clis/<name>.js <cmd> --dry-run  # Preview request without sending
 ```
 
+## Versioning
+
+Two version layers, with different rules:
+
+**Repo release version** — `.claude-plugin/plugin.json` `version`, `.claude-plugin/marketplace.json` `metadata.version`, and the `VERSIONS.md` changelog headings all share one x.y.z number:
+
+- **x** — repo-wide changes (restructures, spec changes, breaking changes)
+- **y** — new skill(s) added
+- **z** — updates to existing skills
+
+Do not bump y for content added to an existing skill, no matter how substantial — that's a z release (e.g. a new reference file in ad-creative is 2.8.0 → 2.8.1, not 2.9.0).
+
+**Per-skill version** — `metadata.version` in each SKILL.md, mirrored in the `VERSIONS.md` table. Bump on ANY shipped change to that skill: the update check compares `VERSIONS.md` against users' local skill metadata, so an unbumped change is invisible to installed users. Minor for new capability or description triggers, patch for fixes and clarifications.
+
+Bump the repo release version in the same PR that ships the change (2.7.0 and 2.8.0 shipped without touching plugin.json/marketplace.json and needed a catch-up later).
+
 ## Agent Skills Specification
 
 Skills follow the [Agent Skills spec](https://agentskills.io/specification.md).
