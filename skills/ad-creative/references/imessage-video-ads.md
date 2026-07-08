@@ -2,7 +2,7 @@
 
 A 9:16 social-native video format that recreates an iMessage conversation unfolding in real time: someone sends a screenshot of a result or product, a friend reacts and asks what it is, and the conversation reveals the brand — usually with a promo code. Message bubbles pop in over ~15–22 seconds with authentic send/receive sounds, then a static brand end card lands the CTA.
 
-The format works because it borrows the most-read UI on earth. A chat thread in the feed reads as content, not advertising — the viewer processes it as eavesdropping on a real recommendation, and word-of-mouth is the highest-trust message in marketing. The CTA arrives conversationally ("use code FREEPACK") instead of as a hard sell, which keeps the ad-skip reflex from firing until the pitch has already landed.
+The format works because it borrows the most-read UI on earth. A chat thread is a familiar, high-attention dramatization — it mirrors how real recommendations happen, so the viewer leans in instead of scrolling past. The CTA arrives conversationally ("use code FREEPACK") instead of as a hard sell, which keeps the ad-skip reflex from firing until the pitch has already landed. Run it only as a clearly labeled paid placement (Meta's "Sponsored" tag does the disclosure work); never seed it organically as if it were a real leaked conversation.
 
 Credit: this reference distills the format popularized by Shiv Sakhuja and the Gooseworks team ([@shivsakhuja](https://x.com/shivsakhuja), [gooseworks-ai/gooseworks-ads-skills](https://github.com/gooseworks-ai/gooseworks-ads-skills)), who report the format performing strongly on Meta.
 
@@ -81,7 +81,7 @@ Three ways to produce it, in order of control:
 
 ### Route 1: Off-the-shelf skill (fastest)
 
-Gooseworks open-sourced their full pipeline — `npx gooseworks install --all`, then `/goose-ads` in Claude/Claude Code. Their `create-imessage-video-ad` skill handles rendering, recording, SFX, and stitching. Use this to validate the format before building anything custom.
+Gooseworks distributes their pipeline as an installable agent skill — `npx gooseworks install --all`, then invoke the goose-ads skill from your agent. It handles rendering, recording, SFX, and stitching end to end. Use this to validate the format before building anything custom. (Their ads-skills source repo is public but carries no open-source license — treat it as reference reading, not code to vendor.)
 
 ### Route 2: Code-based pipeline (full control)
 
@@ -91,9 +91,9 @@ The architecture that produces a convincing result: render the chat as HTML/CSS 
 2. **Render the chat UI in HTML/CSS.** Dark theme reads most native. Two variants: full-bleed chat, or the chat inside an iPhone frame (status bar + Dynamic Island) over a brand-relevant background photo — the framed variant reads more native in-feed and is the better default.
 3. **Animate with a timeline, record in ONE continuous session.** All bubbles exist in the DOM but hidden (`display: none` — not `opacity: 0`, or the thread pre-allocates space and never "grows"). A driver script walks a timeline array revealing each bubble, driving the composer, and auto-scrolling. Never record scene-by-scene and concat — every page reload causes a visible micro-flicker.
 4. **Type the composer for every sent bubble.** The typed text must exactly equal the sent text (a mismatch reads fake on second watch). Pace ~12–15 chars/sec with ±30% per-character jitter so it feels like thumbs, not a script.
-5. **Record at native output resolution** (viewport = recording size = 1080×1920). Recording small and upscaling ships soft, blurry bubble text.
+5. **Record at native output resolution.** Set both the Playwright `viewport` *and* `recordVideo.size` to 1080×1920 — if you omit `recordVideo.size`, Playwright records a scaled-down video by default. Recording small and upscaling ships soft, blurry bubble text.
 6. **Layer audio with ffmpeg.** SFX cues computed deterministically from the same timeline that drove the recording, so sounds land exactly on bubble pops.
-7. **Stitch: chat → 300ms crossfade → static end card.** Export 9:16 master plus a 1:1 center crop.
+7. **Stitch: chat → 300ms crossfade → static end card.** ffmpeg's `xfade` requires both inputs to match in resolution, pixel format, and frame rate — render the end card to a fixed-frame MP4 at the same specs as the chat recording before fading. Export the 9:16 master plus a 1:1 center crop.
 
 ### Route 3: Remotion (templated scale)
 
@@ -105,13 +105,13 @@ Once a winning script structure emerges, rebuild it as a Remotion composition (s
 
 These are the difference between "feels like a real chat" and "feels like a mockup":
 
-- **Real Apple SFX, never generic notification sounds.** The iMessage feel is mostly the audio. Apple's sounds are available CC0 on BigSoundBank: send whoosh (`bigsoundbank.com/UPLOAD/mp3/1313.mp3`, ~0.5s) and receive tritone (`bigsoundbank.com/UPLOAD/mp3/1111.mp3` — trim to ~1.4s with a 400ms fade). Normalize loud (≈ -9 LUFS) so they cut through the music.
+- **The real send/receive sounds, never generic notification sounds.** The iMessage feel is mostly the audio. BigSoundBank hosts recordings of Apple's message sounds under CC0: send whoosh (`bigsoundbank.com/UPLOAD/mp3/1313.mp3`, ~0.5s) and receive tritone (`bigsoundbank.com/UPLOAD/mp3/1111.mp3` — trim to ~1.4s with a 400ms fade). Normalize loud (≈ -9 LUFS) so they cut through the music. Note the recordings being CC0 doesn't mean Apple has licensed its sound marks or UI trade dress — this is standard practice in the format, but regulated brands and risk-averse legal teams should review the iMessage mimicry as a whole; a generic chat-app skin (neutral bubbles, non-Apple sounds) is the fallback that keeps the mechanic.
 - **No sound on the typing indicator.** iOS is silent when someone starts typing. Play the receive sound only when the actual bubble replaces the dots. This is the single most common tell.
 - **Music bed: quiet lofi/hip-hop instrumental.** ~30% volume, highpass around 60Hz to clear room for the SFX, fade out ~1.5s before the code reveal so the CTA lands in relative silence.
 - **Static end card — no zoom, no Ken Burns drift.** The brand slate must land hard; a drifting end card reads as filler.
 - **Real brand logo SVG on the end card, never CSS-styled text.** Font-approximated wordmarks look amateur even when close. Pull the official SVG from the brand's press kit, Wikimedia, or brandfetch.com.
 - **Hook screenshots: mimic the real app's UI, don't AI-generate it.** AI-generated app UIs ship garbled chrome that reads as slop. Build a small HTML page copying the actual app's brand colors, typography, and layout conventions (the Strava-orange strip, the "Public · 2h ago" timestamp) and screenshot it. Reserve AI image generation for *photographic* hooks — a beach photo, a lifestyle shot, the framed variant's background.
-- **Audio mixing gotcha:** ffmpeg's `amix` divides volume by input count by default — pass `normalize=0` or the whole mix comes out mysteriously quiet, then limit to peak at 0dB.
+- **Audio mixing gotcha:** ffmpeg's `amix` divides volume by input count by default — pass `normalize=0` or the whole mix comes out mysteriously quiet. Then run the mix through a limiter with the ceiling just under full scale (e.g. `alimiter=limit=0.95`, ≈ -0.4 dB) so it's loud without clipping.
 
 ---
 
@@ -130,7 +130,7 @@ Before shipping:
 - [ ] End card is static with the real logo SVG
 - [ ] Master is native 1080×1920; 1:1 variant is a crop, not a squeeze
 - [ ] Final bubble gets ~600–800ms of air before the crossfade
-- [ ] Audio peaks at 0dB without clipping; music never fights the SFX
+- [ ] Audio is limited just under full scale (no clipping); music never fights the SFX
 
 ---
 
