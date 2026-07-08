@@ -2,6 +2,8 @@
 
 Detailed strategies for each major social platform.
 
+One thing holds on every platform below: storytelling and connecting with your audience are always key. Formats, cadences, and algorithm mechanics differ platform to platform, but the better you share your story, the better the posts perform — the platform-specific tactics amplify a story worth telling; they don't substitute for one.
+
 ## Contents
 - LinkedIn
 - Twitter/X
@@ -69,17 +71,21 @@ Detailed strategies for each major social platform.
 - Scheduling everything (no real-time presence)
 
 **Format tips:**
-- Tweets under 100 characters get more engagement
+- Open with a specific claim in the first 8 words — the hook is the post
+- Name your topic in the first 10 words (enables topic-based distribution)
+- Name specific tools, companies, and numbers instead of vague nouns
 - Threads: Hook in tweet 1, promise value, deliver
-- Quote tweets with added insight beat plain retweets
-- Use visuals to stop the scroll
+- Quote tweets with added insight beat plain retweets — quote engagement scores twice
+- Video needs ~8+ seconds and captions to earn video credit
 
-**Algorithm tips:**
-- Replies and quote tweets build authority
-- Threads keep people on platform (rewarded)
-- Images and video get more reach
-- Engagement in first 30 min matters
-- Twitter Blue/Premium may boost reach
+**Algorithm tips** (from xAI's open-sourced For You algorithm):
+- Write for the DM-share and the follow, not the like — both are separately scored signals
+- Profile clicks boost the post: make readers curious, keep bio and pinned post strong
+- Wait ~60 minutes between original posts — same-author posts decay each other's scores
+- Be present for the first 30 minutes after posting; early replies compound
+- Avoid engagement-bait phrasing — predicted mutes/blocks/"not interested" subtract from your score, and muted keywords filter you out entirely
+
+**For ranking signals and the full playbook**: See [x-algorithm.md](x-algorithm.md)
 
 ---
 
