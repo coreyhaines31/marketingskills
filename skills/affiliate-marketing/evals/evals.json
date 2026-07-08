@@ -1,0 +1,28 @@
+{
+  "skill_name": "affiliate-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We are a B2B SaaS charging $100/mo. What should our affiliate commission be?",
+      "expected_output": "Should suggest standard SaaS structures like 20-30% recurring for 12 months, or 100% of first month. Should explain the tradeoffs between recurring and bounty models. Should recommend two-sided incentives.",
+      "assertions": [
+        "Suggests standard SaaS percentage ranges",
+        "Explains recurring vs. bounty tradeoffs",
+        "Recommends two-sided incentives"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We set up Rewardful but no one is signing up as an affiliate. How do we get affiliates?",
+      "expected_output": "Should recommend active recruitment. Should outline the three tiers: current customers, niche content creators (SEO), and super affiliates. Should suggest specific outreach tactics like finding ranking articles for 'Best [Category] Software'.",
+      "assertions": [
+        "Recommends active recruitment",
+        "Suggests recruiting current customers",
+        "Suggests recruiting content creators/SEO ranking sites",
+        "Provides specific outreach tactics"
+      ],
+      "files": []
+    }
+  ]
+}

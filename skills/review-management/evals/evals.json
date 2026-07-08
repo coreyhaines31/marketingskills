@@ -1,0 +1,27 @@
+{
+  "skill_name": "review-management",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We need more G2 reviews. Should we just email our whole customer list?",
+      "expected_output": "Should advise against a massive unstructured blast. Should recommend the NPS pre-screening approach (asking for a 1-10 rating first, then directing promoters to G2). Should suggest targeting users who recently hit a value milestone.",
+      "assertions": [
+        "Advises against unstructured mass email",
+        "Recommends NPS pre-screening",
+        "Suggests timing the ask after a value milestone"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "A customer left a 1-star review saying our support was terrible. How do I respond?",
+      "expected_output": "Should provide the negative review response formula: acknowledge/empathize, take responsibility, and move the conversation offline. Should explicitly warn against arguing publicly or being defensive.",
+      "assertions": [
+        "Provides response formula",
+        "Advises taking it offline",
+        "Warns against defensiveness or arguing"
+      ],
+      "files": []
+    }
+  ]
+}

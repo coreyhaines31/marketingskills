@@ -1,0 +1,29 @@
+{
+  "skill_name": "webinar",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to host a webinar to get more leads. What should the topic be?",
+      "expected_output": "Should recommend educational 'How-To' or 'State of the Industry' topics rather than product demos. Should ask about the target audience and their pain points to narrow down the topic. Should reference the topic frameworks.",
+      "assertions": [
+        "Recommends educational topics",
+        "Advises against pure product demos for top-of-funnel",
+        "References topic frameworks",
+        "Asks clarifying questions about audience"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "How should I promote my upcoming webinar? It's next Thursday.",
+      "expected_output": "Should note that 1-2 weeks is a short promotion window. Should recommend focusing on immediate high-impact channels: emailing the existing list and personal outreach by the sales team. Should suggest an urgency-driven 'Last Chance' email.",
+      "assertions": [
+        "Identifies short timeline",
+        "Prioritizes email list",
+        "Suggests sales outreach",
+        "Recommends urgency email"
+      ],
+      "files": []
+    }
+  ]
+}

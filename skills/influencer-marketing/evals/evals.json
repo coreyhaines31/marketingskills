@@ -1,0 +1,27 @@
+{
+  "skill_name": "influencer-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We want to sponsor a big YouTuber with 1M subs. Should we just pay their flat rate?",
+      "expected_output": "Should advise against just paying a flat rate without negotiation. Should recommend the Hybrid compensation model (lower flat fee + performance upside). Should explicitly recommend negotiating Content Usage Rights (whitelisting/dark posting) so the video can be used as an ad. Should warn that macro-influencers often have lower conversion rates.",
+      "assertions": [
+        "Recommends hybrid compensation model",
+        "Highlights importance of Content Usage Rights",
+        "Warns about macro-influencer conversion rates"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "How do we make sure we can track ROI from podcast sponsorships?",
+      "expected_output": "Should recommend multiple attribution methods. Must mention unique promo codes (critical for audio). Should suggest dedicated vanity URLs/landing pages. Should recommend a post-purchase survey ('How did you hear about us?') to capture attribution that misses the promo code.",
+      "assertions": [
+        "Recommends unique promo codes",
+        "Recommends vanity URLs / dedicated landing pages",
+        "Recommends post-purchase survey"
+      ],
+      "files": []
+    }
+  ]
+}
