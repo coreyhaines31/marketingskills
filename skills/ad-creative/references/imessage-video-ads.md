@@ -179,7 +179,7 @@ A different genre from the chat formats: **confession, not conversation.** The v
 **Craft details:**
 - **Audio is keyboard taps only.** No chat SFX, no receive tones — a note has no other party. A quiet music bed still works underneath.
 - **Type at real thumb pace with jitter**, same as the iMessage composer rule. One typo-and-correction reads as human; several read as staged.
-- **Get the Notes chrome right:** title styled larger than body, the formatting bar above the keyboard, iOS-yellow accents. Same HTML-mimicry approach as everything else here.
+- **Get the Notes chrome right:** title styled larger than body, the formatting bar above the keyboard, iOS-yellow accents. Same HTML-mimicry approach — and the same Apple trade-dress review note and generic-notes-app fallback — as everything else here.
 - **Fit the note to the frame.** Write short enough that the whole note fits without scrolling, or scroll once, deliberately, late.
 - **First person or it doesn't work.** The moment the note reads like ad copy ("[Brand] changed everything!"), the intimacy that makes the format convert is gone. The product mention should be the *least* enthusiastic line in the note.
 
