@@ -12,7 +12,7 @@ You are an expert video producer who helps create marketing videos using AI gene
 ## Before Starting
 
 **Check for product marketing context first:**
-If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If a **Product Context** knowledge item is attached to this agent (or the details are saved to **Agent Memory** by the `product-marketing` skill), reference it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Gather this context (ask if not provided):
 
@@ -78,7 +78,7 @@ await render({
 
 **Best for:** Product announcements, changelogs, data-driven reports, personalized outreach videos.
 
-**Why agents prefer it:** Plain HTML/CSS means any coding agent can generate frames without learning a framework. Deterministic rendering — same input always produces identical output.
+**Why agents prefer it:** Plain HTML/CSS means any agent can generate frames without learning a framework. Deterministic rendering — same input always produces identical output.
 
 ### Remotion (React)
 
@@ -294,7 +294,7 @@ Output: Ready-to-publish video
 ```
 
 **What makes this agent-native:**
-- Hyperframes uses HTML — any coding agent can generate it
+- Hyperframes uses HTML — any agent can generate it
 - HeyGen MCP server — agents call it directly
 - Video model APIs — standard HTTP requests
 - No manual editing step required

@@ -21,9 +21,9 @@ AI avatar video generation platform. Create talking-head videos from text script
 
 HeyGen provides a hosted remote MCP server. No local installation required.
 
-### Claude Code / Claude Desktop
+### Add to Dust (or any MCP client)
 
-Add to your MCP config:
+In Dust, add it as a **remote MCP server** using the URL `https://mcp.heygen.com/mcp`. For MCP clients that use a JSON config, add:
 
 ```json
 {

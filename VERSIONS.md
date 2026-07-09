@@ -1,6 +1,8 @@
-# Marketing Skills Versions
+# Dust Marketing Skills Versions
 
-Current versions of all skills. Agents can compare against local versions to check for updates.
+Current versions of all skills. Re-import a skill into Dust (or `git pull` your fork) when its version here is newer than the one in your workspace.
+
+> Forked from Corey Haines' [Marketing Skills](https://github.com/coreyhaines31/marketingskills) and adapted for the Dust AI platform.
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
@@ -18,7 +20,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | content-strategy | 2.0.0 | 2026-05-05 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.1 | 2026-06-16 |
-| cro | 2.0.0 | 2026-05-05 |
+| cro | 3.0.0 | 2026-07-09 |
 | customer-research | 2.0.0 | 2026-05-05 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
 | emails | 2.0.0 | 2026-05-05 |
@@ -37,7 +39,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.0.1 | 2026-06-16 |
-| product-marketing | 2.0.0 | 2026-05-05 |
+| product-marketing | 3.0.0 | 2026-07-09 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
 | prospecting | 1.0.0 | 2026-05-26 |
 | public-relations | 1.0.0 | 2026-06-10 |
@@ -49,10 +51,17 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.1.0 | 2026-06-10 |
+| social | 3.0.0 | 2026-07-09 |
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 3.0.0 (2026-07-09) — Dust fork
+
+- **Rebrand to Dust Marketing Skills.** Forked from Corey Haines' [Marketing Skills](https://github.com/coreyhaines31/marketingskills) and repositioned for the [Dust AI platform](https://dust.tt). The skill collection and its frameworks are Corey's original work (preserved under MIT); this fork restructures and extends them for Dust and the marketing teams who run on it.
+- **Install path is now Dust's native GitHub skill import** — paste the repo (or a single skill's subfolder) URL in Dust. Removed the Claude Code plugin marketplace (`.claude-plugin/`), the `npx skills` / SkillKit install options, and the marketplace/plugin version layer. README, AGENTS.md, CONTRIBUTING.md, and the sync workflow updated accordingly.
+- **Dust-native context pattern**: skills reference an attached **Product Context** knowledge item and **Agent Memory** instead of reading a local `.agents/product-marketing.md` file. Foundational exemplars (`product-marketing`, `cro`, `social`) rewritten to use Dust's Browse, Computer, Web Search, Create Files/Images, connectors, and Triggers. Remaining skills are being converted in follow-up passes.
+- Versioning simplified to per-skill `metadata.version` (mirrored in this file) plus this changelog.
 
 ### 2.8.1 (2026-07-08)
 

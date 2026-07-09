@@ -2,7 +2,7 @@
 
 This doc maps every marketing-skill and every relevant MCP/API integration to the AARRR stage(s) it primarily serves. It's the source for Section 11 of every plan.
 
-> **Note on scope.** Skills below live in this `marketingskills` repo. A few references point to optional tools from adjacent Claude Code marketplaces (e.g., `vercel:agent-browser`, `compound-engineering:diagram-maker`) — substitute equivalents if not installed. When a plan references a skill or tool that isn't available, fall back to the underlying tactic and call it out in Section 13's open decisions.
+> **Note on scope.** Skills below live in this `dustmarketingskills` repo. A few references point to optional external capabilities (e.g., browser automation or diagram generation) — on Dust, reach for **Browse/Computer** or an equivalent connector/MCP server. When a plan references a skill or tool that isn't available, fall back to the underlying tactic and call it out in Section 13's open decisions.
 
 ## The thesis
 
@@ -86,7 +86,7 @@ The plan's Section 11 makes this thesis explicit by:
 
 | Skill | What it does | Primary use |
 |---|---|---|
-| `product-marketing` | Set up the `.agents/product-marketing.md` context file (positioning, ICP, voice) | Foundational — run first; every section of the plan references this |
+| `product-marketing` | Set up the **Product Context** knowledge item (positioning, ICP, voice) | Foundational — run first; every section of the plan references this |
 | `customer-research` | Conduct customer interviews + surveys | Section 2 + Section 3 (Current state) |
 | `marketing-psychology` | Apply behavioral science | Cross-cuts copy, CRO, paywalls |
 | `marketing-ideas` | The 139-idea library | Section 12 of plan (Idea bank) |

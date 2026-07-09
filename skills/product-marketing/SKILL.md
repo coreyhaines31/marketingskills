@@ -1,30 +1,32 @@
 ---
 name: product-marketing
-description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it creates `.agents/product-marketing.md` that all other skills reference for product, audience, and positioning context."
+description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it produces a **Product Context** knowledge item (and stores the essentials in Agent Memory) that all other marketing skills reference for product, audience, and positioning."
 metadata:
-  version: 2.0.0
+  version: 3.0.0
 ---
 
 # Product Marketing Context
 
-You help users create and maintain a product marketing context document. This captures foundational positioning and messaging information that other marketing skills reference, so users don't repeat themselves.
+You help users create and maintain a **Product Context** — the foundational positioning and messaging that every other marketing skill references, so the team never repeats itself.
 
-The document is stored at `.agents/product-marketing.md`.
+On Dust, the Product Context lives in two places:
+- As a **knowledge item** attached to your marketing agents — a document in a Dust Space, a connected Notion/Google Doc, or an uploaded file — that any skill can search.
+- In **Agent Memory**, for the load-bearing essentials (one-liner, category, ICP, top differentiators, brand voice, primary conversion action), so an agent recalls them automatically in every conversation.
 
 ## Workflow
 
 ### Step 1: Check for Existing Context
 
-First, check if `.agents/product-marketing.md` already exists. Also check `.claude/product-marketing.md` and the legacy filename `product-marketing-context.md` (in either `.agents/` or `.claude/`) for older setups — if found anywhere other than `.agents/product-marketing.md`, offer to move it to the canonical location.
+First, check whether a Product Context already exists: look for a **Product Context** knowledge item attached to the agent, and check **Agent Memory** for saved product details.
 
 **If it exists:**
-- Read it and summarize what's captured
+- Summarize what's captured
 - Ask which sections they want to update
 - Only gather info for those sections
 
 **If it doesn't exist, offer two options:**
 
-1. **Auto-draft from codebase** (recommended): You'll study the repo—README, landing pages, marketing copy, package.json, etc.—and draft a V1 of the context document. The user then reviews, corrects, and fills gaps. This is faster than starting from scratch.
+1. **Auto-draft from what Dust can already see** (recommended): Use **Browse** to read the product's website (home, product, pricing, about pages), **Web Search** for how the market and competitors describe the category, and any connected knowledge (Notion, Google Drive, past campaigns). Draft a V1 of the context document. The user then reviews, corrects, and fills gaps. This is faster than starting from scratch.
 
 2. **Start from scratch**: Walk through each section conversationally, gathering info one section at a time.
 
@@ -33,7 +35,7 @@ Most users prefer option 1. After presenting the draft, ask: "What needs correct
 ### Step 2: Gather Information
 
 **If auto-drafting:**
-1. Read the codebase: README, landing pages, marketing copy, about pages, meta descriptions, package.json, any existing docs
+1. Ask for the product's URL, then **Browse** the home, product, pricing, and about pages; add **Web Search** for how the market and competitors frame the category; and pull from any connected knowledge (Notion, Google Drive, prior campaigns)
 2. Draft all sections based on what you find
 3. Present the draft and ask what needs correcting or is missing
 4. Iterate until the user is satisfied
@@ -128,7 +130,7 @@ The JTBD Four Forces:
 
 ## Step 3: Create the Document
 
-After gathering information, create `.agents/product-marketing.md` with this structure:
+After gathering information, produce the Product Context document (use **Create Files** to generate it as markdown) with this structure:
 
 ```markdown
 # Product Marketing Context
@@ -223,12 +225,12 @@ After gathering information, create `.agents/product-marketing.md` with this str
 
 ---
 
-## Step 4: Confirm and Save
+## Step 4: Confirm, Save, and Wire It Up
 
-- Show the completed document
-- Ask if anything needs adjustment
-- Save to `.agents/product-marketing.md`
-- Tell them: "Other marketing skills will now use this context automatically. Run `/product-marketing` anytime to update it."
+- Show the completed document and ask if anything needs adjustment.
+- **Save it as a knowledge item**: add the document to a Dust Space (as a Dust Folder file, or a connected Notion/Google Doc), then attach that knowledge to your marketing agent(s) so every skill can reference it.
+- **Write the essentials to Agent Memory** — one-liner, category, ICP, top differentiators, brand voice, and the primary conversion action — so agents recall them without opening the doc.
+- Tell them: "Your marketing agents will now use this context automatically. Ask me to update the Product Context whenever your positioning changes."
 
 ---
 

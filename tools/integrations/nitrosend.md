@@ -14,7 +14,7 @@ AI-native email platform that combines transactional and marketing email in one 
 ## Authentication
 
 - **Type**: API Key
-- **MCP Setup**: Add Nitrosend MCP server to your Claude Code / AI assistant config
+- **MCP Setup**: Add the Nitrosend MCP server to Dust as a remote MCP server (or any MCP client)
 - **BYO Infrastructure**: Optionally bring your own SendGrid, Postmark, SES, or Resend keys
 - **Get access**: Sign up at nitrosend.com — free tier includes 8K emails initially, then 500/month
 
@@ -93,7 +93,7 @@ For BYO plan users: bring your own SendGrid, Postmark, SES, or Resend account an
 ## When to Use
 
 - Building email sequences via AI without touching a dashboard
-- Teams already using Claude Code or other AI coding tools as their primary workflow
+- Teams already using Dust or other AI assistants as their primary workflow
 - Combining transactional (password resets, receipts) and marketing (nurture, campaigns) in one place
 - Rapid sequence prototyping — describe the sequence, get it built
 - Migrating from Mailchimp/Klaviyo and wanting AI control going forward

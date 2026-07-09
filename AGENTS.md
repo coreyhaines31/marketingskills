@@ -4,28 +4,29 @@ Guidelines for AI agents working in this repository.
 
 ## Repository Overview
 
-This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). Skills install to `.agents/skills/` (the cross-agent standard). This repo also serves as a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
+This repository contains **Agent Skills** for marketing, packaged for the [Dust AI platform](https://dust.tt). Skills follow the open [Agent Skills specification](https://agentskills.io/specification.md), so Dust imports each one **directly from GitHub** (`Skills → Create skill → Import from GitHub`) with no reformatting.
 
-- **Name**: Marketing Skills
-- **GitHub**: [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
-- **Creator**: Corey Haines
+- **Name**: Dust Marketing Skills
+- **GitHub**: [ryzamedia/dustmarketingskills](https://github.com/ryzamedia/dustmarketingskills)
+- **Maintainer**: Daniel Colaianni
+- **Origin**: Forked from [Marketing Skills](https://github.com/coreyhaines31/marketingskills) by Corey Haines — thanks to the original contributors before the fork.
 - **License**: MIT
 
 ## Repository Structure
 
 ```
-marketingskills/
-├── .claude-plugin/
-│   └── marketplace.json   # Claude Code plugin marketplace manifest
-├── skills/                # Agent Skills
+dustmarketingskills/
+├── skills/                # Agent Skills (imported into Dust)
 │   └── skill-name/
-│       └── SKILL.md       # Required skill file
+│       ├── SKILL.md       # Required skill file
+│       └── references/    # Optional detailed docs
 ├── tools/
-│   ├── clis/              # Zero-dependency Node.js CLI tools (51 tools)
-│   ├── composio/          # Composio integration layer (quick start + toolkit mapping)
-│   ├── integrations/      # API integration guides per tool
-│   └── REGISTRY.md        # Tool index with capabilities
+│   ├── clis/              # Zero-dependency Node.js reference CLIs
+│   ├── composio/          # Composio integration layer (MCP for OAuth-heavy tools)
+│   ├── integrations/      # Per-tool integration guides (how to reach each from Dust)
+│   └── REGISTRY.md        # Tool index mapped to Dust connectors / MCP
 ├── CONTRIBUTING.md
+├── VERSIONS.md            # Per-skill versions + changelog
 ├── LICENSE
 └── README.md
 ```
@@ -37,29 +38,30 @@ marketingskills/
 - `name` field matches directory name exactly
 - `name` is 1-64 chars, lowercase alphanumeric and hyphens only
 - `description` is 1-1024 characters
+- The body reads well as Dust **Guidelines** and references Dust capabilities (see below), not filesystem paths or a specific coding agent
 
-**CLI tools** (`tools/clis/*.js`) are zero-dependency Node.js scripts (Node 18+). Verify with:
+**Reference CLI tools** (`tools/clis/*.js`) are zero-dependency Node.js scripts (Node 18+). They document how an API works; in Dust the equivalent is usually a native connector or MCP server. Verify a CLI with:
 ```bash
 node --check tools/clis/<name>.js   # Syntax check
 node tools/clis/<name>.js           # Show usage (no args = help)
-node tools/clis/<name>.js <cmd> --dry-run  # Preview request without sending
 ```
+
+## Writing skills for Dust
+
+When Dust imports a skill, the frontmatter `description` becomes the skill's **"What will this skill be used for"** trigger and the markdown body becomes its **Guidelines**. Write bodies so a Dust agent can act, not just advise:
+
+- Reference **Dust tools** by capability: **Browse** (read live pages), **Computer** (click/type/fill forms/navigate), **Web Search**, **Create Files**, **Create Images**, **Data Visualization**, **Agent Memory**, **Run an Agent**, and **connectors** (HubSpot, Salesforce, Slack, GA4, Google Drive, Notion, …).
+- For shared product/brand context, reference the **Product Context** knowledge item (created by the `product-marketing` skill) and/or **Agent Memory** — never a local file like `.agents/product-marketing.md`.
+- For recurring workflows, reference Dust **Triggers** (schedules/webhooks), not a coding-agent loop mechanism.
+- Keep skills cross-agent-safe: no tool-specific templating syntax that only one agent executes.
 
 ## Versioning
 
-Two version layers, with different rules:
+**Per-skill version** — `metadata.version` in each SKILL.md, mirrored in the `VERSIONS.md` table. Bump on ANY shipped change to that skill. Minor for a new capability or new description triggers; patch for fixes and clarifications. Users compare `VERSIONS.md` against the version in their Dust workspace to know when to re-import.
 
-**Repo release version** — `.claude-plugin/plugin.json` `version`, `.claude-plugin/marketplace.json` `metadata.version`, and the `VERSIONS.md` changelog headings all share one x.y.z number:
+**Changelog** — add a dated entry to `VERSIONS.md` summarizing what shipped in each release.
 
-- **x** — repo-wide changes (restructures, spec changes, breaking changes)
-- **y** — new skill(s) added
-- **z** — updates to existing skills
-
-Do not bump y for content added to an existing skill, no matter how substantial — that's a z release (e.g. a new reference file in ad-creative is 2.8.0 → 2.8.1, not 2.9.0).
-
-**Per-skill version** — `metadata.version` in each SKILL.md, mirrored in the `VERSIONS.md` table. Bump on ANY shipped change to that skill: the update check compares `VERSIONS.md` against users' local skill metadata, so an unbumped change is invisible to installed users. Minor for new capability or description triggers, patch for fixes and clarifications.
-
-Bump the repo release version in the same PR that ships the change (2.7.0 and 2.8.0 shipped without touching plugin.json/marketplace.json and needed a catch-up later).
+Bump the version in the same PR that ships the change.
 
 ## Agent Skills Specification
 
@@ -103,6 +105,8 @@ skills/skill-name/
 └── assets/         # Optional - templates, data files
 ```
 
+Dust imports `references/` files alongside the skill, so keep long material there rather than inlining it into SKILL.md.
+
 ## Writing Style Guidelines
 
 ### Structure
@@ -134,7 +138,7 @@ skills/skill-name/
 
 ### Description Field Best Practices
 
-The `description` is critical for skill discovery. Include:
+The `description` is critical for skill discovery (it becomes Dust's "What will this skill be used for"). Include:
 1. What the skill does
 2. When to use it (trigger phrases)
 3. Related skills for scope boundaries
@@ -143,16 +147,15 @@ The `description` is critical for skill discovery. Include:
 description: When the user wants to optimize conversions on any marketing page. Use when the user says "CRO," "conversion rate optimization," "this page isn't converting." For signup flows, see signup.
 ```
 
-## Claude Code Plugin
+## Importing into Dust
 
-This repo also serves as a plugin marketplace. The manifest at `.claude-plugin/marketplace.json` lists all skills for installation via:
+End users install these skills through Dust's native GitHub import:
 
-```bash
-/plugin marketplace add coreyhaines31/marketingskills
-/plugin install marketing-skills
-```
+1. In Dust, go to **Skills → Create skill → Import from GitHub**.
+2. Paste the repo URL (whole library) or a single skill's subfolder URL (e.g. `.../tree/main/skills/cro`).
+3. Attach the imported skill to a marketing agent, give the agent the tools the skill expects, and attach the **Product Context** knowledge item.
 
-See [Claude Code plugins documentation](https://code.claude.com/docs/en/plugins.md) for details.
+Re-importing after a `git pull` keeps a workspace in sync with this repo. See `README.md` for the full walkthrough and suggested agent setups.
 
 ## Git Workflow
 
@@ -176,30 +179,19 @@ Follow the [Conventional Commits](https://www.conventionalcommits.org/) specific
 - [ ] `name` follows naming rules (lowercase, hyphens, no `--`)
 - [ ] `description` is 1-1024 chars with trigger phrases
 - [ ] `SKILL.md` is under 500 lines
+- [ ] Body references Dust capabilities, not local files or a specific coding agent
+- [ ] `metadata.version` bumped and `VERSIONS.md` updated
 - [ ] No sensitive data or credentials
 
 ## Tool Integrations
 
-This repository includes a tools registry for agent-compatible marketing tools.
+Skills reference marketing platforms by capability and tell the agent how to reach them from Dust.
 
-- **Tool discovery**: Read `tools/REGISTRY.md` to see available tools and their capabilities
-- **Integration details**: See `tools/integrations/{tool}.md` for API endpoints, auth, and common operations
-- **MCP-enabled tools**: ga4, stripe, mailchimp, google-ads, resend, zapier, zoominfo, clay, supermetrics, coupler, outreach, crossbeam, introw, composio
-- **Composio** (integration layer): Adds MCP access to OAuth-heavy tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, etc.). See `tools/integrations/composio.md`
-
-### Registry Structure
-
-```
-tools/
-├── REGISTRY.md              # Index of all tools with capabilities
-└── integrations/            # Detailed integration guides
-    ├── ga4.md
-    ├── stripe.md
-    ├── rewardful.md
-    └── ...
-```
-
-### When to Use Tools
+- **Tool discovery**: Read `tools/REGISTRY.md` for the platform → Dust-access mapping.
+- **Integration details**: See `tools/integrations/{tool}.md` for endpoints, auth, and common operations.
+- **Native connectors & MCP**: Many tools (Slack, Notion, Google Drive, GitHub, GA4, Google Ads, Stripe, etc.) are available as Dust connectors or remote MCP servers.
+- **Composio**: For OAuth-heavy tools without a native Dust server (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion), [Composio](tools/integrations/composio.md) exposes them to Dust agents through a single MCP server. See `tools/composio/marketing-tools.md` for the full toolkit mapping.
+- **Browse & Computer**: When no connector or API exists, an agent can use **Browse** to read a page or **Computer** to interact with it directly.
 
 Skills reference relevant tools for implementation. For example:
 - `referrals` skill → rewardful, tolt, dub-co, mention-me guides
@@ -207,64 +199,13 @@ Skills reference relevant tools for implementation. For example:
 - `emails` skill → customer-io, mailchimp, resend guides
 - `ads` skill → google-ads, meta-ads, linkedin-ads guides
 
-For tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion), Composio provides MCP access via a single server. See `tools/integrations/composio.md` for setup and `tools/composio/marketing-tools.md` for the full toolkit mapping.
-
 ## Checking for Updates
 
 When using any skill from this repository:
 
-1. **Once per session**, on first skill use, check for updates:
-   - Fetch `VERSIONS.md` from GitHub: https://raw.githubusercontent.com/coreyhaines31/marketingskills/main/VERSIONS.md
-   - Compare versions against local skill files
-
-2. **Only prompt if meaningful**:
-   - 2 or more skills have updates, OR
-   - Any skill has a major version bump (e.g., 1.x to 2.x)
-
-3. **Non-blocking notification** at end of response:
-   ```
-   ---
-   Skills update available: X marketing skills have updates.
-   Say "update skills" to update automatically, or run `git pull` in your marketingskills folder.
-   ```
-
-4. **If user says "update skills"**:
-   - Run `git pull` in the marketingskills directory
-   - Confirm what was updated
+1. Compare each skill's `metadata.version` against the version in the Dust workspace (or the current `VERSIONS.md`, available at `https://raw.githubusercontent.com/ryzamedia/dustmarketingskills/main/VERSIONS.md`).
+2. To update, **re-import** the skill from GitHub in Dust (or `git pull` your fork and re-import). Dust versions the skill on each import, so history is preserved.
 
 ## Skill Categories
 
 See `README.md` for the current list of skills organized by category. When adding new skills, follow the naming patterns of existing skills in that category.
-
-## Claude Code-Specific Enhancements
-
-These patterns are **Claude Code only** and must not be added to `SKILL.md` files directly, as skills are designed to be cross-agent compatible (Codex, Cursor, Windsurf, etc.). Apply them locally in your own project's `.claude/skills/` overrides instead.
-
-### Dynamic content injection with `!`command``
-
-Claude Code supports embedding shell commands in SKILL.md using `` !`command` `` syntax. When the skill is invoked, Claude Code runs the command and injects the output inline — the model sees the result, not the instruction.
-
-**Most useful application: auto-inject the product marketing context file**
-
-Instead of every skill telling the agent "go check if `.agents/product-marketing.md` exists and read it," you can inject it automatically:
-
-```markdown
-Product context: !`cat .agents/product-marketing.md 2>/dev/null || echo "No product context file found — ask the user about their product before proceeding."`
-```
-
-Place this at the top of a skill's body (after frontmatter) to make context available immediately without any file-reading step.
-
-**Other useful injections:**
-
-```markdown
-# Inject today's date for recency-sensitive skills
-Today's date: !`date +%Y-%m-%d`
-
-# Inject current git branch (useful for workflow skills)
-Current branch: !`git branch --show-current 2>/dev/null`
-
-# Inject recent commits for context
-Recent commits: !`git log --oneline -5 2>/dev/null`
-```
-
-**Why this is Claude Code-only**: Other agents that load skills will see the literal `` !`command` `` string rather than executing it, which would appear as garbled instructions. Keep cross-agent skill files free of this syntax.

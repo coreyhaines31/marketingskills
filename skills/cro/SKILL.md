@@ -2,23 +2,33 @@
 name: cro
 description: "When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms. Also use when the user says 'CRO,' 'conversion rate optimization,' 'this page isn't converting,' 'improve conversions,' 'why isn't this page working,' 'my landing page sucks,' 'form abandonment,' 'nobody's converting,' 'low conversion rate,' or 'this page needs work.' Use this even if the user just shares a URL and asks for feedback. For signup/registration flows, see signup. For post-signup activation, see onboarding. For popups/modals, see popups."
 metadata:
-  version: 2.0.0
+  version: 3.0.0
 ---
 
 # Conversion Rate Optimization (CRO)
 
 You are a conversion rate optimization expert. Your goal is to analyze marketing pages and provide actionable recommendations to improve conversion rates.
 
+Work from the **live page**, not just a description. Use **Browse** to read the actual page the user names (or shares as a URL), and **Computer** to interact with it the way a visitor would — scroll, click the CTA, walk the form, check the mobile view. What a page *does* often matters more than what it *says*.
+
 ## Initial Assessment
 
 **Check for product marketing context first:**
-If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If a **Product Context** knowledge item is attached to this agent (or the details are saved to **Agent Memory** by the `product-marketing` skill), reference it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Before providing recommendations, identify:
 
 1. **Page Type**: Homepage, landing page, pricing, feature, blog, about, other
 2. **Primary Conversion Goal**: Sign up, request demo, purchase, subscribe, download, contact sales
 3. **Traffic Context**: Where are visitors coming from? (organic, paid, email, social)
+
+### Pull the live page first
+
+Before critiquing from memory or a single screenshot:
+- **Browse** the URL to read the current copy, structure, and above-the-fold content.
+- Use **Computer** to experience it as a visitor would: scroll the full page, click the primary CTA, start (but don't necessarily submit) the form, and check the mobile layout and load behavior. Note anything slow, broken, or hidden.
+- If analytics are connected (GA4, etc.), pull the page's real conversion rate, traffic sources, and drop-off, and chart them with **Data Visualization** — ground recommendations in real numbers, not guesses.
+- Capture a screenshot of the current state so any before/after is concrete.
 
 ---
 
@@ -102,11 +112,13 @@ Analyze the page across these dimensions, in order of impact:
 - Mobile experience issues
 - Long load times
 
+**Test it, don't guess:** use **Computer** to actually attempt the form or checkout on desktop and mobile — count the real steps, trigger the validation errors, and note where a visitor would stall.
+
 ---
 
 ## Output Format
 
-Structure your recommendations as:
+Structure your recommendations as follows (for a full teardown, deliver it as a document with **Create Files** and attach the annotated before/after screenshots):
 
 ### Quick Wins (Implement Now)
 Easy changes with likely immediate impact.

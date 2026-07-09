@@ -19,7 +19,7 @@ When the user requests Google Ads RSAs (Responsive Search Ads), output MUST comp
 
 ## Medical / CFM compliance (when product context indicates pt-BR medical practice)
 
-If `.agents/product-marketing.md` indicates a Brazilian medical practice (CFM-regulated), the following terms are **forbidden** in headlines, descriptions, sitelinks, and callouts:
+If the **Product Context** indicates a Brazilian medical practice (CFM-regulated), the following terms are **forbidden** in headlines, descriptions, sitelinks, and callouts:
 
 - Superlatives: `#1`, `melhor`, `o melhor`, `melhor do brasil`, `top`, `referência`
 - Outcome promises: `garantido`, `garantia`, `cura`, `cura definitiva`, `100%`, `resultado garantido`, `livre da dor`

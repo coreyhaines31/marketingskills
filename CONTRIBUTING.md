@@ -1,10 +1,12 @@
 # Contributing
 
-Thanks for your interest in contributing to Marketing Skills! This guide will help you add new skills or improve existing ones.
+Thanks for your interest in contributing to Dust Marketing Skills! This guide will help you add new skills or improve existing ones.
+
+These skills import into the [Dust AI platform](https://dust.tt) directly from GitHub, so keep every skill in the standard [Agent Skills format](https://agentskills.io/specification.md) — a `skills/<name>/SKILL.md` with YAML frontmatter (`name`, `description`) and a markdown body. Write the body around what a Dust agent can do (Browse, Computer, Web Search, Create Files/Images, connectors, Agent Memory, Triggers). Avoid tool-specific syntax that only one agent understands.
 
 ## Requesting a Skill
 
-You can also suggest new skills by [opening a skill request](https://github.com/coreyhaines31/marketingskills/issues/new?template=skill-request.yml).
+You can also suggest new skills by [opening a skill request](https://github.com/ryzamedia/dustmarketingskills/issues/new?template=skill-request.yml).
 
 ## Adding a New Skill
 

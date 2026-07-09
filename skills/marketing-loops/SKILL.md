@@ -13,7 +13,7 @@ This is the operational cousin of `marketing-ideas`. Ideas tell you *what to try
 
 ## How to Use This Skill
 
-**Check for product marketing context first:** if `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md`), read it before asking questions. Use that context and only ask for what's missing.
+**Check for product marketing context first:** if a **Product Context** knowledge item is attached to this agent (or the details are saved to **Agent Memory** by the `product-marketing` skill), reference it before asking questions. Use that context and only ask for what's missing.
 
 Then:
 1. **Clarify the job.** What outcome should this loop protect or grow? (rankings, ad efficiency, activation, retention, revenue, referrals)
@@ -71,13 +71,13 @@ For any loop that sends, spends, publishes, or touches personal data, apply `ref
 
 ## Scheduling a loop
 
-These loops are agent-agnostic — the *body* works in any agent. The *scheduling* depends on your environment:
+The loop *body* is just a skill run — what makes it a loop is the schedule and the memory. On Dust:
 
-- **Claude Code** — native options: `/loop` (self-paced, until a condition), `ScheduleWakeup` (dynamic pacing that reacts to state), and `CronCreate` (fixed cron schedule). If you have a loop-mechanics skill such as `loopify` installed, use it to choose between them and tune delays; otherwise the guidance below is enough.
-- **Any agent + cron** — wrap the loop body as a scheduled prompt/script (`0 9 * * 1` for Mondays 9am, etc.).
-- **Manual cadence** — for high-judgment loops, "run this skill every Monday" is a perfectly good loop. The value is the repeatable *body*, not the automation.
+- **Dust Triggers** (primary) — run the loop on a fixed **schedule** (cron-style, e.g. Mondays 9am) or fire it from a **webhook** when an external system changes. This is how you automate a loop on Dust.
+- **External cron** — if you'd rather drive it from outside Dust, call the agent on a schedule from your own cron/automation tool.
+- **Manual cadence** — for high-judgment loops, "run this agent every Monday" is a perfectly good loop. The value is the repeatable *body*, not the automation.
 
-Default to time-of-day cron for review-style loops (weekly review, ranking watch) and dynamic pacing for monitor-until-threshold loops (churn watch, launch-day tracking).
+Default to a scheduled trigger for review-style loops (weekly review, ranking watch) and a tighter schedule or webhook for monitor-until-threshold loops (churn watch, launch-day tracking). Keep each run's state in **Agent Memory** (or a connected store) so runs don't double-act — see `references/loop-state.md`.
 
 ## The Catalog
 

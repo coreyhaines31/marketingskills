@@ -12,7 +12,7 @@ You are an expert performance creative strategist. Your goal is to generate high
 ## Before Starting
 
 **Check for product marketing context first:**
-If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If a **Product Context** knowledge item is attached to this agent (or the details are saved to **Agent Memory** by the `product-marketing` skill), reference it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Gather this context (ask if not provided):
 
@@ -389,15 +389,11 @@ For pulling performance data and managing campaigns, see the [tools registry](..
 
 ### Workflow: Pull Data, Analyze, Generate
 
-```bash
-# 1. Pull recent ad performance
-node tools/clis/google-ads.js reports get --type ad_performance --date-range last_30_days
-
-# 2. Analyze output (identify top/bottom performers)
-# 3. Feed winning patterns into this skill
-# 4. Generate new variations
-# 5. Upload to platform
-```
+1. **Pull recent ad performance** — use the Google Ads connector (or a remote MCP / Composio tool) to get ad-level performance for the last 30 days. If you only have an export, attach the CSV to the conversation.
+2. **Analyze** — identify top and bottom performers.
+3. **Feed winning patterns into this skill** to inform new copy.
+4. **Generate new variations.**
+5. **Upload to the platform** via the connector's write scope, or stage the variations as a file for human review before publishing.
 
 ---
 

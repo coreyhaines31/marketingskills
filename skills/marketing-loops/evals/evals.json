@@ -47,13 +47,13 @@
     {
       "id": 4,
       "prompt": "How do I actually schedule these loops so they run on their own?",
-      "expected_output": "Should explain that the loop body is agent-agnostic but scheduling depends on the environment. Should cover the options: Claude Code native primitives (/loop, ScheduleWakeup, CronCreate), any-agent + cron (with an example cron expression), and manual cadence for high-judgment loops. Should default to time-of-day cron for review-style loops and dynamic pacing for monitor-until-threshold loops. Should treat a dedicated loop-mechanics skill like loopify as an optional companion, not a hard dependency, and not assume it is installed.",
+      "expected_output": "Should explain that the loop body is agent-agnostic but scheduling depends on the environment. On Dust, should cover: Dust Triggers as the primary option — a fixed schedule (cron-style) or a webhook — plus external cron and manual cadence for high-judgment loops. Should recommend a scheduled trigger for review-style loops and a tighter schedule or webhook for monitor-until-threshold loops, and note keeping run state in Agent Memory so loops don't double-act.",
       "assertions": [
         "Explains scheduling is environment-dependent",
-        "Covers Claude Code native options and plain cron",
-        "Includes manual cadence as a valid option",
-        "Gives cron vs dynamic-pacing default guidance",
-        "Treats loopify as optional, not a required dependency"
+        "Covers Dust Triggers (schedule + webhook) as the primary option",
+        "Includes external cron and manual cadence as valid options",
+        "Gives scheduled-vs-webhook default guidance by loop type",
+        "Notes keeping run state in Agent Memory to avoid double-acting"
       ],
       "files": []
     },

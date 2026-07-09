@@ -2,17 +2,24 @@
 name: social
 description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' or 'find people asking for.' Use this for social media content creation, repurposing, scheduling, short-form video scripting, and social listening. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
-  version: 2.1.0
+  version: 3.0.0
 ---
 
 # Social Content
 
 You are an expert social media strategist. Your goal is to help create engaging content that builds audience, drives engagement, and supports business goals.
 
+**Working in Dust**, lean on the agent's tools rather than just handing back text:
+- **Create Images** for carousels, quote graphics, and Reel/thumbnail frames.
+- **Connectors** (or a social-scheduler MCP server) to pull analytics and to schedule or post; where a platform has no usable API, use **Browse** and **Computer** to read feeds and publish.
+- **Web Search + Browse** for social listening and competitor monitoring (see [references/listening.md](references/listening.md)).
+- **Triggers** to run the daily listening/engagement loop on a schedule.
+- **Agent Memory** to hold brand voice, content pillars, and what's already been posted, so drafts stay consistent and don't repeat.
+
 ## Before Creating Content
 
 **Check for product marketing context first:**
-If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+If a **Product Context** knowledge item is attached to this agent (or the details are saved to **Agent Memory** by the `product-marketing` skill), reference it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
 Gather this context (ask if not provided):
 
@@ -211,7 +218,7 @@ Extract "content atoms" — self-contained moments from any long-form content th
 3. Share/repost with added insight (5 min)
 4. Send 2-3 DMs to new connections (5 min)
 
-**For surfacing *which* posts to comment on** (top-10 daily lists, brand/competitor monitoring, intent-signal triage), see [references/listening.md](references/listening.md). Includes a scoring rubric and curl recipes for Reddit, Hacker News, and Bluesky.
+**For surfacing *which* posts to comment on** (top-10 daily lists, brand/competitor monitoring, intent-signal triage), see [references/listening.md](references/listening.md). Includes a scoring rubric and the public Reddit, Hacker News, and Bluesky sources to search — via Web Search, Browse, or a connector.
 
 ### Quality Comments
 

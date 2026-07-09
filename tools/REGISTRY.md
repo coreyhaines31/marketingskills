@@ -1,12 +1,17 @@
 # Marketing Tools Registry
 
-Quick reference for AI agents to discover tool capabilities and integration methods.
+Quick reference for reaching marketing platforms from a **Dust agent** — so a skill can pull real data or take action, not just describe what to do.
 
-## How to Use This Registry
+## How to reach a tool from Dust
 
-1. **Find tools by category** - Browse sections below for tools in each domain
-2. **Check integration methods** - See what APIs, MCPs, CLIs, or SDKs are available
-3. **Read integration guides** - Detailed setup and common operations in `integrations/`
+In priority order:
+
+1. **Native Dust connector** — many tools (Slack, Notion, Google Drive, GitHub, GA4, Stripe, and more) connect directly in Dust as data sources / tools. Prefer these.
+2. **Remote MCP server** — tools with an **MCP** ✓ below can be added to Dust as a remote MCP server, exposing their actions as agent tools.
+3. **Composio** — for OAuth-heavy tools without a native Dust server (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion, and more), [Composio](integrations/composio.md) exposes them to Dust through a single MCP server.
+4. **Browse / Computer** — when a tool has no API, connector, or MCP server, the agent can read its pages with **Browse** or operate its UI with **Computer**.
+
+The columns below show what each tool supports. **MCP** ✓ means it can plug into Dust as a remote MCP server. The **CLI** column links to a zero-dependency reference script that documents the tool's API surface — a handy spec when configuring a connector or MCP. The `integrations/{tool}.md` guides cover endpoints, auth, and common operations.
 
 ---
 

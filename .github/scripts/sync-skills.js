@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 /**
- * Sync marketplace.json and README.md with skills directory.
+ * Sync the README skills table with the skills/ directory.
  *
  * Scans the skills/ directory for valid skills (directories containing SKILL.md)
- * and updates marketplace.json and the README skills table to match.
+ * and regenerates the table between the <!-- SKILLS:START --> / <!-- SKILLS:END -->
+ * markers in README.md so the list of skills always matches what's in the repo.
  */
 
 const fs = require("fs");
 const path = require("path");
 
 const SKILLS_DIR = "skills";
-const MARKETPLACE_FILE = ".claude-plugin/marketplace.json";
-const PLUGIN_FILE = ".claude-plugin/plugin.json";
 const README_FILE = "README.md";
 
 /**
@@ -74,13 +73,6 @@ function getSkillsWithMetadata() {
 }
 
 /**
- * Update skill count in description
- */
-function updateSkillCount(description, count) {
-  return description.replace(/\d+ marketing skills/, `${count} marketing skills`);
-}
-
-/**
  * Truncate description to a maximum length
  */
 function truncateDescription(description, maxLength = 120) {
@@ -132,80 +124,16 @@ function updateReadme(skills) {
   return true;
 }
 
-/**
- * Update marketplace.json — refresh the skill count in the plugin description
- * and strip any `skills` array if present. Claude Code's plugin schema discovers
- * skills via the `skills/` directory; the explicit array fails validation, so
- * this script must never (re-)introduce it.
- */
-function updateMarketplace(skills) {
-  const marketplace = JSON.parse(fs.readFileSync(MARKETPLACE_FILE, "utf8"));
-  const plugin = marketplace.plugins[0];
-
-  const oldDescription = plugin.description;
-  const newDescription = updateSkillCount(plugin.description, skills.length);
-  const hadStaleSkillsArray = "skills" in plugin;
-
-  if (newDescription === oldDescription && !hadStaleSkillsArray) {
-    return { updated: false };
-  }
-
-  plugin.description = newDescription;
-  delete plugin.skills;
-
-  fs.writeFileSync(MARKETPLACE_FILE, JSON.stringify(marketplace, null, 2) + "\n");
-
-  return { updated: true, removedSkillsArray: hadStaleSkillsArray };
-}
-
-/**
- * Update plugin.json's `version` field to match marketplace.json's
- * `metadata.version`. Claude Code uses plugin.json's version for the update
- * check (`claude plugin update`); if it drifts from marketplace.json the
- * update path silently breaks.
- */
-function updatePluginVersion() {
-  if (!fs.existsSync(PLUGIN_FILE)) return { updated: false };
-
-  const marketplace = JSON.parse(fs.readFileSync(MARKETPLACE_FILE, "utf8"));
-  const plugin = JSON.parse(fs.readFileSync(PLUGIN_FILE, "utf8"));
-  const marketplaceVersion = marketplace.metadata && marketplace.metadata.version;
-
-  if (!marketplaceVersion) return { updated: false };
-  if (plugin.version === marketplaceVersion) return { updated: false };
-
-  const oldVersion = plugin.version;
-  plugin.version = marketplaceVersion;
-  fs.writeFileSync(PLUGIN_FILE, JSON.stringify(plugin, null, 2) + "\n");
-  return { updated: true, oldVersion, newVersion: marketplaceVersion };
-}
-
 function main() {
   const skills = getSkillsWithMetadata();
-
-  const marketplaceResult = updateMarketplace(skills);
   const readmeUpdated = updateReadme(skills);
-  const pluginResult = updatePluginVersion();
 
-  if (!marketplaceResult.updated && !readmeUpdated && !pluginResult.updated) {
-    console.log("Everything is already in sync");
+  if (!readmeUpdated) {
+    console.log("README skills table is already in sync");
     return;
   }
 
-  if (marketplaceResult.updated) {
-    if (marketplaceResult.removedSkillsArray) {
-      console.log("Stripped stale `skills` array from marketplace.json");
-    }
-    console.log(`Updated marketplace.json (${skills.length} skills)`);
-  }
-
-  if (pluginResult.updated) {
-    console.log(`Bumped plugin.json version: ${pluginResult.oldVersion} → ${pluginResult.newVersion}`);
-  }
-
-  if (readmeUpdated) {
-    console.log("Updated README.md skills table");
-  }
+  console.log(`Updated README.md skills table (${skills.length} skills)`);
 }
 
 main();

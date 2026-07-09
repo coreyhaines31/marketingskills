@@ -1,6 +1,6 @@
 # Listening Sources — Template
 
-Copy this file to `.agents/listening-sources.md` in your project (or `.claude/listening-sources.md`) and fill in the brackets. Claude reads it when running the [listening workflow](listening.md).
+Save this as a **knowledge item** attached to your social agent (a Dust Folder file, or a connected Notion/Google Doc), or keep the essentials in **Agent Memory**. The agent reads it when running the [listening workflow](listening.md).
 
 Delete sections you don't use. Keep this short and current — stale sources are worse than no sources.
 
@@ -27,7 +27,7 @@ Used by the [scoring rubric](listening.md#scoring-rubric) to judge ICP fit.
 
 Engage with **every** post from these accounts when relevant. Keep this list to 20-50 max.
 
-### LinkedIn (browser-driven — use dev-browser to view feed)
+### LinkedIn (browser-driven — use Browse/Computer to view feed)
 - [Name] — `linkedin.com/in/handle`
 - [Name] — `linkedin.com/in/handle`
 
@@ -53,7 +53,7 @@ Engage with **every** post from these accounts when relevant. Keep this list to 
 
 ## Keywords (intent signals)
 
-Search across all platforms. Claude runs these through Reddit, HN, Bluesky on the [daily loop](listening.md#the-daily-triage-loop).
+Search across all platforms. The agent runs these through Reddit, HN, and Bluesky on the [daily loop](listening.md#the-daily-triage-loop) with Web Search / Browse.
 
 ### High-intent (someone shopping or switching)
 - `"alternative to [competitor]"`
@@ -80,7 +80,7 @@ Search across all platforms. Claude runs these through Reddit, HN, Bluesky on th
 
 ## Subreddits
 
-Pulled via Reddit JSON API on the daily loop.
+Pulled via Reddit's public JSON on the daily loop.
 
 - r/SaaS
 - r/Entrepreneur
@@ -91,7 +91,7 @@ Pulled via Reddit JSON API on the daily loop.
 
 ## Saved Searches (manual / browser-driven)
 
-URLs Claude opens via dev-browser to scan.
+URLs the agent opens with Browse/Computer to scan.
 
 ### LinkedIn Sales Navigator
 - [Search name] — `https://linkedin.com/sales/search/people?...`
@@ -114,10 +114,10 @@ Save yourself the regret.
 
 ---
 
-## Notes for Claude
+## Notes for the agent
 
 - When asked for "today's top 10," output in the format defined in [listening.md](listening.md#the-daily-triage-loop)
-- For LinkedIn and X, use dev-browser with the persistent session (user is logged in)
-- For everything else, use the curl recipes in [listening.md](listening.md#sources--light-tooling-curl-recipes)
+- For LinkedIn and X, use **Computer**/**Browse** in a signed-in browser session (the user is logged in)
+- For everything else, use the public sources and connectors in [listening.md](listening.md#sources--how-to-pull-them)
 - Default lookback: 24h. User can override.
-- Always ask before posting — output drafts, user approves and posts manually
+- Always ask before posting — output drafts, user approves and posts (or posts via a connector once approved)

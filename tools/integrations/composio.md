@@ -40,11 +40,11 @@ Composio is an **alternative integration method**, not a replacement. Use this d
 npx @composio/mcp@latest setup
 ```
 
-This adds the Composio MCP server to your Claude Code configuration.
+This gives you a Composio MCP server endpoint you can add to Dust as a remote MCP server.
 
 ### 2. Verify installation
 
-In Claude Code, run `/mcp` to confirm `composio` appears in your MCP server list.
+In Dust (as a Builder/Admin), add the Composio MCP server under your workspace's tools, then confirm `composio` appears in the agent's tool list.
 
 ### 3. Authenticate a tool
 

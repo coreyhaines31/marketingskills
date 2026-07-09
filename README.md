@@ -1,27 +1,39 @@
-# Marketing Skills for AI Agents
+# Dust Marketing Skills
 
-A collection of AI agent skills focused on marketing tasks. Built for technical marketers and founders who want AI coding agents to help with conversion optimization, copywriting, SEO, analytics, and growth engineering. Works with Claude Code, OpenAI Codex, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io).
+A library of 47 marketing skills for [Dust](https://dust.tt) agents. Import them into your Dust workspace to give your marketing agents battle-tested playbooks for conversion optimization, copywriting, SEO, paid ads, lifecycle, and growth — grounded in your own product context, your connected data, and Dust's **Browse** and **Computer** capabilities.
 
-Built by [Corey Haines](https://corey.co?ref=marketingskills). Need hands-on help? Check out [Conversion Factory](https://conversionfactory.co?ref=marketingskills) — Corey's agency for conversion optimization, landing pages, and growth strategy. Want to learn more about marketing? Subscribe to [Swipe Files](https://swipefiles.com?ref=marketingskills). Want to get dangerously good at using AI for marketing? Check out [AI Marketing Training](https://conversionfactory.co/offers/ai-marketing-training?ref=marketingskills). Want an autonomous AI agent that uses these skills to be your CMO? Try [Magister](https://magistermarketing.com?ref=marketingskills).
+Every skill is built on the open [Agent Skills spec](https://agentskills.io), so it imports **directly into Dust from this GitHub repo** — no reformatting, no copy-paste.
 
-New to the terminal and coding agents? Check out the companion guide [Coding for Marketers](https://codingformarketers.com?ref=marketingskills).
+Managed and updated by **Daniel Colaianni**, built for and heavily adapted to the Dust AI platform.
 
-**Contributions welcome!** Found a way to improve a skill or have a new one to add? [Open a PR](#contributing).
+**Contributions welcome!** Found a way to improve a skill or have a new one to add? [Open a PR](#contributing) or [an issue](https://github.com/ryzamedia/dustmarketingskills/issues).
 
-Run into a problem or have a question? [Open an issue](https://github.com/coreyhaines31/marketingskills/issues) — we're happy to help.
+## What are Skills in Dust?
 
-## What are Skills?
+In Dust, a **Skill** is a reusable package of instructions, knowledge, and tools that you share across multiple agents. Instead of re-writing the same guidance into every agent, you build a skill once and attach it wherever it's needed — and when you improve the skill, every agent using it improves too.
 
-Skills are markdown files that give AI agents specialized knowledge and workflows for specific tasks. When you add these to your project, your agent can recognize when you're working on a marketing task and apply the right frameworks and best practices.
+Each skill in this repo is a self-contained set of expert marketing instructions. Import one into your workspace and it becomes a Dust Skill you can attach to any marketing agent — giving that agent a professional's playbook for the task, plus guidance on which Dust tools (Browse, Computer, Web Search, Create Files/Images, connectors) to reach for and when.
+
+## How to import into Dust
+
+Dust imports skills straight from a GitHub repository, so setup is a paste:
+
+1. **In Dust, go to Skills → Create skill → Import from GitHub.**
+2. **Paste this repository's URL** to bring in the whole library, or paste a single skill's subfolder URL (e.g. `.../tree/main/skills/cro`) to import just one. Dust reads the standard `skills/<name>/SKILL.md` structure and pulls in each skill's instructions, description, and any `references/` files.
+3. **Attach the imported skill(s) to a marketing agent.** Any agent with a skill attached will use it automatically when a relevant request comes in — Dust only loads the skills that fit the task, keeping the agent's context lean.
+4. **Give the agent the tools each skill expects** (Web Search, Browse, Computer, Create Files, Create Images, Data Visualization, Agent Memory, and connectors like HubSpot, Salesforce, Slack, GA4, Google Drive, Notion). Each skill notes which tools it relies on.
+5. **Set up a Product Context knowledge item** once (see [product-marketing](skills/product-marketing/)) and attach it to your marketing agents — every other skill reads from it.
+
+You can also upload the repo as a `.zip` if you'd rather not connect GitHub. Because the skills are the source of truth in Git, re-importing after a `git pull` keeps your Dust workspace in sync.
 
 ## How Skills Work Together
 
-Skills reference each other and build on shared context. The `product-marketing` skill is the foundation — every other skill checks it first to understand your product, audience, and positioning before doing anything.
+Skills reference each other and build on shared context. The `product-marketing` skill is the foundation — it produces a **Product Context** knowledge item (and can store the essentials in Agent Memory) that every other skill references to understand your product, audience, and positioning before doing anything.
 
 ```
                             ┌──────────────────────────────────────┐
                             │          product-marketing           │
-                            │    (read by all other skills first)  │
+                            │   (Product Context all skills use)   │
                             └──────────────────┬───────────────────┘
                                                │
     ┌──────────────┬─────────────┬─────────────┼─────────────┬──────────────┬──────────────┐
@@ -50,6 +62,20 @@ Skills reference each other and build on shared context. The `product-marketing`
 ```
 
 See each skill's **Related Skills** section for the full dependency map.
+
+## Built for Dust's capabilities
+
+These skills are written to take advantage of what a Dust agent can actually do — not just generate text:
+
+- **Browse** — read the live content of any page (landing pages, competitor sites, SERPs) instead of relying on what the user pastes in. Skills like `cro`, `seo-audit`, `competitor-profiling`, and `aso` use it to analyze real pages.
+- **Computer** — interact with pages directly: click, type, fill forms, and navigate. Useful for walking a signup flow, reproducing a funnel, or checking how a page behaves, not just how it reads.
+- **Web Search** — pull current data, benchmarks, competitors, and trends into the work.
+- **Create Files & Create Images** — output finished artifacts: docs, spreadsheets, ad creative, social graphics, hero images, and OG images.
+- **Data Visualization** — turn analytics and experiment results into charts inline.
+- **Agent Memory** — remember product context, brand voice, and prior decisions across conversations.
+- **Connectors** — ground the work in your systems: HubSpot, Salesforce, Slack, Google Drive, Notion, GA4, Google Ads, and 100+ more (natively or via remote MCP servers / Composio). See [`tools/REGISTRY.md`](tools/REGISTRY.md).
+- **Triggers** — run skills on a schedule or webhook for recurring workflows (social scheduling, listening, weekly reporting). See [marketing-loops](skills/marketing-loops/).
+- **Run an Agent** — chain specialized agents (e.g. a research agent feeding a copywriting agent).
 
 ## Available Skills
 
@@ -105,156 +131,33 @@ See each skill's **Related Skills** section for the full dependency map.
 | [video](skills/video/) | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use... |
 <!-- SKILLS:END -->
 
-## Installation
+## Using your skills in Dust
 
-### Option 1: CLI Install (Recommended)
-
-Use [npx skills](https://github.com/vercel-labs/skills) to install skills directly:
-
-```bash
-# Install all skills
-npx skills add coreyhaines31/marketingskills
-
-# Install specific skills
-npx skills add coreyhaines31/marketingskills --skill cro copywriting
-
-# List available skills
-npx skills add coreyhaines31/marketingskills --list
-```
-
-This automatically installs to your `.agents/skills/` directory (and symlinks into `.claude/skills/` for Claude Code compatibility).
-
-### Option 2: Claude Code Plugin
-
-Install via Claude Code's built-in plugin system:
-
-```bash
-# Add the marketplace
-/plugin marketplace add coreyhaines31/marketingskills
-
-# Install all marketing skills
-/plugin install marketing-skills
-```
-
-### Option 3: Clone and Copy
-
-Clone the entire repo and copy the skills folder:
-
-```bash
-git clone https://github.com/coreyhaines31/marketingskills.git
-cp -r marketingskills/skills/* .agents/skills/
-```
-
-### Option 4: Git Submodule
-
-Add as a submodule for easy updates:
-
-```bash
-git submodule add https://github.com/coreyhaines31/marketingskills.git .agents/marketingskills
-```
-
-Then reference skills from `.agents/marketingskills/skills/`.
-
-### Option 5: Fork and Customize
-
-1. Fork this repository
-2. Customize skills for your specific needs
-3. Clone your fork into your projects
-
-### Option 6: SkillKit (Multi-Agent)
-
-Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across multiple AI agents (Claude Code, Cursor, Copilot, etc.):
-
-```bash
-# Install all skills
-npx skillkit install coreyhaines31/marketingskills
-
-# Install specific skills
-npx skillkit install coreyhaines31/marketingskills --skill cro copywriting
-
-# List available skills
-npx skillkit install coreyhaines31/marketingskills --list
-```
-
-## Upgrading from v1.x to v2.0
-
-v2.0 renames 17 skills and consolidates `page-cro` + `form-cro` into a single `cro` skill. If you installed the v1.x skills, you'll have **stale old-name folders** in your install directory after upgrading — the new skills install alongside the old ones, so you'll see both `skills/page-cro/` and `skills/cro/`, etc. Clean them up:
-
-```bash
-# From the directory where you installed the skills (e.g., .agents/skills/ or .claude/skills/)
-rm -rf page-cro form-cro \
-       ab-test-setup analytics-tracking aso-audit competitor-alternatives \
-       email-sequence free-tool-strategy launch-strategy onboarding-cro \
-       paid-ads paywall-upgrade-cro popup-cro pricing-strategy \
-       product-marketing-context referral-program schema-markup \
-       signup-flow-cro social-content
-```
-
-Then reinstall the v2.0 skills via your usual method (e.g., `npx skills add coreyhaines31/marketingskills`).
-
-### Migrate the product marketing context file
-
-In v2.0 the context file moved from `.claude/` to `.agents/` and was renamed from `product-marketing-context.md` to `product-marketing.md`. Move your existing context file:
-
-```bash
-mkdir -p .agents
-# v2.0 file (or pre-v2.0 file with new name)
-mv .claude/product-marketing.md .agents/product-marketing.md 2>/dev/null
-# pre-v2.0 file with legacy name
-mv .claude/product-marketing-context.md .agents/product-marketing.md 2>/dev/null
-```
-
-Skills will still check `.claude/` and the legacy `product-marketing-context.md` filename as fallbacks, so nothing breaks if you don't migrate.
-
-### Full rename map
-
-| Old | New |
-|-----|-----|
-| `ab-test-setup` | `ab-testing` |
-| `analytics-tracking` | `analytics` |
-| `aso-audit` | `aso` |
-| `competitor-alternatives` | `competitors` |
-| `email-sequence` | `emails` |
-| `form-cro` | merged into `cro` |
-| `free-tool-strategy` | `free-tools` |
-| `launch-strategy` | `launch` |
-| `onboarding-cro` | `onboarding` |
-| `page-cro` | `cro` |
-| `paid-ads` | `ads` |
-| `paywall-upgrade-cro` | `paywalls` |
-| `popup-cro` | `popups` |
-| `pricing-strategy` | `pricing` |
-| `product-marketing-context` | `product-marketing` |
-| `referral-program` | `referrals` |
-| `schema-markup` | `schema` |
-| `signup-flow-cro` | `signup` |
-| `social-content` | `social` |
-
-## Usage
-
-Once installed, just ask your agent to help with marketing tasks:
+Once a skill is imported and attached to an agent, just talk to the agent — Dust routes to the right skill automatically:
 
 ```
-"Help me optimize this landing page for conversions"
-→ Uses cro skill
+"@Marketing optimize this landing page for conversions"
+→ uses the cro skill (and Browse/Computer to analyze the live page)
 
-"Write homepage copy for my SaaS"
-→ Uses copywriting skill
+"@Marketing write homepage copy for our new plan"
+→ uses the copywriting skill
 
-"Set up GA4 tracking for signups"
-→ Uses analytics skill
+"@Marketing set up GA4 tracking for signups"
+→ uses the analytics skill
 
-"Create a 5-email welcome sequence"
-→ Uses emails skill
+"@Marketing draft a 5-email welcome sequence"
+→ uses the emails skill
 ```
 
-You can also invoke skills directly:
+### Suggested agent setups
 
-```
-/cro
-/emails
-/seo-audit
-```
+You don't need one agent per skill. A few well-scoped agents cover most teams:
+
+- **Marketing Agent** — `cro`, `copywriting`, `copy-editing`, `signup`, `ab-testing` + Browse, Computer, Create Files, and the Product Context knowledge item.
+- **SEO Agent** — `seo-audit`, `ai-seo`, `schema`, `programmatic-seo`, `site-architecture` + Browse, Web Search, Create Files.
+- **Growth & Lifecycle Agent** — `emails`, `onboarding`, `churn-prevention`, `referrals`, `sms` + your email/CRM connectors.
+- **Content & Social Agent** — `content-strategy`, `social`, `image`, `video` + Create Images, connectors, and Triggers for scheduling.
+- **RevOps / Sales Agent** — `revops`, `sales-enablement`, `cold-email`, `prospecting`, `competitors` + HubSpot/Salesforce connectors.
 
 ## Skill Categories
 
@@ -308,18 +211,20 @@ You can also invoke skills directly:
 - `revops` - Lead lifecycle, scoring, routing, pipeline management
 - `sales-enablement` - Sales decks, one-pagers, objection docs, demo scripts
 
+## Tools & Connectors
+
+Skills reference the tools a Dust agent should use to do the work for real. [`tools/REGISTRY.md`](tools/REGISTRY.md) maps marketing platforms to how you reach them from Dust — native connectors, remote MCP servers, and [Composio](tools/integrations/composio.md) for OAuth-heavy tools without a native server (HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, and more).
+
 ## Contributing
 
 Found a way to improve a skill? Have a new skill to suggest? PRs and issues welcome!
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving skills.
 
+## Thanks
+
+Originally forked from [Marketing Skills](https://github.com/coreyhaines31/marketingskills) by [Corey Haines](https://corey.co) — thanks to Corey and the original contributors for the foundation before the fork. This project is now maintained and heavily modified by **Daniel Colaianni** for the Dust AI platform, under the MIT License.
+
 ## License
 
 [MIT](LICENSE) - Use these however you want.
-
-<br />
-<br />
-<a href="https://vercel.com/open-source-program">
-  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" />
-</a>

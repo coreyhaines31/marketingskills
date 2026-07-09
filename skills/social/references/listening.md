@@ -7,7 +7,7 @@ How to surface the right posts to engage with each day — instead of randomly s
 - The daily triage loop
 - Scoring rubric
 - Comment quality tiers
-- Sources & light tooling (curl recipes)
+- Sources & how to pull them
 - Per-platform notes
 - Common workflows
 
@@ -28,16 +28,16 @@ If the user wants to **create** content, use the rest of the social skill. Liste
 
 ## The Daily Triage Loop
 
-A repeatable 20-minute loop the user (or you, on their behalf) can run each morning.
+A repeatable 20-minute loop the user (or the agent, on their behalf) can run each morning. Wire it to a **Dust Trigger** to run automatically on a schedule.
 
-1. **Pull** — fetch new posts from defined sources (target accounts, keywords, subreddits, hashtags). See [tooling](#sources--light-tooling-curl-recipes).
+1. **Pull** — fetch new posts from defined sources (target accounts, keywords, subreddits, hashtags). See [sources](#sources--how-to-pull-them).
 2. **Filter** — drop anything older than 24h, low signal, or off-topic.
 3. **Score** — apply the [rubric](#scoring-rubric). Keep top 10.
 4. **Draft** — for each, draft a comment matched to the post's tier.
-5. **Post** — user reviews, edits, posts. Mark which actually went live.
-6. **Log** — track what you commented on and what got replies. This is your engagement loop dataset.
+5. **Post** — user reviews, edits, posts (or the agent posts via a connector once approved). Mark which actually went live.
+6. **Log** — track what you commented on and what got replies in **Agent Memory**. This is your engagement loop dataset, and it stops the loop re-surfacing posts you already handled.
 
-Output format Claude should produce:
+Output format the agent should produce:
 
 ```
 TOP 10 POSTS — 2026-06-05
@@ -103,81 +103,37 @@ Match the comment to the post. Don't waste a tier-1 draft on a tier-3 opportunit
 
 ---
 
-## Sources & Light Tooling (curl recipes)
+## Sources & How to Pull Them
 
-These are public JSON endpoints — no auth needed. Run them from bash, pipe to `jq`, and Claude can parse the output to score and draft comments.
+Reddit, Hacker News, and Bluesky expose **public HTTP/JSON endpoints** — the agent can fetch each URL with **Browse** (which returns the JSON to parse), or hit it through a connector/MCP server if one is set up. No login needed. LinkedIn, X, Instagram, and TikTok have no useful public API — use **Computer**/**Browse** in a signed-in session (below).
 
-**Requires:** `jq` (most recipes) and `xmllint` (RSS only). Install once:
-```bash
-# macOS
-brew install jq
-# xmllint ships with macOS; on Linux: apt install libxml2-utils
-```
-
-### Reddit (free, scriptable)
-
-**New posts in a subreddit:**
-```bash
-curl -s -A "listening/1.0" \
-  "https://www.reddit.com/r/SaaS/new.json?limit=25" \
-  | jq '.data.children[].data | {title, author, url: ("https://reddit.com"+.permalink), score, num_comments, created_utc, selftext: (.selftext | .[0:300])}'
-```
-
-**Search across Reddit by keyword (last day, sorted new):**
-```bash
-curl -s -A "listening/1.0" \
-  "https://www.reddit.com/search.json?q=KEYWORD&sort=new&t=day&limit=25" \
-  | jq '.data.children[].data | {subreddit, title, url: ("https://reddit.com"+.permalink), author, score, created_utc}'
-```
-
-Swap `KEYWORD` for things like `"alternative to notion"`, `"recommend a crm"`, your competitor names, or your own brand for mentions. Use quotes around multi-word phrases.
+### Reddit (public JSON)
+- **New posts in a subreddit** — Browse `https://www.reddit.com/r/SaaS/new.json?limit=25` (swap the subreddit). Read each post's title, author, permalink, score, num_comments, created_utc, and the first ~300 chars of selftext.
+- **Search Reddit by keyword** (last day, newest first) — Browse `https://www.reddit.com/search.json?q=KEYWORD&sort=new&t=day&limit=25`. Swap `KEYWORD` for `"alternative to notion"`, `"recommend a crm"`, a competitor name, or your own brand for mentions (quote multi-word phrases).
 
 ### Hacker News (Algolia search)
+- **Recent stories mentioning a keyword** — Browse `https://hn.algolia.com/api/v1/search_by_date?query=KEYWORD&tags=story`. To limit to the last 24h, append `&numericFilters=created_at_i>TIMESTAMP`, where `TIMESTAMP` is the Unix time 24h ago.
+- **Recent comments** — same URL with `&tags=comment`.
 
-**Recent stories mentioning a keyword (last 24h):**
-```bash
-SINCE=$(($(date +%s) - 86400))
-curl -s "https://hn.algolia.com/api/v1/search_by_date?query=KEYWORD&tags=story&numericFilters=created_at_i>${SINCE}" \
-  | jq '.hits[] | {title, url, author, points, num_comments, created_at, story_id: .objectID, hn_url: ("https://news.ycombinator.com/item?id="+.objectID)}'
-```
+### Bluesky (public API)
+- **Search posts by keyword** — Browse `https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=KEYWORD&limit=25&sort=latest`. Read author handle, text, likeCount, replyCount.
 
-**Recent comments mentioning a keyword:**
-```bash
-curl -s "https://hn.algolia.com/api/v1/search_by_date?query=KEYWORD&tags=comment&numericFilters=created_at_i>${SINCE}" \
-  | jq '.hits[] | {author, comment_text, story_title, hn_url: ("https://news.ycombinator.com/item?id="+.objectID)}'
-```
+### RSS (blogs, podcasts, YouTube)
+- **YouTube channel** — Browse `https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID`
+- **Blog / newsletter feed** — Browse the feed URL (e.g. `https://example.com/feed/`) and read the latest items.
 
-### Bluesky (free, public API)
+> Prefer **Web Search** when you want to cast wider than a single source (e.g. "who's talking about [topic] this week"), and the endpoints above when you want a specific, structured pull.
 
-**Search posts by keyword:**
-```bash
-curl -s "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=KEYWORD&limit=25&sort=latest" \
-  | jq '.posts[] | {author: .author.handle, text: .record.text, likes: .likeCount, replies: .replyCount, url: ("https://bsky.app/profile/"+.author.handle+"/post/"+(.uri | split("/") | last))}'
-```
+### LinkedIn & X — use Computer in a signed-in session
 
-### RSS for blogs, podcasts, YouTube channels
+LinkedIn and X don't expose useful public APIs, but the agent can drive a real, signed-in browser with **Computer**/**Browse**:
 
-For target accounts that publish to RSS (most blogs, all YouTube channels):
-```bash
-# YouTube channel feed (replace CHANNEL_ID)
-curl -s "https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID"
+1. The user signs into LinkedIn / X once in the browser session.
+2. The agent navigates to a target URL (feed, profile, saved search, hashtag).
+3. The agent reads the page, extracts posts, scores them with the [rubric](#scoring-rubric), and drafts comments.
+4. The user reviews and posts (don't auto-post — high-stakes, bot-detection risk).
 
-# Generic blog feed
-curl -s "https://example.com/feed/" | xmllint --xpath "//item[position()<6]" - 2>/dev/null
-```
-
-### LinkedIn & X — use the browser
-
-LinkedIn and X don't expose useful public APIs, but you can drive a real browser session. **dev-browser** (MCP, already in the global setup) and **Playwright** both maintain persistent state — log in once, the session stays alive, Claude can navigate the authenticated feed.
-
-**dev-browser workflow (preferred — already wired up):**
-1. User logs into LinkedIn / X once in the dev-browser session
-2. Claude navigates to a target URL (feed, profile, saved search, hashtag)
-3. Claude reads the accessibility tree / page text, extracts posts
-4. Claude scores using the [rubric](#scoring-rubric) and drafts comments
-5. User reviews and posts manually (don't auto-post — high-stakes, bot detection risk)
-
-**Useful URLs to feed dev-browser:**
+**Useful URLs to navigate to:**
 
 | URL pattern | What it shows |
 |-------------|---------------|
@@ -191,7 +147,7 @@ LinkedIn and X don't expose useful public APIs, but you can drive a real browser
 **Tips:**
 - On X, build a private list of target accounts and use the list URL. Far cleaner than the algorithmic feed.
 - LinkedIn's `/recent-activity/all/` URL is the cleanest way to see one person's posts without the algorithm.
-- For both platforms, scroll programmatically (dev-browser supports it) to load more posts before extracting.
+- For both platforms, scroll to load more posts (Computer supports scrolling) before extracting.
 
 **Paid alternatives if you don't want to drive a browser:**
 
@@ -208,14 +164,14 @@ LinkedIn and X don't expose useful public APIs, but you can drive a real browser
 ## Per-Platform Notes
 
 ### LinkedIn
-- **Browser-driven** (dev-browser with persistent session) — see [LinkedIn & X — use the browser](#linkedin--x--use-the-browser)
+- **Browser-driven** (Computer/Browse in a signed-in session) — see [LinkedIn & X](#linkedin--x--use-computer-in-a-signed-in-session)
 - **First-hour comments matter most** — algorithm weights early engagement heavily. Prioritize posts <2h old from target accounts.
 - Comments with 5+ words get more reach than reactions
 - Replying to other commenters can put you in front of their network
 - Tag the author in your reply only if it adds context
 
 ### Twitter/X
-- **Browser-driven** (dev-browser) — build a private list of target accounts and point dev-browser at the list URL
+- **Browser-driven** (Computer/Browse) — build a private list of target accounts and navigate to the list URL
 - Reply within first 30 min for max reach on big accounts
 - Quote-tweet > reply when adding substantial value
 - Threading your reply (multi-tweet) signals effort
@@ -267,17 +223,8 @@ LinkedIn and X don't expose useful public APIs, but you can drive a real browser
 
 ## Setting Up the Source List
 
-The user should maintain a list of sources somewhere persistent at `.agents/listening-sources.md` (or `.claude/listening-sources.md`). Claude reads it when running the daily loop.
+Keep your sources in a **knowledge item** attached to the social agent (a Dust Folder file, or a connected Notion/Google Doc) — or the essentials in **Agent Memory**. The agent reads it when running the daily loop.
 
-**A ready-to-fill template lives at [listening-sources-template.md](listening-sources-template.md).** Copy it into the project and edit. The source path depends on how the skill was installed:
+**A ready-to-fill template lives at [listening-sources-template.md](listening-sources-template.md).** Copy its contents, fill in the brackets, and save it as your social/listening knowledge item. The template covers: brand/category, ICP (for scoring), target accounts per platform, intent keywords, subreddits, saved-search URLs, and a do-not-engage list.
 
-```bash
-# Plugin / marketplace install (most common):
-cp .agents/skills/social/references/listening-sources-template.md .agents/listening-sources.md
-# .claude/ install:
-cp .claude/skills/social/references/listening-sources-template.md .agents/listening-sources.md
-# Working inside the marketingskills repo:
-cp skills/social/references/listening-sources-template.md .agents/listening-sources.md
-```
-
-The template covers: brand/category, ICP (for scoring), target accounts per platform, intent keywords, subreddits, saved-search URLs, and a do-not-engage list.
+To run the loop on a schedule, wire it to a **Dust Trigger** (e.g. every weekday at 9am) and keep the "already engaged" set in **Agent Memory** so you don't re-surface the same posts.
