@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.3.0 | 2026-07-09 |
+| ad-creative | 2.4.0 | 2026-07-09 |
 | ai-seo | 2.1.0 | 2026-06-15 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.3 (2026-07-09)
+
+- **ad-creative** (2.3.0 → 2.4.0): added a **brand-flexible style tier** to `references/motion-video-ads.md` — four token-driven styles that absorb any company's brand system instead of imposing their own palette: **monoline editorial** (thin single-weight ink line-art on the brand neutral, one accent sweep — the most universally brandable), **Swiss typographic** (the label set enormous in the brand's type on a grid; works for any brand with a font and a color), **wireglow** (wireframe subject on near-black with one gradient accent beam — dev-tool/dark-mode brands), and **duotone screenprint** (photography reduced to ink + accent). All driven by a **brand slots contract** — FIELD (neutral ground), INK (drawing/type color), ACCENT (one element per frame, scarcity is the design), TYPE FEEL, plus per-brand constraints (e.g. "gradients only on edges") — resolvable from brand guidelines or `.agents/product-marketing.md`. Includes per-style motion notes (lines draw themselves, beams pulse, type settles) under the same composition-never-changes rules. All four verified to render with clean typography using a real brand's tokens.
 
 ### 2.8.2 (2026-07-09)
 
