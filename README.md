@@ -84,6 +84,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [marketing-loops](skills/marketing-loops/) | When the user wants to set up a recurring, self-running marketing workflow — a repeatable loop an AI agent runs on a... |
 | [marketing-plan](skills/marketing-plan/) | When the user needs a comprehensive marketing plan for a client, a company they advise, or their own product. Also use... |
 | [marketing-psychology](skills/marketing-psychology/) | When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when... |
+| [market-research](skills/market-research/) | When the user wants to research a market, size an opportunity, assess demand, analyze category dynamics, map competitors, evaluate market... |
 | [offers](skills/offers/) | When the user wants to design, construct, or improve an offer — the thing they actually sell — including value framing,... |
 | [onboarding](skills/onboarding/) | When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also... |
 | [paywalls](skills/paywalls/) | When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use... |
@@ -246,6 +247,9 @@ Once installed, just ask your agent to help with marketing tasks:
 
 "Create a 5-email welcome sequence"
 → Uses emails skill
+
+"Research this market before we enter it"
+→ Uses market-research skill
 ```
 
 You can also invoke skills directly:
@@ -254,6 +258,7 @@ You can also invoke skills directly:
 /cro
 /emails
 /seo-audit
+/market-research
 ```
 
 ## Skill Categories
@@ -299,6 +304,7 @@ You can also invoke skills directly:
 - `referrals` - Referral and affiliate programs
 
 ### Strategy & Monetization
+- `market-research` - Market sizing, demand analysis, competitive landscape, and market entry decisions
 - `marketing-ideas` - 140 SaaS marketing ideas
 - `marketing-psychology` - Mental models and psychology
 - `launch` - Product launches and announcements
