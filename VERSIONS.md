@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.4.0 | 2026-07-09 |
+| ad-creative | 2.5.0 | 2026-07-09 |
 | ai-seo | 2.1.0 | 2026-06-15 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.5 (2026-07-09)
+
+- **ad-creative** (2.4.0 → 2.5.0): extended the iMessage reveal reference into **iOS-native reveal video ads** — `references/imessage-video-ads.md` (filename unchanged; retitled) now covers three surfaces sharing one production architecture. New **Other iOS-Native Reveal Surfaces** section: a surface-selection table keyed to persuasion mechanic (iMessage = a friend's recommendation; ChatGPT = an authoritative answer to the viewer's own question; Apple Notes = a private confession made public), **ChatGPT reveals** (the typed question is the customer's verbatim question; stream the answer in word chunks — type like thumbs, stream like a model; ChatGPT-real formatting; OpenAI trade-dress legal note; and the strictest compliance rule in the family — the answer is ad copy wearing an authority costume, so health/medical/financial advice in a fabricated AI answer requires legal review and the exchange is never presented as a real unprompted ChatGPT endorsement), and **Apple Notes reveals** (confession-not-conversation: note title as the hook, first-person list typed live with keyboard-taps-only audio, one typo-and-correction, the product as the least enthusiastic line, realizations grounded in real reviews per Grounded Inputs). SKILL.md pointer updated to the three-surface framing and adds 'ChatGPT ad' and 'Apple Notes ad' triggers. New eval (id 8) covers the health-claims compliance flag, surface selection, and Notes craft rules. Format source credit unchanged (Gooseworks iOS Ads pack). Closes #424.
 
 ### 2.8.3 (2026-07-09)
 
