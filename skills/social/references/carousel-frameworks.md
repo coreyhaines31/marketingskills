@@ -78,15 +78,15 @@ The "numbered techniques" carousel. A contrarian cover creates status anxiety �
 
 ---
 
-## Framework D: Rant Callout (5–8 slides)
+## Framework D: Rant Callout (4–8 slides)
 
 The "someone had to say it" carousel. Personality-led and polarizing by design — the structure exists to keep the heat *fair* so it reads as conviction, not bitterness.
 
 | Slide | Job | Pattern |
 |---|---|---|
 | 1 — Provocative claim | An unpopular opinion or direct accusation about a common practice. | "Unpopular opinion — [common practice]" |
-| 2–3 — Escalate the argument | Sensory, specific detail. Show the offense; don't gesture at it abstractly. | "[Escalating, specific complaint]" |
-| 4 — Fairness pivot | "Don't get me wrong…" — clarify what you're *not* attacking. Anti-laziness, not anti-tool; anti-practice, not anti-person. | "The problem isn't [X], it's [Y]" |
+| 2 to N−2 — Escalate the argument | Sensory, specific detail. Show the offense; don't gesture at it abstractly. Each slide raises the stakes. | "[Escalating, specific complaint]" |
+| N−1 — Fairness pivot | "Don't get me wrong…" — clarify what you're *not* attacking. Anti-laziness, not anti-tool; anti-practice, not anti-person. | "The problem isn't [X], it's [Y]" |
 | N — Close | Firm, personality-forward sign-off. Signed rants read as owned opinions; anonymous ones read as potshots. | "[Firm sign-off] — signed [name/persona]" |
 
 **The fairness pivot is what makes it work.** Without it you're yelling; with it you're drawing a precise line, and precise lines get quoted. It also pre-empts the top hostile comment.
