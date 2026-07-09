@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.2.0 | 2026-07-08 |
+| ad-creative | 2.3.0 | 2026-07-09 |
 | ai-seo | 2.1.0 | 2026-06-15 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.2 (2026-07-09)
+
+- **ad-creative** (2.2.0 → 2.3.0): added the **faceless motion-style video ad format**. New `references/motion-video-ads.md` (format popularized by @borjafat; original re-expression of the open Bomx `super-video-maker` motion-collage recipe, extended with production lessons from shipping it end-to-end): a fully generated 15–45s concept/explainer video — styled poster stills (one per beat, series-locked via reference images) → image-to-video "living" motion → TTS narration → whisper-word-timed captions — at roughly $3–6 and ~15 minutes per finished video. Covers the provider-agnostic pipeline with a one-key Gemini path (Nano Banana Pro + Veo 3.1 + Gemini TTS) and alternatives (GPT-Image/Flux, Seedance/Kling/Runway, ElevenLabs), a **five-style visual library** with fill-in prompt formulas (screen-print collage, flat vector explainer, papercraft diorama, pop-art comic, claymation), a motion prompt formula, hard-earned QC gotchas (image-to-video models inject photoreal "maker hands" — and negative prompts make it worse; always QC each clip's final 2 seconds; caption/label collision; TTS/whisper sound-alike words in CTAs), ad-specific rules (brand in the poster for sound-off autoplay, beat 1 is the 3-second hook, regenerate stills per aspect rather than cropping), and AI-content disclosure notes. SKILL.md wires the reference into Generating Ad Visuals and adds 'motion video ad,' 'faceless video ad,' 'animated explainer ad,' and 'motion collage ad' description triggers.
 
 ### 2.8.1 (2026-07-08)
 
