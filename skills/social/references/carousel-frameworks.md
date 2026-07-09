@@ -78,7 +78,7 @@ The "numbered techniques" carousel. A contrarian cover creates status anxiety �
 
 ---
 
-## Framework D: Rant Callout (4–8 slides)
+## Framework D: Rant Callout (5–8 slides)
 
 The "someone had to say it" carousel. Personality-led and polarizing by design — the structure exists to keep the heat *fair* so it reads as conviction, not bitterness.
 
@@ -97,7 +97,7 @@ The "someone had to say it" carousel. Personality-led and polarizing by design �
 
 ---
 
-## Framework E: Demo Walkthrough (3–11 slides)
+## Framework E: Demo Walkthrough (5–11 slides)
 
 The "watch it work" carousel for product or workflow content. Show the finished result first, then the steps — the outcome earns attention for the process.
 
@@ -138,4 +138,4 @@ The "watch it work" carousel for product or workflow content. Show the finished 
 
 ## Measuring What Worked
 
-Judge carousels on **saves and completion**, not likes — saves signal reference value (the algorithmic win for carousels), and drop-off position tells you which slide broke the swipe chain. When a carousel underperforms, the fix is usually slide 1 (didn't stop the scroll) or the framework choice (list content forced into a rant structure), not the middle slides. Track per-framework performance and double down on the two that fit your audience — see [reverse-engineering.md](reverse-engineering.md) for the analysis workflow.
+Judge carousels on **saves and completion**, not likes — saves signal reference value (the algorithmic win for carousels), and where per-slide analytics exist (Instagram professional insights, LinkedIn document analytics, or third-party tools), drop-off position tells you which slide broke the swipe chain. When a carousel underperforms, the fix is usually slide 1 (didn't stop the scroll) or the framework choice (list content forced into a rant structure), not the middle slides. Track per-framework performance and double down on the two that fit your audience — see [reverse-engineering.md](reverse-engineering.md) for the analysis workflow.
