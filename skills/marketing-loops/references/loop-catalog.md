@@ -149,6 +149,21 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 - **Output**: A dated folder of grounded static ad concepts + index, ready for human selection.
 - **Input freshness (companion cadence)**: Weekly, refresh `inputs/winning-ads/` with anything that scaled and prune stale examples; monthly, refresh `inputs/reviews/` and `inputs/comments/` and re-check the voice doc. Stale inputs are this loop's failure mode — output quality tracks input freshness, not run count.
 
+### The monthly-creative-retro loop
+- **Check cadence**: Monthly (first business day, reading the prior month)
+- **Acts when**: The account had meaningful creative activity last month — new concepts launched with enough delivery to judge (respect the impression/spend thresholds in `ads`). If nothing launched or nothing cleared thresholds, note that and skip.
+- **Purpose**: Close the creative strategy loop — turn last month's results into next month's evidence-ranked slate, so the roadmap learns instead of drifting.
+- **Skills used**: `ad-creative` (Mode 4 + creative-roadmap reference), `ads` (decision thresholds), `analytics`
+- **Loop body**:
+  1. Pull last month's ad performance via the platform CLIs; map results to the month's roadmap concepts.
+  2. Draft the retro artifact (`retros/YYYY-MM.md`): winners with the why, losers with funnel-stage diagnosis, single-metric wins, learnings, kills.
+  3. Update the roadmap: re-rank icebox evidence, write learnings in as new/revised concepts, draft next month's capacity-checked slate.
+  4. Flag the account-state call (exploration vs. scaling) for human confirmation — the mix recommendation depends on it.
+- **Self-check**: Are verdicts on concepts (not single executions)? Did every learning land somewhere — icebox update, re-rank, or kill? Did anything clear thresholds, or is this month a skip?
+- **State / idempotency**: One retro per month — skip if `retros/YYYY-MM.md` exists. The roadmap file is the shared state; never fork it.
+- **Stop / bail-out**: Stages analysis and a draft slate only — the human approves the slate and the account-state call; the loop **never launches or pauses ads**. If retros go unread for two cycles, pause and ask.
+- **Output**: The monthly retro artifact + an updated roadmap with a draft slate for the coming month.
+
 ### The paid-search query-mining loop
 - **Check cadence**: Weekly
 - **Acts when**: Search-term reports reveal wasted spend or new intent.

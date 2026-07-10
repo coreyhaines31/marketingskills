@@ -115,6 +115,21 @@
         "Gives surface-selection reasoning (ChatGPT vs Notes) instead of treating formats as interchangeable"
       ],
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Our Meta account is stuck — we've tested 30 ads over two months and nothing beats the control. I have our reviews exported and access to our ad account data. Build me a creative plan for next month.",
+      "expected_output": "Should apply Mode 4 / references/creative-roadmap.md rather than jumping straight to generating ads. Should identify the account as exploration state (nothing working) and shape the plan accordingly: mostly net-new concepts across different segments/angles, minimal iterations, per-metric win redefinition (a hold-rate or CPC spike counts as a hit worth pulling on). Should synthesize the three signals (account performance from the ad data, customer language from the reviews, external organic — asking for or mining niche organic content) into concepts ranked by evidence tier, each with a cited source. Should produce a capacity-checked monthly slate with production tiers (favoring T1/T2 low-fidelity tests per the fidelity ladder) and flag the common exploration-state root causes to check (boring creative, overcomplicated message, unclear UVP, punishing CPMs). Should end with the retro plan for judging the slate at month end. Should not invent customer language or claims — insights must trace to the provided reviews/data.",
+      "assertions": [
+        "Applies the creative strategy loop (Mode 4) instead of only generating ad copy",
+        "Diagnoses exploration state and recommends a wide, net-new-heavy mix with minimal iterations",
+        "Redefines wins per-metric for a stuck account",
+        "Synthesizes all three signal sources or explicitly requests the missing one",
+        "Concepts are evidence-ranked with cited sources (no invented insights)",
+        "Monthly slate is capacity-checked and production-tiered, favoring low-fidelity tests",
+        "Includes a month-end retro plan that feeds the next slate"
+      ],
+      "files": []
     }
   ]
 }

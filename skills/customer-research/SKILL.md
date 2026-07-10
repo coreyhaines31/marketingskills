@@ -2,7 +2,7 @@
 name: customer-research
 description: When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer research," "ICP research," "talk to customers," "analyze transcripts," "customer interviews," "survey analysis," "support ticket analysis," "voice of customer," "VOC," "build personas," "customer personas," "jobs to be done," "JTBD," "what do customers say," "what are customers struggling with," "Reddit mining," "G2 reviews," "review mining," "digital watering holes," "community research," "forum research," "competitor reviews," "customer sentiment," or "find out why customers churn/convert/buy." Use for both analyzing existing research assets AND gathering new research from online sources. For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.
 metadata:
-  version: 2.0.0
+  version: 2.0.1
 ---
 
 # Customer Research
@@ -169,6 +169,18 @@ After gathering from multiple sources, synthesize into:
 ---
 
 ## Persona Generation
+
+### When there are no reviews yet
+
+Early-stage products (or new categories) lack first-party review data. Don't invent personas — walk outward through proxy sources, in order:
+
+1. **Your own differentiator** — what the product does differently defines who feels that difference most; write the hypothesis down as a hypothesis
+2. **Direct competitors' reviews** — their customers describe the problem space in their words (note what's praised and what's missing)
+3. **Comparable products on marketplaces** — Amazon/app-store reviews for adjacent solutions to the same job
+4. **Adjacent brands sharing the audience** — what else this buyer buys; their reviews reveal the buyer's broader language and values
+
+Personas built this way are provisional: tag each with its proxy source, and replace proxy evidence with first-party evidence as real reviews arrive.
+
 
 Personas should be built from research, not invented. Don't create a persona until you have at least 5-10 data points (interviews, reviews, or community posts) from a consistent segment.
 
