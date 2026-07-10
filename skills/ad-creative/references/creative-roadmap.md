@@ -75,7 +75,7 @@ Each monthly-slate concept gets a **production tier**:
 | Tier | Cost | What it is | Use for |
 |---|---|---|---|
 | **T1 — Iteration** | Hours | New hook/caption/crop on an existing asset | Extending proven winners |
-| **T2 — Remix** | Days | New creative from existing footage/assets/AI generation | Evidence tiers 1–3 |
+| **T2 — Remix** | Days | New creative from existing footage/assets/AI generation | Concepts with decent evidence or a first low-fi signal |
 | **T3 — Production** | Weeks | Net-new shoot, creators, full build | Only angles with own-account proof or a prior low-fi funnel signal (fidelity ladder in [hook-system.md](hook-system.md)) |
 
 **Capacity check — the rule that keeps roadmaps honest:** count what the team (or the AI pipeline) can produce *at quality* this month, and roadmap to that number. A 20-concept slate against 8 concepts of real capacity doesn't produce 20 ads; it produces 20 compromised ones and a burned-out team. Cut by evidence rank until the slate fits.
