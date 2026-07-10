@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.5.0 | 2026-07-09 |
-| ai-seo | 2.1.0 | 2026-06-15 |
+| ai-seo | 2.2.0 | 2026-07-09 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
@@ -14,7 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cold-email | 2.0.0 | 2026-05-05 |
 | community-marketing | 2.0.0 | 2026-05-05 |
 | competitor-profiling | 2.0.0 | 2026-05-05 |
-| competitors | 2.0.0 | 2026-05-05 |
+| competitors | 2.0.1 | 2026-07-09 |
 | content-strategy | 2.0.0 | 2026-05-05 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.1 | 2026-06-16 |
@@ -53,6 +53,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.6 (2026-07-09)
+
+- **ai-seo** (2.1.0 → 2.2.0): added **citations vs. recommendations** — the correction to citation-centric AEO strategy. New `references/citations-vs-recommendations.md` (grounded in Lily Ray's (Amsive) 100-query B2B study, Scrunch and SimilarWeb behavioral studies, and Growth Plays commentary): the **AI visibility ladder** (retrieved → cited → mentioned → recommended, each governed by different criteria, plus the shadow rung of being *recommended against* on requirements-heavy prompts), the **self-promotional listicle risk** (69% of AI Overviews cited a brand's own "best [category]" listicle while recommending competitors instead — 224 of 323 citations excluded the publisher; for emerging brands a self-ranked guide can act as a vote for competitors), **stage-dependent buyer's-guide strategy** (leaders get cited and recommended; emerging brands get citation and category framing — still worth publishing, with rebalanced expectations), **what earns recommendations** (offsite consensus: reviews, analysts, communities, earned media, video — with the test "if a model ignored everything on our domain, would the rest of the web still shortlist us?"), and **what a recommendation is worth** (Scrunch: ~2× behavior lift vs. a passing mention, 117–185% branded-search jump for new-to-brand buyers; SimilarWeb: ~2.5× more new visitors — with only ~9% visible as AI traffic, the attribution blind spot) plus the measurement triad (prompt tracking with mention framing, self-reported attribution, call recordings). SKILL.md adds a compact citation-≠-recommendation pointer, a Recommendation-rate row in Monitoring, and caveats on the Listicle Block (content-patterns.md) and educational-content goals (content-types.md).
+- **competitors** (2.0.0 → 2.0.1): added an **AI-answer expectations-by-stage** caveat to the alternatives-page format — these pages reliably earn AI citations, but recommendation depends on offsite consensus; for emerging brands a self-ranked list can surface competitors in the answer. Cross-references ai-seo's citations-vs-recommendations reference. Closes #427.
 
 ### 2.8.5 (2026-07-09)
 

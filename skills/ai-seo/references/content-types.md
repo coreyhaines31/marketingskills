@@ -8,7 +8,7 @@ For the cross-cutting strategy, see [SKILL.md](../SKILL.md).
 
 ## SaaS Product Pages
 
-**Goal:** Get cited in "What is [category]?" and "Best [category]" queries.
+**Goal:** Get cited in "What is [category]?" and "Best [category]" queries. (Citation is the realistic goal here; being *recommended* in the answer depends on offsite consensus — see [citations-vs-recommendations.md](citations-vs-recommendations.md).)
 
 **Optimize:**
 - Clear product description in first paragraph (what it does, who it's for)

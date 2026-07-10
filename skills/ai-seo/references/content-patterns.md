@@ -136,6 +136,8 @@ Use for topic pages with multiple common questions. Essential for FAQ schema.
 
 Use for "Best [X]", "Top [X]", "[Number] ways to [X]" queries.
 
+**Caveat for self-promotional listicles:** ranking yourself #1 in your own "best [category]" guide gets the page *cited* far more reliably than it gets your brand *recommended* — for emerging brands, AI answers often harvest the competitor names from the guide and recommend them instead. See [citations-vs-recommendations.md](citations-vs-recommendations.md) before building these at scale.
+
 ```markdown
 ## [Number] Best [Items] for [Goal/Purpose]
 
