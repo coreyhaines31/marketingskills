@@ -85,6 +85,21 @@
         "May mention AI search as one factor to consider"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're a seed-stage data-quality startup (barely anyone knows us yet). Plan: publish 20 'best data quality tools' style listicles ranking ourselves #1 so ChatGPT and AI Overviews recommend us. Good idea?",
+      "expected_output": "Should apply references/citations-vs-recommendations.md rather than endorsing the plan as-is. Should explain the citation vs. recommendation distinction — self-promotional listicles from low-authority brands often earn citations while the AI answer recommends the competitors named in the guide instead (cites the study directionally: ~69% of self-promotional listicle citations — 224 of 323 — excluded the publisher from recommendations). Should present the visibility ladder (retrieved → cited → mentioned → recommended) and explain recommendation is governed by offsite consensus (reviews, forums, analysts, press). Should NOT say 'don't publish guides' — should reframe: publish a small number of genuinely useful guides for category framing, and rebalance investment toward reviews/communities/earned media. Should mention the attribution blind spot (AI-influenced visits mostly appear as branded search/direct; only a small share is visible AI traffic) and the measurement triad (prompt tracking, self-reported attribution, call recordings).",
+      "assertions": [
+        "Does not endorse 20 self-ranked listicles as a path to AI recommendations for a low-authority brand",
+        "Distinguishes citations from recommendations with the different governing criteria",
+        "References the visibility ladder (retrieved/cited/mentioned/recommended)",
+        "Warns the guides may surface competitors in AI answers (vote-for-competitors mechanism)",
+        "Recommends offsite consensus building (reviews, communities, analysts, or PR) as the recommendation lever",
+        "Does not tell the user to stop publishing buyer's guides entirely — reframes expectations toward citation and category framing",
+        "Mentions the attribution blind spot and at least two of: prompt tracking, self-reported attribution, call recordings"
+      ],
+      "files": []
     }
   ]
 }

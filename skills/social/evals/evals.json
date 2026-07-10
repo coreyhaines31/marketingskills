@@ -87,6 +87,21 @@
         "May note social-to-email bridge context"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I want to turn our new pricing guide into a LinkedIn carousel. It has 9 negotiation tactics for SaaS buyers. Help me structure the slides.",
+      "expected_output": "Should load references/carousel-frameworks.md and pick a framework BEFORE writing slides — a list of 9 named tactics maps to Hack List (or Value-Stack; should justify the choice), not Rant Callout or Demo Walkthrough. Should produce a slide-by-slide structure: contrarian or exact-count cover (slide 1 written as a standalone scroll-stopper), one named tactic per slide, and a synthesis + single-CTA close. Should apply LinkedIn document-post notes (PDF upload, denser text tolerated, post text written as its own hook rather than 'see attached'). Should keep any count promised on the cover exactly delivered and flag that stats/claims must be real. Should mention judging performance on saves/completion rather than likes.",
+      "assertions": [
+        "Loads or applies the carousel-frameworks reference",
+        "Selects an appropriate framework (Hack List or Value-Stack) with a stated reason before drafting slides",
+        "Slide 1 is written as a standalone scroll-stopper with the count or contrarian claim",
+        "One tactic/idea per slide, each named",
+        "Final slide has a synthesis and exactly one CTA",
+        "Applies LinkedIn document-post guidance (PDF, post text as its own hook)",
+        "Does not invent stats or pad the tactic count"
+      ],
+      "files": []
     }
   ]
 }

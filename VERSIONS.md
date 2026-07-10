@@ -5,8 +5,8 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.2.0 | 2026-07-08 |
-| ai-seo | 2.1.0 | 2026-06-15 |
+| ad-creative | 2.5.0 | 2026-07-09 |
+| ai-seo | 2.2.0 | 2026-07-09 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
@@ -14,7 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cold-email | 2.0.0 | 2026-05-05 |
 | community-marketing | 2.0.0 | 2026-05-05 |
 | competitor-profiling | 2.0.0 | 2026-05-05 |
-| competitors | 2.0.0 | 2026-05-05 |
+| competitors | 2.0.1 | 2026-07-09 |
 | content-strategy | 2.0.0 | 2026-05-05 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.1 | 2026-06-16 |
@@ -31,7 +31,6 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-loops | 1.1.0 | 2026-07-05 |
 | marketing-plan | 1.1.0 | 2026-05-29 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
-| market-research | 1.0.0 | 2026-07-10 |
 | offers | 1.0.0 | 2026-06-16 |
 | onboarding | 2.0.0 | 2026-05-05 |
 | ads | 2.2.0 | 2026-07-05 |
@@ -50,14 +49,31 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.1.0 | 2026-06-10 |
+| social | 2.2.0 | 2026-07-09 |
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
 
-### 2.9.0 (2026-07-10)
+### 2.8.6 (2026-07-09)
 
-- Added `market-research` skill for decision-grade market analysis before positioning, launch, channel, or market-entry decisions. Covers market framing, demand signals, transparent TAM/SAM/SOM assumptions, practical segmentation, competitive landscapes, white-space analysis, channel economics, market-attractiveness scoring, confidence labels, and enter / narrow / validate / avoid recommendations. Includes `references/evidence-and-synthesis.md` for source hierarchy, recency, triangulation, uncertainty handling, and fact / interpretation / implication separation. Total skills: 48.
+- **ai-seo** (2.1.0 → 2.2.0): added **citations vs. recommendations** — the correction to citation-centric AEO strategy. New `references/citations-vs-recommendations.md` (grounded in Lily Ray's (Amsive) 100-query B2B study, Scrunch and SimilarWeb behavioral studies, and Growth Plays commentary): the **AI visibility ladder** (retrieved → cited → mentioned → recommended, each governed by different criteria, plus the shadow rung of being *recommended against* on requirements-heavy prompts), the **self-promotional listicle risk** (69% of the AI Overview citations earned by self-promotional "best [category]" listicles — 224 of 323 — appeared in answers that excluded the publisher from the recommendations; for emerging brands a self-ranked guide can act as a vote for competitors), **stage-dependent buyer's-guide strategy** (leaders get cited and recommended; emerging brands get citation and category framing — still worth publishing, with rebalanced expectations), **what earns recommendations** (offsite consensus: reviews, analysts, communities, earned media, video — with the test "if a model ignored everything on our domain, would the rest of the web still shortlist us?"), and **what a recommendation is worth** (Scrunch, observational: ~2× behavior lift vs. a passing mention; for users with no recent observed brand engagement, +182% branded searches / +117% site visits / +185% product views within a week; SimilarWeb: ~2.5× more new visitors — with only ~9% visible as AI traffic, the attribution blind spot) plus the measurement triad (prompt tracking with mention framing, self-reported attribution, call recordings). SKILL.md adds a compact citation-≠-recommendation pointer, a Recommendation-rate row in Monitoring, and caveats on the Listicle Block (content-patterns.md) and educational-content goals (content-types.md).
+- **competitors** (2.0.0 → 2.0.1): added an **AI-answer expectations-by-stage** caveat to the alternatives-page format — these pages often earn AI citations, but recommendation depends on offsite consensus; for emerging brands a self-ranked list can surface competitors in the answer. Cross-references ai-seo's citations-vs-recommendations reference. Closes #427.
+
+### 2.8.5 (2026-07-09)
+
+- **ad-creative** (2.4.0 → 2.5.0): extended the iMessage reveal reference into **iOS-native reveal video ads** — `references/imessage-video-ads.md` (filename unchanged; retitled) now covers three surfaces sharing one production architecture. New **Other iOS-Native Reveal Surfaces** section: a surface-selection table keyed to persuasion mechanic (iMessage = a friend's recommendation; ChatGPT = an authoritative answer to the viewer's own question; Apple Notes = a private confession made public), **ChatGPT reveals** (the typed question is the customer's verbatim question; stream the answer in word chunks — type like thumbs, stream like a model; ChatGPT-real formatting; OpenAI trade-dress legal note; and the strictest compliance rule in the family — the answer is ad copy wearing an authority costume, so health/medical/financial advice in a fabricated AI answer requires legal review and the exchange is never presented as a real unprompted ChatGPT endorsement), and **Apple Notes reveals** (confession-not-conversation: note title as the hook, first-person list typed live with keyboard-taps-only audio, one typo-and-correction, the product as the least enthusiastic line, realizations grounded in real reviews per Grounded Inputs). SKILL.md pointer updated to the three-surface framing and adds 'ChatGPT ad' and 'Apple Notes ad' triggers. New eval (id 8) covers the health-claims compliance flag, surface selection, and Notes craft rules. Format source credit unchanged (Gooseworks iOS Ads pack). Closes #424.
+
+### 2.8.4 (2026-07-09)
+
+- **social** (2.1.0 → 2.2.0): added a **carousel framework library**. New `references/carousel-frameworks.md` — five slide-by-slide narrative architectures for Instagram carousels and LinkedIn document posts, re-expressed and extended from a pattern circulating on marketing X (Vibe Marketers HQ's five-framework breakdown): **Value-Stack** (exact-count cover → one item per slide → action close; the count is a checkable promise), **Problem-Proof** (result-as-fact hook → reframed problem → named mechanism → literal detail → screenshot receipt that closes slide 1's loop), **Hack List** (contrarian stat hook → why the common approach fails → one *named* technique per slide → thesis + CTA), **Rant Callout** (provocative claim → specific escalation → the fairness pivot that keeps it conviction-not-bitterness → signed close), and **Demo Walkthrough** (outcome first → pain → numbered process overview *before* the detail to cut mid-swipe drop-off → one real screenshot per step → result + positioning). Includes a framework-selection table (match structure to content type), two cross-framework rules (slide 1 is the thumbnail; one visual template per carousel), per-framework SaaS examples and failure modes, platform notes (IG 4:5 specs, LinkedIn PDF document posts with the post text as a second hook, TikTok photo-mode pacing), a production checklist (real claims only, exact counts delivered, one CTA), and measurement guidance (judge on saves + completion, not likes). SKILL.md wires the reference next to post templates and adds 'carousel,' 'slide-by-slide,' and 'document post' triggers; post-templates.md's generic Carousel Hook now points to the full library. New eval (id 7) covers framework selection, named-technique slides, LinkedIn document-post guidance, and no-invented-stats. Closes #421.
+
+### 2.8.3 (2026-07-09)
+
+- **ad-creative** (2.3.0 → 2.4.0): added a **brand-flexible style tier** to `references/motion-video-ads.md` — four token-driven styles that absorb any company's brand system instead of imposing their own palette: **monoline editorial** (thin single-weight ink line-art on the brand neutral, one accent sweep — the most universally brandable), **Swiss typographic** (the label set enormous in the brand's type on a grid; works for any brand with a font and a color), **wireglow** (wireframe subject on near-black with one gradient accent beam — dev-tool/dark-mode brands), and **duotone screenprint** (photography reduced to ink + accent). All driven by a **brand slots contract** — FIELD (neutral ground), INK (drawing/type color), ACCENT (one element per frame, scarcity is the design), TYPE FEEL, plus per-brand constraints (e.g. "gradients only on edges") — resolvable from brand guidelines or `.agents/product-marketing.md`. Includes per-style motion notes (lines draw themselves, beams pulse, type settles) under the same composition-never-changes rules. All four verified to render with clean typography using a real brand's tokens.
+
+### 2.8.2 (2026-07-09)
+
+- **ad-creative** (2.2.0 → 2.3.0): added the **faceless motion-style video ad format**. New `references/motion-video-ads.md` (format popularized by @borjafat; original re-expression of the open Bomx `super-video-maker` motion-collage recipe, extended with production lessons from shipping it end-to-end): a fully generated 15–45s concept/explainer video — styled poster stills (one per beat, series-locked via reference images) → image-to-video "living" motion → TTS narration → whisper-word-timed captions — at roughly $3–6 and ~15 minutes per finished video. Covers the provider-agnostic pipeline with a one-key Gemini path (Nano Banana Pro + Veo 3.1 + Gemini TTS) and alternatives (GPT-Image/Flux, Seedance/Kling/Runway, ElevenLabs), a **five-style visual library** with fill-in prompt formulas (screen-print collage, flat vector explainer, papercraft diorama, pop-art comic, claymation), a motion prompt formula, hard-earned QC gotchas (image-to-video models inject photoreal "maker hands" — and negative prompts make it worse; always QC each clip's final 2 seconds; caption/label collision; TTS/whisper sound-alike words in CTAs), ad-specific rules (brand in the poster for sound-off autoplay, beat 1 is the 3-second hook, regenerate stills per aspect rather than cropping), and AI-content disclosure notes. SKILL.md wires the reference into Generating Ad Visuals and adds 'motion video ad,' 'faceless video ad,' 'animated explainer ad,' and 'motion collage ad' description triggers.
 
 ### 2.8.1 (2026-07-08)
 
