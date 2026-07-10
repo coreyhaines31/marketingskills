@@ -27,7 +27,7 @@ There is also a shadow rung: **recommended against**. On detailed, requirements-
 
 The common tactic — publish a "best [category] software" guide, rank yourself #1, and let it shape both organic search and AI answers — now has a stage-dependent payoff.
 
-**The data:** Lily Ray (Amsive) analyzed 100 B2B "best [category] software" queries across three dates in spring 2026. Of queries that triggered AI Overviews, **69% cited a brand's own self-promotional listicle while leaving that brand out of the recommendations** — pointing buyers to competitors instead. Across the dataset, self-promotional listicles earned 323 citations; in 224 of them, the publishing brand was not recommended.
+**The data:** Lily Ray (Amsive) analyzed 100 B2B "best [category] software" queries across three dates in spring 2026. Across the dataset, self-promotional listicles earned 323 citations in AI Overviews — and in 224 of them (**69% of the citations**), the answer left the publishing brand out of the recommendations, pointing buyers to competitors instead.
 
 **The mechanism:** the model treats your guide as a source about the *category*. It happily extracts the competitor names, comparisons, and evaluation criteria you compiled — then makes its recommendation from web-wide consensus, where the established players dominate. For an emerging brand, a self-promotional buyer's guide can function as **a vote for your competitors**: you did the research that helps the model describe them.
 
@@ -62,10 +62,10 @@ The encouraging flip side: earning an AI recommendation is harder to game than a
 
 Two behavioral studies quantified the gap between rungs:
 
-- **Scrunch** (opt-in panel linking AI conversations to subsequent web behavior, compared against each user's own baseline): a genuine recommendation ("a great option is X") moved people to search for, visit, and evaluate a brand **about twice as often** as a passing mention. For buyers who had never encountered the brand, a recommendation drove a **117–185% jump** in branded searches, site visits, and product views within a week.
+- **Scrunch** (opt-in panel linking AI conversations to subsequent web behavior, compared against each user's own baseline — observational, not a controlled experiment): a genuine recommendation ("a great option is X") was associated with people searching for, visiting, and evaluating a brand **about twice as often** as a passing mention. For users with no recent observed engagement with the brand, a recommendation was followed within a week by **+182% branded searches, +117% site visits, and +185% product views**.
 - **SimilarWeb** (thousands of real user journeys, seven days post-answer): when ChatGPT recommended a brand, it received **roughly 2.5× more new visitors** the following week than the competitors left off the list.
 
-**The attribution blind spot:** in the SimilarWeb data, only about **9%** of those post-recommendation visits arrived as visible AI referral traffic. The rest showed up as branded search and direct — indistinguishable from ordinary organic visitors. AI recommendations are already sending real, engaged buyers, but standard attribution will tell you they came from Google brand queries or typed-in URLs.
+**The attribution blind spot:** in the SimilarWeb data, only about **9%** of those post-recommendation visits arrived as visible AI referral traffic; the largest share arrived via branded search, with direct and other channels making up the rest — indistinguishable from ordinary organic visitors. AI recommendations are already sending real, engaged buyers, but standard attribution underreports the AI touch.
 
 **Measurement triad** (no single signal is complete; together they give a reliable read):
 
