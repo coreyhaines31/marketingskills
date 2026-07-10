@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.5.0 | 2026-07-09 |
+| ad-creative | 2.6.0 | 2026-07-10 |
 | ai-seo | 2.2.0 | 2026-07-09 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -19,7 +19,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.1 | 2026-06-16 |
 | cro | 2.0.0 | 2026-05-05 |
-| customer-research | 2.0.0 | 2026-05-05 |
+| customer-research | 2.0.1 | 2026-07-10 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
 | emails | 2.0.0 | 2026-05-05 |
 | free-tools | 2.0.0 | 2026-05-05 |
@@ -28,7 +28,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.0 | 2026-05-05 |
-| marketing-loops | 1.1.0 | 2026-07-05 |
+| marketing-loops | 1.2.0 | 2026-07-10 |
 | marketing-plan | 1.1.0 | 2026-05-29 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.0 | 2026-06-16 |
@@ -53,6 +53,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.7 (2026-07-10)
+
+- **ad-creative** (2.5.0 → 2.6.0): added **Mode 4 — the Creative Strategy Loop**, the upstream workflow layer for deciding which ads are worth making (built so the same capability ships in any agent running the library, incl. Magister; workflow shapes informed by public creative-strategist practice, expressed originally — no third-party course content or branded frameworks). New `references/creative-roadmap.md`: three-signal synthesis (account performance via the platform CLIs; customer/brand language via the Grounded Inputs corpus + customer-research; external organic via scraping/social-fetch/competitor-profiling) on a monthly-deep-dive + weekly-refresh cadence with a receipts rule (no insight enters the icebox without its source); concepts as segment × motivation × angle × format hypotheses ranked on a six-tier evidence scale; **account-state branching** (exploration state: wide net-new mix, per-metric win redefinition, iterate only on hits, four root causes to check; scaling state: winner-variation-heavy mix with visually-distinct variations, sub-angle probes, a standing exploration allocation); the **roadmap artifact** (icebox → quarterly themes → monthly slate with T1 iteration / T2 remix / T3 production tiers and a hard capacity check); per-concept briefs handed to Modes 1–3; and the **monthly creative retro** (winners/losers/metric-wins/learnings/kills, judged at concept level, every learning landing as an icebox update, re-rank, or kill). New `references/hook-system.md`: hooks as three components (visual action / spoken line / caption) with the no-duplication rule; the segment → motivation → format → hook generation pipeline output as a hook matrix; an eight-move opening menu; the **diagnostic funnel** mapping thumbstop/hold/CTR/CVR to which component to fix; the **on-ramp rule** (every hook test is an on-ramp test); fidelity laddering tied to production tiers; and inherited grounding rules plus organic language mining. SKILL.md adds the Mode 4 section and 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing' triggers. New eval (id 9) covers exploration-state diagnosis, evidence-ranked slates, and the receipts rule.
+- **customer-research** (2.0.0 → 2.0.1): added the **zero-review persona fallback** to Persona Generation — a four-step proxy ladder (own differentiator → direct competitors' reviews → marketplace comparables → adjacent brands sharing the audience) with provisional-persona tagging and replacement as first-party evidence arrives.
+- **marketing-loops** (1.1.0 → 1.2.0): added **the monthly-creative-retro loop** to the Paid section of `references/loop-catalog.md` — closes ad-creative's Mode 4 loop on a schedule: pulls last month's performance, drafts the retro artifact and next month's capacity-checked slate, flags the account-state call for human confirmation, one-retro-per-month idempotency, and never launches or pauses ads. Closes #434.
 
 ### 2.8.6 (2026-07-09)
 
