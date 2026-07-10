@@ -122,7 +122,14 @@ npx skills add coreyhaines31/marketingskills --skill cro copywriting
 npx skills add coreyhaines31/marketingskills --list
 ```
 
-This automatically installs to your `.agents/skills/` directory (and symlinks into `.claude/skills/` for Claude Code compatibility).
+The CLI detects which agents you have installed and asks where to install. For Claude Code it installs into `.claude/skills/`; universal agents share `.agents/skills/`.
+
+> [!TIP]
+> If you run the command from **inside** an agent session (e.g., asking Claude Code to install the skills for you), the CLI runs non-interactively and may only install to the universal `.agents/skills/` directory, which Claude Code does not read. Pass the agent explicitly:
+>
+> ```bash
+> npx skills add coreyhaines31/marketingskills -a claude-code
+> ```
 
 ### Option 2: Claude Code Plugin
 
