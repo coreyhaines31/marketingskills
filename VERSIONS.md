@@ -31,6 +31,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-loops | 1.1.0 | 2026-07-05 |
 | marketing-plan | 1.1.0 | 2026-05-29 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
+| market-research | 1.0.0 | 2026-07-10 |
 | offers | 1.0.0 | 2026-06-16 |
 | onboarding | 2.0.0 | 2026-05-05 |
 | ads | 2.2.0 | 2026-07-05 |
@@ -53,6 +54,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.9.0 (2026-07-10)
+
+- Added `market-research` skill for decision-grade market analysis before positioning, launch, channel, or market-entry decisions. Covers market framing, demand signals, transparent TAM/SAM/SOM assumptions, practical segmentation, competitive landscapes, white-space analysis, channel economics, market-attractiveness scoring, confidence labels, and enter / narrow / validate / avoid recommendations. Includes `references/evidence-and-synthesis.md` for source hierarchy, recency, triangulation, uncertainty handling, and fact / interpretation / implication separation. Total skills: 48.
 
 ### 2.8.1 (2026-07-08)
 
