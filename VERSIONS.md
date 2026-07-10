@@ -49,7 +49,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.1.0 | 2026-06-10 |
+| social | 2.2.0 | 2026-07-09 |
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
@@ -57,6 +57,10 @@ Current versions of all skills. Agents can compare against local versions to che
 ### 2.8.5 (2026-07-09)
 
 - **ad-creative** (2.4.0 → 2.5.0): extended the iMessage reveal reference into **iOS-native reveal video ads** — `references/imessage-video-ads.md` (filename unchanged; retitled) now covers three surfaces sharing one production architecture. New **Other iOS-Native Reveal Surfaces** section: a surface-selection table keyed to persuasion mechanic (iMessage = a friend's recommendation; ChatGPT = an authoritative answer to the viewer's own question; Apple Notes = a private confession made public), **ChatGPT reveals** (the typed question is the customer's verbatim question; stream the answer in word chunks — type like thumbs, stream like a model; ChatGPT-real formatting; OpenAI trade-dress legal note; and the strictest compliance rule in the family — the answer is ad copy wearing an authority costume, so health/medical/financial advice in a fabricated AI answer requires legal review and the exchange is never presented as a real unprompted ChatGPT endorsement), and **Apple Notes reveals** (confession-not-conversation: note title as the hook, first-person list typed live with keyboard-taps-only audio, one typo-and-correction, the product as the least enthusiastic line, realizations grounded in real reviews per Grounded Inputs). SKILL.md pointer updated to the three-surface framing and adds 'ChatGPT ad' and 'Apple Notes ad' triggers. New eval (id 8) covers the health-claims compliance flag, surface selection, and Notes craft rules. Format source credit unchanged (Gooseworks iOS Ads pack). Closes #424.
+
+### 2.8.4 (2026-07-09)
+
+- **social** (2.1.0 → 2.2.0): added a **carousel framework library**. New `references/carousel-frameworks.md` — five slide-by-slide narrative architectures for Instagram carousels and LinkedIn document posts, re-expressed and extended from a pattern circulating on marketing X (Vibe Marketers HQ's five-framework breakdown): **Value-Stack** (exact-count cover → one item per slide → action close; the count is a checkable promise), **Problem-Proof** (result-as-fact hook → reframed problem → named mechanism → literal detail → screenshot receipt that closes slide 1's loop), **Hack List** (contrarian stat hook → why the common approach fails → one *named* technique per slide → thesis + CTA), **Rant Callout** (provocative claim → specific escalation → the fairness pivot that keeps it conviction-not-bitterness → signed close), and **Demo Walkthrough** (outcome first → pain → numbered process overview *before* the detail to cut mid-swipe drop-off → one real screenshot per step → result + positioning). Includes a framework-selection table (match structure to content type), two cross-framework rules (slide 1 is the thumbnail; one visual template per carousel), per-framework SaaS examples and failure modes, platform notes (IG 4:5 specs, LinkedIn PDF document posts with the post text as a second hook, TikTok photo-mode pacing), a production checklist (real claims only, exact counts delivered, one CTA), and measurement guidance (judge on saves + completion, not likes). SKILL.md wires the reference next to post templates and adds 'carousel,' 'slide-by-slide,' and 'document post' triggers; post-templates.md's generic Carousel Hook now points to the full library. New eval (id 7) covers framework selection, named-technique slides, LinkedIn document-post guidance, and no-invented-stats. Closes #421.
 
 ### 2.8.3 (2026-07-09)
 
