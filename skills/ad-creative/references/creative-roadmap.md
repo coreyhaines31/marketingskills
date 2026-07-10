@@ -16,7 +16,7 @@ Creative direction comes from synthesis across three independent signal sources.
 |---|---|---|
 | **Account performance** | Winners/losers by angle, hook, format; funnel metrics per concept (see [hook-system.md](hook-system.md) diagnostic funnel); fatigue state | `google-ads` / `meta-ads` / `linkedin-ads` / `tiktok-ads` CLIs (see Tool Integrations in SKILL.md) |
 | **Customer/brand** | Verbatim pain/desire/objection language; unexpected use cases; who's *actually* buying vs. who's targeted | The Grounded Inputs corpus (`inputs/reviews/`, `inputs/comments/`), sales-call notes, support themes — per **customer-research** |
-| **External organic** | What the niche watches unpaid: top organic content, its hooks, formats, vocabulary; competitor ads running long enough to be presumed working | **scraping**, **social-fetch**, ad libraries, **competitor-profiling** |
+| **External organic** | What the niche watches unpaid: top organic content, its hooks, formats, vocabulary; competitor ads running long enough to be presumed working | **scraping**, the social listening tooling in **social**, ad libraries, **competitor-profiling** |
 
 **Cadence:** a monthly deep dive (60–90 min, all three sources, feeds the monthly roadmap) plus a weekly ~20-minute refresh (what changed: new winners/losers, new review themes, anything spiking organically). Research beyond what the next decision needs is busywork — every synthesis session should end in concepts, not notes.
 
@@ -39,7 +39,7 @@ Rank every concept by the strongest evidence supporting it:
 | 5 | Cross-niche pattern (worked in an adjacent category) | Weak — icebox until corroborated |
 | 6 | Team hunch, no external signal | Weakest — low-fi test or drop |
 
-Concepts inherit their tier in the roadmap: higher evidence → earlier slot and higher production tier. Hunches aren't banned — they're just cheap and last.
+Higher evidence earns roadmap *priority* — an earlier slot in the slate. Production tier is a separate call, set by validation strength, existing assets, capacity, and risk: even a tier-2 customer-language concept starts low-fidelity until it shows a funnel signal. Hunches aren't banned — they're just cheap and last.
 
 ---
 
@@ -49,12 +49,12 @@ The right creative mix depends on which of two states the account is in. Diagnos
 
 **Exploration state** — nothing (or nothing new) is working:
 - Go **wide, not deep**: mostly net-new concepts across different segments and angles; keep iterations to a small minority — iterating on losers multiplies losers
-- **Redefine "win" per-metric**: with no full-funnel winners, a single-metric spike (hold rate, CPC, CVR) on any test is a hit worth pulling on — see the diagnostic funnel
+- **Redefine "win" per-metric**: with no full-funnel winners, a single-metric improvement (a hold-rate lift, a CPC drop, a CVR bump) on any test is a hit worth pulling on — see the diagnostic funnel
 - Iterate **only on hits**; everything else stays exploratory
 - Common root causes to check while testing: the creative is boring (safe, seen-before), the message is overcomplicated, the offer/UVP is unclear, or CPMs are punishing a too-narrow audience
 
 **Scaling state** — one or more concepts are converting profitably:
-- Go **deep on the winner** while it's open: roughly half the slate as visually-distinct variations of the winning concept (same message, new execution — modern delivery algorithms de-prioritize near-duplicates, so variations must look meaningfully different), a quarter as tonal/emotional remixes of it, a quarter as sub-angle probes drilling *into* the winning segment
+- Go **deep on the winner** while it's open: a winner-led slate of visually-distinct variations of the winning concept (same message, new execution — near-duplicates mostly cannibalize the original's reach and teach you nothing new, so variations must look meaningfully different), plus a remix lane (tonal/emotional re-executions of it) and sub-angle probes drilling *into* the winning segment; tune the split to budget, fatigue speed, and production velocity
 - Keep a small exploration allocation alive even mid-scale — winners fatigue, and the next winner is rarely an iteration of the current one
 - Speed matters more in this state: a scaling window is finite
 
@@ -76,7 +76,7 @@ Each monthly-slate concept gets a **production tier**:
 |---|---|---|---|
 | **T1 — Iteration** | Hours | New hook/caption/crop on an existing asset | Extending proven winners |
 | **T2 — Remix** | Days | New creative from existing footage/assets/AI generation | Evidence tiers 1–3 |
-| **T3 — Production** | Weeks | Net-new shoot, creators, full build | Only validated angles (fidelity ladder in [hook-system.md](hook-system.md)) |
+| **T3 — Production** | Weeks | Net-new shoot, creators, full build | Only angles with own-account proof or a prior low-fi funnel signal (fidelity ladder in [hook-system.md](hook-system.md)) |
 
 **Capacity check — the rule that keeps roadmaps honest:** count what the team (or the AI pipeline) can produce *at quality* this month, and roadmap to that number. A 20-concept slate against 8 concepts of real capacity doesn't produce 20 ads; it produces 20 compromised ones and a burned-out team. Cut by evidence rank until the slate fits.
 

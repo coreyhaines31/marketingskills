@@ -1,6 +1,6 @@
 # The Hook System
 
-The first three seconds decide whether the rest of the ad exists. Hooks are the highest-leverage unit of paid creative work — and on modern ad platforms hook *diversity* is also an algorithm input: distinct hooks reach distinct pockets of the audience, while near-identical openings compete with each other for the same one. This reference is a complete system for generating, diagnosing, and iterating hooks — not a list of one-liners.
+The first three seconds decide whether the rest of the ad exists. Hooks are the highest-leverage unit of paid creative work — and hook *diversity* is what earns incremental learning: distinct hooks reach distinct pockets of the audience, while near-identical openings mostly re-test what you already know about the same one. This reference is a complete system for generating, diagnosing, and iterating hooks — not a list of one-liners.
 
 Use it inside Mode 1/3 generation (hooks for new concepts), Mode 2 iteration (diagnosing why an ad underperforms), and the creative strategy loop in [creative-roadmap.md](creative-roadmap.md).
 
@@ -101,7 +101,7 @@ Testing a hunch with an expensive shoot and testing a proven angle with a throwa
 
 ## Grounding Rules (inherited, non-negotiable)
 
-Hooks inherit every grounding rule from SKILL.md: every hook cites the corpus source its motivation came from; no invented claims, stats, or testimonials; verbatim customer language over paraphrase. Additionally, mine **organic content in the niche** (top-performing TikToks/Reels/posts, via the scraping and social-fetch tooling) for the audience's actual vocabulary — the words the niche uses ("GLP-1" vs. the clinical term, the slang for the pain) belong in the caption and spoken line. Organic mining is language research, not copying: take the vocabulary and the visual conventions, never a creator's specific creative.
+Hooks inherit every grounding rule from SKILL.md: every hook cites the corpus source its motivation came from; no invented claims, stats, or testimonials; verbatim customer language over paraphrase. Additionally, mine **organic content in the niche** (top-performing TikToks/Reels/posts, via the **scraping** skill or the social listening tooling in **social**) for the audience's actual vocabulary — the words the niche uses ("GLP-1" vs. the clinical term, the slang for the pain) belong in the caption and spoken line. Organic mining is language research, not copying: take the vocabulary and the visual conventions, never a creator's specific creative.
 
 ---
 
