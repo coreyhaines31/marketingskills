@@ -39,7 +39,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.0.1 | 2026-06-16 |
 | product-marketing | 2.0.0 | 2026-05-05 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
-| prospecting | 1.0.0 | 2026-05-26 |
+| prospecting | 1.1.0 | 2026-07-13 |
 | public-relations | 1.0.0 | 2026-06-10 |
 | referrals | 2.0.0 | 2026-05-05 |
 | revops | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.9 (2026-07-13)
+
+- **prospecting** (1.0.0 → 1.1.0): added a **fourth branch — Demand-signal discovery (find your first customers)**, the early-stage motion that finds first customers / design partners / beta users from recent public pain-demand-timing signals rather than firmographic list-building (re-expressed from the open-source `first-customer-finder` Codex skill, Kappaemme/MIT, credited; extended with our live-recency tooling). New `references/demand-signals.md`: how the branch differs from list-building (starts from a described problem, sources public discourse, wins on 10 strong evidence-backed matches over coverage), a product brief gate, the five signal query buckets (explicit demand / pain / workaround / switching / timing) with our tooling edge called out (last30days for Reddit/HN/X/web recency, social-fetch to read original threads, scraping/Firecrawl/Browserbase over snippets, deep-research, competitor-profiling, customer-research), a public-only source mix, a **demand-fit scoring rubric** (pain 25% / product fit 25% / timing 20% / reachability 15% / evidence quality 15%, 0-100 with bands — distinct from the ICP-fit Hot/Warm/Cold), prospect stages (high intent / problem aware / trigger present / potential fit), a per-prospect evidence ledger, manual-only source-based openers (never auto-send), the evidence-report structure (verdict → ICP → top prospect → shortlist → repeated patterns → 7-day manual outreach plan → limits), and the honesty rules (a cited signal is the entry ticket; label 'potential customer based on public signals,' never 'will buy'). SKILL.md adds the branch to the Pick-the-Branch table + deep-dive pointers and 'find my first customers,' 'early adopters,' 'design partners,' 'beta users,' 'who has this problem' triggers. Also closes two **compliance-guardrail gaps** across all branches: no data brokers / leaked datasets, and never target or infer sensitive/protected traits (health, financial hardship, political belief, sexuality, religion). New eval (id 7) covers branch selection, signal mining, demand-fit scoring, and the never-auto-send rule. Closes #447.
 
 ### 2.8.8 (2026-07-12)
 

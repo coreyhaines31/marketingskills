@@ -1,13 +1,13 @@
 ---
 name: prospecting
-description: When the user wants to find, qualify, and build a list of prospects to reach out to — across B2B SaaS, general B2B, or local small businesses. Also use when the user mentions "prospecting," "build a prospect list," "find prospects," "find leads," "lead gen list," "find SaaS companies that," "find B2B companies," "find local businesses," "ICP-fit accounts," "who should we go after," "outbound list," "target account list," "find clients near me," "businesses without websites," "prospect research," or "qualified leads." Use this for the list-building and qualification phase. For writing the outbound copy after the list is built, see cold-email. For deep competitive research on specific accounts, see competitor-profiling.
+description: When the user wants to find, qualify, and build a list of prospects to reach out to — across B2B SaaS, general B2B, or local small businesses. Also use when the user mentions "prospecting," "build a prospect list," "find prospects," "find leads," "lead gen list," "find SaaS companies that," "find B2B companies," "find local businesses," "ICP-fit accounts," "who should we go after," "outbound list," "target account list," "find clients near me," "businesses without websites," "prospect research," "qualified leads," "find my first customers," "early adopters," "design partners," "beta users," or "who has this problem." Use this for the list-building and qualification phase. For writing the outbound copy after the list is built, see cold-email. For deep competitive research on specific accounts, see competitor-profiling.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Prospecting
 
-You are an expert at building qualified prospect lists across three motions: B2B SaaS, general B2B, and local small businesses. Your goal is to turn an ICP definition into a verified, scored, ready-to-outreach lead sheet — using the right data sources, qualification signals, and compliance posture for each motion.
+You are an expert at building qualified prospect lists across four motions: B2B SaaS, general B2B, local small businesses, and early-stage demand-signal discovery (finding your first customers from public pain signals). Your goal is to turn an ICP definition into a verified, scored, ready-to-outreach lead sheet — using the right data sources, qualification signals, and compliance posture for each motion.
 
 ## Before Starting
 
@@ -23,13 +23,15 @@ Prospecting motions differ enough that the workflow forks at intake. Pick **one*
 | **SaaS** | Other SaaS companies / digital businesses | ICP fit + tech stack match + growth signals (funding, hiring, product velocity) | LinkedIn, BuiltWith, Crunchbase, Apollo, Clay, Clearbit, ProductHunt |
 | **B2B** | Non-SaaS B2B (services, manufacturers, enterprises, mid-market) | Industry + size + geographic fit + buying signals (trigger events, vendor changes) | Apollo, ZoomInfo, Clay, Clearbit, LinkedIn Sales Nav, industry directories |
 | **Local SMB** | Local small businesses (shops, gyms, restaurants, clinics, salons, services) | Active business + website status + proximity + decision-maker access | Google Maps, Yelp, local directories, Facebook, business websites |
+| **Demand-signal** | Early-stage: your first customers, design partners, or beta users | Evidence of the exact pain/demand/timing signal — a cited public source, not just firmographic fit | Forums, communities, reviews, GitHub issues, job posts, launch announcements (via last30days, social-fetch, scraping) |
 
-If the user describes a hybrid motion (e.g., "SMBs that are also SaaS"), pick the dominant branch and pull in qualification signals from the other.
+If the user describes a hybrid motion (e.g., "SMBs that are also SaaS"), pick the dominant branch and pull in qualification signals from the other. If the user is early-stage and needs their *first* customers or design partners — evidence of demand over list coverage — use the **Demand-signal** branch.
 
 For the branch-specific deep dives:
 - **SaaS** → see [references/saas-prospecting.md](references/saas-prospecting.md)
 - **B2B** → see [references/b2b-prospecting.md](references/b2b-prospecting.md)
 - **Local SMB** → see [references/local-prospecting.md](references/local-prospecting.md)
+- **Demand-signal** (find your first customers) → see [references/demand-signals.md](references/demand-signals.md)
 
 ---
 
@@ -71,7 +73,7 @@ For email contacts (B2B / SaaS branches), **always verify deliverability before 
 
 ### Phase 4 — Score and prioritize
 
-Apply this rubric across all branches:
+Apply this rubric for the **SaaS, B2B, and Local SMB** branches. The **Demand-signal** branch scores differently — 0–100 demand-fit, not Hot/Warm/Cold — see [references/demand-signals.md](references/demand-signals.md).
 
 | Score | Definition |
 |-------|------------|
@@ -83,6 +85,8 @@ Apply this rubric across all branches:
 Branch-specific signals refine the scoring — see each reference file. Default ratio target: ~20% Hot, ~30% Warm, rest Cold/Skip.
 
 ### Phase 5 — Output the lead sheet
+
+(SaaS / B2B / Local SMB. The **Demand-signal** branch ships an evidence report instead — see [references/demand-signals.md](references/demand-signals.md).)
 
 Default to a markdown table in chat. Switch to CSV when the list is >25 rows or the user explicitly asks for a file.
 
@@ -103,6 +107,8 @@ These apply to every branch. **Read first, every engagement.**
 4. **GDPR / CAN-SPAM / CASL aware.** Capture and retain the source URL and date for every contact you add to a list — required for downstream outreach compliance.
 5. **No reselling extracted data** from Google Maps, LinkedIn, or any platform whose terms prohibit it. List building for the user's own outreach is fine; productizing the list to sell is not.
 6. **Rate limit yourself.** Even on public sources, space requests. Don't fingerprint as a bot.
+7. **No breached, leaked, or unprovenanced data.** Don't source prospects from breached datasets, scraped-contact marketplaces, or list brokers with no source lineage. Licensed B2B data providers (Apollo, ZoomInfo, Clearbit, Clay) are fine when used within their ToS and with a lawful basis — the ban is on illicit/unprovenanced data, not on legitimate enrichment vendors.
+8. **Never target or infer sensitive traits.** Don't qualify, segment, or personalize on health, financial hardship, political belief, sexuality, religion, or other protected/sensitive attributes — even when a public post reveals them.
 
 For the full compliance reference (GDPR, CAN-SPAM, CASL, LinkedIn ToS, Google Maps ToS, Clay/Apollo/ZoomInfo use restrictions): see [references/compliance.md](references/compliance.md).
 
@@ -112,7 +118,7 @@ For the full compliance reference (GDPR, CAN-SPAM, CASL, LinkedIn ToS, Google Ma
 
 If missing, ask once, then infer reasonable defaults and continue:
 
-- **Branch** (SaaS / B2B / Local SMB) — usually inferable from context
+- **Branch** (SaaS / B2B / Local SMB / Demand-signal) — usually inferable from context; pick Demand-signal for early-stage first-customer discovery
 - **ICP description** — pull from `product-marketing.md` if present
 - **Target count** — default 25 for SaaS / B2B, 15 for Local SMB
 - **Geography** (essential for Local SMB; useful for B2B; less critical for SaaS)
@@ -214,7 +220,7 @@ score,business,category,area,distance_km,website_status,website_url,social_urls,
 
 ## Task-Specific Questions
 
-1. Which branch — SaaS, B2B, or Local SMB?
+1. Which branch — SaaS, B2B, Local SMB, or Demand-signal (early-stage, finding your first customers)?
 2. What's your ICP? (Or: should I pull from your product-marketing context?)
 3. How many qualified leads do you want?
 4. What tools do you have access to (Apollo / Clay / ZoomInfo / Hunter / Truelist / browser only)?
