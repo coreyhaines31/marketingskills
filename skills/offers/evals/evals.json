@@ -1,0 +1,90 @@
+{
+  "skill_name": "offers",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I sell a $3,000 cohort-based course for freelance designers. The curriculum is good but conversion is weak. Can you help me improve the offer?",
+      "expected_output": "Should check for product-marketing.md first. Should identify this as a course/cohort offer, not a SaaS pricing problem. Should state the current offer in plain language, then apply the value equation: dream outcome, perceived likelihood, time delay, effort and sacrifice. Should audit the six offer components: core deliverable, bonus stack, guarantee, scarcity or urgency, name, and price/payment structure. Should recommend one or two highest-leverage changes such as outcome-framed naming, proof, cohort scarcity, conditional guarantee, and targeted bonuses. Should avoid loud or manipulative direct-response language.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Identifies the business type as course/cohort",
+        "Applies the value equation",
+        "Audits all six offer components",
+        "Recommends targeted changes to the offer structure",
+        "Uses honest scarcity and guarantee guidance",
+        "Avoids manipulative or course-bro language"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "my offer isn't converting. it's a $5k done-for-you landing page service for B2B SaaS companies. right now it's basically 'we design and build your landing page in 3 weeks.'",
+      "expected_output": "Should trigger on casual phrasing. Should apply the diagnostic loop for a service/productized service offer. Should restate the offer plainly and identify missing anatomy: likely no named offer, no proof, no guarantee, no real scarcity, and no bonuses addressing objections. Should score or qualitatively assess the value-equation levers, especially perceived likelihood and effort/sacrifice. Should suggest productizing the service with a clearer outcome, scope, timeline, milestone guarantee or paid pilot guarantee, and objection-handling bonuses such as conversion teardown, copy brief, or implementation checklist. Should recommend fixing one binding constraint first rather than rebuilding everything.",
+      "assertions": [
+        "Triggers on casual phrasing",
+        "Applies service/productized service offer guidance",
+        "Restates the current offer in plain language",
+        "Identifies weak or missing offer anatomy components",
+        "Uses the value equation to find the binding constraint",
+        "Suggests a guarantee or pilot structure that matches the service",
+        "Recommends one focused iteration rather than changing everything"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We want to add scarcity to our evergreen consulting offer. Could we put a countdown timer on the page that resets every 24 hours?",
+      "expected_output": "Should reject fake scarcity clearly. Should explain that resetting countdown timers and false urgency torch trust and should not ship. Should look for real constraints instead: founder capacity, application windows, cohort dates, bonus expiry, seasonal availability, price-increase scheduling, or limited implementation slots. Should state that if no real constraint exists, the offer should skip scarcity and improve the value equation instead. Should provide a trustworthy alternative scarcity or urgency mechanism only if it can be enforced.",
+      "assertions": [
+        "Rejects resetting countdown timers",
+        "Explains why fake scarcity is harmful",
+        "Suggests honest scarcity formats",
+        "Connects scarcity to real enforceable constraints",
+        "Recommends skipping scarcity if no real constraint exists",
+        "Routes back to value-equation work when scarcity is not appropriate"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I'm building a $497 template pack. I want to say it includes $25,000 in bonuses and a 100% lifetime guarantee. Is that a good idea?",
+      "expected_output": "Should flag bonus inflation and generic/lifetime guarantee language as low-trust. Should apply bonus-stacking guidance: bonuses should close specific objections, be things that could credibly sell separately, and generally total less than about 2x the core price. Should recommend 3-5 specific bonuses such as quick-start walkthrough, implementation map, examples library, or updates, with defensible stated values. Should apply guarantee-design guidance for low-ticket info products, suggesting a clear short refund window or first-step guarantee rather than vague lifetime promises. Should avoid inflated value claims.",
+      "assertions": [
+        "Flags inflated bonus values",
+        "Flags vague or lifetime guarantee language",
+        "Applies bonuses-as-objection-handlers",
+        "Keeps bonus value defensible relative to price",
+        "Recommends 3-5 specific bonuses",
+        "Suggests a guarantee suitable for low-ticket info products",
+        "Avoids inflated value claims"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "We're a self-serve SaaS with three monthly tiers. Should we use bonuses and guarantees to make the Pro plan convert better?",
+      "expected_output": "Should recognize that for pure self-serve SaaS, pricing and packaging usually do more work than offer-construction tactics. Should cross-reference or defer to pricing for tier structure, value metric, freemium, and packaging decisions. Should still use offer framing where appropriate: annual prepay as an offer lever, onboarding support, implementation guarantee, trial-to-paid transition, or plan-specific proof. Should avoid forcing direct-response bonus stacks or fake urgency onto SaaS tiers.",
+      "assertions": [
+        "Recognizes self-serve SaaS as primarily a pricing/packaging problem",
+        "Cross-references pricing",
+        "Uses offer design only as supplemental guidance",
+        "Mentions annual prepay or onboarding as possible offer levers",
+        "Avoids direct-response bonus stacking for SaaS tiers",
+        "Avoids fake urgency"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Write the sales page for my new coaching offer. I already know the offer; I just need the page copy.",
+      "expected_output": "Should recognize this is primarily a copywriting request, not offer construction. Should defer to or cross-reference the copywriting skill for writing the sales page. Should optionally offer to sanity-check the underlying offer anatomy first if the user wants, but should not run a full offer-design process unless the offer itself is unclear or weak.",
+      "assertions": [
+        "Recognizes sales page copy as copywriting scope",
+        "References or defers to copywriting",
+        "Does not run a full offer-design process by default",
+        "Optionally offers a light offer-anatomy sanity check"
+      ],
+      "files": []
+    }
+  ]
+}
