@@ -14,15 +14,15 @@ Don't produce one for a single headline tweak or a quick internal gut-check — 
 
 ## How it's built
 
-The template renders entirely from a `DATA` object near the top of the file. Populate it from your generated concepts and everything else renders — tabs, previews, storyboard, copy panel. You do not edit the render code below the data block.
+The template renders entirely from a JSON block near the top of the file — `<script type="application/json" id="review-data">`. Populate it from your generated concepts and everything else renders — tabs, previews, storyboard, copy panel. You do not edit the render code below the data block. The annotated model below is shown with `//` comments for readability; **the file itself is strict JSON** — no comments, no trailing commas (see "Populating the data safely").
 
 ### Data model
 
-```js
-const DATA = {
+```jsonc
+{
   project: {
     brand: "Truvani",              // required
-    agency: "Light Labs",          // optional — presence enables the co-brand line + handle toggle default
+    agency: "Light Labs",          // optional — adds the co-brand line + the default handle fallback (partner label/initials)
     date: "2026-07-12",            // optional
     note: "one-line context"       // optional
   },
@@ -60,7 +60,7 @@ const DATA = {
     }
     // … 2–4 concepts is the sweet spot; more than that and the tabs stop being a decision
   ]
-};
+}
 ```
 
 ### The frame storyboard = a carousel narrative arc
@@ -80,6 +80,13 @@ Ship review pages with placeholders freely; they communicate the concept. Swap i
 Every concept must carry a `grounding` line, and it must be true. This is the same rule as the Grounded Inputs corpus, surfaced to the client: state exactly what is real (which lab panel, which review, which product photography) and, by omission, what is illustrative. The source pattern's line is the model — *"Results are Truvani's actual Light Labs panel (Vanilla, tested Nov 13, 2025). Imagery is Truvani's own product & lifestyle photography."*
 
 Never present invented stats, fabricated test results, or stock imagery as the brand's own. If a concept's proof isn't real yet, the grounding line says so ("Results shown are illustrative pending the lab panel") — a review page that launders fiction as fact is worse than no review page.
+
+## Populating the data safely
+
+The `DATA` lives in a `<script type="application/json" id="review-data">` block — it's inert data (parsed with `JSON.parse`), not executable code, so a value can never run as script. Two rules when you write it:
+
+- **Valid JSON only** — double-quoted keys and strings, no comments, no trailing commas. (The page shows a clear error banner if the JSON is malformed, so a typo fails loud, not silent.)
+- **Escape `<` as `\u003c` in every text value.** A value literally containing `</script>` would otherwise close the data block early. Since agents write the JSON, apply this escape mechanically to all string values. All values are HTML-escaped again at render time, so this is defense-in-depth, but the source-level escape is the one that matters — do it.
 
 ## Producing and delivering it
 
