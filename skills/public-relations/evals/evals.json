@@ -1,0 +1,92 @@
+{
+  "skill_name": "public-relations",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We want press for our B2B SaaS launch next month. We have proprietary data about how support teams are using AI, a founder available for interviews, and a press page draft. Help us plan PR.",
+      "expected_output": "Should check for product-marketing.md first. Should identify this as earned media/PR work and recommend a mix of proactive pitching, owned press page/media kit, and possibly launch coordination. Should emphasize that the story is the data/trend/conflict, not just the product launch. Should build a 4-8 week pitching plan with a media list of journalists who actually cover the beat, scored by fit. Should suggest pitch angles such as data story, trend connector, and exclusive launch/milestone. Should include press page requirements and realistic measurement such as placements, backlink quality, referral traffic, brand search lift, AI citation rate, and sales conversations citing the article.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Identifies earned media/PR scope",
+        "Makes the story about data or trend rather than the product alone",
+        "Recommends proactive pitching and owned press assets",
+        "Builds a 4-8 week plan",
+        "Uses journalist fit scoring or targeted media-list building",
+        "Includes realistic PR measurement"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "A big regulation just dropped in our industry this morning. We're a compliance startup and want to newsjack it. What should we do in the next two hours?",
+      "expected_output": "Should apply the newsjacking detect -> score -> angle -> pitch loop. Should score whether the story is timely, relevant, has a contrarian or useful angle, and whether the company has credibility. Should move fast, recommending a quote-worthy angle, 3-5 relevant journalists currently covering the topic, a short pitch, and a public trail post on the company blog or LinkedIn. Should warn that speed matters and if they cannot draft and respond quickly, they should skip the pitch. Should avoid tragedy/politics/crisis exploitation if relevant.",
+      "assertions": [
+        "Applies the newsjacking loop",
+        "Uses newsworthiness scoring",
+        "Prioritizes speed and a sub-2-hour workflow",
+        "Develops a specific quote-worthy angle",
+        "Targets 3-5 relevant journalists",
+        "Recommends a public trail post",
+        "Includes skip criteria or sensitivity guardrails"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Find 500 journalists we can blast with our funding announcement.",
+      "expected_output": "Should reject the blast approach and explain that PR should target journalists who actually cover the beat. Should recommend building a focused list of roughly 20-40 journalists and scoring them by beat fit, recency, audience fit, and engagement. Should suggest personalized Tier 1 pitches for the top 20, lightly customized Tier 2 pitches, and skipping poor-fit journalists. Should mention checking each journalist's last 5 articles and respecting people who say no PR pitches. Should avoid generic editor-in-chief addresses and mass CC/BCC outreach.",
+      "assertions": [
+        "Rejects mass blasting journalists",
+        "Recommends a focused 20-40 person media list",
+        "Applies journalist fit scoring",
+        "Checks recent articles and beat fit",
+        "Segments pitch effort by fit tier",
+        "Avoids generic editor addresses and mass emails",
+        "Respects no-pitch preferences"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Can you help me answer this Qwoted request? Reporter wants a 200-word expert quote on AI adoption in marketing teams by tomorrow.",
+      "expected_output": "Should apply the press-platforms response workflow for Qwoted/HARO/Featured-style requests. Should assess fit, deadline, credentials, and whether the user has a specific POV. Should produce or outline a response under 200 words with a concrete credential, quotable specific answer, short bio, and contact details. Should avoid generic advice and PR fluff. Should recommend logging the response and tracking outcome.",
+      "assertions": [
+        "Recognizes Qwoted as inbound press-request workflow",
+        "Assesses fit and deadline",
+        "Keeps response under 200 words",
+        "Includes concrete credential",
+        "Provides a quotable specific answer",
+        "Avoids generic PR fluff",
+        "Recommends logging and tracking the response"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "We need to submit our startup to Product Hunt, BetaList, and a bunch of AI directories. Is this PR?",
+      "expected_output": "Should recognize that startup/SaaS/AI directory submissions are not the public-relations skill's scope. Should defer to or cross-reference directory-submissions. Should explain that PR handles earned media with journalists, podcasts, newsletters, newsjacking, and press requests, while directory submissions are a different intent and workflow. Should not build a media pitching plan for this request.",
+      "assertions": [
+        "Recognizes directory submissions as out of PR scope",
+        "References or defers to directory-submissions",
+        "Explains the difference between earned media and directories",
+        "Does not create a journalist pitching plan"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Draft a press pitch for TechCrunch. Our product is revolutionary, game-changing, and disruptive. We just launched and want coverage.",
+      "expected_output": "Should improve the pitch quality rather than echoing banned vocabulary. Should avoid words like revolutionary, game-changing, disruptive, and synergy. Should ask or infer the real story hook: data, milestone, customer impact, trend, conflict, or founder POV. Should keep the pitch short, ideally under 150 words, with a subject line specific enough to predict the article. Should make clear that TechCrunch or any outlet requires a journalist-fit check, not a publication-level blast. Should include a clear ask such as interview, exclusive, quote, or embargo only when appropriate.",
+      "assertions": [
+        "Avoids banned PR vocabulary",
+        "Finds or asks for the real story hook",
+        "Keeps the pitch concise",
+        "Creates a specific subject line",
+        "Focuses on journalist fit rather than publication-level pitching",
+        "Includes a clear ask",
+        "Does not claim launch alone is newsworthy"
+      ],
+      "files": []
+    }
+  ]
+}
