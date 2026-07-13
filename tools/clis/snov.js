@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const CLIENT_ID = process.env.SNOV_CLIENT_ID
 const CLIENT_SECRET = process.env.SNOV_CLIENT_SECRET
 const BASE_URL = 'https://api.snov.io/v1'
 
-if (!CLIENT_ID || !CLIENT_SECRET) {
+if ((!CLIENT_ID || !CLIENT_SECRET) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'SNOV_CLIENT_ID and SNOV_CLIENT_SECRET environment variables required' }))
   process.exit(1)
 }
@@ -69,7 +70,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

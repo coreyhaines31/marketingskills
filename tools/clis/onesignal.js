@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const REST_API_KEY = process.env.ONESIGNAL_REST_API_KEY
 const APP_ID = process.env.ONESIGNAL_APP_ID
 const BASE_URL = 'https://api.onesignal.com'
 
-if (!REST_API_KEY) {
+if ((!REST_API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'ONESIGNAL_REST_API_KEY environment variable required' }))
   process.exit(1)
 }
 
-if (!APP_ID) {
+if ((!APP_ID) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'ONESIGNAL_APP_ID environment variable required' }))
   process.exit(1)
 }
@@ -56,7 +57,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

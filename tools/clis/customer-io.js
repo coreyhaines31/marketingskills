@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const APP_KEY = process.env.CUSTOMERIO_APP_KEY
 const SITE_ID = process.env.CUSTOMERIO_SITE_ID
 const API_KEY = process.env.CUSTOMERIO_API_KEY
@@ -10,7 +11,7 @@ const APP_URL = 'https://api.customer.io/v1'
 const hasTrackAuth = SITE_ID && API_KEY
 const hasAppAuth = APP_KEY
 
-if (!hasTrackAuth && !hasAppAuth) {
+if ((!hasTrackAuth && !hasAppAuth) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'CUSTOMERIO_APP_KEY (for App API) or CUSTOMERIO_SITE_ID + CUSTOMERIO_API_KEY (for Track API) environment variables required' }))
   process.exit(1)
 }
@@ -83,7 +84,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

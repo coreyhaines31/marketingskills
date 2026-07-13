@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.EXA_API_KEY
 const BASE_URL = 'https://api.exa.ai'
 
-if (!API_KEY) {
+if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'EXA_API_KEY environment variable required' }))
   process.exit(1)
 }
@@ -69,7 +70,7 @@ function buildContents(args) {
   return Object.keys(contents).length ? contents : null
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, ...rest] = args._
 
 async function main() {
