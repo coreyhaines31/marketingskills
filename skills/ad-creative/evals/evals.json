@@ -130,6 +130,21 @@
         "Includes a month-end retro plan that feeds the next slate"
       ],
       "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "We generated four ad concepts for a client (an organic skincare brand) and need to send them something they can actually look at and approve — with the Instagram preview, the carousel frames, and the different headline options they can compare. Can you put that together?",
+      "expected_output": "Should recognize this as a creative review page request and apply references/creative-review-page.md + the assets/creative-review-template.html template rather than producing plain markdown. Should copy the template into the output folder and populate its DATA object with the four concepts as tabs, each with an in-feed Instagram preview, a labeled frame-by-frame storyboard (frames labeled by narrative job — Hook / Problem / Proof / Ask — not by pictured content), selectable headline variations, primary text, and destination/CTA. Should curate to a reviewable number of concepts (2-4) rather than dumping everything. Should include a required grounding disclosure per concept stating what is real (product photography, any claims/results) and label illustrative proof as illustrative — never present invented stats or stock imagery as the brand's own. Should use styled placeholders for frames not yet rendered to image, and keep image paths relative. Should explain how to deliver it (open locally, host on a static host, or hand off the file).",
+      "assertions": [
+        "Produces a creative review page from the HTML template, not plain markdown",
+        "Populates the DATA object (concept tabs, in-feed preview, frame storyboard, headline variations, copy, destination)",
+        "Labels storyboard frames by narrative job rather than by pictured content",
+        "Includes a required grounding/disclosure line per concept; labels illustrative proof as illustrative",
+        "Does not present invented stats or stock imagery as the brand's real assets",
+        "Uses placeholders for unrendered frames and keeps image paths relative",
+        "Explains how to deliver the page (open locally / host / hand off the file)"
+      ],
+      "files": []
     }
   ]
 }

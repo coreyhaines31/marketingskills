@@ -1,8 +1,8 @@
 ---
 name: ad-creative
-description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'ad performance optimization,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'static ad concepts,' 'ad templates,' 'iMessage ad,' 'chat reveal ad,' 'text message ad,' 'fake DM ad,' 'ChatGPT ad,' 'Apple Notes ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'motion video ad,' 'faceless video ad,' 'animated explainer ad,' 'motion collage ad,' or 'I need more ad variations.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting."
+description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'ad performance optimization,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'static ad concepts,' 'ad templates,' 'iMessage ad,' 'chat reveal ad,' 'text message ad,' 'fake DM ad,' 'ChatGPT ad,' 'Apple Notes ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'creative review page,' 'present ad creative for approval,' 'motion video ad,' 'faceless video ad,' 'animated explainer ad,' 'motion collage ad,' or 'I need more ad variations.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting."
 metadata:
-  version: 2.6.0
+  version: 2.7.0
 ---
 
 # Ad Creative
@@ -61,7 +61,7 @@ Pull performance data → Identify winning patterns → Generate new variations 
 ```
 
 ### Mode 3: Scaled Static Batches (Grounded)
-For recurring static ad production at volume (e.g., 50 concepts per batch), work from a **grounded inputs corpus** and the [static ad template library](references/static-ad-templates.md). Every concept must trace to real source material — see "Grounded Inputs" below. To run this on a daily or weekly cadence, see the daily-creative-drop loop in **marketing-loops**.
+For recurring static ad production at volume (e.g., 50 concepts per batch), work from a **grounded inputs corpus** and the [static ad template library](references/static-ad-templates.md). Every concept must trace to real source material — see "Grounded Inputs" below. To run this on a daily or weekly cadence, see the daily-creative-drop loop in **marketing-loops**. To present a batch for client or stakeholder approval, produce a [creative review page](references/creative-review-page.md).
 
 ### Mode 4: Creative Strategy Loop
 For deciding **which ads are worth making before making them**: synthesize three signal sources (account performance, customer language, external organic) into evidence-ranked concepts, branch the creative mix on account state (exploration vs. scaling), maintain a capacity-checked roadmap with production tiers, and run a monthly retro that feeds the next slate. The full system lives in [references/creative-roadmap.md](references/creative-roadmap.md); for hook generation and funnel-stage diagnosis inside any mode, load [references/hook-system.md](references/hook-system.md).
@@ -323,6 +323,10 @@ outputs/YYYY-MM-DD/
 ```
 
 Per-concept format is defined in [references/static-ad-templates.md](references/static-ad-templates.md). The human workflow this supports: open the folder, scan INDEX.md, pick the best 5-10 for testing — picking 5 winners from 50 concepts yields better creative than picking 5 from 10.
+
+### Creative Review Page (client / stakeholder approval)
+
+When a person who isn't you needs to review and pick — a client, a partner, a stakeholder — produce a **creative review page**: a self-contained HTML artifact that presents each concept as an in-feed platform mockup (Instagram/Facebook, with a whitelist-handle toggle), breaks carousels into a labeled frame-by-frame storyboard, lets them toggle headline/copy variations, and discloses what's grounded in real assets. It's the visual upgrade to INDEX.md — a decision made off one link instead of by reading markdown. The template ships at [assets/creative-review-template.html](assets/creative-review-template.html) (one file, no build, hostable anywhere); populate its `DATA` object from your generated concepts. Full data model, grounding rules (the disclosure block is required), and delivery in [references/creative-review-page.md](references/creative-review-page.md).
 
 ### Iteration Report
 

@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.6.0 | 2026-07-10 |
+| ad-creative | 2.7.0 | 2026-07-12 |
 | ai-seo | 2.2.0 | 2026-07-09 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.8 (2026-07-12)
+
+- **ad-creative** (2.6.0 → 2.7.0): added the **creative review page** — a shareable, self-contained HTML artifact that presents generated concepts for a client or stakeholder to review and pick (the visual upgrade to `INDEX.md`; pattern reverse-engineered from a real agency creative-approval page, re-expressed originally). New `assets/creative-review-template.html`: one file, inline CSS+JS, no build or dependencies, driven entirely by a `DATA` object — renders concept tabs (each a strategic angle), a pixel-accurate in-feed Instagram/Facebook preview with a whitelist-handle toggle, a labeled frame-by-frame storyboard (tap to jump), selectable headline variations that overlay the preview, primary text, destination/CTA/offer, optional rollout mechanics, and a required grounding disclosure; frames render real images (URL / relative path / data URI) or styled label+prompt placeholders for concepts not yet rendered. New `references/creative-review-page.md`: when to produce one, the full data model, the frame-storyboard-as-carousel-arc link to `carousel-frameworks.md`, the hard grounding rule (every concept discloses what's real; illustrative proof is labeled illustrative — never launder fiction as fact), and how to populate/verify/deliver (open locally, host on any static host, or hand off the file). SKILL.md adds a Creative Review Page output-format section, a Mode 3 pointer, and 'creative review page,' 'present ad creative,' 'share ad concepts' triggers. New eval (id 10) covers template use over markdown, narrative-job frame labels, and the grounding disclosure. Browser-verified: concept switching, platform/handle toggles, and frame navigation all render correctly.
 
 ### 2.8.7 (2026-07-10)
 
