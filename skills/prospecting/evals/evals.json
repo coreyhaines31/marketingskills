@@ -102,6 +102,21 @@
         "References truelist.md or data-sources.md"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I just built a tool that automates failed-payment follow-up for gym owners. I have no customers yet. Help me find my first ten — the people who are actually dealing with this problem right now.",
+      "expected_output": "Should select the Demand-signal branch (early-stage, first customers, evidence-of-demand) and load references/demand-signals.md — NOT the SMB/B2B list-building branches. Should start with a product brief, then mine the five signal buckets (explicit demand / pain / workaround / switching / timing) across public discourse (forums, communities, reviews, GitHub issues, job posts) — using last30days for recency, social-fetch/scraping to read original pages, not qualifying from snippets. Should score prospects on demand-fit (pain 25 / product fit 25 / timing 20 / reachability 15 / evidence quality 15, 0-100 with bands) rather than ICP-fit Hot/Warm/Cold, and require a cited public signal for every primary-shortlist prospect. Should draft source-based openers but never auto-send. Should produce an evidence report (verdict → ICP → top prospect → shortlist with sources+scores → repeated patterns → 7-day manual outreach plan → limits) and label prospects as 'potential customers based on public signals,' not confirmed buyers. Should honor the compliance guardrails including no data brokers/leaked data and no sensitive-trait targeting.",
+      "assertions": [
+        "Selects the Demand-signal branch, not the SMB/B2B/SaaS list-building branches",
+        "Mines the five signal buckets from public discourse rather than contact databases",
+        "Uses recency/original-source tooling (last30days, social-fetch, scraping) and does not qualify from snippets",
+        "Scores on the demand-fit rubric (0-100 weighted), not ICP-fit Hot/Warm/Cold",
+        "Requires a cited public signal for every primary-shortlist prospect",
+        "Drafts openers but never auto-sends; labels prospects as potential-based-on-public-signals",
+        "Produces the evidence report structure with a 7-day manual outreach plan and limits"
+      ],
+      "files": []
     }
   ]
 }
