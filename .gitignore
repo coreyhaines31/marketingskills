@@ -1,8 +1,9 @@
 # Dependencies
 node_modules/
 
-# Skill install artifacts (npx skills add)
-.agents/
+# Skill install artifacts (npx skills add) — except the Codex plugin marketplace, which is checked in
+.agents/*
+!.agents/plugins/
 .claude/
 skills-lock.json
 
