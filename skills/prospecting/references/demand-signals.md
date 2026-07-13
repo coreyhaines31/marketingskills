@@ -53,7 +53,11 @@ Search several angles, not one query repeated. Adapt wording to how the audience
 
 Forums and public community threads · public social posts and replies · product and app-marketplace reviews · GitHub issues and feature requests · public company pages, job posts, changelogs, launch announcements · "looking for a tool" posts and directories.
 
-Avoid private groups, gated communities, data brokers, leaked datasets, and any source whose terms prohibit access — the same compliance guardrails as every other branch, including the no-sensitive-traits rule. Quote minimally, paraphrase by default, and link every material pain or timing signal.
+Avoid private groups, gated communities, data brokers, leaked datasets, and any source whose terms prohibit access — the same compliance guardrails as every other branch (see SKILL.md), including the no-sensitive-traits rule.
+
+**Business/professional context only.** Qualify and reach out only where someone is posting in a professional or business capacity about a work problem (a founder in an indie-hackers thread, a developer in a GitHub issue, an ops lead in a subreddit for their role). Exclude personal-distress contexts entirely — health, financial hardship, addiction, grief, or any consumer support forum where people are venting personal problems, even if your product is tangentially relevant. When the motion is genuinely consumer (B2C), a public pain post is not on its own a lawful basis for cold outreach — reach people through the channel's own norms (reply publicly where replying is expected) and never DM a stranger off a personal post.
+
+Quote minimally, paraphrase by default, and link every material pain or timing signal.
 
 ## Step 4 — Score on demand-fit (not ICP-fit)
 
@@ -93,7 +97,7 @@ Displayed name (company/project/public professional) · source title + URL · vi
 
 ## Step 5 — Draft outreach, never send it
 
-Recommend the most natural channel *already associated with the source* (reply in the thread, the public professional profile). Draft one opener, under ~90 words, in this shape:
+Recommend the most natural channel *already associated with the source*, and only where a reply is a normal part of that channel (reply in the public thread, respond via a public professional profile). Don't turn a public post into a private DM the poster didn't invite, and never contact someone off a personal-distress post. Draft one opener, under ~90 words, in this shape:
 
 1. mention the public context naturally
 2. connect it to the exact problem
