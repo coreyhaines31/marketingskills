@@ -143,6 +143,8 @@ Install via Claude Code's built-in plugin system:
 /plugin install marketing-skills
 ```
 
+> **Note:** `/plugin` is only available in an interactive Claude Code CLI session. It is **not** available in Claude Code on the web, GitHub Actions, or other non-interactive/remote environments — in those cases you'll see `/plugin isn't available in this environment`. Use **Option 1 (`npx skills`)** instead.
+
 ### Option 3: Clone and Copy
 
 Clone the entire repo and copy the skills folder:
