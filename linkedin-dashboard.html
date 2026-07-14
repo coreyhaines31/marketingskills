@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Growth Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0a66c2;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .header-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #0a66c2;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric {
+            margin-bottom: 20px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="number"], input[type="date"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input[type="number"]:focus, input[type="date"]:focus {
+            outline: none;
+            border-color: #0a66c2;
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #0a66c2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #004182;
+        }
+
+        button.secondary {
+            background: #e7f3ff;
+            color: #0a66c2;
+            margin-top: 15px;
+        }
+
+        button.secondary:hover {
+            background: #d0e8ff;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0a66c2;
+            margin-top: 10px;
+        }
+
+        .metric-change {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .metric-change.positive {
+            color: #28a745;
+        }
+
+        .metric-change.negative {
+            color: #dc3545;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checklist li:hover {
+            background: #e7f3ff;
+        }
+
+        .checklist li input[type="checkbox"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checklist li.completed {
+            opacity: 0.6;
+        }
+
+        .checklist li.completed span {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .messages-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .messages-input input {
+            flex: 1;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .status-badge.good {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.alert {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .export-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .data-history {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .history-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0a66c2;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 LinkedIn Growth Dashboard</h1>
+            <p class="header-subtitle">Track your LinkedIn growth, optimize your profile, and monitor engagement</p>
+        </header>
+
+        <div class="grid">
+            <!-- Growth Metrics -->
+            <div class="card">
+                <h2>📈 Growth Metrics</h2>
+
+                <div class="metric">
+                    <label class="metric-label">Followers</label>
+                    <div class="metric-input">
+                        <input type="number" id="followers" placeholder="Current followers">
+                        <button onclick="updateMetric('followers')">Update</button>
+                    </div>
+                    <div class="metric-value" id="followersDisplay">-</div>
+                    <div class="metric-change" id="followersChange"></div>
+                </div>
+
+                <div class="metric">
+                    <label class="metric-label">Profile Views (This Month)</label>
+                    <div class="metric-input">
+                        <input type="number" id="profileViews" placeholder="Profile views">
+                        <button onclick="updateMetric('profileViews')">Update</button>
+                    </div>
+                    <div class="metric-value" id="profileViewsDisplay">-</div>
+                    <div class="metric-change" id="profileViewsChange"></div>
+                </div>
+
+                <div class="metric">
+                    <label class="metric-label">Connections</label>
+                    <div class="metric-input">
+                        <input type="number" id="connections" placeholder="Total connections">
+                        <button onclick="updateMetric('connections')">Update</button>
+                    </div>
+                    <div class="metric-value" id="connectionsDisplay">-</div>
+                    <div class="metric-change" id="connectionsChange"></div>
+                </div>
+
+                <div class="metric">
+                    <label class="metric-label">Post Engagement (Avg)</label>
+                    <div class="metric-input">
+                        <input type="number" id="postEngagement" placeholder="Average likes/comments per post">
+                        <button onclick="updateMetric('postEngagement')">Update</button>
+                    </div>
+                    <div class="metric-value" id="postEngagementDisplay">-</div>
+                </div>
+            </div>
+
+            <!-- Messages & Activity -->
+            <div class="card">
+                <h2>💬 Messages & Activity</h2>
+
+                <div class="metric">
+                    <label class="metric-label">Unread Messages</label>
+                    <div class="metric-input">
+                        <input type="number" id="unreadMessages" placeholder="0">
+                        <button onclick="updateMetric('unreadMessages')">Update</button>
+                    </div>
+                    <div class="metric-value" id="unreadMessagesDisplay">-</div>
+                    <div id="messageAlert"></div>
+                </div>
+
+                <div class="metric">
+                    <label class="metric-label">Connection Requests Pending</label>
+                    <div class="metric-input">
+                        <input type="number" id="pendingRequests" placeholder="0">
+                        <button onclick="updateMetric('pendingRequests')">Update</button>
+                    </div>
+                    <div class="metric-value" id="pendingRequestsDisplay">-</div>
+                </div>
+
+                <div class="metric">
+                    <label class="metric-label">Last Check-in Date</label>
+                    <div class="metric-input">
+                        <input type="date" id="lastCheckDate">
+                        <button onclick="updateMetric('lastCheckDate')">Set</button>
+                    </div>
+                </div>
+
+                <button class="secondary" onclick="showActivityTips()">📋 View Activity Tips</button>
+            </div>
+
+            <!-- Profile Optimization Checklist -->
+            <div class="card">
+                <h2>✅ Profile Optimization</h2>
+                <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Complete these to optimize your profile</p>
+
+                <ul class="checklist">
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Profile photo is professional & recent</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Headline includes keywords (3-5)</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> About section includes call-to-action</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Experience section complete & detailed</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Skills endorsed (top 3)</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Website/portfolio linked</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Open to opportunities toggle enabled</li>
+                    <li><input type="checkbox" class="optimization-check" onchange="updateChecklist(this)"> Posted in last 30 days</li>
+                </ul>
+
+                <div id="optimizationScore"></div>
+            </div>
+
+            <!-- Growth Chart -->
+            <div class="card full-width">
+                <h2>📊 Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Health Summary -->
+            <div class="card">
+                <h2>🏥 Profile Health</h2>
+                <div id="healthSummary" style="font-size: 14px; line-height: 1.8;">
+                    <p>Fill in metrics above to see health status</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <h2>⚡ Quick Actions</h2>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="secondary" onclick="exportData()">📥 Export Data as CSV</button>
+                    <button class="secondary" onclick="resetData()">🔄 Reset All Data</button>
+                    <button class="secondary" onclick="showGrowthTips()">💡 Growth Tips</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'linkedinDashboard';
+        let growthChart = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            displayMetrics();
+            updateChart();
+        });
+
+        function getStoredData() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : {
+                history: [],
+                checklist: {}
+            };
+        }
+
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadData() {
+            const data = getStoredData();
+
+            // Load checklist
+            const checkboxes = document.querySelectorAll('.optimization-check');
+            checkboxes.forEach(checkbox => {
+                const index = Array.from(checkboxes).indexOf(checkbox);
+                if (data.checklist[index]) {
+                    checkbox.checked = true;
+                    checkbox.parentElement.classList.add('completed');
+                }
+            });
+
+            // Load latest metrics
+            if (data.history.length > 0) {
+                const latest = data.history[data.history.length - 1];
+                document.getElementById('followers').value = latest.followers || '';
+                document.getElementById('profileViews').value = latest.profileViews || '';
+                document.getElementById('connections').value = latest.connections || '';
+                document.getElementById('postEngagement').value = latest.postEngagement || '';
+                document.getElementById('unreadMessages').value = latest.unreadMessages || '';
+                document.getElementById('pendingRequests').value = latest.pendingRequests || '';
+                document.getElementById('lastCheckDate').value = latest.date || '';
+            }
+        }
+
+        function updateMetric(metricId) {
+            const data = getStoredData();
+            const input = document.getElementById(metricId);
+            const value = input.value;
+
+            if (!value) return;
+
+            // Add to history
+            if (data.history.length === 0 || data.history[data.history.length - 1].date !== getTodayDate()) {
+                data.history.push({
+                    date: getTodayDate(),
+                    followers: 0,
+                    profileViews: 0,
+                    connections: 0,
+                    postEngagement: 0,
+                    unreadMessages: 0,
+                    pendingRequests: 0
+                });
+            }
+
+            const latest = data.history[data.history.length - 1];
+            latest[metricId] = parseFloat(value);
+
+            saveData(data);
+            displayMetrics();
+            updateChart();
+        }
+
+        function displayMetrics() {
+            const data = getStoredData();
+            if (data.history.length === 0) return;
+
+            const latest = data.history[data.history.length - 1];
+            const previous = data.history.length > 1 ? data.history[data.history.length - 2] : null;
+
+            // Update displays
+            updateDisplay('followers', latest.followers, previous?.followers);
+            updateDisplay('profileViews', latest.profileViews, previous?.profileViews);
+            updateDisplay('connections', latest.connections, previous?.connections);
+            updateDisplay('postEngagement', latest.postEngagement, previous?.postEngagement);
+            updateDisplay('unreadMessages', latest.unreadMessages, previous?.unreadMessages);
+            updateDisplay('pendingRequests', latest.pendingRequests, previous?.pendingRequests);
+
+            // Update health summary
+            updateHealthSummary(latest, previous);
+            updateOptimizationScore();
+
+            // Message alert
+            if (latest.unreadMessages > 5) {
+                document.getElementById('messageAlert').innerHTML = '<div class="status-badge alert">⚠️ Action: Review unread messages</div>';
+            } else if (latest.unreadMessages > 0) {
+                document.getElementById('messageAlert').innerHTML = '<div class="status-badge warning">📨 ' + latest.unreadMessages + ' unread</div>';
+            } else {
+                document.getElementById('messageAlert').innerHTML = '<div class="status-badge good">✓ All caught up</div>';
+            }
+        }
+
+        function updateDisplay(metricId, current, previous) {
+            const display = document.getElementById(metricId + 'Display');
+            const changeEl = document.getElementById(metricId + 'Change');
+
+            if (current === 0) {
+                display.textContent = '-';
+                if (changeEl) changeEl.textContent = '';
+            } else {
+                display.textContent = Math.round(current);
+
+                if (changeEl && previous !== null && previous !== undefined && previous !== 0) {
+                    const change = current - previous;
+                    const percent = ((change / previous) * 100).toFixed(0);
+                    const arrow = change > 0 ? '↑' : change < 0 ? '↓' : '→';
+                    const className = change > 0 ? 'positive' : change < 0 ? 'negative' : '';
+                    changeEl.innerHTML = `<span class="${className}">${arrow} ${change > 0 ? '+' : ''}${change} (${change > 0 ? '+' : ''}${percent}%)</span>`;
+                }
+            }
+        }
+
+        function updateHealthSummary(latest, previous) {
+            let health = '';
+            let isHealthy = true;
+
+            if (latest.followers > 0) {
+                health += `<p>👥 <strong>${latest.followers}</strong> followers`;
+                if (previous && previous.followers > 0) {
+                    const growth = latest.followers - previous.followers;
+                    health += ` (${growth > 0 ? '+' : ''}${growth})`;
+                }
+                health += '</p>';
+            }
+
+            if (latest.profileViews > 0) {
+                health += `<p>👁️ <strong>${latest.profileViews}</strong> profile views this month`;
+                if (latest.profileViews < 10) {
+                    health += ' <span class="status-badge warning">↑ Could increase</span>';
+                    isHealthy = false;
+                }
+                health += '</p>';
+            }
+
+            if (latest.unreadMessages > 5) {
+                health += `<p>⚠️ <strong>${latest.unreadMessages}</strong> unread messages - prioritize replies</p>`;
+                isHealthy = false;
+            }
+
+            if (!health) health = '<p>No data yet. Update metrics to see health status.</p>';
+
+            document.getElementById('healthSummary').innerHTML = health;
+        }
+
+        function updateOptimizationScore() {
+            const checkboxes = document.querySelectorAll('.optimization-check');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percent = Math.round((checked / checkboxes.length) * 100);
+
+            let badge = 'warning';
+            if (percent === 100) badge = 'good';
+            else if (percent < 50) badge = 'alert';
+
+            document.querySelector('.optimization-check').parentElement.parentElement.insertAdjacentHTML('beforeend', `
+                <div class="status-badge ${badge}" style="margin-top: 15px;">
+                    Profile Optimization: ${percent}% complete
+                </div>
+            `);
+        }
+
+        function updateChecklist(checkbox) {
+            const data = getStoredData();
+            const checkboxes = document.querySelectorAll('.optimization-check');
+            const index = Array.from(checkboxes).indexOf(checkbox);
+
+            data.checklist[index] = checkbox.checked;
+            checkbox.parentElement.classList.toggle('completed');
+
+            saveData(data);
+            displayMetrics();
+        }
+
+        function updateChart() {
+            const data = getStoredData();
+            if (data.history.length === 0) {
+                document.getElementById('growthChart').textContent = 'No data yet. Add metrics above to see growth chart.';
+                return;
+            }
+
+            const canvas = document.getElementById('growthChart');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.offsetWidth;
+            const height = 300;
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const followers = data.history.map(h => h.followers || 0);
+            const maxValue = Math.max(...followers, ...data.history.map(h => h.connections || 0), ...data.history.map(h => h.profileViews || 0)) || 100;
+
+            // Draw background
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw grid
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 5; i++) {
+                const y = (height / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+
+            const padding = 40;
+            const graphWidth = width - padding * 2;
+            const graphHeight = height - padding * 2;
+
+            // Draw axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+
+            // Plot data
+            const points = data.history.length;
+            const xStep = graphWidth / (points - 1 || 1);
+
+            // Followers line
+            ctx.strokeStyle = '#0a66c2';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            data.history.forEach((h, i) => {
+                const x = padding + (i * xStep);
+                const y = height - padding - ((h.followers || 0) / maxValue) * graphHeight;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Legend
+            ctx.fillStyle = '#0a66c2';
+            ctx.fillRect(width - 200, 10, 15, 15);
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText('Followers', width - 180, 22);
+
+            // No Chart.js needed!
+        }
+
+        function getTodayDate() {
+            const today = new Date();
+            return today.toISOString().split('T')[0];
+        }
+
+        function exportData() {
+            const data = getStoredData();
+            if (data.history.length === 0) {
+                alert('No data to export');
+                return;
+            }
+
+            let csv = 'Date,Followers,Profile Views,Connections,Post Engagement,Unread Messages,Pending Requests\n';
+            data.history.forEach(record => {
+                csv += `${record.date},${record.followers || 0},${record.profileViews || 0},${record.connections || 0},${record.postEngagement || 0},${record.unreadMessages || 0},${record.pendingRequests || 0}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'linkedin-dashboard-' + getTodayDate() + '.csv';
+            a.click();
+        }
+
+        function resetData() {
+            if (confirm('Are you sure? This will delete all historical data.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        function showGrowthTips() {
+            alert(`🚀 LinkedIn Growth Tips:
+
+1. POST CONSISTENTLY - Share insights weekly (1-3x/week)
+2. ENGAGE DAILY - Comment on 5-10 posts in your industry
+3. OPTIMIZE HEADLINE - Include keywords people search for
+4. RESPOND TO MESSAGES - Reply within 24 hours
+5. USE HASHTAGS - Add 3-5 relevant hashtags to posts
+6. SHARE VALUE - Help others, don't just sell
+7. UPDATE REGULARLY - Change profile photo/headline monthly
+8. JOIN GROUPS - Participate in industry groups
+9. ASK FOR ENDORSEMENTS - Help others get endorsed
+10. MONITOR ANALYTICS - Check profile views & engagement weekly`);
+        }
+
+        function showActivityTips() {
+            alert(`💬 LinkedIn Activity Tips:
+
+MESSAGES:
+- Check inbox daily
+- Respond within 24 hours for professional impressions
+- Send 5-10 personalized connection requests weekly
+
+CONNECTION REQUESTS:
+- Accept relevant requests promptly
+- Archive irrelevant ones
+- Follow up with new connections after 1-2 weeks
+
+PROFILE VISITORS:
+- Note who views your profile (especially competitors/prospects)
+- Visit their profiles back
+- Consider sending a message if relevant`);
+        }
+    </script>
+</body>
+</html>

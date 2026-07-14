@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LinkedIn Dashboard Test</title>
+    <style>
+        body { font-family: Arial; background: #0a66c2; color: white; padding: 50px; }
+        .card { background: white; color: #333; padding: 30px; border-radius: 10px; max-width: 500px; }
+        h1 { color: #0a66c2; }
+        input { padding: 10px; margin: 10px 0; width: 100%; }
+        button { padding: 10px 20px; background: #0a66c2; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>📊 LinkedIn Dashboard</h1>
+        <p>Quick test - does this show up?</p>
+
+        <label>Followers:</label>
+        <input type="number" id="followers" placeholder="Enter your followers">
+
+        <label>Profile Views:</label>
+        <input type="number" id="views" placeholder="Enter profile views">
+
+        <button onclick="saveData()">Save Data</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        function saveData() {
+            const followers = document.getElementById('followers').value;
+            const views = document.getElementById('views').value;
+            localStorage.setItem('linkedin', JSON.stringify({followers, views, date: new Date().toISOString()}));
+            document.getElementById('status').textContent = '✅ Data saved!';
+        }
+    </script>
+</body>
+</html>
