@@ -145,6 +145,20 @@
         "Explains how to deliver the page (open locally / host / hand off the file)"
       ],
       "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "I want to make one of those AirDrop-style video ads — where a phone gets an incoming AirDrop and you tap accept. We sell a limited-run sneaker drop.",
+      "expected_output": "Should apply the AirDrop surface in references/imessage-video-ads.md (the iOS-native reveal family), not treat it as a novel format. Should build the ad around the interaction: an incoming AirDrop card (translucent sheet, sender device name, a preview thumbnail, red Decline / blue Accept) from the receiver's POV, with the Accept tap as the reveal beat and the transfer progress-ring as the signature motion. Should make the preview thumbnail earn the tap (the sneaker money-shot / the drop), cast a relatable human sender name rather than the brand, use the AirDrop swoosh sound (not iMessage tritones) with the Apple trade-dress note, and keep it short. Should apply the family grounding/disclosure rules (a dramatization of a share, not a real endorsement; claims substantiated). May note receiver-POV-by-default vs sender-POV-as-flex.",
+      "assertions": [
+        "Applies the AirDrop iOS-native-reveal surface, not a from-scratch format",
+        "Builds around the incoming-AirDrop-card + accept-tap-as-reveal interaction (receiver POV)",
+        "Preview thumbnail is treated as the hook that must earn the accept",
+        "Casts a relatable human sender name, not the brand, on the incoming card",
+        "Uses the AirDrop swoosh sound + Apple trade-dress note, not iMessage tritones",
+        "Applies the family grounding/disclosure rules (dramatized share, substantiated claims, not a real endorsement)"
+      ],
+      "files": []
     }
   ]
 }

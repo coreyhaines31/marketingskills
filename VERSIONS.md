@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.7.0 | 2026-07-12 |
+| ad-creative | 2.8.0 | 2026-07-14 |
 | ai-seo | 2.2.0 | 2026-07-09 |
 | analytics | 2.0.0 | 2026-05-05 |
 | aso | 2.0.0 | 2026-05-05 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.0.1 | 2026-05-18 |
 
 ## Recent Changes
+
+### 2.8.10 (2026-07-14)
+
+- **ad-creative** (2.7.0 → 2.8.0): added **AirDrop** as a fourth surface in the iOS-native reveal video ad family (`references/imessage-video-ads.md`, alongside iMessage / ChatGPT / Apple Notes; format popularized by Shiv Sakhuja / Gooseworks' goose-video Airdrop Ads, re-expressed originally — their runtime is MIT but the recipe is private, so this is original craft). The one interaction-native format in the family: the hook is an **incoming AirDrop request** and the **Accept tap is the reveal** — a translucent AirDrop card (sender device name, preview thumbnail, red Decline / blue Accept) from the receiver's POV, where iOS's own accept/decline choice is a built-in micro-conversion beat. New `### AirDrop Reveal` subsection: the preview thumbnail as the hook that must earn the tap, sender-name casting (relatable human name reads native; brand-as-sender reads like an ad), the transfer progress-ring as the signature motion, the AirDrop swoosh sound (not iMessage tritones) with the same CC0-Apple + trade-dress caveat, receiver-POV-default vs sender-POV-flex, and the family grounding/disclosure rules (a dramatization of a share, never a real endorsement). Updates the H1, intro, surface-selection table, and choosing-signal line to four surfaces. SKILL.md pointer names AirDrop and adds the 'AirDrop ad' trigger. New eval (id 11).
 
 ### 2.8.9 (2026-07-13)
 
