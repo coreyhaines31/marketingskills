@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.META_ACCESS_TOKEN
 const DEFAULT_ACCOUNT_ID = process.env.META_AD_ACCOUNT_ID
 const BASE_URL = 'https://graph.facebook.com/v18.0'
 
-if (!TOKEN) {
+if ((!TOKEN) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'META_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
 }
@@ -51,7 +52,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 function getAccountId() {

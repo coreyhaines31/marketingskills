@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.LINKEDIN_ACCESS_TOKEN
 const BASE_URL = 'https://api.linkedin.com/v2'
 
-if (!TOKEN) {
+if ((!TOKEN) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'LINKEDIN_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
 }
@@ -50,7 +51,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

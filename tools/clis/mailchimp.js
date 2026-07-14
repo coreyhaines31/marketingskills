@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.MAILCHIMP_API_KEY
 
-if (!API_KEY) {
+if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'MAILCHIMP_API_KEY environment variable required' }))
   process.exit(1)
 }
 
-const dc = API_KEY.split('-').pop()
+const dc = API_KEY ? API_KEY.split('-').pop() : ''
 const BASE_URL = `https://${dc}.api.mailchimp.com/3.0`
 
 async function api(method, path, body) {
@@ -52,7 +53,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

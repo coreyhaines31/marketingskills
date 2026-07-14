@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.TIKTOK_ACCESS_TOKEN
 const ADVERTISER_ID = process.env.TIKTOK_ADVERTISER_ID
 const BASE_URL = 'https://business-api.tiktok.com/open_api/v1.3'
 
-if (!TOKEN) {
+if ((!TOKEN) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'TIKTOK_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
 }
@@ -52,7 +53,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 function getAdvertiserId() {

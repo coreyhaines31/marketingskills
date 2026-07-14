@@ -1,19 +1,20 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.ACTIVECAMPAIGN_API_KEY
 const API_URL = process.env.ACTIVECAMPAIGN_API_URL
 
-if (!API_KEY) {
+if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'ACTIVECAMPAIGN_API_KEY environment variable required' }))
   process.exit(1)
 }
 
-if (!API_URL) {
+if ((!API_URL) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'ACTIVECAMPAIGN_API_URL environment variable required (e.g. https://yourname.api-us1.com)' }))
   process.exit(1)
 }
 
-const BASE_URL = `${API_URL.replace(/\/$/, '')}/api/3`
+const BASE_URL = API_URL ? `${API_URL.replace(/\/$/, '')}/api/3` : ''
 
 async function api(method, path, body) {
   if (args['dry-run']) {
@@ -56,7 +57,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

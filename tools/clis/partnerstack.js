@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const PUBLIC_KEY = process.env.PARTNERSTACK_PUBLIC_KEY
 const SECRET_KEY = process.env.PARTNERSTACK_SECRET_KEY
 const BASE_URL = 'https://api.partnerstack.com/api/v2'
 
-if (!PUBLIC_KEY || !SECRET_KEY) {
+if ((!PUBLIC_KEY || !SECRET_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'PARTNERSTACK_PUBLIC_KEY and PARTNERSTACK_SECRET_KEY environment variables required' }))
   process.exit(1)
 }
@@ -52,7 +53,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 const limit = args.limit ? Number(args.limit) : 10
 
