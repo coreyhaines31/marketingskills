@@ -8,5 +8,5 @@
   "homepage": "https://github.com/coreyhaines31/marketingskills",
   "repository": "https://github.com/coreyhaines31/marketingskills",
   "license": "MIT",
-  "skills": "./skills"
+  "skills": "./skills/"
 }

@@ -143,7 +143,21 @@ Install via Claude Code's built-in plugin system:
 /plugin install marketing-skills
 ```
 
-### Option 3: Clone and Copy
+### Option 3: OpenAI Codex Plugin
+
+Install via Codex's plugin system:
+
+```bash
+# Add the marketplace
+codex plugin marketplace add coreyhaines31/marketingskills
+
+# Then browse and install from inside a Codex session
+/plugins
+```
+
+Select **marketing-skills** to install all skills. To pick up new releases later, run `codex plugin marketplace upgrade`.
+
+### Option 4: Clone and Copy
 
 Clone the entire repo and copy the skills folder:
 
@@ -152,7 +166,7 @@ git clone https://github.com/coreyhaines31/marketingskills.git
 cp -r marketingskills/skills/* .agents/skills/
 ```
 
-### Option 4: Git Submodule
+### Option 5: Git Submodule
 
 Add as a submodule for easy updates:
 
@@ -162,13 +176,13 @@ git submodule add https://github.com/coreyhaines31/marketingskills.git .agents/m
 
 Then reference skills from `.agents/marketingskills/skills/`.
 
-### Option 5: Fork and Customize
+### Option 6: Fork and Customize
 
 1. Fork this repository
 2. Customize skills for your specific needs
 3. Clone your fork into your projects
 
-### Option 6: SkillKit (Multi-Agent)
+### Option 7: SkillKit (Multi-Agent)
 
 Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across multiple AI agents (Claude Code, Cursor, Copilot, etc.):
 
