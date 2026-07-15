@@ -73,7 +73,7 @@ Approve, then execute the spec with your footage:
 
 ## Originality guardrail
 
-You are copying the *edit*, not the content. The beat sheet describes technique (cut rhythm, caption treatment, motion, sound design) applied to **your** footage and **your** message. Never reuse the reference's actual clips, voiceover, script lines, music (license your own), or brand elements. An edit style is not protectable; a specific creative is. If the reference's "style" is really a specific bit or sketch, that's their creative — draw inspiration, don't reproduce it.
+You are copying the *edit*, not the content. The beat sheet describes technique (cut rhythm, caption treatment, motion, sound design) applied to **your** footage and **your** message. General editing techniques and style cues are usually reusable — U.S. copyright protects expression, not procedures or methods (17 U.S.C. §102(b)) — but the reference's specific creative expression is not, and closely reproducing a finished video's exact selection and arrangement of choices can still create risk. So copy the grammar, not the finished work: use your own footage, message, script, voiceover, licensed music/SFX/samples, and brand elements. If the reference's "style" is really a specific bit or sketch, that's their creative — draw inspiration, don't reproduce it.
 
 ## Common mistakes
 
@@ -81,4 +81,4 @@ You are copying the *edit*, not the content. The beat sheet describes technique 
 - **Logging instances, not patterns** — 40 cut timestamps isn't a spec; "hard cut + punch-in per sentence" is.
 - **Copying the reference's timing onto different footage** — beats land on *your* words and *your* cuts; the reference gives you the grammar, not the calendar.
 - **Skipping the hook** — the first 2 seconds carry most of the retention; decode them in the most detail.
-- **Reproducing the creative** — matching the edit is fine; re-shooting their exact bit, script, or using their footage/music is not.
+- **Reproducing the creative** — matching the edit is fine; re-shooting their exact bit, script, or using their footage/music/SFX is not.
