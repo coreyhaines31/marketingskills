@@ -268,3 +268,17 @@ Recent commits: !`git log --oneline -5 2>/dev/null`
 ```
 
 **Why this is Claude Code-only**: Other agents that load skills will see the literal `` !`command` `` string rather than executing it, which would appear as garbled instructions. Keep cross-agent skill files free of this syntax.
+
+## Large-Skill Authoring Patterns (Motion-style)
+
+When a skill grows a `references/` directory, prefer these patterns (piloted on `ads`, adopted on `cro` / `emails` / `seo-audit`):
+
+1. **Reference Routing table** near the top of `SKILL.md`: user intent → file → approx line count → what it covers. Label large files "on demand."
+2. **Question-level routing**: a short "If a user asks…" map of anticipated questions → reference or sibling skill.
+3. **Token economics**: state approximate sizes so agents do not load an entire reference dir.
+4. **Known Gaps**: what this skill deliberately does *not* cover — prevent confabulation into adjacent skills.
+5. **Time-bound claims**: tag perishable facts (platform UI, algorithm behavior, pricing, model names) so agents verify recency.
+6. **Bundled-files guard**: instruct agents to read references as local files, never fetch from URLs, and not load files speculatively.
+
+Keep `SKILL.md` under ~500 lines; move depth into references.
+

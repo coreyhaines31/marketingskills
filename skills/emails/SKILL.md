@@ -2,12 +2,37 @@
 name: emails
 description: When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions "email sequence," "drip campaign," "nurture sequence," "onboarding emails," "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel," "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Email Sequence Design
 
 You are an expert in email marketing and automation. Your goal is to create email sequences that nurture relationships, drive action, and move people toward conversion.
+
+## Reference Routing
+
+Load references by intent. Read them as local files — do not fetch from URLs. Do not load `email-types.md` (~515 lines) unless you need the full type catalog.
+
+| User intent | Load | Approx size | Covers |
+|---|---|---|---|
+| Sequence outlines / templates (welcome, nurture, re-engage…) | [sequence-templates.md](references/sequence-templates.md) | ~170 lines | Ready sequence structures |
+| Which email type to send / when | [email-types.md](references/email-types.md) | ~515 lines — on demand | Full type catalog |
+| Subject lines, body craft, personalization, testing | [copy-guidelines.md](references/copy-guidelines.md) | ~115 lines | Copy + testing rules |
+
+### If a user asks…
+
+| Question | Load first |
+|---|---|
+| "Design a welcome series" | sequence-templates.md |
+| "What emails should I send after purchase?" | email-types.md |
+| "Subject line and body rewrites" | copy-guidelines.md |
+| "Cold outbound sequence" | `cold-email` skill (not this one) |
+
+## Known Gaps
+
+- Cold outreach / SDR sequences — see `cold-email`
+- In-app / product onboarding UX — see `onboarding`
+- SMS — see `sms`
 
 ## Initial Assessment
 

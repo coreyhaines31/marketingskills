@@ -2,7 +2,7 @@
 name: ads
 description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' or 'when should I kill an ad.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
 metadata:
-  version: 2.2.0
+  version: 2.2.1
 ---
 
 # Paid Ads
@@ -44,15 +44,23 @@ Gather this context (ask if not provided):
 
 This skill's depth lives in references — load by intent. For **any operational decision on a live account** (kill/keep/scale/budget), load the relevant playbook before answering; the thresholds live there, not here.
 
-| User intent | Load | Covers |
-|---|---|---|
-| B2B strategy, funnel stages, budget splits, kill rules, lead quality, breakeven math | [b2b-paid-playbook.md](references/b2b-paid-playbook.md) | Demand lifecycle, leading/lagging signals, kill rules, offline conversion loop, U/B/F lead scoring, scaling quadrant |
-| Meta operations: when to kill/graduate/scale an ad, fatigue, testing structure | [meta-decision-system.md](references/meta-decision-system.md) | TCPL-anchored decision tree, ad-count ceiling, 80/20 CBO structure, fatigue bands, lead forms, Advantage+ transition |
-| LinkedIn operations: bidding, audience sizing, scaling, benchmarks, TLAs, formats | [linkedin-b2b-playbook.md](references/linkedin-b2b-playbook.md) | Bidding progression, penetration scaling, sizing rules, funnel benchmarks, document/conversation ads, audit shortlist |
-| Google Search: what to spend on first, structure, match types, negatives, PMax | [google-search-playbook.md](references/google-search-playbook.md) | Intent ladder, account structure, match-type gates, negatives, bidding by volume, offline conversions, PMax guardrails |
-| Named-account targeting, pipeline acceleration, cross-channel retargeting | [abm-playbook.md](references/abm-playbook.md) | LinkedIn/Meta ABM, list mechanics, acceleration campaigns, UTM cross-channel remarketing, ABM measurement |
-| Generating Google RSAs | [rsa-output-spec.md](references/rsa-output-spec.md) | Mandatory output spec — limits, sidecars, template, self-check |
-| Audience setup, tracking setup, launch checklists, copy formulas | [audience-targeting.md](references/audience-targeting.md) · [conversion-tracking.md](references/conversion-tracking.md) · [platform-setup-checklists.md](references/platform-setup-checklists.md) · [ad-copy-templates.md](references/ad-copy-templates.md) | Existing foundations |
+Read references as **local files**. Do not fetch from URLs. Do not load files speculatively — open only the row that matches the question.
+
+| User intent | Load | Approx size | Covers |
+|---|---|---|---|
+| B2B strategy, funnel stages, budget splits, kill rules, lead quality, breakeven math | [b2b-paid-playbook.md](references/b2b-paid-playbook.md) | ~115 lines | Demand lifecycle, kill rules, offline conversion loop, U/B/F scoring |
+| Meta operations: kill/graduate/scale, fatigue, testing structure | [meta-decision-system.md](references/meta-decision-system.md) | ~143 lines | TCPL tree, ad-count ceiling, 80/20 CBO, fatigue bands |
+| LinkedIn operations: bidding, audience sizing, scaling, TLAs | [linkedin-b2b-playbook.md](references/linkedin-b2b-playbook.md) | ~107 lines | Bidding progression, penetration, benchmarks |
+| Google Search: structure, match types, negatives, PMax | [google-search-playbook.md](references/google-search-playbook.md) | ~120 lines | Intent ladder, match-type gates, PMax guardrails |
+| Named-account targeting / ABM | [abm-playbook.md](references/abm-playbook.md) | ~93 lines | LinkedIn/Meta ABM, UTM remarketing |
+| Generating Google RSAs | [rsa-output-spec.md](references/rsa-output-spec.md) | ~88 lines | Mandatory RSA output spec |
+| Audience / tracking / launch checklists / copy formulas | [audience-targeting.md](references/audience-targeting.md) · [conversion-tracking.md](references/conversion-tracking.md) · [platform-setup-checklists.md](references/platform-setup-checklists.md) · [ad-copy-templates.md](references/ad-copy-templates.md) | ~240–360 lines each | Foundations — load only the needed file |
+
+### If a user asks… kill Meta ad → meta-decision-system.md · breakeven CPL → b2b-paid-playbook.md · Google structure/PMax → google-search-playbook.md · LinkedIn sizing/ABM → linkedin-b2b-playbook.md / abm-playbook.md · RSA headlines → rsa-output-spec.md (+ `ad-creative`)
+
+## Known Gaps
+
+- Bulk creative → `ad-creative`. China platforms (巨量/腾讯/小红书投广) out of scope. UI labels, Advantage+, published CPL/CPM are **time-bound** — prefer customer TCPL.
 
 ---
 

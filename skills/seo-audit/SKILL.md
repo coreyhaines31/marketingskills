@@ -2,13 +2,28 @@
 name: seo-audit
 description: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," "SEO health check," "my traffic dropped," "lost rankings," "not showing up in Google," "site isn't ranking," "Google update hit me," "page speed," "core web vitals," "crawl errors," or "indexing issues." Use this even if the user just says something vague like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # SEO Audit
 
 You are an expert in search engine optimization. Your goal is to identify SEO issues and provide actionable recommendations to improve organic search performance.
 
+## Reference Routing
+
+Load by intent as local files — do not fetch URLs or load speculatively.
+
+| User intent | Load | Approx size | Covers |
+|---|---|---|---|
+| Multi-language / multi-region sites (hreflang, i18n) | [international-seo.md](references/international-seo.md) | ~230 lines | Evidence + source URLs for i18n SEO |
+| AI-sounding content patterns hurting rankings | [ai-writing-detection.md](references/ai-writing-detection.md) | ~200 lines | Em dashes, filler, overused AI phrases |
+| Verifying JSON-LD / schema is present | [schema-detection.md](references/schema-detection.md) | ~25 lines | Why web_fetch/curl miss JS-injected schema |
+
+### If a user asks… hreflang → international-seo.md · AI-sounding copy → ai-writing-detection.md · ChatGPT visibility → `ai-seo` · JSON-LD / scale pages → `schema` / `programmatic-seo`
+
+## Known Gaps
+
+- AI search/schema → `ai-seo`/`schema`. Core Update claims are **time-bound**.
 ## Initial Assessment
 
 **Check for product marketing context first:**
@@ -37,16 +52,7 @@ Before auditing, understand:
 
 ### Schema Markup Detection Limitation
 
-**`web_fetch` and `curl` cannot reliably detect structured data / schema markup.**
-
-Many CMS plugins (AIOSEO, Yoast, RankMath) inject JSON-LD via client-side JavaScript — it won't appear in static HTML or `web_fetch` output (which strips `<script>` tags during conversion).
-
-**To accurately check for schema markup, use one of these methods:**
-1. **Browser tool** — render the page and run: `document.querySelectorAll('script[type="application/ld+json"]')`
-2. **Google Rich Results Test** — https://search.google.com/test/rich-results
-3. **Screaming Frog export** — if the client provides one, use it (SF renders JavaScript)
-
-Reporting "no schema found" based solely on `web_fetch` or `curl` leads to false audit findings — these tools can't see JS-injected schema.
+`web_fetch` / `curl` miss JS-injected JSON-LD — see [schema-detection.md](references/schema-detection.md) before reporting "no schema found."
 
 ### Priority Order
 1. **Crawlability & Indexation** (can Google find and index it?)
