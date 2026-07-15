@@ -50,9 +50,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
 | social | 2.2.0 | 2026-07-09 |
-| video | 2.0.1 | 2026-05-18 |
+| video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.8.11 (2026-07-14)
+
+- **video** (2.0.1 → 2.1.0): added **reverse-engineering a viral edit into a reusable edit spec** (the tool-agnostic decomposition behind "copy any viral edit" — pattern from Arcads' skill, whose Omni generation model is proprietary/MCP-gated; we build only the decomposition, credited). New `references/edit-anatomy.md`: pull the reference with watch-video (visual/multimodal to read frames + caption style + cut timing) or social-fetch, extract the edit anatomy beat by beat across nine dimensions (shot/framing, cut rhythm/cuts-per-second, on-screen text, caption style, motion/punch-ins, b-roll/overlays, sound design, the first-2s hook, pacing curve), and output a per-beat **beat sheet** table plus a **style summary** of the 3–5 signature moves that make the edit recognizable (patterns over instance-logging). Includes the review-once gate (approve the beat sheet — on-screen text + scene-change placement — before executing in Remotion/Hyperframes, CapCut, or an AI restyle tool) and a hard originality guardrail (copy the editing grammar applied to your own footage/message, never the reference's footage, script, voiceover, or music). SKILL.md adds a Reverse-Engineer a Viral Edit workflow and 'copy this edit,' 'match this video style,' 'reverse-engineer this video,' 'edit like this reference' triggers. New eval (id 7). Closes #456.
 
 ### 2.8.10 (2026-07-14)
 

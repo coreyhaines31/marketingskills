@@ -83,6 +83,21 @@
         "Asks about stack or animation needs"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "There's a TikTok edit style I love — fast cuts, one-word captions that pop, a whoosh on every scene change. I have my own talking-head clip. Break down how that edit works so I can replicate the style. Here's the reference: [link]",
+      "expected_output": "Should apply references/edit-anatomy.md (reverse-engineer the edit into a reusable spec), not just describe it. Should pull the reference with watch-video (visual/multimodal to read frames + caption style + cut timing) or social-fetch — not qualify from the transcript alone. Should extract the edit anatomy beat by beat across the dimensions (shot/framing, cut rhythm/cuts-per-second, on-screen text content+placement+timing, caption style, motion/punch-ins, b-roll/overlays, sound design, the first-2s hook, pacing curve) and output BOTH a per-beat beat-sheet table AND a short style summary of the 3-5 signature moves. Should emphasize patterns over instance-logging. Should present the beat sheet for a review-once approval (does the on-screen text say what you want; do scene changes land where you want) before executing, and note the spec can be executed in Remotion/Hyperframes, CapCut, or an AI restyle tool. Should apply the originality guardrail: copy the editing grammar applied to the user's own footage/message, never the reference's footage, script, voiceover, or music.",
+      "assertions": [
+        "Applies the edit-anatomy reverse-engineering method, not a plain description",
+        "Pulls the reference with watch-video/social-fetch to read the actual frames, not just the transcript",
+        "Extracts the edit anatomy across the dimensions and expresses patterns (not a raw list of cut timestamps)",
+        "Outputs a per-beat beat sheet AND a style summary of the signature moves",
+        "Presents the beat sheet for a review-once approval before executing",
+        "Notes execution paths (Remotion/Hyperframes, CapCut, or AI restyle tool)",
+        "Applies the originality guardrail — copies editing grammar applied to the user's own footage, never the reference's footage/script/music"
+      ],
+      "files": []
     }
   ]
 }
