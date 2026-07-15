@@ -1,0 +1,29 @@
+name: Regression Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "validate-skills.sh"
+      - "tests/**"
+      - ".github/workflows/regression-tests.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "validate-skills.sh"
+      - "tests/**"
+      - ".github/workflows/regression-tests.yml"
+
+concurrency:
+  group: regression-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-skills-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Run validate-skills.sh regression tests
+        run: bash tests/run-regression.sh
