@@ -18,10 +18,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | content-strategy | 2.0.0 | 2026-05-05 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.1 | 2026-06-16 |
-| cro | 2.0.0 | 2026-05-05 |
+| cro | 2.1.0 | 2026-07-15 |
 | customer-research | 2.0.1 | 2026-07-10 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
-| emails | 2.0.0 | 2026-05-05 |
+| emails | 2.1.0 | 2026-07-15 |
 | free-tools | 2.0.0 | 2026-05-05 |
 | image | 2.0.1 | 2026-05-18 |
 | launch | 2.0.1 | 2026-06-16 |
@@ -33,7 +33,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.0 | 2026-06-16 |
 | onboarding | 2.0.0 | 2026-05-05 |
-| ads | 2.2.0 | 2026-07-05 |
+| ads | 2.2.1 | 2026-07-15 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.0.1 | 2026-06-16 |
@@ -45,7 +45,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.0.0 | 2026-05-05 |
 | sales-enablement | 2.0.1 | 2026-06-16 |
 | schema | 2.0.0 | 2026-05-05 |
-| seo-audit | 2.0.0 | 2026-05-05 |
+| seo-audit | 2.1.0 | 2026-07-15 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
@@ -53,6 +53,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.8.12 (2026-07-15)
+
+- **cro** (2.0.0 → 2.1.0), **emails** (2.0.0 → 2.1.0), **seo-audit** (2.0.0 → 2.1.0): adopt **Reference Routing** tables (intent → reference + approx size) so agents load the right file instead of scanning fuzzy prose links — same progressive-disclosure pattern ads 2.2.0 introduced. cro also gets a CRO surface routing table to sibling skills (`signup` / `popups` / `onboarding` / `paywalls`) and an "If a user asks…" question map. emails and seo-audit add Known Gaps to prevent confabulation into cold-email / onboarding / ai-seo / schema. Closes #406.
+- **ads** (2.2.0 → 2.2.1): Motion-style authoring pilot (#433) — approx token sizes on the routing table, question-level routing ("If a user asks…"), bundling guard (read local files, no speculative loads), Known Gaps, and time-bound tags on platform UI / benchmark claims.
 
 ### 2.8.11 (2026-07-14)
 
