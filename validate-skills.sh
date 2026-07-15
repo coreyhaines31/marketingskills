@@ -7,7 +7,8 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-SKILLS_DIR="skills"
+# Directory to audit; overridable so regression tests can point at fixtures.
+SKILLS_DIR="${SKILLS_DIR:-skills}"
 ISSUES=0
 WARNINGS=0
 PASSED=0
