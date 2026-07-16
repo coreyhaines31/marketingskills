@@ -24,6 +24,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | emails | 2.0.0 | 2026-05-05 |
 | free-tools | 2.0.0 | 2026-05-05 |
 | image | 2.0.1 | 2026-05-18 |
+| influencer-marketing | 1.0.0 | 2026-07-16 |
 | launch | 2.0.1 | 2026-06-16 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
@@ -53,6 +54,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.9.0 (2026-07-16)
+
+- Added `influencer-marketing` skill — creator/influencer partnership strategy for SaaS and consumer brands: a tier framework (nano to celebrity/macro), audience vetting with engagement-rate benchmarks and bot/fake-follower red flags, campaign/deal types (gifted, flat-fee, affiliate/commission, hybrid, ambassador retainer, UGC content licensing, takeover), outreach and creative-brief templates, compensation benchmarks by tier, FTC disclosure and contract requirements, and success metrics that go beyond follower count. Cross-references `referrals` (customer referral/affiliate programs), `co-marketing` (company-to-company partnerships), `community-marketing` (owned community building), and `public-relations` (press/journalist outreach) for scope boundaries. Tool integrations point to the existing affiliate stack (Rewardful, Tolt, PartnerStack) for creator payout tracking. Total skills: 48.
 
 ### 2.8.11 (2026-07-14)
 
