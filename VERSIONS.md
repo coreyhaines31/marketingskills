@@ -37,7 +37,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.0.1 | 2026-06-16 |
-| product-marketing | 2.0.0 | 2026-05-05 |
+| product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
 | prospecting | 1.1.0 | 2026-07-13 |
 | public-relations | 1.0.0 | 2026-06-10 |
@@ -53,6 +53,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.8.12 (2026-07-16)
+
+- **product-marketing** (2.0.0 → 2.1.0): the context document now carries its own **version history**. `.agents/product-marketing.md` gets a `Document version:` header (v1, v2 …) and a `## Changelog` section at the bottom — a newest-first, dated, one-line-per-revision paper trail of *what changed and why*. The update flow now reads the current version and recent changelog on open, and on save bumps the version, updates `Last updated`, and prepends a new changelog entry naming the sections touched and the reason (never rewriting past entries; skipped only for pure typo fixes). Since this doc is the shared context every other marketing skill reads, the changelog makes positioning/ICP changes traceable across a project — you can see how the positioning evolved and what a downstream skill was generating against. New eval (id 7) covers the version-bump + prepend-changelog behavior on a repositioning update.
 
 ### 2.8.11 (2026-07-14)
 
