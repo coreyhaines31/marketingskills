@@ -80,12 +80,12 @@ Put it in a simple written agreement: deliverables, timing, usage rights, exclus
 
 ## 4. Disclosure & Compliance (non-negotiable)
 
-Influencer marketing has hard legal requirements — this is the part most brands under-do, and the brand is liable, not just the creator.
+Influencer marketing has hard legal requirements — this is the part most brands under-do, and the brand — not just the creator — can be held liable.
 
 - **Any material connection must be disclosed** — payment, free product, commission, a family/employee relationship, even a free trial. Gifting is *not* a loophole; a gifted post still needs disclosure.
 - **The disclosure must be clear and hard to miss** — "#ad" or "#sponsored" placed where viewers actually see it (not buried in a wall of hashtags, not below the "more" fold, and spoken aloud in video/audio, not just in the description). "#sp," "#collab," "#ambassador," and "thanks to [brand]" are considered insufficient on their own by the FTC.
 - **Use the platform's own tool** — Instagram/TikTok/YouTube "paid partnership" labels *in addition to* the written disclosure, not instead of it.
-- **You're responsible for your creators.** Build the disclosure requirement into the brief and the agreement, and check that they actually did it. Non-disclosure is a brand risk (FTC actions target advertisers).
+- **You're responsible for your creators.** Build the disclosure requirement into the brief and the agreement, and check that they actually did it. Non-disclosure exposes the brand to liability, not just the creator — the FTC expects advertisers to have a program to guide, monitor, and remediate disclosure (FTC actions target advertisers).
 - **No fabricated claims.** Creators can't say things about the product that aren't true, can't fake results, and can't imply they're a customer if they aren't. Give them what's true and let them speak it in their voice.
 - **International + platform rules vary** (e.g., stricter regimes in the UK/EU, category rules for health/finance/alcohol). When the campaign is regulated or cross-border, route to legal.
 
