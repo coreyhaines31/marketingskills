@@ -21,7 +21,7 @@ First, check if `.agents/product-marketing.md` already exists. Also check `.clau
 - Read it and summarize what's captured — note its current **Document version** and the last few **Changelog** entries so the user sees where the doc stands and what's changed recently
 - Ask which sections they want to update
 - Only gather info for those sections
-- On save, bump the version and add a changelog entry (see Step 4). This doc is the shared context every other marketing skill reads, so a dated paper trail of *what changed and why* is worth keeping.
+- On any substantive save, bump the version and add a changelog entry (see Step 4). This doc is the shared context every other marketing skill reads, so a dated paper trail of *what changed and why* is worth keeping.
 
 **If it doesn't exist, offer two options:**
 
@@ -239,7 +239,8 @@ After gathering information, create `.agents/product-marketing.md` with this str
   - A good entry names the sections touched and the reason, not "updated the doc." Examples:
     - `- v3 (2026-07-16) — Repositioned from "email tool" to "deliverability platform"; added RevOps to the ICP.`
     - `- v2 (2026-06-02) — Rewrote value prop and objections after 5 customer interviews; added competitor Acme.`
-  - Skip the changelog only for a pure typo fix. When the change is a real repositioning, say so plainly — downstream skills will now generate against the new context.
+  - Use today's date in ISO form (YYYY-MM-DD) for the entry and `Last updated`.
+  - **Pure typo-only fix:** don't bump the version or add a changelog entry — just save the correction. Every other change bumps the version and gets an entry. When the change is a real repositioning, say so plainly — downstream skills will now generate against the new context.
 - Save to `.agents/product-marketing.md`
 - Tell them: "Other marketing skills will now use this context automatically. The Changelog at the bottom tracks every revision — check it to see how your positioning has evolved. Run `/product-marketing` anytime to update it."
 
