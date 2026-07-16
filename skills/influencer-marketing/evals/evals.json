@@ -1,0 +1,76 @@
+{
+  "skill_name": "influencer-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We want to sponsor a big YouTuber with 1M subs. Should we just pay their flat rate?",
+      "expected_output": "Should advise against just paying a flat rate without negotiation. Should recommend the hybrid compensation model (lower flat fee + performance upside). Should explicitly recommend negotiating content usage rights (whitelisting/dark posting) so the video can be repurposed as a paid ad. Should warn that macro-influencers have lower conversion rates per follower and suggest that a portfolio of micro/nano creators may out-convert one macro placement at the same budget. Should require FTC disclosure in the deal.",
+      "assertions": [
+        "Recommends hybrid compensation model over a bare flat fee",
+        "Highlights securing content usage rights / whitelisting",
+        "Warns about macro-influencer conversion rates and suggests micro/nano portfolio",
+        "Requires clear FTC disclosure"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "How do we make sure we can track ROI from podcast sponsorships?",
+      "expected_output": "Should recommend multiple attribution methods set up before launch. Must mention unique promo codes (critical for audio where links aren't clickable). Should suggest dedicated vanity URLs / landing pages and UTM links. Should recommend a post-purchase 'how did you hear about us?' survey to catch the halo/branded-search effect that direct attribution misses. Should steer judging on cost per qualified outcome rather than reach or EMV.",
+      "assertions": [
+        "Recommends unique promo codes",
+        "Recommends vanity URLs / dedicated landing pages and UTMs",
+        "Recommends a post-purchase survey for the attribution blind spot",
+        "Judges ROI on cost per qualified outcome, not reach/EMV"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We're just gifting free product to creators — no payment — so we don't need them to say #ad, right?",
+      "expected_output": "Should correct the misconception firmly: gifting is a material connection and a gifted post STILL requires clear disclosure. Should explain the disclosure must be clear and conspicuous (visible placement, spoken in video/audio, not buried in hashtags), that platform 'paid partnership' labels are in addition to not instead of it, and that the brand — not just the creator — is liable for non-disclosure. Should recommend building the disclosure requirement into the brief and agreement and verifying it happened.",
+      "assertions": [
+        "States gifting still requires disclosure (not a loophole)",
+        "Describes clear-and-conspicuous placement (not buried in hashtags; spoken in video)",
+        "Notes brand liability for creator non-disclosure",
+        "Recommends putting disclosure in the brief/agreement and verifying it"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I want to build a long-term brand ambassador program for our DTC skincare brand, not just one-off posts.",
+      "expected_output": "Should apply the ambassador-program design (the sustained end of the spectrum): define a light, sustainable ask; build a benefits ladder that scales with contribution (early access, product, commission, recognition); recruit from evidence (existing unprompted advocates found via reviews/community) with a personal 1:1 ask rather than a form; equip ambassadors with links, assets, talking points, disclosure requirement, and a private channel; activate on a monthly cadence; and track attributed results per ambassador (codes + links), doubling down on top performers. Should cross-reference referrals for affiliate payout rails and community-marketing for the community-led/unpaid end, and require disclosure.",
+      "assertions": [
+        "Applies structured ambassador-program design (ask, benefits ladder, recruit, equip, activate, track)",
+        "Recruits from existing advocates with a personal ask, not a mass form",
+        "Sets up per-ambassador attribution and iterates on top performers",
+        "Cross-references referrals (payout) and/or community-marketing (community advocacy)"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "This creator has 500k followers but I'm worried some are fake. How do I vet them before we pay?",
+      "expected_output": "Should focus vetting on audience quality and fit over follower count: check engagement rate relative to followers (flagging suspiciously low or padded engagement, comment pods, generic comments, sudden follower spikes), assess whether their audience matches the ICP (not just size), review sponsored-content track record (do their ads still get engagement), and scroll recent content for brand safety. Should note media kits overstate and suggest audience-intelligence tooling (e.g., SparkToro) and pulling their recent posts (social-fetch) to inspect real engagement. Should frame audience alignment as more important than reach.",
+      "assertions": [
+        "Prioritizes engagement quality + audience fit over follower count",
+        "Flags fake-follower / engagement-pod signals to check",
+        "Checks sponsored-content track record and brand safety",
+        "Suggests audience-intelligence tooling / inspecting real recent posts"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Write me a word-for-word script for the influencer to read.",
+      "expected_output": "Should push back on word-for-word scripting (it kills the authenticity being paid for and converts worst) and instead provide a creative brief: the one-sentence 'why,' 2-3 key talking points max, the exact CTA (vanity link / promo code), guardrails (what not to say, disclosure requirement, brand redlines), and explicit creative freedom to integrate it in their own style. Talking points must be grounded in real proof, not invented claims.",
+      "assertions": [
+        "Declines to script word-for-word and explains why",
+        "Provides a brief structure (why, 2-3 talking points, CTA, guardrails, creative freedom)",
+        "Includes the disclosure requirement and grounded (non-fabricated) talking points"
+      ],
+      "files": []
+    }
+  ]
+}

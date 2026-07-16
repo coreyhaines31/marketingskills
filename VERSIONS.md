@@ -24,6 +24,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | emails | 2.0.0 | 2026-05-05 |
 | free-tools | 2.0.0 | 2026-05-05 |
 | image | 2.0.1 | 2026-05-18 |
+| influencer-marketing | 1.0.0 | 2026-07-15 |
 | launch | 2.0.1 | 2026-06-16 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
@@ -53,6 +54,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.9.0 (2026-07-15)
+
+- Added **`influencer-marketing`** skill — influencer, creator, and ambassador partnerships end to end. Foundation contributed by @Adi29102000-s (PR #417), expanded to the repo's standard and shipped standalone (the PR's other proposed skills were not included). Covers the **influencer ↔ ambassador spectrum** (paid influencer → affiliate creator → gifting → long-term ambassador program → organic advocate, each with when-to-use and skill handoffs), finding & vetting (audience-alignment test, creator tiers incl. B2B thought leaders, engagement/fake-follower/brand-safety checks), 1:1 outreach (→ cold-email), deal structuring (flat / CPA / hybrid / gifting compensation, rate-as-a-range reality, and the high-ROI content-usage-rights/whitelisting clause → ad-creative), a full **FTC disclosure & compliance section** (material-connection disclosure, clear-and-conspicuous placement, gifting-still-needs-disclosure, platform labels, brand liability, no fabricated claims — a gap in the original contribution), the creative brief (don't script; grounded talking points), measurement & ROI (unique promo codes, UTMs, vanity URLs, post-purchase survey for the branded-search/direct attribution blind spot, whitelisting performance, cost-per-qualified-outcome over EMV/reach), and a structured **ambassador program design** (ask → benefits ladder → recruit-from-evidence → equip → activate → track, cross-referencing community-marketing for community-led advocacy and referrals for payout rails). Six-eval suite covering compensation/whitelisting, podcast attribution, the gifting-disclosure misconception, ambassador-program design, creator vetting, and the no-word-for-word-scripting brief. New skill = repo y release. Total skills: 48.
 
 ### 2.8.11 (2026-07-14)
 
