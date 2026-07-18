@@ -180,7 +180,178 @@ Combine scraped content with SEO data to build the profile. Cross-reference clai
 
 ---
 
+## Firecrawl-enabled workflow
+
+When Firecrawl tools are available, use Firecrawl as the primary source collection method before writing any competitor profile.
+
+For each competitor URL:
+
+1. Use Firecrawl map to discover important official pages:
+   - homepage
+   - pricing
+   - features
+   - product
+   - solutions
+   - use cases
+   - customers
+   - case studies
+   - integrations
+   - docs
+   - blog
+   - changelog
+   - about
+   - security
+   - enterprise
+
+2. Prioritize official sources over third-party summaries.
+
+3. Use Firecrawl scrape on the highest-value pages:
+   - homepage
+   - pricing page
+   - top feature or product pages
+   - top use case pages
+   - customer or case study pages
+   - integrations page
+   - docs overview
+   - changelog or release notes if available
+
+4. Save raw Firecrawl outputs under:
+
+   raw/firecrawl/{competitor-slug}/{date}/
+
+5. Use scraped official content to produce the competitor profile.
+
+6. If Firecrawl is available but DataForSEO is not available:
+   - complete product, positioning, pricing, feature, customer, use case, and messaging analysis
+   - mark traditional SEO metrics as unavailable, including keyword rankings, backlinks, referring domains, organic traffic estimates, and authority metrics
+   - write a clear note to raw/seo/not-available.json
+   - do not describe the whole scan as a quick scan
+   - describe it as a Firecrawl content scan without SEO/backlink data
+   - if the ai-seo skill is available and the user asks for AI visibility, AI search, GEO, AEO, LLMO, ChatGPT visibility, Perplexity visibility, Google AI Overviews, or citation opportunities, add an AI SEO / Citation Readiness section based on the scraped official content
+   - do not invent keyword, backlink, traffic, authority, or ranking metrics
+
+7. Never invent SEO, backlink, keyword, traffic, authority, or ranking metrics when DataForSEO or another SEO data source is unavailable.
+
+---
+
+## Scan label and output path rules
+
+When Firecrawl is available but DataForSEO is unavailable, use this exact user-facing scan label:
+
+Firecrawl content scan without SEO/backlink data
+
+Do not shorten this to "quick scan", "no SEO scan", or "firecrawl-content-scan-no-seo" in user-facing reports.
+
+Save raw Firecrawl outputs under:
+
+raw/firecrawl/{competitor-slug}/{YYYY-MM-DD}/
+
+Save synthesized competitor profiles under:
+
+competitor-profiles/{competitor-slug}.md
+
+Save the multi-competitor summary under:
+
+competitor-profiles/_summary.md
+
+Do not nest raw Firecrawl outputs under competitor-profiles/raw/.
+
+---
+
+## Optional AI SEO handoff
+
+When the `ai-seo` skill is available and the user asks for AI visibility, AI search, GEO, AEO, LLMO, ChatGPT visibility, Perplexity visibility, Google AI Overviews, or content citation opportunities, use the scraped Firecrawl content as input for an AI SEO assessment.
+
+Do not treat AI SEO as a replacement for DataForSEO. AI SEO can assess content structure and citation readiness without SEO metrics, but it cannot provide keyword rankings, backlinks, referring domains, authority metrics, or organic traffic estimates unless a separate SEO data source is available.
+
+For each competitor, add:
+
+## AI SEO / Citation Readiness
+
+- Extractable answer blocks:
+- Definition blocks:
+- Comparison tables:
+- FAQ coverage:
+- Pricing transparency:
+- Machine-readable files:
+  - /llms.txt:
+  - /pricing.md or /pricing.txt:
+  - /robots.txt:
+- Schema or structured data signals:
+- Author / expert attribution:
+- Freshness signals:
+- Source citations and statistics:
+- AI bot accessibility notes:
+- Content formats likely to be cited:
+- Gaps we can exploit:
+
+---
+
 ## Output Format
+
+## Output structure
+
+When creating competitor profiles, use this directory structure:
+
+```
+competitor-profiles/
+  {competitor-slug}.md
+  _summary.md
+
+raw/
+  firecrawl/
+    {competitor-slug}/
+      {date}/
+        map.json
+        homepage.md
+        pricing.md
+        features.md
+        docs.md
+        customers.md
+  seo/
+    not-available.json
+```
+
+Each competitor profile must include:
+
+```markdown
+# Competitor Profile: {Name}
+
+## Source Coverage
+- Official pages mapped:
+- Official pages scraped:
+- Pricing page found:
+- Docs found:
+- Case studies found:
+- Blog/changelog found:
+- SEO data available:
+- Backlink data available:
+
+## Positioning
+
+## Product and Features
+
+## Pricing
+
+## Messaging Analysis
+
+## Customers and Use Cases
+
+## Strengths
+
+## Weaknesses
+
+## Strategic Implications
+
+## Opportunities for Alternative / VS Pages
+
+## Source Notes and Uncertainty
+
+## AI SEO / Citation Readiness
+Only include this section when the user asks for AI visibility, AI search, GEO, AEO, LLMO, ChatGPT visibility, Perplexity visibility, Google AI Overviews, or citation opportunities, or when the ai-seo skill is explicitly requested.
+```
+
+---
 
 ### Profile Document Structure
 
