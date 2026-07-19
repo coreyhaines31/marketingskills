@@ -1,6 +1,6 @@
 ---
 name: social
-description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social media content creation, repurposing, scheduling, short-form video scripting, and social listening. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
+description: "When the user wants help creating, scheduling, or optimizing social media content for , Instagram, TikTok, Facebook, or wants to do social listening and engagement triage. Also use when the user mentions 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content, 'Instagram carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social media content creation, repurposing, scheduling, short-form video scripting, and social listening. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
   version: 2.2.0
 ---
@@ -42,8 +42,6 @@ Gather this context (ask if not provided):
 
 | Platform | Best For | Frequency | Key Format |
 |----------|----------|-----------|------------|
-| LinkedIn | B2B, thought leadership | 3-5x/week | Carousels, stories |
-| Twitter/X | Tech, real-time, community | 3-10x/day | Threads, hot takes |
 | Instagram | Visual brands, lifestyle | 1-2 posts + Stories daily | Reels, carousels |
 | TikTok | Brand awareness, younger audiences | 1-4x/day | Short-form video |
 | Facebook | Communities, local businesses | 1-2x/day | Groups, native video |
@@ -105,7 +103,7 @@ The first line determines whether anyone reads the rest.
 
 **For post templates and more hooks**: See [references/post-templates.md](references/post-templates.md)
 
-**For carousels** (Instagram carousels, LinkedIn document posts): See [references/carousel-frameworks.md](references/carousel-frameworks.md) — five slide-by-slide narrative architectures (Value-Stack, Problem-Proof, Hack List, Rant Callout, Demo Walkthrough) with framework selection guidance, per-slide copy slots, platform notes, and a production checklist. Pick the framework before writing slides.
+**For carousels** (Instagram carousels,): See [references/carousel-frameworks.md](references/carousel-frameworks.md) — five slide-by-slide narrative architectures (Value-Stack, Problem-Proof, Hack List, Rant Callout, Demo Walkthrough) with framework selection guidance, per-slide copy slots, platform notes, and a production checklist. Pick the framework before writing slides.
 
 ---
 
@@ -117,9 +115,6 @@ Turn one piece of content into many. The best social content isn't created from 
 
 | Platform | Format |
 |----------|--------|
-| LinkedIn | Key insight + link in comments |
-| LinkedIn | Carousel of main points |
-| Twitter/X | Thread of key takeaways |
 | Instagram | Carousel with visuals |
 | Instagram | Reel summarizing the post |
 
@@ -146,8 +141,6 @@ Extract "content atoms" — self-contained moments from any long-form content th
 
 **Per episode, aim for:**
 - 3-5 short video clips or audiograms (15-60 sec) for Reels/TikTok/Shorts
-- 1-2 LinkedIn text posts from key insights
-- 1 Twitter/X thread of takeaways
 - 1 carousel summarizing the main framework or list
 - 1 newsletter section or blog post from the best segment
 
@@ -155,9 +148,8 @@ Extract "content atoms" — self-contained moments from any long-form content th
 
 | Extract | Format |
 |---------|--------|
-| Key slides with commentary | LinkedIn carousel |
 | Q&A highlights | Twitter/X thread |
-| Speaker quotes | Quote graphics for Instagram/LinkedIn |
+| Speaker quotes | Quote graphics for Instagram |
 | Audience reactions/poll results | Engagement posts |
 | Full recording → short clips | Reels, TikTok, Shorts |
 
@@ -165,10 +157,8 @@ Extract "content atoms" — self-contained moments from any long-form content th
 
 | Extract | Format |
 |---------|--------|
-| Main insight | LinkedIn post |
-| Curated links with commentary | Twitter/X thread |
+| Main insight | Instagram post |
 | Data or stat | Quote graphic |
-| Hot take or opinion | Twitter/X post, LinkedIn |
 
 ### Repurposing Workflow
 
@@ -185,7 +175,7 @@ Extract "content atoms" — self-contained moments from any long-form content th
 
 ### Weekly Planning Template
 
-| Day | LinkedIn | Twitter/X | Instagram |
+| Day | Tik tok | Facebook | Instagram |
 |-----|----------|-----------|-----------|
 | Mon | Industry insight | Thread | Carousel |
 | Tue | Behind-scenes | Engagement | Story |
@@ -196,11 +186,9 @@ Extract "content atoms" — self-contained moments from any long-form content th
 ### Batching Strategy (2-3 hours weekly)
 
 1. Review content pillar topics
-2. Write 5 LinkedIn posts
-3. Write 3 Twitter threads + daily tweets
-4. Create Instagram carousel + Reel ideas
-5. Schedule everything
-6. Leave room for real-time engagement
+2. Create Instagram carousel + Reel ideas
+3. Schedule everything
+4. Leave room for real-time engagement
 
 ---
 
