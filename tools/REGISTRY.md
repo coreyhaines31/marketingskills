@@ -91,6 +91,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| hermes-tweet | Social | ✓ | - | - | ✓ | [hermes-tweet.md](integrations/hermes-tweet.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -141,7 +142,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
 
-**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups. RankParse for agent workflows where per-call cost matters — backlinks, domain authority, and tech stack at a fraction of enterprise pricing.
+**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups. RankParse for agent workflows where per-call cost matters - backlinks, domain authority, and tech stack at a fraction of enterprise pricing.
 
 ### CRM
 
@@ -289,8 +290,9 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **hermes-tweet** | X/Twitter automation for Hermes Agent | Search, monitor, export, and approval-gated actions |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Agent recommendation**: Buffer for cross-platform scheduling and analytics. Hermes Tweet for X/Twitter workflows inside Hermes Agent.
 
 ### Video
 
@@ -325,7 +327,7 @@ Pre-outreach email deliverability validation.
 |------|----------|-------|
 | **truelist** | Bulk + single email deliverability validation | Returns `email_state` (ok / email_invalid / risky / unknown / accept_all) + `email_sub_state`. MCP server + 7-language SDKs available. |
 
-**Agent recommendation**: Truelist for any prospect list before outreach — Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
+**Agent recommendation**: Truelist for any prospect list before outreach - Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
 
 ### Developer Intent / GitHub
 
@@ -339,14 +341,14 @@ Discovery channel for dev-tool SaaS prospecting via GitHub stargazers, forkers, 
 
 ### Site Scraping (single-target only)
 
-Programmatic page extraction for **individual public business sites** — not for the platforms hosting prospects (Google Maps, LinkedIn, Yelp, Apollo, etc.).
+Programmatic page extraction for **individual public business sites** - not for the platforms hosting prospects (Google Maps, LinkedIn, Yelp, Apollo, etc.).
 
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **firecrawl** | Page → clean markdown / structured extraction | API + MCP; lower overhead for "just give me the content" |
 | **browserbase** | Real Chromium when rendering, interaction, or session state is required | API + MCP (Stagehand); use when Firecrawl can't handle the page |
 
-**Agent recommendation**: Default to Firecrawl for static-ish pages and structured extraction. Use Browserbase when the site requires JS rendering, form interaction, cookie consent, or auth — and when you want session recordings for debugging. **For both: discovery happens on platforms (manual browser); extraction happens on the prospect's own website URL.** Don't point either tool at LinkedIn, Google Maps, Yelp, or similar.
+**Agent recommendation**: Default to Firecrawl for static-ish pages and structured extraction. Use Browserbase when the site requires JS rendering, form interaction, cookie consent, or auth - and when you want session recordings for debugging. **For both: discovery happens on platforms (manual browser); extraction happens on the prospect's own website URL.** Don't point either tool at LinkedIn, Google Maps, Yelp, or similar.
 
 ### Reviews
 
@@ -418,7 +420,7 @@ Audience intelligence and behavioral research tools.
 |------|----------|-------|
 | **sparktoro** | Audience affinities, behavioral data | Clickstream + social data |
 
-**Agent recommendation**: SparkToro for discovering where your ICP spends time — what they read, watch, listen to, follow, and search for. Essential for customer research, content strategy, and media buying decisions.
+**Agent recommendation**: SparkToro for discovering where your ICP spends time - what they read, watch, listen to, follow, and search for. Essential for customer research, content strategy, and media buying decisions.
 
 ### Visitor Identification
 
@@ -458,7 +460,7 @@ AI-powered web search APIs built for LLMs and agents. Return structured results 
 |------|----------|-------|
 | **exa** | Neural/semantic web search, content research, competitor discovery | Search + findSimilar + Contents; MCP and SDKs available |
 
-**Agent recommendation**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
+**Agent recommendation**: Exa for neural search over the open web - content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
 
 ### Partner Ecosystem
 
@@ -469,7 +471,7 @@ Partner data sharing, co-sell, and ecosystem management.
 | **crossbeam** | Account overlaps, co-sell | Now part of Reveal |
 | **introw** | Partner management, deal registration, QBRs | MCP-enabled PRM |
 
-**Agent recommendation**: Crossbeam for identifying partner account overlaps and co-sell opportunities. Introw for full partner relationship management — partner pipeline, commissions, tasks, and automated business review prep.
+**Agent recommendation**: Crossbeam for identifying partner account overlaps and co-sell opportunities. Introw for full partner relationship management - partner pipeline, commissions, tasks, and automated business review prep.
 
 ### Email Outreach
 
@@ -517,10 +519,10 @@ E-commerce platforms and content management systems.
 Zero-dependency, single-file Node.js CLIs for tools that don't ship their own. See [`clis/README.md`](clis/README.md) for install instructions and usage.
 
 All CLIs follow a consistent pattern:
-- **No dependencies** — Node 18+ only, uses native `fetch`
-- **JSON output** — pipe to `jq`, save to file, or use in scripts
-- **Env var auth** — set `{TOOL}_API_KEY` and go
-- **Consistent commands** — `{tool} <resource> <action> [options]`
+- **No dependencies** - Node 18+ only, uses native `fetch`
+- **JSON output** - pipe to `jq`, save to file, or use in scripts
+- **Env var auth** - set `{TOOL}_API_KEY` and go
+- **Consistent commands** - `{tool} <resource> <action> [options]`
 
 ---
 
@@ -553,11 +555,11 @@ To use MCP tools, ensure the appropriate MCP server is configured in your enviro
 - **Quick start**: See [tools/composio/README.md](composio/README.md)
 - **Marketing tool mapping**: See [tools/composio/marketing-tools.md](composio/marketing-tools.md)
 
-Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP servers (GA4, Stripe, Mailchimp, etc.) when available — they have deeper coverage.
+Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP servers (GA4, Stripe, Mailchimp, etc.) when available - they have deeper coverage.
 
 ### Cogny Integration
 
-[Cogny](integrations/cogny.md) is a hosted MCP gateway focused on marketing channels — one federated MCP URL with managed OAuth across every channel you've connected. Narrower than Composio (marketing-only) and useful when you want SEO, paid social, and privacy-friendly analytics behind a single MCP login.
+[Cogny](integrations/cogny.md) is a hosted MCP gateway focused on marketing channels - one federated MCP URL with managed OAuth across every channel you've connected. Narrower than Composio (marketing-only) and useful when you want SEO, paid social, and privacy-friendly analytics behind a single MCP login.
 
 - **Setup**: connect channels at [cogny.com](https://cogny.com), then in Claude.ai go to Settings → Connectors → Add custom connector and paste `https://app.cogny.com/mcp`
 - **Channels**: Search Console, Bing Webmaster, Semrush, LinkedIn Ads, Reddit Ads, TikTok Ads, Plausible, Fathom
