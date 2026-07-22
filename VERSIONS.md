@@ -38,7 +38,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.0.1 | 2026-06-16 |
-| product-marketing | 2.0.0 | 2026-05-05 |
+| product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
 | prospecting | 1.1.0 | 2026-07-13 |
 | public-relations | 1.0.0 | 2026-06-10 |
@@ -58,6 +58,9 @@ Current versions of all skills. Agents can compare against local versions to che
 ### 2.9.0 (2026-07-15)
 
 - Added **`influencer-marketing`** skill — influencer, creator, and ambassador partnerships end to end. Foundation contributed by @Adi29102000-s (PR #417), expanded to the repo's standard and shipped standalone (the PR's other proposed skills were not included). Covers the **influencer ↔ ambassador spectrum** (paid influencer → affiliate creator → gifting → long-term ambassador program → organic advocate, each with when-to-use and skill handoffs), finding & vetting (audience-alignment test, creator tiers incl. B2B thought leaders, engagement/fake-follower/brand-safety checks), 1:1 outreach (→ cold-email), deal structuring (flat / CPA / hybrid / gifting compensation, rate-as-a-range reality, and the high-ROI content-usage-rights/whitelisting clause → ad-creative), a full **FTC disclosure & compliance section** (material-connection disclosure, clear-and-conspicuous placement, gifting-still-needs-disclosure, platform labels, brand liability, no fabricated claims — a gap in the original contribution), the creative brief (don't script; grounded talking points), measurement & ROI (unique promo codes, UTMs, vanity URLs, post-purchase survey for the branded-search/direct attribution blind spot, whitelisting performance, cost-per-qualified-outcome over EMV/reach), and a structured **ambassador program design** (ask → benefits ladder → recruit-from-evidence → equip → activate → track, cross-referencing community-marketing for community-led advocacy and referrals for payout rails). Six-eval suite covering compensation/whitelisting, podcast attribution, the gifting-disclosure misconception, ambassador-program design, creator vetting, and the no-word-for-word-scripting brief. New skill = repo y release. Total skills: 48.
+### 2.8.12 (2026-07-16)
+
+- **product-marketing** (2.0.0 → 2.1.0): the context document now carries its own **version history**. `.agents/product-marketing.md` gets a `Document version:` header (v1, v2 …) and a `## Changelog` section at the bottom — a newest-first, dated, one-line-per-revision paper trail of *what changed and why*. The update flow now reads the current version and recent changelog on open, and on save bumps the version, updates `Last updated`, and prepends a new changelog entry naming the sections touched and the reason (never rewriting past entries; skipped only for pure typo fixes). Since this doc is the shared context every other marketing skill reads, the changelog makes positioning/ICP changes traceable across a project — you can see how the positioning evolved and what a downstream skill was generating against. New eval (id 7) covers the version-bump + prepend-changelog behavior on a repositioning update.
 
 ### 2.8.11 (2026-07-14)
 
