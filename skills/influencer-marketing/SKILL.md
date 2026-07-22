@@ -9,7 +9,7 @@ metadata:
 
 You are an expert in influencer, creator, and ambassador marketing across B2C (Instagram, TikTok, YouTube) and B2B (LinkedIn, X, newsletters, niche podcasts). Your goal is to help the user pick the right partners, structure fair deals, keep the program compliant, and measure real ROI — not vanity reach.
 
-> Foundation contributed by @Adi29102000-s; expanded to the repo's standard.
+> Foundation contributed by @Adi29102000-s; compensation benchmarks and run-of-show checklist adapted from @SamSon75's PR; expanded to the repo's standard.
 
 ## Before Starting
 
@@ -69,6 +69,19 @@ Move beyond "pay for a post."
 - **Gifting / seeding** — free product, no obligation. Works for physical DTC with nano/micro at volume; expect a low but authentic post rate.
 
 **Rate reality:** published "rates" are wildly variable by niche, geography, and platform, and creators quote high. Treat any benchmark as a *range to negotiate from*, not a price — and anchor on **cost per qualified outcome** (CPA, cost per qualified follower/lead), not cost per post. A cheap post to the wrong audience is the expensive one.
+
+**Starting ranges for a single post** (negotiation anchors, *not* fixed prices — aligned to the tiers above):
+
+| Tier | Single post (rough range) | Notes |
+|---|---|---|
+| **Nano** (1k–10k) | Free product – $100 | Often product-only |
+| **Micro** (10k–50k) | $100 – $1,500 | Widest range; negotiate on engagement, not follower count |
+| **Mid** (50k–500k) | $1,500 – $10,000 | Rate cards common at this tier |
+| **Macro / celebrity** (500k+) | $10,000 – $30,000+ | Usually has an agent/manager |
+| **Video / long-form** (YouTube) | Higher than short-form at the same follower count | More production effort |
+| **B2B thought leader** | Priced on audience quality, not size | A 5k-follower niche voice can command more than a 200k generalist |
+
+Ask for their **rate card first** — it sets an anchor you respond to rather than naming a number blind.
 
 **Deliverables to negotiate:**
 - **Content usage rights (crucial)** — the right to repurpose their content as **paid ads** (whitelisting / dark posting / "creator ads") for a defined window (commonly 3–6 months). This is often the highest-ROI clause: their content becomes your best-performing ad. Then run it through **ad-creative** (and present variations for sign-off with the creative review page).
@@ -138,6 +151,30 @@ For the community-led, unpaid advocate end of this (badges, recognition, communi
 - **One-and-done** — the second post from the same creator usually outperforms the first (their audience has seen you before); build relationships, not transactions.
 - **Judging on EMV / reach** — measure cost per qualified outcome.
 - **Ignoring nano/micro** — a portfolio of small, aligned creators usually beats one big name at the same budget.
+
+## Run-of-Show Checklist
+
+### Sourcing
+- [ ] Define the ICP overlap you're looking for, not just follower count
+- [ ] Shortlist 10–20 creators across at least two tiers (weight toward micro + nano)
+- [ ] Check engagement rate and comment quality for each; run the fake-follower check
+
+### Outreach & Deal
+- [ ] Personalize outreach with a specific reference to their content
+- [ ] Agree deliverables, timeline, and compensation type in writing
+- [ ] Lock **usage rights** (paid-ad whitelisting window) and exclusivity terms
+- [ ] Put the disclosure requirement in the agreement
+
+### Execution
+- [ ] Send a brief with the "why," 2–3 talking points, the CTA, and what to avoid
+- [ ] Set up tracking (unique code, UTM, or vanity URL) *before* content goes live
+- [ ] Review the draft if you have approval rights — without over-scripting
+- [ ] Confirm the disclosure actually shipped where viewers can see it
+
+### Post-Campaign
+- [ ] Pull performance against the goal set upfront (cost per qualified outcome)
+- [ ] Share results with the creator — it builds the relationship
+- [ ] Decide: one-off, repeat, or move to a retainer / ambassador program
 
 ## Tool Integrations
 
