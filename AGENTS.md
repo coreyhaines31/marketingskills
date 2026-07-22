@@ -25,10 +25,19 @@ marketingskills/
 │   ├── composio/          # Composio integration layer (quick start + toolkit mapping)
 │   ├── integrations/      # API integration guides per tool
 │   └── REGISTRY.md        # Tool index with capabilities
+├── evals/                 # Marketing eval framework (judge library + harness + model benchmark)
+│   ├── judges/<name>/     # each: JUDGE.md rubric + answer-key.json + README
+│   ├── harness.mjs        # run a judge over its answer key → agreement %
+│   ├── grade.mjs          # grade new inputs against any judge
+│   └── benchmark.mjs      # rank models on a task by quality × cost × time
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
 ```
+
+## Eval Framework (`evals/`)
+
+`evals/` is a separate layer from skills: expert-calibrated **judges** that grade the *quality* of marketing output (copy, creative, long-form, tool-calling) plus a harness and a model benchmark. Zero-dependency Node 18+ (`node --check evals/*.mjs`; `node evals/harness.mjs judges/<name>` needs an API key). **Do not confuse it with a skill's `evals/evals.json`** — those are *behavioral* evals for the skill; the `evals/` framework is the *output-quality/trajectory* layer. Most judges are "seed" (AI-drafted labels awaiting a human labeling pass); `ad-hooks` is calibrated (seeded from hook-grader, MIT, credited). See `evals/README.md` and `evals/METHODOLOGY.md`. Tracked in issues #479 (framework) and #480 (model benchmark).
 
 ## Build / Lint / Test Commands
 

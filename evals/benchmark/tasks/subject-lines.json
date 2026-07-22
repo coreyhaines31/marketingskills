@@ -1,0 +1,15 @@
+{
+  "generate": "You are an expert email marketer. Write ONE email subject line for a campaign about the product below — one that earns the open without being spammy or clickbait. Return ONLY the subject line.",
+  "briefs": [
+    "a budget-friendly meal-prep app for busy parents",
+    "a posture-correcting desk chair for remote workers",
+    "an AI note-taker that joins your video calls",
+    "a refillable natural deodorant subscription",
+    "a debt-payoff app that rounds up your purchases",
+    "a language-learning app focused on speaking, not grammar",
+    "a stain-resistant white sneaker for parents of toddlers",
+    "a B2B tool that finds a company's real email addresses",
+    "a sleep supplement without melatonin grogginess",
+    "a resume tool that rewrites bullets for a specific job posting"
+  ]
+}
