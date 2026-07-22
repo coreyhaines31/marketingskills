@@ -24,16 +24,29 @@ const bold = (s) => `\x1b[1m${s}\x1b[0m`;
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
-const cfgPath = resolve(args.find((a) => !a.startsWith("-")) || "benchmark/config.json");
+const cfgArg = args.find((a) => !a.startsWith("-"));
+// Explicit config path is cwd-relative; the default lives next to this script.
+const cfgPath = cfgArg ? resolve(cfgArg) : resolve(HERE, "benchmark/config.json");
 const cfg = JSON.parse(readFileSync(cfgPath, "utf8"));
 
-const judgeDir = cfg.judge;                          // e.g. "judges/ad-hooks"
-const judgeModels = cfg.judgeModels || ["claude-sonnet-4-6"];
+// All config paths resolve relative to evals/, so a run works from any cwd.
+const judgeLabel = cfg.judge;                        // e.g. "judges/ad-hooks"
+const judgeDir = resolve(HERE, cfg.judge);
+const judgeModels = cfg.judgeModels || [];
 const contestants = cfg.contestants || [];
 const samples = cfg.samplesPerTask || 1;
 const taskSpec = JSON.parse(readFileSync(resolve(HERE, cfg.tasks), "utf8"));
 const briefs = taskSpec.briefs;
 const genInstruction = taskSpec.generate;
+
+// Integrity gates (fail before any API call, incl. dry-run):
+if (!judgeModels.length) { console.error("config.judgeModels must list at least one model (a judge)."); process.exit(1); }
+if (!contestants.length) { console.error("config.contestants must list at least one model."); process.exit(1); }
+const selfJudge = contestants.filter((c) => judgeModels.includes(c));
+if (selfJudge.length) {
+  console.error(`A model must not judge its own outputs (self-preference bias): ${selfJudge.join(", ")} appears in BOTH contestants and judgeModels. Use a judge from a different lab.`);
+  process.exit(1);
+}
 
 // ---- validation / dry-run -------------------------------------------------
 function keyPresent(modelId) {
@@ -41,7 +54,7 @@ function keyPresent(modelId) {
 }
 
 console.error(bold(`\nMarketing Model Benchmark`));
-console.error(dim(`judge:        ${judgeDir}  (grader: ${judgeModels.join(" + ")}${judgeModels.length > 1 ? " · consensus" : ""})`));
+console.error(dim(`judge:        ${judgeLabel}  (grader: ${judgeModels.join(" + ")}${judgeModels.length > 1 ? " · consensus" : ""})`));
 console.error(dim(`task set:     ${cfg.tasks}  (${briefs.length} briefs x ${samples} sample${samples > 1 ? "s" : ""})`));
 console.error(dim(`contestants:  ${contestants.length}`));
 console.error(dim(`pricing asOf: ${loadPricing().asOf}\n`));
@@ -117,7 +130,7 @@ rows.sort((a, b) => b.passRate - a.passRate);
 const pct = (x) => (x * 100).toFixed(1) + "%";
 const usd = (x) => (x === Infinity ? "—" : "$" + x.toFixed(4));
 
-console.log("\n" + bold("LEADERBOARD") + dim(`  — ${judgeDir}, graded by ${judgeModels.join("+")}\n`));
+console.log("\n" + bold("LEADERBOARD") + dim(`  — ${judgeLabel}, graded by ${judgeModels.join("+")}\n`));
 console.log(["#", "model".padEnd(20), "quality", "avg tok", "lat p~", "gen cost", "cost/accepted"].join("  "));
 rows.forEach((r, i) => {
   console.log([

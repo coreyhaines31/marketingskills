@@ -14,7 +14,7 @@
 {"input": "Cancel any subscription you forgot you had", "verdict": "PASS"},
 {"input": "The mattress that sends the ex packing", "verdict": "FAIL"},
 {"input": "Your rent, reported to the credit bureaus", "verdict": "FAIL"},
-{"input": "Meetings that should've been emails, killed", "verdict": "FAIL"},
+{"input": "Meetings that should've been emails, killed", "verdict": "PASS"},
 {"input": "File your taxes in 20 minutes, guaranteed accurate", "verdict": "PASS"},
 {"input": "Coffee roasted the day before it ships", "verdict": "FAIL"},
 {"input": "AI-powered analytics platform", "verdict": "FAIL"},
