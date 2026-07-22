@@ -1,0 +1,12 @@
+{
+  "asOf": "2026-07-22",
+  "note": "ILLUSTRATIVE prices in USD per 1M tokens, and example model ids — verify every value against current provider pricing before publishing a benchmark. This is the benchmark's contestant/judge registry too: add models here. openai-compatible providers (Moonshot/Kimi, Gemini compat endpoint, Together, etc.) need baseURL + keyEnv; use apiModel when the API's model id differs from the registry key.",
+  "models": {
+    "claude-opus-4-8":   { "provider": "anthropic", "keyEnv": "ANTHROPIC_API_KEY", "priceIn": 15, "priceOut": 75 },
+    "claude-sonnet-4-6": { "provider": "anthropic", "keyEnv": "ANTHROPIC_API_KEY", "priceIn": 3, "priceOut": 15 },
+    "claude-haiku-4-5":  { "provider": "anthropic", "keyEnv": "ANTHROPIC_API_KEY", "apiModel": "claude-haiku-4-5-20251001", "priceIn": 1, "priceOut": 5 },
+    "gpt-4.1":           { "provider": "openai", "keyEnv": "OPENAI_API_KEY", "priceIn": 2, "priceOut": 8 },
+    "kimi-k2":           { "provider": "openai-compatible", "keyEnv": "MOONSHOT_API_KEY", "baseURL": "https://api.moonshot.ai/v1", "apiModel": "kimi-k2-0711-preview", "priceIn": 0.6, "priceOut": 2.5 },
+    "gemini-3-pro":      { "provider": "openai-compatible", "keyEnv": "GEMINI_API_KEY", "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai", "apiModel": "gemini-3-pro", "priceIn": 2, "priceOut": 10 }
+  }
+}

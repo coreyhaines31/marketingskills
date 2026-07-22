@@ -1,0 +1,8 @@
+{
+  "judge": "judges/ad-hooks",
+  "judgeModels": ["claude-sonnet-4-6"],
+  "tasks": "benchmark/tasks/ad-hooks.json",
+  "contestants": ["claude-opus-4-8", "claude-sonnet-4-6", "gpt-4.1", "kimi-k2", "gemini-3-pro"],
+  "samplesPerTask": 1,
+  "_notes": "judgeModels: list 2 models from different labs for blind consensus (PASS only if both agree). Add/remove contestants freely (they must exist in ../pricing.json). Bump samplesPerTask for stochastic robustness (models aren't deterministic). Run: node benchmark.mjs --dry-run first."
+}

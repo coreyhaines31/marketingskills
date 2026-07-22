@@ -29,17 +29,33 @@ No API key? The judge is just a prompt — open any `judges/<name>/JUDGE.md`, co
 evals/
 ├── README.md              # this file
 ├── METHODOLOGY.md         # how to build & calibrate a trustworthy judge
-├── lib.mjs                # provider-agnostic model calls; loads judges; captures tokens + latency
+├── pricing.json           # versioned model registry + $/1M-token prices (contestants & judges)
+├── lib.mjs                # provider-agnostic model calls; loads judges; tokens + latency + cost
 ├── harness.mjs            # run a judge over its answer key → agreement % + confusion + cost/time
 ├── grade.mjs              # grade new inputs against any judge (BYO key)
+├── benchmark.mjs          # rank models on a task by quality × cost × time (blind consensus)
+├── benchmark/             # benchmark config + task sets  (see benchmark/README.md)
 └── judges/
-    └── ad-hooks/          # seeded from hook-grader (credit: Alysha / Runneth, MIT)
+    ├── ad-hooks/          # CALIBRATED — seeded from hook-grader (Alysha / Runneth, MIT), ~74%
+    ├── headlines/         # seed
+    ├── subject-lines/     # seed
+    ├── value-props/       # seed
+    ├── ctas/              # seed
+    ├── long-form/         # seed (grades a blog lede)
+    ├── ad-concepts/       # seed (grades an ad concept/angle)
+    └── tool-calling/      # seed — Type B trajectory judge (grades an agent's tool calls)
         ├── JUDGE.md        # the rubric (everything after the first `---` is the prompt)
-        ├── answer-key.json # [{ input, verdict }, ...] hand-labeled by a human
+        ├── answer-key.json # [{ input, verdict }, ...] labeled by a human
         └── README.md
 ```
 
+**Calibrated vs seed:** `ad-hooks` is calibrated (human-graded key, published agreement number). The rest are **seed** — rubric + a starter corpus with AI-drafted verdicts awaiting a human labeling pass by the framework's calibrator (Corey Haines). No agreement number is published for a seed judge until it's labeled. See `METHODOLOGY.md`.
+
 Adding a judge is deliberately boring: create `judges/<name>/` with a `JUDGE.md` + `answer-key.json`, run `node harness.mjs judges/<name>` until the agreement number is good, commit. The harness never changes.
+
+## Model benchmark
+
+`benchmark.mjs` ranks models (Opus / Sonnet / GPT / Kimi / Gemini…) on a marketing task by **quality × cost × time**: each contestant *generates* outputs, a fixed *blind* judge (optionally 2-model consensus) grades them, and the leaderboard reports pass-rate, tokens, latency, and **cost per accepted output** (the routing metric). The generator and judge are kept separate so no model grades its own work. `node benchmark.mjs --dry-run` validates a run without spending. See `benchmark/README.md` and issue #480.
 
 ## Eval types and task families
 

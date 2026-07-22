@@ -14,7 +14,23 @@
 // triaxial (quality x cost x time), not quality-only.
 
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+
+// Versioned model registry + pricing (provider, key env, $/1M tokens). Doubles
+// as the benchmark's contestant/judge registry. Edit evals/pricing.json to add
+// models or update prices; it carries an "asOf" date.
+export function loadPricing() {
+  return JSON.parse(readFileSync(resolve(HERE, "pricing.json"), "utf8"));
+}
+export function modelInfo(modelId) {
+  const reg = loadPricing().models;
+  const info = reg[modelId];
+  if (!info) throw new Error(`Unknown model "${modelId}" — add it to evals/pricing.json`);
+  return info;
+}
 
 // Load a judge's rubric. Strips the human-facing header (everything before the
 // first `---` line); sends only the calibrated rubric to the model.
@@ -28,73 +44,75 @@ export function loadAnswerKey(judgeDir) {
   return JSON.parse(readFileSync(resolve(judgeDir, "answer-key.json"), "utf8"));
 }
 
-function provider() {
-  if (process.env.ANTHROPIC_API_KEY) {
-    return { name: "anthropic", model: process.env.EVAL_MODEL || "claude-sonnet-4-6" };
-  }
-  if (process.env.OPENAI_API_KEY) {
-    return { name: "openai", model: process.env.EVAL_MODEL || "gpt-4.1" };
-  }
+// Auto-detect a judge model from the environment (used by harness/grade when no
+// model is named).
+function autoProvider() {
+  if (process.env.ANTHROPIC_API_KEY) return { provider: "anthropic", model: process.env.EVAL_MODEL || "claude-sonnet-4-6" };
+  if (process.env.OPENAI_API_KEY) return { provider: "openai", model: process.env.EVAL_MODEL || "gpt-4.1" };
   throw new Error("Set ANTHROPIC_API_KEY or OPENAI_API_KEY in your environment first.");
 }
 
 export function activeModel() {
-  return provider().model;
+  return autoProvider().model;
 }
 
-// Returns { text, usage: { input, output }, ms }.
-async function callModel(system, user) {
-  const p = provider();
+// One HTTP call to a provider. Returns { text, usage: { input, output }, ms }.
+// `baseURL` lets any OpenAI-compatible provider (Moonshot/Kimi, Gemini's compat
+// endpoint, Together, etc.) be a contestant without new code.
+async function callProvider(provider, model, apiKey, system, user, baseURL) {
+  if (!apiKey) throw new Error(`Missing API key for ${provider} model ${model}`);
   const start = Date.now();
 
-  if (p.name === "anthropic") {
+  if (provider === "anthropic") {
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "x-api-key": apiKey,
         "anthropic-version": "2023-06-01",
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        // Generous ceiling: a full batch returns one verbose JSON object per
-        // input (verdict + trigger + tactic + reasoning + improvement); 4096
-        // can truncate a 20-item batch mid-array and break JSON parsing.
-        model: p.model,
-        max_tokens: 8192,
-        system,
-        messages: [{ role: "user", content: user }],
-      }),
+      // Generous ceiling: a full batch returns one verbose JSON object per input;
+      // 4096 can truncate a 20-item batch mid-array and break JSON parsing.
+      body: JSON.stringify({ model, max_tokens: 8192, system, messages: [{ role: "user", content: user }] }),
     });
     if (!r.ok) throw new Error(`Anthropic ${r.status}: ${await r.text()}`);
     const j = await r.json();
-    return {
-      text: j.content[0].text,
-      usage: { input: j.usage?.input_tokens ?? 0, output: j.usage?.output_tokens ?? 0 },
-      ms: Date.now() - start,
-    };
+    return { text: j.content[0].text, usage: { input: j.usage?.input_tokens ?? 0, output: j.usage?.output_tokens ?? 0 }, ms: Date.now() - start };
   }
 
-  const r = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: p.model,
-      messages: [
-        { role: "system", content: system },
-        { role: "user", content: user },
-      ],
-    }),
-  });
-  if (!r.ok) throw new Error(`OpenAI ${r.status}: ${await r.text()}`);
-  const j = await r.json();
-  return {
-    text: j.choices[0].message.content,
-    usage: { input: j.usage?.prompt_tokens ?? 0, output: j.usage?.completion_tokens ?? 0 },
-    ms: Date.now() - start,
-  };
+  if (provider === "openai" || provider === "openai-compatible") {
+    const url = (baseURL || "https://api.openai.com/v1").replace(/\/$/, "") + "/chat/completions";
+    const r = await fetch(url, {
+      method: "POST",
+      headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
+      body: JSON.stringify({ model, messages: [{ role: "system", content: system }, { role: "user", content: user }] }),
+    });
+    if (!r.ok) throw new Error(`${provider} ${r.status}: ${await r.text()}`);
+    const j = await r.json();
+    return { text: j.choices[0].message.content, usage: { input: j.usage?.prompt_tokens ?? 0, output: j.usage?.completion_tokens ?? 0 }, ms: Date.now() - start };
+  }
+
+  throw new Error(`Unknown provider "${provider}"`);
+}
+
+// Auto-detected judge call (harness/grade path). Returns { text, usage, ms }.
+async function callModel(system, user) {
+  const p = autoProvider();
+  const key = p.provider === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY;
+  return callProvider(p.provider, p.model, key, system, user);
+}
+
+// Explicit-model call (benchmark path). Resolves provider + key from the
+// pricing registry. Returns { text, usage, ms }.
+export async function callModelWith(modelId, system, user) {
+  const info = modelInfo(modelId);
+  return callProvider(info.provider, info.apiModel || modelId, process.env[info.keyEnv], system, user, info.baseURL);
+}
+
+// Cost in USD for a usage object, from the versioned pricing table.
+export function costUSD(modelId, usage) {
+  const info = modelInfo(modelId);
+  return (usage.input / 1e6) * (info.priceIn ?? 0) + (usage.output / 1e6) * (info.priceOut ?? 0);
 }
 
 // Extract the results array from a model response. Robust to prose wrappers,
@@ -161,12 +179,19 @@ export function validateResults(results, n) {
   return results;
 }
 
-// Grade an array of input strings against a judge.
+function buildPrompt(inputs) {
+  return `Grade these:\n\n${inputs.map((h, i) => `${i + 1}. ${h}`).join("\n")}`;
+}
+
+// Grade an array of input strings against a judge, using the auto-detected model.
 // Returns { results: [{ index, verdict, ... }], usage: { input, output }, ms }.
 export async function grade(judgeDir, inputs) {
-  const judge = loadJudge(judgeDir);
-  const numbered = inputs.map((h, i) => `${i + 1}. ${h}`).join("\n");
-  const { text, usage, ms } = await callModel(judge, `Grade these:\n\n${numbered}`);
-  const results = validateResults(parseJsonArray(text), inputs.length);
-  return { results, usage, ms };
+  const { text, usage, ms } = await callModel(loadJudge(judgeDir), buildPrompt(inputs));
+  return { results: validateResults(parseJsonArray(text), inputs.length), usage, ms };
+}
+
+// Grade against a specific judge model (benchmark path — pins the grader).
+export async function gradeWith(judgeDir, inputs, modelId) {
+  const { text, usage, ms } = await callModelWith(modelId, loadJudge(judgeDir), buildPrompt(inputs));
+  return { results: validateResults(parseJsonArray(text), inputs.length), usage, ms };
 }
