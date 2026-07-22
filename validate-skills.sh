@@ -7,7 +7,8 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-SKILLS_DIR="skills"
+# Directory to audit; overridable so regression tests can point at fixtures.
+SKILLS_DIR="${SKILLS_DIR:-skills}"
 ISSUES=0
 WARNINGS=0
 PASSED=0
@@ -60,6 +61,8 @@ for skill_dir in "$SKILLS_DIR"/*/; do
         skill_errors+=("Name mismatch: directory='$skill_name' but frontmatter='$name_in_file'")
     elif ! [[ "$name_in_file" =~ ^[a-z0-9]([a-z0-9-]{0,62}[a-z0-9])?$ ]]; then
         skill_errors+=("Invalid name format: '$name_in_file' (must be lowercase, alphanumeric + hyphens only)")
+    elif [[ "$name_in_file" == *--* ]]; then
+        skill_errors+=("Invalid name: '$name_in_file' has consecutive hyphens ('--' not allowed)")
     elif [[ ${#name_in_file} -lt 1 || ${#name_in_file} -gt 64 ]]; then
         skill_errors+=("Name length invalid: ${#name_in_file} chars (must be 1-64)")
     fi
@@ -100,14 +103,18 @@ for skill_dir in "$SKILLS_DIR"/*/; do
         skill_warnings+=("License '$license' is non-standard (default: MIT)")
     fi
 
+    # Check version placement — 'version' must live under 'metadata:', never at
+    # the top level. Checked unconditionally: the mistake this catches is a
+    # top-level version with no 'metadata:' block at all.
+    if echo "$frontmatter" | grep -q "^version:"; then
+        skill_errors+=("'version' is top-level (should be under 'metadata:')")
+    fi
+
     # Check metadata structure
     metadata=$(echo "$frontmatter" | grep -A 10 "^metadata:")
     if [[ -n "$metadata" ]]; then
-        # If metadata exists, check for version placement
-        if echo "$frontmatter" | grep -q "^version:"; then
-            skill_errors+=("'version' is top-level (should be under 'metadata:')")
-        fi
         # Could add more metadata validation here
+        :
     fi
 
     # ===== FILE STRUCTURE VALIDATION =====
