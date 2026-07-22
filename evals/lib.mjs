@@ -97,34 +97,51 @@ async function callModel(system, user) {
   };
 }
 
-// Extract the first top-level JSON array from a model response. Handles a clean
-// array, a ```json fenced block, and prose-wrapped output — without the greedy
-// "first [ to last ]" trap (which breaks when there's any [ or ] in the prose
-// or inside string values). Scans for a balanced array, string-aware.
+// Extract the results array from a model response. Robust to prose wrappers,
+// code fences, and stray brackets: it collects every top-level, string-aware
+// balanced `[...]`, JSON-parses each, and prefers the one that's an array of
+// objects (the results shape) — so `Note [x]` or a stray `[1,2]` in prose
+// before the real array can't win, and there's no greedy first-[-to-last-]
+// trap or fence-regex ambiguity.
 export function parseJsonArray(text) {
-  const t = text.trim();
-  const fenced = t.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  const body = (fenced ? fenced[1] : t).trim();
+  const body = text.trim();
 
+  // Fast path: the whole response is the array.
   try {
     const v = JSON.parse(body);
     if (Array.isArray(v)) return v;
   } catch {}
 
-  const start = body.indexOf("[");
-  if (start === -1) throw new Error(`No JSON array in model output:\n${text}`);
-  let depth = 0, inStr = false, esc = false;
-  for (let i = start; i < body.length; i++) {
-    const c = body[i];
-    if (inStr) {
-      if (esc) esc = false;
-      else if (c === "\\") esc = true;
-      else if (c === '"') inStr = false;
-    } else if (c === '"') inStr = true;
-    else if (c === "[") depth++;
-    else if (c === "]" && --depth === 0) return JSON.parse(body.slice(start, i + 1));
+  // Fallback: find the results array by its shape — a `[` whose first non-space
+  // char is `{` (an array of objects). Starting only at `[{` means stray or
+  // unbalanced brackets in prose (`Note [x]`, `[1,2,3]`, `log [not closed`)
+  // can't derail the scan. Balance string-aware from there; return the first
+  // that parses.
+  for (let i = 0; i < body.length; i++) {
+    if (body[i] !== "[") continue;
+    let j = i + 1;
+    while (j < body.length && /\s/.test(body[j])) j++;
+    if (body[j] !== "{") continue;
+
+    let depth = 0, inStr = false, esc = false;
+    for (let k = i; k < body.length; k++) {
+      const c = body[k];
+      if (inStr) {
+        if (esc) esc = false;
+        else if (c === "\\") esc = true;
+        else if (c === '"') inStr = false;
+      } else if (c === '"') inStr = true;
+      else if (c === "[") depth++;
+      else if (c === "]" && --depth === 0) {
+        try {
+          const v = JSON.parse(body.slice(i, k + 1));
+          if (Array.isArray(v)) return v;
+        } catch {}
+        break; // this candidate didn't parse; move to the next `[{`
+      }
+    }
   }
-  throw new Error(`Unbalanced JSON array in model output:\n${text}`);
+  throw new Error(`No JSON array of objects in model output:\n${text}`);
 }
 
 // Every input must get exactly one verdict, or agreement counts are corrupt —
