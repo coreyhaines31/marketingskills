@@ -1,0 +1,13 @@
+{
+  "name": "marketing-evals",
+  "version": "0.1.0",
+  "description": "Expert-calibrated judges that grade marketing quality (copy, creative, long-form, media, tool-calling), plus a shared harness. Reverse-engineered from hook-grader (MIT).",
+  "type": "module",
+  "scripts": {
+    "grade": "node grade.mjs",
+    "eval": "node harness.mjs"
+  },
+  "keywords": ["eval", "evals", "marketing", "llm", "judge", "benchmark", "creative-strategy"],
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}

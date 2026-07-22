@@ -1,0 +1,466 @@
+[
+{
+"input": "I’m not trying to pay for cat litter in 2026, and neither should you. Did you guys see this giveaway in the [a pet brand] app?",
+"verdict": "FAIL"
+},
+{
+"input": "Your rugby performance could be suffering because you won't invest in the tape you deserve",
+"verdict": "FAIL"
+},
+{
+"input": "90% of lookers don't understand the reason why their hands die, and here is why and how.",
+"verdict": "FAIL"
+},
+{
+"input": "Today I m here not just selling \"software\"; imselling the integrity of the company’s financial data.",
+"verdict": "FAIL"
+},
+{
+"input": "As accounted, I was trained to find errors and mitigate risk.",
+"verdict": "FAIL"
+},
+{
+"input": "Ladies. Stop blaming your age for your lashes. That is not the reason.",
+"verdict": "FAIL"
+},
+{
+"input": "Your mascara contains hormone disruptors. The industry got away with it for decades.",
+"verdict": "FAIL"
+},
+{
+"input": "Is this mascara actually PFAS-free?",
+"verdict": "FAIL"
+},
+{
+"input": "I was worried blinds would make the room feel busy",
+"verdict": "FAIL"
+},
+{
+"input": "Replacing blinds every couple of years actually costs more than doing it properly once",
+"verdict": "PASS"
+},
+{
+"input": "So I’m 43, a mum of three in Brisbane, and I just learned I could qualify for up to $1.5 million in life insurance including terminal Illness coverage",
+"verdict": "FAIL"
+},
+{
+"input": "We just launched our new protein formula",
+"verdict": "FAIL"
+},
+{
+"input": "Does your child also loves getting letter on post? This program is for you then!",
+"verdict": "FAIL"
+},
+{
+"input": "Works at the beach and in the solarium.",
+"verdict": "FAIL"
+},
+{
+"input": "2× faster tan with [the tanner].",
+"verdict": "FAIL"
+},
+{
+"input": "3 reasons I regret buying [the tanner]…",
+"verdict": "PASS"
+},
+{
+"input": "AI was unleashed before we knew how to deal with it, but what if tech could be differnet?",
+"verdict": "FAIL"
+},
+{
+"input": "What if we could have impact on the future of tech instead of it having impace on us?",
+"verdict": "FAIL"
+},
+{
+"input": "Quantum technoliges could change our lives like AI here's what experts has to say about this moment in time",
+"verdict": "FAIL"
+},
+{
+"input": "What if we as a society had learnt to deal with AI before it was released? Quantum Tech is next, we asked an artist, philosopher, scientist and reseracher why we should care. This is what they said.",
+"verdict": "FAIL"
+},
+{
+"input": "New reports confirms: technology needs artists",
+"verdict": "FAIL"
+},
+{
+"input": "What role do artists play in shaping our future",
+"verdict": "FAIL"
+},
+{
+"input": "Are we misunderstanding machine intelligence?",
+"verdict": "FAIL"
+},
+{
+"input": "What can other species teach us about intelligence?",
+"verdict": "FAIL"
+},
+{
+"input": "Can art be useful in the ecological crisis?",
+"verdict": "FAIL"
+},
+{
+"input": "We're taking our brain's back",
+"verdict": "FAIL"
+},
+{
+"input": "Art can cure brain rot",
+"verdict": "FAIL"
+},
+{
+"input": "If you're still using cartridge razors, congrats, you're the cause of the razor burns you dread.",
+"verdict": "PASS"
+},
+{
+"input": "If you've not been using [a razor brand], you may want to see this",
+"verdict": "FAIL"
+},
+{
+"input": "Shaving should be fun",
+"verdict": "FAIL"
+},
+{
+"input": "There is no big learning curve or technique needed to avoid nicks or cuts when you shave.",
+"verdict": "FAIL"
+},
+{
+"input": "It's easy to use.",
+"verdict": "FAIL"
+},
+{
+"input": "I personally think it feels better than a cartridge razor.",
+"verdict": "FAIL"
+},
+{
+"input": "This is [the brand], before you scroll, you should know that this is literally what every cell in your body craves",
+"verdict": "FAIL"
+},
+{
+"input": "Stop buying expensive neck serums",
+"verdict": "FAIL"
+},
+{
+"input": "Apparently this song magically calms your ADHD brain",
+"verdict": "PASS"
+},
+{
+"input": "Give your brain a 10-second rest",
+"verdict": "PASS"
+},
+{
+"input": "You've scrolled past this kind of sound before. But this one...just works",
+"verdict": "FAIL"
+},
+{
+"input": "My friend called me at 11pm sobbing.",
+"verdict": "FAIL"
+},
+{
+"input": "i don't know about you but most anti-aging serums are like men",
+"verdict": "FAIL"
+},
+{
+"input": "I used to think phone cases didn't matter. Then I saw this one. Best for: Top-of-funnel prospecting where visual social proof drives interest.",
+"verdict": "FAIL"
+},
+{
+"input": "This is the case that made my friend ask me for the link three times.",
+"verdict": "FAIL"
+},
+{
+"input": "Everyone keeps asking where my phone case is from. Here it is.",
+"verdict": "PASS"
+},
+{
+"input": "Stop scrolling if your lips look like this",
+"verdict": "FAIL"
+},
+{
+"input": "you current website is probably not ready for the next version of the internet",
+"verdict": "PASS"
+},
+{
+"input": "i get this comment a lot asking why we're so expensive",
+"verdict": "PASS"
+},
+{
+"input": "I got 100K followers from ONE video",
+"verdict": "FAIL"
+},
+{
+"input": "did you know that 33% of gen z and millennial couples break up over finances?",
+"verdict": "PASS"
+},
+{
+"input": "I didn’t realize how much mental energy my calendar was costing me until I fixed it.",
+"verdict": "FAIL"
+},
+{
+"input": "I forget to look at the apps that are supposed to help me remember what it is I'm forgetting.",
+"verdict": "PASS"
+},
+{
+"input": "If your UGC for a productivity app doesn’t look like this... you’re talking to the wrong person.",
+"verdict": "FAIL"
+},
+{
+"input": "最高峰のスーパートレーナー。超軽量アッパーとthe [foam tech]ハイパーフォームを融合。",
+"verdict": "FAIL"
+},
+{
+"input": "Need to clear your head? Try this breath, step your feet wide moving from the earth up to the sky, inhale deep as you sink down and exhale everything up as you rise back up. feel that flow. I'm literally clearing space for new growth.",
+"verdict": "FAIL"
+},
+{
+"input": "Need to clear your head?",
+"verdict": "FAIL"
+},
+{
+"input": "Need to clear your head? Try this breath.",
+"verdict": "FAIL"
+},
+{
+"input": "OK, I need to talk about these shoes because I’ve worn them three different ways this week!",
+"verdict": "FAIL"
+},
+{
+"input": "3. I almost quit my job until I found this secret tool.",
+"verdict": "FAIL"
+},
+{
+"input": "2. How to grow your business in 2024.",
+"verdict": "FAIL"
+},
+{
+"input": "1. You're using AI wrong.",
+"verdict": "FAIL"
+},
+{
+"input": "I've ruined three outfits this spring because I couldn't find a shoe that actually worked with everything — then these showed up and changed everything",
+"verdict": "PASS"
+},
+{
+"input": "One shoe, endless ways to wear it — dressed down or dressed up, the [the shoe] does both beautifully",
+"verdict": "FAIL"
+},
+{
+"input": "I threw out every pair of shoes I owned after finding these — sorry, not  sorry",
+"verdict": "FAIL"
+},
+{
+"input": "OK I need to talk about these shoes — I've worn them three different ways this week and I am not okay",
+"verdict": "FAIL"
+},
+{
+"input": "Looking for a spring shoe that works with literally everything and doesn’t sacrifice comfort for cute - THESE are it!",
+"verdict": "FAIL"
+},
+{
+"input": "Are you ruining your spring outfits with ugly shoes and sore feet?",
+"verdict": "PASS"
+},
+{
+"input": "I used to think sustainable fashion meant looking like I was fresh off the trail",
+"verdict": "PASS"
+},
+{
+"input": "Your “fresh spring breeze” cleaner is anything but fresh - and here’s what it’s actually doing to your family",
+"verdict": "FAIL"
+},
+{
+"input": "Mama to mama — if it’s taking you more than 2 wipes every diaper change, your wipes are failing you",
+"verdict": "PASS"
+},
+{
+"input": "We apologize to anyone who purchased our starter kit bundle because we lied.",
+"verdict": "PASS"
+},
+{
+"input": "They really weren't lying when they told you to eat before putting on these kind patches because I've had it on for like six hours now.",
+"verdict": "FAIL"
+},
+{
+"input": "You know, normally I'd be like, wow, really shiny hair. No, girl, this is oil. This is all oil.",
+"verdict": "PASS"
+},
+{
+"input": "I honestly wish I never found out about these covers. Because now, I'm a customer for life.",
+"verdict": "PASS"
+},
+{
+"input": "This one easy mistake will cost you thousands when buying a used car.",
+"verdict": "PASS"
+},
+{
+"input": "Why drinking is overrated. This will give you a gnarly hangover.",
+"verdict": "FAIL"
+},
+{
+"input": "Why did no one tell me these foods were hurting me?",
+"verdict": "PASS"
+},
+{
+"input": "The second I get home from doing anything, you can bet the makeup is immediately coming off.",
+"verdict": "PASS"
+},
+{
+"input": "This is my 48 year old chest, redness, rosacea, broken capillaries, stretch marks.",
+"verdict": "PASS"
+},
+{
+"input": "Three reasons why men love [the product]. Number one, self-locking design.",
+"verdict": "FAIL"
+},
+{
+"input": "So a celebrity came out with a protein and I do not think I have ever been more offended.",
+"verdict": "PASS"
+},
+{
+"input": "I can confidently say that we spend more on our ingredients than almost any other dog food out there.",
+"verdict": "PASS"
+},
+{
+"input": "The answer to your ankle swelling is not an expensive doctor visit.",
+"verdict": "PASS"
+},
+{
+"input": "Did you know 65 to 90% of cancers are preventable based off of lifestyle factors?",
+"verdict": "FAIL"
+},
+{
+"input": "I asked my husband, when did you get so big? His confidence hits different with [the product].",
+"verdict": "PASS"
+},
+{
+"input": "If your underwear is always wet, you need to change it immediately.",
+"verdict": "PASS"
+},
+{
+"input": "I'm ditching the kitchen for a week and letting this meal service cook for me.",
+"verdict": "PASS"
+},
+{
+"input": "Hey, Marty Lopez here, and please don't scroll because I got to tell you something.",
+"verdict": "FAIL"
+},
+{
+"input": "Ain't nothing to it but to do it, so let's get to it. Do y'all remember the last time we did a snack time restock?",
+"verdict": "FAIL"
+},
+{
+"input": "Wedding hack. Wearing this under your dress smooths your belly.",
+"verdict": "PASS"
+},
+{
+"input": "This is the secret to a greener spring lawn. [the brand] is customized lawn care in a box.",
+"verdict": "PASS"
+},
+{
+"input": "Wait, so you just scanned your teeth with your phone? Yeah, and then it showed me what my new smile could look like in 3D.",
+"verdict": "PASS"
+},
+{
+"input": "My husband, 44, had zero stamina in bed until this.",
+"verdict": "PASS"
+},
+{
+"input": "Well, top of the morning, friends. Hope you're having a good one. I'm going to pop my probiotic and then be on my way.",
+"verdict": "FAIL"
+},
+{
+"input": "If a celebrity looks this good at 40, I need to see what she's using.",
+"verdict": "PASS"
+},
+{
+"input": "You are not suing your employer when you file for a workers compensation claim.",
+"verdict": "PASS"
+},
+{
+"input": "Have I been a mom for almost five years and never have had a nebulizer?",
+"verdict": "PASS"
+},
+{
+"input": "We do it every single morning. We've been taking this almost a year. I think like last April, we started this.",
+"verdict": "FAIL"
+},
+{
+"input": "These [a meal-kit brand] really made my life so much easier.",
+"verdict": "FAIL"
+},
+{
+"input": "Meet the jeans that fit perfectly and replace everything else in your closet.",
+"verdict": "PASS"
+},
+{
+"input": "I wish I had dealt with my premature ejaculation earlier in life.",
+"verdict": "FAIL"
+},
+{
+"input": "Let's talk about why [the brand]'s price is so good.",
+"verdict": "FAIL"
+},
+{
+"input": "Our most coveted bed blanket is our touchably textured waffle blanket.",
+"verdict": "PASS"
+},
+{
+"input": "Seems like you guys hit it off. No, I mean, Joanna's little lesson.",
+"verdict": "FAIL"
+},
+{
+"input": "Listen, you don't have to keep scrolling in silence. Finding a therapist doesn't need to be this hard.",
+"verdict": "FAIL"
+},
+{
+"input": "Everyone keeps asking me what I did to lose weight, so let's talk about [the brand]'s GLP-1 tablets.",
+"verdict": "PASS"
+},
+{
+"input": "Here's the problem no one talks about with [the ingredient].",
+"verdict": "PASS"
+},
+{
+"input": "Well, good morning, my friends. Hope you had a great Sunday. Looks like Papa John's prediction of the Cubs beating the brewers on Saturday was incorrect.",
+"verdict": "FAIL"
+},
+{
+"input": "[a kids' bike brand] are lightweight, kid-friendly, and thoughtfully designed.",
+"verdict": "FAIL"
+},
+{
+"input": "Every night feels like a honeymoon again, and I know [the product]'s behind it.",
+"verdict": "PASS"
+},
+{
+"input": "Be honest, how many times a day do you ask your kids to do the same tasks over and over?",
+"verdict": "PASS"
+},
+{
+"input": "Why are you not getting powerful erections even after ED medication?",
+"verdict": "PASS"
+},
+{
+"input": "I need to get prescribed anxiety medication without in-person appointments.",
+"verdict": "PASS"
+},
+{
+"input": "I told y'all we were doing a restock restock.",
+"verdict": "FAIL"
+},
+{
+"input": "This is Prince, and we've decided to start feeding him [a fresh dog-food brand].",
+"verdict": "FAIL"
+},
+{
+"input": "What the hell did you give my husband? [the product]. Why, what happened?",
+"verdict": "FAIL"
+},
+{
+"input": "Here's ours. You will find us because we are the hot mess fam.",
+"verdict": "FAIL"
+},
+{
+"input": "How to give your body a full reset without cutting out food completely.",
+"verdict": "PASS"
+}
+]
