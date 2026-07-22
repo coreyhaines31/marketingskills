@@ -44,6 +44,15 @@ Run **two different models** as judges (e.g. one per lab), hide the source of ev
 
 The harness captures tokens + latency per run. Track them: the metric that decides routing is quality **per accepted output** — a cheap model that fails half the time isn't cheap, you regenerate. Standardize measurement conditions (prompt, max tokens, sampling, region, caching) or cost/latency aren't comparable.
 
+## Seed judges & who labels
+
+Two kinds of judge live here, and the README of each says which it is:
+
+- **Calibrated** — the answer key is graded by a credible human, and the judge's agreement number is published. `ad-hooks` is calibrated (labeler: Alysha of Runneth, ~74%).
+- **Seed** — the rubric is written and a starter corpus of example inputs exists, but the **verdicts are AI-drafted and await a human labeling pass**. No agreement number is published for a seed judge. Every seed judge here is awaiting labels from **Corey Haines**, the framework's human calibrator.
+
+Labeling a seed judge is fast because you label *by exception*: skim the AI-drafted verdicts, flip the ones you disagree with, and the answer key is now yours. Then run the calibration loop above, publish the number, and the judge graduates from seed to calibrated. Until then, treat a seed judge's output as directional, not authoritative.
+
 ## Build your own
 
 The pattern transfers to anything you can grade: write a rubric, hand-label a few dozen examples, measure agreement, sharpen, repeat. Swap hooks for headlines, subject lines, long-form, or a tool-call trajectory — the machinery is identical.
