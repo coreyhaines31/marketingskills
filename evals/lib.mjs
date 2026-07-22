@@ -56,8 +56,11 @@ async function callModel(system, user) {
         "content-type": "application/json",
       },
       body: JSON.stringify({
+        // Generous ceiling: a full batch returns one verbose JSON object per
+        // input (verdict + trigger + tactic + reasoning + improvement); 4096
+        // can truncate a 20-item batch mid-array and break JSON parsing.
         model: p.model,
-        max_tokens: 4096,
+        max_tokens: 8192,
         system,
         messages: [{ role: "user", content: user }],
       }),
@@ -94,13 +97,59 @@ async function callModel(system, user) {
   };
 }
 
+// Extract the first top-level JSON array from a model response. Handles a clean
+// array, a ```json fenced block, and prose-wrapped output — without the greedy
+// "first [ to last ]" trap (which breaks when there's any [ or ] in the prose
+// or inside string values). Scans for a balanced array, string-aware.
+export function parseJsonArray(text) {
+  const t = text.trim();
+  const fenced = t.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const body = (fenced ? fenced[1] : t).trim();
+
+  try {
+    const v = JSON.parse(body);
+    if (Array.isArray(v)) return v;
+  } catch {}
+
+  const start = body.indexOf("[");
+  if (start === -1) throw new Error(`No JSON array in model output:\n${text}`);
+  let depth = 0, inStr = false, esc = false;
+  for (let i = start; i < body.length; i++) {
+    const c = body[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (c === "\\") esc = true;
+      else if (c === '"') inStr = false;
+    } else if (c === '"') inStr = true;
+    else if (c === "[") depth++;
+    else if (c === "]" && --depth === 0) return JSON.parse(body.slice(start, i + 1));
+  }
+  throw new Error(`Unbalanced JSON array in model output:\n${text}`);
+}
+
+// Every input must get exactly one verdict, or agreement counts are corrupt —
+// fail loud rather than silently miscount.
+export function validateResults(results, n) {
+  if (!Array.isArray(results) || results.length !== n) {
+    throw new Error(`Expected ${n} results, got ${Array.isArray(results) ? results.length : typeof results}`);
+  }
+  const seen = new Set();
+  for (const r of results) {
+    const idx = r && r.index;
+    if (!Number.isInteger(idx) || idx < 1 || idx > n) throw new Error(`Result index out of range: ${idx} (expected 1..${n})`);
+    if (seen.has(idx)) throw new Error(`Duplicate result index: ${idx}`);
+    if (r.verdict !== "PASS" && r.verdict !== "FAIL") throw new Error(`Invalid verdict "${r.verdict}" at index ${idx}`);
+    seen.add(idx);
+  }
+  return results;
+}
+
 // Grade an array of input strings against a judge.
 // Returns { results: [{ index, verdict, ... }], usage: { input, output }, ms }.
 export async function grade(judgeDir, inputs) {
   const judge = loadJudge(judgeDir);
   const numbered = inputs.map((h, i) => `${i + 1}. ${h}`).join("\n");
   const { text, usage, ms } = await callModel(judge, `Grade these:\n\n${numbered}`);
-  const match = text.match(/\[[\s\S]*\]/);
-  if (!match) throw new Error(`Could not parse a JSON array from the model:\n${text}`);
-  return { results: JSON.parse(match[0]), usage, ms };
+  const results = validateResults(parseJsonArray(text), inputs.length);
+  return { results, usage, ms };
 }

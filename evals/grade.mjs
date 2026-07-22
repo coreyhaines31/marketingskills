@@ -20,8 +20,18 @@ if (!judgeDir || judgeDir.startsWith("-")) {
 const rest = args.slice(1);
 let inputs = [];
 const fileFlag = rest.indexOf("--file");
-if (fileFlag !== -1 && rest[fileFlag + 1]) {
-  inputs = readFileSync(rest[fileFlag + 1], "utf8").split("\n").map((l) => l.trim()).filter(Boolean);
+if (fileFlag !== -1) {
+  const fname = rest[fileFlag + 1];
+  const extras = rest.filter((_, i) => i !== fileFlag && i !== fileFlag + 1);
+  if (!fname || fname.startsWith("-")) {
+    console.error("--file requires a filename: node grade.mjs judges/<name> --file inputs.txt");
+    process.exit(1);
+  }
+  if (extras.length) {
+    console.error("--file takes exactly one filename; remove the extra arguments.");
+    process.exit(1);
+  }
+  inputs = readFileSync(fname, "utf8").split("\n").map((l) => l.trim()).filter(Boolean);
 } else if (rest.length) {
   inputs = rest;
 } else {
