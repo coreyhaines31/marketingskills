@@ -2,7 +2,7 @@
 
 How to instrument and stitch attribution yourself when you control the site/app. This is the build track (Pillar B). It's distilled from real production builds and kept tool-agnostic — **PostHog + SavvyCal are the worked example**, but the pattern maps to any product-analytics tool with `identify()`/merge (Segment, Amplitude, GA4 user-id) and any third-party conversion domain with a metadata passthrough + webhook (Calendly, Cal.com, Stripe Checkout, Typeform).
 
-The core method — closing the `identify()` gap so conversions join to anonymous browsing history — is **adapted from Tessa Kriesel's PostHog attribution approach**. Credit where due.
+The core method — closing the `identify()` gap so conversions join to anonymous browsing history — is **adapted from Tessa Kriesel's PostHog attribution approach**. Several of the production refinements that make this operate at scale are also hers, credited inline: the full-touch-path capture that feeds the model track (Step 4), the CRM last-mile with source/confidence/basis and a Paid-vs-Organic read (Step 5), the account rollup, and the "expect ~zero until the stitch is verified, with a campaign-window fallback + backfill" window (Cross-subdomain stitching). Credit where due.
 
 ## The one idea
 
@@ -182,6 +182,13 @@ This is the **highest-trust-per-effort** fix in the whole runbook — no deploy,
 
 Marketing site → app on a subdomain must share **one analytics project** and a **cross-subdomain cookie** (PostHog's `cross_subdomain_cookie` default handles `yourdomain.com` → `app.yourdomain.com`). Verify the journey survives the handoff, or every signup looks like it started at the app.
 
+**Expect near-zero numbers until the stitch is verified in prod — don't panic.** (Production note from Tessa Kriesel.) Before the cross-subdomain stitch is confirmed live, first-party attribution reads *basically nothing* — journeys break at the handoff and everything looks like direct. It flips from ~0 to real numbers the week the stitch actually ships. Two things get you through that window:
+
+- **A campaign-window heuristic fallback.** When a signup has no linked journey, attribute it to the campaign/channel that was live during its signup window — but only when **date + landing page + active UTMs uniquely narrow it to one source**. With overlapping campaigns, evergreen ads, email sends, branded/direct demand, or a shared landing page, the window can't isolate the cause — mark those `unknown` / low-confidence rather than falsely crediting whatever was live. Used narrowly, it's a real signal while the stitch stabilizes and beats a blank; used bluntly, it manufactures false attribution.
+- **Backfill only the pre-stitch records that are actually missing a source.** Many pre-stitch signups already have verified or self-reported attribution — **never overwrite a higher-confidence source with the heuristic.** Backfill only the blanks (campaign-window or self-reported), tag them as such, and keep the heuristic-backfilled history visually separate from verified trends so you don't read a cliff on launch day as a real shift.
+
+Mark these fallback-attributed conversions with a lower-confidence `basis` (see Step 5) so you never confuse a heuristic guess with a verified journey.
+
 ### Harden the webhook
 
 - Verify the provider's **signature** (`SAVVYCAL_WEBHOOK_SECRET` etc.).
@@ -195,6 +202,20 @@ Marketing site → app on a subdomain must share **one analytics project** and a
 - **The payoff insight:** conversion event broken down by `$initial_utm_source` / `$initial_referring_domain` — "where does every signup/booking come from."
 - **Channel → revenue:** conversion event by channel, joined to revenue/MRR person properties. Note: some tools compute revenue props *at ingest* (person-on-events), so historical events may read 0 — use the persons table for current MRR, or tier by plan.
 - **Track your own coverage:** the `journey_linked: false` rate tells you how many conversions bypassed the stitch. Watch it after launch.
+- **Store the full touch path, not just `$initial_*`.** (Refinement from Tessa Kriesel.) First-touch alone lets you break conversions down by *first* channel — but it can't run the multi-touch models from the interpretation track (SKILL.md §2: position-based, linear, time-decay). If you also persist the **ordered sequence of touches** per person (channel + timestamp for each, e.g. an events-table query or a `touch_path` array on the person), the build track *feeds* the interpretation track: you can now score the same journey six ways on your own data instead of only reading about the models. This is what makes Pillar A and Pillar B shake hands — capture first-touch to ship, capture the full path to model.
+
+## Step 5 — The last mile: get attribution into the CRM
+
+(This whole step is a production refinement from Tessa Kriesel — it's the thing that turned first-party attribution from a dashboard into an operating signal.)
+
+A channel breakdown living in your analytics tool is a *report*. The thing sales and lifecycle actually act on is **attribution written onto the record in the CRM**, per account. Sync it out:
+
+- **A `source` field, plus `source_confidence` and `source_basis`.** Don't write a bare channel — write the channel *and how you know it*. `basis` is the **evidence type**: `journey_linked` (verified stitch), `self_reported` (survey), or `campaign_window` (the heuristic fallback above). `confidence` is computed from **evidence quality, not just the basis** — a journey_linked touch with clean UTMs is high, the same touch with dirty/missing UTMs is lower, and a *specific* self-report can be high while a vague one is low. Sales treats a high-confidence source very differently from a low-confidence guess — give them both fields or they'll distrust the whole thing.
+- **A Paid-vs-Organic read off the medium.** The single most-used cut in practice: mark a touch **`paid`** only from explicit paid mediums (`cpc`, `ppc`, `paid-social`, `display`, `paid`), and classify the rest into a small, configurable taxonomy rather than a blunt "organic" — `owned` (email, push, SMS — though a sponsored newsletter is *paid*), `earned` (organic search/social, referral — but a partner/affiliate referral is closer to paid), `direct` (no medium — unknown, not organic), `unknown`. The fast operational question a rep or nurture flow needs is really **paid vs non-paid** (did this account cost acquisition dollars) — get that boundary right and keep the finer buckets configurable.
+- **Roll up to the account, not just the contact** (B2B) — see the account-rollup note below and in `by-business-type.md`.
+- **Hand the record off to revops.** Once the source/confidence/basis + paid/organic live on the account, how pipeline and lifecycle *use* them (routing, lead scoring, nurture branching, revenue attribution reporting) is the **revops** skill's job. This runbook's job is to get a trustworthy, labeled source onto the record.
+
+**Account rollup (B2B).** One org is several people signing up with mixed work *and* personal emails, so person-level attribution scatters the story across records. Roll each person's source up to the **account** and attribute at the account level — that's where the signal has to land to be useful to a salesperson working the whole buying committee. Match on email domain, **but exclude free-mail domains** (`gmail.com`, `yahoo.com`, `outlook.com`, …) — those can't identify a company, so a domain match would collapse unrelated people into one bogus account. For personal-email signups, fall back to enrichment, your CRM's contact→account link, or manual matching.
 
 ## Verification checklist
 
