@@ -156,12 +156,15 @@ The one case that needs real machinery: a conversion that completes on a domain 
 
 - **Anonymity guard — fail closed.** Only ever smuggle the *anonymous* id. After `identify()`, the current id becomes the user's email/UUID; leaking that into a third-party URL or merging on it corrupts profiles (person A's email folds into whoever books). Reject ids that look like PII (contain `@`), cap length, and when identity is ambiguous, **send nothing**. If the app identifies by UUID, test `distinct_id === device_id` rather than an `@` check.
 - **First-touch data quality.** Redirects overwrite the true first touch. Exclude OAuth/checkout referrers (`accounts.google.com`, `checkout.stripe.com`, `login.*`), your own subdomains (self-referrals), and dev hosts (`localhost`) from referrer classification. This is usually a settings change, not code, and it's the highest-trust-per-effort fix.
-- **Cross-subdomain stitching.** Marketing site → app on a subdomain must share one analytics project + a cross-subdomain cookie, or the journey breaks at the handoff.
-- **Harden the webhook.** Verify the signature, validate the smuggled id, bound the analytics call with a timeout, fail non-fatally, and log ids never emails.
+- **Cross-subdomain stitching.** Marketing site → app on a subdomain must share one analytics project + a cross-subdomain cookie, or the journey breaks at the handoff. Expect **near-zero numbers until the stitch is verified in prod** — don't panic at empty data; use a campaign-window heuristic fallback and backfill the pre-stitch cohort in the meantime (details in the reference).
 
-### Reporting
+### Reporting and the last mile
 
-The payoff is one insight: your **conversion event broken down by first-touch channel** (`$initial_utm_source` / `$initial_referring_domain`), and — joined to revenue — **channel → conversion → revenue**. Confirm first-touch vs. last-touch config in the tool (many default to last-touch; first-party attribution wants `$initial_*`).
+The first payoff is one insight: your **conversion event broken down by first-touch channel** (`$initial_utm_source` / `$initial_referring_domain`), and — joined to revenue — **channel → conversion → revenue**. Confirm first-touch vs. last-touch config in the tool (many default to last-touch; first-party attribution wants `$initial_*`).
+
+But first-touch alone can't run the multi-touch models from §2. **Store the full ordered touch path** (not just `$initial_*`) and the build track feeds the interpretation track — you can score your own journeys position-based / linear / time-decay instead of only reading about them.
+
+**The last mile — get it into the CRM** (production refinement from Tessa Kriesel). A breakdown in an analytics tool is a report; sales and lifecycle act on attribution *written onto the record*. Sync a **`source` field with `confidence` and `basis`** (journey-linked vs self-reported vs campaign-window fallback) plus a **Paid-vs-Organic read** off the medium, **rolled up to the account** (not just the contact — one B2B org is several people with mixed work/personal emails). How pipeline/lifecycle then *use* it is **revops**' job.
 
 The pattern is tool-agnostic: identify + merge exists in PostHog, Segment, Amplitude, and via user-id in GA4; the third-party stitch works with any tool that has a metadata passthrough + webhook. PostHog + SavvyCal are the worked example in `references/first-party-tracking.md`.
 
