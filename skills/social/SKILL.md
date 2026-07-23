@@ -405,6 +405,17 @@ Tools: CapCut (free), Descript, Captions.ai, Premiere Pro
 
 ---
 
+## Tool Integrations
+
+| Tool | Type | MCP | Guide |
+|------|------|:---:|-------|
+| **Buffer** | Social scheduling & analytics | - | [buffer.md](../../tools/integrations/buffer.md) |
+| **ContentStudio** | Social scheduling, categories, approvals, analytics | Yes | [contentstudio.md](../../tools/integrations/contentstudio.md) |
+
+For implementation details, see the [tools registry](../../tools/REGISTRY.md).
+
+---
+
 ## Related Skills
 
 - **copywriting**: For longer-form content that feeds social
