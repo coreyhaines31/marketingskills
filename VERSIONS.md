@@ -7,8 +7,9 @@ Current versions of all skills. Agents can compare against local versions to che
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.8.0 | 2026-07-14 |
 | ai-seo | 2.2.0 | 2026-07-09 |
-| analytics | 2.0.0 | 2026-05-05 |
+| analytics | 2.0.1 | 2026-07-22 |
 | aso | 2.0.0 | 2026-05-05 |
+| attribution | 1.1.0 | 2026-07-23 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
 | co-marketing | 2.0.0 | 2026-05-05 |
 | cold-email | 2.0.0 | 2026-05-05 |
@@ -54,6 +55,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.10.0 (2026-07-22)
+
+- **attribution** (new, 1.1.0): a dedicated skill for the hardest question in marketing — which efforts actually drive conversions and revenue. Fills a real gap: attribution was scattered across analytics (UTM setup), ads (platform pixels), revops (pipeline), and ai-seo (the AI blind spot), but no skill owned the *models* or the *reconciliation problem*. Two pillars. **(A) Interpretation** — the six attribution models and when each lies; MTA vs. MMM vs. incrementality and how to choose; self-reported attribution; reconciling the platform-vs-GA-vs-CRM-vs-survey disagreement (never sum across platforms; pick one source of truth; read directional trends); and the direct / branded-search / dark-social / AI blind spots. **(B) Own your attribution (first-party)** — a build runbook for instrumenting attribution yourself when you control the site/app: the identity graph, closing the `identify()` gap (adapted from Tessa Kriesel's PostHog approach), stitching conversions on third-party domains you don't own (SavvyCal/Calendly/Stripe) via metadata passthrough + webhook identity-merge, fail-closed anonymity guards, and first-touch data-quality cleanup — distilled from real production builds (Conversion Factory + Truelist). Four references (`attribution-models.md`, `measurement-paradigms.md`, `by-business-type.md` with B2B/DTC playbooks, `first-party-tracking.md`) and 7 evals covering reconciliation, model choice, the third-party stitch, ROAS incrementality, the direct/branded blind spot, the analytics boundary, and the DTC measurement stack. Pillar B also folds in **production feedback from Tessa Kriesel** (credited): the CRM last mile (sync a `source` field with confidence + basis and a paid-vs-non-paid read onto the account → revops), storing the full ordered touch path so the build track can run Pillar A's multi-touch models on real data, the "expect ~zero until the cross-subdomain stitch is verified in prod" window with a narrowly-scoped campaign-window fallback + pre-stitch backfill, and account-level rollup (excluding free-mail domains) for B2B.
+- **analytics** (2.0.0 → 2.0.1): description now hands off attribution modeling and reconciliation to the new attribution skill, keeping analytics scoped to tracking setup, event taxonomy, and UTMs.
 
 ### 2.9.0 (2026-07-15)
 
