@@ -360,7 +360,7 @@ The math: 3 simultaneous tests × ~10-20% lift each (compounding) = a fundamenta
 
 ### Weekly Review
 - Spend vs. budget pacing
-- CPA/ROAS vs. targets
+- CPA/ROAS vs. targets (split brand vs. non-brand — see below)
 - Top and bottom performing ads
 - Audience performance breakdown
 - Frequency check (fatigue risk)
@@ -372,6 +372,14 @@ The math: 3 simultaneous tests × ~10-20% lift each (compounding) = a fundamenta
 - Compare platform data to GA4
 - Look at blended CAC, not just platform CPA
 
+### Brand vs. non-brand (measure them separately)
+
+Wherever people can search your name — Google Ads especially, but any channel with branded demand — split brand from non-brand *before* you evaluate or optimize anything. A branded query is demand that already exists; someone typing your name is harvesting it, not incremental performance the campaign created. So a cheap brand CPA / high brand ROAS is a readout of your existing awareness, not of media efficiency.
+
+- **Report blended, optimize on non-brand.** Blended ROAS/CAC at the business level is the right *top-line health* number — it's the true efficiency of the whole account, and in considered / B2B purchases where touchpoints assist each other, blended is the honest view of the journey. But the metric you set targets, bids, and budgets against is **non-brand ROAS**, with brand stripped out.
+- **Why the split matters:** optimize against a blended number and brand's cheap conversions inflate it — you set non-brand targets too loosely, and non-brand inefficiency hides behind brand. Non-brand ROAS is the lever you can actually move; brand largely tracks demand you already own.
+- **Never report a low brand CPA as a win.** It only signals performance if you're explicitly measuring incrementality (e.g. a brand-campaign holdout test). Absent that, a "great" brand CPA just means people already knew you.
+
 ### Scaling discipline (net cash > ROAS percentage)
 
 The most common scaling failure: a business at a 40 ROAS spending $5k/month, refusing to scale because "if I spend more, my ROAS will drop." This is the wrong frame.
@@ -379,7 +387,7 @@ The most common scaling failure: a business at a 40 ROAS spending $5k/month, ref
 **Net cash flow > ROAS percentage at the business level:**
 - ROAS dropping from 10 → 5 sounds bad
 - But if spend goes from $10k → $100k, you net dramatically more total profit
-- The number to optimize is **blended ROAS at the business level**, not per-ad-set ROAS
+- Judge scaling headroom on **blended ROAS at the business level**, not per-ad-set ROAS — but optimize against **non-brand ROAS** (see Brand vs. non-brand above), so cheap brand traffic doesn't flatter the math
 - Even better: optimize **net free cash flow**, not ROAS at all
 
 **Find your break-even ROAS:**
