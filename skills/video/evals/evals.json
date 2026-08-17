@@ -98,6 +98,23 @@
         "Applies the originality guardrail — copies editing grammar applied to the user's own footage, never the reference's footage/script/music"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "I have an Atlas Cloud API key and need an agent to create a short marketing B-roll clip. Show me a safe workflow that can switch models without hardcoding stale parameters.",
+      "expected_output": "Should use the Atlas Cloud CLI workflow in the video skill. Should discover the live Video catalog first, select an exact model explicitly, and fetch that model's current schema before building params. Should preview the exact request with --dry-run and discuss expected spend before generation. Should submit the generation POST once with no automatic retry, then use bounded GET polling with --wait and --max-wait. Should download output without forwarding ATLASCLOUD_API_KEY to the media host. Should not guess model IDs, parameter names, enums, prices, or output hosts. Should keep Atlas optional and avoid changing an existing default provider.",
+      "assertions": [
+        "Discovers the live Atlas Cloud Video catalog",
+        "Fetches the selected model schema before building params",
+        "Uses dry-run before a billable request",
+        "Never retries the generation POST",
+        "Uses bounded polling for prediction GET requests",
+        "Downloads media without forwarding credentials",
+        "Keeps Atlas Cloud optional"
+      ],
+      "files": [
+        "tools/integrations/atlas-cloud.md"
+      ]
     }
   ]
 }

@@ -41,6 +41,7 @@ Every CLI reads credentials from environment variables:
 | `ahrefs` | `AHREFS_API_KEY` |
 | `amplitude` | `AMPLITUDE_API_KEY`, `AMPLITUDE_SECRET_KEY` |
 | `apollo` | `APOLLO_API_KEY` |
+| `atlas-cloud-video` | `ATLASCLOUD_API_KEY` |
 | `beehiiv` | `BEEHIIV_API_KEY` |
 | `brevo` | `BREVO_API_KEY` |
 | `buffer` | `BUFFER_API_KEY` |
@@ -140,6 +141,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `ahrefs.js` | SEO | [Ahrefs](https://ahrefs.com) |
 | `amplitude.js` | Analytics | [Amplitude](https://amplitude.com) |
 | `apollo.js` | Data Enrichment | [Apollo.io](https://apollo.io) |
+| `atlas-cloud-video.js` | Video | [Atlas Cloud](https://www.atlascloud.ai) |
 | `beehiiv.js` | Newsletter | [Beehiiv](https://beehiiv.com) |
 | `brevo.js` | Email/SMS | [Brevo](https://brevo.com) |
 | `buffer.js` | Social | [Buffer](https://buffer.com) |

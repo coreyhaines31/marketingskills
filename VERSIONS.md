@@ -52,9 +52,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
 | social | 2.2.0 | 2026-07-09 |
-| video | 2.1.0 | 2026-07-14 |
+| video | 2.2.0 | 2026-08-17 |
 
 ## Recent Changes
+
+### 2.10.1 (2026-08-17)
+
+- **video** (2.1.0 -> 2.2.0): added an optional Atlas Cloud workflow for multi-model video generation. The new zero-dependency CLI discovers the live model catalog, reads the selected model's OpenAPI schema, validates request fields locally, previews billable requests, submits generation exactly once, polls with a finite deadline, and downloads output over credential-free HTTPS. Added the Atlas Cloud integration guide, tool registry entries, and an eval covering schema-first selection, no POST retries, bounded polling, and credential-safe downloads.
 
 ### 2.10.0 (2026-07-22)
 

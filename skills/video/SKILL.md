@@ -1,8 +1,8 @@
 ---
 name: video
-description: "When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production,' 'AI video,' 'Remotion,' 'Hyperframes,' 'HeyGen,' 'Synthesia,' 'Veo,' 'Sora,' 'Runway,' 'Kling,' 'Seedance,' 'Hailuo,' 'MiniMax,' 'Pika,' 'Hunyuan,' 'Wan,' 'video generation,' 'AI avatar,' 'talking head video,' 'programmatic video,' 'video template,' 'explainer video,' 'product demo video,' 'video pipeline,' 'copy this edit,' 'match this video style,' 'reverse-engineer this video,' 'edit like this reference,' or 'make me a video.' Use this for video creation, generation, and production workflows. For video content strategy and what to post, see social. For paid video ad creative, see ad-creative."
+description: "When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production,' 'AI video,' 'Remotion,' 'Hyperframes,' 'HeyGen,' 'Synthesia,' 'Veo,' 'Sora,' 'Runway,' 'Kling,' 'Seedance,' 'Hailuo,' 'MiniMax,' 'Pika,' 'Hunyuan,' 'Wan,' 'Atlas Cloud,' 'video generation,' 'AI avatar,' 'talking head video,' 'programmatic video,' 'video template,' 'explainer video,' 'product demo video,' 'video pipeline,' 'copy this edit,' 'match this video style,' 'reverse-engineer this video,' 'edit like this reference,' or 'make me a video.' Use this for video creation, generation, and production workflows. For video content strategy and what to post, see social. For paid video ad creative, see ad-creative."
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Video
@@ -147,6 +147,28 @@ Generate original footage from text or image prompts. Use for B-roll, hero visua
 - **Storyboard → video workflow**: Runway, LTX Studio
 - **Image-to-video from a still you already have**: Kling, Pika, Runway
 
+### Multi-Model Generation with Atlas Cloud
+
+Use Atlas Cloud when the user wants one API and credential across multiple video model families. The included zero-dependency CLI keeps model choice explicit rather than changing the user's default provider.
+
+1. Run the models command to discover the current Video catalog.
+2. Run the schema command for the exact selected model.
+3. Preview with --dry-run and confirm the request body and expected spend.
+4. Generate once with --wait and a finite --max-wait.
+5. Download the output without forwarding the API key to the media host.
+
+~~~bash
+node tools/clis/atlas-cloud-video.js models --type Video --search "text to video"
+node tools/clis/atlas-cloud-video.js schema --model "$MODEL_ID"
+node tools/clis/atlas-cloud-video.js generate \
+  --model "$MODEL_ID" \
+  --prompt "$PROMPT" \
+  --params-file request.json \
+  --dry-run
+~~~
+
+Never guess a model ID or parameter. Read the live catalog and schema first. Generation POST requests are billable and must not be retried; only prediction GET requests may use bounded retries. See [atlas-cloud.md](../../tools/integrations/atlas-cloud.md).
+
 ### Prompting for Video Models
 
 Good video prompts specify: **subject + action + camera + style + mood**
@@ -290,7 +312,7 @@ Hyperframes: Generate templated video (HTML → MP4)
     and/or
 HeyGen MCP: Generate avatar video from script
     and/or
-Veo/Runway API: Generate B-roll footage
+Veo/Runway API or Atlas Cloud CLI: Generate B-roll footage
     ↓
 Agent assembles final cut
     ↓
@@ -300,6 +322,7 @@ Output: Ready-to-publish video
 **What makes this agent-native:**
 - Hyperframes uses HTML — any coding agent can generate it
 - HeyGen MCP server — agents call it directly
+- Atlas Cloud CLI — live model discovery, schema validation, and bounded polling
 - Video model APIs — standard HTTP requests
 - No manual editing step required
 
@@ -333,6 +356,7 @@ Output: Ready-to-publish video
 |------|------|:---:|-------|
 | **HeyGen** | AI avatars | Yes | [heygen.md](../../tools/integrations/heygen.md) |
 | **Hyperframes** | Programmatic video | - | [hyperframes.md](../../tools/integrations/hyperframes.md) |
+| **Atlas Cloud** | Multi-model AI generation | Yes | [atlas-cloud.md](../../tools/integrations/atlas-cloud.md) |
 | **Remotion** | Programmatic video | - | [remotion.dev](https://www.remotion.dev/docs) |
 | **Runway** | AI generation | - | [runwayml.com/docs](https://docs.dev.runwayml.com) |
 
