@@ -1,0 +1,49 @@
+{
+  "skill_name": "whatsapp-marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We run an e-commerce brand selling fashion accessories in the UK and Nigeria. We get 1,500 abandoned carts every week and want to use WhatsApp to recover them. How should we set this up?",
+      "expected_output": "Should check for product-marketing.md first. Should explain Meta WhatsApp Business API vs standard app requirements. Should design an abandoned cart recovery flow triggered 45-60 minutes after abandonment. Should specify the required Meta template category (Marketing). Should include dynamic variables for customer name, item name, and discount code. Should mandate an opt-out button or STOP keyword footer. Should provide interactive buttons (Deep-linked Checkout URL + Quick Reply for customer support). Should mention conversion rate benchmarks (15-30% on WhatsApp vs 3-5% on email).",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Recommends WhatsApp Business Cloud API / BSP setup",
+        "Specifies 45-60 minute trigger timing",
+        "Categorizes template as Marketing",
+        "Includes personalized copy with dynamic variables",
+        "Provides interactive buttons (URL checkout + Quick Reply support)",
+        "Includes mandatory opt-out mechanism (STOP / opt-out button)",
+        "Mentions conversion benchmarks"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Can we just blast our existing customer phone list with a 20% off discount on WhatsApp?",
+      "expected_output": "Should caution against unverified bulk blasts on WhatsApp. Should explain Meta's strict anti-spam policy and phone number Quality Rating system (Green/Yellow/Red). Should explain that high user blocks/reports will immediately degrade quality ratings and throttle or suspend messaging limits. Should explain the 24-hour customer service window rule and the requirement to use pre-approved Meta Marketing templates with explicit opt-in consent. Should recommend a safe tier-warming approach (starting with 100-200 recent, high-intent opt-ins).",
+      "assertions": [
+        "Warns against unverified cold/bulk blasting",
+        "Explains Meta Quality Rating system (Green/Yellow/Red)",
+        "Explains risk of phone number blocking / tier suspension",
+        "Enforces pre-approved Meta Marketing template requirement",
+        "Enforces explicit opt-in requirement",
+        "Recommends tier warming strategy"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We want to run Click-to-WhatsApp ads on Instagram for our B2B SaaS consulting service. Design the conversational lead qualification flow.",
+      "expected_output": "Should design an end-to-end Click-to-WhatsApp (CTWA) campaign. Should provide the ad hook and pre-filled user message. Should build an automated qualifying chat flow using Quick Reply buttons (2-3 qualifying questions like company stage/budget). Should handle user URL input. Should provide clear call-to-action routing (booking a calendar link or instant live human handoff). Should explain that user-initiated ad conversations open a 24-hour free-form session window.",
+      "assertions": [
+        "Defines ad pre-filled message",
+        "Builds automated qualification bot flow",
+        "Uses interactive Quick Reply buttons for questions",
+        "Captures lead qualification details",
+        "Includes calendar booking / live agent handoff",
+        "Mentions the 24-hour user-initiated session window"
+      ],
+      "files": []
+    }
+  ]
+}

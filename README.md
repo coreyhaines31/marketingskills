@@ -105,6 +105,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [sms](skills/sms/) | When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts,... |
 | [social](skills/social/) | When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram,... |
 | [video](skills/video/) | When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use... |
+| [whatsapp-marketing](skills/whatsapp-marketing/) | When the user wants to plan, build, or optimize WhatsApp marketing campaigns — Click-to-WhatsApp ads, cart recovery, templates,... |
 <!-- SKILLS:END -->
 
 ## Installation
