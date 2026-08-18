@@ -53,8 +53,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | sms | 1.0.0 | 2026-05-21 |
 | social | 2.2.0 | 2026-07-09 |
 | video | 2.1.0 | 2026-07-14 |
+| whatsapp-marketing | 1.0.0 | 2026-08-18 |
 
 ## Recent Changes
+
+### 2.11.0 (2026-08-18)
+
+- **New skill: `whatsapp-marketing`** (1.0.0) — Plan, build, and optimize WhatsApp marketing programs, conversational commerce funnels, Click-to-WhatsApp (CTWA) ads, cart recovery workflows, Meta 24-hour service window compliance, interactive button templates, and anti-ban deliverability protection.
 
 ### 2.10.0 (2026-07-22)
 
