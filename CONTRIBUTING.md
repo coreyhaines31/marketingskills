@@ -72,9 +72,9 @@ skills/your-skill-name/
 3. Make your changes
 4. Test locally with an AI agent
 5. Submit a pull request using the appropriate template:
-   - [New Skill](?template=new-skill.md)
-   - [Skill Update](?template=skill-update.md)
-   - [Documentation](?template=documentation.md)
+   - [New Skill](.github/PULL_REQUEST_TEMPLATE/new-skill.md)
+   - [Skill Update](.github/PULL_REQUEST_TEMPLATE/skill-update.md)
+   - [Documentation](.github/PULL_REQUEST_TEMPLATE/documentation.md)
 
 ## Skill Quality Checklist
 
