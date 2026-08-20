@@ -1,0 +1,102 @@
+{
+  "skill_name": "attribution",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Google Ads says we got 50 conversions last month, Meta says 40, GA4 says 60, and our CRM shows 35 closed deals. Which one is right? I need to know our real numbers before I set next quarter's budget.",
+      "expected_output": "Should explain that none is 'right' and that summing across platforms is wrong (overlapping claims for the same conversions). Should establish a single source of truth for the conversion COUNT — here the CRM/backend where revenue is real — and treat other sources as explaining where those came from, not redefining how many. Should explain why each source is biased (ad platforms over-count themselves incl. view-through; GA loses cross-device and dumps unknowns into direct; CRM depends on human/form entry; surveys have recall bias). Should recommend reading directional agreement over absolute match, de-duping against the source of truth, and using self-reported / incrementality as tiebreakers. Should set expectation that an attribution gap is normal and deliver an allocation with confidence levels, not a false reconciliation.",
+      "assertions": [
+        "States that no single source is objectively right",
+        "Explicitly warns against summing conversions across platforms (overlapping claims)",
+        "Picks one source of truth for the conversion count (CRM/backend)",
+        "Explains the systematic bias of at least three sources",
+        "Recommends reading directional trends over absolute matching",
+        "Mentions the attribution gap as expected and to be explained, not eliminated",
+        "Does not fabricate a single reconciled number as if it were truth"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Should we use first-touch or last-touch attribution? We're a B2B SaaS with a sales cycle that runs about two months and multiple people involved in each deal.",
+      "expected_output": "Should refuse to pick one in isolation and recommend showing first-touch and last-touch side by side, because the gap between them is the insight for a long cycle. Should explain what each model over/under-credits (first-touch ignores what closed; last-touch over-credits branded search/direct and defunds top of funnel). Should recommend position-based as a defensible primary for B2B (credits created + closed bookends), and lean on self-reported attribution at demo/signup given offline touches. Should point to CRM/pipeline as source of truth (revops) and note data-driven attribution needs volume this business likely lacks. May reference references/attribution-models.md and references/by-business-type.md.",
+      "assertions": [
+        "Does not recommend a single model in isolation",
+        "Recommends showing first-touch and last-touch together",
+        "Explains what first-touch and last-touch each distort",
+        "Recommends position-based as a strong B2B primary",
+        "Emphasizes self-reported attribution for long/offline B2B cycles",
+        "References pipeline/CRM as the revenue source of truth (revops boundary)"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our biggest conversion is a sales call people book through SavvyCal, but that happens on savvycal.com so PostHog loses the whole journey. How do we connect a booking back to where the visitor originally came from? We control the marketing site.",
+      "expected_output": "Should recognize this as first-party attribution on a third-party domain (Pillar B) and lay out the identity-graph stitch: append the visitor's ANONYMOUS distinct_id to the SavvyCal link at click time via the metadata passthrough (metadata[ph_distinct_id]), using a capture-phase document-level listener so all CTAs are covered without per-link edits; SavvyCal returns the metadata in its booking webhook; the webhook fires an $identify merge ($anon_distinct_id = smuggled id, distinct_id = booking email) plus a conversion event. Must stress the anonymity guard — only smuggle the anonymous id, reject email-shaped/PII values, fail closed when ambiguous — and hardening (verify signature, timeout, non-fatal, log ids not emails). Should note first-touch data-quality cleanup and confirming first-touch vs last-touch config. Should point to references/first-party-tracking.md and credit that this method (closing the identify gap) is adapted from Tessa Kriesel's approach. Should suggest auditing whether the self-serve funnel already identifies before building.",
+      "assertions": [
+        "Identifies the metadata-passthrough + webhook stitch pattern",
+        "Describes appending the anonymous distinct_id at click time via a capture-phase listener",
+        "Describes the webhook $identify merge (anon id + email) plus conversion event",
+        "Emphasizes the fail-closed anonymity guard (never smuggle identified/PII ids)",
+        "Includes webhook hardening (signature, timeout, non-fatal, no email logging)",
+        "Recommends auditing existing identify() coverage before building",
+        "References first-party-tracking.md"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Meta says our retargeting campaign has a 6x ROAS so we keep scaling it, but revenue isn't really going up. What's going on?",
+      "expected_output": "Should explain platform-reported ROAS is systematically inflated (self-crediting, view-through, generous windows, post-ATT modeling) and that reported ROAS is not incremental ROAS — retargeting especially claims conversions that would have happened anyway. Should introduce incrementality: run a holdout (withhold retargeting from a random % or geo) and measure the lift; incremental CPA/ROAS uses only the incremental conversions. Should explain that flat revenue alongside high reported ROAS is the classic signature of low incrementality. Should recommend the on/off or holdout test as the tiebreaker. May reference references/measurement-paradigms.md.",
+      "assertions": [
+        "Explains platform ROAS is inflated / not incremental",
+        "Distinguishes reported conversions from incremental conversions",
+        "Recommends an incrementality test (holdout/geo/on-off) to measure true lift",
+        "Explains high reported ROAS + flat revenue indicates low incrementality (esp. retargeting)",
+        "Frames incremental CPA/ROAS as the number that should drive budget"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Half of our conversions show up as 'direct' in analytics and a big chunk of the rest is branded search. Does that mean direct traffic is our best channel?",
+      "expected_output": "Should say no — direct is the junk drawer (bookmarks/typed URLs but mostly stripped referrers, dark social, app-to-web, and dropped tracking) and branded search is people who discovered you elsewhere then searched your name. Both are where demand created upstream cashes out, not channels to invest in. Should warn that crediting them (last-touch) defunds the top of funnel that actually created the demand. Should recommend segmenting branded vs non-branded search, using self-reported attribution to surface dark social, and treating a large direct share as evidence top-of-funnel is working but under-measured. Should mention AI traffic as a growing contributor to this blind spot (hand deeper work to ai-seo).",
+      "assertions": [
+        "States direct is not a real channel (junk-drawer / measurement gap)",
+        "Explains branded search reflects demand created by other channels",
+        "Warns that crediting these defunds top-of-funnel",
+        "Recommends segmenting branded vs non-branded search",
+        "Recommends self-reported attribution to reveal dark social",
+        "Mentions AI traffic as part of the blind spot and points to ai-seo"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Can you set up GA4 and our event tracking plan so we can start measuring conversions? We don't have any analytics installed yet.",
+      "expected_output": "Should recognize this is instrumentation/tracking-plan setup, which is the analytics skill's job, not attribution. Should defer to or cross-reference analytics for GA4 install, event taxonomy, and UTM setup, explaining that attribution assumes tracking already exists and is about how touches join to conversions and survive to revenue. May note it can help with attribution modeling and reconciliation once tracking is live, but should not attempt to build the tracking plan itself under attribution.",
+      "assertions": [
+        "Recognizes this as an analytics/instrumentation task, not attribution",
+        "Defers to or cross-references the analytics skill",
+        "Explains the boundary (attribution assumes tracking exists)",
+        "Does not attempt to build the full GA4 tracking plan itself"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're a DTC ecommerce brand spending about $200k/month across Meta, Google, TikTok, and some podcast sponsorships. How should we actually measure what's working so we can allocate budget?",
+      "expected_output": "Should give the DTC playbook: store/backend order count as source of truth (not summed platform numbers), distrust platform ROAS for cross-channel decisions, and — given material multi-channel spend including untrackable podcasts — recommend MMM to allocate the portfolio and incrementality (geo-holdouts / on-off) to validate and to test the channels platforms flatter most. Should recommend a post-purchase 'how did you hear about us' survey to catch dark social and the podcast effect that pixels miss. Should note last-touch is only defensible for quick-turn SKUs. May reference references/by-business-type.md and references/measurement-paradigms.md.",
+      "assertions": [
+        "Sets store/backend order count as the source of truth, not platform sums",
+        "Recommends MMM given material spend including offline/podcast channels",
+        "Recommends incrementality testing to validate and find true lift",
+        "Recommends a post-purchase self-reported survey for dark social/podcasts",
+        "Warns against trusting platform-reported ROAS for budget allocation",
+        "References the by-business-type or measurement-paradigms guidance"
+      ],
+      "files": []
+    }
+  ]
+}

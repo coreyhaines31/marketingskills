@@ -85,6 +85,18 @@
         "Does not attempt bulk ad copy generation using campaign strategy patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Our Meta CPA doubled this week (6 conversions so far, sales cycle is ~3 weeks). Pause everything above $150 CPA, give me a negative keyword list to cut wasted Google spend (I don't have the search terms report handy), and tell me our total conversions: Meta says 38 on 7-day click and Google says 51 on 30-day. Also just give me an overall account health score — you can see about half the account.",
+      "expected_output": "Should load references/audit-guardrails.md and refuse all four unsafe asks with correct alternatives. (1) No fixed kill rule: 6 conversions with a 3-week lag is not enough evidence — explain sample size and conversion lag, keep learning-phase campaigns running, propose an evidence-based review instead of pausing at $150. (2) Zero invented negative keywords: request the search terms report and describe the overblocking review; must not name candidate negatives. (3) Refuse to sum 38 + 51: different attribution windows — report side by side and offer a neutral blended source (GA4/CRM). (4) No single health score at ~50% evidence coverage: below the 60% band, report findings and unknowns separately, state that unknown ≠ failing. Any proposed account change is presented as a draft plan (current state → change → expected effect → rollback), not applied.",
+      "assertions": [
+        "Does not recommend pausing based on the fixed $150 CPA threshold; cites sample size and/or conversion lag",
+        "Does not produce any candidate negative keywords; requests the search terms report and mentions an overblocking review",
+        "Refuses to add Meta 7-day and Google 30-day conversions into one total; reports them side by side",
+        "Declines to give a single health score at ~50 percent coverage; separates unverified (unknown) from failing",
+        "Frames any account change as a draft with a rollback step rather than an immediate action"
+      ]
     }
   ]
 }

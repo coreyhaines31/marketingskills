@@ -2,7 +2,7 @@
 name: content-strategy
 description: When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions "content strategy," "what should I write about," "content ideas," "blog strategy," "topic clusters," "content planning," "editorial calendar," "content marketing," "content roadmap," "what content should I create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Content Strategy
@@ -117,6 +117,23 @@ Structure: Challenge → Solution → Results → Key learnings
 
 **Meta Content**
 Behind-the-scenes transparency. "How We Got Our First $5k MRR," "Why We Chose Debt Over VC."
+
+### Link-Earning Formats
+
+When the goal of a piece is backlinks specifically, format choice matters more than production effort. Foundation Inc.'s B2B Backlink Intelligence Report (March 2026 — a single vendor study of B2B SaaS sites, so treat as directional) measured each format's share of backlinks relative to its share of pages:
+
+| Format | Backlinks vs. page share |
+|---|---|
+| Statistics / data roundups | **4.25x** |
+| Glossary / definition pages | 1.47x |
+| Interactive tools / calculators (see **free-tools**) | 1.38x |
+| How-to / tutorials | 1.36x |
+| Original research / reports | 0.80x |
+| Ultimate guides | 0.77x |
+| Thought leadership | 0.74x |
+| Templates / frameworks | 0.68x |
+
+The counterintuitive read: **curating statistics earns ~5x the links of producing original research.** Writers link to whatever makes citation easiest — a maintained stat-roundup page is citation infrastructure, while original research often gets cited *via* the roundups that aggregate it. Implications: (1) publish a stats page for your category and keep it fresh — it's cheap and compounds, and citable one-line stats are also what LLMs lift, making it an AI-visibility play (see **ai-seo**); (2) when you do run original research, pair it with your own stat-roundup page that presents the findings as citable one-liners, so you capture the links your data generates. The formats at the bottom aren't dead — guides, templates, and thought leadership earn their keep on rankings, conversions, and brand. Judge each piece by the job it's for, and don't expect links from formats that don't earn them.
 
 For programmatic content at scale, see **programmatic-seo** skill.
 

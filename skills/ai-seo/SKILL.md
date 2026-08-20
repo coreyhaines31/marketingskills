@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' or 'agent-readable site.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
 metadata:
-  version: 2.2.0
+  version: 2.3.0
 ---
 
 # AI SEO
@@ -255,6 +255,7 @@ AI systems don't just cite your website — they cite where you appear.
 - Industry publications and guest posts
 - Review sites (G2, Capterra, TrustRadius for B2B SaaS)
 - YouTube (frequently cited by Google AI Overviews)
+- Podcasts (episodes get transcribed, show notes published — both get crawled and cited)
 - Quora answers
 
 **Actions:**
@@ -262,7 +263,8 @@ AI systems don't just cite your website — they cite where you appear.
 - Participate authentically in Reddit communities
 - Get featured in industry roundups and comparison articles
 - Maintain updated profiles on relevant review platforms
-- Create YouTube content for key how-to queries
+- Create YouTube content for key how-to queries — models don't watch the video, they read the text layer around it; see [references/youtube-ai-citations.md](references/youtube-ai-citations.md) for the full anatomy (transcript, captions, chapters, description, pinned comment)
+- Guest on podcasts in your category (prep with the public-relations skill's podcast guest prep)
 - Answer relevant Quora questions with depth
 
 ### Machine-Readable Files for AI Agents

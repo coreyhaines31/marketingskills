@@ -100,6 +100,18 @@
         "Mentions the attribution blind spot and at least two of: prompt tracking, self-reported attribution, call recordings"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "We publish YouTube tutorials for our category's biggest how-to queries but never get cited in AI answers, while a competitor's uglier videos show up in Google AI Overviews and ChatGPT constantly. The videos themselves are well produced. What are we missing?",
+      "expected_output": "Should load references/youtube-ai-citations.md and diagnose the text layer, not the footage: models don't watch the video, they read everything around it. Should check, in leverage order: transcript quality (key answers spoken as complete, liftable sentences; entities said out loud), captions (cleaned/uploaded, not messy auto-captions), question-shaped title matching the real query, chapters titled by sub-question, a keyword-rich description restating the key points as text, and a pinned comment carrying the summary. Should note engagement/thumbnail feeds YouTube ranking which feeds AI surfacing, and should not recommend re-shooting or higher production value as the fix.",
+      "assertions": [
+        "States that AI models read the text layer (transcript, captions, title, chapters, description, pinned comment) rather than watching the video",
+        "Recommends cleaning/uploading captions and speaking key answers as complete liftable statements with entities said aloud",
+        "Recommends question-shaped titles, chapters titled by sub-question, a structured description, and a pinned summary comment",
+        "Does not attribute the gap to production quality or recommend re-shooting as the primary fix"
+      ],
+      "files": []
     }
   ]
 }

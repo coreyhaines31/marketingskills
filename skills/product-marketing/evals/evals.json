@@ -80,6 +80,19 @@
         "Does not attempt to write homepage copy using context creation patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We just repositioned — we're no longer an 'email tool,' we're a 'deliverability platform,' and our ICP now includes RevOps teams. Update our product marketing context.",
+      "expected_output": "Should recognize an existing .agents/product-marketing.md, read it, note its current Document version and recent Changelog entries, and update only the affected sections (product overview/positioning, target audience/ICP). On save, should bump the Document version (e.g. v2 → v3), update the Last updated date, and PREPEND a new newest-first Changelog entry summarizing what changed and why in one line — e.g. 'Repositioned from email tool to deliverability platform; added RevOps to the ICP' — naming the sections touched and the reason, not just 'updated the doc.' Should not rewrite or reorder past changelog entries. Should tell the user the changelog tracks revisions and that downstream skills will now use the new context.",
+      "assertions": [
+        "Reads the existing doc and surfaces its current version + recent changelog",
+        "Updates only the affected sections (positioning + ICP)",
+        "Bumps the Document version and updates Last updated",
+        "Prepends a newest-first changelog entry naming what changed and why",
+        "Preserves prior changelog entries unchanged"
+      ],
+      "files": []
     }
   ]
 }

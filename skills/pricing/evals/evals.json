@@ -85,6 +85,20 @@
         "Does not attempt full page CRO audit"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Can you tear down our pricing page? I want to know if it is clear for buyers, and also whether AI tools like ChatGPT or Perplexity can actually read our prices when someone asks them to compare tools in our category.",
+      "expected_output": "Should run the two-axis pricing page teardown (references/pricing-page-teardown.md), not a generic CRO audit. Axis 1 (human buyer experience): value-prop clarity, plan differentiation, cognitive load, trust signals, pricing psychology, price transparency. Axis 2 (AI-agent readiness): machine-readable pricing (real numbers in HTML/text, not locked in an image, JS-only render, or behind Contact us), extractable FAQ/objection coverage, per-tier depth stated in text, and structured data (Product/Offer schema) + AI-bot crawlability. Should recommend the paste test (paste the URL into an LLM and ask for plans and prices; if it cannot answer, an AI shopping for the buyer cannot either). Should prioritize fixes by impact x effort and note AI-readiness fixes are often high-impact/low-effort. Should hand implementation to schema (Product/Offer JSON-LD) and ai-seo (extractability, AI-bot access, llms.txt). May credit the AI-agent-readiness lens to Kyle Poyar.",
+      "assertions": [
+        "Runs the two-axis teardown (human buyer experience AND AI-agent readiness)",
+        "Checks machine-readable pricing (not locked in an image / JS-only / behind Contact us)",
+        "Recommends the paste test (an LLM can correctly quote plans and prices)",
+        "Hands off to schema (Product/Offer structured data) and ai-seo (extractability / AI-bot access / llms.txt)",
+        "Prioritizes fixes by impact x effort; flags AI-readiness fixes as often high-impact low-effort",
+        "Does not treat this as pure conversion-rate CRO"
+      ],
+      "files": []
     }
   ]
 }

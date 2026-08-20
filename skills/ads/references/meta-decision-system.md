@@ -7,6 +7,7 @@ A quantified kill/keep/scale engine for Meta ads. Every threshold derives from o
 - TCPL: the anchor variable
 - The ad-count ceiling
 - Two-campaign structure (Scaling / Testing)
+- Destination testing (CBO per persona, one ad set per destination)
 - Stage 1: delivery check (day 7)
 - Stage 2: quality evaluation (weekly)
 - Graduation criteria
@@ -47,6 +48,14 @@ Run two CBO campaigns over the **same audience**:
 Why: inside a single CBO, proven ads always starve new ads — tests never get enough spend to be judged. Why not ABO for testing: equal forced distribution keeps spending on ads Meta has already deprioritized. The separation is *budget protection*, not audience segmentation.
 
 **Image-first validation:** launch new concepts as statics first; only produce the video/carousel/UGC version after the image passes the checks below. Exception: concepts that are inherently video (testimonial, demo, UGC).
+
+## Destination testing (CBO per persona, one ad set per destination)
+
+A complementary structure for when the **lander, not the creative, is the biggest unknown**: one CBO per persona; inside it, one ad set per destination type — PDP, listicle/advertorial, quiz, demo page — with the **same creatives in every ad set**. Holding creative constant makes the read clean: any CPM or performance divergence between ad sets is the destination.
+
+Why it works: the destination is a test axis of the same rank as creative — a losing funnel can hide winning creative, and different personas convert through different funnel shapes. CBO allocates budget across destinations the way it allocates across ads, and practitioners running this report wide CPM/performance spreads between destinations plus meaningful new-reach gains (~30%) from the added variety.
+
+Fit with the two-campaign structure: treat a destination test like a concept test — run it in the Testing campaign with a protected budget, judge each ad set against TCPL at the usual spend gates, then graduate the winning creative × destination pair. *Practitioner-reported pattern (Alexander Pauwelyn, 2026), not a platform-documented mechanic — validate against your own account data.*
 
 ## Stage 1: delivery check (day 7)
 
