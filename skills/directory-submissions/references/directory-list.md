@@ -26,10 +26,8 @@ Submit only during launch week. These are time-sensitive with limited re-submiss
 | **DevHunt** | ~35 | Yes | Free | Dev-focused. Best fit for developer tools and technical products. |
 | **PeerPush** | ~25 | Yes | Free | Similar to Fazier. Low competition. |
 | **LaunchVault** | ~20 | Yes | Free | Anti-VC positioning. Good for bootstrapped narrative. |
-| **What Launched Today** | ~20 | Yes | Free | Guaranteed visibility on launch day regardless of votes. |
 | **Firsto** | ~25 | Yes | Free tier | Sustained discovery, not one-day spike. |
 | **GetByte** | ~20 | Yes | Free | Lightweight listing + promotional support. |
-| **Best of Web** | ~30 | Yes | Free | Easy fast submission, free dofollow. |
 | **Tiny Launch** | ~20 | Yes | Free | Lightweight, fast approval. |
 | **PitchWall** | ~25 | Yes | Free | Indie-hacker friendly. |
 
@@ -123,23 +121,18 @@ Relevant only for AI-native products. Submit during weeks 1–3.
 | **TopAI.tools** | ~60 | Task-based search similar to TAAFT. |
 | **Supertools** | ~61 | Clean interface, good categorization. |
 | **AI Tools Directory** (aitoolsdirectory.com) | ~55 | Curated; featured placement available. |
-| **AI Tools Love** | ~25 | Comparison-focused. |
 | **AIChief** | ~35 | Business-focused. |
 | **LogicBalls** | ~40 | 3,500+ verified tools. |
 | **SaasAITools** | ~30 | SaaS + AI crossover. |
 | **PoweredByAI** | ~35 | Growing directory with newsletter reach. |
 | **TheAISurf** | ~30 | Newer, actively promoting submissions. |
-| **Aixyz** | ~30 | 1,500+ tools, smart filters. |
 | **AI Pedia Hub** | ~40 | "Largest directory, updated daily." |
 | **Dofollow.Tools** | ~30 | Explicitly free dofollow backlinks. |
 | **AIBacklinkList** | ~25 | Aggregated list of 2500+ AI backlink opportunities. |
 | **AI Scout** | ~25 | Emerging, less competition. |
-| **AiMatchPro** | ~20 | Use-case search. |
-| **GPTForge** | ~30 | Domain created 2025 — DR 88 from source list is implausible. Verify via Ahrefs. |
 | **AI Tools Guide** | 77 | Curated AI tools directory. |
 | **AIToolly** | 69 | AI tool discovery. |
 | **All The AI Tools** | 66 | Comprehensive AI tool listing. |
-| **Aiforme.wiki** | 66 | AI tool wiki/directory. |
 | **Noxilo** | 66 | AI tools directory. |
 | **AI Generation** | 55 | AI tools directory. |
 | **Every AI** | 55 | AI tool aggregator. |
@@ -165,7 +158,6 @@ Relevant only if the product exposes agent capabilities or MCP servers. These ar
 | **AI Agent Store** | Agents | Compare agents, platforms, frameworks. |
 | **AI Agents Base** | Agents | All-in-one directory. |
 | **AI Agents Directory** | Agents | Specialized, updated daily. |
-| **AI Agents Verse** | Agents | Curated directory. |
 | **AgentHunter** | Agents | "Discover the best AI agents." |
 | **Add AI Directory** | Agents | Catalogs agents + tools. |
 | **AI Agents Live** | Agents | Discovery + sharing. |
@@ -342,7 +334,6 @@ Publish articles or press releases to earn dofollow backlinks. Best for product 
 
 | Site | DR | Type | Notes |
 |---|---|---|---|
-| **EzineArticles** | 80 | Article | Established article directory. Editorial review. |
 | **Feedspot** | 80 | Blog directory | Blog discovery + RSS aggregation. Submit your blog. |
 | **Alltop** | 73 | Blog directory | Guy Kawasaki's blog aggregator. |
 | **ArticlesBase** | 70 | Article | Article publishing platform. |
@@ -362,7 +353,6 @@ Publish articles or press releases to earn dofollow backlinks. Best for product 
 | **OpenPR** | 72 | Free international press release distribution. |
 | **1888 Press Release** | 69 | Free press release site. |
 | **NewswireToday** | 65 | Free press release distribution. |
-| **Online PR News** | 62 | Free press release distribution. |
 | **PR Free** | 62 | Free press release site. |
 
 ### Marketing & General Directories
@@ -404,7 +394,6 @@ Industry-specific directories. Only submit if your product genuinely fits the ve
 |---|---|---|
 | **Justia** | 85 | Legal services directory. |
 | **Lawyers.com** | 82 | Legal directory. |
-| **HG.org** | 75 | Legal resources directory. |
 
 ### Home & Construction
 
