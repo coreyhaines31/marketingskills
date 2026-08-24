@@ -91,6 +91,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| sociality | Social | ✓ | ✓ | - | - | [sociality.md](integrations/sociality.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -289,8 +290,9 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **sociality** | Owned analytics, competitor benchmarking, publishing | MCP-enabled; 6 channels |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Agent recommendation**: Buffer for scheduling and queue management. Sociality for owned-account analytics and competitor benchmarking — it has an MCP server, so agents can query performance data directly.
 
 ### Video
 
@@ -542,6 +544,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 - **exa** - AI-powered web search for LLMs and agents
+- **sociality** - Social media analytics and competitor benchmarking
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 
@@ -588,3 +591,7 @@ Use Cogny when you only need marketing channels and want to avoid running your o
 ### Running paid ads
 1. Read [google-ads.md](integrations/google-ads.md) for search campaigns
 2. Read [meta-ads.md](integrations/meta-ads.md) for social campaigns
+
+### Reporting on social performance
+1. Read [sociality.md](integrations/sociality.md) for owned-account analytics and competitor benchmarks
+2. Read [buffer.md](integrations/buffer.md) if you also need queue and scheduling data
