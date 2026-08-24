@@ -126,6 +126,26 @@ export const ProductDemo: React.FC<{ title: string; features: string[] }> = ({
 
 Generate original footage from text or image prompts. Use for B-roll, hero visuals, and scenes you can't practically film.
 
+### MuAPI (optional hosted generation)
+
+Use MuAPI when the user wants a single API route across current video models or needs an
+agent-callable text-to-video/image-to-video workflow. The repository includes a zero-dependency
+CLI at `tools/clis/muapi-video.js` that discovers the selected model's current metadata, validates
+the request shape, submits exactly once, polls result GETs with a finite budget, and downloads an
+HTTPS output without forwarding credentials.
+
+```bash
+MUAPI_API_KEY=<key> node tools/clis/muapi-video.js generate \
+  --model hunyuan-text-to-video \
+  --prompt "a slow product reveal on a sunlit studio table" \
+  --aspect-ratio 16:9 --output product-reveal.mp4
+```
+
+Generation consumes credits. Confirm the request with the user before the POST, use `--dry-run`
+to inspect the payload without a key or network call, and never retry an ambiguous generation
+submission. See [the MuAPI integration guide](../../tools/integrations/muapi-video.md) and the
+[MuAPI AI Video API](https://muapi.ai/ai-video-api) for the current model catalog and access path.
+
 ### Model Comparison
 
 | Model | Resolution | Max Duration | Best For | Cost |

@@ -53,9 +53,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
 | social | 2.2.0 | 2026-07-09 |
-| video | 2.1.0 | 2026-07-14 |
+| video | 2.2.0 | 2026-08-24 |
 
 ## Recent Changes
+
+### 2.11.1 (2026-08-24)
+
+- **video** (2.1.0 → 2.2.0): added an optional MuAPI text-to-video and image-to-video CLI with live model metadata discovery, schema-aware payload validation, single-submit semantics, bounded result polling, HTTPS-only downloads, dry runs, focused contract tests, and an integration guide.
 
 ### 2.11.0 (2026-08-23)
 
