@@ -31,6 +31,7 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 | apollo | Data Enrichment | ✓ | - | [✓](clis/apollo.js) | - | [apollo.md](integrations/apollo.md) |
 | zoominfo | Data Enrichment | ✓ | ✓ | [✓](clis/zoominfo.js) | - | [zoominfo.md](integrations/zoominfo.md) |
 | clay | Data Enrichment | ✓ | ✓ | [✓](clis/clay.js) | - | [clay.md](integrations/clay.md) |
+| rowbound | Data Enrichment | - | ✓ | ✓ | - | [rowbound.md](integrations/rowbound.md) |
 | supermetrics | Data Aggregation | ✓ | ✓ | [✓](clis/supermetrics.js) | - | [supermetrics.md](integrations/supermetrics.md) |
 | coupler | Data Aggregation | ✓ | ✓ | [✓](clis/coupler.js) | - | [coupler.md](integrations/coupler.md) |
 | hubspot | CRM | ✓ | - | ✓ | ✓ | [hubspot.md](integrations/hubspot.md) |
@@ -314,8 +315,9 @@ Company and person data enrichment for sales and marketing.
 | **apollo** | B2B prospecting, email finding | Large database |
 | **zoominfo** | B2B contacts, intent data | Enterprise-grade |
 | **clay** | Waterfall enrichment, outbound | 75+ data providers |
+| **rowbound** | Open-source Sheets enrichment, waterfalls | MIT · CLI + MCP · self-hosted/BYOK Clay alternative |
 
-**Agent recommendation**: Clearbit for enrichment. Apollo for prospecting and outbound. ZoomInfo for enterprise B2B data with intent signals. Clay for waterfall enrichment across multiple providers.
+**Agent recommendation**: Clearbit for enrichment. Apollo for prospecting and outbound. ZoomInfo for enterprise B2B data with intent signals. Clay for hosted waterfall enrichment across many providers; **rowbound** when you want the open-source, self-hosted, BYOK, agent-drivable (MCP) alternative with native waterfalls.
 
 ### Email Verification
 
