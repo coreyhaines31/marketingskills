@@ -12,7 +12,7 @@
       "blurb": "Server-side conversion tracking that fires when someone submits a form, books a meeting, or starts a chat — passing click IDs and identifiers for Enhanced Conversions (Google) and high EMQ match rates (Meta), across 100+ tools. CLI + MCP so your agent sets it up in minutes.",
       "logoUrl": "",
       "integration": "tools/integrations/converly.md",
-      "active": true
+      "active": false
     }
   ]
 }

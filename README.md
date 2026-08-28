@@ -15,7 +15,7 @@ Run into a problem or have a question? [Open an issue](https://github.com/coreyh
 The library is free and MIT-licensed. [Verified Partners](tools/REGISTRY.md#verified-partners) fund the work — vetted, disclosed tool integrations, listed alongside the neutral options and never influencing what the core skills recommend. The full rules and boundaries are in [tools/PARTNERS.md](tools/PARTNERS.md). [Become a partner →](https://marketing-skills.com/sponsorship)
 
 <!-- PARTNERS:START -->
-> ◆ **[Converly](https://converly.io?ref=marketingskills)** — *Conversion tracking / attribution.* Server-side conversion tracking that fires when someone submits a form, books a meeting, or starts a chat — passing click IDs and identifiers for Enhanced Conversions (Google) and high EMQ match rates (Meta), across 100+ tools. CLI + MCP so your agent sets it up in minutes. → [Integration guide](tools/integrations/converly.md)
+_No active partners yet. [Become a partner →](https://marketing-skills.com/sponsorship)_
 <!-- PARTNERS:END -->
 
 <!-- The Partners block above is generated from partners.json — run `node scripts/sync-partners.mjs` after editing it. -->
