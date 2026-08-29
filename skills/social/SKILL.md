@@ -1,8 +1,8 @@
 ---
 name: social
-description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social media content creation, repurposing, scheduling, short-form video scripting, and social listening. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
+description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants source-backed social listening and research. Use for 'LinkedIn post,' 'Twitter thread,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'repurpose this content,' 'tweet ideas,' 'social media strategy,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'short-form video,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'X research,' 'Twitter research,' 'analyze tweets,' 'customer language on X,' 'top posts to comment on,' 'find people asking for,' 'carousel,' or 'document post.' Covers content creation, repurposing, scheduling, short-form video, listening, and source research. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
-  version: 2.2.0
+  version: 2.3.0
 ---
 
 # Social Content
@@ -214,6 +214,8 @@ Extract "content atoms" — self-contained moments from any long-form content th
 4. Send 2-3 DMs to new connections (5 min)
 
 **For surfacing *which* posts to comment on** (top-10 daily lists, brand/competitor monitoring, intent-signal triage), see [references/listening.md](references/listening.md). Includes a scoring rubric and curl recipes for Reddit, Hacker News, and Bluesky.
+
+**For source-backed X/Twitter research** (customer language, competitor evidence, campaign claims, or content opportunities), see [references/x-source-research.md](references/x-source-research.md). Build a traceable source packet before synthesis; use the Xquik integration guide when that collection path is configured.
 
 ### Quality Comments
 

@@ -166,12 +166,24 @@ curl -s "https://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID"
 curl -s "https://example.com/feed/" | xmllint --xpath "//item[position()<6]" - 2>/dev/null
 ```
 
-### LinkedIn & X — use the browser
+### X - prefer structured collection
 
-LinkedIn and X don't expose useful public APIs, but you can drive a real browser session. **dev-browser** (MCP, already in the global setup) and **Playwright** both maintain persistent state — log in once, the session stays alive, Claude can navigate the authenticated feed.
+For source-backed X/Twitter listening, prefer a structured, approved API, MCP,
+SDK, CLI, or export workflow. If Xquik is configured, use
+[`tools/integrations/xquik.md`](../../../tools/integrations/xquik.md) and preserve
+the query, source URLs, timestamps, cursors, and collection boundary.
+
+Use browser-driven X only for a user-approved session when the structured source
+cannot expose the needed view. Never bypass access controls or automate posting.
+
+### LinkedIn - use the browser
+
+LinkedIn does not expose a useful general public listening API. You can drive a
+real browser session with **dev-browser** or **Playwright**. Both maintain
+persistent state: log in once, then navigate the authenticated feed.
 
 **dev-browser workflow (preferred — already wired up):**
-1. User logs into LinkedIn / X once in the dev-browser session
+1. User logs into LinkedIn once in the dev-browser session
 2. Claude navigates to a target URL (feed, profile, saved search, hashtag)
 3. Claude reads the accessibility tree / page text, extracts posts
 4. Claude scores using the [rubric](#scoring-rubric) and drafts comments
@@ -184,21 +196,17 @@ LinkedIn and X don't expose useful public APIs, but you can drive a real browser
 | `linkedin.com/in/HANDLE/recent-activity/all/` | A target account's recent posts |
 | `linkedin.com/feed/hashtag/TOPIC/` | Hashtag feed |
 | `linkedin.com/feed/` | Your main feed (algorithmic — less useful for triage) |
-| `x.com/HANDLE` | A target account's profile |
-| `x.com/search?q=QUERY&f=live` | Real-time search (use `f=live` for chronological) |
-| `x.com/i/lists/LIST_ID` | A curated list — best for target accounts |
 
 **Tips:**
-- On X, build a private list of target accounts and use the list URL. Far cleaner than the algorithmic feed.
 - LinkedIn's `/recent-activity/all/` URL is the cleanest way to see one person's posts without the algorithm.
-- For both platforms, scroll programmatically (dev-browser supports it) to load more posts before extracting.
+- Scroll programmatically to load enough posts before extracting.
 
 **Paid alternatives if you don't want to drive a browser:**
 
 | Platform | Tools |
 |----------|-------|
 | LinkedIn | Sales Navigator (saved searches), Taplio (engagement) |
-| X | TweetDeck/X Pro (saved columns), Typefully, Taplio, Tweet Hunter |
+| X | Xquik for structured collection; X Pro for manual saved columns |
 
 **Still closed (no good path):**
 - Instagram & TikTok — closed APIs, browser automation is detectable and risky. Use native saved searches / hashtag follows.
@@ -215,7 +223,7 @@ LinkedIn and X don't expose useful public APIs, but you can drive a real browser
 - Tag the author in your reply only if it adds context
 
 ### Twitter/X
-- **Browser-driven** (dev-browser) — build a private list of target accounts and point dev-browser at the list URL
+- **Structured collection preferred** - use an approved API, MCP, SDK, CLI, or export and preserve source URLs plus cursors
 - Reply within first 30 min for max reach on big accounts
 - Quote-tweet > reply when adding substantial value
 - Threading your reply (multi-tweet) signals effort

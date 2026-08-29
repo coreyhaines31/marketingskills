@@ -102,6 +102,22 @@
         "Does not invent stats or pad the tactic count"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Use Xquik to research how developers talk about webhook reliability on X. I need evidence for launch messaging, not a thread to publish.",
+      "expected_output": "Should route to the X source research workflow, read the Xquik integration guide, clarify the decision/audience/window, build separate pain/outcome/workaround/competitor query groups, collect through the approved structured contract, preserve source URLs and pagination, and produce a source packet before marketing implications. Should not draft social content, invent evidence, or treat engagement as buying intent.",
+      "assertions": [
+        "Loads or applies the x-source-research reference",
+        "Uses the Xquik integration guide and current contract",
+        "Clarifies decision, audience, and time window",
+        "Builds distinct query groups before collection",
+        "Preserves source URLs and pagination boundaries",
+        "Produces a traceable source packet",
+        "Separates evidence from marketing interpretation",
+        "Does not invent posts or treat engagement as purchase intent"
+      ],
+      "files": []
     }
   ]
 }
