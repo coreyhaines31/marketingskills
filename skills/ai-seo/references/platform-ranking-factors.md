@@ -11,7 +11,7 @@ Sources cited throughout: Princeton GEO study (KDD 2024), SE Ranking domain auth
 Every AI platform shares three baseline requirements:
 
 1. **Your content must be in their index** — Each platform uses a different search backend (Google, Bing, Brave, or their own). If you're not indexed, you can't be cited.
-2. **Your content must be crawlable** — AI bots need access via robots.txt. Block the bot, lose the citation.
+2. **Your content must be crawlable for discovery** — Allow the relevant search-discovery path through robots.txt and your WAF; model-training controls are separate.
 3. **Your content must be extractable** — AI systems pull passages, not pages. Clear structure and self-contained paragraphs win.
 
 Beyond these basics, each platform weights different signals. Here's what matters and where.
@@ -151,7 +151,7 @@ If you're optimizing for AI search for the first time, focus your effort where y
 **Copilot and Claude are lower priority** unless your audience skews enterprise/Microsoft (Copilot) or developer/analyst (Claude). But the fundamentals — structured content, cited sources, schema markup — help across all platforms.
 
 **Actions that help everywhere:**
-1. Allow all AI bots in robots.txt
+1. Set an explicit, purpose-specific robots policy: allow relevant discovery crawlers while deciding training and user-triggered retrieval separately
 2. Implement schema markup (FAQPage, Article, Organization at minimum)
 3. Include statistics with named sources in your content
 4. Update content regularly — monthly for competitive topics
