@@ -158,7 +158,7 @@ For each priority page, verify:
 Audit AI user agents by purpose. Search-discovery, user-triggered retrieval, model-training, and product-control tokens are not interchangeable:
 
 - **Search discovery:** `OAI-SearchBot` (ChatGPT), `PerplexityBot`, `Claude-SearchBot`, and the conventional search crawlers that feed an answer product
-- **User-triggered retrieval:** `Claude-User` and `Perplexity-User`; vendor handling can differ from automatic crawlers, so verify the current documentation
+- **User-triggered retrieval:** `ChatGPT-User`, `Claude-User`, and `Perplexity-User`; vendor handling can differ from automatic crawlers, so verify the current documentation
 - **Potential model training:** `GPTBot` and `ClaudeBot`
 - **Google product control:** `Google-Extended` controls certain Gemini training and grounding uses of content Google already crawls; it does not affect Google Search inclusion or ranking
 
