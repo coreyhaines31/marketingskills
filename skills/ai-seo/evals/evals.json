@@ -19,10 +19,10 @@
     {
       "id": 2,
       "prompt": "Should we block AI crawlers like GPTBot and PerplexityBot in our robots.txt? We're worried about content theft.",
-      "expected_output": "Should address the AI bot access question directly. Should explain the tradeoff: blocking AI bots prevents training on your content but also prevents AI platforms from citing and recommending you. Should reference the specific bots and their purposes (GPTBot, Google-Extended, PerplexityBot, ClaudeBot, etc.). Should provide the recommended robots.txt configuration. Should explain that blocking may hurt AI visibility more than it protects content. Should provide a nuanced recommendation based on business goals.",
+      "expected_output": "Should address the crawler-access question directly and separate controls by purpose. GPTBot and ClaudeBot are potential model-training crawlers; blocking them is a training opt-out and does not by itself block search citations. PerplexityBot, OAI-SearchBot, and Claude-SearchBot support automatic search discovery, so blocking them may reduce visibility. Google-Extended controls certain Gemini training and grounding uses and does not affect Google Search inclusion or ranking. Should provide a purpose-specific robots.txt example, distinguish user-triggered retrieval where relevant, and recommend verifying current vendor documentation before implementation.",
       "assertions": [
         "Addresses the blocking tradeoff directly",
-        "Explains impact on AI visibility vs content protection",
+        "Distinguishes search discovery from model-training controls",
         "Lists specific AI bot user agents",
         "Provides recommended robots.txt configuration",
         "Gives nuanced recommendation based on business goals",

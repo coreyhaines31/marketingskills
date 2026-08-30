@@ -21,7 +21,7 @@ Run one before and after any agent-readiness work — the score is a shareable a
 
 ### 2. Discovery — do your files tell agents what's here?
 
-- **robots.txt with an explicit AI-crawler stance** — name the major AI crawlers and state your policy, rather than leaving it to be assumed (see the bot-access table in SKILL.md for the allow/block list).
+- **robots.txt with an explicit AI-crawler stance** — name the relevant user agents and state a purpose-specific policy, rather than leaving it to be assumed (see the bot-access guidance in SKILL.md).
 - **A sitemap that loads and parses cleanly.**
 - **llms.txt at the domain root** (see Machine-Readable Files in SKILL.md).
 - **`llms-full.txt`** — the newer companion: your entire site content in one file, so an agent gets everything in a single request instead of crawling. Emerging, cheap to generate alongside llms.txt, and scored as bonus signal by both tools.

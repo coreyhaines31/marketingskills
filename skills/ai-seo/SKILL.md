@@ -151,7 +151,7 @@ For each priority page, verify:
 | Expert attribution (author name, credentials)? | |
 | Recently updated (within 6 months)? | |
 | Heading structure matches query patterns? | |
-| AI bots allowed in robots.txt? | |
+| AI crawler policy matches discovery and training goals? | |
 
 ### Step 4: AI Bot Access Check
 
