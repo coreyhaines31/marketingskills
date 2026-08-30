@@ -120,6 +120,7 @@ Do not copy one blanket allowlist. Choose controls by documented purpose, then c
 ```text
 # Automatic search discovery
 User-agent: Bingbot
+User-agent: Googlebot
 User-agent: OAI-SearchBot
 User-agent: PerplexityBot
 User-agent: Claude-SearchBot
@@ -128,6 +129,10 @@ Allow: /
 # Potential model training (publisher choice shown as disallow)
 User-agent: GPTBot
 User-agent: ClaudeBot
+Disallow: /
+
+# Gemini model training and grounding (publisher choice shown as disallow)
+User-agent: Google-Extended
 Disallow: /
 ```
 
