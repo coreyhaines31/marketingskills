@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.8.2 | 2026-08-23 |
-| ai-seo | 2.4.0 | 2026-08-21 |
+| ai-seo | 2.4.1 | 2026-08-30 |
 | analytics | 2.0.1 | 2026-07-22 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.0 | 2026-07-23 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.1 (2026-08-30)
+
+- **ai-seo** (2.4.0 → 2.4.1): corrected the crawler-access guidance to distinguish automatic search discovery (`OAI-SearchBot`, `PerplexityBot`, `Claude-SearchBot`), user-triggered retrieval, potential model training (`GPTBot`, `ClaudeBot`), and the `Google-Extended` product token. Replaced the blanket allowlist with a purpose-specific example, linked the maintained vendor documentation, and added a disclosed optional open-source implementation helper.
 
 ### 2.11.0 (2026-08-23)
 
