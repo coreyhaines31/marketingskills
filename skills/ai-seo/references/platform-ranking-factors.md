@@ -119,6 +119,7 @@ Do not copy one blanket allowlist. Choose controls by documented purpose, then c
 
 ```text
 # Automatic search discovery
+User-agent: Bingbot
 User-agent: OAI-SearchBot
 User-agent: PerplexityBot
 User-agent: Claude-SearchBot
