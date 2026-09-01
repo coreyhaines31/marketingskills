@@ -2,7 +2,7 @@
 name: marketing-plan
 description: When the user needs a comprehensive marketing plan for a client, a company they advise, or their own product. Also use when the user mentions "marketing plan," "growth plan," "GTM plan," "go-to-market plan," "AARRR plan," "90-day marketing plan," "12-month marketing roadmap," "fractional CMO plan," or "fCMO plan." Generates an exhaustive 13-section plan structured by AARRR (Acquisition, Activation, Retention, Referral, Revenue), customized to the client's current budget, team, and stage, mapped to future funding milestones, cross-referenced with the 139-idea marketing-ideas library and an embedded 17-section current-state audit rubric, with a full marketing operations stack showing which skills and MCP/API integrations execute each part. Outputs a Notion-paste-ready markdown document. For positioning and ICP context before planning, see product-marketing. For stage-specific deep work, see onboarding, signup, emails, referrals, pricing.
 metadata:
-  version: 1.1.1
+  version: 1.2.0
 ---
 
 # Marketing Plan
@@ -93,6 +93,11 @@ Full primer in `references/aarrr-framework.md`. Quick rule:
 - **Revenue** = monetization (pricing, upsells, bundles, ACV expansion)
 
 Brand and content are **cross-cutting**, not their own AARRR stage — they serve every stage.
+
+When the plan defines stage metrics, every rate divides matching closed
+windows: an activation rate counts only cohorts whose observation window has
+ended (a trial still inside its window is pending, not failed — keep it out of
+the denominator and label it pending).
 
 ## Marketing as investing — the north-star framing
 

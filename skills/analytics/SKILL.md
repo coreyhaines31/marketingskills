@@ -1,8 +1,8 @@
 ---
 name: analytics
-description: When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager," "GTM," "analytics implementation," "tracking plan," "how do I measure this," "track conversions," "Mixpanel," "Segment," "are my events firing," or "analytics isn't working." Use this whenever someone asks how to know if something is working or wants to measure marketing results. For choosing attribution models, comparing multi-touch/MMM/incrementality, or reconciling conflicting numbers across tools, see attribution. For A/B test measurement, see ab-testing.
+description: When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions "set up tracking," "GA4," "Google Analytics," "conversion tracking," "event tracking," "UTM parameters," "tag manager," "GTM," "analytics implementation," "tracking plan," "how do I measure this," "track conversions," "Mixpanel," "Segment," "are my events firing," or "analytics isn't working." Use this whenever someone asks how to know if something is working or wants to measure marketing results. For choosing attribution models, comparing multi-touch/MMM/incrementality, or reconciling conflicting numbers across tools, see attribution. For A/B test measurement, see ab-testing. Rate metrics divide matching closed windows — never full-period spend by partial-period results.
 metadata:
-  version: 2.0.1
+  version: 2.2.0
 ---
 
 # Analytics Tracking
@@ -43,6 +43,33 @@ Before implementing tracking, understand:
 - Validate implementation
 - Monitor for issues
 - Clean data > more data
+
+### 5. Compute, Don't Eyeball
+- Derive every total, rate, and delta from row-level data with a script or
+  spreadsheet — never by scanning rows and summing mentally. One silently
+  dropped row corrupts every figure downstream of it.
+- Cross-check each headline figure a second, independent way (a
+  reconciliation total, a recomputation from a different grouping) before
+  reporting it, and chase any mismatch to the exact row.
+- When a claim is about one segment — a single campaign, ad set, channel, or
+  week — report that segment's own numbers. Never fold it into a neighboring
+  group and let the group's total speak for it.
+
+### 6. Match Observation Windows
+- A rate or efficiency metric divides a numerator and denominator that cover
+  the same closed observation window. Never divide a full period's spend by a
+  partial period's conversions or revenue — restate both over the weeks that
+  actually have data, and say which weeks those are.
+- Cohort rates use only cohorts whose observation window has ended. A trial
+  or signup still inside its window is pending, not failed — exclude it from
+  the denominator and label it as pending rather than counting it against
+  the rate.
+
+### 7. Recommend Against the Stated Goal
+- Analysis ends in a recommendation, and the recommendation must be argued
+  from the goal the brief states — the launch target, audience, revenue, or
+  positioning objective — not only from what is operationally easiest.
+  Name which stated goal each option serves and what it trades away.
 
 ---
 

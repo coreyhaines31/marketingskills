@@ -5,9 +5,9 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.8.2 | 2026-08-23 |
+| ad-creative | 2.9.0 | 2026-09-01 |
 | ai-seo | 2.4.0 | 2026-08-21 |
-| analytics | 2.0.1 | 2026-07-22 |
+| analytics | 2.2.0 | 2026-09-01 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.0 | 2026-07-23 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
@@ -18,7 +18,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | competitors | 2.0.1 | 2026-07-09 |
 | content-strategy | 2.1.1 | 2026-08-23 |
 | copy-editing | 2.0.0 | 2026-05-05 |
-| copywriting | 2.0.2 | 2026-08-23 |
+| copywriting | 2.1.0 | 2026-09-01 |
 | cro | 2.0.0 | 2026-05-05 |
 | customer-research | 2.0.2 | 2026-08-23 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
@@ -32,7 +32,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
 | marketing-loops | 1.2.0 | 2026-07-10 |
-| marketing-plan | 1.1.1 | 2026-08-23 |
+| marketing-plan | 1.2.0 | 2026-09-01 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
@@ -56,6 +56,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.1 (2026-09-01)
+
+Analysis-discipline hardening across four skills, reverse-engineered from documented `marketingbenchmark.ai` failure evidence (family-wide gaps, principle-level rules only — surfaced via the Magister eval runner). Operative rules that must fire before an agent opens the skill file are mirrored into the description line, since hosted agents see only names + descriptions until they read a body on demand.
+
+- **analytics** (2.0.1 → 2.2.0): three new Core Principles — **Compute, Don't Eyeball** (derive every figure from row-level data with a script/spreadsheet, cross-check independently, report per-segment rather than folding into a group), **Match Observation Windows** (rates divide matching *closed* windows — never full-period spend by partial-period conversions; immature cohorts are pending, not failed), and **Recommend Against the Stated Goal** (argue the recommendation from the brief's stated goal, not only what's operationally easiest). Description gains the observation-window operative line.
+- **ad-creative** (2.8.2 → 2.9.0): new **Test Hypotheses That Can Lose** section (a hypothesis names the metric, the comparison, and the expected direction so a result can prove it wrong), plus an exact-product-name rule (no shortened/nicknamed products unless approved). Description gains the falsifiable-hypothesis operative line; older redundant triggers trimmed to stay within the 1024-char limit.
+- **copywriting** (2.0.2 → 2.1.0): new **Claims Must Be Supportable — and Declines Must Name Their Unlock** principle (write only supportable claims; a declined claim names the exact evidence that would unlock it, turning a dead end into a client action item). Description gains the supportable-claims operative line.
+- **marketing-plan** (1.1.1 → 1.2.0): AARRR stage metrics apply the matched-observation-window rule — activation and other rates count only cohorts whose window has closed; in-window trials are pending, not failed.
 
 ### 2.11.0 (2026-08-23)
 

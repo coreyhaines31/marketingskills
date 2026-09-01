@@ -1,8 +1,8 @@
 ---
 name: ad-creative
-description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'ad templates,' 'iMessage ad,' 'chat reveal ad,' 'ChatGPT ad,' 'Apple Notes ad,' 'AirDrop ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'creative review page,' 'present ad creative for approval,' 'motion video ad,' 'faceless video ad,' 'UGC ad,' 'greenscreen ad,' 'TikTok/Reels ad format,' 'which ad format to make,' 'Meta ad format tier list,' or 'creative format taxonomy.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting."
+description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'ad templates,' 'iMessage ad,' 'ChatGPT ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'creative review page,' 'present ad creative for approval,' 'motion video ad,' 'faceless video ad,' 'UGC ad,' 'TikTok/Reels ad format,' 'which ad format to make,' or 'creative format taxonomy.' Use this whenever someone needs to produce ad copy at scale or iterate on existing ads. For campaign strategy and targeting, see ads. For landing page copy, see copywriting. Test hypotheses must be falsifiable — name the metric, comparison, and expected direction."
 metadata:
-  version: 2.8.2
+  version: 2.9.0
 ---
 
 # Ad Creative
@@ -275,6 +275,22 @@ Track what was learned and what's being tested:
 - Claims without specificity ("Best," "Leading," "Top")
 - All caps or excessive punctuation
 - Clickbait that the landing page can't deliver on
+- Shortened or nicknamed product names — use the exact product name the
+  brief gives, in every field of every concept, unless a short form is
+  explicitly approved
+
+### Test Hypotheses That Can Lose
+
+When a concept ships with a test hypothesis, write one that a result can
+prove wrong. "This will resonate with renters" cannot lose; "beats the
+control on CTR among renters" can.
+
+- Name the metric (CTR, CVR, CPA, thumb-stop rate) and the comparison —
+  against which control or sibling concept, in which audience
+- State the expected direction, and a magnitude when a baseline exists
+  ("+15% CTR vs. Concept A")
+- The hypothesis should follow from the angle's motivation, so a win or a
+  loss teaches you something about the audience, not just the asset
 
 ### Descriptions That Convert
 
