@@ -1,6 +1,6 @@
 ---
 name: no-slop
-description: When prose is about to ship and must not read as AI-generated. Use when the user says "de-slop this," "no slop," "does this read as AI," "make this sound human," "remove the AI tells," "this sounds like ChatGPT," "anti-slop," "kill the AI voice," or wants a pre-delivery quality gate on copy. Every prose skill (copywriting, emails, social, ad-creative, cold-email, website-copy) runs no-slop before handoff. For broad line-editing of existing copy, see copy-editing. For writing from scratch, see copywriting.
+description: When prose is about to ship and must not read as AI-generated. Use when the user says "de-slop this," "no slop," "does this read as AI," "make this sound human," "remove the AI tells," "this sounds like ChatGPT," "anti-slop," "kill the AI voice," or wants a pre-delivery quality gate on copy. Run it before handoff on any prose deliverable — copy, emails, ad text, social posts, landing pages. For broad line-editing of existing copy, see copy-editing. For writing from scratch, see copywriting.
 metadata:
   version: 1.0.0
 ---
@@ -115,7 +115,7 @@ Some brands genuinely speak in a polished, formal register — enterprise securi
 
 ## Related Skills
 
-- **copywriting**: Writing prose from scratch (run no-slop before handoff)
+- **copywriting**: Writing prose from scratch, including website and landing-page copy (run no-slop before handoff)
 - **copy-editing**: Broad line-editing and refresh of existing copy (no-slop is its AI-tell pass)
-- **emails**, **social**, **ad-creative**, **cold-email**, **website-copy**: Channel prose that runs no-slop before delivery
-- **brand-voice**: The intended voice no-slop must preserve, not flatten
+- **emails**, **social**, **ad-creative**, **cold-email**, **sms**: Channel prose that runs no-slop before delivery
+- **product-marketing**: The product voice and positioning context (`.agents/product-marketing.md`) no-slop must preserve, not flatten
