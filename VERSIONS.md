@@ -34,6 +34,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-loops | 1.2.0 | 2026-07-10 |
 | marketing-plan | 1.1.1 | 2026-08-23 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
+| no-slop | 1.0.0 | 2026-09-01 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
 | ads | 2.3.2 | 2026-08-23 |
@@ -56,6 +57,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.12.0 (2026-09-01)
+
+- Added the **`no-slop`** skill (1.0.0) — a shared anti-slop pass every prose skill can run before delivery, so nothing ships reading as AI-generated. A tell doesn't just read badly; it makes the reader discount the *claim*, so this is a quality gate, not a style nit. Upgrades the common "AI-tell list" pattern with **severity tiers** (Fatal / Flag / Context), **marketing-channel-specific slop** (CTA, subject-line, hook, broetry/engagement-bait, persona-by-demographic, vanity-metric reporting) rather than a generic copy checklist, a **claims-not-slop** tie-in to copywriting's supportable-claims rule (de-slopping never invents proof), the read-aloud + bar tests, and a **register exception** so a genuinely formal brand voice isn't flattened. Exhaustive word/phrase catalogue in `references/lexical-tells.md`; six evals covering hero hype, email/subject slop, the formal-register exception, LinkedIn broetry, vanity-metric analytics slop, and demographic-vs-state targeting. New skill = repo y release; total skills: 51. Directly invocable now ("de-slop this," "does this read as AI"); wiring it into each prose skill's delivery step ships as a follow-up.
 
 ### 2.11.0 (2026-08-23)
 

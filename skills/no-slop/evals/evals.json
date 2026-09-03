@@ -1,0 +1,78 @@
+{
+  "skill_name": "no-slop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "De-slop this homepage hero: \"In today's fast-paced world, our revolutionary, industry-leading platform empowers teams to seamlessly unlock their full potential. It's not just a tool — it's a game-changer.\"",
+      "expected_output": "Should identify the Fatal tells (the 'not just X — it's Y' construction, the referent-free claims 'revolutionary'/'industry-leading'/'game-changer', the 'in today's fast-paced world' filler, the 'seamlessly'/'unlock full potential'/'empowers' families) and rewrite as a flat, specific statement of what the product actually does. Should NOT invent a statistic or customer to replace the hype — if the source gives no specific capability, it should flag [NEED: what the product concretely does] rather than fabricate. Reports changes and ends with what it couldn't determine without product detail.",
+      "assertions": [
+        "Removes the 'not just X, it's Y' construction",
+        "Removes referent-free superlatives (revolutionary, industry-leading, game-changer) rather than swapping in different empty ones",
+        "Does not invent a statistic, percentage, or customer name to replace the hype",
+        "Flags missing specifics (e.g. [NEED: ...]) instead of fabricating them",
+        "Preserves the intent while making at least one line concrete or explicitly flags the gap"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Is this good to send? Subject: \"🔥 You won't believe this game-changer\" — Body: \"Hey! We're thrilled to share our latest, cutting-edge solution that will revolutionize how you work. Whether you're a startup or an enterprise, we've got you covered!\"",
+      "expected_output": "Should run no-slop and reject it as-is. Flags subject-line slop (curiosity-gap bait + emoji hype + referent-free 'game-changer') and body slop (the 'whether you're a X or a Y' opener, 'cutting-edge solution', 'revolutionize', 'we've got you covered', abstract 'solution'). Should rewrite the subject to survive being read as the whole message and rewrite the body around a specific action/payoff, or flag [NEED] where the actual offer is unknown. Should not declare it fixed by swapping in equivalent hype.",
+      "assertions": [
+        "Flags the subject line as curiosity-gap/emoji hype and rewrites it to carry real substance",
+        "Identifies the 'whether you're a X or a Y' opener and the 'we've got you covered' filler",
+        "Removes 'cutting-edge solution' / 'revolutionize' rather than substituting new empty phrasing",
+        "Asks for or flags the missing concrete offer instead of inventing one"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our brand is a regulated medical-devices company with a formal, precise voice. De-slop this: \"Our device is engineered to meet ISO 13485 requirements and reduces calibration drift to within 0.2% over a 12-month interval, verified in the attached validation report.\"",
+      "expected_output": "Should apply the register exception: recognize that formal register is not slop, and that this sentence makes specific, falsifiable, sourced claims (ISO 13485, 0.2%, 12 months, a validation report). Should leave it essentially intact rather than 'punching it up' into a casual voice, and explicitly note that over-correcting a legitimate formal brand voice is itself a tell. Should check brand voice (product-marketing.md) before flattening.",
+      "assertions": [
+        "Does NOT rewrite the formal sentence into a casual/punchy voice",
+        "Explicitly invokes the register exception (formality is not slop; emptiness is)",
+        "Recognizes the claims are specific and sourced, so little or nothing needs changing",
+        "Warns against over-correcting a legitimate formal voice"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Tighten this LinkedIn post: \"I failed.\\n\\nHard.\\n\\nBut here's the thing.\\n\\nEvery setback is a setup for a comeback.\\n\\nLet that sink in.\\n\\nAgree?\"",
+      "expected_output": "Should flag broetry/engagement-bait slop: the one-line-per-paragraph cadence, 'here's the thing', the empty aphorism 'every setback is a setup for a comeback', 'let that sink in', and the 'Agree?' closer. Should rewrite around actual substance a person would say out loud (what specifically failed, what was learned, what changed), or flag [NEED: the actual story] since the prompt gives none. Should not preserve the manufactured-vulnerability template.",
+      "assertions": [
+        "Identifies the one-line broetry cadence and the 'Agree?' / 'let that sink in' engagement bait",
+        "Flags the empty aphorism rather than keeping it",
+        "Rewrites around concrete substance or flags that the real story is missing",
+        "Does not reproduce the manufactured-vulnerability template"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Run no-slop on this analytics summary line for a report: \"Variant B is the clear winner and will transform our conversion strategy — it drove a game-changing lift.\"",
+      "expected_output": "Should catch both prose slop and the marketing-channel (analytics/vanity-metric) slop: 'clear winner' with no sample size or confidence, 'transform', 'game-changing', and a 'lift' with no number, comparison, or window. Should refuse to endorse the 'winner' claim without the denominator/sample and rewrite to state the actual measured delta with its window (or flag [NEED: sample size, absolute rates, observation window]). Ties to the analytics discipline that a number without its comparison is decoration and no winner is declared on thin data.",
+      "assertions": [
+        "Flags 'clear winner' as unsupported without sample size / significance",
+        "Removes 'transform' and 'game-changing'",
+        "Requires the actual lift number with its comparison and window, or flags them as missing",
+        "Does not restate the vanity claim in fresh empty wording"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Quick check before this ships: \"We help SMBs streamline their workflows with a comprehensive, robust suite of solutions.\"",
+      "expected_output": "Should flag demographic-not-state targeting ('SMBs' says nothing about whether it's for the reader), the corporate-hedge cluster ('streamline', 'comprehensive', 'robust'), and the abstract plural 'solutions' with no mechanism. Should rewrite to a state-based audience and a concrete mechanism, or flag [NEED: what the product actually does and for whom specifically]. Applies the benefits-with-no-mechanism and persona-by-state rules.",
+      "assertions": [
+        "Rewrites 'SMBs' into an audience defined by a situation/state, or flags the need to",
+        "Removes the 'comprehensive/robust/streamline/solutions' cluster",
+        "Requires a concrete mechanism instead of the vague benefit",
+        "Does not swap in equivalent corporate abstractions"
+      ],
+      "files": []
+    }
+  ]
+}
