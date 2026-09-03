@@ -63,6 +63,7 @@ Every CLI reads credentials from environment variables:
 | `linkedin-ads` | `LINKEDIN_ACCESS_TOKEN` |
 | `livestorm` | `LIVESTORM_API_TOKEN` |
 | `mailchimp` | `MAILCHIMP_API_KEY` |
+| `muapi-video` | `MUAPI_API_KEY` |
 | `mention-me` | `MENTIONME_API_KEY` |
 | `meta-ads` | `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID` |
 | `mixpanel` | `MIXPANEL_TOKEN` (ingestion), `MIXPANEL_API_KEY` + `MIXPANEL_SECRET` (query) |
@@ -165,6 +166,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `linkedin-ads.js` | Ads | [LinkedIn Ads](https://business.linkedin.com/marketing-solutions/ads) |
 | `livestorm.js` | Webinar | [Livestorm](https://livestorm.co) |
 | `mailchimp.js` | Email | [Mailchimp](https://mailchimp.com) |
+| `muapi-video.js` | Video | [MuAPI](https://muapi.ai/ai-video-api) |
 | `mention-me.js` | Referral | [Mention Me](https://www.mention-me.com) |
 | `meta-ads.js` | Ads | [Meta Ads](https://www.facebook.com/business/ads) |
 | `mixpanel.js` | Analytics | [Mixpanel](https://mixpanel.com) |
