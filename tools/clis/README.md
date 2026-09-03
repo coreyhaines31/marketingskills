@@ -64,6 +64,7 @@ Every CLI reads credentials from environment variables:
 | `livestorm` | `LIVESTORM_API_TOKEN` |
 | `mailchimp` | `MAILCHIMP_API_KEY` |
 | `mention-me` | `MENTIONME_API_KEY` |
+| `minimax-video` | `MINIMAX_API_KEY`, `MINIMAX_REGION` (optional), `MINIMAX_BASE_URL` (optional) |
 | `meta-ads` | `META_ACCESS_TOKEN`, `META_AD_ACCOUNT_ID` |
 | `mixpanel` | `MIXPANEL_TOKEN` (ingestion), `MIXPANEL_API_KEY` + `MIXPANEL_SECRET` (query) |
 | `onesignal` | `ONESIGNAL_REST_API_KEY`, `ONESIGNAL_APP_ID` |
@@ -166,6 +167,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `livestorm.js` | Webinar | [Livestorm](https://livestorm.co) |
 | `mailchimp.js` | Email | [Mailchimp](https://mailchimp.com) |
 | `mention-me.js` | Referral | [Mention Me](https://www.mention-me.com) |
+| `minimax-video.js` | Video | [MiniMax (Hailuo)](https://www.minimax.io) |
 | `meta-ads.js` | Ads | [Meta Ads](https://www.facebook.com/business/ads) |
 | `mixpanel.js` | Analytics | [Mixpanel](https://mixpanel.com) |
 | `onesignal.js` | Push | [OneSignal](https://onesignal.com) |

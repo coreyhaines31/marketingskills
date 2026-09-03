@@ -118,6 +118,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
+| minimax | Video | ✓ | - | [✓](clis/minimax-video.js) | - | [minimax.md](integrations/minimax.md) |
 | trustpilot | Reviews | ✓ | - | [✓](clis/trustpilot.js) | - | [trustpilot.md](integrations/trustpilot.md) |
 | g2 | Reviews | ✓ | - | [✓](clis/g2.js) | - | [g2.md](integrations/g2.md) |
 | onesignal | Push | ✓ | - | [✓](clis/onesignal.js) | ✓ | [onesignal.md](integrations/onesignal.md) |
@@ -325,8 +326,9 @@ Video hosting, creation, and AI generation.
 | **wistia** | Video hosting, marketing analytics | Best for marketing video hosting |
 | **heygen** | AI avatars, talking-head videos | MCP server available |
 | **hyperframes** | Programmatic video from HTML/CSS | Open source, agent-native |
+| **minimax** | AI text-to-video and image-to-video generation | CLI available; current v2 and legacy v1 models |
 
-**Agent recommendation**: HeyGen for AI avatar videos (MCP-enabled). Hyperframes for templated, data-driven video from code. Wistia for hosting and analytics.
+**Agent recommendation**: HeyGen for AI avatar videos (MCP-enabled). Hyperframes for templated, data-driven video from code. MiniMax for AI-generated marketing footage from text or image prompts. Wistia for hosting and analytics.
 
 ### Data Enrichment
 
