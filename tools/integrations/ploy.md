@@ -37,9 +37,8 @@ AI marketing platform built around a website builder: one system for building th
 
 ## How it fits the skills
 
-- Ploy is one way to **implement** the site itself — an alternative to the stacks in `website-build-webflow` / `website-build-framer` / `website-build-native`. The strategy layer (what pages, what copy, what structure) still comes from `site-architecture`, `copywriting`, and `cro`.
-- Its SEO/AEO surface pairs with `seo-audit` and `ai-seo`; judge its analytics, visitor-identification, and attribution output with `analytics` / `attribution` discipline.
-- WebMCP is relevant to `ai-integration` — exposing site actions to agents.
+- Ploy is one way to **implement** the site itself — an alternative to a Webflow/Framer or hand-coded stack. The strategy layer (what pages, what copy, what structure) still comes from `site-architecture`, `copywriting`, and `cro`.
+- Its SEO/AEO surface pairs with `seo-audit`, `ai-seo`, and `schema`; judge its analytics, visitor-identification, and attribution output with `analytics` / `attribution` discipline.
 
 ## Links
 
