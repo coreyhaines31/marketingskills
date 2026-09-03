@@ -25,7 +25,7 @@
       "blurb": "AI marketing platform built around a Webflow-grade website builder — site optimization, SEO/AEO, visitor identification, and ad creative in one, with WebMCP to expose site actions to AI assistants.",
       "logoUrl": "/logos/ploy.png",
       "integration": "tools/integrations/ploy.md",
-      "active": false
+      "active": true
     }
   ]
 }

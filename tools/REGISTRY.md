@@ -25,6 +25,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | Partner | Category | Guide |
 |---------|----------|-------|
 | ◆ Converly | Conversion tracking / attribution | [converly.md](integrations/converly.md) |
+| ◆ Ploy | AI website & growth platform | [ploy.md](integrations/ploy.md) |
 <!-- PARTNERS:END -->
 
 <!-- The table above is generated from partners.json — run `node scripts/sync-partners.mjs`. -->
@@ -36,6 +37,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | Tool | Category | API | MCP | CLI | SDK | Guide |
 |------|----------|:---:|:---:|:---:|:---:|-------|
 | ◆ converly | Conversion Tracking | ✓ | ✓ | ✓ | - | [converly.md](integrations/converly.md) |
+| ◆ ploy | Website | ✓ | ✓ | ✓ | - | [ploy.md](integrations/ploy.md) |
 | ga4 | Analytics | ✓ | ✓ | [✓](clis/ga4.js) | ✓ | [ga4.md](integrations/ga4.md) |
 | mixpanel | Analytics | ✓ | - | [✓](clis/mixpanel.js) | ✓ | [mixpanel.md](integrations/mixpanel.md) |
 | amplitude | Analytics | ✓ | - | [✓](clis/amplitude.js) | ✓ | [amplitude.md](integrations/amplitude.md) |
