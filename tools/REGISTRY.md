@@ -115,6 +115,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| socialclaw | Social | ✓ | ✓ | ✓ | - | [socialclaw.md](integrations/socialclaw.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -313,8 +314,9 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **socialclaw** | Agent/API publishing across 13 networks | API + MCP + CLI; OAuth providers plus manual Telegram/Discord |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Agent recommendation**: Buffer for a hosted scheduling UI and cross-platform analytics. SocialClaw for programmatic or agent-driven publishing across X, LinkedIn, Instagram, Facebook Pages, TikTok, YouTube, Reddit, Pinterest, WordPress, Discord, and Telegram via API, MCP, or CLI.
 
 ### Video
 
