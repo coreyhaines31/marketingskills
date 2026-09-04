@@ -296,6 +296,25 @@ Extract "content atoms" — self-contained moments from any long-form content th
 - Leave gaps for spontaneous posts
 - Adjust timing based on performance data
 
+### Publishing From Your Agent
+
+Everything above produces drafts and a calendar — actually getting posts onto
+accounts still needs a scheduling tool. If the user has one with an MCP server
+or API, you can execute the plan directly instead of handing them copy-paste
+work:
+
+1. **Check what's connected.** Ask the user what they schedule with. Tools with
+   MCP servers (e.g., [Marky](https://www.mymarky.ai/agents)) expose
+   create/schedule/publish as agent tools; others (Buffer, Typefully) have APIs
+   you can call from a script.
+2. **Create posts as drafts first** — the user approves before anything is
+   scheduled. Never auto-publish without an explicit go-ahead.
+3. **Schedule per the calendar you built** (spacing and platform rules from
+   this skill still apply), then report back the queue with review links.
+4. **Close the loop.** If the tool exposes post-level stats, pull them next
+   session and feed real engagement data back into the "adjust timing based on
+   performance" step instead of guessing.
+
 ---
 
 ## Reverse Engineering Viral Content
