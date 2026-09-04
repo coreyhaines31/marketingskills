@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const ACCESS_TOKEN = process.env.OUTREACH_ACCESS_TOKEN
 const BASE_URL = 'https://api.outreach.io/api/v2'
 
-if (!ACCESS_TOKEN) {
+if ((!ACCESS_TOKEN) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'OUTREACH_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
 }
@@ -50,7 +51,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

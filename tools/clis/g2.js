@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_TOKEN = process.env.G2_API_TOKEN
 const BASE_URL = 'https://data.g2.com/api/v1'
 
-if (!API_TOKEN) {
+if ((!API_TOKEN) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'G2_API_TOKEN environment variable required' }))
   process.exit(1)
 }
@@ -49,7 +50,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

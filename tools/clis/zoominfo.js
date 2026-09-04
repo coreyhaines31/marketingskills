@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const BASE_URL = 'https://api.zoominfo.com'
 
 let ACCESS_TOKEN = process.env.ZOOMINFO_ACCESS_TOKEN
 
-if (!ACCESS_TOKEN && !process.env.ZOOMINFO_USERNAME) {
+if ((!ACCESS_TOKEN && !process.env.ZOOMINFO_USERNAME) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'ZOOMINFO_ACCESS_TOKEN or ZOOMINFO_USERNAME + ZOOMINFO_PRIVATE_KEY environment variables required' }))
   process.exit(1)
 }
@@ -77,7 +78,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

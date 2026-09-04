@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_SECRET = process.env.KIT_API_SECRET
 const API_KEY = process.env.KIT_API_KEY
 const BASE_URL = 'https://api.convertkit.com/v3'
 
-if (!API_SECRET && !API_KEY) {
+if ((!API_SECRET && !API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'KIT_API_SECRET or KIT_API_KEY environment variable required' }))
   process.exit(1)
 }
@@ -76,7 +77,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

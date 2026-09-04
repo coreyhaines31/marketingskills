@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.KLAVIYO_API_KEY
 const BASE_URL = 'https://a.klaviyo.com/api'
 const REVISION = '2024-10-15'
 
-if (!API_KEY) {
+if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'KLAVIYO_API_KEY environment variable required' }))
   process.exit(1)
 }
@@ -52,7 +53,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

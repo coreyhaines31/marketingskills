@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.DEMIO_API_KEY
 const API_SECRET = process.env.DEMIO_API_SECRET
 const BASE_URL = 'https://my.demio.com/api/v1'
 
-if (!API_KEY) {
+if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'DEMIO_API_KEY environment variable required' }))
   process.exit(1)
 }
 
-if (!API_SECRET) {
+if ((!API_SECRET) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'DEMIO_API_SECRET environment variable required' }))
   process.exit(1)
 }
@@ -56,7 +57,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

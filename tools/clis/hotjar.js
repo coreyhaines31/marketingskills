@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const CLIENT_ID = process.env.HOTJAR_CLIENT_ID
 const CLIENT_SECRET = process.env.HOTJAR_CLIENT_SECRET
 const OAUTH_URL = 'https://api.hotjar.io'
 const BASE_URL = 'https://api.hotjar.io/v2'
 
-if (!CLIENT_ID || !CLIENT_SECRET) {
+if ((!CLIENT_ID || !CLIENT_SECRET) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'HOTJAR_CLIENT_ID and HOTJAR_CLIENT_SECRET environment variables required' }))
   process.exit(1)
 }
@@ -68,7 +69,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const ACCESS_TOKEN = process.env.ADOBE_ACCESS_TOKEN
 const CLIENT_ID = process.env.ADOBE_CLIENT_ID
 const COMPANY_ID = process.env.ADOBE_COMPANY_ID
 
-if (!ACCESS_TOKEN || !CLIENT_ID || !COMPANY_ID) {
+if ((!ACCESS_TOKEN || !CLIENT_ID || !COMPANY_ID) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'ADOBE_ACCESS_TOKEN, ADOBE_CLIENT_ID, and ADOBE_COMPANY_ID environment variables required' }))
   process.exit(1)
 }
@@ -53,7 +54,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

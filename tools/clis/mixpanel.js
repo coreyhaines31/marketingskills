@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.MIXPANEL_TOKEN
 const API_KEY = process.env.MIXPANEL_API_KEY
 const SECRET = process.env.MIXPANEL_SECRET
@@ -7,7 +8,7 @@ const INGESTION_URL = 'https://api.mixpanel.com'
 const QUERY_URL = 'https://mixpanel.com/api/2.0'
 const EXPORT_URL = 'https://data.mixpanel.com/api/2.0'
 
-if (!TOKEN && !API_KEY) {
+if ((!TOKEN && !API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'MIXPANEL_TOKEN (for ingestion) or MIXPANEL_API_KEY + MIXPANEL_SECRET (for query/export) environment variables required' }))
   process.exit(1)
 }
@@ -105,7 +106,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {

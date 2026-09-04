@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.GOOGLE_ADS_TOKEN
 const DEV_TOKEN = process.env.GOOGLE_ADS_DEVELOPER_TOKEN
 const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID
 const BASE_URL = 'https://googleads.googleapis.com/v14'
 
-if (!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) {
+if ((!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'GOOGLE_ADS_TOKEN, GOOGLE_ADS_DEVELOPER_TOKEN, and GOOGLE_ADS_CUSTOMER_ID environment variables required' }))
   process.exit(1)
 }
@@ -55,7 +56,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 function daysToDateRange(days) {

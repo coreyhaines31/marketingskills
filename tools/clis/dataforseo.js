@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+const rawArgs = process.argv.slice(2)
 const LOGIN = process.env.DATAFORSEO_LOGIN
 const PASSWORD = process.env.DATAFORSEO_PASSWORD
 const BASE_URL = 'https://api.dataforseo.com/v3'
 
-if (!LOGIN || !PASSWORD) {
+if ((!LOGIN || !PASSWORD) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD environment variables required' }))
   process.exit(1)
 }
@@ -51,7 +52,7 @@ function parseArgs(args) {
   return result
 }
 
-const args = parseArgs(process.argv.slice(2))
+const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
 async function main() {
