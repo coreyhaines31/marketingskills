@@ -59,6 +59,8 @@ sections/02.md, sections/03.md, ... (list as they're written)
 
 ### Step 1.1.2 — Resumption decision tree
 
+**Path safety (applies to every step below).** `{client-slug}` is the client name slugified to lowercase `[a-z0-9-]` only — reject `..`, `/`, and absolute paths, and never read, create, or delete outside `~/marketing-plans/`.
+
 On every invocation, check state in this order:
 
 1. **No `{client-slug}/` folder** → fresh plan. Create folder + `materials/` + empty `sections/`. Start INIT (Step 1.2).
