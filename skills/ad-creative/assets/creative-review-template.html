@@ -11,7 +11,7 @@
   THE DATA BLOCK IS JSON, NOT JAVASCRIPT:
     - double-quoted keys and strings, no comments, no trailing commas
     - it is inert data (parsed with JSON.parse), so a value can never execute
-    - SECURITY: escape every literal "<" in your text values as < so a
+    - SECURITY: escape every literal "<" in your text values as \u003c so a
       value like "</script>" can never break out of the tag. All values are
       also HTML-escaped again at render time.
 
@@ -312,7 +312,9 @@ function renderToggles() {
 // placeholder underneath + image on top; a missing/broken image removes itself → placeholder shows
 function frameVisual(f, phCls) {
   const ph = `<div class="${phCls}"><div class="plabel">${esc(f.label)}</div><div class="pprompt">${esc(f.prompt || "")}</div></div>`;
-  const img = f.image ? `<img src="${esc(f.image)}" alt="${esc(f.label)}" onerror="this.remove()" />` : "";
+  // Only local/relative or data: image sources — block remote URLs so the page stays offline and cannot beacon on open.
+  const localImg = (typeof f.image === "string" && !/^\s*(https?:|\/\/)/i.test(f.image)) ? f.image : "";
+  const img = localImg ? `<img src="${esc(localImg)}" alt="${esc(f.label)}" onerror="this.remove()" />` : "";
   return ph + img;
 }
 

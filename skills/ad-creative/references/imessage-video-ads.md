@@ -4,7 +4,7 @@ A family of 9:16 social-native video formats that recreate a familiar iOS surfac
 
 The format works because it borrows the most-read UI on earth. A chat thread is a familiar, high-attention dramatization — it mirrors how real recommendations happen, so the viewer leans in instead of scrolling past. The CTA arrives conversationally ("use code FREEPACK") instead of as a hard sell, which keeps the ad-skip reflex from firing until the pitch has already landed. Run it only as a clearly labeled paid placement (Meta's "Sponsored" tag does the disclosure work); never seed it organically as if it were a real leaked conversation.
 
-Credit: this reference distills the format popularized by Shiv Sakhuja and the Gooseworks team ([@shivsakhuja](https://x.com/shivsakhuja), [gooseworks-ai/gooseworks-ads-skills](https://github.com/gooseworks-ai/gooseworks-ads-skills)), who report the format performing strongly on Meta.
+Credit: this reference distills the iMessage-reveal ad format popularized on Meta by Shiv Sakhuja ([@shivsakhuja](https://x.com/shivsakhuja)).
 
 ---
 
@@ -77,13 +77,9 @@ Most iMessage ads fit one of six angles. Pick the angle before writing any copy 
 
 ## Production Routes
 
-Three ways to produce it, in order of control:
+Two ways to produce it, in order of control:
 
-### Route 1: Off-the-shelf skill (fastest)
-
-Gooseworks distributes their pipeline as an installable agent skill — `npx gooseworks install --all`, then invoke the goose-ads skill from your agent. It handles rendering, recording, SFX, and stitching end to end. Use this to validate the format before building anything custom. (Their ads-skills source repo is public but carries no open-source license — treat it as reference reading, not code to vendor.)
-
-### Route 2: Code-based pipeline (full control)
+### Route 1: Code-based pipeline (full control)
 
 The architecture that produces a convincing result: render the chat as HTML/CSS mimicking the iMessage UI, drive the animation with a timeline script, record it headlessly with Playwright, and assemble audio + end card with ffmpeg.
 
@@ -95,7 +91,7 @@ The architecture that produces a convincing result: render the chat as HTML/CSS 
 6. **Layer audio with ffmpeg.** SFX cues computed deterministically from the same timeline that drove the recording, so sounds land exactly on bubble pops.
 7. **Stitch: chat → 300ms crossfade → static end card.** ffmpeg's `xfade` requires both inputs to match in resolution, pixel format, and frame rate — render the end card to a fixed-frame MP4 at the same specs as the chat recording before fading. Export the 9:16 master plus a 1:1 center crop.
 
-### Route 3: Remotion (templated scale)
+### Route 2: Remotion (templated scale)
 
 Once a winning script structure emerges, rebuild it as a Remotion composition (see [generative-tools.md](generative-tools.md)) with the thread JSON as props. Then variations — new hooks, new codes, new personas — are data changes, not re-productions. Right move at the "we're testing 10 script variants a week" stage, not for the first ad.
 
