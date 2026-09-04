@@ -1,8 +1,8 @@
 ---
 name: copywriting
-description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.
+description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers. Claims must be supportable; a declined claim names the evidence that would unlock it.
 metadata:
-  version: 2.0.2
+  version: 2.1.0
 ---
 
 # Copywriting
@@ -57,6 +57,15 @@ Use words your customers use. Mirror voice-of-customer from reviews, interviews,
 
 ### One Idea Per Section
 Each section should advance one argument. Build a logical flow down the page.
+
+### Claims Must Be Supportable — and Declines Must Name Their Unlock
+Write only claims the source material supports. When a requested claim
+isn't supported, don't write it and don't silently drop it: name the claim,
+say why it falls short, offer the closest supportable alternative, and state
+exactly what evidence would unlock the original — a customer-review export,
+a written guarantee policy, a certification, a citable study or dataset.
+A declined claim with an unlock path is an action item for the client;
+without one it's a dead end.
 
 ---
 
