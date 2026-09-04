@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' or 'WebMCP.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
 metadata:
-  version: 2.4.0
+  version: 2.4.1
 ---
 
 # AI SEO
@@ -151,19 +151,18 @@ For each priority page, verify:
 | Expert attribution (author name, credentials)? | |
 | Recently updated (within 6 months)? | |
 | Heading structure matches query patterns? | |
-| AI bots allowed in robots.txt? | |
+| AI crawler policy matches discovery and training goals? | |
 
 ### Step 4: AI Bot Access Check
 
-Verify your robots.txt allows AI crawlers. Each AI platform has its own bot, and blocking it means that platform can't cite you:
+Audit AI user agents by purpose. Search-discovery, user-triggered retrieval, model-training, and product-control tokens are not interchangeable:
 
-- **GPTBot** and **ChatGPT-User** — OpenAI (ChatGPT)
-- **PerplexityBot** — Perplexity
-- **ClaudeBot** and **anthropic-ai** — Anthropic (Claude)
-- **Google-Extended** — Google Gemini and AI Overviews
-- **Bingbot** — Microsoft Copilot (via Bing)
+- **Search discovery:** `OAI-SearchBot` (ChatGPT), `PerplexityBot`, `Claude-SearchBot`, and the conventional search crawlers that feed an answer product
+- **User-triggered retrieval:** `ChatGPT-User`, `Claude-User`, and `Perplexity-User`; vendor handling can differ from automatic crawlers, so verify the current documentation
+- **Potential model training:** `GPTBot` and `ClaudeBot`
+- **Google product control:** `Google-Extended` controls certain Gemini training and grounding uses of content Google already crawls; it does not affect Google Search inclusion or ranking
 
-Check your robots.txt for `Disallow` rules targeting any of these. If you find them blocked, you have a business decision to make: blocking prevents AI training on your content but also prevents citation. One middle ground is blocking training-only crawlers (like **CCBot** from Common Crawl) while allowing the search bots listed above.
+Check each relevant user-agent group and any WAF or CDN rules separately. A publisher can allow search discovery while disallowing model-development crawlers; do not infer that blocking a training crawler necessarily blocks citations.
 
 See [references/platform-ranking-factors.md](references/platform-ranking-factors.md) for the full robots.txt configuration.
 
@@ -433,7 +432,7 @@ Google's guide calls these out explicitly — they hurt across both traditional 
 2. **Chunk pages into AI-bait fragments**. Google's guide is direct: *"Don't break your content into tiny pieces for AI to better understand it."* Use normal paragraph + heading structure.
 3. **Generate at scale for ranking manipulation**. AI-generated content is fine *if* it meets Search Essentials and spam policies. Mass-producing thin variations does not.
 4. **Pursue inauthentic mentions**. Don't fabricate citations or bulk-spam Reddit/Wikipedia for AI visibility. Real participation only.
-5. **Block AI crawlers if you want citation**. Blocking GPTBot, PerplexityBot, ClaudeBot, Google-Extended means those engines literally cannot cite you. Block training-only crawlers (CCBot) if you must, not the search-and-cite ones.
+5. **Treat every AI user agent as the same control**. `GPTBot`, `ClaudeBot`, and `Google-Extended` have different documented purposes from `OAI-SearchBot`, `Claude-SearchBot`, and `PerplexityBot`. Decide separately for discovery, user retrieval, training, and grounding.
 6. **Hide your main content behind JS that doesn't render**. Both core Search and AI agents need to see your content; JS-only rendering loses both audiences.
 7. **Skip E-E-A-T fundamentals**. Author identity, first-hand experience, expertise signals, transparent sourcing — Google's guide leans heavily on these for AI features.
 
@@ -456,7 +455,7 @@ For tactical guidance on SaaS product pages, blog content, comparison/alternativ
 - **No structured data** — Schema markup gives AI systems structured context about your content
 - **Keyword stuffing** — Unlike traditional SEO where it's just ineffective, keyword stuffing actively reduces AI visibility by 10% (Princeton GEO study)
 - **Hiding pricing behind "contact sales" or JS-rendered pages** — AI agents evaluating your product on behalf of buyers can't parse what they can't read. Add a `/pricing.md` file
-- **Blocking AI bots** — If GPTBot, PerplexityBot, or ClaudeBot are blocked in robots.txt, those platforms can't cite you
+- **Blocking discovery crawlers without checking their purpose** — Restricting `OAI-SearchBot`, `PerplexityBot`, or `Claude-SearchBot` may reduce search visibility; training controls are separate
 - **Generic content without data** — "We're the best" won't get cited. "Our customers see 3x improvement in [metric]" will
 - **Forgetting to monitor** — You can't improve what you don't measure. Check AI visibility monthly at minimum
 

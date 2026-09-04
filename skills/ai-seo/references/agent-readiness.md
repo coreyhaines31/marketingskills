@@ -16,12 +16,12 @@ Run one before and after any agent-readiness work — the score is a shareable a
 ### 1. Access — can an agent get to the page and see real content?
 
 - **Core content in the initial HTML response.** Most agents never execute JavaScript. If the content only exists after client-side rendering, it doesn't exist. This is the #1 essential check in both tools.
-- **No bot challenge or firewall block** on the request path. Aggressive bot protection (Cloudflare challenges, WAF rules) that blocks `GPTBot`, `PerplexityBot`, `ClaudeBot`, etc. is self-inflicted invisibility. Audit what your CDN/WAF actually does to those user agents — many sites block them by default without anyone deciding to.
+- **No bot challenge or firewall block** on the intended discovery path. Blocking `OAI-SearchBot`, `PerplexityBot`, or `Claude-SearchBot` may reduce search visibility. Blocking model-development crawlers such as `GPTBot` or `ClaudeBot` can be an intentional training opt-out and is not, by itself, a visibility failure. Audit what your CDN/WAF actually does to each user agent — many sites block them by default without anyone deciding to.
 - **Correct HTTP behavior**: real status codes (no soft-404s), stable canonical URLs, recoverable errors.
 
 ### 2. Discovery — do your files tell agents what's here?
 
-- **robots.txt with an explicit AI-crawler stance** — name the major AI crawlers and state your policy, rather than leaving it to be assumed (see the bot-access table in SKILL.md for the allow/block list).
+- **robots.txt with an explicit AI-crawler stance** — name the relevant user agents and state a purpose-specific policy, rather than leaving it to be assumed (see the bot-access guidance in SKILL.md).
 - **A sitemap that loads and parses cleanly.**
 - **llms.txt at the domain root** (see Machine-Readable Files in SKILL.md).
 - **`llms-full.txt`** — the newer companion: your entire site content in one file, so an agent gets everything in a single request instead of crawling. Emerging, cheap to generate alongside llms.txt, and scored as bonus signal by both tools.

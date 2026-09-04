@@ -11,7 +11,7 @@ Sources cited throughout: Princeton GEO study (KDD 2024), SE Ranking domain auth
 Every AI platform shares three baseline requirements:
 
 1. **Your content must be in their index** — Each platform uses a different search backend (Google, Bing, Brave, or their own). If you're not indexed, you can't be cited.
-2. **Your content must be crawlable** — AI bots need access via robots.txt. Block the bot, lose the citation.
+2. **Your content must be crawlable for discovery** — Allow the relevant search-discovery path through robots.txt and your WAF; model-training controls are separate.
 3. **Your content must be extractable** — AI systems pull passages, not pages. Clear structure and self-contained paragraphs win.
 
 Beyond these basics, each platform weights different signals. Here's what matters and where.
@@ -105,7 +105,7 @@ Claude uses Brave Search as its search backend when web search is enabled — no
 
 **What to focus on:**
 - Verify your content appears in Brave Search results (search for your brand and key terms at search.brave.com)
-- Allow ClaudeBot and anthropic-ai user agents in robots.txt
+- Decide separately whether to allow `Claude-SearchBot` for search discovery, `Claude-User` for user-directed retrieval, and `ClaudeBot` for potential model training
 - Maximize factual density — specific numbers, named sources, dated statistics
 - Use clear, extractable structure with descriptive headings
 - Cite authoritative sources within your content
@@ -115,20 +115,32 @@ Claude uses Brave Search as its search backend when web search is enabled — no
 
 ## Allowing AI Bots in robots.txt
 
-If your robots.txt blocks an AI bot, that platform can't cite your content. Here are the user agents to allow:
+Do not copy one blanket allowlist. Choose controls by documented purpose, then check WAF and CDN rules as well as `robots.txt`.
 
-```
-User-agent: GPTBot           # OpenAI — powers ChatGPT search
-User-agent: ChatGPT-User     # ChatGPT browsing mode
-User-agent: PerplexityBot    # Perplexity AI search
-User-agent: ClaudeBot        # Anthropic Claude
-User-agent: anthropic-ai     # Anthropic Claude (alternate)
-User-agent: Google-Extended   # Google Gemini and AI Overviews
-User-agent: Bingbot          # Microsoft Copilot (via Bing)
+```text
+# Automatic search discovery
+User-agent: Bingbot
+User-agent: Googlebot
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+User-agent: Claude-SearchBot
 Allow: /
+
+# Potential model training (publisher choice shown as disallow)
+User-agent: GPTBot
+User-agent: ClaudeBot
+Disallow: /
+
+# Gemini model training and grounding (publisher choice shown as disallow)
+User-agent: Google-Extended
+Disallow: /
 ```
 
-**Training vs. search:** Some AI bots are used for both model training and search citation. If you want to be cited but don't want your content used for training, your options are limited — GPTBot handles both for OpenAI. However, you can safely block **CCBot** (Common Crawl) without affecting any AI search citations, since it's only used for training dataset collection.
+User-triggered fetchers such as `ChatGPT-User`, `Claude-User`, and `Perplexity-User` are separate from automatic discovery. Vendor behavior can differ: OpenAI says `robots.txt` rules may not apply to `ChatGPT-User`, and Perplexity says `Perplexity-User` generally ignores them because these fetches are user-requested. Use `OAI-SearchBot`, not `ChatGPT-User`, to manage ChatGPT Search inclusion. `Google-Extended` is a standalone product token rather than a separate HTTP crawler; Google says it controls certain Gemini training and grounding uses and does not affect Google Search inclusion or ranking.
+
+Verify the current names and consequences in the vendors' maintained documentation: [OpenAI](https://developers.openai.com/api/docs/bots), [Perplexity](https://docs.perplexity.ai/docs/resources/perplexity-crawlers), [Anthropic](https://privacy.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), and [Google](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers).
+
+For implementation, inspect `/robots.txt` manually first. Optional helpers include vendor testing tools and the [open-source AI Crawler Access Reference](https://github.com/alternatefutures/ai-crawler-access-reference), which includes a deterministic policy generator and is maintained by this contribution's author.
 
 ---
 
@@ -145,7 +157,7 @@ If you're optimizing for AI search for the first time, focus your effort where y
 **Copilot and Claude are lower priority** unless your audience skews enterprise/Microsoft (Copilot) or developer/analyst (Claude). But the fundamentals — structured content, cited sources, schema markup — help across all platforms.
 
 **Actions that help everywhere:**
-1. Allow all AI bots in robots.txt
+1. Set an explicit, purpose-specific robots policy: allow relevant discovery crawlers while deciding training and user-triggered retrieval separately
 2. Implement schema markup (FAQPage, Article, Organization at minimum)
 3. Include statistics with named sources in your content
 4. Update content regularly — monthly for competitive topics
