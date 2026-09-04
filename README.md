@@ -1,3 +1,39 @@
+# Marketing Skills for AI Agents — ML-NIGHTWORX Fork
+
+> **Fork:** [GIT-access-ntwx/marketingskills](https://github.com/GIT-access-ntwx/marketingskills) · **Upstream:** [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) · **7ARCH router:** `router/7arch-marketing-router.json`
+
+This fork adds an **NTWX Seven Archers GTM layer** on top of 49 upstream marketing skills:
+
+| NTWX skill | Archetype | Use |
+|---|---|---|
+| `ntwx-product-marketing` | Commander | Entry point — always first |
+| `ntwx-reflector-sales` | GENE | Reflector 6-phase funnel (Cat 01) |
+| `ntwx-studio-engagement` | JORDI | aaas studio sales (Cat 02–11) |
+| `ntwx-block0-discovery` | ATLAS | Block 0 scoping brief |
+| `ntwx-compatibility-score` | CEDAR | 5-dimension qualify/disqualify |
+| `ntwx-content-flywheel` | CEDAR | 1 YouTube → 6 derivatives |
+| `ntwx-aeo-governance` | PROMETHEUS | `/llms.txt`, schema, AEO |
+
+**Commander:** Marco — HALT on pricing and client-facing claims. See `references/ntwx/commander-gates.md`.
+
+### Quick install (ML-NIGHTWORX project)
+
+```bash
+git submodule add https://github.com/GIT-access-ntwx/marketingskills.git .agents/marketingskills
+cp .agents/marketingskills/templates/product-marketing-ntwx.md .agents/product-marketing.md
+# Commander edits .agents/product-marketing.md before client-facing use
+
+mkdir -p .cursor/skills
+for s in ntwx-product-marketing ntwx-reflector-sales ntwx-studio-engagement \
+         ntwx-block0-discovery ntwx-compatibility-score ntwx-content-flywheel \
+         ntwx-aeo-governance; do
+  ln -sf ../../.agents/marketingskills/skills/$s .cursor/skills/$s
+done
+```
+
+**Rule:** For ML-NIGHTWORX client-facing work, use `ntwx-*` wrappers — not raw `cold-email` or `pricing` alone.
+
+---
 # Marketing Skills for AI Agents
 
 A collection of AI agent skills focused on marketing tasks. Built for technical marketers and founders who want AI coding agents to help with conversion optimization, copywriting, SEO, analytics, and growth engineering. Works with Claude Code, OpenAI Codex, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io).

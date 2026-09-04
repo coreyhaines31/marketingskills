@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "status": "Commander-canonical",
+  "org": "ML-NIGHTWORX",
+  "read_first": [
+    ".agents/product-marketing.md",
+    "references/ntwx/commander-gates.md",
+    "references/ntwx/archetype-skill-matrix.md",
+    "../../router/7arch-studio-router.json"
+  ],
+  "swarm_router": {
+    "skill": "ntwx-7arch-router",
+    "machine": "../../router/7arch-studio-router.json",
+    "note": "Studio/Reflector locked roster — separate from InfraDOME JORDI/PETA seats"
+  },
+  "engines": {
+    "reflector": {
+      "category": "01",
+      "entry_skill": "ntwx-reflector-sales",
+      "surface": "https://reflector.ml-nightworx.io"
+    },
+    "studio": {
+      "categories": "02-11",
+      "entry_skill": "ntwx-studio-engagement",
+      "surface": "https://aaas.ml-nightworx.io"
+    }
+  },
+  "routes": [
+    {
+      "task": "Any new NTWX marketing task",
+      "skill": "ntwx-product-marketing",
+      "archetype": "Commander",
+      "priority": 1
+    },
+    {
+      "task": "Studio/Reflector swarm lane assignment",
+      "skill": "ntwx-7arch-router",
+      "archetype": "Commander",
+      "priority": 2
+    },
+    {
+      "task": "Reflector ASTROX pre-flight or go-live gate",
+      "skill": "reflector-astrox",
+      "archetype": "ERIS",
+      "engine": "reflector",
+      "requires": ["ntwx-7arch-router"]
+    },
+    {
+      "task": "Reflector prospect outreach or funnel",
+      "skill": "ntwx-reflector-sales",
+      "archetype": "GENE",
+      "engine": "reflector",
+      "phases": [1, 2, 3, 4, 5, 6]
+    },
+    {
+      "task": "Studio category sale or aaas enquiry",
+      "skill": "ntwx-studio-engagement",
+      "archetype": "JORDI",
+      "engine": "studio"
+    },
+    {
+      "task": "Block 0 discovery brief",
+      "skill": "ntwx-block0-discovery",
+      "archetype": "ATLAS"
+    },
+    {
+      "task": "Qualify or disqualify prospect",
+      "skill": "ntwx-compatibility-score",
+      "archetype": "CEDAR"
+    },
+    {
+      "task": "Weekly content batch (YouTube derivatives)",
+      "skill": "ntwx-content-flywheel",
+      "archetype": "CEDAR"
+    },
+    {
+      "task": "AEO llms.txt schema agent-readable surfaces",
+      "skill": "ntwx-aeo-governance",
+      "archetype": "PROMETHEUS"
+    },
+    {
+      "task": "Competitive intel targeting",
+      "skill": "competitor-profiling",
+      "archetype": "ATLAS",
+      "requires": ["ntwx-product-marketing"]
+    },
+    {
+      "task": "Landing page marketing copy",
+      "skill": "copywriting",
+      "archetype": "JORDI",
+      "requires": ["ntwx-product-marketing"]
+    },
+    {
+      "task": "Partner retention churn",
+      "skill": "churn-prevention",
+      "archetype": "ERIS"
+    },
+    {
+      "task": "Pricing packaging strategy",
+      "skill": "pricing",
+      "archetype": "JORDI",
+      "commander_halt": true
+    }
+  ],
+  "sequencing_rules": "references/ntwx/reflector-sequencing-rules.md",
+  "upstream": {
+    "repo": "coreyhaines31/marketingskills",
+    "sync": "Pull upstream skills/ unchanged; NTWX layer in skills/ntwx-* and references/ntwx/"
+  }
+}

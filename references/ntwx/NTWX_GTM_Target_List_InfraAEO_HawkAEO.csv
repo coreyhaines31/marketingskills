@@ -1,0 +1,33 @@
+source,company,category,segment_fit,website,contact_page,notes,priority_for_thai_gtm,suggested_owner
+infra-aeo,ABB,Power/Cooling,AI infra – power & cooling,https://www.abb.com/,https://global.abb/group/en/contact,Power/thermal for AI sites,medium,ATLAS
+infra-aeo,Advantest,Equipment,AI infra – semiconductor equipment,https://www.advantest.com/,https://www.advantest.com/contact,Semi manufacturing equipment,medium,ATLAS
+infra-aeo,Alchip,Processor,AI infra – processors/accelerators,https://www.alchip.com/,https://www.alchip.com/contact/,Processor/accelerator supplier,medium,ATLAS
+infra-aeo,Alphabet / Google,Hyperscaler,AI infra – hyperscale buyer/operator,https://about.google/,https://about.google/contact-google/,Hyperscale capacity operator,low,ATLAS
+infra-aeo,Amazon / AWS,Hyperscaler,AI infra – hyperscale buyer/operator,https://aws.amazon.com/,https://aws.amazon.com/contact-us/,Hyperscale capacity operator,low,ATLAS
+infra-aeo,AMD,Processor,AI infra – processors/accelerators,https://www.amd.com/,https://www.amd.com/en/corporate/contacts.html,2 sells-to / 2 buys-from – active node,high,ATLAS
+infra-aeo,Amkor,Packaging/OSAT,AI infra – packaging/OSAT,https://www.amkor.com/,https://amkor.com/contact/,Advanced packaging,high,ATLAS
+infra-aeo,Arista,Network,AI infra – networking,https://www.arista.com/,https://www.arista.com/en/company/contact-arista,AI cluster fabric networking,high,ATLAS
+infra-aeo,ASE,Packaging/OSAT,AI infra – packaging/OSAT,https://www.aseglobal.com/,https://www.aseglobal.com/contact/,Advanced packaging,high,ATLAS
+infra-aeo,ASML,Equipment,AI infra – semiconductor equipment,https://www.asml.com/,https://www.asml.com/en/contact-us,Critical equipment node,high,ATLAS
+infra-aeo,AVC / Auras,Components,AI infra – components,https://www.avc.co/,https://www.avc.co/contact/,Components supplier,medium,ATLAS
+infra-aeo,Blackstone / Brookfield,PE/Enterprise,AI infra – capital / PE,https://www.blackstone.com/,https://www.blackstone.com/contact/,Capital adjacent to AI infra,medium,GENE
+infra-aeo,Bloom Energy,Grid/Power,AI infra – power generation,https://www.bloomenergy.com/,https://www.bloomenergy.com/contact/,Campus power,medium,ATLAS
+infra-aeo,Boyd,Power/Cooling,AI infra – power & cooling,https://www.boydcorp.com/,https://www.boydcorp.com/contact.html,Thermal/facility infra,medium,ATLAS
+infra-aeo,Broadcom,Processor,AI infra – processors/accelerators,https://www.broadcom.com/,https://www.broadcom.com/company/contact,Processor/accelerator supplier,high,ATLAS
+infra-aeo,Carrier,Power/Cooling,AI infra – power & cooling,https://www.carrier.com/,https://www.carrier.com/en/contact-us/,Thermal/facility infra,medium,ATLAS
+infra-aeo,Caterpillar,Grid/Power,AI infra – power generation,https://www.caterpillar.com/,https://www.caterpillar.com/en/contact.html,Campus power,low,ATLAS
+infra-aeo,Ciena,Network,AI infra – networking,https://www.ciena.com/,https://www.ciena.com/about/contact-us,AI cluster fabric networking,medium,ATLAS
+infra-aeo,Cisco,Network,AI infra – networking,https://www.cisco.com/,https://www.cisco.com/c/en/us/about/contact-cisco.html,AI cluster fabric networking,high,ATLAS
+infra-aeo,CoreWeave,Neo-cloud,AI infra – neo-cloud / GPU cloud,https://www.coreweave.com/,https://wf.coreweave.com/contact-us,0 sells-to / 3 buys-from – active buyer,highest,GENE
+infra-aeo,Cummins,Grid/Power,AI infra – power generation,https://www.cummins.com/,https://www.cummins.com/contact-us,Campus power,low,ATLAS
+infra-aeo,Dell,Server/ODM,AI infra – servers/ODM,https://www.dell.com/,https://www.dell.com/en-us/lp/contact-us,Server/ODM for AI deployments,high,ATLAS
+infra-aeo,Delta Electronics,Components,AI infra – components,https://www.deltaww.com/,https://landing.deltaww.com/en-US/customerService_Solutions_0101,Components (strong Asia presence),highest,ATLAS
+infra-aeo,Digital Realty,DC Operator,AI infra – data centre operator,https://www.digitalrealty.com/,https://www.digitalrealty.com/contact,DC capacity for AI/cloud,high,ATLAS
+hawk-aeo,Lockheed Martin,Defence OEM,Defence aerospace – manufacturer,https://www.lockheedmartin.com/,,F-35 and major programmes; manufacturer share leader,high,ATLAS
+hawk-aeo,Boeing,Defence OEM,Defence aerospace – manufacturer,https://www.boeing.com/,,"F-15EX, AH-64E, CH-47F",high,ATLAS
+hawk-aeo,Northrop Grumman,Defence OEM,Defence aerospace – manufacturer,https://www.northropgrumman.com/,,B-21 Raider,high,ATLAS
+hawk-aeo,General Atomics,Defence OEM,Defence aerospace – UAS,https://www.ga.com/,,MQ-9 Reaper / UAS,high,ATLAS
+hawk-aeo,Eurofighter GmbH,Defence OEM,Defence aerospace – manufacturer,https://www.eurofighter.com/,,Eurofighter Typhoon,medium,ATLAS
+hawk-aeo,Dassault,Defence OEM,Defence aerospace – manufacturer,https://www.dassault-aviation.com/,,Rafale,medium,ATLAS
+note,Infra-AEO full catalogue,All categories,65 companies total on infra-aeo.ml-nightworx.io/#catalogue,,,Page currently surfaces ~24; remaining companies available via category filters or InfraDOME Explorer. Use as 4th tier of TH-SCALE HYPOTHESIS.,high,ATLAS
+note,Hawk-AEO nature,Programmes not clients,Programme / manufacturer teaser only,,,Hawk-AEO is programme-centric (F-35, B-21 etc.) rather than a client contact database. Manufacturer names above are the practical outreach targets.,medium,ATLAS
