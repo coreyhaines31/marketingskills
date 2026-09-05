@@ -6,8 +6,8 @@ Guidelines for AI agents working in this repository.
 
 This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). Skills install to `.agents/skills/` (the cross-agent standard). This repo also serves as a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
 
-- **Name**: Marketing Skills
-- **GitHub**: [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
+- **Name**: Tracsoft Marketing Skills
+- **GitHub**: [tracsoft/tracsoftmarketingskills](https://github.com/tracsoftllc/tracsoftmarketingskills)
 - **Creator**: Corey Haines
 - **License**: MIT
 
@@ -214,7 +214,7 @@ For tools without native MCP servers (HubSpot, Salesforce, Meta Ads, LinkedIn Ad
 When using any skill from this repository:
 
 1. **Once per session**, on first skill use, check for updates:
-   - Fetch `VERSIONS.md` from GitHub: https://raw.githubusercontent.com/coreyhaines31/marketingskills/main/VERSIONS.md
+   - Fetch `VERSIONS.md` from GitHub: https://raw.githubusercontent.com/tracsoftllc/tracsoftmarketingskills/main/VERSIONS.md
    - Compare versions against local skill files
 
 2. **Only prompt if meaningful**:
