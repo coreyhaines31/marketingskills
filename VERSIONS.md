@@ -20,18 +20,18 @@ Current versions of all skills. Agents can compare against local versions to che
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.2 | 2026-08-23 |
 | cro | 2.0.0 | 2026-05-05 |
-| customer-research | 2.0.2 | 2026-08-23 |
+| customer-research | 2.0.3 | 2026-08-24 |
 | directory-submissions | 2.0.0 | 2026-05-05 |
 | emails | 2.0.0 | 2026-05-05 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.1 | 2026-05-18 |
-| influencer-marketing | 1.1.0 | 2026-08-19 |
+| influencer-marketing | 1.1.1 | 2026-08-24 |
 | launch | 2.0.2 | 2026-08-23 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
-| marketing-loops | 1.2.0 | 2026-07-10 |
+| marketing-loops | 1.2.1 | 2026-08-24 |
 | marketing-plan | 1.1.1 | 2026-08-23 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
@@ -39,11 +39,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | ads | 2.3.2 | 2026-08-23 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
-| pricing | 2.1.1 | 2026-08-23 |
+| pricing | 2.1.2 | 2026-08-24 |
 | product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.0.0 | 2026-05-05 |
-| prospecting | 1.1.0 | 2026-07-13 |
-| public-relations | 1.1.1 | 2026-08-23 |
+| prospecting | 1.1.1 | 2026-08-24 |
+| public-relations | 1.1.2 | 2026-08-24 |
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
 | sales-enablement | 2.0.1 | 2026-06-16 |
@@ -52,8 +52,8 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.2.0 | 2026-07-09 |
-| video | 2.1.0 | 2026-07-14 |
+| social | 2.2.1 | 2026-08-24 |
+| video | 2.1.1 | 2026-08-24 |
 
 ## Recent Changes
 
