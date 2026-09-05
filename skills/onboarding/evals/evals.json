@@ -87,6 +87,22 @@
         "Does not attempt signup form redesign using onboarding patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're launching a new B2B analytics product and can't decide how to let people try it. Should we do a free tier, a free trial, require a credit card, or something else? And once they're in, how do we make sure they actually reach value fast?",
+      "expected_output": "Should walk through the 5 activation models (freemium, free trial with 3/7/14/30-day options, paid trial, money-back guarantee, consultation/Superhuman-style) and help choose based on Model-Market Fit (Balfour — the market dictates the model). Should explain the credit-card tradeoff: requiring a card cuts signups 50–70% but converts 2–3× better. Should reference the Evernote-vs-Notion lesson (hook then limit vs. give away too much). Should then design the Minimum Path to Value (MPTV) — the least steps to enough value to decide — grounded in Hick's Law, using inventory → remove → reconstruct. Should cite abandonment reality (40–60% abandon after one session; 75–80% within the first day). May reference psychology mechanisms (Endowed Progress Effect, Peak-End, BJ Fogg, Mario Kart boosters/blockers). Should point to the activation-models and minimum-path-to-value references.",
+      "assertions": [
+        "Presents the 5 activation models",
+        "Applies Model-Market Fit to the choice",
+        "Explains the credit-card tradeoff (cuts signups 50-70%, 2-3x conversion)",
+        "References Evernote-vs-Notion hook-then-limit lesson",
+        "Designs a Minimum Path to Value grounded in Hick's Law",
+        "Uses inventory -> remove -> reconstruct process",
+        "Cites first-session/first-day abandonment stats",
+        "Points to activation-models.md and minimum-path-to-value.md references"
+      ],
+      "files": []
     }
   ]
 }

@@ -1,0 +1,71 @@
+name: Release on version bump
+
+# Auto-creates a git tag + GitHub Release whenever the repo version in
+# .claude-plugin/plugin.json changes on main. Release notes are pulled from
+# the matching `### x.y.z` block in VERSIONS.md. Idempotent: if the tag
+# already exists, it does nothing (safe to re-run / backfill manually).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".claude-plugin/plugin.json"
+      - "VERSIONS.md"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine version and whether it's already tagged
+        id: ver
+        run: |
+          VERSION=$(python3 -c "import json;print(json.load(open('.claude-plugin/plugin.json'))['version'])")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "v$VERSION already tagged — nothing to do."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Extract release notes + title from VERSIONS.md
+        if: steps.ver.outputs.exists == 'false'
+        run: |
+          python3 - "${{ steps.ver.outputs.version }}" <<'PY'
+          import re, sys
+          v = sys.argv[1]
+          text = open("VERSIONS.md").read()
+          parts = re.split(r"\n### (\d+\.\d+\.\d+) \([^)]*\)\n", text)
+          blocks = {}
+          for i in range(1, len(parts), 2):
+              blocks[parts[i]] = parts[i + 1].split("\n### ")[0].strip()
+          body = blocks.get(v, f"Release {v}")
+          open("release-notes.md", "w").write(body + "\n")
+          # title = first non-empty line, stripped of markdown, truncated
+          first = next((l for l in body.splitlines() if l.strip()), "")
+          first = re.sub(r"[*`_]|^- |\[([^\]]+)\]\([^)]+\)", r"\1", first).strip()
+          title = f"v{v} — {first}"
+          if len(title) > 100:
+              title = title[:99].rstrip() + "…"
+          open("release-title.txt", "w").write(title)
+          print("Title:", title)
+          PY
+
+      - name: Create tag + release
+        if: steps.ver.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          gh release create "v$VERSION" \
+            --target "${{ github.sha }}" \
+            --title "$(cat release-title.txt)" \
+            --notes-file release-notes.md
+          echo "Created release v$VERSION"

@@ -2,7 +2,7 @@
 name: onboarding
 description: When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions "onboarding flow," "activation rate," "user activation," "first-run experience," "empty states," "onboarding checklist," "aha moment," "new user experience," "users aren't activating," "nobody completes setup," "low activation rate," "users sign up but don't use the product," "time to value," or "first session experience." Use this whenever users are signing up but not sticking around. For signup/registration optimization, see signup. For ongoing email sequences, see emails.
 metadata:
-  version: 2.0.0
+  version: 2.0.1
 ---
 
 # Onboarding CRO
@@ -25,7 +25,7 @@ Before providing recommendations, understand:
 ## Core Principles
 
 ### 1. Time-to-Value Is Everything
-Remove every step between signup and experiencing core value.
+Remove every step between signup and experiencing core value. Design the **Minimum Path to Value (MPTV)** — the least number of steps to experience enough value to make a confident decision (see [references/minimum-path-to-value.md](references/minimum-path-to-value.md)).
 
 ### 2. One Goal Per Session
 Focus first session on one successful outcome. Save advanced features for later.
@@ -34,11 +34,44 @@ Focus first session on one successful outcome. Save advanced features for later.
 Interactive > Tutorial. Doing the thing > Learning about the thing.
 
 ### 4. Progress Creates Motivation
-Show advancement. Celebrate completions. Make the path visible.
+Show advancement. Celebrate completions. Make the path visible. (See onboarding psychology below for the mechanisms.)
+
+---
+
+## Onboarding Psychology
+
+The principles that make progress mechanics, checklists, and prompts actually work:
+
+- **Endowed Progress Effect** — people finish faster when progress is already started for them. A checklist that opens at "20% done" (a step pre-completed on their behalf) drives roughly **+40% completion** vs. starting at 0%. Give users a head start, don't make them start from nothing.
+- **Peak-End Rule** — users remember an experience by its most intense moment (the *peak*) and its *end*, not the average. Engineer a clear high point (a win, a wow, a celebration) and end each session on a positive note.
+- **Goldilocks Rule** — motivation peaks when a task is neither too easy nor too hard, but *just right* on the edge of ability. Tune early steps so they're achievable but not trivial.
+- **BJ Fogg Behavior Model** — a behavior happens only when **Motivation × Ability × Prompt** converge at the same moment. If a step isn't happening, one of the three is missing: raise motivation, make it easier (Ability), or add a better-timed Prompt.
+- **Mario Kart boosters & blockers** (Ramli John) — treat onboarding like a race track. Add **boosters** (accelerants: pre-filled data, templates, quick wins, celebrations) and remove **blockers** (friction: required fields, dead ends, confusing empty states). Speed users toward value and clear obstacles from the lane.
+
+## Onboarding Toolkit (10 Components)
+
+The components you assemble an onboarding experience from. Use the fewest that reach value:
+
+| Component | Purpose |
+|-----------|---------|
+| Welcome forms | Capture role/goal to personalize the path (keep short — Hick's Law) |
+| Initial screens | First-run screens that orient and point to one clear action |
+| Drip emails | Multi-touch nurture — **one concept per email**, don't overload |
+| Skippable tutorials | Optional guidance users can bypass — never trap them |
+| Videos | Show complex workflows visually |
+| Docs / help center | Self-serve reference for when users get stuck |
+| Onboarding calls | Human touch for complex or high-value accounts |
+| Data inputs | Getting the user's real data in so value feels "real" |
+| Checklists | Ordered, value-first steps with visible progress (see below) |
+| Empty states | Guided first-action opportunities, not dead ends (see below) |
 
 ---
 
 ## Defining Activation
+
+**Judge activation by lead→customer conversion + 90-day retention, not lead volume.** More signups mean nothing if they don't convert and stick.
+
+Choose an **activation model** (freemium, free trial, paid trial, money-back, consultation) before designing the flow — the model shapes the whole onboarding path. See [references/activation-models.md](references/activation-models.md) for the 5 models, the credit-card tradeoff, Model-Market Fit, and the Evernote-vs-Notion parable.
 
 ### Find Your Aha Moment
 
@@ -199,6 +232,14 @@ When recommending experiments, consider tests for:
 - Support and help availability
 
 **For comprehensive experiment ideas**: See [references/experiments.md](references/experiments.md)
+
+---
+
+## References
+
+- **[references/minimum-path-to-value.md](references/minimum-path-to-value.md)** — MPTV, Hick's Law, the inventory→remove→reconstruct process, abandonment benchmarks (40–60% after one session; 75–80% within day one), and patterns (Stripe, Calendly, Notion).
+- **[references/activation-models.md](references/activation-models.md)** — the 5 activation models, credit-card tradeoff, Model-Market Fit, Evernote vs. Notion.
+- **[references/experiments.md](references/experiments.md)** — comprehensive A/B test and experiment ideas.
 
 ---
 

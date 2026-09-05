@@ -7,6 +7,7 @@ Headline formulas, page section types, and structural templates.
 - Landing Page Section Types (core sections, supporting sections)
 - Page Structure Templates (feature-heavy page, varied engaging page, compact landing page, enterprise/B2B landing page, product launch page)
 - Section Writing Tips (problem section, benefits section, how it works section, testimonial selection)
+- Clarity & Message-Market Fit (the "Now you can" test, Human Action Model, the Perception Gap, the SavvyCal case, clarity metrics)
 
 ## Headline Formulas
 
@@ -342,3 +343,91 @@ Avoid testimonials that just say:
 - "Great product!"
 - "Love it!"
 - "Easy to use!"
+
+---
+
+## Clarity & Message-Market Fit
+
+Headline formulas give you the shape of a line. These tools tell you whether the line is actually *working* — whether it's clear, whether it maps to how the reader already thinks, and whether it lands with the right person. Positioning is the prologue to your novel: it sets up everything that follows. Get it clear and the rest of the page writes itself.
+
+### The "Now you can" Test
+
+A fast gut-check for any headline or benefit line. Mentally prefix it with **"Now you can…"**. If the result is both **compelling** and **true**, the line is doing its job. If it reads as vague, obvious, or a stretch, rewrite it.
+
+The test works because "Now you can…" forces the copy into the reader's world — it has to name a concrete new ability they didn't have before. Feature-speak and buzzwords collapse under it.
+
+| Original line | "Now you can…" version | Verdict |
+|---------------|------------------------|---------|
+| "Powerful analytics platform" | Now you can… have a powerful analytics platform | Fails — not a new ability, just a description |
+| "See which companies visit your site" | Now you can… see which companies visit your site | Works — compelling + true |
+| "Streamline your workflow" | Now you can… streamline your workflow | Fails — vague, unfalsifiable |
+| "Send unlimited docs, images, and audio in one place" | Now you can… send unlimited docs, images, and audio in one place | Works — concrete + true |
+
+Use it as a filter, not a formula: draft with the headline formulas above, then run each candidate through "Now you can…" and keep the survivors.
+
+### The Human Action Model (landing-page narrative spine)
+
+Ludwig von Mises' Human Action Model explains *why* anyone acts: a person acts only when three things line up. Every above-the-fold that converts follows the same three-beat spine:
+
+1. **Current discomfort** — the felt problem, named in the reader's own words. They have to recognize their situation ("that's exactly me").
+2. **Better vision** — a clearly imagined, more satisfying state. What life looks like once the discomfort is gone.
+3. **Path to action** — the belief that *this specific step* closes the gap between the two. The product is the bridge, and the CTA is how they cross it.
+
+Miss any beat and the reader stalls. No discomfort = no reason to move. No vision = no destination. No path = no reason to believe *you're* the way there.
+
+**Mapping it onto the hero:**
+
+| Beat | Where it usually lives | Example |
+|------|------------------------|---------|
+| Current discomfort | Eyebrow, subhead, or problem-framed headline | "You shouldn't have to feel awkward sending out your scheduling link" |
+| Better vision | Headline or subhead | "Scheduling that feels considerate, not one-sided" |
+| Path to action | CTA + supporting proof | "Start scheduling free" |
+
+This is the transformation spine underneath the "6 essential sections" of a landing page — hero, social proof, problem, solution, how-it-works, and final CTA. The hero states the transformation; the rest of the page substantiates each beat.
+
+### The Perception Gap
+
+The same benefit can read as a **selling point to one segment and a red flag to another**. The gap is between what *you* think you're saying and what a given reader hears through their own risk tolerance.
+
+The fix isn't softer copy — it's **matching the value prop to the reader's risk tolerance**. Segment first, then swap the framing.
+
+| Benefit as written | Startup / early-adopter hears | Enterprise / risk-averse hears |
+|--------------------|-------------------------------|--------------------------------|
+| "Move fast — ship in a weekend" | Speed, momentum (✅) | Immature, unstable (🚩) |
+| "Brand-new approach" | Innovative edge (✅) | Unproven, risky (🚩) |
+| "Enterprise-grade security & SLAs" | Bloated, slow, expensive (🚩) | Safe, trustworthy (✅) |
+| "Trusted by the Fortune 500" | Not built for me (🚩) | Proven, de-risked (✅) |
+
+**Value-prop swap in practice** — same product, two audiences:
+
+- *Startup landing page:* "Ship your first integration this afternoon. No sales calls, no procurement." 
+- *Enterprise landing page:* "SOC 2 Type II, 99.99% uptime SLA, and a named implementation lead. Roll out with confidence."
+
+When a page has to serve both, don't average them into mush — segment the traffic (separate pages, or a persona split) and let each read its own version of the truth.
+
+### Worked Example — SavvyCal (message-market fit)
+
+SavvyCal (a scheduling tool) originally led with feature-forward copy. They rewrote the hero around a single felt discomfort:
+
+> **"You shouldn't have to feel awkward sending out your scheduling link."**
+
+That one line **roughly tripled (3×) conversions**. It works because it hits all three beats of the Human Action Model at once:
+
+- **Discomfort:** the small social awkwardness of "here's my link, pick a time" — named exactly as users feel it.
+- **Vision:** scheduling that feels considerate to *both* people.
+- **Path:** SavvyCal's overlay-your-calendar mechanic is the bridge, so the CTA feels like the obvious next step.
+
+The lesson: message-market fit beats feature lists. The winning line wasn't cleverer — it named a real feeling the reader hadn't heard a scheduling tool acknowledge before. Run your own hero through "Now you can…" and the Human Action Model to find that line.
+
+### Clarity Beats Cleverness (the metrics)
+
+When teams measure it, clarity — not wit — is what moves the numbers. Clearer positioning and copy is associated with:
+
+- **+81% conversions**
+- **−38% sales cycle** (shorter time to close)
+- **−28% CAC** (lower customer acquisition cost)
+- **+175% referrals**
+
+The mechanism: clear copy lets the *right* buyer self-qualify fast and the wrong one bounce early, so every downstream metric improves. Clever copy that requires decoding does the opposite — it adds a comprehension tax at the exact moment attention is scarcest.
+
+**Practical rule:** if a reader has to pause to figure out what you mean, you've already lost. When forced to choose between a clever line and a clear one, ship the clear one — then use the tests above ("Now you can…", the Human Action Model, the Perception Gap) to make the clear line compelling too.

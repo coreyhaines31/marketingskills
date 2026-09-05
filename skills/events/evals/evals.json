@@ -1,0 +1,92 @@
+{
+  "skill_name": "events",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're a B2B SaaS with a $30k opportunity to sponsor our industry's biggest annual conference (5,000 attendees). Marketing wants to do it for brand awareness. Should we?",
+      "expected_output": "Should load references/sponsorship-roi.md and run the evaluation before answering. Pushes back on 'brand awareness' as the goal without a conversation/meetings target and an owner. Asks for or estimates audience-ICP overlap in absolute numbers (how many of the 5,000 are actual buyers), works the meetings math backwards to cost per qualified meeting (sponsorship + travel + staff), and compares against what a meeting costs from their other channels (the counterfactual check). Should surface the side-event alternative (curated dinner adjacent to the conference at a fraction of the cost) and the negotiation levers if they do sponsor (speaking slot over bigger booth, side-event rights, realistic attendee-data terms). Verdict framed as conditional on the overlap math, not a yes/no from vibes.",
+      "assertions": [
+        "Does not accept 'brand awareness' as sufficient justification; requires a qualified-conversations or meetings target with an owner",
+        "Computes or requests the inputs for cost per qualified meeting and compares against alternative channels",
+        "Asks about audience-ICP overlap in absolute numbers rather than accepting total attendance",
+        "Mentions the side-event (curated dinner/breakfast) play as an alternative or complement",
+        "If sponsoring, recommends negotiating for a speaking slot and/or side-event rights over booth size"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Plan our first webinar. We sell an expense-management tool for startup CFOs and want it to generate demo requests.",
+      "expected_output": "Should load references/webinar-funnel.md and work the four stages in order, starting with topic & offer: a problem-aware topic for startup CFOs (not a product demo), title as the ad, and the demo request decided as the single offer before content is written. Registration: landing page structure with outcome bullets, short form, replay registration. Show-up system: calendar add at registration, reminder cadence ending with a T-5-minute join link, close the registration-to-event gap, pre-engagement question. Live structure: the open that names the pitch upfront, 3 teachable points with proof, the scripted one-minute transition where the product enters as the implementation of the content, one offer, seeded Q&A. Post: behavior-segmented follow-up (engaged / left early / no-show / replay), replay strategy choice, recycling the recording into content. Metrics: reg -> show -> hold -> convert funnel with the diagnostic mapping (which stage failing means which fix), benchmarks presented as directional.",
+      "assertions": [
+        "Starts with topic and offer selection (problem-aware topic, one offer decided upfront), not logistics",
+        "Includes a show-up system: calendar add, escalating reminders including a T-5-minute join link, and gap management",
+        "Structures the live arc with an upfront-named pitch, scripted transition, and single offer",
+        "Segments post-webinar follow-up by behavior including a no-show replay sequence",
+        "Presents benchmark numbers as directional ranges, not targets"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I got accepted to speak at SaaStr next quarter — 25-minute slot. Help me make the most of it.",
+      "expected_output": "Should load references/speaking.md and cover all three jobs. Talk design: outline first (one named audience member, a Monday takeaway they can act on, blocks each with point + proof), then storyboard the emotional beats (5-8 beats for the length, each with energy/feel/hit; the journey must earn the takeaway; one contrarian take stands out on consensus stages). Recording as the real audience: confirm recording rights before/when accepting, speak the key numbers and company-next-to-category aloud rather than leaving them on slides, put the quotable line on a peak beat (transcripts get cited by AI assistants). Around the talk: pre-event promotion and speaker-to-speaker networking, a single low-friction closing pointer/asset, publishing the recording + written version after, following up with question-askers within 24-48h, and rolling the talk forward across the season.",
+      "assertions": [
+        "Separates outline (audience, Monday takeaway, blocks with proof) from emotional storyboarding (beats with energy/feel/hit)",
+        "Treats the recording as the durable asset: confirm rights, speak key numbers and positioning aloud, quotable line on a peak beat",
+        "Connects the transcript to AI-citation compounding",
+        "Includes post-talk motions: publish recording and written version, follow up with question-askers in the 24-48h window",
+        "Recommends speaker-to-speaker networking and a single clear closing pointer"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "A partner wants to do a joint webinar with us — they'd bring their list, we'd bring ours. How do we structure the partnership and who gets the leads?",
+      "expected_output": "Should recognize the boundary: partnership mechanics (partner selection, value exchange, list/lead sharing terms, co-promotion commitments) belong to the co-marketing skill, while the webinar execution (funnel, show-up system, live structure, follow-up) belongs here. Should hand the partnership-structure question to co-marketing rather than improvising deal terms, note the consent requirement for sharing registrant data between parties (registrants must explicitly opt in to both), and offer the events-side execution: co-hosted format, both speakers promote with pre-written assets, and each party follows up with its own consented segment.",
+      "assertions": [
+        "Routes partnership structure and lead-sharing terms to co-marketing rather than answering them as event logistics",
+        "Flags explicit registrant consent as required for sharing registration data between both parties",
+        "Retains and offers the webinar-execution layer (funnel, promotion by both speakers, follow-up) from this skill",
+        "Does not invent specific legal or contractual terms"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "We just got back from a trade show with 412 badge scans. Marketing is calling it a huge success and wants to load them all into our sales cadence tomorrow. Thoughts?",
+      "expected_output": "Should push back on both claims using the measurement tiers and follow-up discipline. Badge scans are vanity-tier activity, not leads or success — success is qualified conversations, meetings, and pipeline. Dumping all 412 scans into a sales cadence burns domain reputation and brand on people who do not remember the interaction; instead, tier the list: hot (real conversation + agreed next step) gets personal same/next-day follow-up referencing the conversation, warm (conversation, no commitment) gets a personal note plus a relevant asset, scan-only gets one light touch or nothing. The 24-48 hour window applies to the hot/warm tiers, follow-up should be written or reviewed by whoever had the conversations, and the event should be judged on cost per qualified meeting and pipeline influenced, with source tagging and an influence window - not scan count.",
+      "assertions": [
+        "Rejects badge-scan count as a success metric, distinguishing vanity from real and decisive metrics",
+        "Advises against loading all scans into a sales cadence, citing domain/brand risk and no-context outreach",
+        "Provides the tiered follow-up model (hot/warm/scan-only) with the 24-48h window for the top tiers",
+        "Recommends measuring the show on cost per qualified meeting and pipeline influenced with source tagging"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "We want to announce our new product at our own launch event. Walk me through everything.",
+      "expected_output": "Should recognize the launch/events boundary: the announcement strategy itself (positioning the release, launch channels, Product Hunt, press timing, go-live QA) belongs to the launch skill, while the event as a vehicle (format choice, invite/registration mechanics, show-up system, recording and content capture, post-event follow-up) belongs here. Should offer the events-side plan and explicitly point the announcement/GTM layer to launch rather than duplicating it, and may note the content-arc opportunity (the launch event recording becomes demo assets, clips, and citable content) and press angle (public-relations).",
+      "assertions": [
+        "Identifies that announcement/launch strategy routes to the launch skill while event execution stays here",
+        "Provides event-side substance: format, registration/show-up mechanics, recording capture, follow-up",
+        "Does not duplicate launch-channel strategy (Product Hunt, press embargo timing) inside the event plan",
+        "Mentions capturing the recording for downstream content"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're a B2B SaaS with $80k ACV enterprise deals. Should we even do events, and if so which ones? There's a huge 10,000-person industry conference coming up and everyone says we have to be there.",
+      "expected_output": "Should load references/event-portfolio-strategy.md and reason at the portfolio level before tactics. Should confirm in-person is warranted here (enterprise, high-ACV, multi-stakeholder trust-building is exactly where events earn their cost). Should apply the 80/20 of event selection (a few events drive most pipeline — find and concentrate on those). Should push back on the assumption that the 10,000-person conference is a must: bigger is often inverse to ROI because of noise and audience dilution (students, press, vendors, tourists), so effective cost-per-qualified-lead balloons; niche/regional events (50-200) or a curated side event (private dinner, coffee meetups) may out-produce a big booth at a fraction of the cost. Should frame the three event types (owned/trade-show/community) and tie the decision to economics — a significant show needs ~5-10 solid opportunities to justify a team — comparing cost-per-qualified-meeting against other channels (sponsorship-roi.md).",
+      "assertions": [
+        "Confirms in-person events fit this ICP (enterprise, high-ACV, multi-stakeholder / complex deals)",
+        "Applies the 80/20 event-selection principle — concentrate on the few highest-yield events rather than attending broadly",
+        "Challenges the 'must attend the 10,000-person conference' assumption: bigger correlates with noise and audience dilution, not ROI; suggests niche/regional or a curated side event",
+        "Grounds the decision in economics (needs ~5-10 solid opportunities to justify a team, or cost-per-qualified-meeting vs other channels)"
+      ],
+      "files": []
+    }
+  ]
+}

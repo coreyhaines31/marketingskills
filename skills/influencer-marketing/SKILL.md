@@ -1,8 +1,8 @@
 ---
 name: influencer-marketing
-description: "When the user wants to run influencer, creator, or ambassador partnerships to promote their product — finding and vetting partners, structuring deals, briefing creators, disclosure compliance, and measuring ROI. Also use when the user mentions 'influencer marketing,' 'creator partnerships,' 'sponsorships,' 'YouTube sponsorships,' 'podcast sponsorships,' 'brand ambassador,' 'ambassador program,' 'creator program,' 'UGC creators,' 'B2B influencers,' 'thought leader ads,' 'gifting,' 'product seeding,' 'whitelisting creator content,' 'how much to pay an influencer,' or 'FTC disclosure.' For affiliate/referral payout mechanics, see referrals. For community-led advocacy, see community-marketing. For turning creator content into paid ads, see ad-creative."
+description: "When the user wants to run influencer, creator, or ambassador partnerships to promote their product — finding and vetting partners, structuring deals, briefing creators, disclosure compliance, and measuring ROI. Also use when the user mentions 'influencer marketing,' 'creator partnerships,' 'sponsorships,' 'YouTube sponsorships,' 'podcast sponsorships,' 'brand ambassador,' 'ambassador program,' 'creator program,' 'UGC creators,' 'tech UGC,' 'UGC creator program,' 'creator network,' 'B2B influencers,' 'thought leader ads,' 'gifting,' 'product seeding,' 'whitelisting creator content,' 'how much to pay an influencer,' or 'FTC disclosure.' For affiliate/referral payout mechanics, see referrals. For community-led advocacy, see community-marketing. For turning creator content into paid ads, see ad-creative."
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Influencer & Creator Marketing
@@ -28,6 +28,8 @@ You are an expert in influencer, creator, and ambassador marketing across B2C (I
 | **Organic advocate** | A customer who already recommends you unprompted | None | Authenticity, cheapest trust | **community-marketing** |
 
 The further right you go, the more it's about *relationship* than *transaction* — and the cheaper and more durable the trust, but the slower to scale. Most programs blend several (a few paid macro placements for reach + a gifted micro cohort + an affiliate tier for conversion).
+
+**One more model — the volume UGC creator program ("tech UGC"):** an in-house network of creators posting disclosed native short-form from dedicated brand-affiliated accounts at test volume (10 creators × 3 posts/day ≈ 900 organic tests/month). Content volume, not any creator's audience, is the asset. See [references/ugc-creator-program.md](references/ugc-creator-program.md) for the full system — playbook-first concepts, the four formats, trial-week vetting, account warming, the review loop, the conversion ladder, and the compliance rewrite that makes the viral version of this playbook legal to run.
 
 ## 1. Finding & Vetting Partners
 

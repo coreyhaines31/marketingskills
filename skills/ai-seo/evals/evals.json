@@ -100,6 +100,36 @@
         "Mentions the attribution blind spot and at least two of: prompt tracking, self-reported attribution, call recordings"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "We publish YouTube tutorials for our category's biggest how-to queries but never get cited in AI answers, while a competitor's uglier videos show up in Google AI Overviews and ChatGPT constantly. The videos themselves are well produced. What are we missing?",
+      "expected_output": "Should load references/youtube-ai-citations.md and diagnose the text layer, not the footage: models don't watch the video, they read everything around it. Should check, in leverage order: transcript quality (key answers spoken as complete, liftable sentences; entities said out loud), captions (cleaned/uploaded, not messy auto-captions), question-shaped title matching the real query, chapters titled by sub-question, a keyword-rich description restating the key points as text, and a pinned comment carrying the summary. Should note engagement/thumbnail feeds YouTube ranking which feeds AI surfacing, and should not recommend re-shooting or higher production value as the fix.",
+      "assertions": [
+        "States that AI models read the text layer (transcript, captions, title, chapters, description, pinned comment) rather than watching the video",
+        "Recommends cleaning/uploading captions and speaking key answers as complete liftable statements with entities said aloud",
+        "Recommends question-shaped titles, chapters titled by sub-question, a structured description, and a pinned summary comment",
+        "Does not attribute the gap to production quality or recommend re-shooting as the primary fix"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Our content is well-written and we have schema markup, but AI assistants never seem to use our site. Someone said our site might not be 'agent-ready.' We also put most of our AI-visibility effort into Reddit this year since that's where ChatGPT cites from. What should we do?",
+      "expected_output": "Should load references/agent-readiness.md and address both halves. (1) Agent readiness: recommend running a free scoring tool (npx is-agentic and/or Frase's Agent Readiness Checker) and walk the access/discovery/parseability triad — core content must be in the initial HTML without JavaScript execution, no bot challenge/firewall blocking AI crawlers, robots.txt with an explicit AI-crawler stance, clean sitemap, llms.txt (+llms-full.txt as bonus), structured data, and a Markdown representation via content negotiation (Accept: text/markdown at the same canonical URL) or a Link header. May mention WebMCP as the emerging agent-actionable layer, labeled emerging. (2) Reddit concentration: flag citation-source volatility — ChatGPT's Aug 2026 retrieval changes nearly wiped Reddit as a source (practitioner-reported), so single-surface concentration is fragile; recommend the portfolio approach across third-party surfaces plus owned-site fundamentals (which dominate Gemini citations), and verifying any citation-share stat against their own monitoring before betting budget.",
+      "assertions": [
+        "Recommends running an agent-readiness scoring tool (is-agentic or Frase checker) and structures the audit as access / discovery / parseability",
+        "Identifies JavaScript-only content rendering and bot/firewall blocking as first-order access failures",
+        "Covers the discovery/parseability file stack: robots.txt AI stance, sitemap, llms.txt or llms-full.txt, structured data, and a Markdown representation (content negotiation or Link header)",
+        "Flags the Reddit-only strategy as fragile, citing citation-source volatility (Aug 2026 ChatGPT retrieval change, labeled practitioner-reported) and recommends a portfolio plus owned-site fundamentals",
+        "Does not present citation-share statistics as stable facts; recommends verifying against the user's own citation monitoring"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "We're a B2B SaaS planning our 2026 content roadmap. The plan is 40 comparison pages ('us vs competitor') and 20 'best tools' listicles, mainly to win ChatGPT citations. Also, how do I know if it's working — I checked ChatGPT once last week and we weren't mentioned.",
+      "expected_output": "Should load references/format-volatility.md and push back on the rationale with the ChatGPT 5.6 shift (Aug 2026, Peec AI data): listicle citations fell ~50% and comparison-page citations ~32% post-5.6, with fan-out queries dropping 'best/vs/top/comparison' modifiers in favor of site: and 'official' searches — so 'win ChatGPT citations' no longer justifies scaled comparison/listicle production. Should NOT say comparison pages are dead: they still convert humans and still earn citations on Google AI Overviews, Gemini, and Perplexity — format strategy is per-platform. Should steer investment toward owned 'official' pages (product, docs, pricing, original research), which are rising as the citable class and dominate Gemini (~60% business sites). May suggest extracting ChatGPT's real fan-out queries via the DevTools method for coverage planning (while warning against mass-generating a page per query — scaled content abuse). On measurement: one ChatGPT check is an anecdote — AI answers are non-deterministic; run each query 3–5 times per platform, track mention rate with sample size (e.g. 'cited 3/5'), and compare rates over time. Numbers should be treated as dated snapshots to verify against own monitoring."
     }
   ]
 }

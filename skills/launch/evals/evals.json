@@ -86,6 +86,21 @@
         "May provide some launch-related tactical ideas"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We've been building our product in private for 8 months and keep pushing the launch date because there's always one more feature we want to add first. How do we know when we're actually ready to launch?",
+      "expected_output": "Should apply the Readiness Gate before jumping to launch mechanics. Should name the two failure modes: Stealth Mode (launching too late, 'procrastination in a fancy suit') and 'Just One More Feature' (never launching), and identify that this user is exhibiting both. Should introduce SLC (Simple, Lovable, Complete) by Jason Cohen as the middle path and the alternative to a bare MVP. Should explain each: Simple (does one thing), Lovable (users want to use it, not just tolerate it), Complete (a whole experience, not a stub). Should advise cutting scope to reach SLC on one thing rather than adding more features, and to ship once the gate is passed. Should not just dump the five-phase mechanics without addressing readiness first.",
+      "assertions": [
+        "Applies the readiness gate before launch mechanics",
+        "Names Stealth Mode and 'Just One More Feature' failure modes",
+        "Diagnoses the user as stuck in these failure modes",
+        "Introduces SLC (Simple, Lovable, Complete) as the middle path vs a bare MVP",
+        "Explains Simple, Lovable, and Complete distinctly",
+        "Advises cutting scope to reach SLC rather than adding features",
+        "Recommends shipping once the gate is passed"
+      ],
+      "files": []
     }
   ]
 }

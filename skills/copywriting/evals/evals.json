@@ -106,6 +106,21 @@
         "Result is specific, clear, and jargon-free"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Write above-the-fold copy for a calendar scheduling tool. Our differentiator is that the recipient gets to overlay their own calendar on the invite, so picking a time feels fair to both people instead of one-sided. Same product needs to work for indie founders AND for enterprise ops teams.",
+      "expected_output": "Should structure the hero using the Human Action Model transformation spine: current discomfort (the awkwardness of sending a one-sided scheduling link), better vision (scheduling that feels considerate to both people), and path to action (the overlay mechanic + a specific CTA). Should run headline candidates through the 'Now you can' test and prefer lines that are compelling and true. Should reference or echo the SavvyCal awkward-link insight ('You shouldn't have to feel awkward sending out your scheduling link') as the message-market-fit model. Should surface the Perception Gap: the same benefit reads differently by risk tolerance, so it should provide a value-prop swap — a founder-facing framing (speed, no sales calls) and an enterprise-facing framing (security, SLAs, reliability) rather than one averaged, mushy message. Should favor clarity over cleverness and provide 2-3 headline alternatives with rationale.",
+      "assertions": [
+        "Structures the hero as discomfort -> vision -> path (Human Action Model)",
+        "Applies the 'Now you can' test to headline candidates",
+        "References the SavvyCal awkward-link message-market-fit insight",
+        "Surfaces the Perception Gap between segments",
+        "Provides a value-prop swap: founder framing vs enterprise framing",
+        "Favors clarity over cleverness",
+        "Provides 2-3 headline alternatives with rationale"
+      ],
+      "files": []
     }
   ]
 }

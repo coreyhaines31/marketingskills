@@ -10,10 +10,34 @@ Quick reference for AI agents to discover tool capabilities and integration meth
 
 ---
 
+## Verified Partners
+
+> **Full rules & boundaries:** [PARTNERS.md](PARTNERS.md) — the canonical governance doc (tool taxonomy, what sponsorship buys and never buys, disclosure, the partner lifecycle, and the `integrations/` spec).
+
+◆ **Verified Partners** are tools whose makers fund Marketing Skills through the [partner program](https://marketing-skills.com/sponsorship). What the marker means — and doesn't:
+
+- **Disclosed + vetted for fit.** Each carries a disclosure header in its integration guide and is marked ◆ in the index below.
+- **Additive, never biasing.** A partner is listed *alongside* the neutral options for the same job, never instead of them. Partner status never removes or demotes another tool and **never changes what any skill recommends** — if a non-partner is the right answer, that's the answer. The badge means "paid, disclosed, vetted for fit," not "best in category."
+
+Anyone — including tool makers and partners — may contribute content that names a tool, as long as it makes an agent *aware* of the right option without manufacturing a recommendation. The bar is the [integrity rubric in CONTRIBUTING.md](../CONTRIBUTING.md#mentioning-tools-the-integrity-rubric) (options not one answer, disclosed, passes the swap test).
+
+<!-- PARTNERS:START -->
+| Partner | Category | Guide |
+|---------|----------|-------|
+| ◆ Converly | Conversion tracking / attribution | [converly.md](integrations/converly.md) |
+| ◆ Ploy | AI website & growth platform | [ploy.md](integrations/ploy.md) |
+<!-- PARTNERS:END -->
+
+<!-- The table above is generated from partners.json — run `node scripts/sync-partners.mjs`. -->
+
+---
+
 ## Tool Index
 
 | Tool | Category | API | MCP | CLI | SDK | Guide |
 |------|----------|:---:|:---:|:---:|:---:|-------|
+| ◆ converly | Conversion Tracking | ✓ | ✓ | ✓ | - | [converly.md](integrations/converly.md) |
+| ◆ ploy | Website | ✓ | ✓ | ✓ | - | [ploy.md](integrations/ploy.md) |
 | ga4 | Analytics | ✓ | ✓ | [✓](clis/ga4.js) | ✓ | [ga4.md](integrations/ga4.md) |
 | mixpanel | Analytics | ✓ | - | [✓](clis/mixpanel.js) | ✓ | [mixpanel.md](integrations/mixpanel.md) |
 | amplitude | Analytics | ✓ | - | [✓](clis/amplitude.js) | ✓ | [amplitude.md](integrations/amplitude.md) |

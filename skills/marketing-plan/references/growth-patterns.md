@@ -110,6 +110,47 @@ The real magic: while SEO is maturing, you're using paid for quick wins. As thos
 
 This is the operational thesis behind the AARRR mapping (Sections 4–8) and the 12-month outlook (Section 10): each section is a curve, and the plan sequences them so the next curve is ramping while the current one is still growing.
 
+## The 70/20/10 resource-allocation rule
+
+Layering S-curves only works if the next curve is funded *before* the current one plateaus. The 70/20/10 rule is the budgeting discipline that guarantees it. Split marketing effort and spend across three buckets:
+
+| Bucket | Share | What it covers |
+|---|---|---|
+| **Current** | **70%** | The initiatives already working — the channels, content, and campaigns driving today's growth. Protect and optimize. |
+| **Next** | **20%** | The S-curve you're deliberately building — the channel/product/market bet that becomes the *current* 70% in 2–4 quarters. |
+| **Experimental** | **10%** | Unproven bets and small tests. Most fail; the ones that work graduate into the 20%, then the 70%. |
+
+Why it matters for the plan:
+
+- It operationalizes "start the next S-curve before the current one plateaus" — the 20% + 10% *is* the next curve, funded on purpose rather than scrambled for after a plateau hits.
+- It maps cleanly onto the **10–20% experimental budget buffer** in `budget-planning.md` — the experimental layer is the 10% here.
+- It gives Section 11 (Ops stack) and Section 10 (12-month outlook) a defensible allocation logic instead of dumping the whole budget into what's currently working.
+
+**In the plan:** Section 10 (12-month outlook) names what sits in each bucket now, and what's expected to graduate. Section 11 (Ops stack) shows the 70/20/10 split across the AARRR stages. Adjust the ratio by phase — Phase 1 companies (still hunting for any channel that works) may run closer to 40/30/30; Phase 3 companies with a proven engine can run 80/15/5.
+
+## Weekly tracking cadence and plateau alerts
+
+S-curve plateaus are the single most important thing to catch early — the whole point of layering curves is to shift weight to the next one *before* the current plateau bites. That requires a review rhythm, not an annual look-back.
+
+### The cadence
+
+- **Weekly** — review the leading indicators for each active S-curve (new signups per channel, content velocity, activation rate, MRR added). Weekly is frequent enough to spot a curve flattening while there's still time to act.
+- **Monthly** — roll the weeklies up; confirm which bucket (70/20/10) each initiative belongs in and whether anything should graduate or be cut.
+- **Quarterly** — the plan itself adjusts (re-sequence Section 10, reallocate the budget).
+
+### Plateau-indicator alerts
+
+Watch for these signals that a curve is topping out — each is a trigger to shift weight toward the next curve, not to push harder on the current one:
+
+- **Week-over-week additions flattening** — the channel is adding the same absolute numbers it did last month despite equal or greater effort (declining marginal return).
+- **Rising CAC on a formerly cheap channel** — paying more for the same result is the classic plateau tell.
+- **Engagement/activation softening at the top of the funnel** — the audience for this channel/message is saturating.
+- **Effort up, output flat** — the team is working harder to hold the line rather than to grow it.
+
+When two or more fire on the same curve, that's the trigger to accelerate the **20% "next" bucket** — the plateau is the moment between two S-curves, and it should already have a successor ramping.
+
+**In the plan:** Section 13 (Measurement) names the weekly leading indicators per S-curve and the specific plateau thresholds that trigger the next move. This turns "watch for plateaus" from a platitude into an operational alert.
+
 ## The 3-3-2-2-2 VC growth path
 
 For companies that have crossed $1M ARR and raised institutional capital, the VC benchmark is:
@@ -137,8 +178,9 @@ For non-VC-backed (bootstrapped, founder-funded, profit-focused) companies, this
 | **4 (Acquisition)** | Current channels + their position on the S-curve (early / mature / plateauing). Next channel investment with rationale. |
 | **5–8 (AARRR)** | Each section names the binding constraint at the current phase. For Phase 2 companies, Activation is usually the leverage point. For Phase 3, Retention + Referral compound the existing growth. |
 | **9 (90-day roadmap)** | Linear-pattern moves dominate (predictable additions). Step-function setups (the build-up to a launch, an enterprise tier, a new market segment) live here. |
-| **10 (12-month outlook)** | Sequence channel S-curves, product S-curves, market S-curves. If VC-backed Series A+, anchor against 3-3-2-2-2. If not, name the linear or step-function targets. |
-| **13 (Measurement)** | The north-star metric reflects the current phase (Phase 1 is usually pure new-signup; Phase 3 is usually expansion ARR or NRR). |
+| **10 (12-month outlook)** | Sequence channel S-curves, product S-curves, market S-curves. Apply the 70/20/10 split (current / next / experimental) so the next curve is funded before the current one plateaus. If VC-backed Series A+, anchor against 3-3-2-2-2. If not, name the linear or step-function targets. |
+| **11 (Ops stack)** | Show the 70/20/10 allocation across the AARRR stages — what share protects what's working vs. builds the next curve vs. experiments. |
+| **13 (Measurement)** | The north-star metric reflects the current phase (Phase 1 is usually pure new-signup; Phase 3 is usually expansion ARR or NRR). Name the weekly leading indicators per S-curve and the plateau thresholds that trigger the next move. |
 
 ## Operational guidance for the planner
 

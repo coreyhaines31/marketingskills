@@ -10,6 +10,18 @@ New to the terminal and coding agents? Check out the companion guide [Coding for
 
 Run into a problem or have a question? [Open an issue](https://github.com/coreyhaines31/marketingskills/issues) — we're happy to help.
 
+## Partners
+
+The library is free and MIT-licensed. [Verified Partners](tools/REGISTRY.md#verified-partners) fund the work — vetted, disclosed tool integrations, listed alongside the neutral options and never influencing what the core skills recommend. The full rules and boundaries are in [tools/PARTNERS.md](tools/PARTNERS.md). [Become a partner →](https://marketing-skills.com/sponsorship)
+
+<!-- PARTNERS:START -->
+> ◆ **[Converly](https://converly.io?ref=marketingskills)** — *Conversion tracking / attribution.* Server-side conversion tracking that fires when someone submits a form, books a meeting, or starts a chat — passing click IDs and identifiers for Enhanced Conversions (Google) and high EMQ match rates (Meta), across 100+ tools. CLI + MCP so your agent sets it up in minutes. → [Integration guide](tools/integrations/converly.md)
+
+> ◆ **[Ploy](https://ploy.ai?ref=marketingskills)** — *AI website & growth platform.* AI marketing platform built around a Webflow-grade website builder — site optimization, SEO/AEO, visitor identification, and ad creative in one, with WebMCP to expose site actions to AI assistants. → [Integration guide](tools/integrations/ploy.md)
+<!-- PARTNERS:END -->
+
+<!-- The Partners block above is generated from partners.json — run `node scripts/sync-partners.mjs` after editing it. -->
+
 ## What are Skills?
 
 Skills are markdown files that give AI agents specialized knowledge and workflows for specific tasks. When you add these to your project, your agent can recognize when you're working on a marketing task and apply the right frameworks and best practices.
@@ -76,6 +88,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [customer-research](skills/customer-research/) | When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer... |
 | [directory-submissions](skills/directory-submissions/) | When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for... |
 | [emails](skills/emails/) | When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email... |
+| [events](skills/events/) | When the user wants to plan, run, sponsor, speak at, or get pipeline from events — webinars, conferences, trade shows,... |
 | [free-tools](skills/free-tools/) | When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or... |
 | [image](skills/image/) | When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product... |
 | [influencer-marketing](skills/influencer-marketing/) | When the user wants to run influencer, creator, or ambassador partnerships to promote their product — finding and... |
@@ -292,6 +305,7 @@ You can also invoke skills directly:
 
 ### Paid & Distribution
 - `ads` - Google, Meta, LinkedIn ad campaigns
+- `events` - Webinars, conferences, sponsorships, speaking
 - `ad-creative` - Bulk ad creative generation and iteration
 - `social` - Social media scheduling and strategy
 

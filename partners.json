@@ -1,0 +1,31 @@
+{
+  "_comment": "Canonical partner registry — single source of truth. Fill one object per partner from their onboarding packet, then run `node scripts/sync-partners.mjs` to regenerate the README Partners section and the Verified Partners table in tools/REGISTRY.md. The marketing-skills.com site fetches this file directly (raw GitHub). Deactivate a lapsed partner with active:false (keeps history, removes it everywhere).",
+  "partners": [
+    {
+      "id": "converly",
+      "name": "Converly",
+      "url": "https://converly.io",
+      "category": "Marketing analytics & attribution",
+      "categoryShort": "Conversion tracking / attribution",
+      "tier": "skill-partner",
+      "tagline": "Server-side conversion tracking",
+      "blurb": "Server-side conversion tracking that fires when someone submits a form, books a meeting, or starts a chat — passing click IDs and identifiers for Enhanced Conversions (Google) and high EMQ match rates (Meta), across 100+ tools. CLI + MCP so your agent sets it up in minutes.",
+      "logoUrl": "/logos/converly.png",
+      "integration": "tools/integrations/converly.md",
+      "active": true
+    },
+    {
+      "id": "ploy",
+      "name": "Ploy",
+      "url": "https://ploy.ai",
+      "category": "Website & landing page builders",
+      "categoryShort": "AI website & growth platform",
+      "tier": "skill-partner",
+      "tagline": "Turns your website into a growth engine",
+      "blurb": "AI marketing platform built around a Webflow-grade website builder — site optimization, SEO/AEO, visitor identification, and ad creative in one, with WebMCP to expose site actions to AI assistants.",
+      "logoUrl": "/logos/ploy.png",
+      "integration": "tools/integrations/ploy.md",
+      "active": true
+    }
+  ]
+}

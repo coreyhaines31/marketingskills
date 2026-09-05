@@ -79,6 +79,20 @@
         "Does not attempt full co-marketing strategy"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're a SaaS scheduling tool. We keep hearing 'you should do partnerships' but I don't even know what kinds exist. What are our options and where should we start?",
+      "expected_output": "Should lay out the five partnership types from the partnership-types taxonomy: integrations, reseller programs, affiliate programs, co-marketing, and app store/marketplace — not just joint content. Should note co-marketing is only one of the five. Should reference the flagship proof that partner programs are meaningful (e.g., HubSpot's ~$100M ARR / ~40% of revenue / 3,400+ partners; mature programs ~28% of revenue and 2x growth). Should give concrete moves per type: integrations built native vs via Zapier vs API-first vs embedded, Calendly's staged ladder (calendar to sales stack to marketing stack), 83% of enterprise citing integrations as a decision factor; reseller economics (20-40% of LTV plus 2-3x in services); affiliate power law (20% of affiliates drive 80% of revenue) and buyout clauses (~12x monthly commission); permissionless co-marketing (Notion building templates for Airbnb/Amazon/Tesla to ride their brand); app store distribution (Grammarly 0 to 10M, platforms taking 15-30% as effective CAC). For a scheduling tool specifically, should recommend starting with integrations (retention/expansion, marketplace discovery) given the calendar/CRM workflow. Should point to references/partnership-types.md for the full taxonomy, and note affiliate mechanics live in the referrals skill.",
+      "assertions": [
+        "Lists all five partnership types",
+        "Notes co-marketing is one of five, not the whole picture",
+        "Cites the HubSpot / partner-program flagship stat",
+        "Gives concrete moves for multiple types (integration ladder, affiliate power law, permissionless co-marketing)",
+        "Recommends a starting type appropriate to a scheduling tool (integrations)",
+        "Points to the partnership-types reference"
+      ],
+      "files": []
     }
   ]
 }

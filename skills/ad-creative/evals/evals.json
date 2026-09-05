@@ -159,6 +159,59 @@
         "Applies the family grounding/disclosure rules (dramatized share, substantiated claims, not a real endorsement)"
       ],
       "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "We're a mobile app and want to make TikTok/Reels ads. Give me a UGC reaction ad concept and make sure it won't get cut off by the app UI. Also — should we add music?",
+      "expected_output": "Should load references/short-form-video-specs.md and deliver both the format and the spec. Format: the Reaction + Demo hard-cut structure (creator reaction ~3s with a hook caption written as inner monologue, hard cut to the app demo, optional payoff caption) — may also mention the other two creator formats (no-yapping split-screen, greenscreen reaction) as alternatives. Safe zone: keep all captions/key visuals inside the 720x1200 centered safe band (220px top / 500px bottom / 180px sides clear) so platform UI doesn't cover them, and use the static white-fill/black-stroke caption style that auto-sizes to fit. Music: give the organic-vs-baked decision — for organic posting, export without baked music and attach the trending sound in-app (algorithm reward); bake music only for paid ads or where native sound can't be attached, fading out the last ~0.8s.",
+      "assertions": [
+        "Provides the reaction+demo hard-cut structure with the hook caption as the reaction's inner monologue",
+        "Specifies the cross-platform safe band (roughly 220 top / 500 bottom / 180 sides, or the 720x1200 text-safe area) so captions aren't covered by platform UI",
+        "Describes the static white-fill/black-stroke caption style with auto-sizing (no animated captions)",
+        "Gives the organic-vs-baked-music decision rather than a blanket yes/no (attach trending sound in-app for organic; bake for ads)"
+      ],
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "We're a DTC brand with a stalled Meta account and need fresh static ad concepts that can actually open cold net-new audiences — not just retarget. Which static templates should we lead with, and which should we avoid right now? Also, we have several SKUs.",
+      "expected_output": "Should load references/static-ad-templates.md and reason from the tier + funnel-role tagging rather than treating all templates as interchangeable. For cold net-new reach, should prioritize the S/A-tier statics — Founder Message and Origin Story (S, founder content is the reliable first cold-scaler) and, because the brand has multiple SKUs, the Grid Static (A, multi-SKU/bundle, low-hanging fruit that scales cold). Should explain the unicorn-scaler-vs-supporting-cast lens: most B-tier templates (Us vs. Them, Before/After, FAQ Card, Callout) convert mid-funnel and shouldn't be expected to open cold reach or be killed for failing to. Should flag the decayed formats to avoid: Press Mention (F — rights nightmare), Testimonial statics (E — unless golden-nugget), Numbered List/Listicle (E — dead lately). Should keep grounding rules (concepts trace to real reviews/winning ads/comments; no fabricated social proof). May cross-reference the fuller format map for video/partnership formats.",
+      "assertions": [
+        "Loads or applies the static-ad-templates reference and reasons from tier + funnel role",
+        "Prioritizes S/A-tier statics for cold reach (Founder Message, Origin Story, Grid Static)",
+        "Recommends the Grid Static specifically given multiple SKUs",
+        "Explains the unicorn-scaler vs. supporting-cast lens (B-tier = mid-funnel, don't kill for failing to scale cold)",
+        "Flags decayed formats to avoid (Press Mention F, Testimonial statics E, Listicle/Numbered List E)",
+        "Preserves grounding rules — no fabricated social proof"
+      ],
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "We're a DTC supplement brand and our Meta reach has been flat for weeks. We can make basically any ad. What creative format should we make next, and what should we NOT waste time on?",
+      "expected_output": "Should load references/meta-creative-formats.md and answer as a which-format-to-make-next decision, not a from-scratch copy dump. Should lead with the unicorn-scaler vs. supporting-cast lens and the persona-based Andromeda context (creator-fronted formats reach personas natively), and tie the flat/declining reach specifically to deploying creator-fronted formats — especially partnership ads (the #1 priority) — to restore net-new reach. Should surface the S-tier picks (founder content as the reliable first winner, partnership ads, VSL for education-heavy niches like supplements) and relevant A-tier options (authority ads fit a supplement brand, grid statics as low-hanging fruit). Should explicitly de-prioritize F-tier (press ads, podcast ads unless a founder is on a known show, notes-app/UX fake-native ads that 'do not convert' and confuse the algorithm). Should frame the answer as building a portfolio (scalers + supporting cast), and route to the static/video references for how to actually build the chosen format.",
+      "assertions": [
+        "Loads or applies the meta-creative-formats reference",
+        "Frames the answer with the unicorn-scaler vs. supporting-cast distinction",
+        "Explains the persona-based Andromeda reason creator-fronted formats rank highest",
+        "Ties flat/declining reach to deploying partnership ads (the #1 priority) to restore net-new reach",
+        "Recommends S-tier picks (founder content, partnership ads, VSL) and a fitting A-tier option (authority ads and/or grid statics)",
+        "Explicitly de-prioritizes F-tier (press, podcast-unless-known-show, notes-app/UX fake-native)",
+        "Frames it as building a portfolio and routes to static/video references for production"
+      ],
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "We're a health supplement brand and want video ads that will actually scale to cold audiences, not just retarget. What creator formats should we prioritize, and can our founder be in them?",
+      "expected_output": "Should load references/short-form-video-specs.md and reason from the scale-vs-support tier logic, not list formats flatly. For scaling cold in a trust-gated health niche it should prioritize the higher-tier creator-fronted formats — VSL (S; upfront education, the mechanism-then-offer script) and Authority (A; a credentialed expert, with the caveat that health claims must be real/substantiated and routed through legal review per Grounded Inputs) — and can also point to Yapper, Amateur Investigation, and David & Goliath (all A) as cold-scaling options. Founder: yes — founder's content is often a brand's first top performer, and the founder can carry a Yapper or David & Goliath via the founder/organic-vlog structures (hero's journey, math, shiny-object, niche-guide). Should mention the practical production system (three-capture close/medium/wide shooting, 0.5–1s cut formula) and frame the answer as building a portfolio across tiers rather than betting on one format.",
+      "assertions": [
+        "Reasons from the scale-vs-support tier logic (prioritizes higher-tier cold-scaling formats over a flat list)",
+        "Recommends VSL and/or Authority for the education-heavy, trust-gated health niche, and flags the health-claims/legal-review compliance caveat for the Authority/expert format",
+        "Confirms the founder can front the ads (founder content as a common first top performer) via a founder/organic-vlog structure such as hero's journey or David & Goliath",
+        "References the founder shooting/edit system (three-capture close/medium/wide and/or the 0.5–1s cut formula) and/or framing the mix as a portfolio across tiers"
+      ],
+      "files": []
     }
   ]
 }

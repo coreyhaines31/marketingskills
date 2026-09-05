@@ -1,0 +1,21 @@
+{
+  "skill_name": "public-relations",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're a tiny 2-person SaaS competing against Notion in the docs space. We don't have any funding news or a big milestone. How do we get press coverage?",
+      "expected_output": "Should route to references/story-angles.md. Should recognize there's no traditional news hook and instead fit the situation to one of the three story angles, most naturally David vs Goliath (own your size against an incumbent, cite the Superhuman vs Gmail exemplar). Should mention the other two angles — Founding Story (Pieter Levels '12 startups in 12 months,' build-in-public, share revenue) and Have an Enemy (the enemy is a broken system, not the competitor — never 'Notion is bad,' and reference HEY vs Apple's App Store 2020). Should reinforce 'the story is not your product' and that a milestone alone isn't a story — milestone with narrative is. Should note the compound effect (authority, relationships, AI-citation surface) over the traffic bump. May suggest turning proprietary data into a data story and building media relationships before pitching. Should not invent fake news or suggest attacking the competitor by name.",
+      "assertions": [
+        "Routes to references/story-angles.md",
+        "Identifies David vs Goliath as the fitting angle with the Superhuman vs Gmail exemplar",
+        "Names all three angles (Founding Story, David vs Goliath, Have an Enemy)",
+        "Clarifies the enemy is a broken system, not a named competitor (HEY vs Apple App Store 2020)",
+        "Cites Pieter Levels '12 startups in 12 months' for Founding Story",
+        "Reinforces 'the story is not your product'",
+        "Notes milestone-with-narrative and/or the compound effect over the traffic bump",
+        "Does not fabricate news or suggest smearing the competitor by name"
+      ],
+      "files": []
+    }
+  ]
+}

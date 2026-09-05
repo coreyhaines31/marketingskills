@@ -1,6 +1,8 @@
 ---
 name: marketing-plan
 description: When the user needs a comprehensive marketing plan for a client, a company they advise, or their own product. Also use when the user mentions "marketing plan," "growth plan," "GTM plan," "go-to-market plan," "AARRR plan," "90-day marketing plan," "12-month marketing roadmap," "fractional CMO plan," or "fCMO plan." Generates an exhaustive 13-section plan structured by AARRR (Acquisition, Activation, Retention, Referral, Revenue), customized to the client's current budget, team, and stage, mapped to future funding milestones, cross-referenced with the 139-idea marketing-ideas library and an embedded 17-section current-state audit rubric, with a full marketing operations stack showing which skills and MCP/API integrations execute each part. Outputs a Notion-paste-ready markdown document. For positioning and ICP context before planning, see product-marketing. For stage-specific deep work, see onboarding, signup, emails, referrals, pricing.
+metadata:
+  version: 1.1.1
 ---
 
 # Marketing Plan
@@ -92,6 +94,32 @@ Full primer in `references/aarrr-framework.md`. Quick rule:
 
 Brand and content are **cross-cutting**, not their own AARRR stage — they serve every stage.
 
+## Marketing as investing — the north-star framing
+
+AARRR gives the plan its *structure*. This gives it its *spine*. Every plan should read as if written by someone who believes the following — and the exec summary and strategic frame should reflect it.
+
+Adapted from *Founding Marketing* by Corey Haines (Ch. 1).
+
+- **Marketing is like investing.** Treat the plan as a **compounding portfolio**, not a campaign calendar. Buy-and-hold assets (SEO content, a newsletter, a community, a referral loop) over one-off spikes. Diversify — no single channel carries the plan. Time in market beats timing the market.
+- **No silver bullets, a hundred golden pellets.** There is no one move that fixes growth. The plan wins by stacking many small compounding assets. Be suspicious of any recommendation that promises to be *the* thing.
+- **One asset, many returns.** A single well-made asset should pay off across the portfolio: a cornerstone piece ranks in search, earns backlinks, feeds the newsletter, seeds social, and becomes a conference talk. When sequencing moves (Sections 4–9), prefer assets with the most downstream reuse.
+- **Audition, not an auction.** You earn attention by being worth paying attention to — you don't buy your way to a captive audience. Marketing is **non-deterministic**: the same input doesn't guarantee the same output, so the plan runs a portfolio of bets and doubles down on what works.
+- **Hope is not a strategy.** Every move in the plan names its mechanism and its leading indicator. "Post more and hope it works" is not a line item. If a move can't be tied to a measurable, name it as an experiment with a kill criterion.
+
+### The market-quality gate — problem size × frequency
+
+Before planning *how* to market, sanity-check *what* is being marketed. Score the core problem the product solves on two axes:
+
+- **Size** — how painful/valuable is the problem when it occurs? (small → large)
+- **Frequency** — how often does the customer feel it? (rare → constant)
+
+|  | **Low frequency** | **High frequency** |
+|---|---|---|
+| **Large problem** | Winnable but expensive to keep top-of-mind (long sales cycles, retargeting-heavy) | **Best quadrant — build here.** Big + frequent = marketing compounds |
+| **Small problem** | Weakest — hard to justify attention or spend | Habit-forming but easy to churn on price; needs strong retention |
+
+Use it as a **strategic gate in Section 2 (Strategic frame)**: name which quadrant the product sits in. Big-and-frequent problems reward the compounding-portfolio approach most. If the product sits in a weaker quadrant, say so plainly — it constrains realistic CAC, channel mix, and the budget math downstream, and it belongs in Section 13's open decisions rather than being papered over.
+
 ## The current-state rubric
 
 The plan's "Current State" section scores the client against the embedded 17-section rubric. Full rubric in `references/current-state-rubric.md` — it's the source of truth, not a derivative of any external skill.
@@ -145,6 +173,8 @@ Pitch decks show hockey sticks. Real growth is a series of S-curves with plateau
 - **Phase identification** — $0–10K ARR (grueling), $10K–100K (treacherous middle), $100K–1M (acceleration). Section 3 names the current phase; Section 10 sequences the next.
 - **Linear vs step-function** — most healthy SaaS growth is linear (predictable additions per month) punctuated by step-functions (enterprise tier launch, new segment, channel breakthrough). The plan should describe both honestly — not promise exponential.
 - **S-curve layering** — Channel × Product × Market. Start the next S-curve while the current one is still growing. Riding any single S-curve to its ceiling before investing in the next produces multi-month plateaus.
+- **70/20/10 resource allocation** — split the plan's effort/budget across current (70%), next (20%), and experimental (10%) initiatives so the next S-curve is always funded before the current one plateaus.
+- **Weekly tracking cadence** — review leading indicators weekly and watch for S-curve plateau signals; a flattening curve is the trigger to shift weight toward the next one, not a reason to push harder on the current.
 
 ## Team and agency model
 

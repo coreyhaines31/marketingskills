@@ -84,6 +84,20 @@
         "Notes peer support must feel valued, not used"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're a technical dev-tool startup, still tiny. Our users are opinionated engineers and their feedback basically drives our roadmap. What kind of community should we build, and how will running it change as we grow?",
+      "expected_output": "Should route to references/community-models.md. Should recommend the Product-Development model as the best fit — technical, opinionated users whose feedback shapes the roadmap; cite Ydata's Slack driving GitHub stars and product feedback as the real case. Should note that because they're still tiny, it will start Founder-Led (Bento/Postaga) with the founder showing up personally before systems can carry it. Should lay out the scaling-phase role shift: Community Architect at 0–100 (lay the foundation, do things that don't scale, know members by name, set culture), Community Manager at 100–1,000 (build systems and governance — rituals, moderation, onboarding), Community Enabler at 1,000+ (stand up ambassador programs and sub-communities so members run it). May reference Notion's benchmark (300+ ambassadors, 1M+ template downloads, 25% of new users from community referrals) as the north star for what community-led growth can become at scale. Should match effort to stage rather than running a small community like a large one.",
+      "assertions": [
+        "Routes to references/community-models.md",
+        "Recommends Product-Development model with Ydata case",
+        "Notes it starts Founder-Led while tiny",
+        "Describes the architect -> manager -> enabler role shift with member ranges",
+        "May cite the Notion ambassador benchmark",
+        "Emphasizes matching effort to stage"
+      ],
+      "files": []
     }
   ]
 }

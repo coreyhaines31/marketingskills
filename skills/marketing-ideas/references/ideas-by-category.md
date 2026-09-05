@@ -311,7 +311,7 @@ Complete list of proven marketing approaches organized by category.
 
 120. **Marketing Stunts** - Bold, attention-grabbing marketing moments.
 
-121. **Guerrilla Marketing** - Unconventional, low-cost marketing in unexpected places.
+121. **Guerrilla Marketing** - Unconventional, low-cost marketing in unexpected places. Deep dive: direct-mail 3-rule framework (relevance / relationship / precision), ROI discipline, and a named case library in [guerrilla-marketing.md](guerrilla-marketing.md).
 
 122. **Humor Marketing** - Use humor to stand out and create memorability.
 

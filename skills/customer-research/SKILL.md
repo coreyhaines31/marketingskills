@@ -1,8 +1,8 @@
 ---
 name: customer-research
-description: When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer research," "ICP research," "talk to customers," "analyze transcripts," "customer interviews," "survey analysis," "support ticket analysis," "voice of customer," "VOC," "build personas," "customer personas," "jobs to be done," "JTBD," "what do customers say," "what are customers struggling with," "Reddit mining," "G2 reviews," "review mining," "digital watering holes," "community research," "forum research," "competitor reviews," "customer sentiment," or "find out why customers churn/convert/buy." Use for both analyzing existing research assets AND gathering new research from online sources. For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.
+description: When the user wants to conduct, analyze, or synthesize customer research. Use when the user mentions "customer research," "ICP research," "talk to customers," "analyze transcripts," "customer interviews," "survey analysis," "support ticket analysis," "voice of customer," "VOC," "build personas," "customer personas," "jobs to be done," "JTBD," "what do customers say," "what are customers struggling with," "Reddit mining," "G2 reviews," "review mining," "digital watering holes," "community research," "forum research," "competitor reviews," "customer sentiment," "PMF survey," "product/market fit survey," "customer interview questions," "interview outreach," "Sales Safari," or "find out why customers churn/convert/buy." Use for analyzing existing research assets, mining online sources, AND running primary research (interviews and surveys). For writing copy informed by research, see copywriting. For acting on research to improve pages, see cro.
 metadata:
-  version: 2.0.1
+  version: 2.0.2
 ---
 
 # Customer Research
@@ -16,15 +16,18 @@ If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or 
 
 ---
 
-## Two Modes of Research
+## Three Modes of Research
 
 ### Mode 1: Analyze Existing Assets
 You have raw research material (transcripts, surveys, reviews, tickets). Your job is to extract signal.
 
-### Mode 2: Go Find Research
-You need to gather intel from online sources (Reddit, G2, forums, communities, review sites). Your job is to know where to look and what to extract.
+### Mode 2: Mine Existing Signal (Online)
+You gather intel from online sources (Reddit, G2, forums, communities, review sites) — customers speaking in public, unprompted. Your job is to know where to look and what to extract.
 
-Most engagements combine both. Establish which mode applies before proceeding.
+### Mode 3: Go Ask (Primary Research)
+No signal exists yet, or you need answers only the customer can give. You run interviews and surveys directly. For the full playbook — the PMF survey, 5-why laddering, outreach templates, incentives, best-customer recruiting, and the confirmation-bias guardrail — read `references/interviews-and-surveys.md`.
+
+Most engagements combine modes. Mine what's already public (Mode 2) before you ask (Mode 3) — it tells you what to ask and in whose words. Establish which mode(s) apply before proceeding.
 
 ---
 
@@ -165,6 +168,24 @@ After gathering from multiple sources, synthesize into:
 
 ### Theme 2: ...
 ```
+
+---
+
+## Mode 3: Interviews & Surveys (Primary Research)
+
+When there's no signal yet — or you need answers only the customer can give — go ask. This is the highest-signal, first-party research: weight it above scraped sources when they conflict.
+
+**Load `references/interviews-and-surveys.md` before running any interview or survey.** It covers:
+
+- **The first rule of customer research: you do not talk about customer research** — keep calls casual so customers give real answers, not performed ones
+- **Prove yourself wrong, not right** — research is disconfirmation, not validation (the Dropbox sync-speed example)
+- **Amy Hoy's Sales Safari** — passively mine pains, jargon, recommendations, and worldview from where the audience already gathers
+- **Recruiting your best customers** — segment the CRM by deal size / short sales cycle / low churn; ask sales & CS for referrals; always close with *"who else should we talk to?"*
+- **Outreach email template** and **incentives** — $50/call, $5/survey; aim for 10 calls, be happy with 5
+- **Keep Asking Why (5-why laddering)** — worked example laddering a churn answer down to NRR; pain points vs. passion points
+- **The PMF survey (Sean Ellis / Superhuman)** — *"How would you feel if you could no longer use [product]?"*; the **40% "very disappointed"** benchmark (Superhuman reached 58%)
+
+Analyze whatever you gather back through the Mode 1 extraction framework and confidence guardrails above.
 
 ---
 

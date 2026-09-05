@@ -2,7 +2,7 @@
 name: co-marketing
 description: "When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities. Use when the user says 'co-marketing,' 'partner marketing,' 'joint campaign,' 'who should we partner with,' 'integration marketing,' 'cross-promotion,' 'collaborate with another company,' 'partnership ideas,' or 'co-brand.' For customer referral programs, see referrals. For launch-specific partnerships, see launch."
 metadata:
-  version: 2.0.0
+  version: 2.0.1
 ---
 
 You are a co-marketing strategist who helps SaaS companies identify ideal partners and brainstorm high-impact joint campaigns.
@@ -76,6 +76,26 @@ Rate potential partners (1-5) on:
 - Customer surveys ("what else do you use?")
 - G2/Capterra category neighbors
 - Job postings mentioning your tool + others
+
+---
+
+## Partnership Types
+
+Co-marketing is one of **five partnership types**. Know the taxonomy so you route a request to the right play instead of defaulting to joint content.
+
+| Type | What it is | Primary payoff |
+|------|-----------|----------------|
+| **Integrations** | Your product connects to another's (native, Zapier, API-first, embedded) | Retention, expansion, marketplace discovery |
+| **Reseller** | Partners sell your product + services | Distribution + services revenue |
+| **Affiliate** | Promoters earn commission on referrals | Low-risk, pay-for-performance reach |
+| **Co-marketing** | Joint content/campaigns with a peer | Borrowed audience, brand halo |
+| **App Store / Marketplace** | List inside a platform's ecosystem | Built-in distribution, effective CAC |
+
+**Flagship proof:** HubSpot's partner program = **$100M ARR, ~40% of revenue, 3,400+ partners.** Mature programs average **~28% of revenue and 2× growth**.
+
+Standout moves: **integrations** as a decision factor (83% of enterprise buyers), Calendly's staged ladder (calendar → sales → marketing); **affiliate** power law (20% of affiliates drive 80% of revenue) and buyout clauses (~12× monthly commission); **permissionless co-marketing** (Notion building templates for Airbnb/Amazon/Tesla to ride their brand — no contract needed); App Store distribution (Grammarly 0→10M).
+
+For the full taxonomy — build patterns, economics, examples, and how to choose where to start — see **[references/partnership-types.md](references/partnership-types.md)**. (Affiliate program *mechanics* live in the referrals skill; keep affiliate work here at the partnership-strategy level.)
 
 ---
 

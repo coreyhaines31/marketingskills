@@ -99,6 +99,21 @@
         "Does not treat this as pure conversion-rate CRO"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "We're launching an AI writing tool for solo creators next week and I genuinely have no idea what to charge on day one. I was going to just do $9/month to get people in the door. What price should I pick and how should I even structure it?",
+      "expected_output": "Should treat this as an INITIAL pricing question, not a price-optimization one — the goal of a first price is learning, not precision ('pick a price you can learn from'). Should apply the $10/$100/$1,000 rule of thumb and place a solo-creator tool near the ~$10 bucket. Should warn against the $9 trap (false traction, hard to raise later, cheapest customers churn most). May cite the Intercom/Jason Fried 'just charge $50 and see what happens' idea — ship a price and get real signal. Should reject competitor-based and cost-based anchoring in favor of value + differentiation. Should recommend a pricing MODEL/structure: for an AI actions-based tool, credit-based or usage-based (or a hybrid) is a natural fit; may reference the 8 models. May mention the ~10:1 value/price ratio and the low-price-hurts-retention counterpoint (when in doubt, price higher).",
+      "assertions": [
+        "Frames the first price as a learning bet, not an optimization",
+        "Applies the $10/$100/$1,000 rule of thumb and buckets the tool appropriately",
+        "Warns against the $9 / ultra-low trap (false traction, hard to raise, low-price churn)",
+        "References 'just charge $50 and see' / getting a real signal (Intercom/Jason Fried)",
+        "Rejects competitor-based and cost-based pricing in favor of value + differentiation",
+        "Recommends a pricing model/structure (e.g. credit-based or usage-based for an AI tool)",
+        "Notes value/price ratio (~10:1) or that low prices hurt retention"
+      ],
+      "files": []
     }
   ]
 }

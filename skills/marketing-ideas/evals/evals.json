@@ -85,6 +85,21 @@
         "May briefly mention as a marketing idea"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We sell a $30k/year data platform and can't get marketing VPs at target accounts to reply to email or take calls. We have budget for something creative. What guerrilla tactics could break through?",
+      "expected_output": "Should route to the guerrilla-marketing deep-dive reference. Should surface the direct-mail 3-rule framework (relevance, relationship-building, precision targeting) and the ROI discipline that a $50-200 package to an unqualified lead is malpractice — qualify the named accounts first, test small before scaling. Should note the deal size ($30k/year) justifies high-cost mailers. Should draw on the case library for inspiration (e.g. Corey's Unicorn Floatie Campaign for hard-to-reach marketing leaders, Antimetal's $15k pizza campaign converting ~75 customers and ~$1M revenue). Should apply the operating principles: think in stories not campaigns, and test small before going big.",
+      "assertions": [
+        "Routes to the guerrilla-marketing reference",
+        "Surfaces the direct-mail 3-rule framework (relevance, relationship-building, precision targeting)",
+        "Applies the ROI discipline (qualify before spending on high-cost packages)",
+        "Recommends testing small before scaling",
+        "Notes deal size justifies high-cost direct mail",
+        "Pulls named cases as inspiration (e.g. Unicorn Floatie, Antimetal pizza)",
+        "Applies 'think in stories, not campaigns' principle"
+      ],
+      "files": []
     }
   ]
 }

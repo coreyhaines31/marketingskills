@@ -157,6 +157,20 @@
         "Warns against building personas without any data"
       ],
       "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "I want to interview and survey my customers to understand product/market fit. How should I run this?",
+      "expected_output": "Should check for product-marketing.md first. Should route to the primary-research playbook (references/interviews-and-surveys.md). Should recommend the Sean Ellis / Superhuman PMF survey question ('How would you feel if you could no longer use [product]?') and cite the 40% 'very disappointed' benchmark (Superhuman reached 58%). Should recommend recruiting best customers (high deal size, short sales cycle, low churn) and closing every call with 'who else should we talk to?'. Should mention incentives ($50/call, $5/survey; aim for 10 calls, be happy with 5). Should keep it casual ('you do not talk about customer research') and aim to prove yourself wrong, not right. Should mention 5-why laddering (Keep Asking Why) and provide an outreach email approach.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Recommends the PMF survey question and cites the 40% 'very disappointed' benchmark (Superhuman 58%)",
+        "Recommends recruiting best customers by deal size / short sales cycle / low churn and asking 'who else should we talk to?'",
+        "Mentions incentives ($50/call, $5/survey) and aiming for 10 calls / happy with 5",
+        "Frames research as casual and disconfirming (prove yourself wrong, not right)",
+        "Mentions 5-why laddering (Keep Asking Why) or an outreach email template"
+      ],
+      "files": []
     }
   ]
 }

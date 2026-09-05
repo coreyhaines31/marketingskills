@@ -2,7 +2,7 @@
 name: pricing
 description: "When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,' 'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs monthly,' 'per seat pricing,' 'should I offer a free plan,' 'pricing page teardown,' 'pricing page audit,' 'is my pricing page AI-readable,' or 'can AI read my pricing.' Use this whenever someone is figuring out what to charge, how to structure their plans, or wants to audit a pricing page (for humans and for the AI agents that shortlist tools). For in-app upgrade screens, see paywalls. For offer construction (bonuses, guarantees, value framing, naming) on services/courses/coaching/high-ticket B2B, see offers."
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Pricing Strategy
@@ -65,6 +65,40 @@ Price should be based on value delivered, not cost to serve:
 
 **Key insight:** Price between the next best alternative and perceived value.
 
+**Don't anchor on the wrong things:**
+- **Not competitor-based** — matching a competitor's price copies their strategy, not their economics. It's a data point, not a target.
+- **Not cost-based** — cost is a floor, never the basis. Value + differentiation set the price.
+
+---
+
+## Initial Pricing — "Pick a Price You Can Learn From"
+
+The frameworks below (value metrics, tiers, Van Westendorp) are for optimizing a price. **On day one you don't have a price to optimize — you have a bet to place.** The goal of your first price is *learning*, not precision. Pick a number, ship it, and let real buyers tell you if it's wrong.
+
+### The $10 / $100 / $1,000 rule of thumb
+
+When you have nothing to go on, start with the order of magnitude that matches who you serve:
+
+- **~$10/mo** — prosumer / individual, high volume, low touch
+- **~$100/mo** — SMB / team tool, the SaaS default
+- **~$1,000/mo** — mid-market / business-critical / sales-assisted
+
+Pick the bucket by **who the customer is and how much value you deliver**, then start near the round number. You can move within the bucket fast once you have signal.
+
+### Avoid the $9 trap
+
+Resist the urge to price ultra-low (e.g. **$9/mo**) to reduce friction. Ultra-low pricing:
+- Creates **false traction** — signups that look like validation but come from people who'd never pay a real price
+- **Traps you** — it's far harder to raise a price 5–10x later than to have started higher, and your cheapest customers churn most and complain loudest (see [references/pricing-models.md](references/pricing-models.md) on low-price retention)
+
+Round-and-slightly-higher beats clever-and-cheap.
+
+### "Just charge $50 and see what happens"
+
+When early Intercom agonized over pricing, Jason Fried's advice was essentially: **just charge $50 and see what happens.** Stop modeling; get a real signal. If people pay without flinching, raise it. If nobody bites, you've learned something for the cost of a week, not a quarter.
+
+**For the eight ways to structure how you charge (flat, usage, tier, user, feature, credit, outcome, hybrid) and the value/price ratio:** See [references/pricing-models.md](references/pricing-models.md).
+
 ---
 
 ## Value Metrics
@@ -95,6 +129,8 @@ The value metric is what you charge for—it should scale with the value custome
 Ask: "As a customer uses more of [metric], do they get more value?"
 - If yes → good value metric
 - If no → price doesn't align with value
+
+**The value metric picks the pricing model.** Once you know what scales with value, choose how to charge on it — flat, usage, tier, user, feature, credit, outcome, or a hybrid. See [references/pricing-models.md](references/pricing-models.md).
 
 ---
 
@@ -164,6 +200,17 @@ Identifies which features customers value most:
 2. **Delayed increase** — Announce 3-6 months out
 3. **Tied to value** — Raise price but add features
 4. **Plan restructure** — Change plans entirely
+
+### Rollout Methodology
+
+A price change is a rollout, not a switch you flip. Sequence it to de-risk:
+
+1. **Test on new customers first.** Raise the price only for *new* signups and watch conversion. New customers have no anchor and no relationship at stake, so they give you a clean read on whether the market accepts the number — before you touch a single existing account.
+2. **Don't reflexively grandfather forever.** Grandfathering feels kind, but it can leave enormous money on the table. Run the math: a customer paying **$50/mo** who *should* be at **$250/mo** is a **$2,400/yr** gap — and $200/mo you're subsidizing indefinitely across your whole base. Grandfather as a *transition* (a grace period), not a permanent exemption.
+3. **Roll out small, then gradually.** Move **5–10%** of existing customers to the new price first. Watch churn and support volume for a cycle, then expand in staggered waves. A staggered rollout contains the blast radius and gives you an off-ramp if churn spikes.
+4. **Communicate the *why*, months ahead, with a generous offer.** Tell customers why the price is changing (usually: more value shipped) well in advance. Soften it: lock-in-the-old-price-if-you-upgrade-to-annual-now, an extended grace window, or a one-time credit. Advance notice + a generous option converts a resentment moment into a loyalty one.
+
+Expect — and accept — some churn. The customers most likely to leave over a justified increase are usually your least-profitable, highest-support, most price-sensitive accounts.
 
 ---
 
