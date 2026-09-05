@@ -50,6 +50,8 @@ The interpretation (Lily Ray's, and it fits the fan-out data): these are exactly
 | Product/docs/pricing (owned, "official") | **Rising** | Strong | **Dominant** | Strong |
 | How-to / guides | Steady | Strong | OK | Strong |
 
+*(Table caveat: the demotion was measured on ChatGPT only. "OK" for Gemini/Perplexity means no demotion has been reported there — not that stability was measured. Any engine can ship its own 5.6-style shift.)*
+
 4. **Treat every number above as a dated snapshot.** Same doctrine as source volatility: these are Aug 2026 measurements of a moving system. Verify against your own citation monitoring before betting budget.
 
 ## LinkedIn as a citation surface (from LinkedIn's own AEO guide)
