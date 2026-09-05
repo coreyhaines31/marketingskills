@@ -125,6 +125,11 @@
         "Does not present citation-share statistics as stable facts; recommends verifying against the user's own citation monitoring"
       ],
       "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "We're a B2B SaaS planning our 2026 content roadmap. The plan is 40 comparison pages ('us vs competitor') and 20 'best tools' listicles, mainly to win ChatGPT citations. Also, how do I know if it's working — I checked ChatGPT once last week and we weren't mentioned.",
+      "expected_output": "Should load references/format-volatility.md and push back on the rationale with the ChatGPT 5.6 shift (Aug 2026, Peec AI data): listicle citations fell ~50% and comparison-page citations ~32% post-5.6, with fan-out queries dropping 'best/vs/top/comparison' modifiers in favor of site: and 'official' searches — so 'win ChatGPT citations' no longer justifies scaled comparison/listicle production. Should NOT say comparison pages are dead: they still convert humans and still earn citations on Google AI Overviews, Gemini, and Perplexity — format strategy is per-platform. Should steer investment toward owned 'official' pages (product, docs, pricing, original research), which are rising as the citable class and dominate Gemini (~60% business sites). May suggest extracting ChatGPT's real fan-out queries via the DevTools method for coverage planning (while warning against mass-generating a page per query — scaled content abuse). On measurement: one ChatGPT check is an anecdote — AI answers are non-deterministic; run each query 3–5 times per platform, track mention rate with sample size (e.g. 'cited 3/5'), and compare rates over time. Numbers should be treated as dated snapshots to verify against own monitoring."
     }
   ]
 }
