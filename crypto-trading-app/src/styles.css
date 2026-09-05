@@ -1,0 +1,280 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a0e17;
+  --panel: #121828;
+  --panel-border: #232b42;
+  --text: #e6ebf5;
+  --text-dim: #8b95ac;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.app-header h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 14px;
+  max-width: 520px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.timeframe-select {
+  display: flex;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.timeframe-select button {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.timeframe-select button.active {
+  background: #1f2b47;
+  color: var(--text);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.refresh-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.disclaimer {
+  background: #1a1408;
+  border: 1px solid #3a2e0f;
+  color: #f2d491;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.last-updated {
+  color: var(--text-dim);
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+}
+
+.coin-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.coin-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.coin-card-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.badge-long {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--green);
+}
+
+.badge-short {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--red);
+}
+
+.badge-none {
+  background: rgba(139, 149, 172, 0.15);
+  color: var(--text-dim);
+}
+
+.confidence {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.chart-container {
+  width: 100%;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.setup-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.setup-grid .k {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.setup-grid .v {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.v-stop {
+  color: var(--red);
+}
+
+.v-tp {
+  color: var(--green);
+}
+
+.reasons {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.reasons li {
+  margin-bottom: 2px;
+}
+
+.warnings {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--amber);
+}
+
+.no-setup-reasons {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.coin-card-error {
+  color: var(--red);
+  font-size: 13px;
+}
+
+.risk-calc {
+  border-top: 1px solid var(--panel-border);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.risk-calc-inputs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.risk-calc-inputs label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-dim);
+  flex: 1;
+}
+
+.risk-calc-inputs input {
+  background: #0c1220;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.risk-calc-output {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 60px 0;
+}
