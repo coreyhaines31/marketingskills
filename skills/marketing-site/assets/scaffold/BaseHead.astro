@@ -1,0 +1,66 @@
+---
+/**
+ * SEO head — every page renders through this (via BaseLayout).
+ * Handles: title/description, canonical, Open Graph, Twitter Card,
+ * hreflang alternates (+ x-default), favicon, font preconnect.
+ *
+ * Depends on: src/config.ts and i18n helpers (localizedPath, stripLangPrefix).
+ * For a single-language site, delete the hreflang block.
+ */
+import { SITE_URL, BRAND, LANGS, type Lang } from '../config'
+import { stripLangPrefix, localizedPath } from '../i18n/utils'
+
+interface Props {
+  title: string
+  description: string
+  lang: Lang
+  image?: string
+  type?: 'website' | 'article'
+  noindex?: boolean
+  publishedTime?: string
+}
+const {
+  title, description, lang,
+  image = BRAND.ogImage, type = 'website', noindex = false, publishedTime,
+} = Astro.props
+
+const strip = (u: string) => u.replace(/(.+)\/$/, '$1') // drop trailing slash (except root)
+const canonical = strip(new URL(Astro.url.pathname, SITE_URL).href)
+const ogImage = new URL(image, SITE_URL).href
+const fullTitle = title.includes(BRAND.name) ? title : `${title} · ${BRAND.name}`
+
+const basePath = stripLangPrefix(Astro.url.pathname)
+const alternates = LANGS.map((l) => ({ lang: l, href: strip(new URL(localizedPath(basePath, l), SITE_URL).href) }))
+const xDefault = strip(new URL(localizedPath(basePath, LANGS[0]), SITE_URL).href)
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+<link rel="alternate" hreflang="x-default" href={xDefault} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={BRAND.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content={lang === 'en' ? 'en_US' : lang} />
+{type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={BRAND.twitter} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title={`${BRAND.name} Blog`} href={new URL('/rss.xml', SITE_URL).href} />
