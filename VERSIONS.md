@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.8.2 | 2026-08-23 |
-| ai-seo | 2.4.0 | 2026-08-21 |
+| ai-seo | 2.5.0 | 2026-09-04 |
 | analytics | 2.0.1 | 2026-07-22 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.0 | 2026-07-23 |
@@ -56,6 +56,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.1 (2026-09-04)
+
+- **ai-seo** (2.4.0 → 2.5.0): new `references/format-volatility.md` — the citation-*format* volatility axis, companion to agent-readiness.md's citation-*source* volatility. Anchored on the **ChatGPT 5.6 format shift** (Aug 2026, Peec AI data via Tomek Rudzki and Lily Ray): fan-out queries dropped the "vs / comparison / top / best / reviews" modifiers while `site:` and "official" searches surged, and citations by page type fell −50.5% for listicles (15.77% → 7.80%) and −32.1% for comparison pages (9.08% → 6.17%) — the two formats companies scaled for GEO, demoted in one release. Covers what changes (stop justifying scaled listicle/comparison production with "wins AI citations"; owned "official" pages rising as the citable class) and what doesn't (comparisons still convert humans and still earn citations on Google AIO / Gemini / Perplexity — a per-platform format table replaces one-size-fits-all advice). Adds **LinkedIn as a citation surface** from LinkedIn's own AEO guide (via Chris Long, platform-reported: most-cited outlet for professional searches; Articles out-cite Posts ~60/40; first words of a post become the URL slug — front-load the target phrase), a **DIY ChatGPT fan-out extraction** diagnostic (DevTools → network payload → literal background queries; explicitly warned against as a mass-generation content-spam input), and a **measurement-rigor** section (AI answers are non-deterministic: 3–5 runs per query, mention *rate* with sample size, rates-over-time not run-vs-run, technical/comprehension/trust cause split; framing credited to Initial Commit's AEO audit skill, Josh Pigford). SKILL.md: Content Types section rewritten around the volatility (stale ~33%-comparison-share table retired to context), ChatGPT fan-out + extraction pointer added to the fan-out section, LinkedIn added to the Presence pillar, non-determinism rule added to DIY monitoring, new triggers ('do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'AI citation format shift'). New eval (id 10) covers the scaled-comparison-roadmap prompt that must get the 5.6 pushback plus the one-run-anecdote measurement correction.
+
 
 ### 2.11.0 (2026-08-23)
 
