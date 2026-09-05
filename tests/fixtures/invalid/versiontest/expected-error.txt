@@ -1,0 +1,1 @@
+'version' is top-level (should be under 'metadata:')
