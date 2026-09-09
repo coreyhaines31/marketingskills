@@ -63,6 +63,13 @@ node tools/clis/minimax-video.js video generate \
   --prompt "The camera slowly pushes toward the product" \
   --first-frame-image https://example.com/product.png --duration 6
 
+# Use image, video, or audio references for reference-to-video
+node tools/clis/minimax-video.js video generate \
+  --prompt "Keep the product and soundtrack consistent while the camera orbits" \
+  --reference-image https://example.com/product.png \
+  --reference-video https://example.com/motion.mp4 \
+  --reference-audio https://example.com/music.mp3 --duration 6
+
 # Legacy v1 image-to-video accepts a first frame without a prompt
 node tools/clis/minimax-video.js video generate \
   --model I2V-01 --first-frame-image https://example.com/product.png
@@ -98,7 +105,7 @@ curl -X POST https://api.minimax.io/v2/video_generation \
   }'
 ```
 
-Accepted v2 request fields: `model`, `content`, `resolution`, `duration`, `ratio`, `callback_url`. Add `image_url` content with a `first_frame` or `last_frame` role for image-to-video.
+Accepted v2 request fields: `model`, `content`, `resolution`, `duration`, `ratio`, `callback_url`. `MiniMax-H3` requires `2K` resolution and an integer duration from 4 to 15 seconds. Add `image_url` content with a `first_frame` or `last_frame` role for image-to-video; a last frame must be paired with a first frame. Reference-to-video accepts `image_url`, `video_url`, and `audio_url` content with the `reference_image`, `reference_video`, and `reference_audio` roles; reference inputs cannot be combined with first/last-frame inputs.
 
 ### Poll the Task
 

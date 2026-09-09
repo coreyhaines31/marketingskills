@@ -23,6 +23,7 @@ const VIDEO_MODELS = [
   'I2V-01',
 ]
 const DEFAULT_MODEL = 'MiniMax-H3'
+const V1_VIDEO_MODELS = VIDEO_MODELS.filter(model => model !== DEFAULT_MODEL)
 
 const V2_FIELDS = ['model', 'content', 'resolution', 'duration', 'ratio', 'callback_url']
 const V1_FIELDS = ['model', 'prompt', 'first_frame_image', 'prompt_optimizer', 'fast_pretreatment', 'duration', 'resolution', 'callback_url']
@@ -102,6 +103,9 @@ function v2Content(prompt) {
   const content = [{ type: 'text', text: prompt }]
   if (args['first-frame-image']) content.push({ type: 'image_url', image_url: { url: args['first-frame-image'] }, role: 'first_frame' })
   if (args['last-frame-image']) content.push({ type: 'image_url', image_url: { url: args['last-frame-image'] }, role: 'last_frame' })
+  if (args['reference-image']) content.push({ type: 'image_url', image_url: { url: args['reference-image'] }, role: 'reference_image' })
+  if (args['reference-video']) content.push({ type: 'video_url', video_url: { url: args['reference-video'] }, role: 'reference_video' })
+  if (args['reference-audio']) content.push({ type: 'audio_url', audio_url: { url: args['reference-audio'] }, role: 'reference_audio' })
   return content
 }
 
@@ -122,16 +126,34 @@ async function main() {
           }
           if (version === 'v2') {
             const hasFrame = args['first-frame-image'] || args['last-frame-image']
+            const hasReference = args['reference-image'] || args['reference-video'] || args['reference-audio']
+            if (model !== DEFAULT_MODEL) { result = { error: `v2 requires model ${DEFAULT_MODEL}` }; break }
+            if (args['last-frame-image'] && !args['first-frame-image']) {
+              result = { error: '--last-frame-image requires --first-frame-image' }
+              break
+            }
+            if (hasFrame && hasReference) {
+              result = { error: 'First/last-frame inputs cannot be combined with reference inputs' }
+              break
+            }
+            const resolution = args.resolution || '2K'
+            if (resolution !== '2K') { result = { error: 'v2 requires --resolution 2K' }; break }
+            const duration = numeric(args.duration || 5)
+            if (!Number.isInteger(duration) || duration < 4 || duration > 15) {
+              result = { error: 'v2 --duration must be an integer from 4 to 15 seconds' }
+              break
+            }
             const body = {
               model,
               content: v2Content(prompt),
-              resolution: args.resolution || '2K',
-              duration: numeric(args.duration || 5),
-              ratio: args.ratio || (hasFrame ? 'adaptive' : '16:9'),
+              resolution,
+              duration,
+              ratio: args.ratio || (hasFrame || hasReference ? 'adaptive' : '16:9'),
             }
             if (args['callback-url']) body.callback_url = args['callback-url']
             result = await api('POST', '/v2/video_generation', body)
           } else {
+            if (!V1_VIDEO_MODELS.includes(model)) { result = { error: `Unsupported v1 model: ${model}` }; break }
             const body = { model }
             if (prompt) body.prompt = prompt
             if (args['first-frame-image']) body.first_frame_image = args['first-frame-image']
@@ -186,7 +208,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          video: 'video [generate --prompt <text> [--model <id>] [--first-frame-image <url>] [--last-frame-image <url>] [--duration <n>] [--resolution <res>] [--ratio <ratio>] [--callback-url <url>] | status --task-id <id> | list | delete --task-id <id> | download --file-id <id>]',
+          video: 'video [generate --prompt <text> [--model <id>] [--first-frame-image <url>] [--last-frame-image <url>] [--reference-image <url>] [--reference-video <url>] [--reference-audio <url>] [--duration <n>] [--resolution <res>] [--ratio <ratio>] [--callback-url <url>] | status --task-id <id> | list | delete --task-id <id> | download --file-id <id>]',
           models: 'models',
           options: '--region <global_en|cn_zh> --api-version <v1|v2> --dry-run',
           fields: { v2: V2_FIELDS, v1: V1_FIELDS },
