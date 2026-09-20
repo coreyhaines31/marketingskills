@@ -47,7 +47,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
 | sales-enablement | 2.0.1 | 2026-06-16 |
-| schema | 2.0.0 | 2026-05-05 |
+| schema | 2.0.1 | 2026-09-21 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.2 (2026-09-21)
+
+- **schema** (2.0.0 → 2.0.1): first eval in the repo that a machine can run. `evals/evals.json` has always said what a good answer contains, in prose; nothing could fail it, so a drifting answer was only caught by someone reading closely. New `skills/schema/evals/check.py` turns the mechanical half of eval id 1 into a program: the JSON-LD parses (script tag, fenced block, or `.json`; reply file or whole workspace), `Organization` carries its required (`name`, `url`) and recommended (`logo`, `description`, `sameAs`) properties, multiple types are combined with `@graph`, no placeholder values were left behind (`Your Company`, `example.com`, `TODO`), and a validator is recommended. The one check that encodes a documented preference rather than a correctness fact — `@graph` versus several separate `<script>` blocks — says so in its failure message. `evals/fixtures/` holds the proof the checker is worth trusting: two correct answers written differently (both pass), one valid-but-placeholder answer and one that does not parse (both fail), with `--selftest` asserting exactly that. `SKILL.md` gains a pointer to the checker under Output Format, where an agent will read it. Checked out of sample on two agents given the same prompt: one answered inline and passed all nine checks; the other wrote `index.html` with four separate `<script>` blocks and failed only the `@graph` check — which is why the checker reads a workspace as well as a reply (pointed at that agent's reply alone, it reported everything as failed). Covers eval id 1; the other five evals are still prose-only.
 
 ### 2.11.1 (2026-09-04)
 

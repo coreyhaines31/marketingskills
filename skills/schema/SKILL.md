@@ -2,7 +2,7 @@
 name: schema
 description: When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions "schema markup," "structured data," "JSON-LD," "rich snippets," "schema.org," "FAQ schema," "product schema," "review schema," "breadcrumb schema," "Google rich results," "knowledge panel," "star ratings in search," or "add structured data." Use this whenever someone wants their pages to show enhanced results in Google. For broader SEO issues, see seo-audit. For AI search optimization, see ai-seo.
 metadata:
-  version: 2.0.0
+  version: 2.0.1
 ---
 
 # Schema Markup
@@ -158,6 +158,21 @@ You can combine multiple schema types on one page using `@graph`:
 - [ ] No errors or warnings
 - [ ] Matches page content
 - [ ] All required properties included
+
+### Checking the Output
+
+This skill ships a runnable check for the format above — `evals/check.py`, documented in
+`evals/README.md`:
+
+```bash
+python3 skills/schema/evals/check.py <reply-or-workspace> --expect-name <Business>
+```
+
+It fails when the JSON-LD does not parse, when `Organization` is missing its required
+(`name`, `url`) or recommended (`logo`, `description`, `sameAs`) properties, when multiple
+types are not combined with `@graph`, when placeholder values were left in place, or when no
+validator is recommended. Run it before you call the markup done.
+
 
 ---
 
