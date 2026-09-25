@@ -17,6 +17,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | competitor-profiling | 2.0.1 | 2026-08-19 |
 | competitors | 2.0.1 | 2026-07-09 |
 | content-strategy | 2.1.1 | 2026-08-23 |
+| conversion-tracking | 1.0.0 | 2026-09-25 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.2 | 2026-08-23 |
 | cro | 2.0.0 | 2026-05-05 |
@@ -56,6 +57,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.12.0 (2026-09-25)
+
+- Added the **`conversion-tracking`** skill (1.0.0). Setting up, auditing, verifying and fixing the path from a conversion on a website to Google Ads, Meta, GA4, LinkedIn, TikTok and Microsoft Ads, for lead generation and ecommerce. Gives an orphaned job a home. Analytics listed conversion tracking as a trigger without covering it, attribution routed pixels and CAPI to ads, and ads held one reference file. Built on one distinction, that lead gen has to infer success from a browser signal while ecommerce reads it from an order record. Nine references (how each form, booking and chat tool signals success, the complete browser-side path, the server-side options with prices, ecommerce platforms including Shopify's 26 Aug 2026 Additional Scripts removal, Google Ads, Meta, other platforms, the audit playbook, and why the numbers never match), 22 detection snippets, importable GTM recipes merged by `scripts/build_recipe.py`, and 16 evals. Audit scoring inherits `ads/references/audit-guardrails.md`. New skill = repo y release; total skills: 51.
 
 ### 2.11.1 (2026-09-04)
 
