@@ -1,0 +1,81 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "path": "accounts/0/containers/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Phone call click",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Phone call click Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\n/*! Phone call click detection (MIT)\n *  From the conversion-tracking skill in Marketing Skills\n *  Detects: click on a tel: link. Pushes dataLayer event: phone_click\n */\n(function () {\n  if (window.__ctDetectPhoneClick) return;\n  window.__ctDetectPhoneClick = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // A click is a call INTENT, not a completed call. On desktop especially,\n  // many tel: clicks never become a conversation. Count it as a lead signal,\n  // and prefer a call tracking number if you need answered-call accuracy.\n\n  // Ignore a repeat click on the same number inside this window. Impatient\n  // double-taps on mobile are common and would otherwise double count.\n  var DEDUPE_MS = 2000;\n  var lastNumber = null;\n  var lastAt = 0;\n\n  function normalise(href) {\n    // tel:+61 (2) 1234-5678 -> +61212345678 . Keeps a leading +, drops the\n    // punctuation humans put in phone numbers so dedupe compares like for like.\n    var raw = String(href || '').replace(/^tel:/i, '');\n    try { raw = decodeURIComponent(raw); } catch (e) { /* leave as-is */ }\n    var plus = raw.trim().charAt(0) === '+' ? '+' : '';\n    return plus + raw.replace(/[^0-9]/g, '');\n  }\n\n  function handleClick(event) {\n    try {\n      // Left click only, and not a modified click that opens elsewhere.\n      if (event.button !== undefined && event.button !== 0) return;\n      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;\n\n      var target = event.target;\n      if (!target || !target.closest) return;\n\n      // closest() because the click usually lands on an icon or span INSIDE\n      // the anchor, not the anchor itself.\n      var link = target.closest('a[href^=\"tel:\"], a[href^=\"TEL:\"]');\n      if (!link) return;\n\n      var number = normalise(link.getAttribute('href'));\n      if (!number) return;\n\n      var now = new Date().getTime();\n      if (number === lastNumber && (now - lastAt) < DEDUPE_MS) return;\n      lastNumber = number;\n      lastAt = now;\n\n      window.dataLayer.push({\n        event: 'phone_click',\n        phone_number: number,\n        // The visible text, useful when a site shows different numbers per\n        // location or campaign. Trimmed and capped so a whole button's worth\n        // of markup text never lands in the dataLayer.\n        link_text: (link.textContent || '').trim().slice(0, 100),\n        page_path: window.location.pathname\n      });\n    } catch (e) {\n      // Never throw back into the page's own click handling.\n    }\n  }\n\n  // Bubble phase: a tel: click has no validation to lose a race with, and\n  // bubbling means anything that legitimately cancels the click wins first.\n  document.addEventListener('click', handleClick, false);\n})();\n</script>"
+          },
+          {
+            "type": "boolean",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Phone call click",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "phone_click"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [],
+    "fingerprint": "0"
+  }
+}

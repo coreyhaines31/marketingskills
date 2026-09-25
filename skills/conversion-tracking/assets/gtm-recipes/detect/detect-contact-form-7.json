@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Contact Form 7",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Contact Form 7 Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "(function () {\n  if (window.__ctDetectContactForm7) return;\n  window.__ctDetectContactForm7 = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formEl) {\n    // Modern Contact Form 7 (verified against 6.1.6 on a live site) puts\n    // data-wpcf7-id on the WRAPPING <div class=\"wpcf7\">, not on the <form>\n    // element itself. Check the form first (older/other CF7 setups may\n    // still stamp it there) and fall back to the wrapper.\n    var formId = '';\n    try {\n      if (formEl && formEl.getAttribute) {\n        formId = formEl.getAttribute('data-wpcf7-id') || '';\n      }\n      if (!formId && formEl && formEl.closest) {\n        var wrap = formEl.closest('.wpcf7');\n        if (wrap && wrap.getAttribute) {\n          formId = wrap.getAttribute('data-wpcf7-id') || '';\n        }\n      }\n    } catch (e) {\n      // .closest unsupported in very old browsers \u2014 non-fatal, form_id stays ''\n    }\n    window.dataLayer.push({\n      event: 'contact_form_7_submitted',\n      form_id: formId\n    });\n  }\n\n  // Fire path \u2014 Contact Form 7's own native DOM CustomEvent, dispatched on\n  // the <form> element once an AJAX submission passes CF7's server-side\n  // validation and spam checks, then bubbles to document. This is the ONLY\n  // path this recipe tracks; a legacy non-AJAX (full page reload) CF7 setup\n  // never dispatches this event at all \u2014 CF7 itself provides no client-side\n  // success signal in that mode either (the real module only logs a\n  // warning for it, it never fires a conversion).\n  document.addEventListener('wpcf7mailsent', function (event) {\n    var formEl = event && event.target;\n    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n    fireConversion(formEl);\n  }, false);\n})();"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Contact Form 7 Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "contact_form_7_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Contact Form 7 ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

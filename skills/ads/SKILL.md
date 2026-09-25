@@ -1,8 +1,8 @@
 ---
 name: ads
-description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' or 'when should I kill an ad.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
+description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' or 'when should I kill an ad.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro. For conversion pixels, CAPI, and tracking audits, see conversion-tracking."
 metadata:
-  version: 2.3.2
+  version: 2.3.3
 ---
 
 # Paid Ads
@@ -56,7 +56,7 @@ This skill's depth lives in references — load by intent. For **any operational
 | Auditing a live account, grading account health, quoting benchmarks, recommending changes | [audit-guardrails.md](references/audit-guardrails.md) | Pass/fail/unknown scoring, evidence coverage, recommendation safety, hard stops, benchmark discipline |
 | Itemized Google Ads / ecommerce account audit (Search + Shopping + PMax + GMC + Demand Gen) | [google-ads-audit-checklist.md](references/google-ads-audit-checklist.md) | 32 checks across 11 categories — feed/GMC quality, Shopping segmentation, PMax signals/budget, DG format splits, lander funnels; each scored pass/fail/unknown/NA via audit-guardrails |
 | Agentic creative/competitive research: ad-library teardown, review→persona mapping, organic competitor teardown | [creative-research-automation.md](references/creative-research-automation.md) | Ad Library output schema (format split, % partnership, inferred personas, top-10 by impressions), reviews→CSV→personas doc→deck, "who creatives target vs. who buys," connectors + scheduled-to-Slack workflow |
-| Audience setup, tracking setup, launch checklists, copy formulas | [audience-targeting.md](references/audience-targeting.md) · [conversion-tracking.md](references/conversion-tracking.md) · [platform-setup-checklists.md](references/platform-setup-checklists.md) · [ad-copy-templates.md](references/ad-copy-templates.md) | Existing foundations |
+| Audience setup, tracking setup, launch checklists, copy formulas | [audience-targeting.md](references/audience-targeting.md) · [platform-setup-checklists.md](references/platform-setup-checklists.md) · [ad-copy-templates.md](references/ad-copy-templates.md) | Existing foundations |
 
 ---
 
@@ -410,7 +410,7 @@ Before launching campaigns, ensure proper tracking and account setup.
 
 **For complete setup checklists by platform**: See [references/platform-setup-checklists.md](references/platform-setup-checklists.md)
 
-**For conversion pixel installation and event setup**: See [references/conversion-tracking.md](references/conversion-tracking.md)
+**For conversion pixel installation and event setup**: See the [conversion-tracking](../conversion-tracking/SKILL.md) skill
 
 ### Universal Pre-Launch Checklist
 - [ ] Conversion tracking tested with real conversion
@@ -484,7 +484,7 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key adver
 | **LinkedIn Ads** | B2B, job title targeting | - | [linkedin-ads.md](../../tools/integrations/linkedin-ads.md) |
 | **TikTok Ads** | Younger demographics, video | - | [tiktok-ads.md](../../tools/integrations/tiktok-ads.md) |
 
-For tracking setup, see [references/conversion-tracking.md](references/conversion-tracking.md), [ga4.md](../../tools/integrations/ga4.md), [segment.md](../../tools/integrations/segment.md)
+For tracking setup, see the [conversion-tracking](../conversion-tracking/SKILL.md) skill; tool guides: [ga4.md](../../tools/integrations/ga4.md), [segment.md](../../tools/integrations/segment.md)
 
 ---
 
@@ -494,6 +494,7 @@ For tracking setup, see [references/conversion-tracking.md](references/conversio
 - **revops**: For the CRM side of ABM — lead scoring, routing, and the offline conversion loop
 - **customer-research / competitor-profiling / positioning**: Voice-of-customer that feeds ad copy and angles; and turning an organic-teardown shortlist + the personas doc from [creative-research-automation.md](references/creative-research-automation.md) into full competitor dossiers and positioning
 - **copywriting**: For landing page copy that converts ad traffic
-- **analytics / attribution**: Conversion tracking setup and the blended-CAC inputs behind [payback-period.md](references/payback-period.md); **pricing** sets the ARPU + plan structure that drive its Payback math (why blended LTV:CAC hides $9-vs-$999 variance)
+- **conversion-tracking**: For pixel and conversion tag installation, CAPI and server-side delivery, and tracking audits. Launching without conversion tracking is the first strategy mistake above
+- **analytics / attribution**: The blended-CAC inputs behind [payback-period.md](references/payback-period.md); **pricing** sets the ARPU + plan structure that drive its Payback math (why blended LTV:CAC hides $9-vs-$999 variance)
 - **ab-testing**: For landing page testing to improve ROAS
 - **cro**: For optimizing post-click conversion rates

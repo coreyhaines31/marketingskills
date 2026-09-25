@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Framer Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Framer Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectFramerForms) return;\n  window.__ctDetectFramerForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formName) {\n    window.dataLayer.push({\n      event: 'framer_form_submitted',\n      form_name: formName || ''\n    });\n  }\n\n  function isFramerForm(formEl) {\n    if (!formEl) return false;\n    if (formEl.hasAttribute && formEl.hasAttribute('data-framer-name')) return true;\n    var cls = typeof formEl.className === 'string' ? formEl.className : '';\n    if (/(^|\\s)framer-[A-Za-z0-9_-]+/.test(cls)) return true;\n    try {\n      if (formEl.closest && formEl.closest('[data-framer-component-type]')) return true;\n      if (formEl.closest && formEl.closest('[data-framer-name]')) return true;\n    } catch (e) {\n      // .closest not available \u2014 fall through\n    }\n    return false;\n  }\n\n  function handleSubmit(event) {\n    try {\n      var formEl = event.target;\n      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n      if (!isFramerForm(formEl)) return;\n\n      var formName = formEl.getAttribute('data-framer-name') || formEl.id || '';\n\n      fireConversion(formName);\n    } catch (e) {\n      // Never throw back into Framer's own form handling.\n    }\n  }\n\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('submit', handleSubmit, true);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Framer Form Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "framer_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Framer Form Name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_name"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Webflow Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Webflow Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWebflowForms) return;\n  window.__ctDetectWebflowForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // How long after a submit we keep watching for Webflow's success box\n  // before giving up. Webflow's AJAX round-trip is normally 1\u20132 seconds.\n  var WATCH_TIMEOUT_MS = 30000;\n\n  function fireConversion(formName) {\n    window.dataLayer.push({\n      event: 'webflow_form_submitted',\n      form_name: formName || ''\n    });\n  }\n\n  // Webflow marks every form component with the `.w-form` wrapper class,\n  // regardless of theme or custom classes added on top. This is the same\n  // check the production module uses to scope its listener to real Webflow\n  // forms (and not e.g. a hand-coded <form> elsewhere on the page).\n  function isWebflowForm(formEl) {\n    if (!formEl || !formEl.closest) return false;\n    return formEl.closest('.w-form') !== null;\n  }\n\n  function isVisible(el) {\n    if (!el) return false;\n    try {\n      return window.getComputedStyle(el).display !== 'none';\n    } catch (e) {\n      return false;\n    }\n  }\n\n  // Arm a success watcher for one form. Fires only when Webflow's own\n  // success box (`.w-form-done`, a sibling of the form inside the `.w-form`\n  // wrapper) becomes visible \u2014 Webflow sets inline `display: block` on it\n  // after its AJAX call succeeds (live-verified). A visible `.w-form-fail`\n  // (Webflow's failure box), or the timeout elapsing with neither box shown\n  // (Webflow's JS can also reject a submission silently, with no UI change\n  // at all), tears the watcher down WITHOUT firing. One watcher per form:\n  // a re-submit while armed (e.g. a retry after a failure) resets it.\n  function armWatcher(formEl, formName) {\n    var wrap = formEl.closest('.w-form');\n    if (!wrap) return;\n    var doneEl = wrap.querySelector('.w-form-done');\n    var failEl = wrap.querySelector('.w-form-fail');\n    if (!doneEl) return; // nothing to confirm success against \u2014 never fire unconfirmed\n\n    var prev = formEl.__ctDetectWatch;\n    if (prev) prev.teardown();\n\n    var state = { fired: false };\n    var observer = null;\n    var pollTimer = null;\n    var killTimer = null;\n\n    function teardown() {\n      if (state.fired) return;\n      state.fired = true;\n      if (observer) { try { observer.disconnect(); } catch (e) {} }\n      if (pollTimer) clearInterval(pollTimer);\n      if (killTimer) clearTimeout(killTimer);\n      formEl.__ctDetectWatch = null;\n    }\n    state.teardown = teardown;\n\n    function check() {\n      if (state.fired) return;\n      if (isVisible(doneEl)) {\n        teardown();\n        fireConversion(formName); // confirmed Webflow success\n      } else if (isVisible(failEl)) {\n        teardown(); // confirmed Webflow failure \u2014 no conversion\n      }\n    }\n\n    if (typeof MutationObserver === 'function') {\n      observer = new MutationObserver(check);\n      observer.observe(wrap, {\n        attributes: true,\n        attributeFilter: ['style', 'class'],\n        subtree: true,\n        childList: true\n      });\n    }\n    pollTimer = setInterval(check, 300); // belt-and-braces alongside the observer\n    killTimer = setTimeout(teardown, WATCH_TIMEOUT_MS);\n\n    formEl.__ctDetectWatch = state;\n  }\n\n  // Attached at the document level in CAPTURE phase so it runs before the\n  // handler Webflow attaches in bubble phase \u2014 the same technique the\n  // production module uses to see the submit reliably. The submit itself\n  // never fires the conversion; it only snapshots the form name and arms\n  // the success watcher above.\n  function handleSubmit(event) {\n    try {\n      var formEl = event.target;\n      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n      if (!isWebflowForm(formEl)) return;\n\n      // The form's own name/id \u2014 set by the site builder in the Webflow\n      // Designer, not user-submitted data. Snapshotted at submit time.\n      var formName = formEl.getAttribute('data-name') || formEl.id || '';\n\n      armWatcher(formEl, formName);\n    } catch (e) {\n      // Never throw back into Webflow's own form handling.\n    }\n  }\n\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('submit', handleSubmit, true);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Webflow Form Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "webflow_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Webflow Form Name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_name"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

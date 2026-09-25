@@ -10,7 +10,7 @@ Work top to bottom. For each item, record the result, the evidence you saw (or t
 
 ## Tracking
 
-1. **Conversion tracking configuration** — Confirm a single source of truth for purchases. Two systems counting the same order (GA4 import + native tag, or a duplicate gtag) inflates conversions and makes the bidder optimize toward phantom volume. *Fail if double-counting or missing purchase value; pass on a verified test conversion with the right value + currency.* Deep dive: [conversion-tracking.md](conversion-tracking.md).
+1. **Conversion tracking configuration** — Confirm a single source of truth for purchases. Two systems counting the same order (GA4 import + native tag, or a duplicate gtag) inflates conversions and makes the bidder optimize toward phantom volume. *Fail if double-counting or missing purchase value; pass on a verified test conversion with the right value + currency.* Deep dive: the [conversion-tracking](../../conversion-tracking/SKILL.md) skill.
 
 ## Targeting
 

@@ -82,6 +82,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [competitor-profiling](skills/competitor-profiling/) | When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions... |
 | [competitors](skills/competitors/) | When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when... |
 | [content-strategy](skills/content-strategy/) | When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also... |
+| [conversion-tracking](skills/conversion-tracking/) | Set up, audit, verify, or fix website conversion tracking. Use when the conversion is a form submission, booked... |
 | [copy-editing](skills/copy-editing/) | When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the... |
 | [copywriting](skills/copywriting/) | When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages,... |
 | [cro](skills/cro/) | When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage,... |
@@ -311,6 +312,7 @@ You can also invoke skills directly:
 
 ### Measurement & Testing
 - `analytics` - Event tracking setup
+- `conversion-tracking` - Pixels, conversion tags, server-side delivery, and tracking audits
 - `ab-testing` - Experiment design
 
 ### Retention

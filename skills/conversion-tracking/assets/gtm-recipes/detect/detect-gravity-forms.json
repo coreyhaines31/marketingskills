@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-05 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Gravity Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Gravity Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectGravityForms) return;\n  window.__ctDetectGravityForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Dedup between the two fire paths. On a normal setup BOTH paths see the\n  // same submission (the jQuery event fires first, the MutationObserver a few\n  // milliseconds later \u2014 live-verified), and the two report the form id with\n  // different types (number vs string), so we dedup on time, not on id: any\n  // fire within 3s of the last one is the same submission. A genuine second\n  // submission can't complete inside 3s (it needs a refill plus a server\n  // round trip).\n  var lastFiredAt = 0;\n  var DEDUP_WINDOW_MS = 3000;\n\n  function fireConversion(formId) {\n    var now = Date.now();\n    if (now - lastFiredAt < DEDUP_WINDOW_MS) return;\n    lastFiredAt = now;\n    window.dataLayer.push({\n      event: 'gravity_form_submitted',\n      form_id: String(formId || '')\n    });\n  }\n\n  // Fire path 1 \u2014 GF's own jQuery event, fired on `document` after an AJAX\n  // submission's confirmation renders. Covers every GF version that ships\n  // jQuery on window.\n  function hookConfirmationEvent() {\n    if (typeof window.jQuery === 'undefined') return false;\n    window.jQuery(document).on('gform_confirmation_loaded', function (event, formId) {\n      fireConversion(formId);\n    });\n    return true;\n  }\n\n  // Fire path 2 \u2014 MutationObserver fallback for setups where window.jQuery\n  // isn't reachable. GF replaces the form wrapper with a\n  // .gform_confirmation_message element on AJAX success; the form id is\n  // encoded in its id attribute (gform_confirmation_message_5).\n  function checkNode(node) {\n    if (!node || node.nodeType !== 1) return;\n    var conf = null;\n    if (node.classList && node.classList.contains('gform_confirmation_message')) {\n      conf = node;\n    } else if (node.querySelector) {\n      conf = node.querySelector('.gform_confirmation_message, [id^=\"gform_confirmation_message_\"]');\n    }\n    if (!conf) return;\n    var m = /gform_confirmation_message_(\\d+)/.exec(conf.id || '');\n    fireConversion(m ? m[1] : '');\n  }\n\n  function observeConfirmations() {\n    if (typeof MutationObserver === 'undefined') return;\n    var observer = new MutationObserver(function (muts) {\n      for (var i = 0; i < muts.length; i++) {\n        var added = muts[i].addedNodes;\n        if (!added) continue;\n        for (var j = 0; j < added.length; j++) checkNode(added[j]);\n      }\n    });\n    observer.observe(document.body || document.documentElement, {\n      childList: true,\n      subtree: true\n    });\n  }\n\n  if (!hookConfirmationEvent()) {\n    window.addEventListener('load', hookConfirmationEvent);\n  }\n  observeConfirmations();\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Gravity Forms Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "gravity_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Gravity Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Tally",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Tally Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectTally) return;\n  window.__ctDetectTally = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formId, formName) {\n    window.dataLayer.push({\n      event: 'tally_form_submitted',\n      form_id: formId || '',\n      form_name: formName || ''\n    });\n  }\n\n  function parseMessageData(data) {\n    if (!data) return null;\n    if (typeof data === 'string') {\n      try {\n        return JSON.parse(data);\n      } catch (e) {\n        return null;\n      }\n    }\n    if (typeof data === 'object') return data;\n    return null;\n  }\n\n  var TALLY_ORIGIN_PATTERN = /(^|\\.)tally\\.so$/;\n\n  function isTrustedOrigin(event) {\n    if (!event) return false;\n    if (event.source === window) return false;\n    if (!event.source) return false;\n    if (!event.origin || typeof event.origin !== 'string') return false;\n    var hostMatch = /^https:\\/\\/([^/]+)/.exec(event.origin);\n    if (!hostMatch) return false;\n    return TALLY_ORIGIN_PATTERN.test(hostMatch[1]);\n  }\n\n  function handleMessage(event) {\n    try {\n      if (!event || !event.data) return;\n      var msg = parseMessageData(event.data);\n      if (!msg) return;\n      var eventName = msg.event || msg.type;\n      if (eventName !== 'Tally.FormSubmitted') return;\n      if (!isTrustedOrigin(event)) return;\n\n      var payload = msg.payload || msg.data || msg;\n      if (!payload || typeof payload !== 'object' || !Array.isArray(payload.fields)) return;\n\n      fireConversion(payload.formId, payload.formName);\n    } catch (e) {\n      // Never throw back into the page's own message handling.\n    }\n  }\n\n  if (typeof window !== 'undefined' && window.addEventListener) {\n    window.addEventListener('message', handleMessage, false);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Tally Form Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "tally_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Tally Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "3",
+        "name": "DLV - Tally Form Name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_name"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

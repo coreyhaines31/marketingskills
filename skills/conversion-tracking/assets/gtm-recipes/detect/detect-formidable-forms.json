@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Formidable Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Formidable Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectFormidableForms) return;\n  window.__ctDetectFormidableForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  var SUCCESS_WINDOW_MS = 10000;\n  var DEFERRED_MARKER_KEY = '__ctDetectFormidableNativePending';\n  var DEFERRED_MARKER_TTL_MS = 60000;\n\n  function isFormidableForm(formEl) {\n    if (!formEl) return false;\n    try {\n      if (formEl.closest && formEl.closest('.frm_forms')) return true;\n    } catch (e) {\n      // .closest not available \u2014 fall back to class check\n    }\n    var cls = ' ' + (formEl.className || '') + ' ';\n    return cls.indexOf(' frm-show-form ') !== -1;\n  }\n\n  function fireConversion(formId, formEl) {\n    // Both AJAX events (and the native path) can resolve to the same\n    // submission \u2014 dedupe with a short-lived flag on the form when it's\n    // resolvable. If it isn't resolvable we still fire (favors counting a\n    // real submission over silently dropping it).\n    if (!formEl && formId) formEl = document.getElementById('form_' + formId);\n    if (formEl) {\n      if (formEl.getAttribute('data-ct-processing') === 'true') return;\n      formEl.setAttribute('data-ct-processing', 'true');\n      setTimeout(function () { formEl.removeAttribute('data-ct-processing'); }, 2000);\n      disarmWatcher(formEl);\n    }\n    window.dataLayer.push({\n      event: 'formidable_forms_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // ---- Shared validation-marker check (used by both fire paths) ----\n\n  function isNodeHidden(el) {\n    try {\n      if (el.hidden) return true;\n      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;\n      var view = el.ownerDocument && el.ownerDocument.defaultView;\n      if (view && view.getComputedStyle) {\n        var cs = view.getComputedStyle(el);\n        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // Formidable's standard error markers: .frm_error (per-field message),\n  // .frm_error_style (form-level rejection box), .frm_blank_field (state\n  // class on a required-but-blank field), [aria-invalid=\"true\"].\n  function hasVisibleValidationErrors(scopeEl) {\n    if (!scopeEl || !scopeEl.querySelectorAll) return false;\n    try {\n      var nodes = scopeEl.querySelectorAll(\n        '.frm_error, .frm_error_style, .frm_blank_field, [aria-invalid=\"true\"]'\n      );\n      for (var i = 0; i < nodes.length; i++) {\n        var node = nodes[i];\n        if (isNodeHidden(node)) continue;\n        if (node.getAttribute && node.getAttribute('aria-invalid') === 'true') return true;\n        var cls = ' ' + (typeof node.className === 'string' ? node.className : '') + ' ';\n        if (cls.indexOf(' frm_blank_field ') !== -1) return true;\n        if ((node.textContent || '').trim()) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  function hasServerRejectionMarkers() {\n    try {\n      var wrappers = document.querySelectorAll('.frm_forms');\n      for (var i = 0; i < wrappers.length; i++) {\n        if (hasVisibleValidationErrors(wrappers[i])) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  function hasSuccessMessage() {\n    try {\n      var nodes = document.querySelectorAll('.frm_message');\n      for (var i = 0; i < nodes.length; i++) {\n        if (isNodeHidden(nodes[i])) continue;\n        if ((nodes[i].textContent || '').trim()) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // ---- Fire path 1: AJAX success events ----\n\n  var activeWatchers = [];\n\n  function findWatcher(formEl) {\n    for (var w = 0; w < activeWatchers.length; w++) {\n      if (activeWatchers[w].form === formEl) return activeWatchers[w];\n    }\n    return null;\n  }\n\n  function disarmWatcher(formEl) {\n    var existing = findWatcher(formEl);\n    if (existing && typeof existing.cleanup === 'function') existing.cleanup();\n  }\n\n  function handleAjaxSuccessEvent(event) {\n    var formId = '';\n    try {\n      if (event.detail && event.detail.frmVars && event.detail.frmVars.formID) {\n        formId = event.detail.frmVars.formID;\n      }\n    } catch (e) {\n      // detail not available\n    }\n\n    var formEl = formId ? document.getElementById('form_' + formId) : null;\n    if (!formEl) {\n      // Fallback: the first form inside the first .frm_forms wrapper.\n      try {\n        var wrappers = document.querySelectorAll('.frm_forms');\n        for (var i = 0; i < wrappers.length; i++) {\n          var f = wrappers[i].querySelector('form');\n          if (f) { formEl = f; break; }\n        }\n      } catch (e) {\n        // querySelectorAll unavailable \u2014 give up\n      }\n    }\n\n    fireConversion(formId, formEl);\n  }\n\n  // ---- Fire path 2: native (non-AJAX) pagehide watcher + deferred verdict ----\n\n  function writeDeferredMarker(formId) {\n    try {\n      window.sessionStorage.setItem(DEFERRED_MARKER_KEY, JSON.stringify({\n        t: Date.now(),\n        path: window.location.pathname,\n        formId: formId\n      }));\n      return true;\n    } catch (e) {\n      return false;\n    }\n  }\n\n  function takeDeferredMarker() {\n    try {\n      var raw = window.sessionStorage.getItem(DEFERRED_MARKER_KEY);\n      if (!raw) return null;\n      window.sessionStorage.removeItem(DEFERRED_MARKER_KEY);\n      var data = JSON.parse(raw);\n      if (!data || typeof data !== 'object') return null;\n      if (!data.t || Date.now() - data.t > DEFERRED_MARKER_TTL_MS) return null;\n      return data;\n    } catch (e) {\n      try { window.sessionStorage.removeItem(DEFERRED_MARKER_KEY); } catch (e2) {}\n      return null;\n    }\n  }\n\n  // Runs once at module init on every page load. Consumes the marker the\n  // previous page wrote at pagehide (if any) and reads the verdict from the\n  // markup Formidable rendered into THIS page. Rejection is checked first:\n  // the rejected-POST re-render always carries error markers, so a missed\n  // fire here degrades to under-counting, never fabricating.\n  function processDeferredVerdict() {\n    var marker = takeDeferredMarker();\n    if (!marker) return;\n\n    if (hasServerRejectionMarkers()) return;\n\n    if (hasSuccessMessage()) {\n      fireConversion(marker.formId, null);\n      return;\n    }\n    // No Formidable markup either way. A success configured to redirect\n    // lands on a different path with no .frm_message \u2014 treat a changed\n    // pathname as that redirect. A rejection can't look like this: the\n    // rejected POST always re-renders the form WITH error markers.\n    if (marker.path && window.location.pathname !== marker.path) {\n      fireConversion(marker.formId, null);\n    }\n    // Same page, no markers either way \u2014 ambiguous, do not fire.\n  }\n\n  function armNativeWatcher(formEl, formId, pagehideTrusted) {\n    var existing = findWatcher(formEl);\n    if (existing) {\n      existing.refresh(formId, pagehideTrusted);\n      return;\n    }\n\n    var entry = { form: formEl, refresh: refresh, cleanup: cleanup };\n    activeWatchers.push(entry);\n\n    var fired = false;\n    var timer = null;\n    var pagehideArmed = false;\n\n    function onPageHide() {\n      if (fired) return;\n      // Click-then-leave guard: a visitor blocked by Formidable's own\n      // validation who then navigates away must not count.\n      if (hasVisibleValidationErrors(formEl)) return;\n      fired = true;\n      if (formEl.getAttribute('data-ct-processing') !== 'true') {\n        writeDeferredMarker(formId);\n      }\n      cleanup();\n    }\n\n    function armPagehide() {\n      if (pagehideArmed) return;\n      try {\n        window.addEventListener('pagehide', onPageHide, true);\n        pagehideArmed = true;\n      } catch (e) {\n        // fall through\n      }\n    }\n\n    function disarmPagehide() {\n      if (!pagehideArmed) return;\n      try { window.removeEventListener('pagehide', onPageHide, true); } catch (e) {}\n      pagehideArmed = false;\n    }\n\n    function startTimer() {\n      if (timer) clearTimeout(timer);\n      timer = setTimeout(function () {\n        if (!fired) cleanup();\n      }, SUCCESS_WINDOW_MS);\n    }\n\n    function cleanup() {\n      if (timer) { clearTimeout(timer); timer = null; }\n      disarmPagehide();\n      var idx = activeWatchers.indexOf(entry);\n      if (idx !== -1) activeWatchers.splice(idx, 1);\n    }\n\n    // A later submit on the same form: the visitor corrected a failed\n    // field and re-submitted. Refresh everything to the latest attempt.\n    function refresh(nextFormId, nextPagehideTrusted) {\n      if (fired) return;\n      formId = nextFormId;\n      if (nextPagehideTrusted) armPagehide();\n      else disarmPagehide();\n      startTimer();\n    }\n\n    if (pagehideTrusted) armPagehide();\n    startTimer();\n  }\n\n  // Bubble-phase submit listener \u2014 arms the native watcher on every\n  // Formidable submit attempt. This fires even when Formidable\n  // preventDefaults it (the event still dispatches) \u2014 this is the moment\n  // we snapshot, NOT the moment we fire.\n  function handleNativeSubmit(event) {\n    var formEl = event.target;\n    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n    if (!isFormidableForm(formEl)) return;\n\n    var formId = '';\n    var m = /^form_(\\d+)$/.exec(formEl.id || '');\n    if (m) formId = m[1];\n\n    // Client-validity gate: trust the pagehide path when the form is valid\n    // (or checkValidity is unavailable). NOTE per the source module:\n    // Formidable's required-ness is often enforced only server-side, so a\n    // form can pass checkValidity() while still blank \u2014 the pagehide-time\n    // visible-error check is the real safety net here, not this gate alone.\n    var pagehideTrusted = true;\n    try {\n      if (typeof formEl.checkValidity === 'function' && formEl.checkValidity() === false) {\n        pagehideTrusted = false;\n      }\n    } catch (e) {\n      // constraint validation unavailable \u2014 pagehide's visible-error check\n      // still guards this path\n    }\n\n    armNativeWatcher(formEl, formId, pagehideTrusted);\n  }\n\n  document.addEventListener('frmFormComplete', handleAjaxSuccessEvent, true);\n  document.addEventListener('frmBeforeFormRedirect', handleAjaxSuccessEvent, true);\n  document.addEventListener('submit', handleNativeSubmit, false);\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', function () {\n      processDeferredVerdict();\n    });\n  } else {\n    processDeferredVerdict();\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Formidable Forms Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "formidable_forms_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Formidable Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

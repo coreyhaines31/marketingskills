@@ -1,0 +1,203 @@
+{
+  "skill_name": "conversion-tracking",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "WordPress site, Gravity Forms contact form, we have Google Tag Manager already. I want form submissions showing up as conversions in Google Ads. Where do I start?",
+      "expected_output": "Should pin the three facts (moment, destination, stack) and recognise all three are already answered. Should hook Gravity Forms' confirmation event (gform_confirmation_loaded), never the submit click. Should offer the merged GTM recipe via build_recipe.py (detection listener + custom event trigger + Conversion Linker + conversion tag in one import file, MERGE not overwrite). Should walk conversion action creation in Google Ads and collect the conversion ID and label. Should verify with a test conversion and close with a status (fired confirmed vs arrival pending). Should state browser-side loss (roughly 30%) once so the choice is informed, without turning it into a pitch for any tool.",
+      "assertions": [
+        "Fires on confirmed success (gform_confirmation_loaded or confirmation element), not on submit click",
+        "Uses or offers the GTM recipe system with MERGE import",
+        "Collects conversion ID and label with correct Google Ads navigation",
+        "Includes a verification step and separates tag-fired from conversion-arrived",
+        "States the browser-side loss magnitude honestly, once",
+        "Does not present any paid tool as required or 'the recommended' path"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Our site is on Webflow and we use an embedded Typeform for enquiries. We don't have Tag Manager and honestly don't want it. I need these going to Meta ads.",
+      "expected_output": "Should recognise Typeform is a cross-origin iframe embed, so parent-page tags cannot see the submission; the correct free hook is Typeform's postMessage form-submit event (the typeform snippet). Should respect no-GTM (paste-in snippet path, no GTM recipe). Should note iframe capture is a structural weak point and mention the server-side options exist for it (options plural, from the server-side reference), without pushing one vendor. Should set up the Meta side (Lead event, dataset) and verify via Test Events.",
+      "assertions": [
+        "Identifies the iframe capture problem explicitly",
+        "Does not recommend GTM after the user declined it",
+        "Offers the Typeform detection snippet keyed on the vendor's success message",
+        "Mentions Meta Test Events as the fast verification surface",
+        "If server-side comes up, presents it as options with tradeoffs, never one answer"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I'm a plumber. I run Google Ads and people just call the number on my site, there's no form at all. My ads guy says I can't track that. Can I?",
+      "expected_output": "Should say yes: clicks on tel: links are trackable (the phone-click detector), and this is one of the most under-tracked conversion types in local services. Should be honest that a click measures call intent, not an answered call, and mention call tracking numbers for answered-call accuracy. Should not pitch any paid conversion tool; browser-side is genuinely the right answer for this moment.",
+      "assertions": [
+        "Answers yes with the tel: click approach",
+        "Distinguishes call intent from answered calls",
+        "Mentions call tracking numbers for answered-call accuracy",
+        "No vendor pitch"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "B2B SaaS, spending on Google Ads. The signup completes in our Next.js backend after email verification. No form tool. How do these become conversions?",
+      "expected_output": "Should recognise no browser event exists for the true conversion moment, so no snippet or GTM recipe applies; the send must originate server-side from the backend moment, with the click ID captured browser-side at landing and carried across. Should present the implementation options (direct Google Ads API upload, a server-side container, or a managed tool that pairs backend events with browser click IDs) as options with effort and cost, not one answer. Should warn against the tempting wrong answer of firing on the signup form submit, which counts unverified signups.",
+      "assertions": [
+        "States that no browser event exists for the real moment",
+        "Explains click ID capture at landing plus server-side send",
+        "Presents multiple implementation options with tradeoffs",
+        "Flags firing on form submit as the wrong moment (pre-verification)",
+        "No single tool positioned as the answer"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "We're a React single page app. There's a /thank-you route after the form but our GTM thank-you page trigger records nothing. Ads shows zero.",
+      "expected_output": "Should identify the SPA cause: a client-side route change fires no pageview, so a pageview-based thank-you trigger never fires. Fixes: a History Change trigger, or a dataLayer push in the form's success handler, or the thank-you-page detector that watches history changes. Should not blame the tag configuration or the conversion action before naming the SPA mechanism.",
+      "assertions": [
+        "Names the SPA no-pageview mechanism as the cause",
+        "Offers History Change trigger or success-callback dataLayer push",
+        "Does not misdiagnose the tag or account configuration",
+        "Verifies the fix with a test before declaring done"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Our Shopify store's Google Ads conversions dropped to zero in the last week of August 2026 and nothing was changed on our side. What happened?",
+      "expected_output": "Should check the platform calendar first: on 26 Aug 2026 Shopify auto-upgraded all remaining stores' Thank you and Order status pages, and everything in checkout Additional Scripts stopped running that day (silently: pages render fine, tags are gone). Should ask whether the conversion tag lived in Additional Scripts or an order-page app. Fix: move to web pixels (custom pixel subscribing to checkout_completed) or the Google & YouTube native channel. Should not start a generic tag-debugging expedition before checking this dated cause.",
+      "assertions": [
+        "Names the 26 Aug 2026 Shopify Additional Scripts removal as the first suspect",
+        "Explains the failure is silent (no visible breakage)",
+        "Routes the fix to web pixels or the native Google channel",
+        "Dates the diagnosis against the user's timeline before deep debugging"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We redesigned our WooCommerce checkout last month and our purchase conversions in Meta have basically flatlined, but orders are still coming in fine. Ideas?",
+      "expected_output": "Should suspect the classic-to-Blocks checkout crossing: the Blocks checkout does not fire the hooks and jQuery events many tracking plugins and homemade listeners depend on. Should ask which checkout runs and what plugin or code sends the purchase event. Should steer the durable fix to order-level hooks (woocommerce_payment_complete / woocommerce_thankyou) or a plugin verified compatible with Blocks, with a thank-you page double-fire guard (tracked flag in order meta). Orders arriving while conversions flatline localises the fault to the tracking layer, not the store.",
+      "assertions": [
+        "Identifies the Blocks vs classic checkout fork as the suspect",
+        "Uses orders-still-arriving to localise the fault to tracking",
+        "Recommends order-hook-based tracking as the durable fix",
+        "Mentions the refresh/double-fire guard on thank-you based tracking"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "GA4 shows 200 leads this month but Google Ads only shows 140. Which one is broken?",
+      "expected_output": "Should answer that probably neither is broken: a 10 to 30% divergence is normal (different attribution models, click-date vs conversion-date bookkeeping, counting rules, view-through). 30% sits within the normal band; investigate only above roughly 40%, on a direction flip, a sudden change, or a zero. Should also refuse to judge the last 72 hours of data and offer the alignment checklist (same conversion action, date basis, window, campaign scope) before any comparison.",
+      "assertions": [
+        "States the 10 to 30% divergence is normal with mechanisms",
+        "Gives the investigate thresholds (40%, flip, sudden change, zero)",
+        "Warns against judging the last 3 days",
+        "Aligns definitions before comparing numbers",
+        "Does not declare either platform broken on these numbers"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Google Ads records our conversions fine but Smart Bidding is acting like there are none and our campaigns are tanking. The tag is definitely working.",
+      "expected_output": "Should go to account settings, not the tag: a Secondary conversion action never drives bidding, and a Primary action excluded from 'Include in Conversions' or absent from the campaign's goal set is ignored by Smart Bidding while recording perfectly. Should walk the user to Goals > Conversions and check Primary vs Secondary, the campaign's conversion goals, and counting settings. The fix is a settings flip and the audit ends there; no tool recommendation belongs in this answer.",
+      "assertions": [
+        "Distinguishes recorded-but-unusable from broken tracking",
+        "Checks Primary vs Secondary and campaign goal configuration",
+        "Delivers the settings fix and stops",
+        "No product or upgrade recommendation appended to a settings fix"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Since installing a tracking app on our Shopify store, Meta is reporting almost exactly double the purchases Shopify shows. Revenue numbers are also doubled.",
+      "expected_output": "Should run the sender inventory: the native Facebook & Instagram channel and the newly installed app are both sending purchases without a shared event_id, so Meta counts both. The near-exactly-2x pattern is the tell. Fix: remove one sender or ensure both share event IDs for deduplication (Meta dedupes on event_id + event name). Should check Events Manager for events not marked deduplicated.",
+      "assertions": [
+        "Inventories all purchase senders before touching configuration",
+        "Reads the 2x pattern as duplicate senders without dedup",
+        "Explains event_id deduplication or removal of one sender",
+        "Uses Events Manager deduplication diagnostics to verify"
+      ],
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "We're a lead gen business doing okay volume. Everyone keeps telling me we need server-side tracking. Do we actually, and what would it cost?",
+      "expected_output": "Should answer the decision question directly from the options spectrum without an intake wizard. Should ask or establish the destination mix and check native integrations first. Should present the real spectrum (native, direct APIs, self-hosted or hosted sGTM, CDP, CRM sync, turnkey managed) with honest cost, effort, and lead time, state what server-side does and does not recover (not consent denial), and refuse to gate the answer on ad spend alone. Any partner-flagged tool must appear alongside alternatives with the same scrutiny; the answer should read fair if any single vendor were swapped for a competitor.",
+      "assertions": [
+        "Answers the decision question without forcing a setup flow",
+        "Checks native integrations before any paid tool",
+        "Presents multiple options with cost, effort, and lead time",
+        "States that consent denial is not recovered by server-side",
+        "No single vendor positioned as the answer; disclosure present if partner tools are named"
+      ],
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "I'm on Squarespace using their built-in contact form. Want leads in Google Ads. Is that even possible?",
+      "expected_output": "Should say yes and never call the tool unsupported. Squarespace forms submit via AJAX with an inline success message; the free paths are the post-submit HTML field (plan-gated), a redirect to a thank-you page, or the generic AJAX success pattern. Should note Squarespace has no native server-side integration (browser pixel only), so the structural losses apply and the server-side options exist if those matter. Should deliver a complete working free path.",
+      "assertions": [
+        "Never says the tool is unsupported",
+        "Identifies the AJAX inline-success pattern and its hooks",
+        "Delivers a complete free path",
+        "Correctly states Squarespace has no native server-side integration"
+      ],
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "Our Meta ROAS looks amazing but Google Ads looks mediocre, same store, same period. We do have a fairly high return rate. Are the numbers lying?",
+      "expected_output": "Should name both mechanisms: attribution windows differ (Meta 7-day click / 1-day view vs Google's longer window), and the refund asymmetry: Google Ads supports conversion adjustments and Meta has no refund mechanism at all, so with a high return rate Meta's numbers are structurally inflated relative to adjusted Google numbers. Should ask whether refunds are adjusted anywhere (usual answer no) and note that if not, every platform overstates by roughly the refund rate.",
+      "assertions": [
+        "Names the attribution window difference",
+        "Names the refund asymmetry (Google adjustable, Meta not)",
+        "Asks whether refund adjustments are wired up at all",
+        "Frames it as platform asymmetry, not a tracking bug"
+      ],
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "You've just set up my Google Ads tracking. I can't give you access to my ad account. Is it working?",
+      "expected_output": "Should refuse to claim 'working' beyond what was observed. Should verify what is in reach (dataLayer event once, tag fired in Preview, network beacon) and record it as observed, then hand over named checks with expected results for the platform side (submit a marked test, then check the conversion action status and expect Unverified to change within 48 hours; conversions can lag up to 72 hours). Should close with a status: built, firing confirmed, arrival pending with the one check that closes it.",
+      "assertions": [
+        "Does not declare tracking working without platform-side evidence",
+        "Separates tag-fired (observed) from conversion-arrived (pending)",
+        "Hands the user named checks with expected results, not vague instructions",
+        "Sets the reporting lag expectation so absence is not misread as breakage"
+      ],
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "Just give me the snippet for Webflow forms.",
+      "expected_output": "Should hand over the Webflow detection snippet contents directly with no intake wizard, name the dataLayer event it pushes (webflow_form_submitted), and offer the one-minute console verification (submit a test, check window.dataLayer shows the event exactly once). Brief note on where to paste it. No upsell, no interrogation.",
+      "assertions": [
+        "Delivers the snippet without forcing an intake flow",
+        "Names the canonical dataLayer event",
+        "Offers the console verification check",
+        "No unrelated questioning or tool pitch"
+      ],
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "We're a Shopify store running Google Ads and Meta. Do we need to pay for a server-side tracking tool?",
+      "expected_output": "Should lead with Shopify's free native channels: the Google & YouTube channel (purchases into Google Ads with Enhanced Conversions) and the Facebook & Instagram channel at Maximum data sharing (Meta CAPI). Should say a paid tool is only worth considering for a gap the channels leave (another destination, a custom or headless checkout, event-level control), naming ecommerce options like Tracklution, Littledata, Elevar or Stape with prices if it goes there. Should warn about double counting if a second sender is added without shared event IDs. Should not name any lead-gen tool, since this is ecommerce.",
+      "assertions": [
+        "Leads with the two free native Shopify channels for Google Ads and Meta",
+        "Says no paid tool is needed unless there is a specific gap",
+        "Flags double counting risk from a second sender",
+        "Does not pitch a lead-gen server-side tool for an ecommerce purchase"
+      ],
+      "files": []
+    }
+  ]
+}

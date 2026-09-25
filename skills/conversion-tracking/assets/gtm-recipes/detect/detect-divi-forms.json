@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Divi Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Divi Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectDiviForms) return;\n  window.__ctDetectDiviForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Real id if the container has one, else a synthetic per-page-load key\n  // stamped onto it \u2014 ported directly from the production module's\n  // getFormKey helper, so multiple Divi forms on one page stay distinct.\n  var keyCounter = 0;\n\n  function getFormKey(container) {\n    if (!container) return '';\n    if (container.id) return container.id;\n    var key = container.getAttribute('data-ct-key');\n    if (!key) {\n      keyCounter++;\n      key = 'divi-' + keyCounter;\n      container.setAttribute('data-ct-key', key);\n    }\n    return key;\n  }\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'divi_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Divi renders BOTH validation errors and the success notice into\n  // .et-pb-contact-message \u2014 the element itself carries no success/error\n  // marker. Errors mark the offending inputs with .et_contact_error and\n  // wrap the message text in .et_pb_contact_error_text. Only fire when\n  // the message has text and no error markers are present.\n  function maybeReportSuccess(container) {\n    if (!container || !container.querySelector) return;\n\n    var msg = container.querySelector('.et-pb-contact-message');\n    if (!msg) return;\n\n    var text = (msg.textContent || '').trim();\n    if (!text) return;\n\n    try {\n      if (msg.querySelector('.et_pb_contact_error_text')) return;\n      if (container.querySelector('.et_contact_error')) return;\n    } catch (e) {\n      // Can't tell success from error \u2014 do not fire\n      return;\n    }\n\n    // Permanent stamp: long-tail mutations of the container (other\n    // plugins, widgets) must not re-report a message that already fired\n    if (msg.getAttribute('data-ct-reported') === 'true') return;\n    msg.setAttribute('data-ct-reported', 'true');\n\n    fireConversion(getFormKey(container));\n  }\n\n  function observeContainer(container) {\n    if (typeof MutationObserver === 'undefined') return;\n    if (!container || !container.getAttribute) return;\n    if (container.getAttribute('data-ct-observed') === 'true') return;\n    container.setAttribute('data-ct-observed', 'true');\n\n    var observer = new MutationObserver(function () {\n      maybeReportSuccess(container);\n    });\n\n    observer.observe(container, {\n      childList: true,\n      subtree: true,\n      characterData: true\n    });\n  }\n\n  function startMutationObserver() {\n    if (typeof MutationObserver === 'undefined') return;\n\n    var containers = document.querySelectorAll('.et_pb_contact_form_container');\n    for (var c = 0; c < containers.length; c++) {\n      observeContainer(containers[c]);\n    }\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', function () {\n      startMutationObserver();\n    });\n  } else {\n    startMutationObserver();\n  }\n\n  // Also rescan after window load in case Divi loads forms late\n  // (observeContainer is idempotent per container)\n  window.addEventListener('load', function () {\n    startMutationObserver();\n  });\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Divi Forms Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "divi_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Divi Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

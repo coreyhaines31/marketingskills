@@ -1,0 +1,81 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "path": "accounts/0/containers/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Generic AJAX form",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Generic AJAX form Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\n/*! Generic AJAX form conversion detection (MIT)\n *  From the conversion-tracking skill in Marketing Skills\n *  Detects: inline success after an AJAX form submit. Pushes dataLayer event: form_submitted\n */\n(function () {\n  if (window.__ctDetectGenericAjaxForm) return;\n  window.__ctDetectGenericAjaxForm = true;\n  window.dataLayer = window.dataLayer || [];\n\n  /* Last-resort fallback for form tools this repo has no specific snippet\n     for. It infers success from the page changing after a submit, which is\n     weaker than a tool's own success event. Always prefer a named snippet\n     from snippets/ when one exists for the tool.\n\n     The design deliberately refuses to fire on submit alone. A submit is an\n     attempt; only a success signal appearing afterwards, with no visible\n     validation error, is treated as a conversion. */\n\n  var SUCCESS_WINDOW_MS = 7000;   // how long to wait for a success signal\n  var watchers = [];\n\n  function fire(formEl) {\n    window.dataLayer.push({\n      event: 'form_submitted',\n      form_id: (formEl && formEl.id) || '',\n      form_name: (formEl && formEl.getAttribute && formEl.getAttribute('name')) || '',\n      page_path: window.location.pathname,\n      detection: 'generic-ajax'\n    });\n  }\n\n  function isHidden(el) {\n    try {\n      if (el.hidden) return true;\n      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;\n      var view = el.ownerDocument && el.ownerDocument.defaultView;\n      if (view && view.getComputedStyle) {\n        var cs = view.getComputedStyle(el);\n        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;\n      }\n    } catch (e) { /* fall through */ }\n    return false;\n  }\n\n  // A visible validation error means the submit was rejected. This is the\n  // guard that stops a failed submission being counted.\n  function hasVisibleError(root) {\n    try {\n      var nodes = root.querySelectorAll(\n        '[aria-invalid=\"true\"], .error, .is-invalid, [class*=\"error\"], [role=\"alert\"]'\n      );\n      for (var i = 0; i < nodes.length; i++) {\n        if (isHidden(nodes[i])) continue;\n        if (nodes[i].getAttribute &&\n            nodes[i].getAttribute('aria-invalid') === 'true') return true;\n        if ((nodes[i].textContent || '').trim()) return true;\n      }\n    } catch (e) { /* fall through */ }\n    return false;\n  }\n\n  function looksLikeSuccess(node) {\n    if (!node || node.nodeType !== 1) return false;\n    try {\n      var cls = (typeof node.className === 'string' ? node.className : '') || '';\n      var hook = (node.getAttribute && node.getAttribute('data-hook')) || '';\n      if (/error|invalid/i.test(cls + ' ' + hook)) return false;\n\n      // Structural marker the tool itself stamped. Strongest signal here.\n      if (/success|confirmation|thank/i.test(cls + ' ' + hook)) return true;\n\n      var text = (node.textContent || '').trim();\n      if (!text || text.length > 300) return false;\n      if (/error|required|invalid|try again|please enter|please fill/i.test(text)) return false;\n      // Still in flight, not done.\n      if (/^(submitting|sending|loading|processing|please wait|one moment)\\b/i.test(text)) return false;\n      return /thank you|thanks|success|received|we'?ll be in touch|message sent|submitted/i.test(text);\n    } catch (e) {\n      return false;\n    }\n  }\n\n  function watch(formEl) {\n    for (var i = 0; i < watchers.length; i++) {\n      if (watchers[i].form === formEl) return;   // already watching this form\n    }\n\n    var entry = { form: formEl };\n    watchers.push(entry);\n\n    var done = false;\n    var observer = null;\n    var timer = null;\n\n    function stop() {\n      done = true;\n      if (observer) { try { observer.disconnect(); } catch (e) {} }\n      if (timer) { clearTimeout(timer); }\n      for (var j = 0; j < watchers.length; j++) {\n        if (watchers[j] === entry) { watchers.splice(j, 1); break; }\n      }\n    }\n\n    function evaluate(nodes) {\n      if (done) return;\n      // A visible error anywhere in the form means rejection. Give up.\n      if (hasVisibleError(formEl)) { stop(); return; }\n      for (var k = 0; k < nodes.length; k++) {\n        if (looksLikeSuccess(nodes[k])) {\n          fire(formEl);\n          stop();\n          return;\n        }\n      }\n    }\n\n    try {\n      observer = new MutationObserver(function (mutations) {\n        var added = [];\n        for (var a = 0; a < mutations.length; a++) {\n          var m = mutations[a];\n          for (var b = 0; b < m.addedNodes.length; b++) added.push(m.addedNodes[b]);\n          if (m.type === 'attributes' && m.target) added.push(m.target);\n        }\n        if (added.length) evaluate(added);\n      });\n      // Watch the form's container, so a success panel that REPLACES the form\n      // is still seen. Falls back to the form itself.\n      var scope = formEl.parentNode || formEl;\n      observer.observe(scope, {\n        childList: true, subtree: true,\n        attributes: true, attributeFilter: ['class', 'style', 'hidden', 'aria-hidden']\n      });\n    } catch (e) {\n      stop();\n      return;\n    }\n\n    timer = setTimeout(stop, SUCCESS_WINDOW_MS);\n  }\n\n  function handleSubmit(event) {\n    try {\n      var formEl = event.target;\n      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n\n      // Another handler already cancelled this submission.\n      if (event.defaultPrevented) return;\n\n      // Constraint validation gate: an invalid form cannot have submitted.\n      try {\n        if (typeof formEl.checkValidity === 'function' &&\n            formEl.checkValidity() === false) return;\n      } catch (e) { /* validation unavailable \u2014 fall through */ }\n\n      watch(formEl);\n    } catch (e) {\n      // Never throw back into the page's own form handling.\n    }\n  }\n\n  // Bubble phase so the tool's own handlers run first.\n  document.addEventListener('submit', handleSubmit, false);\n})();\n</script>"
+          },
+          {
+            "type": "boolean",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Generic AJAX form",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [],
+    "fingerprint": "0"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Wix Scheduling",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Wix Scheduling Booking Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWixScheduling) return;\n  window.__ctDetectWixScheduling = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // The booking CTA's Wix-controlled data-hook (app-level, theme-stable).\n  var BOOK_NOW_HOOK = 'booking-details-book-now-cta';\n  // The order-confirmation page's Wix-controlled marker (slug-independent).\n  var THANKYOU_HOOK = 'ThankYouPageAppDataHook.root';\n\n  // localStorage key for the cross-page marker. Deliberately distinct from\n  // the production loader's key so this recipe never collides with it.\n  var STASH_KEY = '__cvlyRecipeWixSchedStash';\n  // How long a click-marker stays valid. The form\u2192confirmation navigation\n  // is immediate for free services; generous to absorb slow networks and\n  // (best-effort) a paid service's checkout step.\n  var STASH_TTL_MS = 10 * 60 * 1000; // 10 minutes\n  // How long, on a given page load, we wait for the confirmation marker to\n  // render (Wix boots its widgets asynchronously) before giving up.\n  var THANKYOU_WAIT_MS = 12000;\n\n  function now() {\n    return Date.now();\n  }\n\n  function writeStash(obj) {\n    try {\n      window.localStorage.setItem(STASH_KEY, JSON.stringify(obj));\n    } catch (e) {\n      // Private mode / storage disabled \u2014 can't bridge the navigation, so\n      // the booking simply won't be tracked. Fail quietly.\n    }\n  }\n\n  function readStash() {\n    try {\n      var raw = window.localStorage.getItem(STASH_KEY);\n      if (!raw) return null;\n      var obj = JSON.parse(raw);\n      return (obj && typeof obj === 'object') ? obj : null;\n    } catch (e) {\n      return null;\n    }\n  }\n\n  function clearStash() {\n    try { window.localStorage.removeItem(STASH_KEY); } catch (e) {}\n  }\n\n  function isFreshStash(stash) {\n    return !!(stash && typeof stash.ts === 'number' && (now() - stash.ts) <= STASH_TTL_MS);\n  }\n\n  function fireConversion(bookingId, pageUrl) {\n    var payload = {\n      event: 'wix_appointment_scheduled',\n      booking_page_url: pageUrl || ''\n    };\n    if (bookingId) payload.booking_id = bookingId;\n    window.dataLayer.push(payload);\n  }\n\n  // ---- Booking form page: mark the Book Now click ----\n  //\n  // Simplification vs. the production module: because this recipe never\n  // reads or reports form field values, it doesn't need to locate the\n  // specific booking-form widget on the page (the source module climbs the\n  // DOM to scope a field walk to the correct form) \u2014 matching on the\n  // Wix-controlled CTA hook alone is enough to know a booking attempt was\n  // made.\n  function handleClick(event) {\n    try {\n      var target = event.target;\n      if (!target || !target.closest) return;\n\n      var btn = target.closest('[data-hook=\"' + BOOK_NOW_HOOK + '\"]');\n      if (!btn) return;\n\n      writeStash({\n        // The page where the booking was submitted \u2014 the meaningful\n        // pageUrl for the conversion (the confirmation page's URL carries\n        // only a random booking UUID).\n        pageUrl: window.location.pathname,\n        ts: now()\n      });\n    } catch (e) {\n      // Never throw back into Wix's own click handling.\n    }\n  }\n\n  // ---- Confirmation page: fire on the success marker ----\n\n  function isThankYouPage() {\n    try {\n      return !!document.querySelector('[data-hook=\"' + THANKYOU_HOOK + '\"]');\n    } catch (e) {\n      return false;\n    }\n  }\n\n  function extractBookingId() {\n    try {\n      var m = window.location.pathname.match(\n        /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i\n      );\n      return m ? m[0] : null;\n    } catch (e) {\n      return null;\n    }\n  }\n\n  function fireFromThankYou() {\n    // Consume-first idempotency: the stash is the single source of truth.\n    // Clearing it before firing means a second call (observer + immediate\n    // check racing) is a no-op.\n    var stash = readStash();\n    if (!stash) return;\n    if (!isFreshStash(stash)) { clearStash(); return; }\n\n    clearStash(); // consume before firing so re-entry can't double-fire\n\n    fireConversion(extractBookingId(), stash.pageUrl);\n  }\n\n  // Runs at load on EVERY page. If a fresh booking marker exists and this\n  // page is the confirmation page, fire. If the page hasn't rendered the\n  // marker yet (Wix boots widgets async), watch for it within a bounded\n  // window. On non-confirmation pages the watcher simply times out and\n  // disconnects \u2014 harmless.\n  function maybeFireOnThankYou() {\n    var stash = readStash();\n    if (!stash) return;\n    if (!isFreshStash(stash)) { clearStash(); return; }\n\n    if (isThankYouPage()) { fireFromThankYou(); return; }\n\n    var done = false;\n    var observer = null;\n    var timer = null;\n\n    function cleanup() {\n      done = true;\n      if (observer) { try { observer.disconnect(); } catch (e) {} observer = null; }\n      if (timer) { clearTimeout(timer); timer = null; }\n    }\n\n    function check() {\n      if (done) return;\n      if (isThankYouPage()) {\n        cleanup();\n        fireFromThankYou();\n      }\n    }\n\n    try {\n      observer = new MutationObserver(check);\n      observer.observe(document.documentElement || document.body, {\n        childList: true,\n        subtree: true\n      });\n    } catch (e) {\n      // MutationObserver unavailable \u2014 the immediate check above already ran.\n    }\n    timer = setTimeout(cleanup, THANKYOU_WAIT_MS);\n  }\n\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('click', handleClick, true); // booking form\n    maybeFireOnThankYou();                                  // confirmation page\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Wix Appointment Scheduled",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "wix_appointment_scheduled"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Wix Booking ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "booking_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "3",
+        "name": "DLV - Wix Booking Page URL",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "booking_page_url"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}
