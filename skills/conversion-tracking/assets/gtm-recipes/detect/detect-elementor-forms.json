@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Elementor Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Elementor Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectElementorForms) return;\n  window.__ctDetectElementorForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Best-effort, non-PII identifier: the form's own id/name, or the\n  // nearest ancestor carrying Elementor's standard data-id widget-instance\n  // attribute. Never reads field values.\n  function bestEffortFormId(formEl) {\n    if (!formEl) return '';\n    if (formEl.id) return formEl.id;\n    var name = formEl.getAttribute && formEl.getAttribute('name');\n    if (name) return name;\n    try {\n      var withId = formEl.closest && formEl.closest('[data-id]');\n      if (withId) return withId.getAttribute('data-id') || '';\n    } catch (e) {\n      // .closest not available \u2014 non-fatal\n    }\n    return '';\n  }\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'elementor_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Same form-resolution chain the production module uses (event.target\n  // -> most recently clicked Elementor submit button's form -> the sole\n  // .elementor-form on the page) \u2014 ported here so the recipe can attach a\n  // real form_id instead of firing event-only.\n  var lastClickedForm = null;\n\n  function trackClick(event) {\n    try {\n      var target = event.target;\n      if (!target || !target.closest) return;\n      var form = target.closest('form.elementor-form');\n      if (form) lastClickedForm = form;\n    } catch (e) {\n      // non-fatal\n    }\n  }\n\n  function resolveFormFromTarget(target) {\n    if (!target || target === document || target === window) return null;\n    try {\n      if ((target.tagName || '').toLowerCase() === 'form' &&\n          target.classList && target.classList.contains('elementor-form')) {\n        return target;\n      }\n      if (target.closest) {\n        var parentForm = target.closest('form.elementor-form');\n        if (parentForm) return parentForm;\n      }\n    } catch (e) {\n      // non-fatal\n    }\n    return null;\n  }\n\n  // Fire path \u2014 Elementor Pro's own jQuery event, triggered on `document`\n  // once an AJAX submission passes server-side validation. This is the ONLY\n  // path this recipe tracks; Elementor Pro forms submit exclusively via\n  // Elementor's own AJAX pipeline, so there is no non-AJAX mode to miss.\n  var successHooked = false;\n\n  function hookElementorSuccess() {\n    if (successHooked) return true;\n    if (typeof jQuery === 'undefined' && typeof $ === 'undefined') return false;\n\n    var jQ = typeof jQuery !== 'undefined' ? jQuery : $;\n    jQ(document).on('submit_success', function (event) {\n      var formEl = resolveFormFromTarget(event && event.target);\n      if (!formEl && lastClickedForm) formEl = lastClickedForm;\n      lastClickedForm = null;\n\n      if (!formEl) {\n        try {\n          var forms = document.querySelectorAll('.elementor-form');\n          if (forms.length === 1) formEl = forms[0];\n        } catch (e) {\n          // non-fatal\n        }\n      }\n\n      fireConversion(bestEffortFormId(formEl));\n    });\n    successHooked = true;\n    return true;\n  }\n\n  document.addEventListener('click', trackClick, true);\n\n  if (!hookElementorSuccess()) {\n    document.addEventListener('DOMContentLoaded', function () {\n      hookElementorSuccess();\n    });\n    window.addEventListener('load', function () {\n      hookElementorSuccess();\n    });\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Elementor Forms Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "elementor_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Elementor Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

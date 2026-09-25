@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Wix Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Wix Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWixForms) return;\n  window.__ctDetectWixForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // How long, after a New-form Submit click, we wait for a success signal\n  // before giving up (treating it as a validation failure / no-op).\n  var SUCCESS_WINDOW_MS = 7000;\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'wix_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // ---- Form detection ----\n\n  // New Wix Forms carry data-hook markers: the form itself is\n  // data-hook=\"form-<uuid>\", fields are wrapped in\n  // data-hook=\"form-field-...\", and the submit control is\n  // data-hook=\"submit-button\".\n  function isNewWixForm(root) {\n    if (!root) return false;\n    try {\n      var hook = root.getAttribute ? root.getAttribute('data-hook') : null;\n      if (hook && hook.indexOf('form-') === 0 && hook.indexOf('form-field-') !== 0) {\n        return true;\n      }\n      if (root.querySelector &&\n          (root.querySelector('[data-hook^=\"form-field-\"]') ||\n           root.querySelector('[data-hook=\"submit-button\"]'))) {\n        return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // Old Wix Forms render inputs as Wix components: id=\"input_comp-...\".\n  function isOldWixForm(formEl) {\n    if (!formEl || !formEl.querySelector) return false;\n    try {\n      if (formEl.querySelector('input[id^=\"input_comp-\"]')) return true;\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // ---- OLD Wix forms: native submit (Pattern A) ----\n  // Capture phase so this runs before Wix's own handler can clear/detach\n  // the form. New forms are explicitly excluded \u2014 they have no native\n  // submit and are handled by the click path below.\n  function handleSubmit(event) {\n    try {\n      var formEl = event.target;\n      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n      if (isNewWixForm(formEl)) return;   // click path owns new forms\n      if (!isOldWixForm(formEl)) return;\n\n      fireConversion(formEl.id);\n    } catch (e) {\n      // Never throw back into Wix's own form handling.\n    }\n  }\n\n  // ---- NEW Wix forms: submit-button click + confirmed success ----\n\n  // Watchers currently in flight, keyed by form root, so duplicate click\n  // events Wix emits for a single Submit press don't arm two watchers. A\n  // re-click on a watched root REFRESHES the existing watcher instead of\n  // being dropped, so a visitor who fails validation, fixes a field, and\n  // clicks again inside the window gets a fresh verdict.\n  var activeWatchers = [];\n\n  function findWatcher(root) {\n    for (var w = 0; w < activeWatchers.length; w++) {\n      if (activeWatchers[w].root === root) return activeWatchers[w];\n    }\n    return null;\n  }\n\n  function findNewFormRoot(btn) {\n    var root = btn.closest ? btn.closest('form') : null;\n    if (root && isNewWixForm(root)) return root;\n    if (btn.closest) {\n      var alt = btn.closest('[data-hook=\"form-root\"]') || btn.closest('[data-hook^=\"form-\"]');\n      if (alt && isNewWixForm(alt)) return alt;\n    }\n    return null;\n  }\n\n  // Sorts a candidate node into one of two evidence tiers:\n  //   'structural' \u2014 a marker Wix's own runtime stamps on success (a\n  //     data-hook or class name containing \"success\") \u2014 sufficient alone.\n  //   'status'     \u2014 readable confirmation-ish text (ARIA live region or\n  //     English thank-you wording) \u2014 corroboration only, never sufficient\n  //     alone (live regions also announce in-progress states).\n  //   null         \u2014 not evidence.\n  function classifySuccessNode(node) {\n    if (!node || node.nodeType !== 1) return null;\n    try {\n      var hook = node.getAttribute ? node.getAttribute('data-hook') : null;\n      if (hook && /error/i.test(hook)) return null;\n      if (node.getAttribute && node.getAttribute('aria-busy') === 'true') return null;\n      var cls = (typeof node.className === 'string' ? node.className : '') || '';\n      if (/error/i.test(cls)) return null;\n      if ((hook && /success/i.test(hook)) || /success/i.test(cls)) return 'structural';\n      var text = (node.textContent || '').trim();\n      if (!text) return null;\n      if (/error|required|invalid|try again|please enter|please fill/i.test(text)) return null;\n      var isSuccessText =\n        /thank|success|received|in touch|submitted|message sent|got it|appreciate|subscrib/i.test(text);\n      if (!isSuccessText &&\n          /^(submitting|sending|loading|processing|please wait|one moment)\\b/i.test(text)) {\n        return null;\n      }\n      if (node.getAttribute && node.getAttribute('role') === 'status') return 'status';\n      if (isSuccessText) return 'status';\n    } catch (e) {\n      // fall through\n    }\n    return null;\n  }\n\n  // Wix marks failed fields with an \"error\" data-hook slot and/or\n  // aria-invalid=\"true\" on the input \u2014 visible ones mean the submit was\n  // rejected.\n  function isNodeHidden(el) {\n    try {\n      if (el.hidden) return true;\n      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;\n      var view = el.ownerDocument && el.ownerDocument.defaultView;\n      if (view && view.getComputedStyle) {\n        var cs = view.getComputedStyle(el);\n        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // Ancestor-aware hiding check, capped at the observed container.\n  function isConcealed(el, stopAt) {\n    var node = el;\n    var depth = 0;\n    while (node && node.nodeType === 1 && depth < 12) {\n      if (isNodeHidden(node)) return true;\n      if (node === stopAt) break;\n      node = node.parentNode;\n      depth++;\n    }\n    return false;\n  }\n\n  function hasVisibleValidationErrors(root) {\n    if (!root || !root.querySelectorAll) return false;\n    try {\n      var nodes = root.querySelectorAll('[data-hook*=\"error\"], [aria-invalid=\"true\"]');\n      for (var i = 0; i < nodes.length; i++) {\n        var node = nodes[i];\n        if (isNodeHidden(node)) continue;\n        if (node.getAttribute && node.getAttribute('aria-invalid') === 'true') return true;\n        if ((node.textContent || '').trim()) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  function watchForSuccess(root, formId, pagehideTrusted) {\n    var entry = { root: root, refresh: refresh };\n    activeWatchers.push(entry);\n\n    var fired = false;\n    var timer = null;\n    var observer = null;\n    var pagehideArmed = false;\n    // Corroboration state: a status/text confirmation was seen this\n    // attempt. Text alone never fires \u2014 it only lets the weak structural\n    // signals (form concealed / removed) confirm.\n    var statusSeen = false;\n\n    // Snapshot the controls that currently hold a value, so we can detect\n    // Wix clearing the form on success. Values themselves are never read\n    // for content \u2014 only used to test \"was non-empty, now empty\".\n    var tracked = [];\n    function snapshotTracked() {\n      tracked = [];\n      try {\n        var inputs = root.querySelectorAll('input, textarea, select');\n        for (var i = 0; i < inputs.length; i++) {\n          var el = inputs[i];\n          if ((el.type || '') === 'hidden') continue;\n          if ((el.value || '') !== '') tracked.push(el);\n        }\n      } catch (e) {\n        // fall through\n      }\n    }\n    snapshotTracked();\n\n    function armPagehide() {\n      if (pagehideArmed) return;\n      try {\n        window.addEventListener('pagehide', onPageHide, true);\n        pagehideArmed = true;\n      } catch (e) {\n        // fall through\n      }\n    }\n\n    function disarmPagehide() {\n      if (!pagehideArmed) return;\n      try { window.removeEventListener('pagehide', onPageHide, true); } catch (e) {}\n      pagehideArmed = false;\n    }\n\n    function startTimer() {\n      if (timer) clearTimeout(timer);\n      timer = setTimeout(function() {\n        if (!fired) cleanup(); // no success signal within window \u2014 not firing\n      }, SUCCESS_WINDOW_MS);\n    }\n\n    // A later click on the same root \u2014 Wix's duplicate click event for one\n    // press, or a real re-submit after the visitor corrected a failed\n    // field. Everything reflects the LATEST attempt.\n    function refresh(nextFormId, nextPagehideTrusted) {\n      if (fired) return;\n      formId = nextFormId;\n      statusSeen = false;\n      snapshotTracked();\n      if (nextPagehideTrusted) armPagehide();\n      else disarmPagehide();\n      startTimer();\n    }\n\n    function cleanup() {\n      if (timer) { clearTimeout(timer); timer = null; }\n      if (observer) { try { observer.disconnect(); } catch (e) {} observer = null; }\n      disarmPagehide();\n      var idx = activeWatchers.indexOf(entry);\n      if (idx !== -1) activeWatchers.splice(idx, 1);\n    }\n\n    function fire() {\n      if (fired) return;\n      fired = true;\n      fireConversion(formId);\n      cleanup();\n    }\n\n    function inputsCleared() {\n      if (!tracked.length) return false;\n      for (var i = 0; i < tracked.length; i++) {\n        var el = tracked[i];\n        if (el && el.isConnected && (el.value || '') !== '') return false;\n      }\n      return true; // every previously-filled control is now empty or gone\n    }\n\n    function noteEvidence(node, structuralOnly) {\n      if (!node || node === scope) return false;\n      var tier = classifySuccessNode(node);\n      if (tier === 'structural' && !isConcealed(node, scope)) {\n        fire();\n        return true;\n      }\n      if (!structuralOnly && tier === 'status') statusSeen = true;\n      return false;\n    }\n\n    function onMutations(muts) {\n      if (fired) return;\n      var removed = !root.isConnected;\n      if (!removed && inputsCleared()) { fire(); return; } // Wix reset the form\n      for (var i = 0; i < muts.length; i++) {\n        var added = muts[i].addedNodes || [];\n        for (var j = 0; j < added.length; j++) {\n          var node = added[j];\n          if (noteEvidence(node, false)) return;\n          if (node && node.nodeType === 3 && noteEvidence(muts[i].target, false)) return;\n        }\n        if (muts[i].type === 'attributes' && noteEvidence(muts[i].target, true)) return;\n      }\n      // Removal/concealment alone are too weak to fire \u2014 closing a modal or\n      // an SPA page swap looks the same with no submit behind it. A\n      // status/text message seen in the same attempt corroborates.\n      if (statusSeen && (removed || isConcealed(root, scope))) {\n        fire();\n      }\n    }\n\n    function onPageHide() {\n      // A visitor who failed Wix's validation and then left the page also\n      // produces a pagehide \u2014 visible error indicators mean no submit\n      // happened.\n      if (hasVisibleValidationErrors(root)) return;\n      fire();\n    }\n\n    // Scope the observer to the form's container \u2014 success messages appear\n    // here and form removal shows up as a childList change on the parent.\n    var scope = root.parentNode || document.body;\n    try {\n      observer = new MutationObserver(onMutations);\n      observer.observe(scope, {\n        childList: true,\n        subtree: true,\n        attributes: true,\n        attributeFilter: ['style', 'class', 'hidden', 'aria-hidden'],\n      });\n    } catch (e) {\n      // MutationObserver unavailable \u2014 rely on pagehide + timeout only\n    }\n\n    if (pagehideTrusted) armPagehide();\n\n    startTimer();\n  }\n\n  function handleClick(event) {\n    try {\n      var target = event.target;\n      if (!target || !target.closest) return;\n\n      var btn = target.closest('[data-hook=\"submit-button\"]');\n      if (!btn) return;\n\n      var root = findNewFormRoot(btn);\n      if (!root) return;\n\n      var formId = root.getAttribute ? (root.getAttribute('data-hook') || root.id || '') : (root.id || '');\n\n      // A form invalid under native constraint validation at click time\n      // cannot have submitted, so a later pagehide must not confirm it.\n      // Structural success signals stay armed regardless \u2014 they only ever\n      // come from Wix itself, after an actual successful submit.\n      var pagehideTrusted = true;\n      try {\n        if (typeof root.checkValidity === 'function' && !root.checkValidity()) {\n          pagehideTrusted = false;\n        }\n      } catch (e) {\n        // constraint validation unavailable\n      }\n\n      var existing = findWatcher(root);\n      if (existing) {\n        existing.refresh(formId, pagehideTrusted);\n        return;\n      }\n\n      watchForSuccess(root, formId, pagehideTrusted);\n    } catch (e) {\n      // Never throw back into Wix's own click handling.\n    }\n  }\n\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('submit', handleSubmit, true);   // OLD forms\n    document.addEventListener('click', handleClick, true);     // NEW forms\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Wix Form Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "wix_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Wix Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

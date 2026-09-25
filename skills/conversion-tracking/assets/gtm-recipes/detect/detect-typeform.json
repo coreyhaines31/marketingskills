@@ -1,0 +1,122 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Typeform",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Typeform Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectTypeform) return;\n  window.__ctDetectTypeform = true;\n  window.dataLayer = window.dataLayer || [];\n\n  var ORIGIN_PATTERN = /(^|\\.)typeform\\.com$/;\n\n  function fireConversion(formId, responseId) {\n    window.dataLayer.push({\n      event: 'typeform_form_submitted',\n      form_id: formId || '',\n      response_id: responseId || ''\n    });\n  }\n\n  function looksLikeTypeformSubmit(data) {\n    if (!data || typeof data !== 'object') return false;\n    var t = data.type;\n    if (typeof t !== 'string') return false;\n    return (\n      t === 'form-submit' ||\n      t === 'typeform.formSubmit' ||\n      t === 'typeform-form-submit' ||\n      t === 'embed-auto-close-popup'\n    );\n  }\n\n  function pickFormId(data) {\n    return data.formId || data.form_id || data.formID ||\n      (data.payload && (data.payload.formId || data.payload.form_id)) || '';\n  }\n\n  function pickResponseId(data) {\n    return data.responseId || data.response_id || data.responseID ||\n      (data.payload && (data.payload.responseId || data.payload.response_id)) || '';\n  }\n\n  function onMessage(event) {\n    if (!event || !event.source) return;\n    if (event.source === window) return;\n    if (!event.origin || typeof event.origin !== 'string') return;\n\n    var hostMatch = /^https:\\/\\/([^/]+)$/.exec(event.origin);\n    if (!hostMatch) return;\n    if (!ORIGIN_PATTERN.test(hostMatch[1])) return;\n\n    var data = event.data;\n    if (typeof data === 'string') {\n      try { data = JSON.parse(data); } catch (e) { return; }\n    }\n    if (!data || typeof data !== 'object') return;\n    if (!looksLikeTypeformSubmit(data)) return;\n\n    var formId = pickFormId(data);\n    var responseId = pickResponseId(data);\n    if (!formId || !responseId) return;\n\n    fireConversion(formId, responseId);\n  }\n\n  window.addEventListener('message', onMessage, false);\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Typeform Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "typeform_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Typeform Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "2",
+        "name": "DLV - Typeform Response ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "response_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

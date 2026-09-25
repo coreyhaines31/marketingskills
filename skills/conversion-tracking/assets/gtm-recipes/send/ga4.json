@@ -1,0 +1,58 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "path": "accounts/0/containers/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Send - GA4 Event",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": ["WEB"],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "101",
+        "name": "GA4 Event - __RECIPE_LABEL__",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "boolean", "key": "sendEcommerceData", "value": "false" },
+          { "type": "template", "key": "eventName", "value": "__GA4_EVENT_NAME__" },
+          { "type": "template", "key": "measurementIdOverride", "value": "__GA4_MEASUREMENT_ID__" }
+        ],
+        "firingTriggerId": ["201"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": { "type": "MAP" },
+        "consentSettings": { "consentStatus": "NOT_SET" }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "201",
+        "name": "CE - __RECIPE_LABEL__",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              { "type": "template", "key": "arg0", "value": "{{_event}}" },
+              { "type": "template", "key": "arg1", "value": "__DETECTION_EVENT__" }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [],
+    "fingerprint": "0"
+  }
+}

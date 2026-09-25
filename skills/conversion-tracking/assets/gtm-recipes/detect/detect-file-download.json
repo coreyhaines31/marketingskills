@@ -1,0 +1,81 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "path": "accounts/0/containers/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - File download",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - File download Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\n/*! File download conversion detection (MIT)\n *  From the conversion-tracking skill in Marketing Skills\n *  Detects: click on a downloadable file link. Pushes dataLayer event: file_download\n */\n(function () {\n  if (window.__ctDetectFileDownload) return;\n  window.__ctDetectFileDownload = true;\n  window.dataLayer = window.dataLayer || [];\n\n  /* For gated content that is NOT gated: price lists, brochures, spec\n     sheets, lead magnets served as a direct link. If the download sits\n     behind a form, track the form instead \u2014 that is where the lead is.\n\n     GA4 already collects file_download as an enhanced measurement event.\n     Use this when you need the same signal in Google Ads or Meta, which\n     do not. */\n\n  // EDIT if you serve other formats.\n  var EXTENSIONS = [\n    'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',\n    'csv', 'zip', 'rar', '7z', 'dmg', 'exe', 'pkg',\n    'mp3', 'mp4', 'mov', 'wav', 'txt', 'rtf'\n  ];\n\n  var DEDUPE_MS = 2000;\n  var lastUrl = null;\n  var lastAt = 0;\n\n  function extensionOf(url) {\n    try {\n      // Strip query and hash before reading the extension, so\n      // /brochure.pdf?utm_source=x still resolves to \"pdf\".\n      var path = String(url || '').split('#')[0].split('?')[0];\n      var name = path.substring(path.lastIndexOf('/') + 1);\n      var dot = name.lastIndexOf('.');\n      if (dot < 0) return null;\n      var ext = name.substring(dot + 1).toLowerCase();\n      for (var i = 0; i < EXTENSIONS.length; i++) {\n        if (EXTENSIONS[i] === ext) return ext;\n      }\n    } catch (e) { /* fall through */ }\n    return null;\n  }\n\n  function fileNameOf(url) {\n    try {\n      var path = String(url || '').split('#')[0].split('?')[0];\n      return decodeURIComponent(path.substring(path.lastIndexOf('/') + 1));\n    } catch (e) {\n      return '';\n    }\n  }\n\n  function handleClick(event) {\n    try {\n      if (event.button !== undefined && event.button !== 0) return;\n      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;\n\n      var target = event.target;\n      if (!target || !target.closest) return;\n\n      var link = target.closest('a[href]');\n      if (!link) return;\n\n      // Resolve relative hrefs against the current page. .href does this for\n      // us where available; getAttribute would leave \"/files/x.pdf\" relative.\n      var url = link.href || link.getAttribute('href');\n      if (!url) return;\n\n      // An anchor carrying the download attribute is a download regardless\n      // of extension, so honour that too.\n      var ext = extensionOf(url);\n      var forced = link.hasAttribute && link.hasAttribute('download');\n      if (!ext && !forced) return;\n\n      var now = new Date().getTime();\n      if (url === lastUrl && (now - lastAt) < DEDUPE_MS) return;\n      lastUrl = url;\n      lastAt = now;\n\n      window.dataLayer.push({\n        event: 'file_download',\n        file_name: fileNameOf(url),\n        file_extension: ext || '',\n        file_url: url,\n        link_text: (link.textContent || '').trim().slice(0, 100),\n        page_path: window.location.pathname\n      });\n    } catch (e) {\n      // Never throw back into the page's own click handling.\n    }\n  }\n\n  document.addEventListener('click', handleClick, false);\n})();\n</script>"
+          },
+          {
+            "type": "boolean",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - File download",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "file_download"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [],
+    "fingerprint": "0"
+  }
+}

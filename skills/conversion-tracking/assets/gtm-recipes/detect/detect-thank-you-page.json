@@ -1,0 +1,81 @@
+{
+  "exportFormatVersion": 2,
+  "containerVersion": {
+    "path": "accounts/0/containers/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Thank-you page",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Thank-you page Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "html",
+            "value": "<script>\n/*! Thank-you page conversion detection (MIT)\n *  From the conversion-tracking skill in Marketing Skills\n *  Detects: arrival on a confirmation page. Pushes dataLayer event: thank_you_page_view\n */\n(function () {\n  if (window.__ctDetectThankYouPage) return;\n  window.__ctDetectThankYouPage = true;\n  window.dataLayer = window.dataLayer || [];\n\n  /* ---------------------------------------------------------------\n     EDIT THIS. Paths that mean \"the conversion happened\".\n     Matched against location.pathname, case-insensitively, as a\n     prefix. '/thank-you' matches '/thank-you' and '/thank-you/order/9'.\n     --------------------------------------------------------------- */\n  var THANK_YOU_PATHS = [\n    '/thank-you',\n    '/thanks',\n    '/confirmation',\n    '/success'\n  ];\n\n  // Set true only if your confirmation page is genuinely reachable more than\n  // once per conversion and you want every view counted. Leave false.\n  var COUNT_EVERY_VIEW = false;\n\n  var fired = {};\n\n  function matches(path) {\n    var p = String(path || '').toLowerCase();\n    for (var i = 0; i < THANK_YOU_PATHS.length; i++) {\n      var want = String(THANK_YOU_PATHS[i] || '').toLowerCase();\n      if (want && p.indexOf(want) === 0) return want;\n    }\n    return null;\n  }\n\n  function check() {\n    try {\n      var path = window.location.pathname;\n      var matched = matches(path);\n      if (!matched) return;\n\n      // A refresh or a back-button return to the confirmation page would\n      // otherwise count a second conversion for the same lead. Keyed on the\n      // full path so two different confirmations still both count.\n      if (!COUNT_EVERY_VIEW && fired[path]) return;\n      fired[path] = true;\n\n      window.dataLayer.push({\n        event: 'thank_you_page_view',\n        page_path: path,\n        matched_rule: matched\n      });\n    } catch (e) {\n      // Never throw back into the page.\n    }\n  }\n\n  // Single-page apps are the reason this is not just a one-shot call. A\n  // React, Vue or Next site changes the URL without a page load, so no\n  // pageview ever fires and a thank-you page TRIGGER silently counts zero.\n  // Wrapping history means we see those route changes too.\n  function wrapHistory(method) {\n    var original = window.history[method];\n    if (typeof original !== 'function') return;\n    window.history[method] = function () {\n      var result = original.apply(this, arguments);\n      try { setTimeout(check, 0); } catch (e) { /* ignore */ }\n      return result;\n    };\n  }\n\n  try {\n    wrapHistory('pushState');\n    wrapHistory('replaceState');\n    window.addEventListener('popstate', function () { setTimeout(check, 0); });\n  } catch (e) {\n    // History API unavailable \u2014 the initial check below still runs.\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', check);\n  } else {\n    check();\n  }\n})();\n</script>"
+          },
+          {
+            "type": "boolean",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Thank-you page",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "thank_you_page_view"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [],
+    "fingerprint": "0"
+  }
+}

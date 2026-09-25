@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Ninja Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Ninja Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectNinjaForms) return;\n  window.__ctDetectNinjaForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'ninja_forms_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  function responseHasErrors(response) {\n    if (!response || !response.errors) return false;\n    var errors = response.errors;\n    if (typeof errors.length === 'number') return errors.length > 0;\n    if (typeof errors !== 'object') return !!errors;\n    for (var key in errors) {\n      if (!Object.prototype.hasOwnProperty.call(errors, key)) continue;\n      var group = errors[key];\n      if (!group) continue;\n      if (typeof group.length === 'number') {\n        if (group.length > 0) return true;\n      } else if (typeof group === 'object') {\n        for (var sub in group) {\n          if (Object.prototype.hasOwnProperty.call(group, sub)) return true;\n        }\n      } else {\n        return true;\n      }\n    }\n    return false;\n  }\n\n  function handleSubmitResponse(response) {\n    if (responseHasErrors(response)) return;\n    var formId = (response && response.data && response.data.form_id) ? response.data.form_id : '';\n    fireConversion(formId);\n  }\n\n  var radioHooked = false;\n\n  function hookNfRadio() {\n    if (radioHooked) return true;\n\n    if (typeof nfRadio !== 'undefined' && nfRadio.channel) {\n      try {\n        nfRadio.channel('forms').on('submit:response', handleSubmitResponse);\n        radioHooked = true;\n        return true;\n      } catch (e) {\n      }\n    }\n\n    if (typeof Backbone !== 'undefined' && Backbone.Radio) {\n      try {\n        Backbone.Radio.channel('forms').on('submit:response', handleSubmitResponse);\n        radioHooked = true;\n        return true;\n      } catch (e) {\n      }\n    }\n\n    return false;\n  }\n\n  var observerStarted = false;\n\n  function startMutationObserver() {\n    if (observerStarted) return;\n    if (typeof MutationObserver === 'undefined') return;\n\n    var containers = document.querySelectorAll('.nf-form-cont');\n    if (containers.length === 0) return;\n\n    observerStarted = true;\n\n    for (var c = 0; c < containers.length; c++) {\n      (function (container) {\n        var observer = new MutationObserver(function (mutations) {\n          for (var m = 0; m < mutations.length; m++) {\n            var addedNodes = mutations[m].addedNodes;\n            for (var n = 0; n < addedNodes.length; n++) {\n              var node = addedNodes[n];\n              if (!node || node.nodeType !== 1) continue;\n\n              var isResponseMsg = false;\n              if (node.classList && node.classList.contains('nf-response-msg')) {\n                isResponseMsg = true;\n              } else if (node.querySelector) {\n                isResponseMsg = !!node.querySelector('.nf-response-msg');\n              }\n\n              if (isResponseMsg) fireConversion('');\n            }\n          }\n        });\n\n        observer.observe(container, { childList: true, subtree: true });\n      })(containers[c]);\n    }\n  }\n\n  var hooked = hookNfRadio();\n  if (!hooked) {\n    document.addEventListener('DOMContentLoaded', function () {\n      var retryHooked = hookNfRadio();\n      if (!retryHooked) startMutationObserver();\n    });\n    window.addEventListener('load', function () {\n      if (!radioHooked) hookNfRadio();\n      if (!observerStarted && !radioHooked) startMutationObserver();\n    });\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Ninja Forms Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "ninja_forms_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Ninja Forms Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}
