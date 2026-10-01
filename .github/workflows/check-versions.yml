@@ -2,12 +2,16 @@ name: Check Versions
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [main]
     paths:
       - "skills/**"
       - "VERSIONS.md"
       - ".claude-plugin/**"
       - "scripts/check-versions.mjs"
+
+permissions:
+  contents: read
 
 concurrency:
   group: check-versions-${{ github.ref }}
