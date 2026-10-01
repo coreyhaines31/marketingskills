@@ -60,10 +60,13 @@ function parseArgs(args) {
 const args = parseArgs(process.argv.slice(2))
 const [cmd, sub, ...rest] = args._
 
+// Computed ranges use this machine's calendar date; Google evaluates them in the account's time zone.
 function dateFilter(days) {
-  const d = parseInt(days) || 30
+  const d = days === undefined ? 30 : Number(days)
+  if (!Number.isInteger(d) || d < 1 || d > 3650) throw new Error('--days must be a whole number from 1 to 3650')
   if ([7, 14, 30].includes(d)) return `segments.date DURING LAST_${d}_DAYS`
-  const fmt = (date) => date.toISOString().slice(0, 10)
+  const pad = (n) => String(n).padStart(2, '0')
+  const fmt = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
   const end = new Date()
   end.setDate(end.getDate() - 1)
   const start = new Date(end)
