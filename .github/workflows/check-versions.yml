@@ -1,0 +1,27 @@
+name: Check Versions
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - "VERSIONS.md"
+      - ".claude-plugin/**"
+      - "scripts/check-versions.mjs"
+
+concurrency:
+  group: check-versions-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-slim
+    if: github.event.pull_request.draft != true && github.actor != 'dependabot[bot]'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check skill and repo versions
+        run: node scripts/check-versions.mjs --base origin/${{ github.base_ref }}
