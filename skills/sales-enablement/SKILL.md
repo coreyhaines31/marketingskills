@@ -2,7 +2,7 @@
 name: sales-enablement
 description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,' 'battlecard,' 'competitive one-pager,' 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond to this objection,' 'prospect just said,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see competitors. For running buyer interviews or churn research, see customer-research. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
 metadata:
-  version: 2.3.0
+  version: 2.3.1
 ---
 
 # Sales Enablement
@@ -167,7 +167,7 @@ Afterward, suggest the rep log the objection and how it went. Live objections ar
 
 ## Battle Cards
 
-A battle card is a reusable one-competitor guide for reps, used across many deals. For a single live objection, use the objection doc. For public comparison pages, see competitors. Every line follows Claims Reps Can Defend.
+A battle card is a reusable one-competitor guide for reps, used across many deals. For a single live objection, use Live Deal Objection. For public comparison pages, see competitors. Every line follows Claims Reps Can Defend.
 
 **Ask which competitor.** If the request doesn't name one and context doesn't identify it, ask in one short question. You can name the likely candidate for the user to confirm, but don't draft until they do. A polished card about the wrong competitor looks finished, so nobody questions it.
 
