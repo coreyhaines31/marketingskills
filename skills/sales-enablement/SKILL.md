@@ -1,6 +1,6 @@
 ---
 name: sales-enablement
-description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,' 'battlecard,' 'competitive one-pager,' 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond to this objection,' 'prospect just said,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see competitors. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
+description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,' 'battlecard,' 'competitive one-pager,' 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond to this objection,' 'prospect just said,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see competitors. For running buyer interviews or churn research, see customer-research. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
 metadata:
   version: 2.3.0
 ---
@@ -54,7 +54,7 @@ Every claim connects to revenue, efficiency, or risk reduction. Features mean no
 
 ### Claims Reps Can Defend
 Reps repeat what you write to buyers who can check it. Anything a buyer can disprove in a minute costs more than it gains.
-- **"Why we win" needs evidence**: win/loss notes, CRM loss reasons, call recordings, or customer quotes. Without it, write advantages as hypotheses for reps to test, and say what evidence would confirm them.
+- **"Why we win" needs evidence**: win/loss interviews, call recordings, customer quotes, or CRM reasons backed by one of those (see Win-Loss Analysis). Without it, write advantages as hypotheses for reps to test, and say what evidence would confirm them.
 - **Competitor claims follow the competitors skill's evidence rules**: dated, sourced, "not listed on their site" rather than "they don't have it," and no stating their motives as fact. Reps can reason about why a competitor did something, labeled as a guess.
 - **Include where you lose.** A competitive doc that admits when the competitor is the better fit is one reps will trust in front of a buyer.
 
@@ -199,10 +199,11 @@ Win-loss analysis turns CRM outcomes, call transcripts, and buyer interviews int
 ### Workflow
 
 1. **Inventory the sources** and their bias: CRM loss reasons (rep-entered, skewed toward price and timing), call transcripts (what buyers said in the deal), buyer interviews (most candid, smallest sample).
-2. **Segment before you count.** Split by competitor, segment, deal size, and stage lost. "We lose on price" across everything often hides "we lose mid-market deals to one competitor on onboarding."
-3. **Code each deal** with a primary reason, supporting quote, and source. One primary reason per deal, so counts add up.
-4. **Report counts with sample sizes.** "6 of 9 losses to Acme cite onboarding time" beats "onboarding is a top theme." Under ~5 deals in a segment, call it a signal, not a finding.
-5. **Turn findings into assets**: update battle cards, the objection library, and discovery questions, and send product gaps to the product team.
+2. **Include wins.** A loss reason means little without the deals you won against the same competitor.
+3. **Segment before you count.** Split by competitor, segment, deal size, and stage lost. "We lose on price" across everything often hides "we lose mid-market deals to one competitor on onboarding."
+4. **Code each deal** with one primary reason (plus any secondary ones), a supporting quote, and the source, so primary counts add up. Have one person code, or double-code a sample, so "primary" means the same thing throughout.
+5. **Report counts with sample sizes.** "6 of 9 losses to Acme cite onboarding time" beats "onboarding is a top theme." State n every time. Small slices are directional, and under ~5 deals it's a signal to watch, not a finding.
+6. **Turn findings into assets.** A deal with only a one-word CRM reason is low-confidence: confirm it with transcripts or interviews before it changes a battle card. Then update battle cards, the objection library, and discovery questions, and send product gaps to the product team.
 
 **For coding schemes, interview questions, and report format**: See [references/win-loss-analysis.md](references/win-loss-analysis.md)
 

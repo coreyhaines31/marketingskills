@@ -43,7 +43,7 @@ Ask within 2-4 weeks of the decision. Have someone other than the deal's rep do 
 - Was there a moment the decision tipped? What happened?
 - If we'd changed one thing, would it have changed the outcome?
 
-For lost deals, push past "price": "If we'd been the same price, would you have chosen us? What would still have held you back?"
+For lost deals, push past "price": "What would you have needed to see to choose us at that price?" Avoid "If we'd been the same price, would you have chosen us?" Polite buyers say yes.
 
 ## Reading the Results
 
