@@ -1,8 +1,8 @@
 ---
 name: ads
-description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' or 'when should I kill an ad.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
+description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' 'when should I kill an ad,' 'search terms report,' 'wasted spend,' or 'is this campaign working.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
 metadata:
-  version: 2.3.2
+  version: 2.4.0
 ---
 
 # Paid Ads
@@ -54,6 +54,7 @@ This skill's depth lives in references — load by intent. For **any operational
 | Named-account targeting, pipeline acceleration, cross-channel retargeting | [abm-playbook.md](references/abm-playbook.md) | LinkedIn/Meta ABM, list mechanics, acceleration campaigns, UTM cross-channel remarketing, ABM measurement |
 | Generating Google RSAs | [rsa-output-spec.md](references/rsa-output-spec.md) | Mandatory output spec — limits, sidecars, template, self-check |
 | Auditing a live account, grading account health, quoting benchmarks, recommending changes | [audit-guardrails.md](references/audit-guardrails.md) | Pass/fail/unknown scoring, evidence coverage, recommendation safety, hard stops, benchmark discipline |
+| Analyzing or reporting on Google Ads data, search-term waste, pause/keep/scale on low volume, client-facing findings | [reading-google-ads-data.md](references/reading-google-ads-data.md) | Withheld search terms (disclosed vs total clicks), conversions vs all_conversions, click-date attribution, experiment arms, 30-day change history, zero-in-N table, break-even CVR, verified/inferred/stale, "conclusions that sound right" |
 | Itemized Google Ads / ecommerce account audit (Search + Shopping + PMax + GMC + Demand Gen) | [google-ads-audit-checklist.md](references/google-ads-audit-checklist.md) | 32 checks across 11 categories — feed/GMC quality, Shopping segmentation, PMax signals/budget, DG format splits, lander funnels; each scored pass/fail/unknown/NA via audit-guardrails |
 | Agentic creative/competitive research: ad-library teardown, review→persona mapping, organic competitor teardown | [creative-research-automation.md](references/creative-research-automation.md) | Ad Library output schema (format split, % partnership, inferred personas, top-10 by impressions), reviews→CSV→personas doc→deck, "who creatives target vs. who buys," connectors + scheduled-to-Slack workflow |
 | Audience setup, tracking setup, launch checklists, copy formulas | [audience-targeting.md](references/audience-targeting.md) · [conversion-tracking.md](references/conversion-tracking.md) · [platform-setup-checklists.md](references/platform-setup-checklists.md) · [ad-copy-templates.md](references/ad-copy-templates.md) | Existing foundations |
@@ -431,6 +432,7 @@ When the user requests Google Ads RSAs, load [references/rsa-output-spec.md](ref
 Before auditing a live account, grading account health, quoting benchmarks, or recommending changes to running campaigns, load [audit-guardrails.md](references/audit-guardrails.md). The non-negotiables:
 
 - **Unknown ≠ failing.** Score only what you verified. "Couldn't check X" and "X is broken" are different findings — and never call an audit complete when a data source failed.
+- **Search terms are a sample; small numbers prove little.** State disclosed vs total clicks, and compute break-even CVR before calling spend wasted. See [reading-google-ads-data.md](references/reading-google-ads-data.md).
 - **No invented negative keywords.** Without a search-terms report, request it — name zero candidates.
 - **Never sum conversions across attribution windows.** Meta 7-day + Google 30-day is not a total; report them side by side.
 - **No fixed kill rules.** A CPA spike is a question, not a verdict — check sample size, conversion lag, and learning phase before pausing anything.
@@ -458,7 +460,6 @@ Before auditing a live account, grading account health, quoting benchmarks, or r
 ### Budget
 - Spreading too thin across campaigns
 - Making big budget changes (disrupts learning)
-- Stopping campaigns during learning phase
 
 ---
 
