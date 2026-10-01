@@ -57,6 +57,15 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.11.6 (2026-10-01)
+
+Post-merge review fixes. Closes #611.
+
+- **ads** (2.4.0 → 2.4.1): `reading-google-ads-data.md` corrections. The 30-day limit is `change_event`'s; `change_status` covers 90 days without field detail. `metrics.conversions` can include secondary actions a custom goal pulls in. `client_type` names the client, not who or why, and Editor changes aren't returned. Learning phase blocks optimizing, not fixing verified breakage.
+- **sales-enablement** (2.3.0 → 2.3.1): Battle Cards points single live objections at Live Deal Objection.
+- **tools/google-ads**: computed date ranges use the local calendar date (UTC shifted them a day late in US evenings), and invalid `--days` values are rejected.
+- **CI**: `check-versions.mjs` requires skill and repo versions to increase, and the repo version to match the newest changelog block.
+
 ### 2.11.5 (2026-10-01)
 
 Three competitive-PMM jobs added to existing skills instead of new ones, so the evidence rules from 2.11.3 apply to all of them. Closes #604.
