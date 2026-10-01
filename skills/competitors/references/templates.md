@@ -205,6 +205,9 @@ Do this:
 |---------|-----|-----------|
 | Feature A | Full support with [detail] | Basic support, [limitation] |
 | Feature B | [Specific capability] | Not available |
+| Feature C | [Specific capability] | Not listed on pricing page (as of [Mon YYYY]) |
+
+Only write "Not available" when the competitor's docs or a trial confirm it. If the evidence is just that their site doesn't mention it, say that.
 
 ### Organize by Category
 

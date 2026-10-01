@@ -40,6 +40,12 @@ primary_use_case: "docs + light databases"
 target_audience: "teams wanting flexible workspace"
 market_position: "premium, feature-rich"
 
+# Provenance (re-verify before republishing)
+last_verified: 2026-03-14
+sources:
+  pricing: notion.so/pricing
+  features: notion.so/help + hands-on trial
+
 # Pricing
 pricing_model: per-seat
 free_tier: true
