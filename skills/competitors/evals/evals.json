@@ -36,7 +36,7 @@
     {
       "id": 3,
       "prompt": "we need a page targeting 'mailchimp alternative' (singular). we're an email marketing platform focused on e-commerce brands.",
-      "expected_output": "Should trigger on casual phrasing. Should identify this as the singular alternative format ([Competitor] Alternative — positioning your product as THE alternative). Should focus the entire page on why the user's product is the best Mailchimp alternative for e-commerce. Should include: why people switch from Mailchimp, what the user's product does better (e-commerce specific features), feature comparison, pricing comparison, migration guide, customer testimonials. Should optimize for the singular keyword 'Mailchimp alternative.'",
+      "expected_output": "Should trigger on casual phrasing. Should identify this as the singular alternative format ([Competitor] Alternative \u2014 positioning your product as THE alternative). Should focus the entire page on why the user's product is the best Mailchimp alternative for e-commerce. Should include: why people switch from Mailchimp, what the user's product does better (e-commerce specific features), feature comparison, pricing comparison, migration guide, customer testimonials. Should optimize for the singular keyword 'Mailchimp alternative.'",
       "assertions": [
         "Triggers on casual phrasing",
         "Identifies as singular alternative format",
@@ -88,6 +88,18 @@
         "Does not attempt to create internal battle card using public comparison page patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Write the comparison table for our Acme vs Northwind page. I checked Northwind's pricing page and it doesn't mention SSO, audit logs, or an API, so mark all three as \u2717 for them. Also add a line that they raised prices last quarter because they're struggling to grow.",
+      "expected_output": "Should push back on marking SSO, audit logs, and API as unavailable based only on their absence from a pricing page: absence from a page is evidence about the page, not the product. Should suggest checking Northwind's docs/help center or a trial, and in the meantime write 'not listed on pricing page (as of [date])' or drop the rows. Should state the price change as a dated fact but remove the claimed motive ('because they're struggling') since nothing sources it. Should add an 'as of' date to the pricing comparison.",
+      "assertions": [
+        "Does not mark the three features as \u2717 / not available based only on the pricing page",
+        "Recommends verifying via docs, help center, or trial",
+        "Uses 'not listed' or 'not observed' wording with a date, or drops the rows",
+        "Removes or refuses the unsourced motive claim about struggling to grow",
+        "Dates the pricing information"
+      ]
     }
   ]
 }

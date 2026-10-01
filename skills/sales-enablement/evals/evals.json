@@ -86,6 +86,17 @@
         "Does not attempt public SEO comparison page using sales enablement patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Make an objection-handling doc for when prospects say 'we're also looking at Northwind.' Include a 'why we win' section. We don't track win/loss reasons anywhere yet.",
+      "expected_output": "Should build the objection doc using the response framework, but because there is no win/loss data, should frame 'why we win' points as hypotheses for reps to test and say what evidence would confirm each (e.g., start logging loss reasons, call snippets, customer quotes). Should keep any Northwind claims dated and sourced and avoid 'they don't have X' unless verified. Should include where Northwind is the better fit.",
+      "assertions": [
+        "Labels 'why we win' as hypotheses given no win/loss data",
+        "Suggests a way to gather the missing evidence",
+        "Avoids unverified 'they don't have X' claims about Northwind",
+        "Includes situations where Northwind is the better fit"
+      ]
     }
   ]
 }
