@@ -2,7 +2,7 @@
 name: sales-enablement
 description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For competitor comparison pages and battle cards, see competitors. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
 metadata:
-  version: 2.0.1
+  version: 2.1.0
 ---
 
 # Sales Enablement
@@ -51,6 +51,12 @@ Reps need information in 3 seconds, not 30. Use bold headers, short bullets, and
 
 ### Tie Back to Business Outcomes
 Every claim connects to revenue, efficiency, or risk reduction. Features mean nothing without the "so what." Replace "AI-powered analytics" with "cut reporting time by 80%."
+
+### Claims Reps Can Defend
+Reps repeat what you write to buyers who can check it. Anything a buyer can disprove in a minute costs more than it gains.
+- **"Why we win" needs evidence**: win/loss notes, CRM loss reasons, call recordings, or customer quotes. Without it, write advantages as hypotheses for reps to test, and say what evidence would confirm them.
+- **Competitor claims follow the competitors skill's evidence rules**: dated, sourced, "not listed on their site" rather than "they don't have it," and no guessing at their motives.
+- **Include where you lose.** A competitive doc that admits when the competitor is the better fit is one reps will trust in front of a buyer.
 
 ---
 
