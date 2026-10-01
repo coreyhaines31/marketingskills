@@ -46,7 +46,7 @@ Conversions are attributed back to the originating click. A conversion recorded 
 
 Expired experiment arms inherit the base campaign's name and can keep an ENABLED status while serving nothing. Check `campaign.experiment_type` and `campaign.serving_status` before believing a duplicate exists.
 
-### Change history only goes back 30 days
+### Change history is short: 30 days with detail, 90 without
 
 `change_event` (field-level before and after) covers 30 days. `change_status` covers 90 days but only says which resource changed, not what. Past that, the API has nothing. A performance shift four months ago may have no recoverable explanation, so say that instead of guessing one.
 
