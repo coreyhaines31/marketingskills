@@ -9,7 +9,7 @@ Every check in an audit resolves to exactly one of four results:
 | Result | Meaning | Example |
 |---|---|---|
 | **Pass** | You saw the evidence and it's right | Conversion tracking fired on a test conversion you observed |
-| **Fail** | You saw the evidence and it's wrong | Search terms report shows 40% of spend on irrelevant queries |
+| **Fail** | You saw the evidence and it's wrong | Search terms report shows clearly irrelevant queries taking a large share of *disclosed* clicks |
 | **Unknown** | The evidence needed to judge this wasn't available | No access to the search terms report |
 | **Not applicable** | This check doesn't apply to the account | PMax checks on an account that doesn't run PMax |
 
