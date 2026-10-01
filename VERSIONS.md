@@ -36,7 +36,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.3.2 | 2026-08-23 |
+| ads | 2.4.0 | 2026-10-01 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.1 | 2026-08-23 |
@@ -56,6 +56,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.2 (2026-10-01)
+
+- **ads** (2.3.2 → 2.4.0): new `references/reading-google-ads-data.md`, covering how Google Ads data misleads before an audit even starts. **Search terms are a sample**: on small accounts 50–65% of clicks have no disclosed query, so every claim states disclosed vs total clicks, the report is pulled unfiltered first, and nothing (GA4, CRM) recovers the withheld queries. Data traps: `conversions` vs `all_conversions`, several final URLs per ad group, click-date attribution, expired experiment arms that look like duplicate campaigns, the 30-day change-history limit, and `client_type` for who else changes the account. **Window vs lifetime** and no pooling across config changes. **Small numbers**: a zero-conversions-in-N-clicks table (what each sample size rules out) plus break-even CVR = CPC ÷ target CPA, and "let it run" only with a date. **Stating findings** as verified / inferred / stale, the "can the client disprove this in a minute?" test, and a "conclusions that sound right" table. Fixed the `audit-guardrails.md` Fail example that treated disclosed search terms as a share of all spend. Two new evals (ids 12–13). New triggers: 'search terms report,' 'wasted spend,' 'is this campaign working.'
+- **tools/google-ads**: API URLs moved from the long-sunset v14 to v24 (guide and CLI); added analysis GAQL recipes (campaign inventory, monthly since launch, conversions by action, unfiltered search terms, ads by final URL, change history) and a gotchas table. Closes #601.
 
 ### 2.11.1 (2026-09-04)
 
