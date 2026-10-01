@@ -2,7 +2,7 @@
 name: competitor-profiling
 description: "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific battle cards, see sales-enablement."
 metadata:
-  version: 2.0.1
+  version: 2.1.0
 ---
 
 # Competitor Profiling
@@ -28,13 +28,20 @@ If the user provides URLs and context is available, proceed without asking.
 ## Core Principles
 
 ### 1. Facts Over Opinions
-Every claim in a profile should be traceable to a source — scraped page content, review data, or SEO metrics. Label inferences clearly.
+Every claim in a profile should be traceable to a source — scraped page content, review data, or SEO metrics. Keep three layers visibly separate:
+- **Observed**: what a source says, with the source and date
+- **Inferred**: your reading of what was observed. Label it, and say how confident you are when it would change a decision
+- **Implication**: what it might mean for your product, framed as a question or option, not a conclusion
+
+**Not observed ≠ absent.** If a feature isn't on their site, write "not observed on [pages checked], as of [date]", not "doesn't have." The same goes for pricing: "no public pricing" is not "free" and not "expensive."
+
+**Never state motive.** Record what changed ("moved SSO to Enterprise"). Don't claim why ("because they're going upmarket") unless they've said so publicly.
 
 ### 2. Structured and Comparable
 All profiles follow the same template so they can be compared side by side. Consistency matters more than completeness on any single profile.
 
 ### 3. Current Data
-Profiles are snapshots. Always include the date generated. Flag anything that looks stale (e.g., "pricing page last updated 2023").
+Profiles are snapshots. Always include the date generated. Flag anything that looks stale (e.g., "pricing page last updated 2023"). A single scrape can't support "hasn't changed" claims; only dated snapshots (prior raw folders, archived pages, changelogs) can.
 
 ### 4. Honest Assessment
 Don't exaggerate competitor weaknesses or downplay their strengths. Accurate profiles are useful profiles.
@@ -321,7 +328,7 @@ Each profile follows this structure:
 
 **Where they're strong vs. us**: [areas where this competitor has an advantage]
 
-**Where we're strong vs. them**: [areas where you have an advantage]
+**Where we're strong vs. them**: [areas where you have an advantage — cite customer, win/loss, or review evidence; without it, label these as hypotheses]
 
 **Opportunities**: [gaps in their offering or positioning we can exploit]
 
