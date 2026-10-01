@@ -6,7 +6,7 @@
 //
 // Consistency:
 //   - every skill's metadata.version matches its VERSIONS.md row, and every skill has a row
-//   - plugin.json and marketplace.json share one repo version with a `### x.y.z` block in VERSIONS.md
+//   - plugin.json and marketplace.json share one repo version, matching the newest `### x.y.z` block in VERSIONS.md
 //   - every file in skills/<name>/references/ is linked from that skill's SKILL.md
 //     or from another of its reference files (no orphans)
 // With --base:
@@ -31,6 +31,11 @@ const frontmatter = (text) => text.replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?
 const skillVersion = (text) => frontmatter(text).match(/^metadata:\s*\n(?:[ \t]+.*\n)*?[ \t]+version:\s*["']?([\d.]+)/m)?.[1];
 const repoVersion = (json) => JSON.parse(json).version;
 const marketVersion = (json) => JSON.parse(json).metadata?.version;
+const newer = (a, b) => {
+  const [x, y] = [a, b].map((v) => v.split(".").map(Number));
+  for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] > y[i];
+  return false;
+};
 
 const skills = readdirSync(resolve(ROOT, "skills"), { withFileTypes: true })
   .filter((d) => d.isDirectory() && existsSync(resolve(ROOT, "skills", d.name, "SKILL.md")))
@@ -56,7 +61,8 @@ for (const name of Object.keys(table)) {
 const plugin = repoVersion(read(".claude-plugin/plugin.json"));
 const market = marketVersion(read(".claude-plugin/marketplace.json"));
 if (plugin !== market) errors.push(`plugin.json is ${plugin} but marketplace.json metadata.version is ${market}`);
-if (!new RegExp(`^### ${plugin.replaceAll(".", "\\.")}(\\s|$)`, "m").test(versionsMd)) errors.push(`VERSIONS.md: no "### ${plugin}" changelog block`);
+const latestHeading = versionsMd.match(/^### (\d+\.\d+\.\d+)(\s|$)/m)?.[1];
+if (latestHeading !== plugin) errors.push(`VERSIONS.md: newest changelog block is ${latestHeading ?? "missing"}, but repo version is ${plugin}`);
 
 // Orphan references
 for (const name of skills) {
@@ -89,12 +95,12 @@ if (base) {
     if (!before) continue;
     const was = skillVersion(before);
     const now = skillVersion(read(`skills/${name}/SKILL.md`));
-    if (was === now) errors.push(`${name}: files changed but metadata.version is still ${now}`);
+    if (was && now && !newer(now, was)) errors.push(`${name}: files changed but metadata.version went ${was} → ${now}; it must increase`);
   }
 
   const basePlugin = atBase(".claude-plugin/plugin.json");
-  if (changedSkills.length && basePlugin && repoVersion(basePlugin) === plugin) {
-    errors.push(`skills changed (${changedSkills.join(", ")}) but repo version is still ${plugin}`);
+  if (changedSkills.length && basePlugin && !newer(plugin, repoVersion(basePlugin))) {
+    errors.push(`skills changed (${changedSkills.join(", ")}) but repo version went ${repoVersion(basePlugin)} → ${plugin}; it must increase`);
   }
 }
 
