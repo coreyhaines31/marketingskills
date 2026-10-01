@@ -15,7 +15,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cold-email | 2.0.0 | 2026-05-05 |
 | community-marketing | 2.0.1 | 2026-08-23 |
 | competitor-profiling | 2.1.0 | 2026-10-01 |
-| competitors | 2.1.0 | 2026-10-01 |
+| competitors | 2.2.0 | 2026-10-01 |
 | content-strategy | 2.1.1 | 2026-08-23 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.2 | 2026-08-23 |
@@ -46,7 +46,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | public-relations | 1.1.1 | 2026-08-23 |
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
-| sales-enablement | 2.1.0 | 2026-10-01 |
+| sales-enablement | 2.2.0 | 2026-10-01 |
 | schema | 2.0.0 | 2026-05-05 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
@@ -56,6 +56,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.4 (2026-10-01)
+
+- **sales-enablement** (2.1.0 → 2.2.0): new **Battle Cards** section, which had no home before. `competitors` claimed the trigger with no guidance and `sales-enablement` pointed back at it. Covers an 8-part structure (when you'll see them, why buyers consider them, where they're strong, where we win and for whom, discovery questions, top objections, when to walk away, last verified) and a refresh cadence. Asks which competitor rather than guessing. New triggers: 'battle card,' 'battlecard,' 'competitive one-pager.' New eval (id 8).
+- **competitors** (2.1.0 → 2.2.0): 'battle card' trigger moved to sales-enablement; description and related skills point there. Closes #608.
 
 ### 2.11.3 (2026-10-01)
 
