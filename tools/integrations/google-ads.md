@@ -139,6 +139,88 @@ ORDER BY metrics.conversions DESC
 LIMIT 10
 ```
 
+### Analysis recipes
+
+Baseline queries for reading an account honestly. See the ads skill's `references/reading-google-ads-data.md` for why each matters.
+
+**Campaign inventory** (separates real campaigns from expired experiment arms and learning bid strategies):
+
+```sql
+SELECT campaign.id, campaign.name, campaign.status, campaign.serving_status,
+       campaign.primary_status, campaign.primary_status_reasons,
+       campaign.experiment_type, campaign.bidding_strategy_type
+FROM campaign
+WHERE campaign.status != 'REMOVED'
+```
+
+**Monthly performance since launch** (the first month returned is effectively the start date; run before quoting any CPA):
+
+```sql
+SELECT segments.month, metrics.impressions, metrics.clicks,
+       metrics.cost_micros, metrics.conversions
+FROM campaign
+WHERE campaign.id = <ID>
+  AND segments.date BETWEEN '<EARLY_DATE>' AND '<TODAY>'
+ORDER BY segments.month
+```
+
+**Conversions by action** (primary vs secondary):
+
+```sql
+SELECT segments.conversion_action_name, segments.conversion_action_category,
+       metrics.conversions, metrics.all_conversions
+FROM campaign
+WHERE campaign.id = <ID>
+  AND segments.date BETWEEN '<START>' AND '<END>'
+  AND metrics.all_conversions > 0
+```
+
+**Search terms, unfiltered** (then reconcile disclosed clicks against campaign clicks for the same window):
+
+```sql
+SELECT search_term_view.search_term, ad_group.name, metrics.impressions,
+       metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM search_term_view
+WHERE campaign.id = <ID>
+  AND segments.date BETWEEN '<START>' AND '<END>'
+ORDER BY metrics.impressions DESC
+LIMIT 100
+```
+
+**Ads with final URLs** (ad groups often serve several destinations):
+
+```sql
+SELECT ad_group.name, ad_group_ad.ad.id, ad_group_ad.status,
+       ad_group_ad.ad.final_urls, metrics.clicks, metrics.conversions
+FROM ad_group_ad
+WHERE campaign.id = <ID>
+  AND segments.date BETWEEN '<START>' AND '<END>'
+```
+
+**Change history** (who changed what; 30-day maximum):
+
+```sql
+SELECT change_event.change_date_time, change_event.change_resource_type,
+       change_event.resource_change_operation, change_event.client_type,
+       change_event.user_email, change_event.changed_fields
+FROM change_event
+WHERE change_event.change_date_time >= '<29_DAYS_AGO>'
+  AND change_event.change_date_time <= '<TOMORROW>'
+ORDER BY change_event.change_date_time DESC
+LIMIT 200
+```
+
+### Gotchas
+
+| Problem | Fix |
+|---|---|
+| `campaign.start_date` → `UNRECOGNIZED_FIELD` | Derive the start from the first month the monthly query returns |
+| `DURING LAST_90_DAYS` → `INVALID_VALUE_WITH_DURING_OPERATOR` | Only some date literals are valid; use `segments.date BETWEEN 'YYYY-MM-DD' AND 'YYYY-MM-DD'` |
+| `change_event` → `START_DATE_TOO_OLD` | 30-day limit, strictly enforced; pad the start by a day |
+| `change_event` errors with no limit | `LIMIT` is required |
+| Cost looks 1,000,000x too big | `cost_micros` ÷ 1,000,000 |
+| Keyword or change queries return huge payloads | Write to a file and parse; `keyword_view` returns negatives too (split on `ad_group_criterion.negative`) |
+
 ## When to Use
 
 - Managing search advertising campaigns
