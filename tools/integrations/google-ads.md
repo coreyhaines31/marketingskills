@@ -23,7 +23,7 @@ Pay-per-click advertising platform for search, display, and video campaigns.
 ### Get account info
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/googleAds:searchStream
 
 {
   "query": "SELECT customer.id, customer.descriptive_name FROM customer"
@@ -33,7 +33,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 ### List campaigns
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/googleAds:searchStream
 
 {
   "query": "SELECT campaign.id, campaign.name, campaign.status, campaign_budget.amount_micros FROM campaign ORDER BY campaign.id"
@@ -43,7 +43,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 ### Get campaign performance
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/googleAds:searchStream
 
 {
   "query": "SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions FROM campaign WHERE segments.date DURING LAST_30_DAYS"
@@ -53,7 +53,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 ### Get ad group performance
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/googleAds:searchStream
 
 {
   "query": "SELECT ad_group.name, metrics.impressions, metrics.clicks, metrics.conversions FROM ad_group WHERE segments.date DURING LAST_7_DAYS"
@@ -63,7 +63,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 ### Get keyword performance
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/googleAds:searchStream
 
 {
   "query": "SELECT ad_group_criterion.keyword.text, metrics.impressions, metrics.clicks, metrics.average_cpc FROM keyword_view WHERE segments.date DURING LAST_30_DAYS ORDER BY metrics.clicks DESC LIMIT 50"
@@ -73,7 +73,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:sear
 ### Pause campaign
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaigns:mutate
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/campaigns:mutate
 
 {
   "operations": [{
@@ -89,7 +89,7 @@ POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaigns:muta
 ### Update budget
 
 ```bash
-POST https://googleads.googleapis.com/v14/customers/{customer_id}/campaignBudgets:mutate
+POST https://googleads.googleapis.com/v24/customers/{customer_id}/campaignBudgets:mutate
 
 {
   "operations": [{

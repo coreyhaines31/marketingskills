@@ -3,7 +3,7 @@
 const TOKEN = process.env.GOOGLE_ADS_TOKEN
 const DEV_TOKEN = process.env.GOOGLE_ADS_DEVELOPER_TOKEN
 const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID
-const BASE_URL = 'https://googleads.googleapis.com/v14'
+const BASE_URL = 'https://googleads.googleapis.com/v24'
 
 if (!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) {
   console.error(JSON.stringify({ error: 'GOOGLE_ADS_TOKEN, GOOGLE_ADS_DEVELOPER_TOKEN, and GOOGLE_ADS_CUSTOMER_ID environment variables required' }))
