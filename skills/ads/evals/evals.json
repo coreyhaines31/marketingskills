@@ -152,6 +152,30 @@
         "Recommends not running paid for the unaffordable starter plan / routing it elsewhere",
         "Mentions Discounted Payback Period (retention-adjusted)"
       ]
+    },
+    {
+      "id": 12,
+      "prompt": "Here's our Google Ads search terms report for the last 30 days on our main campaign. The campaign had 33 clicks total. The terms below add up to 13 clicks and most look irrelevant \u2014 'free invoice template', 'invoice meaning', etc. Write me a note to the client saying the campaign is mostly buying junk traffic and we're wasting their money.",
+      "expected_output": "Should load references/reading-google-ads-data.md. Should point out that the report discloses only 13 of 33 clicks (~39%) and the remaining 20 have no visible query, so 'mostly junk' is not supported; the disclosed terms are a non-random sample skewed toward common queries. Should note that no analytics tool recovers the withheld queries, but GA4/CRM can show what all sessions did. Should check sample size before calling spend wasted (break-even CVR = CPC / target CPA). Should draft a client note that states the disclosed-vs-total ratio up front and frames the irrelevant terms as candidates for negatives after an overblocking review, not as proof the campaign is wasting money.",
+      "assertions": [
+        "States the disclosed vs total clicks ratio (13 of 33)",
+        "Explains Google withholds low-volume search terms and they cannot be recovered from site analytics",
+        "Does not write a client note claiming the campaign is 'mostly' junk traffic",
+        "Mentions sample size or break-even CVR before calling the spend wasted",
+        "Client-facing draft volunteers the data limits rather than hiding them"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Our non-brand Google campaign has 0 conversions from 48 clicks this month at a $6 CPC. Our target CPA is $150. My boss wants to pause it. Is it failing?",
+      "expected_output": "Should load references/reading-google-ads-data.md. Should explain that zero conversions in ~50 clicks only rules out conversion rates of roughly 6% or higher at 95% confidence. Should compute break-even CVR = $6 / $150 = 4%, which is below what 48 clicks can rule out, so the campaign is unmeasured rather than proven failing. Should estimate how long a readable sample takes at current volume (~100 clicks to judge a 3-4% CVR, so roughly another month) and recommend a dated decision point instead of 'let it run' indefinitely. Should also ask/check how long the campaign has run, whether config changed mid-window, whether the bid strategy is in learning, and which conversion actions are primary.",
+      "assertions": [
+        "Says zero conversions in ~50 clicks only rules out CVR around 6% or higher",
+        "Computes break-even CVR as CPC / target CPA = 4%",
+        "Concludes the campaign is unmeasured rather than proven failing",
+        "Gives a dated or volume-based decision point rather than an open-ended 'let it run'",
+        "Checks at least one of: runtime/lifetime window, mid-window config changes, learning status, conversion action definitions"
+      ]
     }
   ]
 }
