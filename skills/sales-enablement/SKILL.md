@@ -1,8 +1,8 @@
 ---
 name: sales-enablement
-description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For competitor comparison pages and battle cards, see competitors. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
+description: "When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also use when the user mentions 'sales deck,' 'pitch deck,' 'one-pager,' 'leave-behind,' 'objection handling,' 'deal-specific ROI analysis,' 'demo script,' 'talk track,' 'sales playbook,' 'proposal template,' 'buyer persona card,' 'battle card,' 'battlecard,' 'competitive one-pager,' 'help my sales team,' 'sales materials,' or 'what should I give my sales reps.' Use this for any document or asset that helps a sales team close deals. For public competitor comparison pages, see competitors. For marketing website copy, see copywriting. For cold outreach emails, see cold-email. For the offer being sold (bonuses, guarantees, pricing structure), see offers."
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Sales Enablement
@@ -150,6 +150,33 @@ For each objection, document:
 - **Detailed doc** for prep and training — full context, talk tracks, role-play scenarios.
 
 **For the full objection library**: See [references/objection-library.md](references/objection-library.md)
+
+---
+
+## Battle Cards
+
+A battle card is a reusable one-competitor guide for reps, used across many deals. For a single live objection, use the objection doc. For public comparison pages, see competitors.
+
+**Ask which competitor.** If the request doesn't name one and context doesn't identify it, ask. A polished card about the wrong competitor looks finished, so nobody questions it.
+
+### Structure
+
+1. **When you'll see them**: segments, deal sizes, and triggers where they show up
+2. **Why buyers consider them**: their real appeal, in the buyer's words
+3. **Where they're strong**: honest, so reps aren't blindsided
+4. **Where we win, and for whom**: tied to evidence (see Claims Reps Can Defend)
+5. **Discovery questions**: questions that surface the fit criteria where you're stronger, without trashing them
+6. **Top objections**: with one-line responses and proof
+7. **When to walk away**: deal profiles where they're the better fit
+8. **Last verified**: date, and what changed since the previous version
+
+### Keeping It Current
+
+- Re-verify pricing and packaging quarterly, and whenever reps hear something new in deals.
+- Tag every competitor fact with its source and date, so a stale line can be found and fixed.
+- One page. If reps can't find the answer mid-call, cut until they can.
+
+Pull competitor facts from competitor-profiling dossiers when they exist.
 
 ---
 
@@ -358,6 +385,7 @@ For partner sales enablement, see the [tools registry](../../tools/REGISTRY.md):
 ## Related Skills
 
 - **competitors**: For public-facing comparison and alternative pages
+- **competitor-profiling**: For the competitor dossiers that feed battle cards
 - **copywriting**: For marketing website copy
 - **cold-email**: For outbound prospecting emails
 - **revops**: For lead lifecycle, scoring, routing, and pipeline management
