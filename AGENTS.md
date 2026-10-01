@@ -61,13 +61,13 @@ Do not bump y for content added to an existing skill, no matter how substantial 
 
 Bump the repo release version in the same PR that ships the change (2.7.0 and 2.8.0 shipped without touching plugin.json/marketplace.json and needed a catch-up later).
 
-CI enforces both layers on PRs. Run it locally before pushing:
+CI enforces both layers on PRs. Fetch first so `origin/main` is current, then run it locally before pushing:
 
 ```bash
 node scripts/check-versions.mjs --base origin/main
 ```
 
-It fails if a changed skill didn't bump `metadata.version`, if `VERSIONS.md` disagrees with any SKILL.md, if the repo version didn't bump (or has no `### x.y.z` block), or if a file in `references/` isn't linked from anywhere in its skill.
+It fails if a changed skill didn't bump `metadata.version`, if `VERSIONS.md` disagrees with any SKILL.md, if the repo version didn't bump (or has no `### x.y.z` block), or if a file in `references/` isn't linked from anywhere in its skill. Changes only under a skill's `evals/` don't need a bump, since they don't change what installed users get.
 
 ## Agent Skills Specification
 
