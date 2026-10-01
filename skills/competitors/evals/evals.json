@@ -104,7 +104,7 @@
     {
       "id": 8,
       "prompt": "We have 12 vs pages and 4 battle cards written over the last two years. Can you check them for anything that's out of date or that would get us in trouble?",
-      "expected_output": "Should run the competitive asset audit across both the public pages and the internal battle cards. Should list each competitor claim with where it lives, re-verify against current competitor sources with a check date, and mark each as current, changed, unverifiable, or overclaimed. Should flag unconfirmed \u2717 marks, guessed motives, and unsupported 'why we win' claims as overclaimed. Should prioritize public pages first and give replacement wording, and recommend fixing shared facts in the centralized competitor data.",
+      "expected_output": "Should run the competitive asset audit across both the public pages and the internal battle cards. Should list each competitor claim with where it lives, re-verify against current competitor sources with a check date, and mark each as current, changed, unverifiable, or overclaimed. Should flag unconfirmed ✗ marks, guessed motives, and unsupported 'why we win' claims as overclaimed. Should prioritize public pages first and give replacement wording, and recommend fixing shared facts in the centralized competitor data.",
       "assertions": [
         "Covers both public pages and internal battle cards",
         "Re-verifies claims against current sources with a check date",
