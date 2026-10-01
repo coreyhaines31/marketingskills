@@ -35,6 +35,8 @@ async function gaql(query) {
   return api('POST', `/customers/${CUSTOMER_ID}/googleAds:searchStream`, { query })
 }
 
+const BOOLEAN_FLAGS = ['dry-run']
+
 function parseArgs(args) {
   const result = { _: [] }
   for (let i = 0; i < args.length; i++) {
@@ -42,7 +44,7 @@ function parseArgs(args) {
     if (arg.startsWith('--')) {
       const key = arg.slice(2)
       const next = args[i + 1]
-      if (next && !next.startsWith('--')) {
+      if (!BOOLEAN_FLAGS.includes(key) && next && !next.startsWith('--')) {
         result[key] = next
         i++
       } else {
@@ -58,13 +60,15 @@ function parseArgs(args) {
 const args = parseArgs(process.argv.slice(2))
 const [cmd, sub, ...rest] = args._
 
-function daysToDateRange(days) {
+function dateFilter(days) {
   const d = parseInt(days) || 30
-  if (d === 7) return 'LAST_7_DAYS'
-  if (d === 14) return 'LAST_14_DAYS'
-  if (d === 30) return 'LAST_30_DAYS'
-  if (d === 90) return 'LAST_90_DAYS'
-  return `LAST_${d}_DAYS`
+  if ([7, 14, 30].includes(d)) return `segments.date DURING LAST_${d}_DAYS`
+  const fmt = (date) => date.toISOString().slice(0, 10)
+  const end = new Date()
+  end.setDate(end.getDate() - 1)
+  const start = new Date(end)
+  start.setDate(start.getDate() - (d - 1))
+  return `segments.date BETWEEN '${fmt(start)}' AND '${fmt(end)}'`
 }
 
 async function main() {
@@ -85,8 +89,8 @@ async function main() {
           result = await gaql('SELECT campaign.id, campaign.name, campaign.status, campaign_budget.amount_micros FROM campaign ORDER BY campaign.id')
           break
         case 'performance': {
-          const dateRange = daysToDateRange(args.days)
-          result = await gaql(`SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions FROM campaign WHERE segments.date DURING ${dateRange}`)
+          const dateWhere = dateFilter(args.days)
+          result = await gaql(`SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions FROM campaign WHERE ${dateWhere}`)
           break
         }
         case 'pause': {
@@ -123,9 +127,9 @@ async function main() {
     case 'adgroups':
       switch (sub) {
         case 'performance': {
-          const dateRange = daysToDateRange(args.days)
+          const dateWhere = dateFilter(args.days)
           const limit = args.limit ? ` LIMIT ${args.limit}` : ''
-          result = await gaql(`SELECT ad_group.name, metrics.impressions, metrics.clicks, metrics.conversions FROM ad_group WHERE segments.date DURING ${dateRange}${limit}`)
+          result = await gaql(`SELECT ad_group.name, metrics.impressions, metrics.clicks, metrics.conversions FROM ad_group WHERE ${dateWhere}${limit}`)
           break
         }
         default:
@@ -136,9 +140,9 @@ async function main() {
     case 'keywords':
       switch (sub) {
         case 'performance': {
-          const dateRange = daysToDateRange(args.days)
+          const dateWhere = dateFilter(args.days)
           const limit = args.limit || '50'
-          result = await gaql(`SELECT ad_group_criterion.keyword.text, metrics.impressions, metrics.clicks, metrics.average_cpc FROM keyword_view WHERE segments.date DURING ${dateRange} ORDER BY metrics.clicks DESC LIMIT ${limit}`)
+          result = await gaql(`SELECT ad_group_criterion.keyword.text, metrics.impressions, metrics.clicks, metrics.average_cpc FROM keyword_view WHERE ${dateWhere} ORDER BY metrics.clicks DESC LIMIT ${limit}`)
           break
         }
         default:
