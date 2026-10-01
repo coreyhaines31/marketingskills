@@ -10,8 +10,8 @@
 //   - every file in skills/<name>/references/ is linked from that skill's SKILL.md
 //     or from another of its reference files (no orphans)
 // With --base:
-//   - a skill whose files changed must bump metadata.version
-//   - if any skill changed, the repo version must bump
+//   - a skill whose files changed must bump metadata.version (evals/ is exempt: it doesn't ship behavior)
+//   - if any skill changed, was added, or was removed, the repo version must bump
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
@@ -27,7 +27,8 @@ const errors = [];
 const read = (p) => readFileSync(resolve(ROOT, p), "utf8");
 const git = (...args) => execFileSync("git", args, { cwd: ROOT, encoding: "utf8" });
 
-const skillVersion = (text) => text.match(/^metadata:\s*\n(?:\s+.*\n)*?\s+version:\s*["']?([\d.]+)/m)?.[1];
+const frontmatter = (text) => text.replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---/)?.[1] ?? "";
+const skillVersion = (text) => frontmatter(text).match(/^metadata:\s*\n(?:[ \t]+.*\n)*?[ \t]+version:\s*["']?([\d.]+)/m)?.[1];
 const repoVersion = (json) => JSON.parse(json).version;
 const marketVersion = (json) => JSON.parse(json).metadata?.version;
 
@@ -36,9 +37,9 @@ const skills = readdirSync(resolve(ROOT, "skills"), { withFileTypes: true })
   .map((d) => d.name);
 
 // VERSIONS.md table <-> SKILL.md metadata
-const versionsMd = read("VERSIONS.md");
+const versionsMd = read("VERSIONS.md").replace(/\r\n/g, "\n");
 const table = Object.fromEntries(
-  [...versionsMd.matchAll(/^\| ([a-z0-9-]+) \| (\d+\.\d+\.\d+) \|/gm)].map((m) => [m[1], m[2]])
+  [...versionsMd.matchAll(/^\|\s*([a-z0-9-]+)\s*\|\s*(\d+\.\d+\.\d+)\s*\|/gm)].map((m) => [m[1], m[2]])
 );
 
 for (const name of skills) {
@@ -55,7 +56,7 @@ for (const name of Object.keys(table)) {
 const plugin = repoVersion(read(".claude-plugin/plugin.json"));
 const market = marketVersion(read(".claude-plugin/marketplace.json"));
 if (plugin !== market) errors.push(`plugin.json is ${plugin} but marketplace.json metadata.version is ${market}`);
-if (!versionsMd.includes(`### ${plugin} `)) errors.push(`VERSIONS.md: no "### ${plugin}" changelog block`);
+if (!new RegExp(`^### ${plugin.replaceAll(".", "\\.")}(\\s|$)`, "m").test(versionsMd)) errors.push(`VERSIONS.md: no "### ${plugin}" changelog block`);
 
 // Orphan references
 for (const name of skills) {
@@ -80,10 +81,10 @@ if (base) {
     }
   };
   const changed = git("diff", "--name-only", `${base}...HEAD`).split("\n").filter(Boolean);
-  const changedSkills = [...new Set(changed.map((p) => p.match(/^skills\/([^/]+)\//)?.[1]).filter(Boolean))]
-    .filter((name) => skills.includes(name));
+  const touched = (paths) => [...new Set(paths.map((p) => p.match(/^skills\/([^/]+)\//)?.[1]).filter(Boolean))];
+  const changedSkills = touched(changed.filter((p) => !/^skills\/[^/]+\/evals\//.test(p)));
 
-  for (const name of changedSkills) {
+  for (const name of changedSkills.filter((n) => skills.includes(n))) {
     const before = atBase(`skills/${name}/SKILL.md`);
     if (!before) continue;
     const was = skillVersion(before);
