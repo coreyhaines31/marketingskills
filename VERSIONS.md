@@ -15,7 +15,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cold-email | 2.0.0 | 2026-05-05 |
 | community-marketing | 2.0.1 | 2026-08-23 |
 | competitor-profiling | 2.1.0 | 2026-10-01 |
-| competitors | 2.2.0 | 2026-10-01 |
+| competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.1 | 2026-08-23 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.2 | 2026-08-23 |
@@ -46,7 +46,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | public-relations | 1.1.1 | 2026-08-23 |
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
-| sales-enablement | 2.2.0 | 2026-10-01 |
+| sales-enablement | 2.3.0 | 2026-10-01 |
 | schema | 2.0.0 | 2026-05-05 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
@@ -56,6 +56,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.5 (2026-10-01)
+
+Three competitive-PMM jobs added to existing skills instead of new ones, so the evidence rules from 2.11.3 apply to all of them. Closes #604.
+
+- **sales-enablement** (2.2.0 → 2.3.0): new **Live Deal Objection** subsection: one objection from a live deal gets a deal-specific answer (pin down who said what, name the likely concern and a question that separates readings, one say-as-written response, only proof the rep can stand behind, when to qualify out). New **Win-Loss Analysis** section and `references/win-loss-analysis.md`: source bias table (rep-entered CRM reasons skew to price/timing), segment before counting, one primary reason per deal with a source, counts with sample sizes, under ~5 deals is a signal not a finding, report format, and where findings feed battle cards and the objection library. New triggers: 'win-loss analysis,' 'why are we losing deals,' 'loss reasons,' 'how do I respond to this objection,' 'prospect just said.' New evals (ids 9, 10).
+- **competitors** (2.2.0 → 2.3.0): new **Competitive Asset Audit** under Research Process: inventory every competitor claim across vs pages, battle cards, talk tracks, and decks; re-verify with a check date; mark current / changed / unverifiable / overclaimed; fix public pages first; report with replacement wording. New Asset Audit Report output. New triggers: 'audit our competitor pages,' 'are our comparison pages out of date,' 'competitive asset audit.' New eval (id 8).
 
 ### 2.11.4 (2026-10-01)
 
