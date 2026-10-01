@@ -1,6 +1,6 @@
 ---
 name: competitors
-description: "When the user wants to create competitor comparison or alternative pages for SEO and buyer-facing use. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' 'competitive landing pages,' 'how do we compare to X,' or 'competitor teardown.' Use this for any content that positions your product against competitors. Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For internal battle cards and sales-specific competitor docs, see sales-enablement."
+description: "When the user wants to create competitor comparison or alternative pages for SEO and buyer-facing use. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' 'competitive landing pages,' 'how do we compare to X,' 'competitor teardown,' 'audit our competitor pages,' 'are our comparison pages out of date,' or 'competitive asset audit.' Use this for any content that positions your product against competitors. Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. For internal battle cards and sales-specific competitor docs, see sales-enablement."
 metadata:
   version: 2.2.0
 ---
@@ -214,6 +214,22 @@ For each competitor, gather:
 - **When notified**: Customer mentions competitor change
 - **Annually**: Full refresh of all competitor data
 
+### Competitive Asset Audit
+
+When asked to check existing competitive content for stale or risky claims, audit every asset that makes claims about competitors: vs and alternative pages, battle cards, talk tracks, objection docs, and comparison tables in decks.
+
+1. **List each claim** about a competitor, with the asset and line it lives in.
+2. **Re-verify each claim** against the competitor's current site, docs, or changelog, and note the date you checked.
+3. **Mark each one**:
+   - **Current**: still true, source and date updated
+   - **Changed**: now wrong, with what it says now
+   - **Unverifiable**: no source can confirm or rule it out. Soften to "not listed" or remove
+   - **Overclaimed**: was never supported (an unconfirmed ✗, a guessed motive, a "why we win" with no evidence)
+4. **Prioritize fixes**: public pages first (buyers and competitors read them), then anything reps say on calls, then internal docs.
+5. **Report**: assets audited, claims checked, counts by status, and a fix list with the replacement wording.
+
+Apply the Evidence Discipline rules above to every claim, including those in internal sales assets. Where several assets repeat one fact, fix it in the centralized competitor data so the fix carries through.
+
 ---
 
 ## SEO Considerations
@@ -247,6 +263,9 @@ For each page: URL, meta tags, full page copy organized by section, comparison t
 
 ### Page Set Plan
 Recommended pages to create with priority order based on search volume.
+
+### Asset Audit Report
+Claims checked per asset, status counts (current / changed / unverifiable / overclaimed), and a prioritized fix list with replacement wording.
 
 ---
 
