@@ -153,7 +153,7 @@ FROM campaign
 WHERE campaign.status != 'REMOVED'
 ```
 
-**Monthly performance since launch** (the first month returned is effectively the start date; run before quoting any CPA):
+**Monthly performance since launch** (only months with activity come back, so the first row is the first month with spend; run before quoting any CPA):
 
 ```sql
 SELECT segments.month, metrics.impressions, metrics.clicks,
@@ -184,8 +184,10 @@ FROM search_term_view
 WHERE campaign.id = <ID>
   AND segments.date BETWEEN '<START>' AND '<END>'
 ORDER BY metrics.impressions DESC
-LIMIT 100
+LIMIT 1000
 ```
+
+Raise the limit until disclosed clicks stop growing; a low limit hides the long tail.
 
 **Ads with final URLs** (ad groups often serve several destinations):
 
@@ -204,17 +206,19 @@ SELECT change_event.change_date_time, change_event.change_resource_type,
        change_event.resource_change_operation, change_event.client_type,
        change_event.user_email, change_event.changed_fields
 FROM change_event
-WHERE change_event.change_date_time >= '<29_DAYS_AGO>'
+WHERE change_event.change_date_time >= '<29_DAYS_AGO>'  -- 'YYYY-MM-DD HH:MM:SS'
   AND change_event.change_date_time <= '<TOMORROW>'
 ORDER BY change_event.change_date_time DESC
 LIMIT 200
 ```
 
+`LIMIT` is required on `change_event` and capped at 10,000.
+
 ### Gotchas
 
 | Problem | Fix |
 |---|---|
-| `campaign.start_date` → `UNRECOGNIZED_FIELD` | Derive the start from the first month the monthly query returns |
+| `campaign.start_date` → `UNRECOGNIZED_FIELD` | Newer API versions use `campaign.start_date_time`; if that also fails, derive the start from the first month the monthly query returns |
 | `DURING LAST_90_DAYS` → `INVALID_VALUE_WITH_DURING_OPERATOR` | Only some date literals are valid; use `segments.date BETWEEN 'YYYY-MM-DD' AND 'YYYY-MM-DD'` |
 | `change_event` → `START_DATE_TOO_OLD` | 30-day limit, strictly enforced; pad the start by a day |
 | `change_event` errors with no limit | `LIMIT` is required |

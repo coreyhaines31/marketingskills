@@ -32,7 +32,7 @@ An ad group called "Competitor - Commercial" can hold entirely informational key
 
 - Segment by conversion action before calling anything a lead or a demo.
 - Check each action's attribution model and click window while you're there.
-- Data-driven attribution under roughly 30 conversions a month has too little to model, so individual credit assignments are soft.
+- Data-driven attribution runs on low volume too, but with few conversions its individual credit assignments are soft. Don't read much into one campaign's share.
 
 ### One ad group can send traffic to several pages
 
@@ -52,7 +52,7 @@ Anything older is invisible through the API. A performance shift three months ag
 
 ### Other people are changing the account
 
-Client staff, automated rules, scripts, and agents all leave changes. In `change_event`, `client_type` tells them apart: `GOOGLE_ADS_WEB_CLIENT` is a human in the UI, `GOOGLE_ADS_API` is a script or integration, and `INTERNAL_TOOL` is mostly Google's own automated asset generation. A repeating weekday-and-time pattern under one user is a scheduled job, not a person.
+Client staff, automated rules, scripts, and agents all leave changes. In `change_event`, `client_type` tells them apart: `GOOGLE_ADS_WEB_CLIENT` is a human in the UI, `GOOGLE_ADS_API` is an API integration or agent, `GOOGLE_ADS_SCRIPTS` and `GOOGLE_ADS_AUTOMATED_RULE` are scheduled automation, `GOOGLE_ADS_EDITOR` and `GOOGLE_ADS_BULK_UPLOAD` are batch edits, `GOOGLE_ADS_RECOMMENDATIONS` is an applied recommendation, and `INTERNAL_TOOL` is mostly Google's own automated asset generation. Check the enum for others. A repeating weekday-and-time pattern under one user is a scheduled job, not a person.
 
 ## The window is not the picture
 
@@ -75,7 +75,7 @@ Zero conversions in N clicks only rules out conversion rates at or above (95% co
 | 10 | 26% | Still nothing useful |
 | 30 | 10% | Can begin doubting a strong CVR |
 | 50 | 6% | Meaningful for high-intent search |
-| 100 | 3% | Can call it underperforming |
+| 100 | 3% | Underperforming if break-even CVR is above 3% |
 
 Before calling spend wasted, work out what it would have to convert at to be worth keeping:
 
