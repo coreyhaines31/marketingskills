@@ -149,19 +149,19 @@ For each objection, document:
 - **Quick-reference table** for live calls — objection, one-line response, proof point. Fits on one screen.
 - **Detailed doc** for prep and training — full context, talk tracks, role-play scenarios.
 
+**For the full objection library**: See [references/objection-library.md](references/objection-library.md)
+
 ### Live Deal Objection
 
 When a rep brings one objection from a live deal ("the CFO just said Acme is half the price, I have a call in an hour"), answer that deal. Don't hand back a generic doc.
 
-1. **Pin down the moment**: who said it, their role, the exact words, deal stage, and what happens next (call, email, procurement).
+1. **Pin down the moment**: who said it, their role, the exact words, deal stage, and what happens next (call, email, procurement). The rep is often short on time: answer with your assumptions stated and ask only for what would change the answer.
 2. **Name the likely concern behind it** and say what in the deal points to it. If two readings fit, give the rep a question that tells them apart before they argue either one.
 3. **Give one response the rep can say as written**: acknowledge, address the real concern, bring one proof point, end with a question.
-4. **Use only proof the rep can stand behind.** Pull from the objection library, case studies, and battle cards. If nothing fits, say so and suggest the claim to verify. Don't invent a stat or customer.
+4. **Use only proof the rep can stand behind.** Pull from the objection library, case studies, and battle cards. If nothing fits, say so and suggest the claim to verify. Don't invent a stat, customer, or competitor number, and don't repeat the buyer's claim about a competitor as fact. "Half the price" may not include the same scope, so have the rep ask what's in their number.
 5. **Say when not to fight.** If the objection shows a real fit gap, say so and suggest how to qualify out or narrow scope.
 
 Afterward, suggest the rep log the objection and how it went. Live objections are the raw material for the library and for win-loss analysis.
-
-**For the full objection library**: See [references/objection-library.md](references/objection-library.md)
 
 ---
 
