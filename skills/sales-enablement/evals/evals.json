@@ -121,6 +121,19 @@
         "Mentions when to qualify out instead of fighting"
       ],
       "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Here are our last quarter's closed-lost reasons from Salesforce: 14 say 'price', 6 say 'timing', 4 say 'went with Acme', 3 say 'no decision'. Tell me why we're losing and update our battle card.",
+      "expected_output": "Should run win-loss analysis and flag that rep-entered CRM reasons are biased toward price and timing and rarely name the real cause. Should separate competitive losses from no-decision/timing. Should report counts with sample sizes rather than percentages and treat small slices as signals. Should not write new 'why we lose' battle card claims from one-word CRM reasons alone; should label them low-confidence and recommend buyer interviews or transcript review (with sample questions) to confirm before updating the card.",
+      "assertions": [
+        "Flags bias in rep-entered CRM loss reasons",
+        "Separates competitive losses from no-decision or timing",
+        "Reports counts with sample sizes",
+        "Treats findings from one-word CRM reasons as low-confidence",
+        "Recommends interviews or transcripts before changing the battle card"
+      ],
+      "files": []
     }
   ]
 }
