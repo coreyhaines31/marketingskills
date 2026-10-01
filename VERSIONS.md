@@ -14,8 +14,8 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.1 | 2026-08-23 |
 | cold-email | 2.0.0 | 2026-05-05 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.0.1 | 2026-08-19 |
-| competitors | 2.0.1 | 2026-07-09 |
+| competitor-profiling | 2.1.0 | 2026-10-01 |
+| competitors | 2.1.0 | 2026-10-01 |
 | content-strategy | 2.1.1 | 2026-08-23 |
 | copy-editing | 2.0.0 | 2026-05-05 |
 | copywriting | 2.0.2 | 2026-08-23 |
@@ -46,7 +46,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | public-relations | 1.1.1 | 2026-08-23 |
 | referrals | 2.0.1 | 2026-08-23 |
 | revops | 2.0.0 | 2026-05-05 |
-| sales-enablement | 2.0.1 | 2026-06-16 |
+| sales-enablement | 2.1.0 | 2026-10-01 |
 | schema | 2.0.0 | 2026-05-05 |
 | seo-audit | 2.0.1 | 2026-08-19 |
 | signup | 2.0.0 | 2026-05-05 |
@@ -56,6 +56,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.3 (2026-10-01)
+
+Evidence discipline for the three skills that make claims about competitors. Comparison pages and battle cards are claims a competitor's team, or a buyer, can check in a minute.
+
+- **competitors** (2.0.1 → 2.1.0): new **Evidence Discipline** principle. "Not observed" is not "doesn't have": a feature missing from a pricing page gets "not listed (as of date)" or no row, and ✗ only when docs or a trial confirm it. Date competitor facts, treat one visit as a snapshot (no "hasn't changed" without dated history), state what changed but never guess why, and keep fact, interpretation, and recommendation separate. Ask instead of guessing when no competitor is named. `templates.md` gains a "not listed" table row; the competitor data template gains `last_verified` + `sources`.
+- **competitor-profiling** (2.0.1 → 2.1.0): Facts Over Opinions now separates **observed / inferred / implication**, adds not-observed ≠ absent (including "no public pricing" ≠ free) and no-motive rules; Current Data notes a single scrape can't support "hasn't changed"; "where we're strong" requires customer, win/loss, or review evidence or is labeled a hypothesis.
+- **sales-enablement** (2.0.1 → 2.1.0): new **Claims Reps Can Defend** principle. "Why we win" needs win/loss, CRM, call, or customer evidence; without it, advantages are hypotheses with the evidence that would confirm them. Competitor claims follow the competitors evidence rules, and competitive docs say where you lose.
+- One new eval per skill. Closes #602.
 
 ### 2.11.2 (2026-10-01)
 
