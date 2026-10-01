@@ -28,7 +28,7 @@ An ad group called "Competitor - Commercial" can hold entirely informational key
 
 ### "Conversions" is several things in one column
 
-`metrics.conversions` counts only actions marked primary. `metrics.all_conversions` adds secondary ones. One campaign's conversions might mix a page-view proxy, a trial signup, and a booked demo.
+`metrics.conversions` counts actions marked primary, plus any secondary action a campaign's custom goal pulls in. `metrics.all_conversions` adds the rest. Check campaign goals as well as action settings. One campaign's conversions might mix a page-view proxy, a trial signup, and a booked demo.
 
 - Segment by conversion action before calling anything a lead or a demo.
 - Check each action's attribution model and click window while you're there.
@@ -48,11 +48,11 @@ Expired experiment arms inherit the base campaign's name and can keep an ENABLED
 
 ### Change history only goes back 30 days
 
-Anything older is invisible through the API. A performance shift three months ago may have no recoverable explanation, so say that instead of guessing one.
+`change_event` (field-level before and after) covers 30 days. `change_status` covers 90 days but only says which resource changed, not what. Past that, the API has nothing. A performance shift four months ago may have no recoverable explanation, so say that instead of guessing one.
 
 ### Other people are changing the account
 
-Client staff, automated rules, scripts, and agents all leave changes. In `change_event`, `client_type` tells them apart: `GOOGLE_ADS_WEB_CLIENT` is a human in the UI, `GOOGLE_ADS_API` is an API integration or agent, `GOOGLE_ADS_SCRIPTS` and `GOOGLE_ADS_AUTOMATED_RULE` are scheduled automation, `GOOGLE_ADS_EDITOR` and `GOOGLE_ADS_BULK_UPLOAD` are batch edits, `GOOGLE_ADS_RECOMMENDATIONS` is an applied recommendation, and `INTERNAL_TOOL` is mostly Google's own automated asset generation. Check the enum for others. A repeating weekday-and-time pattern under one user is a scheduled job, not a person.
+Client staff, automated rules, scripts, and agents all leave changes. In `change_event`, `client_type` says which client made the change: `GOOGLE_ADS_WEB_CLIENT` (the UI), `GOOGLE_ADS_API`, `GOOGLE_ADS_SCRIPTS`, `GOOGLE_ADS_AUTOMATED_RULE`, `GOOGLE_ADS_BULK_UPLOAD`, `GOOGLE_ADS_RECOMMENDATIONS`, `INTERNAL_TOOL` (Google-side tooling), and others in the enum. Report the client, not a guess at who or why: an API change could be an agency tool or a script. Google Ads Editor changes aren't returned at all, so a missing edit doesn't mean nobody made one. A repeating weekday-and-time pattern under one user is a scheduled job, not a person.
 
 ## The window is not the picture
 
@@ -61,7 +61,7 @@ A 30-day pull on a campaign that has run since spring is a slice of a longer ser
 - **Establish how long something has run** before quoting any efficiency number. Quote both recent and lifetime when they diverge.
 - **Don't pool across configuration changes.** If bids, keywords, budget, ads, or targeting changed mid-window, the period is several experiments averaged together.
 - **Bid-only changes are a special case.** They invalidate cost and volume comparisons but leave intent and audience questions readable.
-- **Bid strategies in learning are unreadable.** `primary_status = LEARNING` means don't judge performance and don't change anything.
+- **Bid strategies in learning are unreadable.** `primary_status = LEARNING` means don't judge performance or optimize on it. Fixing a verified break (tracking down, wrong URL) still comes first; see [audit-guardrails.md](audit-guardrails.md).
 
 ## Small numbers
 
