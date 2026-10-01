@@ -55,7 +55,7 @@ Every claim connects to revenue, efficiency, or risk reduction. Features mean no
 ### Claims Reps Can Defend
 Reps repeat what you write to buyers who can check it. Anything a buyer can disprove in a minute costs more than it gains.
 - **"Why we win" needs evidence**: win/loss notes, CRM loss reasons, call recordings, or customer quotes. Without it, write advantages as hypotheses for reps to test, and say what evidence would confirm them.
-- **Competitor claims follow the competitors skill's evidence rules**: dated, sourced, "not listed on their site" rather than "they don't have it," and no guessing at their motives.
+- **Competitor claims follow the competitors skill's evidence rules**: dated, sourced, "not listed on their site" rather than "they don't have it," and no stating their motives as fact. Reps can reason about why a competitor did something, labeled as a guess.
 - **Include where you lose.** A competitive doc that admits when the competitor is the better fit is one reps will trust in front of a buyer.
 
 ---

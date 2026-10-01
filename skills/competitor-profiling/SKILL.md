@@ -33,7 +33,7 @@ Every claim in a profile should be traceable to a source — scraped page conten
 - **Inferred**: your reading of what was observed. Label it, and say how confident you are when it would change a decision
 - **Implication**: what it might mean for your product, framed as a question or option, not a conclusion
 
-**Not observed ≠ absent.** If a feature isn't on their site, write "not observed on [pages checked], as of [date]", not "doesn't have." The same goes for pricing: "no public pricing" is not "free" and not "expensive."
+**Not observed ≠ absent.** If a feature isn't on their site, write "not observed on [pages checked], as of [date]", not "doesn't have." Before a gap is used publicly (a comparison page, an ad), confirm it in their docs or a trial. The same goes for pricing: "no public pricing" is not "free" and not "expensive."
 
 **Never state motive.** Record what changed ("moved SSO to Enterprise"). Don't claim why ("because they're going upmarket") unless they've said so publicly.
 
