@@ -62,7 +62,7 @@ const [cmd, sub, ...rest] = args._
 
 // Computed ranges use this machine's calendar date; Google evaluates them in the account's time zone.
 function dateFilter(days) {
-  const d = days === undefined ? 30 : Number(days)
+  const d = days === undefined ? 30 : typeof days === 'string' ? Number(days) : NaN
   if (!Number.isInteger(d) || d < 1 || d > 3650) throw new Error('--days must be a whole number from 1 to 3650')
   if ([7, 14, 30].includes(d)) return `segments.date DURING LAST_${d}_DAYS`
   const pad = (n) => String(n).padStart(2, '0')
