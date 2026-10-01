@@ -107,6 +107,20 @@
         "Does not produce a battle card for a guessed competitor",
         "Keeps the clarifying ask short"
       ]
+    },
+    {
+      "id": 9,
+      "prompt": "Our VP Finance prospect at a 300-person logistics company just told my AE 'Acme does this for half the price.' The AE has a follow-up call in an hour. What should she say?",
+      "expected_output": "Should treat this as a live deal objection, not produce a generic objection doc. Should name the likely concern behind it (value-for-price vs. hard budget) and give a question that tells the two apart. Should give one response the AE can say as written: acknowledge, address the concern, one proof point, end with a question. Should not invent stats, customers, or Acme pricing facts; if no proof is provided, should say what proof to pull or verify. Should say when it's not worth fighting (a real fit gap).",
+      "assertions": [
+        "Responds to the specific deal rather than producing a generic objection doc",
+        "Names the likely concern behind the objection",
+        "Offers a question to tell possible concerns apart",
+        "Gives one say-as-written response ending in a question",
+        "Does not invent stats, customers, or competitor pricing",
+        "Mentions when to qualify out instead of fighting"
+      ],
+      "files": []
     }
   ]
 }
