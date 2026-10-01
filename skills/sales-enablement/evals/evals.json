@@ -97,6 +97,16 @@
         "Avoids unverified 'they don't have X' claims about Northwind",
         "Includes situations where Northwind is the better fit"
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "Can you make us a battle card? We keep running into them in deals.",
+      "expected_output": "Should recognize the battle card request belongs to sales-enablement. Because no competitor is named and no context identifies one, should ask which competitor in one short question and not produce a placeholder or guessed card. May offer the likely candidate from context for the user to confirm and mention what else would sharpen the card (segment, win/loss notes).",
+      "assertions": [
+        "Asks which competitor before drafting",
+        "Does not produce a battle card for a guessed competitor",
+        "Keeps the clarifying ask short"
+      ]
     }
   ]
 }
