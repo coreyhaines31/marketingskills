@@ -155,9 +155,9 @@ For each objection, document:
 
 ## Battle Cards
 
-A battle card is a reusable one-competitor guide for reps, used across many deals. For a single live objection, use the objection doc. For public comparison pages, see competitors.
+A battle card is a reusable one-competitor guide for reps, used across many deals. For a single live objection, use the objection doc. For public comparison pages, see competitors. Every line follows Claims Reps Can Defend.
 
-**Ask which competitor.** If the request doesn't name one and context doesn't identify it, ask. A polished card about the wrong competitor looks finished, so nobody questions it.
+**Ask which competitor.** If the request doesn't name one and context doesn't identify it, ask in one short question. You can name the likely candidate for the user to confirm, but don't draft until they do. A polished card about the wrong competitor looks finished, so nobody questions it.
 
 ### Structure
 
