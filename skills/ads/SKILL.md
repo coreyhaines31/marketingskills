@@ -444,7 +444,7 @@ Before auditing a live account, grading account health, quoting benchmarks, or r
 ### Strategy
 - Launching without conversion tracking
 - Too many campaigns (fragmenting budget)
-- Not giving algorithms enough learning time
+- Not giving algorithms enough learning time, or stopping campaigns mid-learning phase
 - Optimizing for wrong metric
 
 ### Targeting
@@ -496,5 +496,4 @@ For tracking setup, see [references/conversion-tracking.md](references/conversio
 - **customer-research / competitor-profiling / positioning**: Voice-of-customer that feeds ad copy and angles; and turning an organic-teardown shortlist + the personas doc from [creative-research-automation.md](references/creative-research-automation.md) into full competitor dossiers and positioning
 - **copywriting**: For landing page copy that converts ad traffic
 - **analytics / attribution**: Conversion tracking setup and the blended-CAC inputs behind [payback-period.md](references/payback-period.md); **pricing** sets the ARPU + plan structure that drive its Payback math (why blended LTV:CAC hides $9-vs-$999 variance)
-- **ab-testing**: For landing page testing to improve ROAS
-- **cro**: For optimizing post-click conversion rates
+- **ab-testing / cro**: For landing page tests and post-click conversion rates that improve ROAS
