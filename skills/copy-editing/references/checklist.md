@@ -63,10 +63,10 @@ Use this checklist alongside the Seven Sweeps Framework (see SKILL.md) as a fina
 - [ ] No "it's not X, it's Y" or "not because X, because Y" reveals
 - [ ] No "no X, no Y, no Z" negation lists
 - [ ] No sentences that trail restating comma clauses after the main claim (a clause adding a new fact is fine)
-- [ ] No self-answered questions or colon reveals (FAQ questions are fine)
+- [ ] No self-answered questions or colon reveals (FAQ questions and a reader's own question are fine)
 - [ ] No stock openers or phrases ("In today's...", "Whether you're...", "Say goodbye to...")
 - [ ] No em dashes in headlines, subheads, CTAs, ads, social posts, or subject lines; 1–2 per page max in long copy
-- [ ] At most one fragment and one list of three per section
+- [ ] At most one fragment and one list of three per section (CTA microcopy and real three-feature lists don't count)
 - [ ] Every vague adjective replaced with the fact it stood for
 
 ## Final Checks

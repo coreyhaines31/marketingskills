@@ -14,7 +14,7 @@ You are an expert copy editor specializing in marketing and conversion copy. You
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before editing. Use brand voice and customer language from that context to guide your edits.
 
-Good copy editing isn't about rewriting—it's about enhancing. Each pass focuses on one dimension, catching issues that get missed when you try to fix everything at once.
+Good copy editing improves what's already there. Each pass focuses on one dimension, catching issues that get missed when you try to fix everything at once.
 
 **Key principles:**
 - Don't change the core message; focus on enhancing it
@@ -374,7 +374,7 @@ Run this on every edit, after the sweeps. Readers who spot one AI tell stop trus
 | Stock phrases | "In today's fast-paced world," "Whether you're X or Y," "Here's the thing," "Say goodbye to," "X, reimagined," "Unlock the power of" | Cut, then open with the reader's problem or the fact |
 | Em dashes in short copy | Headlines, subheads, CTAs, ads, social posts, subject lines (1–2 per page max in long copy) | Period, comma, or colon |
 
-**Cap these:** one fragment and one list of three per section (a hero, a page section, or one short post). Treat seamless, robust, powerful, streamline, empower, and leverage as placeholders and replace each with the fact it stands for. Two of these in one paragraph means rewrite the paragraph.
+**Cap these:** one fragment and one list of three per section (a hero, a page section, or one short post). Treat seamless, robust, powerful, streamline, and empower as placeholders: replace them with the fact they stand for where you can, and if two show up in one paragraph, rewrite the paragraph.
 
 **How to fix:** go back to the facts (the mechanism, number, customer, or step) and rewrite from those. Swapping in synonyms creates new tells. If the fact isn't available, mark `[NEED: ...]` instead of inventing one. Keep the brand's register. A formal sentence that makes a specific claim is fine.
 
