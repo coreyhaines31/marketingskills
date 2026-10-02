@@ -101,6 +101,19 @@
         "Recommends shipping once the gate is passed"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Our redesigned marketing site goes live Thursday on a new platform. What should we check before and after we flip the switch?",
+      "expected_output": "Should load the site launch QA reference and give a before/at/after checklist: forms reach their destinations and conversion tracking fires on confirmed submission; unique titles, canonicals to production, staging noindex not shipped to production, robots and sitemap; redirect map loaded for changed URLs; mobile, Safari and in-app browser checks; Core Web Vitals; a known, practiced rollback for their platform; at switch, HTTPS on all hostnames, top pages return 200, real form test, sitemap submitted; after, daily Search Console 404 checks and page-level traffic comparison.",
+      "assertions": [
+        "Checks forms and conversion tracking on confirmed submission",
+        "Warns about shipping the staging noindex",
+        "Includes the redirect map for changed URLs",
+        "Includes a practiced rollback plan",
+        "Includes post-launch Search Console monitoring"
+      ],
+      "files": []
     }
   ]
 }

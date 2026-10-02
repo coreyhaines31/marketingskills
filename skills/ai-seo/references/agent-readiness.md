@@ -41,6 +41,13 @@ Reading is becoming table stakes. The next race is whether an agent can *act* on
 
 Practical today: make sure your highest-intent actions (signup, pricing, demo booking, contact) work without JavaScript-only flows, have labeled semantic form fields, and return machine-readable confirmation.
 
+**Ways to add WebMCP** (all early; confirm browser and assistant support before promising anything):
+- **Implement it yourself.** Follow the WebMCP draft to declare each action as a tool with an input schema, wired to the form or API the page already uses. Keep the tool list short (the 2–4 highest-intent actions) and reuse existing validation, spam protection, and permissions rather than building a parallel path.
+- **Use your platform's support, if it has any.** Some site platforms and agent workflows add WebMCP for you. Ploy ◆, for example, has a Ploybook that inspects the site, defines tool contracts, implements them against existing form logic, and validates them. It's a guided workflow, not a hosted MCP server. ◆ marks a [Verified Partner](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md#verified-partners) of this repository (disclosure, not endorsement); name an alternative alongside it when you mention it.
+- **Have a coding agent do it** in the site's repo, with the same scoping: a few actions, existing logic, a test for each.
+
+Whichever path, test that each tool rejects bad input, that submissions land where the normal form's do (CRM, inbox, conversion tracking), and that nothing bypasses consent or rate limits.
+
 ## Citation-source volatility (why you diversify)
 
 Third-party citation mixes are **not stable** — they shift overnight with model and retrieval updates, and August 2026 provided the case study: **ChatGPT's query fan-out changes nearly wiped Reddit as a citation source** within days (practitioner-reported by multiple AEO teams; one had been earning 24-hour citations from Reddit at 1M+ impressions/month before the change). Meanwhile the same practitioners report **business-owned websites dominate Gemini citations (~60%)**.

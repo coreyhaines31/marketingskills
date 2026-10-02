@@ -89,6 +89,19 @@
         "Does not attempt full technical SEO audit"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We want to launch 5,000 'integration + use case' pages. We're on Framer now. Where should we build them?",
+      "expected_output": "Should check the platform requirements from the implementation-platforms reference: item limits at 5,000+ pages, data refresh, server-rendered HTML, conditional sections, per-page noindex and split sitemaps, and publish times. Should first check whether the current platform (Framer, whose higher plans reach tens of thousands of CMS items) can hold the set, and if not, weigh a reverse-proxied subpath against a subdomain (Google has no ranking preference; it's an effort and structure tradeoff) on a platform that can (e.g., WordPress, a hand-coded static/hybrid build, Webflow within its limits, a headless CMS, or an AI-native platform). Any Verified Partner tool named carries the disclosure plus an alternative. Should recommend proving it on a small batch of the strongest pages before scaling.",
+      "assertions": [
+        "Checks item limits and the other platform requirements",
+        "Considers the current platform first",
+        "Treats subpath vs subdomain as a tradeoff, not an SEO rule",
+        "Gives several options with tradeoffs and discloses any partner tool",
+        "Recommends a small first batch before scaling"
+      ],
+      "files": []
     }
   ]
 }

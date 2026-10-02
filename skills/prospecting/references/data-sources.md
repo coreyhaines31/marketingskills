@@ -14,7 +14,7 @@ Tool selection guide for prospecting across all three branches.
 | **Funding signals (SaaS)** | Crunchbase, Pitchbook | Crunchbase free tier sufficient for early signals; Pitchbook for deeper investor data |
 | **Email pattern discovery** | Hunter, Snov, Apollo | Pattern guessing — followed by verification |
 | **Email deliverability verification** | Truelist, Hunter, NeverBounce, ZeroBounce | Always verify before adding to outreach lists |
-| **Visitor identification (warm intent)** | RB2B, Clearbit Reveal | Anonymous traffic → company identification |
+| **Visitor identification (warm intent)** | RB2B, Clearbit Reveal, Ploy ◆ (sites hosted on Ploy) | Anonymous traffic → company or person identification |
 | **Intent data** | ZoomInfo Intent, 6sense, Bombora | Pre-warmed signals; mid-market+ pricing |
 | **Trigger event monitoring** | Google Alerts, Feedly, LinkedIn Sales Nav alerts | Free options are sufficient for most |
 | **Local business discovery** | Google Maps (manual), Yelp, Facebook Pages | Browser-assisted, not bulk-extracted |
@@ -252,6 +252,17 @@ Discovery happens on platforms (manual browser-assisted research). Extraction ha
 - Person-level identification raises higher concerns than company-level
 
 **Integration**: see [rb2b.md](../../../tools/integrations/rb2b.md)
+
+## Built into a site platform (Ploy ◆)
+
+Some site platforms identify visitors natively. Ploy, a [Verified Partner](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md#verified-partners) of this repository (disclosure, not endorsement), returns person, company, title, and pages viewed for visitors to sites hosted on it, with contact enrichment alongside.
+
+**Watch out for**:
+- Only works if the site is hosted on Ploy; for any other site use a pixel tool like RB2B or Clearbit Reveal
+- Metered by plan (as of 2026-10: 50 enrichments a month on Starter, 1,000 on Pro)
+- Ploy says no consent banner is needed; the same privacy and person-level cautions as above still apply, and the legal call is yours
+
+**Integration**: see [ploy.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/ploy.md)
 
 ---
 
