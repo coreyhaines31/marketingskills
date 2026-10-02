@@ -86,7 +86,7 @@ For thorough line-by-line review, use the **copy-editing** skill after your draf
 
 ## No AI Tells
 
-Clients and buyers reject copy that reads as AI-written, and once they spot one tell they stop trusting the claims. Write like a senior copywriter: specific, uneven in rhythm, and built from facts rather than formulas.
+Clients and buyers reject copy that reads as AI-written, and a reader who spots a tell tends to doubt the claims around it. Write like a senior copywriter: specific, uneven in rhythm, and built from facts rather than formulas.
 
 ### Never write these
 

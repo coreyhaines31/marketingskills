@@ -45,7 +45,7 @@ Variants: "It's not X, it's Y." "Not because X. Because Y." "This isn't X. This 
 - ✗ Most marketing teams have a list of campaign ideas that never launch. Not because they're bad. Because each one needs a developer.
 - ✓ Most marketing teams have a list of campaign ideas that never launch, because each one needs a developer they can't get.
 
-**Why it's a tell:** It's the most widely cited AI pattern. Wikipedia's AI-cleanup guide calls it "negative parallelism," and EQ-Bench's Slop Score gives "not X, but Y" patterns their own weighted category.
+**Why it's a tell:** It's one of the most frequently cited AI patterns. Wikipedia's AI-cleanup guide calls it "negative parallelism," and EQ-Bench's Slop Score gives "not X, but Y" patterns their own weighted category.
 
 **Rewrite:** State Y directly and attach the concrete reason or cost. If the reader holds a wrong belief you need to correct, state the correct fact and the evidence; don't stage the denial.
 
