@@ -144,6 +144,20 @@
         "Doesn't recommend fake awards or self-owned review sites"
       ],
       "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "I keep hearing LinkedIn articles get cited by ChatGPT. Should I republish all our blog posts as LinkedIn articles to get more AI citations?",
+      "expected_output": "Should not recommend blanket republishing. Should explain that which LinkedIn surface gets cited depends on the engine and shifted in 2026: ChatGPT now cites feed posts far more than Pulse articles, while Perplexity, Copilot, and Google's AI features still cite articles and company pages, and Gemini barely cites LinkedIn. Should warn that LinkedIn sets its own canonical, so full republishing competes with the blog; recommend publishing on the site first and posting adapted versions or summaries. Should suggest checking articles for crawler noindex, note that engagement and follower count barely predict citation while original, specific, technical content does, and recommend tracking citations per engine. Should label figures as dated vendor or platform data.",
+      "assertions": [
+        "Does not recommend republishing everything as-is",
+        "Explains the engine split (ChatGPT favors posts; others still cite articles; Gemini barely cites LinkedIn)",
+        "Warns about canonical/duplication and recommends site-first with adapted versions",
+        "Mentions checking for crawler noindex",
+        "Notes engagement and followers barely predict citation",
+        "Labels figures as dated and vendor/platform-reported"
+      ],
+      "files": []
     }
   ]
 }

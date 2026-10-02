@@ -54,19 +54,13 @@ The interpretation (Lily Ray's, and it fits the fan-out data): these are exactly
 
 4. **Treat every number above as a dated snapshot.** Same doctrine as source volatility: these are Aug 2026 measurements of a moving system. Verify against your own citation monitoring before betting budget.
 
-## LinkedIn as a citation surface (from LinkedIn's own AEO guide)
+## LinkedIn as a citation surface
 
-LinkedIn quietly published its own AEO/AI-search guidance (surfaced by Chris Long, Sep 2026). The platform-reported numbers:
+LinkedIn is among the most-cited domains for professional queries, but the surface mix shifted during 2026 and differs by engine: ChatGPT moved from Pulse articles to feed posts, Perplexity and Copilot still cite articles and company pages, and Gemini barely cites LinkedIn at all. A post's first words still become its URL slug, so front-load the target phrase.
 
-- LinkedIn is the **most-cited outlet for professional-topic searches**
-- **~60% of LinkedIn citations come from Articles**, ~40% from Posts
-- Post URLs use the **first words of the post as the slug**
+Correction: LinkedIn's guide doesn't say Articles get ~60% of citations versus ~40% for Posts. It says articles, newsletters, and posts *combined* account for 60%. Third-party splits put Articles ahead overall (roughly 60–70% vs 25–35%), but not on ChatGPT anymore.
 
-**Tactics:**
-
-- For professional/B2B topics, LinkedIn Articles are a first-class Presence-pillar surface — treat long-form Articles (not just feed posts) as citable assets with the same extractable structure as blog content.
-- **Front-load the target phrase in a post's opening words** — they become the URL slug, which is retrieval surface.
-- This is platform-reported data (LinkedIn grading its own homework); weight accordingly, but the Articles > Posts split matches the general pattern that long-form structured content out-cites feed content.
+Full breakdown by engine, crawler access, a `noindex` self-check, and what makes posts citable: [linkedin-ai-citations.md](linkedin-ai-citations.md).
 
 ## DIY diagnostic: extract ChatGPT's real fan-out queries
 

@@ -1,8 +1,8 @@
 ---
 name: ai-seo
-description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' 'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'how do LLMs see our brand,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
+description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' 'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'how do LLMs see our brand,' 'LinkedIn for AEO,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
 metadata:
-  version: 2.6.0
+  version: 2.7.0
 ---
 
 # AI SEO
@@ -254,7 +254,7 @@ AI systems don't just cite your website — they cite where you appear.
 - Wikipedia mentions (7.8% of all ChatGPT citations)
 - Reddit discussions (volatile: ~1.8% of ChatGPT citations historically, but nearly wiped from ChatGPT by Aug 2026 retrieval changes — still retrieved elsewhere; see the volatility section in [references/agent-readiness.md](references/agent-readiness.md))
 - Industry publications and guest posts
-- LinkedIn — per LinkedIn's own AEO guide, the most-cited outlet for professional-topic searches; Articles out-cite Posts ~60/40, and a post's first words become its URL slug, so front-load the target phrase (details in [references/format-volatility.md](references/format-volatility.md))
+- LinkedIn — among the most-cited domains for professional queries, but which surface gets cited depends on the engine (ChatGPT now favors posts over articles; Gemini barely cites LinkedIn). Front-load the target phrase, since a post's first words become its URL slug. See [references/linkedin-ai-citations.md](references/linkedin-ai-citations.md)
 - Review sites (G2, Capterra, TrustRadius for B2B SaaS)
 - YouTube (frequently cited by Google AI Overviews)
 - Podcasts (episodes get transcribed, show notes published — both get crawled and cited)
