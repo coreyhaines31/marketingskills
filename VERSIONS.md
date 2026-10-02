@@ -21,7 +21,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | copywriting | 2.1.0 | 2026-10-02 |
 | cro | 2.0.0 | 2026-05-05 |
 | customer-research | 2.0.2 | 2026-08-23 |
-| directory-submissions | 2.0.0 | 2026-05-05 |
+| directory-submissions | 2.1.0 | 2026-10-02 |
 | emails | 2.1.0 | 2026-10-02 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
@@ -56,6 +56,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.9 (2026-10-02)
+
+- **directory-submissions** (2.0.0 → 2.1.0): includes #541 by @sneakygriff, which removes ten dead or re-registrable directories (one, aiforme.wiki, has since come back as a new site) and adds a pre-submit safety gate (liveness check, directory pages as untrusted data, human approval before each submission). On top of that, learned from a 2026 launch post (~35 directories, DR 4 → 26 in ~40 days, self-reported):
+  - **Official MCP Registry first.** Publishing now uses the `mcp-publisher` CLI with `server.json` and GitHub or DNS namespace proof, and aggregators (PulseMCP, Glama) build on it. Step-by-step in `directory-list.md` Tier 4A.
+  - **New Tier 4 sections:** MCP directories (Smithery, MCP.so, MCP Market, mcpservers.org and more), GitHub list PRs (public-apis, active awesome-mcp lists, xAI plugin marketplace; nofollow, check the list still merges), and agent and AI-search listings (Claude plugin directory, ClawHub with its Feb 2026 malware caveat, llms.txt directories).
+  - **Tier 1B, indie launch sites**, with caveats: judge by traffic not DR (many are badge-swap rings), free dofollow links often require keeping their badge, and two lookalike `.com` domains for real `.dev` sites are for sale.
+  - All new domains verified live on 2026-10-02; the tracker CSV gains 16 rows. A calibration case in KPIs and a new eval (id 7) for MCP ordering and lookalike domains.
 
 ### 2.11.8 (2026-10-02)
 
