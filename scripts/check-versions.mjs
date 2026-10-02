@@ -81,7 +81,8 @@ for (const name of skills) {
 if (base) {
   const atBase = (path) => {
     try {
-      return git("show", `${base}:${path}`);
+      // A path missing at base (a new skill) is expected; keep git's "fatal:" off stderr.
+      return execFileSync("git", ["show", `${base}:${path}`], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
     } catch {
       return null;
     }
