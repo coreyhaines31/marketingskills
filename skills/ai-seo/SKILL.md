@@ -126,6 +126,8 @@ Test 10-20 of your most important queries across platforms:
 - "How to [problem your product solves]"
 - "[Your product category] pricing"
 
+Keep the list to prompts that would change revenue. A citation for a glossary question ("what is gross profit?") rarely sells anything. Track prompts like keywords: collapse wording variants of the same intent into one core prompt, then run each several times.
+
 ### Step 2: Analyze Citation Patterns
 
 When your competitors get cited and you don't, examine:

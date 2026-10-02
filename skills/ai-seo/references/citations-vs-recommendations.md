@@ -70,7 +70,7 @@ Two behavioral studies quantified the gap between rungs:
 **Measurement triad** (no single signal is complete; together they give a reliable read):
 
 1. **AI prompt tracking** — whether and how you're mentioned/recommended in LLM answers, even when no click ever lands (tools in SKILL.md's Monitoring section). Track the framing around mentions — recommended, neutral, hedged, or recommended-against — not just the count.
-2. **Self-reported attribution** — a "how did you hear about us?" field catches buyers whose journey started in an AI chat but arrived via branded search or direct.
+2. **Self-reported attribution** — a "how did you hear about us?" field catches buyers whose journey started in an AI chat but arrived via branded search or direct. Add an AI option with a follow-up, "What did you type?", so buyers hand you real prompts to track. ChatGPT referral UTMs undercount, and AI Overview revenue can't be separated from organic in analytics, so this field is often the clearest signal you have.
 3. **Sales call recordings** — buyers' own language often reveals an AI conversation shaped the shortlist long before any form fill.
 
 Also watch **branded search volume** as a proxy: sustained lifts without a matching campaign are increasingly AI-influence showing up under another name.

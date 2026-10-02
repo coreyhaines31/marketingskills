@@ -79,6 +79,8 @@ You don't need a tool to see what ChatGPT actually searches for in your niche (m
 
 **Use it for:** building your query-test list from *real* fan-out behavior instead of guesses; checking whether your category's fan-outs still use "best/vs" modifiers or have shifted to `site:`/"official" patterns; finding sub-topics your content doesn't cover.
 
+**Then work backwards from the domains.** If the fan-out runs `site:` searches on third-party sources (Gartner, G2, Capterra) for your category, those profiles are your priority list, often ahead of new pages on your own site. See [positioning-and-consensus.md](positioning-and-consensus.md).
+
 **Do not use it for:** auto-generating and mass-publishing an article per fan-out query. That's the exact scaled-content pattern 5.6 demoted (and Google's scaled content abuse policy names). The diagnostic is for coverage planning, not content spam.
 
 ## Measurement rigor: AI answers are non-deterministic
@@ -87,6 +89,7 @@ A single ChatGPT answer is an anecdote, not a measurement — the same prompt re
 
 When auditing or monitoring:
 
+- **Track prompts like keywords.** "I'm looking for the best X," "what is the best X," and "find me the best X" usually return the same brands. Collapse wording variants into one core prompt per intent, and spend the budget on repeat runs instead.
 - **Run each query 3–5 times per platform**, fresh session each time.
 - **Track mention/citation *rate*** ("cited in 3 of 5 runs"), never a yes/no from one run.
 - **Report the sample size** with every number ("40% mention rate, n=5") so future-you knows how much to trust it.
