@@ -52,13 +52,22 @@ AIChief,3,https://aichief.com/submit,AI,35,Yes,,Draft,,,AI,,,
 AI Agents List,4,https://aiagentslist.com/submit,Agent,,Yes,,Draft,,,Agent,,,
 Glama.ai MCP,4,https://glama.ai/mcp/servers,MCP,,Yes,,Draft,,,MCP,,,
 APITracker MCP,4,https://apitracker.io/mcp-servers,MCP,,Yes,,Draft,,,MCP,,,
-Linux Foundation MCP Registry,4,https://github.com/modelcontextprotocol/registry,MCP,,Yes,,Draft,,,MCP,,,
+Official MCP Registry,4,https://registry.modelcontextprotocol.io,MCP,,Yes,,Draft,,,MCP,,,Publish first via mcp-publisher CLI; aggregators ingest from it
 AI Agent Store,4,https://aiagentstore.ai/submit,Agent,,Yes,,Draft,,,Agent,,,
 AI Agents Base,4,https://aiagentsbase.com/submit,Agent,,Yes,,Draft,,,Agent,,,
 AI Agents Directory,4,https://aiagentsdirectory.com/submit,Agent,,Yes,,Draft,,,Agent,,,
 AgentHunter,4,https://agenthunter.com/submit,Agent,,Yes,,Draft,,,Agent,,,
 AI Agents Live,4,https://aiagents.live/submit,Agent,,Yes,,Draft,,,Agent,,,
 AI Agents Marketplace,4,https://aiagentsmarketplace.com/submit,Agent,,Yes,,Draft,,,Agent,,,
+Smithery,4,https://smithery.ai/new,MCP,79,,,Draft,,,,,,Web form or smithery mcp publish
+MCP.so,4,https://mcp.so/submit,MCP,73,,,Draft,,,,,,Free; $39 fast track
+MCP Servers,4,https://mcpservers.org/submit,MCP,71,Paid only,,Draft,,,,,,Dofollow on $39 tier
+MCP Market,4,https://mcpmarket.com/submit,MCP,61,,,Draft,,,,,,Submit GitHub repo; free queue 4-6 weeks
+TensorBlock awesome-mcp-servers,4,https://github.com/TensorBlock/awesome-mcp-servers,GitHub list,,No,,Draft,,,,,,Open a PR
+public-apis,4,https://github.com/public-apis/public-apis,GitHub list,,No,,Draft,,,,,,PR; only if you have a free public API
+Claude plugin directory,4,https://claude.ai/directory/manage,Agent,,No,,Draft,,,,,,Plugins/connectors; paid Claude plan; reviewed
+ClawHub,4,https://clawhub.ai,Agent,83,,,Draft,,,,,,OpenClaw skills; see malware caveat
+llmstxt.site,4,https://llmstxt.site/submit,AI search,63,,,Draft,,,,,,List your /llms.txt
 NoCodeFinder,5,https://www.nocodefinder.com/submit,No-Code,45,Yes,,Draft,,,No-code,,,
 No Code MBA,5,https://www.nocode.mba/tools/submit,No-Code,55,Yes,,Draft,,,No-code,,,
 We Are No Code,5,https://www.wearenocode.com/submit,No-Code,40,Yes,,Draft,,,No-code,,,

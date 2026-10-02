@@ -94,7 +94,7 @@ Use this library to generate per-tier variants. Swap `[product]`, `[category]`, 
 
 ## Template: Agent / MCP Registries
 
-**Target:** Glama, APITracker, Linux Foundation MCP Registry, AI Agents List, AI Agent Store, AgentHunter
+**Target:** Official MCP Registry (`server.json` description), Smithery, Glama, MCP.so, MCP Market, APITracker, AI Agents List, AI Agent Store, AgentHunter
 
 **Tagline:**
 > MCP-native [category] for AI agents.

@@ -1,6 +1,6 @@
 ---
 name: directory-submissions
-description: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories," "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing," "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "agent directory," "dofollow backlinks," "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
+description: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories," "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing," "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "publish my MCP server," "awesome list," "llms.txt directory," "Claude plugin directory," "agent directory," "dofollow backlinks," "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
 metadata:
   version: 2.0.1
 ---
@@ -92,7 +92,7 @@ Full catalog in `references/directory-list.md`. Summary:
 | **Tier 1 — Flagship launch** | Launch week only | Product Hunt (anchor), BetaList, HN Show HN, Fazier, DevHunt | ~15 |
 | **Tier 2 — Startup/SaaS** | Week 1 + rolling | AlternativeTo, SaaSHub, G2, Capterra, F6S, SourceForge, Slashdot | ~50 |
 | **Tier 3 — AI directories** | Week 1–3 | TAAFT, Futurepedia, Toolify, Future Tools, aitools.inc, AIStage | ~40 |
-| **Tier 4 — Agent/MCP registries** | Week 1–3 (if MCP) | Glama, APITracker, LF MCP Registry, AI Agents List | ~10 |
+| **Tier 4 — Agent/MCP registries** | Week 1–3 (if MCP or agent-facing) | Official MCP Registry first, then Smithery, Glama, MCP.so, MCP Market; GitHub list PRs; Claude plugin directory, ClawHub, llms.txt directories | ~25 |
 | **Tier 5 — No-code directories** | Week 1–3 (if no-code) | NoCodeFinder, No Code MBA, We Are No Code, MakerPad | ~8 |
 | **Tier 6 — "Best of" listicles** | Rolling outreach | Cold outreach to DR 40+ blog posts | ~10 inclusions |
 | **Tier 7 — Integration marketplaces** | When integrations ship | Zapier, HubSpot, Slack, Airtable, Notion | ~5 |
@@ -102,6 +102,8 @@ Full catalog in `references/directory-list.md`. Summary:
 | **Tier 11 — Press release & article sites** | Launch + milestones | PRLog, PR.com, Feedspot | ~25 |
 | **Tier 12 — Social bookmarking** | Rolling | Scoop.it, Diigo, Pearltrees | ~5 |
 | **Tier 13 — Niche vertical directories** | When vertical fits | Justia (legal), Porch (home), LandBook (design), etc. | ~20 |
+
+**MCP order of operations:** publish to the official MCP Registry before anything else in Tier 4. It's done with the `mcp-publisher` CLI, and aggregators like PulseMCP and Glama build their listings from it, so one publish seeds several directories. Steps are in `references/directory-list.md` (Tier 4A).
 
 **Triage rule:** Only submit where the product is a genuine fit. Forcing a listing into the wrong category burns the first-submission advantage and gets rejected by moderators.
 
@@ -254,7 +256,7 @@ In 2026, 30–50% of "research a tool" queries happen inside ChatGPT, Claude, Pe
 6. **Get cited on Reddit and Hacker News.** Claude and Perplexity index these heavily. Genuine mentions on r/SaaS and HN count as training fuel.
 7. **Publish original research.** "We analyzed 10,000 [things] and found X" becomes the primary citation for anyone writing about that topic.
 8. **Claim Crunchbase, LinkedIn company page, and Wikidata entries.** All three feed AI training corpora.
-9. **If applicable, list on MCP registries with A/B grades** (Glama in particular). LLMs pull from these when answering MCP questions.
+9. **If applicable, list where agents look.** The official MCP Registry and MCP directories with good grades (Glama in particular), the Claude plugin directory for plugins and connectors, and llms.txt directories once your `/llms.txt` is live. LLMs pull from these when answering tool questions.
 
 ### Measurement
 
@@ -349,7 +351,7 @@ Track weekly. If a number isn't moving, investigate — don't just submit more d
 3. **Do you have destination pages built?** (Alternatives, use cases, templates — if not, build first.)
 4. **Product Hunt hunter lined up?** (Optional but adds ~15% day-one lift. 3-week warm-up required regardless.)
 5. **How many beta users can you ask for reviews?** (Need 20 to hit 10.)
-6. **Do you have an MCP or agent angle?** (If yes, Tier 4 registries are a real moat.)
+6. **Do you have an MCP server, plugin, agent skill, public API, or `/llms.txt`?** (If yes, Tier 4 registries and listings are a real moat.)
 7. **Existing integrations?** (If yes, Tier 7 marketplaces are the highest-DR backlinks available.)
 8. **Email list size?** (Needed for PH launch day warm traffic — 100+ is the minimum.)
 9. **Current DR and referring domain count?** (Baseline for measuring the compounding effect.)
