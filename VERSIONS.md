@@ -57,6 +57,15 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.11.8 (2026-10-02)
+
+The AI-tell rules from 2.11.7 extended to the channel skills, each inline because installed skills can't load copywriting's references. Each gets the core bans (contrast reveals, negation lists, trailing pile-ons, self-answered questions and colon reveals, stock phrases, em dashes) plus its own channel tells, adapted from the closed #575. Rules mirrored in each description. Closes #615.
+
+- **social** (2.2.0 → 2.3.0): new **No AI Tells** section with broetry, engagement-bait closers, manufactured vulnerability, and emoji bullets. Hook formulas in SKILL.md and `post-templates.md` that modeled tells ("isn't what you think," "Here's why:," "The truth is," an em-dash hook) are rewritten. New eval (id 8).
+- **emails** (2.0.0 → 2.1.0): new **No AI Tells** section with subject-line bait (fake "Re:"/"Fwd:"), stock openers, and sign-off filler. New eval (id 7).
+- **cold-email** (2.0.0 → 2.1.0): AI tells added to What to Avoid and the Quality Check; em-dash contrasts removed from the skill's own text. New eval (id 7).
+- **ad-creative** (2.8.2 → 2.9.0): new **No AI Tells** section with stacked negations to fit character limits, hook slop, CTA slop, and a no-repeated-sentence-shape rule across a batch. New eval (id 16).
+
 ### 2.11.7 (2026-10-02)
 
 AI-tell blacklist for copy. Clients reject drafts that read as AI-written, and the worst tells are sentence shapes that word lists miss. Closes #613.
