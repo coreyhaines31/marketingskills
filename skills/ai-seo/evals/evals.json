@@ -136,7 +136,7 @@
       "prompt": "We've been known as a mid-market HR platform for ten years. Next quarter we're repositioning as enterprise and rewriting the whole site at once. How do we make sure ChatGPT and Google's AI start recommending us for enterprise HR software?",
       "expected_output": "Should warn that LLM brand associations move slowly: enterprise prompts are already tied to incumbents, and rewriting the whole site at once can lose mid-market answers before enterprise ones arrive. Should recommend recording a baseline for both old- and new-segment prompts, setting expectations for a dip, moving off-site signals first (G2/Capterra/Gartner profiles, reviews, analyst and press coverage) so they match the new About page, and staging the on-site rewrite. Should suggest extracting real fan-out queries to see which third-party domains (e.g. site: searches on Gartner/G2) matter for the category. Should label these as practitioner experience rather than proven data, and not recommend invented awards or self-owned review sites.",
       "assertions": [
-        "Warns about a visibility dip when repositioning",
+        "Flags a possible visibility dip as practitioner experience, not a certainty",
         "Recommends baselining old- and new-segment prompts",
         "Prioritizes aligning third-party profiles with the new positioning",
         "Suggests staging the on-site rewrite instead of switching all at once",

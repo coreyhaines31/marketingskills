@@ -34,9 +34,9 @@ A brand known for one segment for years doesn't become known for another because
 - **Mergers and rebrands:** an acquired brand often stops appearing for prompts it used to own once its pages fold into the parent (practitioner observation).
 - **Local and niche markets too:** for many categories, models have "already picked their winners," and new entrants start behind (opinion).
 
-**How to apply before a repositioning, rebrand, or merger:**
+**How to apply before a repositioning, rebrand, or merger** (a practitioner sequence, not a tested playbook):
 1. Record a baseline for the old segment's prompts *and* the target segment's prompts.
-2. Expect a dip. Tell stakeholders before it happens.
+2. Watch for a dip and warn stakeholders it may happen. This rests on practitioner reports, not controlled data.
 3. Move off-site signals first (profiles, reviews, press, analyst listings, partner pages), then stage the on-site rewrite, rather than switching everything at once.
 4. Keep pages that still win old-segment prompts until the new association shows up in tracking.
 
@@ -68,7 +68,7 @@ Extract the real background queries for your key prompts (the DevTools method in
 AI answers are increasingly personalized and segment-aware: models place brands into enterprise, mid-market, or SMB, and match them to industries.
 
 - Build pages for the core industries or segments you actually serve ("email marketing for e-commerce," "RFP software for government"), with real specifics for each.
-- Keep the set small. Hundreds of templated industry pages is the programmatic route that gets flagged as scaled content. See [content-types.md](content-types.md).
+- Start with your core segments. Scale isn't the problem in itself; near-duplicate pages that swap the industry name without adding real value are what Google's scaled-content policy targets. See [content-types.md](content-types.md).
 
 ---
 

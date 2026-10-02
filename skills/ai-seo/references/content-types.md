@@ -53,7 +53,7 @@ For the cross-cutting strategy, see [SKILL.md](../SKILL.md).
 
 **Optimize:**
 - One page per core industry or segment you actually serve, with industry-specific workflows, integrations, compliance, and customer proof
-- Keep the set small. Hundreds of templated variants is scaled content (see the `programmatic-seo` skill if you truly need scale)
+- Start with core segments. Many pages are fine if each adds real, segment-specific value; templated pages that only swap the industry name are what the scaled-content policy targets (see the `programmatic-seo` skill)
 - Match the segment language used on your third-party profiles (see [positioning-and-consensus.md](positioning-and-consensus.md))
 
 ---
