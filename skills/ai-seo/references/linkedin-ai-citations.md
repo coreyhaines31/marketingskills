@@ -18,7 +18,7 @@ LinkedIn is one of the most-cited domains for professional and B2B queries. But 
 | Engine | What it cites from LinkedIn (2026) |
 |---|---|
 | **ChatGPT** | Shifted from Pulse articles to feed posts. Ahrefs data shows ChatGPT citations of `/pulse/` down ~86% and `/posts/` up ~74% between May and Oct 2026, with a ~36% overall LinkedIn drop in the mid-August retrieval change that also hit Reddit |
-| **Perplexity** | The heaviest citer of LinkedIn. Company pages lead, then posts, profiles, and Pulse articles |
+| **Perplexity** | Largest raw count of LinkedIn citations in OtterlyAI's sample and our Ahrefs pull, with company pages the biggest share in Ahrefs. (Semrush, measuring the share of answers that cite LinkedIn at all, found it lower on Perplexity than on ChatGPT or AI Mode, so the ranking depends on the measure) |
 | **Copilot** | Cites LinkedIn heavily and increasingly (citations more than doubled May → Oct 2026, ~6.5× its Reddit citations). Pulse and posts both appear |
 | **Google AI Overviews / AI Mode** | Posts and Pulse both cited, plus company pages |
 | **Gemini** | Almost never cites LinkedIn (~0 in three separate datasets). Don't count on LinkedIn for Gemini visibility |
@@ -28,6 +28,16 @@ LinkedIn is one of the most-cited domains for professional and B2B queries. But 
 - Publish both: feed posts for ChatGPT, long-form articles for Perplexity, Copilot, and Google's AI features.
 - Maintain the company page as well as people's profiles. Perplexity cites company pages most; ChatGPT and AI Mode mostly cite individual members.
 - Skip collaborative articles (`/advice/`). They're effectively uncited now.
+
+**Our Ahrefs snapshot** (citations of linkedin.com URLs in Ahrefs' AI-responses data, pulled 2026-10-02; the prompt pool changes over time, so treat as directional):
+
+| Path | ChatGPT, May 1 | ChatGPT, now | Perplexity | AI Overviews | AI Mode | Copilot | Gemini |
+|---|---|---|---|---|---|---|---|
+| All linkedin.com | 239K | 185K | 787K | 352K | 292K | 154K (65K in May) | ~0.7K |
+| `/pulse/` articles | 22.7K | 3.3K | 84K | 43K | 51K | 23K | ~0 |
+| `/posts/` | 17.7K | 30.8K | 133K | 62K | 55K | 18K | 0 |
+| `/company/` | — | — | 474K | 51K | 41K | 15K | — |
+| `/in/` profiles | — | — | 103K | 12K | 13K | 15K | — |
 
 ---
 
@@ -43,13 +53,18 @@ LinkedIn's robots.txt (checked 2026-10-02):
 
 So ChatGPT and Claude can cite LinkedIn from their search indexes, but their live "go read this page" agents can't fetch it. Perplexity cites LinkedIn most despite both of its bots being blocked, presumably through another index.
 
-**Check your own articles for `noindex`.** LinkedIn appears to noindex some Pulse articles, reportedly from low-follower or low-engagement accounts, and only for crawlers, so the logged-in author never sees it:
+**Check your own articles for `noindex`.** LinkedIn appears to noindex some Pulse articles, reportedly from low-follower or low-engagement accounts, and only for crawlers, so the logged-in author never sees it (one small test, n=3). Check both the robots meta tag and the `X-Robots-Tag` header on the final response, for each crawler you care about:
 
 ```bash
-curl -s -A "Googlebot" https://www.linkedin.com/pulse/your-article-slug | grep -io 'noindex'
+URL=https://www.linkedin.com/pulse/your-article-slug
+for UA in Googlebot bingbot OAI-SearchBot; do
+  echo "== $UA"
+  curl -sIL -A "$UA" "$URL" | grep -iE '^(HTTP/|x-robots-tag)'
+  curl -sL -A "$UA" "$URL" | grep -ioE '<meta[^>]+name="(robots|googlebot|bingbot)"[^>]*>'
+done
 ```
 
-If it prints `noindex`, that article can't be cited from Google's or Bing's index, whatever its quality.
+A `noindex` in either place for a crawler means that engine's index likely won't carry the article. An absent tag isn't proof it's indexed; confirm with a `site:` search.
 
 ---
 
@@ -64,7 +79,7 @@ If it prints `noindex`, that article can't be cited from Google's or Bing's inde
 - **Length.** Cited articles are mostly 500–2,000 words; cited posts mostly 50–300 words.
 - **Recent.** About half of cited content is under three months old.
 
-**Vendor causal model (Scrunch, ~4K posts, treat as directional):** technical detail (+77%), named entities like tools, companies, and people (+33%), and a niche topic (+18%) raised citation. Unicode bold or italic text (−58%) and "link in comments" (−31%) lowered it.
+**Vendor causal model (Scrunch, ~4K posts, treat as directional):** technical detail (+77%), named entities like tools, companies, and people (+33%), and a niche topic (+18%) raised citation. Unicode bold or italic text (−58%) and "link in comments" (−31%) lowered the post's own citations. The study is about ChatGPT, and it also found link-in-comments can help the linked page get cited, so it's a trade-off if your goal is citations for your own site.
 
 **Platform-reported (LinkedIn's guide, Mar 2026):** articles of 800–1,200 words, posts of 200–300 words, post 2–3 times a week. The guide also suggests 3,000+ followers and 10+ comments help, which the independent data above doesn't support.
 
@@ -94,7 +109,7 @@ If it prints `noindex`, that article can't be cited from Google's or Bing's inde
 - [ ] Feed posts and long-form articles both in the mix, matched to the engines you care about
 - [ ] Company page complete and consistent with your About page (see [positioning-and-consensus.md](positioning-and-consensus.md))
 - [ ] Target phrase in a post's first words
-- [ ] Original, specific, technical content with named entities; no Unicode bold; links in the post, not "in comments"
+- [ ] Original, specific, technical content with named entities; no Unicode bold; decide deliberately where the link goes (in-post helps the post, in-comments may help the destination)
 - [ ] Articles checked for crawler `noindex`
 - [ ] Blog posts published on your own site first; LinkedIn version adapted, not duplicated
 - [ ] Citations tracked per engine, re-checked monthly
