@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.9.0 | 2026-10-02 |
-| ai-seo | 2.6.0 | 2026-10-02 |
+| ai-seo | 2.7.0 | 2026-10-02 |
 | analytics | 2.0.1 | 2026-07-22 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.0 | 2026-07-23 |
@@ -56,6 +56,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.11 (2026-10-02)
+
+- **ai-seo** (2.6.0 → 2.7.0): new `references/linkedin-ai-citations.md`, prompted by Kaleigh Moore's 20 weeks of consistent Pulse-article citations (Sep 2026) and built from six 2026 citation studies (Profound, Semrush, OtterlyAI, Cloro, Goodie, Scrunch) plus our own Ahrefs pull by URL path.
+  - **Engine split:** ChatGPT moved from Pulse articles to feed posts (Pulse ~−86%, posts ~+74% May → Oct 2026, with a ~36% LinkedIn drop in the mid-August retrieval change). Perplexity cites LinkedIn most, company pages first. Copilot citations of LinkedIn more than doubled. Gemini almost never cites LinkedIn.
+  - **Crawler access:** from LinkedIn's robots.txt, search crawlers (Googlebot, Bingbot, OAI-SearchBot, Claude-SearchBot) are allowed and live-fetch agents are blocked. Includes a `curl` self-check for crawler-only `noindex` on Pulse articles.
+  - **What gets cited:** engagement and follower count barely matter; original, specific, technical content with named entities does. Avoid Unicode bold and "link in comments." Includes the length ranges cited articles and posts fall in, and durability and risk notes (no canonical control, so publish on your own site first).
+  - **Corrections:** the "~60% Articles / ~40% Posts" figure misread LinkedIn's guide (articles, newsletters, and posts combined are 60%), fixed in SKILL.md and `format-volatility.md`. Copilot's unsourced "ranking boost" is replaced with data. `agent-readiness.md`'s volatility case now includes LinkedIn. New trigger 'LinkedIn for AEO'; new eval (id 12).
 
 ### 2.11.10 (2026-10-02)
 
