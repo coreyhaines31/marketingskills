@@ -24,10 +24,10 @@ Google AI Overviews pull from Google's own index and lean heavily on E-E-A-T sig
 
 **What makes Google AI Overviews different:** They already have your traditional SEO signals — backlinks, page authority, topical relevance. The additional AI layer adds a preference for content with cited sources and structured data. Research shows that including authoritative citations in your content correlates with a 132% visibility boost, and writing with an authoritative (not salesy) tone adds another 89%.
 
-**Importantly, AI Overviews don't just recycle the traditional Top 10.** Only about 15% of AI Overview sources overlap with conventional organic results. Pages that wouldn't crack page 1 in traditional search can still get cited if they have strong structured data and clear, extractable answers.
+**AI Overviews don't just recycle the traditional Top 10.** Some studies have put the overlap between AI Overview sources and conventional organic results as low as ~15%, though figures vary widely by study, date, and query set. Pages that wouldn't crack page 1 can still get cited with clear, extractable answers. Even so, practitioners consistently find that better organic rankings mean better AI visibility, so don't treat the low-overlap stat as permission to skip SEO.
 
 **What to focus on:**
-- Schema markup is the single biggest lever — Article, FAQPage, HowTo, and Product schemas give AI Overviews structured context to work with (30-40% visibility boost)
+- Schema markup gives AI Overviews structured context (Article, HowTo, Product). It's one lever among several, and Google says no special markup is required for AI features. Google limited FAQ rich results to government and health sites in 2023, so don't promise an AI lift from FAQPage schema
 - Build topical authority through content clusters with strong internal linking
 - Include named, sourced citations in your content (not just claims)
 - Author bios with real credentials matter — E-E-A-T is weighted heavily
@@ -110,6 +110,7 @@ Claude uses Brave Search as its search backend when web search is enabled — no
 - Use clear, extractable structure with descriptive headings
 - Cite authoritative sources within your content
 - Aim to be the most factually accurate source on your topic — Claude rewards precision
+- Don't rely on self-ranked "best X" lists. In a live test (Sep 2026), Claude noted that results for a "best [category]" query were dominated by vendors ranking themselves #1 and leaned on juried awards and practitioner reputation instead
 
 ---
 

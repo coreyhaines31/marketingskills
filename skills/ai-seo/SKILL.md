@@ -57,14 +57,11 @@ For a deep dive on how each platform selects sources and what to optimize per pl
 
 Traditional SEO gets you ranked. AI SEO gets you **cited**.
 
-In traditional search, you need to rank on page 1. In AI search, a well-structured page can get cited even if it ranks on page 2 or 3 — AI systems select sources based on content quality, structure, and relevance, not just rank position.
+In traditional search, you need to rank on page 1. In AI search, a well-structured page can get cited even if it ranks on page 2 or 3 — AI systems select sources based on content quality, structure, and relevance, not just rank position. Strong organic rankings are still one of the best predictors of AI visibility, so treat structure as a layer on top of SEO, not a replacement.
 
-**Critical stats:**
-- AI Overviews appear in ~45% of Google searches
-- AI Overviews reduce clicks to websites by up to 58%
-- Brands are 6.5x more likely to be cited via third-party sources than their own domains
-- Optimized content gets cited 3x more often than non-optimized
-- Statistics and citations boost visibility by 40%+ across queries
+**Critical stats** (they drift; re-check before quoting to a client, and distrust vendor stats with no source or date):
+- AI Overviews appear in ~45% of Google searches and can cut clicks to websites by up to 58% (2025 third-party studies)
+- Adding statistics and citations raised visibility by roughly 30–40% in the original GEO study (Aggarwal et al., 2023)
 
 ### Google's Official Stance vs. Multi-Platform Reality
 
