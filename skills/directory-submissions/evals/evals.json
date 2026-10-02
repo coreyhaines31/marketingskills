@@ -89,6 +89,19 @@
         "Says investigate before submitting more"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We just shipped an MCP server for our invoicing SaaS (published on npm). Plan our directory submissions for the next two weeks. I saw a list online that includes launchstreak.com and launchpanda.com, can you add those?",
+      "expected_output": "Should put the official MCP Registry first, published with the mcp-publisher CLI (server.json, npm mcpName marker, GitHub or DNS namespace), and explain that aggregators like PulseMCP and Glama build on it. Then plan direct MCP directories (Smithery, Glama, MCP.so, MCP Market), GitHub list PRs (noting they're nofollow and to check the list is still merging), and agent listings where relevant. Should flag that launchstreak.com and launchpanda.com are lookalike domains for sale and use launchstreak.dev and launchpanda.dev instead, after a liveness check. Should warn that indie launch sites with high DR and ~0 traffic are badge rings and that free dofollow links often require keeping their badge. Should apply the safety gate: verify domains resolve and get approval before each submission.",
+      "assertions": [
+        "Puts the official MCP Registry first, via mcp-publisher",
+        "Mentions aggregators ingesting from the registry",
+        "Flags launchstreak.com and launchpanda.com as lookalike domains and uses the .dev sites",
+        "Warns about high-DR, zero-traffic badge-ring launch sites",
+        "Applies the safety gate (liveness check, approval before submitting)"
+      ],
+      "files": []
     }
   ]
 }

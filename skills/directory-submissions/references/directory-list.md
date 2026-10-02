@@ -31,6 +31,34 @@ Submit only during launch week. These are time-sensitive with limited re-submiss
 | **Tiny Launch** | ~20 | Yes | Free | Lightweight, fast approval. |
 | **PitchWall** | ~25 | Yes | Free | Indie-hacker friendly. |
 
+### Tier 1B — Indie launch sites (the badge economy)
+
+A wave of small launch sites trade listings for a badge on your site. They're cheap to work through and can move DR fast, but read them carefully:
+
+- **Judge by traffic, not DR.** Many show DR 50–80 with close to zero organic traffic. That DR comes from badge-swap link rings, so it passes little real value and can disappear.
+- **Free often means reciprocal.** The dofollow link frequently lasts only while their badge stays on your site. Decide up front whether you'll keep badges in your footer.
+- **Use the exact domain below.** Two of these have lookalike `.com` domains that are for sale. A lapsed lookalike is a ready-made phishing page.
+
+Domains verified live on 2026-10-02. Re-check before submitting (see the safety gate in SKILL.md).
+
+| Directory | Domain | DR | Traffic | Cost / link terms |
+|---|---|---|---|---|
+| **Twelve Tools** | twelve.tools | ~83 | ~1.8k/mo | Free (≈72h review), 1 dofollow link; $36 Pro |
+| **Turbo0** | turbo0.com | ~81 | ~0 | Free with a backlink to them (3 dofollow links); paid from $29.90 |
+| **Findly** | findly.tools | ~81 | ~0 | Login required; terms unverified |
+| **Tinyshelf** | tinyshelf.co | ~73 | ~0 | Google login, reviewed listings. Not `tinyshelf.com` |
+| **Launch Llama** | tools.launchllama.co | ~73 | — | Free listing in the directory of a newsletter (claims ~55k readers) |
+| **ScrollLaunch** | scrolllaunch.com | ~71 | — | Free, dofollow only while their badge stays up; $19/$39 premium |
+| **Acid Tools** | acidtools.com | ~68 | ~0 | Login required; terms unverified |
+| **Better Launch** | betterlaunch.co | ~63 | ~0 | Free listing; sells $149–$199 submission packages |
+| **LaunchPanda** | launchpanda.dev | ~61 | — | Free, dofollow with their badge. **Never `launchpanda.com` (for sale)** |
+| **DanielLaunches** | daniellaunches.com | ~59 | ~0 | Login required |
+| **Stork** | stork.ai | ~53 | ~19k/mo | $49, or free with their "Verified" badge. Also sells a backlink service |
+| **Noonlaunch** | noonlaunch.com | ~52 | — | Paid spots $11–$99; free tier unclear |
+| **Launch Streak** | launchstreak.dev | ~51 | — | Free account, dofollow claimed. **Never `launchstreak.com` (for sale)** |
+| **ConfettiSaaS** | confettisaas.com | ~47 | — | Appears free; email approval |
+| **IndieTool** | indietool.io | ~46 | — | Submit flow unverified |
+
 ---
 
 ## Tier 2 — Startup / SaaS / Software Directories
@@ -513,5 +541,7 @@ After any submission goes live, verify the backlink exists and is dofollow. You 
 1. **Manual:** Open the listing, right-click your product link, "Inspect" → check for `rel="nofollow"` or `rel="ugc"`. If absent, the link is dofollow.
 2. **curl:** `curl -sIL https://directory.com/your-listing | grep -i link`
 3. **SEO tools:** Ahrefs Site Explorer → Backlinks → filter by this directory's domain.
+
+**Re-check liveness before each campaign.** Domains in this list were live when added, but small directories lapse and lookalike domains get bought. Run `dig +short <domain>` and open the root URL before submitting.
 
 **Re-verify quarterly.** Directories sometimes change all outbound links to nofollow without warning — if DR stops moving, check whether your biggest inbound links have silently flipped.

@@ -89,7 +89,7 @@ Full catalog in `references/directory-list.md`. Summary:
 
 | Tier | When | Examples | Typical count |
 |---|---|---|---|
-| **Tier 1 — Flagship launch** | Launch week only | Product Hunt (anchor), BetaList, HN Show HN, Fazier, DevHunt | ~15 |
+| **Tier 1 — Flagship launch** | Launch week only | Product Hunt (anchor), BetaList, HN Show HN, Fazier, DevHunt; plus indie launch sites (Twelve Tools, Turbo0, Tinyshelf) | ~15 + ~15 |
 | **Tier 2 — Startup/SaaS** | Week 1 + rolling | AlternativeTo, SaaSHub, G2, Capterra, F6S, SourceForge, Slashdot | ~50 |
 | **Tier 3 — AI directories** | Week 1–3 | TAAFT, Futurepedia, Toolify, Future Tools, aitools.inc, AIStage | ~40 |
 | **Tier 4 — Agent/MCP registries** | Week 1–3 (if MCP or agent-facing) | Official MCP Registry first, then Smithery, Glama, MCP.so, MCP Market; GitHub list PRs; Claude plugin directory, ClawHub, llms.txt directories | ~25 |
@@ -104,6 +104,8 @@ Full catalog in `references/directory-list.md`. Summary:
 | **Tier 13 — Niche vertical directories** | When vertical fits | Justia (legal), Porch (home), LandBook (design), etc. | ~20 |
 
 **MCP order of operations:** publish to the official MCP Registry before anything else in Tier 4. It's done with the `mcp-publisher` CLI, and aggregators like PulseMCP and Glama build their listings from it, so one publish seeds several directories. Steps are in `references/directory-list.md` (Tier 4A).
+
+**Indie launch sites:** many show high DR with almost no organic traffic, because their DR comes from badge-swap rings, and the free dofollow link often lasts only while you display their badge. They're worth an afternoon, not a strategy. Use the exact domains in the reference; some have lookalike `.com` domains for sale.
 
 **Triage rule:** Only submit where the product is a genuine fit. Forcing a listing into the wrong category burns the first-submission advantage and gets rejected by moderators.
 
@@ -325,12 +327,14 @@ Track weekly. If a number isn't moving, investigate — don't just submit more d
 | Signups from directory referrals | 0 | 50 | 300 |
 | Signups from alt/use-case pages | 0 | 20 | 300 |
 
+One self-reported 2026 case for calibration: an MCP server plus a micro SaaS, submitted to ~35 directories (MCP registries, GitHub lists, indie launch sites), went from DR 4 to 26 in about 40 days, and from 8 to 33 referring domains in about 3 weeks. That's a single anecdote, but it suggests the Day 30 targets are reachable for a focused campaign.
+
 ---
 
 ## What NOT to Do
 
 1. **Don't pay for directory submission services** ($60–$200 packages). The whole point is these are free. It's an afternoon of copy-paste.
-2. **Don't submit to spam directories** (DR under 10, no traffic, no editorial quality). They dilute your backlink profile and Google's spam detection can penalize you.
+2. **Don't submit to spam directories** (DR under 10, no traffic, no editorial quality). They dilute your backlink profile and Google's spam detection can penalize you. High DR with zero organic traffic is the same warning sign: it usually means a badge-swap ring.
 3. **Don't submit with the wrong positioning.** Re-read the positioning table per tier. Generic descriptions waste the listing.
 4. **Don't treat directories as your entire GTM.** They're the foundation. Content + community + reviews are what actually convert.
 5. **Don't skip reviews on G2/Capterra.** Zero-review listings are dead. Run the 10-in-30 protocol or don't submit.
