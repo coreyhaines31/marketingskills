@@ -48,11 +48,11 @@ Ready-to-use templates for different platforms and content types.
 ```
 [X things I learned about [topic] after [credibility builder]:
 
-1. [Point] — [Brief explanation]
+1. [Point]: [Brief explanation]
 
-2. [Point] — [Brief explanation]
+2. [Point]: [Brief explanation]
 
-3. [Point] — [Brief explanation]
+3. [Point]: [Brief explanation]
 
 [Wrap-up insight]
 
@@ -111,7 +111,7 @@ Final tweet: [Takeaway + engagement ask]
 ```
 Tweet 1: [Company/person] just [did thing].
 
-Here's why it's genius (and what you can learn):
+[One-line takeaway: what they did and the result, with a number]
 
 Tweet 2-6: [Analysis points]
 

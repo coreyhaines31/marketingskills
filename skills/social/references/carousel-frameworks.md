@@ -28,7 +28,7 @@ The "everything you need" carousel. Works because the cover makes a completeness
 | Slide | Job | Pattern |
 |---|---|---|
 | 1 — Cover | State the exact count + exact deliverable. Specificity proves scale upfront. | "[N] [resource type] for [role/outcome]" |
-| 2 to N−1 — Value delivery | One item or category per slide, 3–6 concrete sub-items each. Same visual template, zero filler slides. | "[Category/item] — [sub-items]" |
+| 2 to N−1 — Value delivery | One item or category per slide, 3–6 concrete sub-items each. Same visual template, zero filler slides. | "[Category/item]: [sub-items]" |
 | N — Close | Convert the swipe-through into an action. | "[Action] for [the payoff]" — comment a keyword, follow, link in bio |
 
 **Why the exact count matters:** "27 free tools" outperforms "the best free tools" because a number is a checkable promise — the reader can verify you delivered. Rounding up with padding breaks the trust the count created.
@@ -46,10 +46,10 @@ The "I did X, here's the system" carousel. The hook is a *result stated as fact*
 | Slide | Job | Pattern |
 |---|---|---|
 | 1 — Hook | A specific personal claim with a number. A result, not a tip. | "[I/we did X]. [Specific result, with number]." |
-| 2 — Reframe the problem | Name what's *actually* going wrong so the reader recognizes themselves. | "The real problem — [named issue]" |
-| 3–4 — The mechanism | Show the real system: named tools, named steps. Concrete beats vague. | "The system — [named tools/steps]" |
+| 2 — Reframe the problem | Name what's *actually* going wrong so the reader recognizes themselves. | "The real problem: [named issue]" |
+| 3–4 — The mechanism | Show the real system: named tools, named steps. Concrete beats vague. | "The system: [named tools/steps]" |
 | 5 to N−1 — The detail | The literal prompt text, template, or step-by-step. This is the save-worthy part. | "[The literal prompt or process detail]" |
-| N — Proof | The actual output artifact. A screenshot, not a description. | "[Screenshot of output] — the receipt" |
+| N — Proof | The actual output artifact. A screenshot, not a description. | "[Screenshot of output]: the receipt" |
 
 **The open loop is the engine:** slide 1 makes a claim, the last slide proves it, and everything between explains how. Readers swipe to see whether the receipt is real.
 
@@ -66,8 +66,8 @@ The "numbered techniques" carousel. A contrarian cover creates status anxiety �
 | Slide | Job | Pattern |
 |---|---|---|
 | 1 — Contrarian hook | A stat or claim implying most people fail at this. | "[Stat implying most people fail at X]" |
-| 2 — The problem | Why the common approach fails, ideally with an analogy. | "The problem — [why it fails]" |
-| 3 to N−1 — Numbered hacks | One named technique per slide. Bad-vs-good contrast makes each hack land instantly. | "Hack #[n] — [named technique]" |
+| 2 — The problem | Why the common approach fails, ideally with an analogy. | "The problem: [why it fails]" |
+| 3 to N−1 — Numbered hacks | One named technique per slide. Bad-vs-good contrast makes each hack land instantly. | "Hack #[n]: [named technique]" |
 | N — Synthesis + close | A one-line thesis tying the hacks together, then a save/share/follow CTA. | "[Thesis tying hacks together]" + [CTA] |
 
 **Name every technique.** "The 3-second rule" is shareable and memorable; "keep it short" is neither. Named techniques travel — people repeat them and credit the source.
@@ -84,14 +84,14 @@ The "someone had to say it" carousel. Personality-led and polarizing by design �
 
 | Slide | Job | Pattern |
 |---|---|---|
-| 1 — Provocative claim | An unpopular opinion or direct accusation about a common practice. | "Unpopular opinion — [common practice]" |
+| 1 — Provocative claim | An unpopular opinion or direct accusation about a common practice. | "Unpopular opinion: [common practice]" |
 | 2 to N−2 — Escalate the argument | Sensory, specific detail. Show the offense; don't gesture at it abstractly. Each slide raises the stakes. | "[Escalating, specific complaint]" |
-| N−1 — Fairness pivot | "Don't get me wrong…" — clarify what you're *not* attacking. Anti-laziness, not anti-tool; anti-practice, not anti-person. | "The problem isn't [X], it's [Y]" |
-| N — Close | Firm, personality-forward sign-off. Signed rants read as owned opinions; anonymous ones read as potshots. | "[Firm sign-off] — signed [name/persona]" |
+| N−1 — Fairness pivot | "Don't get me wrong…": clarify what you're *not* attacking. Anti-laziness, not anti-tool; anti-practice, not anti-person. | "I use [X] every day. My problem is [Y]." |
+| N — Close | Firm, personality-forward sign-off. Signed rants read as owned opinions; anonymous ones read as potshots. | "[Firm sign-off]: signed [name/persona]" |
 
 **The fairness pivot is what makes it work.** Without it you're yelling; with it you're drawing a precise line, and precise lines get quoted. It also pre-empts the top hostile comment.
 
-*SaaS example:* "Your AI-generated LinkedIn posts are costing you customers." → the specifics (same em-dash cadence, same 'game-changer' vocabulary, zero lived detail) → "Don't get me wrong — I use AI daily. The problem isn't the tool, it's publishing the first draft." → "Write like you talk. — [Name]"
+*SaaS example:* "Your AI-generated LinkedIn posts are costing you customers." → the specifics (same em-dash cadence, same 'game-changer' vocabulary, zero lived detail) → "Don't get me wrong. I use AI daily. My problem is publishing the first draft." → "Write like you talk. [Name]"
 
 **Failure modes:** skipping the pivot (reads unhinged, invites pile-ons), or ranting about something your own product/content visibly does (the comments will find it).
 
@@ -106,7 +106,7 @@ The "watch it work" carousel for product or workflow content. Show the finished 
 | 1 — Product + outcome | Brand/product plus the finished result. Lead with what they get. | "[Product] + [outcome], finished result" |
 | 2 — Problem it solves | The specific frustration this replaces. | "[The specific pain this replaces]" |
 | 3 — Process overview | The numbered step list, shown *before* the detail. Seeing the whole path lowers mid-swipe drop-off — readers commit when they know how long the road is. | "[N] steps to [outcome] in [timeframe]" |
-| 4 to N−1 — Step-by-step | One real UI screenshot per step with a short caption. Real screenshots; mockups read as vaporware. | "Step [n] — [screenshot] — [caption]" |
+| 4 to N−1 — Step-by-step | One real UI screenshot per step with a short caption. Real screenshots; mockups read as vaporware. | "Step [n]: [screenshot] + [caption]" |
 | N — Result + positioning | The full-size output plus one brand-philosophy line. | "[Final output] + [positioning line]" |
 
 **Overview-before-detail is the key move** (same reason recipe sites list ingredients before instructions): a reader who's seen "4 steps, 10 minutes" on slide 3 will finish; a reader dropped straight into step 1 with no map bails at step 2.

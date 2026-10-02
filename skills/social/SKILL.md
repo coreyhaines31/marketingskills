@@ -113,7 +113,7 @@ Never write these:
 - **Contrast reveals**: "It's not X, it's Y." "Not because X. Because Y." State Y directly, with the reason.
 - **Negation lists**: "No X, no Y, no Z." Say what does happen. One plain absence ("No card required") is fine.
 - **Trailing pile-ons**: a full claim, then a comma and more restating clauses. End the sentence at the claim.
-- **Self-answered questions and colon reveals**: "The result? 3x faster." "The best part: it learns."
+- **Self-answered questions and colon reveals**: "The result? 3x faster." "The best part: it learns." FAQ questions and a question in the reader's own voice are fine.
 - **Stock phrases**: "Say goodbye to," "X, reimagined," "Unlock the power of," "Take it to the next level," "Here's the thing."
 - **Em dashes** in posts. Use a period or a line break.
 

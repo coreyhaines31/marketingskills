@@ -10,7 +10,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 
 **The "Secret" Formula:**
 - "The secret to [outcome] that nobody talks about"
-- "I found the hidden feature in [product/platform] that changes everything"
+- "I found a feature in [product/platform] that saves me [specific time/result]"
 - "I can't believe this actually works..."
 
 **The Unexpected Discovery:**
@@ -28,7 +28,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 **The Promise:**
 - "How to [achieve outcome] in [specific timeframe]"
 - "[Number] [things] that will [benefit]"
-- "Everything you need to know about [topic] in 60 seconds"
+- "[Topic] in 60 seconds: the [N] things that matter"
 
 **The Hack/Shortcut:**
 - "[Outcome] hack that actually works"
@@ -36,7 +36,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 - "If you're struggling with [problem], watch this"
 
 **The Warning:**
-- "Stop doing [common practice] — here's why"
+- "Stop doing [common practice]. It cost me [specific result]."
 - "[Number] mistakes that are killing your [results]"
 - "Why [thing you think is good] is actually hurting you"
 
@@ -45,7 +45,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 **The Transformation:**
 - "3 months ago, I [bad state]. Today, I [good state]."
 - "Here's how I went from [before] to [after]"
-- "I used to think [old belief]. Then [event] changed everything."
+- "I used to think [old belief]. Then [specific event] happened."
 
 **The Failure:**
 - "I made a huge mistake with [topic]"
@@ -54,7 +54,7 @@ Detailed reference for creating short-form video content on TikTok, Instagram Re
 
 **The Journey:**
 - "So this just happened..."
-- "This changed everything for me"
+- "This cut my [task] from [X] to [Y]"
 - "Let me tell you about the time I [interesting situation]"
 
 ### Controversial Hooks (Best for comments)
