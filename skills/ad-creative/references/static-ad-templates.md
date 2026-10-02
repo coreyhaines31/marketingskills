@@ -123,7 +123,7 @@ Handwritten-style or plain-text note from the founder. Conversational, personal 
 - **Tier**: S — **Role**: unicorn cold-scaler. Founder content is the single most reliable *first* top performer at any production level — telling the story of *why* you built the brand auto-connects with same-problem cold audiences. The static "founder's letter" variant cranks hard during sales periods. Reach for this first.
 - **Structure**: Note-style layout, founder name/photo, no product glamour shot
 - **Copy slot**: "I built this because..." — one honest paragraph, no marketing polish
-- **DTC example**: "Hey — I made this because every 'healthy' snack was secretly candy."
+- **DTC example**: "Hey, I made this because every 'healthy' snack was secretly candy."
 - **SaaS example**: "I ran RevOps for 6 years. This is the tool I kept wishing existed."
 - **Source it from**: The actual founding story — this template collapses if fabricated
 
@@ -179,7 +179,7 @@ A common objection as the question, answered directly.
 - **Tier**: B — **Role**: mid-funnel supporting cast. This is objection-handling in static form — one of the fastest-working supporting formats, top-15 for most brands. The objection *as customers phrase it* is the whole hook.
 - **Structure**: Question prominent, answer concise, product anchor
 - **Copy slot**: The objection *as customers phrase it* — the recognition is the hook
-- **DTC example**: "But does it work for sensitive skin? Yes — and here's why."
+- **DTC example**: "But does it work for sensitive skin? Yes. We tested it on 200 people with eczema."
 - **SaaS example**: "Will this survive our security review? SOC 2 Type II, SSO, EU hosting."
 - **Source it from**: `inputs/comments/` — the objections people post publicly under your ads
 
@@ -257,9 +257,9 @@ Leads with a contrarian statement that names a limiting belief the persona holds
 
 - **Tier**: B — **Role**: mid-funnel supporting cast. Works when you genuinely know the persona's limiting beliefs; needs a specific, earned reframe (in video it wants B-roll — as a static it wants a crisp visual contrast).
 - **Structure**: Bold belief-statement up top, the flip below, product as the proof
-- **Copy slot**: The exact false belief in the customer's words, then the correction
-- **DTC example**: "You don't need more protein. You need protein you'll actually take."
-- **SaaS example**: "Your problem isn't more dashboards. It's that nobody reads them."
+- **Copy slot**: The belief in the customer's words, then the fact that corrects it. State the fact; don't stage a "You don't need X. You need Y." reveal (an AI tell)
+- **DTC example**: "Most people quit protein powder by week three. Ours is a 90-calorie gummy you'll actually take."
+- **SaaS example**: "The average team has 40 dashboards and reads three. [Product] sends those three numbers to Slack every morning."
 - **Source it from**: Objections and misconceptions surfaced in comments and reviews
 
 ### 21. Tweet / Reddit Screenshot
@@ -281,7 +281,7 @@ Deliberately low-polish — handwritten note, sticky note, or plain-text-on-a-ph
 - **Tier**: B — **Role**: supporting cast, and a sales-period specialist. These crush during sales/promo windows precisely because they look thrown-together and time-sensitive. Rotate in for BFCM, launches, and flash sales; don't run them as an always-on default.
 - **Structure**: One scrappy element (post-it, marker note, screenshot) over product or plain ground
 - **Copy slot**: A blunt, human line — the offer or the reason, in plain words
-- **DTC example**: A post-it reading "40% off ends tonight — don't forget" slapped on the product
+- **DTC example**: A post-it reading "40% off ends tonight. Don't forget." slapped on the product
 - **SaaS example**: A "note to self: cancel the other tool" scrawl before the switch
 - **Source it from**: The offer itself; the plain way a customer would remind a friend
 

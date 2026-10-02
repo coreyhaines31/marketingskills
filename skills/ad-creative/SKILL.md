@@ -284,16 +284,16 @@ Never write these:
 - **Contrast reveals**: "It's not X, it's Y." "Not because X. Because Y." State Y directly, with the reason.
 - **Negation lists**: "No X, no Y, no Z." Say what does happen. One plain absence ("No card required") is fine.
 - **Trailing pile-ons**: a full claim, then a comma and more restating clauses. End the sentence at the claim.
-- **Self-answered questions and colon reveals**: "The result? 3x faster." "The best part: it learns."
+- **Self-answered questions and colon reveals**: "The result? 3x faster." "The best part: it learns." FAQ questions and a question in the reader's own voice are fine.
 - **Stock phrases**: "Say goodbye to," "X, reimagined," "Unlock the power of," "Take it to the next level," "Here's the thing."
 - **Em dashes** in headlines, descriptions, and primary text.
 
 Ad-specific tells:
 - **Stacked negations to fit a character limit**: "No setup. No fees. No contracts." Keep the one that matters most and use the space for a fact.
-- **Hook slop**: "POV:", "Stop scrolling," "Here's what nobody tells you about X." Earn the next second with something specific to the viewer.
+- **Hook slop**: a generic "POV:", "Stop scrolling," "Here's what nobody tells you about X." Earn the next second with something specific to the viewer. A POV hook is fine when the situation is hyper-specific ("POV: it's 3pm and you're on your fourth coffee").
 - **CTA slop**: "Get started today," "Join thousands of happy customers." Name the action and what they get.
 
-Across a batch, no two variations should share the same sentence shape. For the full blacklist, use the **copywriting** skill's AI-tells reference.
+Across a batch, vary the sentence shapes. Ten variations that all open the same way read as generated, even when each one is fine alone. For the full blacklist, use the **copywriting** skill's AI-tells reference.
 
 ### Descriptions That Convert
 

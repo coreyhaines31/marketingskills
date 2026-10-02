@@ -51,7 +51,7 @@ A menu of proven opening structures. Cycle through them like the static template
 
 | Move | Shape | Watch out |
 |---|---|---|
-| **Curiosity gap** | Withhold the noun: "Nobody tells you what actually causes this" | Must pay off within the ad or it's clickbait that poisons CVR |
+| **Curiosity gap** | Withhold the noun: "The ingredient behind most 3pm crashes" | Must pay off within the ad or it's clickbait that poisons CVR |
 | **Bold claim** | A specific, falsifiable statement: "This replaced my entire morning routine" | Needs substantiation on screen or in the on-ramp |
 | **First-person confession** | "I was doing [common thing] completely wrong" | Reads fake without lived-in detail |
 | **Contrast / before-after** | Two states shown or named in the first beat | The transformation must be visually honest — see compliance notes in SKILL.md |

@@ -137,7 +137,7 @@ UGC- and creator-driven short-form formats that reliably perform for growth and 
 ```
 
 - **When:** the sale needs *upfront education* — health, wellness, fitness, finance, anything where the buyer must understand the mechanism before they'll convert. One of the few formats that both scales cold and carries heavy teaching, hence S-tier.
-- **Mechanics:** the craft is in the script — a tight problem hook, a believable mechanism, stacked proof, and a clear offer. Retention is engineered beat by beat (open loops, "but here's the thing" turns). Captions throughout; a real person or voiceover-over-broll both work. This is a writing discipline first — invest in the script.
+- **Mechanics:** the craft is in the script — a tight problem hook, a believable mechanism, stacked proof, and a clear offer. Retention is engineered beat by beat (open loops, mid-script turns that add a new fact). Captions throughout; a real person or voiceover-over-broll both work. This is a writing discipline first — invest in the script.
 
 ### Format 9 — Green-Screen Commentary · A
 **Shape:** the creator talks *over* full-frame imagery — screenshots, product shots, charts, a competitor's page — pairing an educational take with the visual it references. (Distinct from Format 3's reaction: this is a *teaching* overlay, not a reaction to a post.)
@@ -195,7 +195,7 @@ For **founder-led video ads** and organic-native brand content, four narrative s
 
 **The four structures (pick the arc, then shoot to it):**
 - **Hero's journey** — run whatever's happening in the business through: problem → backstory → attempt → failure → epiphany → breakthrough → cliffhanger. The reframe matters more than the events. Lets you post *less* — one great story-vlog a week can beat daily content because people follow the journey. (For this arc specifically, it's fine to run the raw situation through an LLM *for the outline only* — feed brand/persona context, ask for a 60–90s hero's-journey outline — then write the words yourself.)
-- **Math** — money as the lever: a cost breakdown or a fixed-budget challenge ("$200 on Meta ads — here's what happened"). *Unexpectedly cheap* outperforms expensive; the affordability question creates intrinsic curiosity. Don't use luxury as the hook — it doesn't scale and reads as a flex.
+- **Math** — money as the lever: a cost breakdown or a fixed-budget challenge ("I spent $200 on Meta ads. Here's the breakdown."). *Unexpectedly cheap* outperforms expensive; the affordability question creates intrinsic curiosity. Don't use luxury as the hook — it doesn't scale and reads as a flex.
 - **Shiny object** — anchor on something visually novel the viewer hasn't seen and that you have *access* to (your factory, a machine, a craft process, a trade show). Never money/luxury as the shiny object.
 - **Niche guide with expertise** — narrate the real world through your professional lens ("what I'd avoid as an interior designer," filmed in the store). A *learner* POV works too — just be honest which you are. Getting out into the world is the cheat code while everyone else yaps in their car.
 

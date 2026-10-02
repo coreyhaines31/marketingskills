@@ -40,13 +40,13 @@ The template renders entirely from a JSON block near the top of the file — `<s
           label: "Hook",                    // the frame's job in the narrative arc
           prompt: "Product bag hero on soft pink, gold-lace overlay",  // image description (shown as placeholder if no image)
           image: "images/heavy-metal-01.png",   // optional — URL, relative path, or data URI; omit for text-only concepts
-          headline: "Finally — a plant-based protein that's third-party tested for heavy metals.",  // optional per-frame overlay
+          headline: "Finally, a plant-based protein that's third-party tested for heavy metals.",  // optional per-frame overlay
           headlineTheme: "dark"             // optional: "dark" (default, white text) or "light" (dark text on light imagery)
         }
         // … one object per frame
       ],
       headlines: [                          // selectable variations; the picked one overlays frame 1 in the preview
-        "Finally — a plant-based protein that's third-party tested for heavy metals.",
+        "Finally, a plant-based protein that's third-party tested for heavy metals.",
         "We tested our protein for heavy metals. Here's what an independent lab found.",
         "Most protein powders are never tested for heavy metals. Ours is."
       ],
