@@ -1,8 +1,8 @@
 ---
 name: copywriting
-description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.
+description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," "this sounds like AI," "AI slop," "make it sound human," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. Drafts never use AI tells like "it's not X, it's Y" reveals, "no X, no Y, no Z" lists, or sentences that trail into extra comma clauses. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.
 metadata:
-  version: 2.0.2
+  version: 2.1.0
 ---
 
 # Copywriting
@@ -73,6 +73,7 @@ Each section should advance one argument. Build a logical flow down the page.
 
 ### Quick Quality Check
 
+- Any AI tells? (see No AI Tells below)
 - Jargon that could confuse outsiders?
 - Sentences trying to do too much?
 - Passive voice constructions?
@@ -80,6 +81,33 @@ Each section should advance one argument. Build a logical flow down the page.
 - Marketing buzzwords without substance?
 
 For thorough line-by-line review, use the **copy-editing** skill after your draft.
+
+---
+
+## No AI Tells
+
+Clients and buyers reject copy that reads as AI-written, and once they spot one tell they stop trusting the claims. Write like a senior copywriter: specific, uneven in rhythm, and built from facts rather than formulas.
+
+### Never write these
+
+1. **Contrast reveals.** "It's not X, it's Y." "Not because X. Because Y." "Not just X, but Y." State Y directly, with the reason.
+2. **Negation lists.** "No setup call, no templates, no waiting on IT. No contract." Say what does happen. If one absence matters, state it once ("No card required").
+3. **Trailing pile-ons.** A full claim followed by a comma and more clauses: "...the data you already have, no exports, no spreadsheets, no second copy." End the sentence at the claim.
+4. **Self-answered questions and colon reveals.** "The result? 3x faster." "The best part: it learns." Just say it.
+5. **Stock openers and phrases.** "In today's fast-paced world," "Whether you're X or Y," "Here's the thing," "Say goodbye to," "X, reimagined," "Unlock the power of," "Take it to the next level."
+6. **Em dashes in short copy.** Headlines, subheads, ads, social posts, and subject lines use none.
+
+### Keep these rare
+
+- At most one fragment and one list of three per section.
+- Words like seamless, robust, powerful, unlock, and streamline: replace them with the fact they stand in for.
+- Swap test: if a line would work unchanged on a competitor's site, rewrite it.
+
+### Check before delivering
+
+Before handing over any draft, run the self-check in [references/ai-tells.md](references/ai-tells.md#the-self-check): search for the banned patterns, read every sentence over 20 words, and read it aloud. Fix from the facts, not by swapping synonyms, and flag missing proof as `[NEED: ...]` rather than inventing it.
+
+**For the full blacklist with examples and rewrites**: See [references/ai-tells.md](references/ai-tells.md)
 
 ---
 
@@ -93,9 +121,11 @@ Get to the point. Don't bury the value in qualifications.
 ✅ Need to share a screenshot? Send as many documents, images, and audio files as your heart desires.
 
 ### Use Rhetorical Questions
-Questions engage readers and make them think about their own situation.
+A question that names the reader's pain can open a section well.
 - "Hate returning stuff to Amazon?"
 - "Tired of chasing approvals?"
+
+Don't answer your own question in the next breath ("The result? 3x faster."). That's an AI tell.
 
 ### Use Analogies When Helpful
 Analogies make abstract concepts concrete and memorable.

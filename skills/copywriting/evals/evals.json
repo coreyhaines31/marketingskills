@@ -121,6 +121,20 @@
         "Provides 2-3 headline alternatives with rationale"
       ],
       "files": []
+    },
+    {
+      "prompt": "Write a homepage hero (headline, subhead, CTA) and a short launch post for X for our Shopify inventory app. It installs from the Shopify App Store in one click, needs no signup form or credit card, and runs low-stock alerts, reorder emails, and supplier purchase orders off the product and sales data the store already has, so there's nothing to import.",
+      "expected_output": "Should write the hero and post without AI tells despite a brief that invites them. Should not use 'it's not X, it's Y' or 'not because X, because Y' reveals, 'no X, no Y, no Z' negation lists, or sentences that state the claim and then trail extra comma clauses ('..., no imports, no spreadsheets'). Should describe what happens (one-click install; alerts, reorder emails, and purchase orders run off existing Shopify data) and state a key absence at most once, plainly, near the CTA ('No card required'). Should use no em dashes in the hero or the post, no self-answered questions or colon reveals, and no stock phrases ('Say goodbye to', 'X, reimagined', 'seamless'). Should run the self-check before delivering.",
+      "assertions": [
+        "No contrast reveal ('not X, Y' / 'not because X, because Y')",
+        "No 'no X, no Y, no Z' negation list; any absence stated once",
+        "No sentence that trails extra comma clauses after the main claim",
+        "No em dashes in the hero or the post",
+        "No self-answered questions, colon reveals, or stock phrases",
+        "Describes the mechanism concretely (one-click install, runs off existing Shopify data)"
+      ],
+      "files": [],
+      "id": 9
     }
   ]
 }

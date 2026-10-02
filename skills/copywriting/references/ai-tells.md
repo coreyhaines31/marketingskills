@@ -1,0 +1,247 @@
+# AI Tells: The Copy Blacklist
+
+Patterns that make marketing copy read as machine-written. Clients and buyers now spot these in seconds. Once they do, they stop trusting the claim, not just the prose.
+
+Most of these are old human rhetoric. AI copy gives itself away by using them **by default**, **stacked**, and **with nothing specific behind them**. So the rules below are a mix of hard bans (for patterns that are tells even once) and frequency caps (for devices that are fine when chosen on purpose).
+
+**Confidence key**
+- **Ban**: a tell even once in short copy (hero, subhead, ad, email, social post). Don't write it.
+- **Cap**: fine once, a tell when repeated or stacked. Stay under the cap.
+
+---
+
+## Contents
+- Structural Patterns (the worst offenders)
+- Openers, Closers, and Setups
+- Marketing Phrases
+- Vocabulary
+- Hedges, Puffery, and Weasels
+- Tone
+- Formatting
+- Rewrite Rules
+- The Self-Check
+- Sources
+
+---
+
+## Structural Patterns
+
+These matter more than any word list. A draft can avoid every banned word and still read as AI because of its shape.
+
+### 1. The contrast reveal: "Not X. Y." (Ban)
+
+Sets up an assumption nobody stated, denies it, then gives the "real" answer.
+
+Variants: "It's not X, it's Y." "Not because X. Because Y." "This isn't X. This is Y." "Not just X, but Y." "Less X, more Y." "The question isn't X, it's Y." "X? Think again."
+
+- ✗ Most marketing teams have a list of campaign ideas that never launch. Not because they're bad. Because each one needs a developer.
+- ✓ Most marketing teams have a list of campaign ideas that never launch, because each one needs a developer they can't get.
+
+**Why it's a tell:** It's the most widely cited AI pattern. Wikipedia's AI-cleanup guide calls it "negative parallelism," and slop benchmarks weight it more heavily than any single word.
+
+**Rewrite:** State Y directly and attach the concrete reason or cost. If the reader really does believe X and you need to correct it, you can do it once per page, in a full sentence, with evidence.
+
+### 2. The negation list: "No X, no Y, no Z." (Ban)
+
+Defines the product by what's absent, usually in threes, often with a fragment tacked on.
+
+Variants: "No X. No Y. Just Z." "Without X, without Y." "Zero X, zero Y."
+
+- ✗ No setup call, no templates to fill in, no waiting on IT. No contract.
+- ✓ Install it from the app store and it's running on your data in five minutes.
+
+**Rewrite:** Say what does happen, in the order it happens. If one absence really is the selling point (no card required, no install), state it once, plainly, next to the CTA: "Free to start. No card required."
+
+### 3. The trailing pile-on (Ban)
+
+A complete claim, then a comma, then a run of add-ons: a negation list, an "-ing" clause, or a string of extra benefits.
+
+- ✗ Reports pull directly from the data you already have, no exports, no spreadsheets, no second copy to keep updated.
+- ✗ It syncs your calendar automatically, ensuring nothing slips through the cracks.
+- ✓ Reports pull from the data you already have. There's nothing to export.
+
+**Rewrite:** End the sentence when the main claim ends. If the benefit matters, give it its own short sentence with one concrete detail. Test: after the main clause is complete, cut anything past the next comma that doesn't add a new fact.
+
+### 4. Rhetorical question, then answer (Ban)
+
+"The result? 3x faster onboarding." "The catch? There isn't one." "Why does this matter? Because..."
+
+- ✗ The result? Onboarding that takes minutes, not weeks.
+- ✓ New hires finish onboarding on day one.
+
+**Rewrite:** Delete the question and keep the answer. A real question the reader would ask ("Does it work with Shopify?") is fine in an FAQ, and a question that names their pain ("Still reconciling by hand?") is fine as a hook. A question you answer yourself in the next breath is not.
+
+### 5. The colon reveal (Ban)
+
+"The best part: it learns." "Here's the secret: consistency." "One word: speed."
+
+**Rewrite:** Write it as a normal sentence ("It learns from every correction"). Save colons for lists, labels, and quotes.
+
+### 6. Fragment drumbeat (Cap: one per section)
+
+Stacked fragments or one-line paragraphs for manufactured punch. "Simple. Fast. Done." "That's it. That's the whole thing."
+
+**Rewrite:** Merge them into one full sentence that carries a fact. One fragment that lands a real payoff is a copywriting device. A paragraph of them is a tic.
+
+### 7. Reflexive threes (Cap: one per section)
+
+Everything comes in threes: adjectives, benefits, clauses, bullets. "Fast, secure, and scalable." "Save time, cut costs, and grow revenue."
+
+**Rewrite:** Use as many items as the facts support: one, two, or four. Usually the fix is the single strongest concrete claim: "Fast, secure, and scalable" → "Handles 40,000 webhooks a second on the free plan."
+
+### 8. Em dashes (Ban in short copy; cap at 1–2 per page in long copy)
+
+The dash as the default pause, several per paragraph, often carrying a contrast reveal ("It's not a tool — it's a teammate").
+
+**Rewrite:** Use a period, a comma, a colon, or parentheses. In heroes, ads, subject lines, and social posts, use none.
+
+### 9. Uniform rhythm (Cap)
+
+Every sentence 12–18 words. Every paragraph is topic sentence → elaboration → wrap-up. Every section the same length. Three pros, three cons, every time.
+
+**Rewrite:** Vary on purpose. A long sentence, then a short one. Let a section be two lines if that's all it needs. Put the payoff first sometimes.
+
+### 10. Dodging "is" and "has" (Cap)
+
+"Serves as a central hub." "Stands as a testament." "Boasts a library of 200 templates." "Represents a new approach."
+
+**Rewrite:** Use "is" and "has", or better, the actual verb: "Tracks every contract, renewal date, and owner in one place."
+
+### 11. Abstract subjects (Cap)
+
+"The platform empowers teams to..." "Our solution enables..." Nobody does anything.
+
+**Rewrite:** Make the customer the subject. "Your team ships experiments without filing a ticket."
+
+### 12. False ranges (Cap)
+
+"From startups to enterprises." "From onboarding to renewal." The two ends don't describe a real span.
+
+**Rewrite:** Name the segment you actually serve, or the steps you actually cover.
+
+### 13. Synonym cycling (Cap)
+
+Calling the same thing a dashboard, an interface, a portal, and a hub in one page to avoid repeating a word.
+
+**Rewrite:** Pick the word your customer uses and repeat it.
+
+---
+
+## Openers, Closers, and Setups (Ban)
+
+| Pattern | Example | Instead |
+|---------|---------|---------|
+| Era opener | "In today's fast-paced world..." | Open with the customer's problem |
+| False-choice opener | "Whether you're a solo founder or a Fortune 500..." | Name who the page is for |
+| "Imagine..." | "Imagine never chasing an invoice again." | Show the actual before and after |
+| "When it comes to..." | "When it comes to billing, ..." | Start with the subject |
+| Throat-clearing | "Here's the thing:" "The truth is" "Let me be clear" "Here's what nobody tells you" | Cut it. If the claim can't stand alone, it needs evidence, not a drumroll |
+| Announcing | "In this guide, we'll explore..." "Let's dive in" | Start with the content |
+| Recap ending | "In conclusion" "Ultimately" "At the end of the day" | End on the last concrete point or the CTA |
+| Fake-profound kicker | "Because growth shouldn't wait." "And that changes everything." | Cut it. End on a concrete sentence |
+| Filler transitions | "It's worth noting" "Moreover" "Additionally" "Importantly" | Delete. The sentence usually works without it |
+
+---
+
+## Marketing Phrases (Ban)
+
+| Phrase | Instead |
+|--------|---------|
+| "Say goodbye to X" / "Say hello to Y" | Show the new workflow: "Reconciliation runs nightly. You review the exceptions." |
+| "Unlock / unleash the power of X" | Name the outcome and the number |
+| "X, reimagined" / "X, redefined" | Say what's actually different: "Billing that retries on payday" |
+| "Take X to the next level" | Name the level: the metric and the target |
+| "Transform the way you work" | A before and after with numbers |
+| "The X you deserve" | The specific gap you close |
+| "The future of X is here" | What ships today |
+| "Built for teams who move fast" | The real customer and trigger: "For subscription teams past $1M ARR fighting failed payments" |
+| "Everything you need to X" / "all-in-one" | The 2–3 things buyers actually check for |
+| "Effortless" / "in just a few clicks" | The real step count or time: "3 steps, about 4 minutes" |
+| "Join thousands of happy customers" | The real count, logos, or a named quote |
+| "Game-changer" / "this changes everything" | What changes, for whom, by how much |
+
+---
+
+## Vocabulary
+
+Swapping a banned word for a synonym just creates a new tell. Replace the word with the fact it was standing in for: "robust" → "99.99% uptime over two years"; "seamless" → "imports your Stripe data in about 90 seconds."
+
+**Ban:** delve, tapestry, testament to, realm, embark, beacon, multifaceted, paradigm, synergy, myriad, plethora, meticulous, intricate, utilize, leverage (as a verb), supercharge, turbocharge, game-changer, "ever-evolving landscape," "plays a crucial role"
+
+**Cap (two in a paragraph means rewrite it):** seamless, robust, streamline, empower, elevate, unlock, unleash, harness, foster, enhance, optimize, cutting-edge, innovative, revolutionary, transformative, holistic, comprehensive, pivotal, crucial, vital, powerful, effortless, next-level, world-class, best-in-class, landscape, navigate, ecosystem, journey (unless literal)
+
+**Cap (empty intensifiers):** truly, genuinely, incredibly, deeply, fundamentally, significantly, simply, actually, literally, quietly
+
+Favored words drift as models change ("delve" peaked in 2024; "enhance," "showcase," "foster," and "align with" rose after). Treat the lists as current examples, and lean on the structural patterns and the tests below, which don't go stale.
+
+---
+
+## Hedges, Puffery, and Weasels
+
+- **Hedge stacks** (Cap): "can help you potentially reduce..." State what you know, or scope the claim honestly.
+- **Importance puffery** (Ban): "marks a pivotal moment," "redefines the category." State the fact; let the reader judge.
+- **Weasel sources** (Ban): "experts agree," "studies show," "trusted by industry leaders." Name the source or the customer, or cut it.
+- **Invented labels** (Cap): "the integration tax," "the growth trap." Only coin a term you'll define and use across the site.
+
+---
+
+## Tone
+
+- **Chummy openers** (Ban in email and social): "Great question!" "Let's be honest..." "We get it."
+- **Fake vulnerability** (Ban): "I'll be honest, I was skeptical too..." with no real story behind it.
+- **Over-explaining** (Cap): "Let's break this down," "Think of it as..." Give the explanation directly.
+- **Hype punctuation** (Ban): "Ready to level up?!" Exclamation points and interrobangs in body copy.
+
+---
+
+## Formatting
+
+- **Emoji as structure** (Ban in B2B): 🚀 ✨ ✅ leading bullets or headings.
+- **Bold label on every bullet** (Cap): "**Seamless integration:** ..." Keep it for reference tables, not every list.
+- **Parallel bullet openers** (Cap): every bullet starting "Ensures... / Provides... / Enables..." Start bullets with the customer outcome and vary the grammar.
+- **Title Case Everywhere** (Cap): use sentence case unless the brand style guide says otherwise.
+- **Unicode decoration** (Ban): arrows, ×, 𝗯𝗼𝗹𝗱 letters in body copy.
+- **Label headings** (Cap): "What / Why / How" sections. Write headings that make a claim.
+
+---
+
+## Rewrite Rules
+
+1. **Rewrite from the facts, not the words.** Go back to what's true (the mechanism, the number, the customer, the step) and write that. Synonym swaps and "humanizer" substitutions produce new tells.
+2. **Specificity test.** Every claim sentence needs a number, a name, a mechanism, or a concrete action.
+3. **Swap test.** If the line would work unchanged on a competitor's site, rewrite it.
+4. **Stacking test.** Two or more Cap patterns in one paragraph means rewrite the whole paragraph, not one phrase.
+5. **Don't invent to de-slop.** Replacing "industry-leading" with a made-up stat is worse. Mark it `[NEED: proof]` and ask.
+6. **Choose devices on purpose.** A fragment or a contrast you picked once, for a reason, is copywriting. The same device on every line is slop.
+7. **Keep the brand's register.** A formal sentence that makes a specific claim is fine. Don't flatten an enterprise voice into clipped startup copy, which is its own tell.
+
+---
+
+## The Self-Check
+
+Run this on every draft before delivering it:
+
+1. **Search for the bans.** Look for "not ", "isn't", "no ", "without", "?", ":" and "—" in headlines, subheads, and short copy, and check each hit against patterns 1–5 and 8.
+2. **Read every sentence over 20 words.** If it has more than two commas, check for a trailing pile-on (pattern 3).
+3. **Count the caps.** Fragments, threes, and Cap vocabulary per section.
+4. **Read it aloud.** Mark anywhere you'd sound like a press release or a LinkedIn post.
+5. **Apply the swap test** to the headline, subhead, and every section heading.
+
+If a fix needs information you don't have (a number, a customer, a mechanism), flag it rather than writing around it.
+
+---
+
+## Sources
+
+Patterns and evidence drawn from, and rewritten in our own words:
+
+- Wikipedia, [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) (WikiProject AI Cleanup)
+- Kobak et al., excess vocabulary in 15M+ PubMed abstracts ([arXiv 2406.07016](https://arxiv.org/abs/2406.07016))
+- Juzek & Ward, [Why Does ChatGPT "Delve" So Much?](https://aclanthology.org/2025.coling-main.426/) (COLING 2025)
+- Paech et al., Antislop ([arXiv 2510.15061](https://arxiv.org/abs/2510.15061)) and [EQ-Bench Slop Score](https://eqbench.com/slop-score.html)
+- [tropes.fyi](https://tropes.fyi/tropes-md) catalog of AI writing tropes
+- Charlie Guo, [The Field Guide to AI Slop](https://www.ignorance.ai/p/the-field-guide-to-ai-slop)
+- Blake Stockton, [Don't write like AI: negation](https://www.blakestockton.com/p/dont-write-like-ai-1-101-negation)
+- Counter-view: [A case for the defense](https://robotsatemyhomework.substack.com/p/ai-writing-patterns) (devices are fine when chosen, not defaulted)
+
+For a broader word-level list used in content audits, see the seo-audit skill's `references/ai-writing-detection.md`.
