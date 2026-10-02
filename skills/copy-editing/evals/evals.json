@@ -99,6 +99,19 @@
       ],
       "files": [],
       "id": 7
+    },
+    {
+      "id": 8,
+      "prompt": "Run your AI-slop check on this landing page section before it ships. Only change what actually needs changing.\n\nHeadline: Close the books in two days instead of ten.\nSubhead: Ledgerly matches bank transactions to invoices every night, keeping your existing account codes.\nCTA: Start a 14-day trial. No card required.\nFeatures: Bank matching, approval routing, and audit trails.\nFAQ: Does it work with NetSuite? Yes. It syncs both ways every hour.",
+      "expected_output": "Should recognize this copy as already specific and mostly free of AI tells, and leave it largely unchanged. Should not flag the FAQ question, the single 'No card required' next to the CTA, the factual three-feature list, or the comma clause that adds a fact ('keeping your existing account codes'). Should not rewrite for the sake of rewriting or introduce new tells. May suggest small optional improvements, clearly labeled as optional, with reasons.",
+      "assertions": [
+        "Leaves the FAQ question in place",
+        "Keeps the single 'No card required' by the CTA",
+        "Does not flag the real three-feature list as a reflexive three",
+        "Does not flag the fact-adding comma clause as a pile-on",
+        "Makes no unnecessary rewrites and introduces no new tells"
+      ],
+      "files": []
     }
   ]
 }

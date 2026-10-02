@@ -328,10 +328,14 @@ Use these for faster reviews when a full seven-sweep process isn't needed.
 | Implement | Set up |
 | Leverage | Use |
 | Facilitate | Help |
-| Innovative | New |
-| Robust | Strong |
-| Seamless | Smooth |
-| Cutting-edge | New/Modern |
+
+**Replace with the fact** (a synonym swap just makes a new tell):
+
+| Vague | Write the fact instead |
+|-------|------------------------|
+| Innovative / cutting-edge | What it does that alternatives don't |
+| Robust | The uptime, scale, or failure case it handles |
+| Seamless | The real setup step count or time |
 
 **Watch for:**
 - Adverbs (usually unnecessary)
@@ -368,11 +372,13 @@ Run this on every edit, after the sweeps. Readers who spot one AI tell stop trus
 | Self-answered question | "The result? 3x faster." | Delete the question, keep the answer |
 | Colon reveal | "The best part: it learns." | Write a normal sentence |
 | Stock phrases | "In today's fast-paced world," "Whether you're X or Y," "Here's the thing," "Say goodbye to," "X, reimagined," "Unlock the power of" | Cut, then open with the reader's problem or the fact |
-| Em dashes in short copy | Headlines, ads, social posts, subject lines | Period, comma, or colon |
+| Em dashes in short copy | Headlines, subheads, CTAs, ads, social posts, subject lines (1–2 per page max in long copy) | Period, comma, or colon |
 
-**Cap these:** one fragment and one list of three per section. Treat seamless, robust, powerful, streamline, empower, and leverage as placeholders and replace each with the fact it stands for. Two of these in one paragraph means rewrite the paragraph.
+**Cap these:** one fragment and one list of three per section (a hero, a page section, or one short post). Treat seamless, robust, powerful, streamline, empower, and leverage as placeholders and replace each with the fact it stands for. Two of these in one paragraph means rewrite the paragraph.
 
 **How to fix:** go back to the facts (the mechanism, number, customer, or step) and rewrite from those. Swapping in synonyms creates new tells. If the fact isn't available, mark `[NEED: ...]` instead of inventing one. Keep the brand's register. A formal sentence that makes a specific claim is fine.
+
+**Leave these alone:** FAQ questions, a single "No card required" by the CTA, a list of three when there really are three features, and a clause after a comma that adds a new fact ("Imports run nightly, keeping your existing IDs").
 
 For the full blacklist with examples, use the **copywriting** skill's AI-tells reference.
 
