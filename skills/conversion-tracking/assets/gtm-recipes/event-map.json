@@ -1,0 +1,112 @@
+{
+  "calendly": {
+    "label": "Calendly",
+    "moment": "meeting booked",
+    "event": "calendly_event_scheduled"
+  },
+  "contact-form-7": {
+    "label": "Contact Form 7",
+    "moment": "form submission",
+    "event": "contact_form_7_submitted"
+  },
+  "divi-forms": {
+    "label": "Divi Forms",
+    "moment": "form submission",
+    "event": "divi_form_submitted"
+  },
+  "elementor-forms": {
+    "label": "Elementor Forms",
+    "moment": "form submission",
+    "event": "elementor_form_submitted"
+  },
+  "file-download": {
+    "label": "File download",
+    "moment": "file download",
+    "event": "file_download"
+  },
+  "fluent-forms": {
+    "label": "Fluent Forms",
+    "moment": "form submission",
+    "event": "fluent_forms_submitted"
+  },
+  "formidable-forms": {
+    "label": "Formidable Forms",
+    "moment": "form submission",
+    "event": "formidable_forms_submitted"
+  },
+  "forminator": {
+    "label": "Forminator",
+    "moment": "form submission",
+    "event": "forminator_form_submitted"
+  },
+  "framer-forms": {
+    "label": "Framer Forms",
+    "moment": "form submission",
+    "event": "framer_form_submitted"
+  },
+  "generic-ajax-form": {
+    "label": "Generic AJAX form",
+    "moment": "form submission",
+    "event": "form_submitted"
+  },
+  "gravity-forms": {
+    "label": "Gravity Forms",
+    "moment": "form submission",
+    "event": "gravity_form_submitted"
+  },
+  "jotform": {
+    "label": "Jotform",
+    "moment": "form submission",
+    "event": "jotform_form_submitted"
+  },
+  "ninja-forms": {
+    "label": "Ninja Forms",
+    "moment": "form submission",
+    "event": "ninja_forms_submitted"
+  },
+  "phone-click": {
+    "label": "Phone call click",
+    "moment": "phone call intent",
+    "event": "phone_click"
+  },
+  "tally": {
+    "label": "Tally",
+    "moment": "form submission",
+    "event": "tally_form_submitted"
+  },
+  "thank-you-page": {
+    "label": "Thank-you page",
+    "moment": "confirmation page",
+    "event": "thank_you_page_view"
+  },
+  "typeform": {
+    "label": "Typeform",
+    "moment": "form submission",
+    "event": "typeform_form_submitted"
+  },
+  "webflow-forms": {
+    "label": "Webflow Forms",
+    "moment": "form submission",
+    "event": "webflow_form_submitted"
+  },
+  "wix-forms": {
+    "label": "Wix Forms",
+    "moment": "form submission",
+    "event": "wix_form_submitted"
+  },
+  "wix-scheduling": {
+    "label": "Wix Bookings",
+    "moment": "booking made",
+    "event": "wix_appointment_scheduled"
+  },
+  "wpforms": {
+    "label": "WPForms",
+    "moment": "form submission",
+    "event": "wpforms_form_submitted"
+  },
+  "ws-form": {
+    "label": "WS Form",
+    "moment": "form submission",
+    "event": "ws_form_submitted"
+  }
+}

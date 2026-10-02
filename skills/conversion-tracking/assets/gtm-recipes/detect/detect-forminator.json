@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Forminator",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Forminator Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectForminator) return;\n  window.__ctDetectForminator = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'forminator_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Fire path \u2014 Forminator's own jQuery event, fired on `document` once an\n  // AJAX submission passes server-side validation. This is the ONLY path\n  // that ever fires a conversion; Forminator clears form fields before this\n  // event, but we don't need field values, so that doesn't affect us.\n  //\n  // Form ID resolution: live-verified against a real Forminator install\n  // (2026-07-02) that the `response` argument Forminator hands to this\n  // event is an EMPTY object ({}) \u2014 response.form_id does not exist in\n  // practice, despite being documented elsewhere. The reliable source is\n  // `event.target`, which jQuery sets to the <form> element itself (the\n  // event bubbles from the form to document), carrying a `data-form-id`\n  // attribute Forminator always renders.\n  var successHooked = false;\n\n  function hookForminatorSuccess() {\n    if (successHooked) return true;\n    if (typeof jQuery === 'undefined' && typeof $ === 'undefined') return false;\n\n    var jQ = typeof jQuery !== 'undefined' ? jQuery : $;\n    jQ(document).on('forminator:form:submit:success', function (event) {\n      var formEl = event && event.target;\n      var formId = (formEl && formEl.getAttribute && formEl.getAttribute('data-form-id')) || '';\n      fireConversion(formId);\n    });\n    successHooked = true;\n    return true;\n  }\n\n  // Retry hooking on DOMContentLoaded and window load \u2014 some sites load\n  // jQuery/Forminator very late.\n  if (!hookForminatorSuccess()) {\n    document.addEventListener('DOMContentLoaded', function () {\n      hookForminatorSuccess();\n    });\n    window.addEventListener('load', function () {\n      hookForminatorSuccess();\n    });\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Forminator Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "forminator_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Forminator Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

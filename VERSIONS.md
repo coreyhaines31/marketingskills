@@ -7,9 +7,9 @@ Current versions of all skills. Agents can compare against local versions to che
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.9.0 | 2026-10-02 |
 | ai-seo | 2.7.0 | 2026-10-02 |
-| analytics | 2.0.1 | 2026-07-22 |
+| analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
-| attribution | 1.1.0 | 2026-07-23 |
+| attribution | 1.1.1 | 2026-10-02 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
 | co-marketing | 2.0.1 | 2026-08-23 |
 | cold-email | 2.1.0 | 2026-10-02 |
@@ -17,6 +17,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | competitor-profiling | 2.1.0 | 2026-10-01 |
 | competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.1 | 2026-08-23 |
+| conversion-tracking | 1.0.0 | 2026-10-02 |
 | copy-editing | 2.1.0 | 2026-10-02 |
 | copywriting | 2.1.0 | 2026-10-02 |
 | cro | 2.0.0 | 2026-05-05 |
@@ -36,7 +37,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.1 | 2026-10-01 |
+| ads | 2.4.2 | 2026-10-02 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.1 | 2026-08-23 |
@@ -56,6 +57,18 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.12.0 (2026-10-02)
+
+- Added the **`conversion-tracking`** skill (1.0.0). Setting up, auditing, verifying and fixing the path from a conversion on a website to Google Ads, Meta, GA4, LinkedIn, TikTok and Microsoft Ads, for lead generation and ecommerce. Gives an orphaned job a home. Analytics listed conversion tracking as a trigger without covering it, attribution routed pixels and CAPI to ads, and ads held one reference file. Built on one distinction, that lead gen has to infer success from a browser signal while ecommerce reads it from an order record. Nine references (how each form, booking and chat tool signals success, the complete browser-side path, the server-side options with prices, ecommerce platforms including Shopify's 26 Aug 2026 Additional Scripts removal, Google Ads, Meta, other platforms, the audit playbook, and why the numbers never match), 22 detection snippets, importable GTM recipes merged by `scripts/build_recipe.py`, and 16 evals. Audit scoring follows the ads skill's audit guardrails, summarised inline. New skill = repo y release; total skills: 51. Contributed by Aaron Beashel (Converly ◆, a Verified Partner) and reviewed against the repo's partner-integrity bar before merge:
+  - **Neutrality:** free and native paths first (browser Enhanced Conversions, Meta advanced matching, Google tag gateway, Meta CAPI Gateway, tool webhooks); a "when server-side matters less" section; the partner row matches the others in length and lists its tradeoffs; a free-tier row in the side-by-side; paid options surface at the delivery decision, not in every answer; the contributor's other tool (Attributer) is disclosed with alternatives; five neutrality evals (ids 17–21).
+  - **Facts:** browser tags can send hashed email and phone; Meta dropped the AEM 8-event cap in May 2023; Microsoft has a Conversions API pilot; LinkedIn dedup needs a shared `eventId`; Meta CAPI for CRM gates; Google tROAS vs tCPA minimums; conversion-adjustment windows; Shopify's 1 Oct 2026 script-tag change; the undercount stated as a 10–30% range rather than a universal 30%.
+  - **Assets:** Jotform fires on its `submission-completed` message; 10 drifted GTM recipes regenerated from their snippets, with `scripts/check_recipes.py` to keep them in sync; `build_recipe.py` validates every ID and substitutes safely (no JSON or JS injection) on Python 3.8+; every send tag requires consent; snippet success-signal types documented.
+  - **Repo fit:** operative rules in the description, a revops boundary, no cross-skill relative links, two audit checks restored from the retired ads reference.
+- **Converly integration guide** filled in (capabilities, setup, operations); platform lift stats carry a holdout caveat.
+- **analytics** (2.0.1 → 2.0.2): description drops the "conversion tracking" and "track conversions" triggers and hands getting conversions into ad platforms to conversion-tracking.
+- **attribution** (1.1.0 → 1.1.1): pixels, CAPI and server-side conversion tracking now route to conversion-tracking (description, Boundaries, Related Skills, and the by-business-type tooling note).
+- **ads** (2.4.1 → 2.4.2): conversion tracking pointers (routing table, Platform Setup, tracking setup line, google-ads-audit-checklist) now go to the conversion-tracking skill; description and Related Skills name it. `references/conversion-tracking.md` retired, its content carried into conversion-tracking's browser-side.md, audit-playbook.md and server-side.md.
 
 ### 2.11.11 (2026-10-02)
 

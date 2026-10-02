@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - WS Form",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - WS Form Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWsForm) return;\n  window.__ctDetectWsForm = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'ws_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Same form-resolution chain the production module uses to find the\n  // form element (it just never used it for anything but PII \u2014 here we\n  // read a generic, non-PII form_id off whatever it resolves to).\n  function resolveForm(event, formObject) {\n    var formEl = null;\n    try {\n      if (formObject && formObject.form_canvas_obj && formObject.form_canvas_obj[0]) {\n        formEl = formObject.form_canvas_obj[0].querySelector('form.wsf-form');\n      }\n      if (!formEl && event && event.target) {\n        var target = event.target;\n        if ((target.tagName || '').toLowerCase() === 'form') {\n          formEl = target;\n        } else if (target.querySelector) {\n          formEl = target.querySelector('form.wsf-form');\n        }\n      }\n      if (!formEl) {\n        formEl = document.querySelector('form.wsf-form');\n      }\n    } catch (e) {\n      // non-fatal \u2014 fall through with whatever we have (possibly null)\n    }\n    return formEl;\n  }\n\n  // Fire path \u2014 WS Form's own jQuery event, fired on `document` once an\n  // AJAX submission passes server-side validation. This is the ONLY path\n  // that ever fires a conversion.\n  var successHooked = false;\n\n  function hookWsFormSuccess() {\n    if (successHooked) return true;\n    if (typeof jQuery === 'undefined' && typeof $ === 'undefined') return false;\n\n    var jQ = typeof jQuery !== 'undefined' ? jQuery : $;\n    jQ(document).on('wsf-success', function (event, formObject) {\n      var formEl = resolveForm(event, formObject);\n      fireConversion(formEl ? (formEl.id || '') : '');\n    });\n    successHooked = true;\n    return true;\n  }\n\n  // Retry hooking on DOMContentLoaded and window load \u2014 some sites load\n  // jQuery very late.\n  if (!hookWsFormSuccess()) {\n    document.addEventListener('DOMContentLoaded', function () {\n      hookWsFormSuccess();\n    });\n    window.addEventListener('load', function () {\n      hookWsFormSuccess();\n    });\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - WS Form Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "ws_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - WS Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

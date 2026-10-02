@@ -1,0 +1,104 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Fluent Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Fluent Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectFluentForms) return;\n  window.__ctDetectFluentForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function isFluentForm(formEl) {\n    if (!formEl) return false;\n    if (formEl.className && formEl.className.indexOf('frm-fluent-form') !== -1) return true;\n    try {\n      if (formEl.closest && formEl.closest('.fluentform')) return true;\n    } catch (e) {\n      // .closest not available \u2014 fall back to ID check\n    }\n    var id = formEl.id || '';\n    return /^fluentform_\\d+$/.test(id);\n  }\n\n  // Accepts a jQuery object or a DOM element; returns the underlying DOM\n  // element if it is a Fluent Forms <form>, else null.\n  function asFluentForm(candidate) {\n    if (!candidate) return null;\n    var el = candidate;\n    if (el.jquery && el.length) el = el[0]; // unwrap jQuery objects only \u2014\n    // never plain elements: form[0] on a raw <form> is its first control.\n    if ((el.tagName || '').toLowerCase() === 'form' && isFluentForm(el)) return el;\n    return null;\n  }\n\n  // Click-tracking fallback for form attribution: remember the Fluent form\n  // whose submit button was most recently clicked, in case an old Fluent\n  // Forms version fires the success event without a form reference.\n  var lastActiveForm = null;\n\n  function trackSubmitClick(event) {\n    try {\n      var target = event.target;\n      if (!target || !target.closest) return;\n      var btn = target.closest('.ff-btn-submit');\n      if (!btn) return;\n      var form = btn.closest('form');\n      if (form && isFluentForm(form)) lastActiveForm = form;\n    } catch (e) {\n      // non-fatal\n    }\n  }\n\n  // Resolution order (first valid Fluent form wins) \u2014 live-verified against\n  // Fluent Forms 6.2.5, 2026-07-05:\n  //   1. data.form from the handler's data argument \u2014 the <body> dispatch\n  //      passes { form, config, response } where form is the jQuery-wrapped\n  //      form (also accept data itself being the form, defensively)\n  //   2. event.originalEvent.detail.form \u2014 the native CustomEvent dispatch\n  //      carries the raw form element in detail\n  //   3. event.target, if it IS a Fluent form (direct-on-form re-trigger)\n  //   4. the form whose submit button was most recently clicked\n  //   5. the only .frm-fluent-form on the page, if exactly one exists\n  function resolveSuccessForm(event, data) {\n    var el = asFluentForm(data && data.form) || asFluentForm(data);\n    if (el) return el;\n\n    try {\n      var oe = event && event.originalEvent;\n      if (oe && oe.detail) {\n        el = asFluentForm(oe.detail.form);\n        if (el) return el;\n      }\n    } catch (e) {\n      // originalEvent/detail unreadable \u2014 keep falling back\n    }\n\n    el = asFluentForm(event && event.target);\n    if (el) return el;\n\n    if (lastActiveForm && document.contains(lastActiveForm) && isFluentForm(lastActiveForm)) {\n      return lastActiveForm;\n    }\n\n    try {\n      var forms = document.querySelectorAll('.frm-fluent-form');\n      if (forms.length === 1) return forms[0];\n    } catch (e) {\n      // querySelectorAll unavailable \u2014 give up\n    }\n\n    return null;\n  }\n\n  // Dedup: one successful submission reaches a document-level jQuery\n  // listener TWICE on current Fluent Forms (the jQuery <body> trigger and\n  // the native CustomEvent) \u2014 verified live. Both duplicates resolve to the\n  // same form within the same tick, so fire once per form per 2s window\n  // (matches production listener behaviour). Rapid legitimate\n  // re-submissions of the same form take well over 2s (server round trip +\n  // success render), so none are lost.\n  var lastFiredForm = null;\n  var lastFiredAt = 0;\n\n  function fireConversion(formEl) {\n    var now = new Date().getTime();\n    if (lastFiredForm === formEl && now - lastFiredAt < 2000) return;\n    lastFiredForm = formEl;\n    lastFiredAt = now;\n    window.dataLayer.push({\n      event: 'fluent_forms_submitted',\n      form_id: (formEl && formEl.id) || ''\n    });\n  }\n\n  // Fire path \u2014 Fluent Forms' success signal, fired once an AJAX submission\n  // passes server-side validation. This is the ONLY path this recipe\n  // tracks; Fluent Forms always submits via AJAX (there is no non-AJAX\n  // mode to miss). Client-side validation failures, native HTML5 blocks,\n  // and server-side rejections never fire it. Hooked via jQuery because\n  // the <body> dispatch is jQuery-only AND jQuery is guaranteed on any\n  // working Fluent Forms page (Fluent Forms' own submission handler\n  // requires it \u2014 without jQuery the form cannot submit at all).\n  var successHooked = false;\n\n  function hookFluentSuccess() {\n    if (successHooked) return true;\n    if (typeof window.jQuery === 'undefined') return false;\n\n    window.jQuery(document).on('fluentform_submission_success', function (event, data) {\n      fireConversion(resolveSuccessForm(event, data));\n    });\n    successHooked = true;\n    return true;\n  }\n\n  document.addEventListener('click', trackSubmitClick, true);\n\n  if (!hookFluentSuccess()) {\n    document.addEventListener('DOMContentLoaded', function () {\n      hookFluentSuccess();\n    });\n    window.addEventListener('load', function () {\n      hookFluentSuccess();\n    });\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Fluent Forms Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "fluent_forms_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Fluent Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0",
+    "exportTime": "2026-07-05 00:00:00"
+  }
+}

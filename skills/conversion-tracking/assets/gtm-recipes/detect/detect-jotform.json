@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Jotform",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Jotform Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectJotform) return;\n  window.__ctDetectJotform = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Two embed styles, two signals of different strength:\n  //\n  // 1. IFRAME embed (the default Jotform embed code). The form iframe posts\n  //    { action: 'submission-completed', formID: '<id>' } to the parent page\n  //    once Jotform has accepted the submission. This is a real success\n  //    signal: spam blocks and server-side rejections never send it. Jotform\n  //    support has confirmed the message exists but says it is not a public\n  //    API and may change, so re-verify it when Jotform ships embed changes.\n  //\n  // 2. SOURCE-CODE embed (the form's raw HTML pasted into the page, a\n  //    <form class=\"jotform-form\"> posting to submit.jotform.com). The page\n  //    navigates away to Jotform on submit, so there is no success signal\n  //    this page can observe. This path is SUBMIT-BASED BEST EFFORT: it fires\n  //    on a submit that passed the browser's own validation and that no other\n  //    handler cancelled, so a server-side rejection, CAPTCHA failure or spam\n  //    block still counts. Prefer the iframe embed, or a thank-you page\n  //    redirect plus thank-you-page.js, when accuracy matters.\n\n  var JOTFORM_FORM_ID_RE = /^\\d{10,}$/;\n  var JOTFORM_SUBMIT_ACTION_RE = /^https?:\\/\\/submit\\.jotform\\.com\\//i;\n  var JOTFORM_ORIGIN_RE = /(^|\\.)jotform(eu)?\\.com$/;\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'jotform_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // ---- Path 1: iframe embed, native success message ----\n\n  function handleMessage(event) {\n    try {\n      if (!event || !event.source || event.source === window) return;\n      if (!event.origin || typeof event.origin !== 'string') return;\n      var hostMatch = /^https:\\/\\/([^/]+)$/.exec(event.origin);\n      if (!hostMatch || !JOTFORM_ORIGIN_RE.test(hostMatch[1])) return;\n\n      var data = event.data;\n      if (typeof data === 'string') {\n        if (data.indexOf('submission-completed') === -1) return;\n        try { data = JSON.parse(data); } catch (e) { return; }\n      }\n      if (!data || typeof data !== 'object') return;\n      if (data.action !== 'submission-completed') return;\n\n      var formId = String(data.formID || data.formId || '');\n      if (!JOTFORM_FORM_ID_RE.test(formId)) return;\n\n      fireConversion(formId);\n    } catch (e) {\n      // Never throw back into the page's own message handling.\n    }\n  }\n\n  window.addEventListener('message', handleMessage, false);\n\n  // ---- Path 2: source-code embed, submit-based best effort ----\n\n  function isJotformInlineForm(formEl) {\n    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return false;\n    var hasClass = formEl.classList && formEl.classList.contains('jotform-form');\n    var action = formEl.getAttribute && formEl.getAttribute('action');\n    var hasAction = action && JOTFORM_SUBMIT_ACTION_RE.test(action);\n    if (!hasClass && !hasAction) return false;\n    var id = formEl.id || '';\n    if (!JOTFORM_FORM_ID_RE.test(id)) return false;\n    return true;\n  }\n\n  // Bubble phase deliberately. A capture-phase listener runs BEFORE the form's\n  // own handlers, so it would count submissions Jotform's validation cancels.\n  document.addEventListener('submit', function (event) {\n    var formEl = event.target;\n    if (!isJotformInlineForm(formEl)) return;\n\n    // A submission another handler already cancelled never happened.\n    if (event.defaultPrevented) return;\n\n    // Constraint validation gate: an invalid form cannot have submitted.\n    try {\n      if (typeof formEl.checkValidity === 'function' && formEl.checkValidity() === false) return;\n    } catch (e) {\n      // constraint validation unavailable — fall through\n    }\n\n    fireConversion(formEl.id);\n  }, false);\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Jotform Submitted",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {
+                "type": "template",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "template",
+                "key": "arg1",
+                "value": "jotform_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Jotform Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "integer",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}
