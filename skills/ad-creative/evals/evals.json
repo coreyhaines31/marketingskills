@@ -212,6 +212,19 @@
         "References the founder shooting/edit system (three-capture close/medium/wide and/or the 0.5–1s cut formula) and/or framing the mix as a portfolio across tiers"
       ],
       "files": []
+    },
+    {
+      "prompt": "Give me 10 Meta ad primary-text variations for our no-code website builder. It needs no developer, no hosting setup, and no credit card to start.",
+      "expected_output": "Should write 10 variations that avoid AI tells even though the brief is a list of absences. Should not stack negations ('No developer. No hosting. No card.') in any variation; may state one absence plainly. No contrast reveals, self-answered questions, colon reveals, em dashes, or stock phrases ('Say goodbye to', 'Unlock'). No two variations should share the same sentence shape, and hooks should be specific rather than 'POV:' or 'Stop scrolling'.",
+      "assertions": [
+        "No variation stacks three negations",
+        "No contrast reveals or self-answered questions",
+        "No em dashes",
+        "Variations don't repeat the same sentence shape",
+        "No 'POV:' / 'Stop scrolling' / stock-phrase hooks"
+      ],
+      "files": [],
+      "id": 16
     }
   ]
 }
