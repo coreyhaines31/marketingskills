@@ -33,7 +33,7 @@ Ready-to-use templates for different platforms and content types.
 ```
 [Unpopular opinion stated boldly]
 
-Here's why:
+[What you saw that changed your mind, with a number]
 
 [Reason 1]
 [Reason 2]
@@ -151,8 +151,8 @@ The first line determines whether anyone reads the rest.
 
 ### Curiosity Hooks
 - "I was wrong about [common belief]."
-- "The real reason [outcome] happens isn't what you think."
-- "[Impressive result] — and it only took [surprisingly short time]."
+- "[Outcome] usually comes down to [specific, surprising cause]."
+- "[Impressive result] in [surprisingly short time]."
 - "Nobody talks about [insider knowledge]."
 
 ### Story Hooks
@@ -169,9 +169,9 @@ The first line determines whether anyone reads the rest.
 
 ### Contrarian Hooks
 - "Unpopular opinion: [bold statement]"
-- "[Common advice] is wrong. Here's why:"
+- "[Common advice] cost us [specific result]."
 - "I stopped [common practice] and [positive result]."
-- "Everyone says [X]. The truth is [Y]."
+- "Everyone says [X]. In our [N] [accounts/clients/tests], [Y]."
 
 ### Social Proof Hooks
 - "We [achieved result] in [timeframe]. Here's the full story:"

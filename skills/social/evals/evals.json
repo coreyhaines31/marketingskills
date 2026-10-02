@@ -102,6 +102,19 @@
         "Does not invent stats or pad the tactic count"
       ],
       "files": []
+    },
+    {
+      "prompt": "Write a LinkedIn post announcing that our invoicing tool now syncs with QuickBooks. Make it punchy so it gets engagement.",
+      "expected_output": "Should write a post that leads with a specific hook (a fact, number, or customer situation) and avoids AI tells even though 'punchy' and 'engagement' invite them. No contrast reveals, no 'no X, no Y, no Z' lists, no self-answered questions or colon reveals, no em dashes. No broetry (one sentence per line for the whole post), no engagement-bait closer ('Agree?', 'Thoughts?', 'Let that sink in'), no emoji bullets. Ends on the point or a real question.",
+      "assertions": [
+        "No contrast reveal or negation list",
+        "No em dashes",
+        "Not written as broetry",
+        "No engagement-bait closer",
+        "Hook is specific rather than a generic pattern-interrupt"
+      ],
+      "files": [],
+      "id": 8
     }
   ]
 }

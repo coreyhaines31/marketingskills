@@ -52,7 +52,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.0.0 | 2026-05-21 |
-| social | 2.2.0 | 2026-07-09 |
+| social | 2.3.0 | 2026-10-02 |
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
