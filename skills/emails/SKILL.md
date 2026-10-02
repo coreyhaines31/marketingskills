@@ -1,8 +1,8 @@
 ---
 name: emails
-description: When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions "email sequence," "drip campaign," "nurture sequence," "onboarding emails," "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel," "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
+description: When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions "email sequence," "drip campaign," "nurture sequence," "onboarding emails," "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel," "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated flow. Emails avoid AI tells like 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and fake 'Re:' subject lines. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Email Sequence Design
@@ -230,7 +230,26 @@ Key emails:
 - Conversational, not formal
 - First-person (I/we) and second-person (you)
 - Active voice
-- Read it out loud—does it sound human?
+- Read it out loud. Does it sound like a person?
+
+### No AI Tells
+
+Subscribers learn to recognize generated email fast, and they stop reading. Write from the specific thing you want them to know or do.
+
+Never write these:
+- **Contrast reveals**: "It's not X, it's Y." "Not because X. Because Y." State Y directly, with the reason.
+- **Negation lists**: "No X, no Y, no Z." Say what does happen. One plain absence ("No card required") is fine.
+- **Trailing pile-ons**: a full claim, then a comma and more restating clauses. End the sentence at the claim.
+- **Self-answered questions and colon reveals**: "The result? 3x faster." "The best part: it learns."
+- **Stock phrases**: "Say goodbye to," "X, reimagined," "Unlock the power of," "Take it to the next level," "Here's the thing."
+- **Em dashes** in subject lines and preview text.
+
+Email-specific tells:
+- **Subject-line bait**: fake "Re:" or "Fwd:", "You won't believe...", "🔥 Big news." The subject should hold up if it's the only line they read.
+- **Stock openers**: "I hope this email finds you well," "Just checking in," "Great news!" Open with the reason you're writing.
+- **Sign-off filler**: "Feel free to reach out if you have any questions." Ask for one specific action, or end.
+
+For the full blacklist, use the **copywriting** skill's AI-tells reference.
 
 ### Length
 - 50-125 words for transactional

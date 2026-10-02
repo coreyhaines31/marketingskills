@@ -88,6 +88,18 @@
         "May offer email component support"
       ],
       "files": []
+    },
+    {
+      "prompt": "Write the first email of a welcome sequence for our meal-planning app, with a subject line and preview text.",
+      "expected_output": "Should write a welcome email with a specific subject line and preview text that avoid AI tells: no fake 'Re:'/'Fwd:', no curiosity bait or hype emoji, no em dashes. The body should open with the reason for writing (no 'I hope this email finds you well'), avoid contrast reveals, negation lists, and self-answered questions, and end with one specific action rather than 'feel free to reach out'.",
+      "assertions": [
+        "Subject line has no fake Re:/Fwd:, bait, or em dash",
+        "No stock opener",
+        "No contrast reveal or negation list",
+        "Ends with one specific action"
+      ],
+      "files": [],
+      "id": 7
     }
   ]
 }
