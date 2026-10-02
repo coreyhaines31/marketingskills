@@ -50,6 +50,12 @@ Engagement isn't read directly by LLMs, but it drives the watch signals that lif
 - [ ] Pinned comment carries the summary + links
 - [ ] Important entities (brand, category, product) spoken *and* written
 
+## Field notes (Sep 2026)
+
+- **The citation bar can be low.** In a live check, an 8-day-old video with under 100 views was the first source cited in Google's AI Overview for "best email marketing software." Fresh, well-labeled videos on head terms are worth testing.
+- **Ungate your demos.** Post product demos publicly with keyword-first titles ("[Category] software demo – [Brand]") instead of locking them behind a form.
+- **Sponsored creator videos are hard to attribute.** Practitioners quote $20–40K per sponsored video and no reliable way to prove the return. Budget them with an attribution plan (the self-reported field in [citations-vs-recommendations.md](citations-vs-recommendations.md)) or not at all.
+
 ## Related
 
 - The same "models read the text layer" logic applies to podcasts: episodes get transcribed and show notes get published, so podcast guesting is earned media that compounds in AI answers — see the `public-relations` skill's podcast guest prep reference.

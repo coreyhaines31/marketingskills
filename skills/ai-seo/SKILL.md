@@ -1,8 +1,8 @@
 ---
 name: ai-seo
-description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' 'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
+description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' 'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'how do LLMs see our brand,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
 metadata:
-  version: 2.5.0
+  version: 2.6.0
 ---
 
 # AI SEO
@@ -264,7 +264,7 @@ AI systems don't just cite your website — they cite where you appear.
 - Ensure your Wikipedia page is accurate and current
 - Participate authentically in Reddit communities — but as one surface in a portfolio, never the whole strategy (citation mixes shift overnight with retrieval updates)
 - Get featured in industry roundups and comparison articles
-- Maintain updated profiles on relevant review platforms
+- Make every third-party profile (G2, Capterra, Gartner, Crunchbase, LinkedIn) describe you with the same segment and positioning as your About page; models look for consensus. For repositioning, mergers, and head terms, see [references/positioning-and-consensus.md](references/positioning-and-consensus.md)
 - Create YouTube content for key how-to queries — models don't watch the video, they read the text layer around it; see [references/youtube-ai-citations.md](references/youtube-ai-citations.md) for the full anatomy (transcript, captions, chapters, description, pinned comment)
 - Guest on podcasts in your category (prep with the public-relations skill's podcast guest prep)
 - Answer relevant Quora questions with depth
@@ -423,7 +423,7 @@ Google's guide calls these out explicitly — they hurt across both traditional 
 1. **Write separate content "for AI"**. Same content should serve people and AI. Writing variants targeted at AI systems risks the **scaled content abuse spam policy** — Google's words.
 2. **Chunk pages into AI-bait fragments**. Google's guide is direct: *"Don't break your content into tiny pieces for AI to better understand it."* Use normal paragraph + heading structure.
 3. **Generate at scale for ranking manipulation**. AI-generated content is fine *if* it meets Search Essentials and spam policies. Mass-producing thin variations does not.
-4. **Pursue inauthentic mentions**. Don't fabricate citations or bulk-spam Reddit/Wikipedia for AI visibility. Real participation only.
+4. **Pursue inauthentic mentions**. Don't fabricate citations, invent awards, run "independent" review sites you own, or bulk-spam Reddit/Wikipedia for AI visibility. Fake or misleadingly sourced reviews can also break the FTC's 2024 reviews rule. Real participation only.
 5. **Block AI crawlers if you want citation**. Blocking GPTBot, PerplexityBot, ClaudeBot, Google-Extended means those engines literally cannot cite you. Block training-only crawlers (CCBot) if you must, not the search-and-cite ones.
 6. **Hide your main content behind JS that doesn't render**. Both core Search and AI agents need to see your content; JS-only rendering loses both audiences.
 7. **Skip E-E-A-T fundamentals**. Author identity, first-hand experience, expertise signals, transparent sourcing — Google's guide leans heavily on these for AI features.
