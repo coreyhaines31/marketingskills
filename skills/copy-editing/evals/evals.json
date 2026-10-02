@@ -84,6 +84,21 @@
         "Does not attempt to write full page copy from scratch"
       ],
       "files": []
+    },
+    {
+      "prompt": "My client says this copy reads like AI slop. Fix it:\n\n1. Most agencies have a folder of campaign ideas nobody will ever launch. Not because they're bad ideas. Because each one needs a developer.\n2. No onboarding call, no spreadsheet templates, no chasing approvals by email. No contract.\n3. Reports, alerts, and client dashboards all update straight from the ad accounts you already connected, no exports, no manual refresh, no second copy of the data to maintain.",
+      "expected_output": "Should identify the tell in each line: (1) a contrast reveal with fragment cadence, (2) a 'no X, no Y, no Z' negation list capped with a fragment, (3) a long sentence that trails a negation list after the main claim. Should rewrite each from the underlying facts: (1) a direct statement with the reason (each idea needs a developer), (2) what does happen instead, keeping at most one absence if it matters, (3) end the sentence at the claim and give the benefit its own short sentence. Rewrites must not introduce new tells (no em dashes, no self-answered questions, no new negation lists, no synonym swaps like 'effortless'). Should not invent numbers or proof.",
+      "assertions": [
+        "Names the contrast-reveal pattern in line 1",
+        "Names the negation-list pattern in line 2",
+        "Names the trailing pile-on in line 3",
+        "Rewrites line 1 as a direct statement with the reason",
+        "Rewrites line 2 to say what happens, with at most one absence",
+        "Rewrites line 3 ending the sentence at the claim",
+        "Rewrites introduce no new AI tells and no invented facts"
+      ],
+      "files": [],
+      "id": 7
     }
   ]
 }

@@ -58,6 +58,17 @@ Use this checklist alongside the Seven Sweeps Framework (see SKILL.md) as a fina
 - [ ] Next steps are crystal clear
 - [ ] Risk reversals stated (guarantee, trial, etc.)
 
+## AI Tells
+
+- [ ] No "it's not X, it's Y" or "not because X, because Y" reveals
+- [ ] No "no X, no Y, no Z" negation lists
+- [ ] No sentences that trail extra comma clauses after the main claim
+- [ ] No self-answered questions or colon reveals
+- [ ] No stock openers or phrases ("In today's...", "Whether you're...", "Say goodbye to...")
+- [ ] No em dashes in headlines, ads, social posts, or subject lines
+- [ ] At most one fragment and one list of three per section
+- [ ] Every vague adjective replaced with the fact it stood for
+
 ## Final Checks
 
 - [ ] No typos or grammatical errors

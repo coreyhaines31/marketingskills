@@ -1,8 +1,8 @@
 ---
 name: copy-editing
-description: "When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,' 'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit.' Use this when the user already has copy and wants it improved or refreshed rather than rewritten from scratch. For writing new copy, see copywriting."
+description: "When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' 'sharpen the messaging,' 'refresh this content,' 'update this page,' 'this content is outdated,' or 'content audit,' 'this sounds like AI,' 'AI slop,' 'de-slop this,' or 'make it sound human.' Use this when the user already has copy and wants it improved or refreshed rather than rewritten from scratch. Every edit removes AI tells such as 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and sentences that trail into extra comma clauses. For writing new copy, see copywriting."
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Copy Editing
@@ -354,6 +354,28 @@ Use these for faster reviews when a full seven-sweep process isn't needed.
 - Logical flow between paragraphs
 - White space for scannability
 
+### AI-Tell Check
+
+Run this on every edit, after the sweeps. Readers who spot one AI tell stop trusting the claims around it. The shape of a sentence gives it away more than any word does.
+
+**Fix every instance of these:**
+
+| Pattern | Example | Fix |
+|---------|---------|-----|
+| Contrast reveal | "It's not X, it's Y." "Not because X. Because Y." | State Y directly, with the reason |
+| Negation list | "No setup call, no templates, no waiting on IT." | Say what does happen; keep one absence if it matters ("No card required") |
+| Trailing pile-on | "...the data you already have, no exports, no spreadsheets." / "..., ensuring nothing slips." | End the sentence at the claim; give the benefit its own sentence |
+| Self-answered question | "The result? 3x faster." | Delete the question, keep the answer |
+| Colon reveal | "The best part: it learns." | Write a normal sentence |
+| Stock phrases | "In today's fast-paced world," "Whether you're X or Y," "Here's the thing," "Say goodbye to," "X, reimagined," "Unlock the power of" | Cut, then open with the reader's problem or the fact |
+| Em dashes in short copy | Headlines, ads, social posts, subject lines | Period, comma, or colon |
+
+**Cap these:** one fragment and one list of three per section. Treat seamless, robust, powerful, streamline, empower, and leverage as placeholders and replace each with the fact it stands for. Two of these in one paragraph means rewrite the paragraph.
+
+**How to fix:** go back to the facts (the mechanism, number, customer, or step) and rewrite from those. Swapping in synonyms creates new tells. If the fact isn't available, mark `[NEED: ...]` instead of inventing one. Keep the brand's register. A formal sentence that makes a specific claim is fine.
+
+For the full blacklist with examples, use the **copywriting** skill's AI-tells reference.
+
 ---
 
 ## Copy Editing Checklist
@@ -392,6 +414,10 @@ For a final QA pass before delivering edits, work through the full checklist in 
 **Symptom:** Copy tries to speak to everyone, resonates with no one
 **Fix:** Pick one audience and write directly to them
 
+### Problem: Reads as AI-Written
+**Symptom:** "Not X. Y." reveals, "no X, no Y, no Z" lists, long sentences trailing extra clauses, stock openers
+**Fix:** Run the AI-Tell Check above and rewrite those sentences from the underlying facts
+
 ### Problem: Feature Overload
 **Symptom:** Listing every capability, overwhelming the reader
 **Fix:** Focus on 3-5 key benefits that matter most to the audience
@@ -416,7 +442,7 @@ This iterative process ensures each edit doesn't create new problems while respe
 
 - [Plain English Alternatives](references/plain-english-alternatives.md): Replace complex words with simpler alternatives
 - [Content Refresh](references/content-refresh.md): Full checklist, refresh vs. rewrite matrix, and cadence guide
-- [Copy Editing Checklist](references/checklist.md): Full QA checklist across all seven sweeps
+- [Copy Editing Checklist](references/checklist.md): Full QA checklist across all seven sweeps plus the AI-tell check
 
 ---
 
