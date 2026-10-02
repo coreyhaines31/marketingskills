@@ -360,7 +360,7 @@ Use these for faster reviews when a full seven-sweep process isn't needed.
 
 ### AI-Tell Check
 
-Run this on every edit, after the sweeps. Readers who spot one AI tell stop trusting the claims around it. The shape of a sentence gives it away more than any word does.
+Run this on every edit, after the sweeps. A reader who spots an AI tell tends to doubt the claims around it. The shape of a sentence gives it away more than any word does.
 
 **Fix every instance of these:**
 
