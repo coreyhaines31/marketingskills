@@ -1,12 +1,20 @@
 # AI Tells: The Copy Blacklist
 
-Patterns that make marketing copy read as machine-written. Clients and buyers now spot these in seconds. Once they do, they stop trusting the claim, not just the prose.
+Patterns that make marketing copy read as machine-written. Clients and buyers spot these fast, and a reader who decides a page was generated starts doubting its claims too.
 
 Most of these are old human rhetoric. AI copy gives itself away by using them **by default**, **stacked**, and **with nothing specific behind them**. So the rules below are a mix of hard bans (for patterns that are tells even once) and frequency caps (for devices that are fine when chosen on purpose).
 
 **Confidence key**
-- **Ban**: a tell even once in short copy (hero, subhead, ad, email, social post). Don't write it.
+- **Ban**: a tell even once. Don't write it.
 - **Cap**: fine once, a tell when repeated or stacked. Stay under the cap.
+
+**What the scopes mean**
+- **Short copy**: headlines, subheads, the hero, CTAs, ads, social posts, email subject lines.
+- **Long copy**: body sections of a page, articles, long emails.
+- **Section**: one hero, one page section, or one whole short post.
+- CTA microcopy ("No card required") doesn't count toward the fragment cap.
+
+**Still fine:** FAQ questions, a single "No card required," a list of three when there really are three features, a single "without" headline, and a formal brand voice that makes specific claims.
 
 ---
 
@@ -37,9 +45,9 @@ Variants: "It's not X, it's Y." "Not because X. Because Y." "This isn't X. This 
 - ✗ Most marketing teams have a list of campaign ideas that never launch. Not because they're bad. Because each one needs a developer.
 - ✓ Most marketing teams have a list of campaign ideas that never launch, because each one needs a developer they can't get.
 
-**Why it's a tell:** It's the most widely cited AI pattern. Wikipedia's AI-cleanup guide calls it "negative parallelism," and slop benchmarks weight it more heavily than any single word.
+**Why it's a tell:** It's the most widely cited AI pattern. Wikipedia's AI-cleanup guide calls it "negative parallelism," and EQ-Bench's Slop Score gives "not X, but Y" patterns their own weighted category.
 
-**Rewrite:** State Y directly and attach the concrete reason or cost. If the reader really does believe X and you need to correct it, you can do it once per page, in a full sentence, with evidence.
+**Rewrite:** State Y directly and attach the concrete reason or cost. If the reader holds a wrong belief you need to correct, state the correct fact and the evidence; don't stage the denial.
 
 ### 2. The negation list: "No X, no Y, no Z." (Ban)
 
@@ -50,7 +58,9 @@ Variants: "No X. No Y. Just Z." "Without X, without Y." "Zero X, zero Y."
 - ✗ No setup call, no templates to fill in, no waiting on IT. No contract.
 - ✓ Install it from the app store and it's running on your data in five minutes.
 
-**Rewrite:** Say what does happen, in the order it happens. If one absence really is the selling point (no card required, no install), state it once, plainly, next to the CTA: "Free to start. No card required."
+**Rewrite:** Say what does happen, in the order it happens. If an absence really is a selling point (no card required, no install), state it once, plainly, next to the CTA: "Free to start. No card required." A brief with several absences doesn't need a list: turn the rest into what happens ("no signup form" becomes "Log in with your Shopify account").
+
+A single "without" or "Never X again" headline is fine. Don't follow it with a negation list in the subhead.
 
 ### 3. The trailing pile-on (Ban)
 
@@ -60,7 +70,7 @@ A complete claim, then a comma, then a run of add-ons: a negation list, an "-ing
 - ✗ It syncs your calendar automatically, ensuring nothing slips through the cracks.
 - ✓ Reports pull from the data you already have. There's nothing to export.
 
-**Rewrite:** End the sentence when the main claim ends. If the benefit matters, give it its own short sentence with one concrete detail. Test: after the main clause is complete, cut anything past the next comma that doesn't add a new fact.
+**Rewrite:** End the sentence when the main claim ends. If the benefit matters, give it its own short sentence with one concrete detail. Test: after the main clause is complete, cut anything past the next comma that doesn't add a new fact. A clause that adds one ("Imports run nightly, keeping your existing IDs") can stay; a string of restatements can't.
 
 ### 4. Rhetorical question, then answer (Ban)
 
@@ -69,7 +79,9 @@ A complete claim, then a comma, then a run of add-ons: a negation list, an "-ing
 - ✗ The result? Onboarding that takes minutes, not weeks.
 - ✓ New hires finish onboarding on day one.
 
-**Rewrite:** Delete the question and keep the answer. A real question the reader would ask ("Does it work with Shopify?") is fine in an FAQ, and a question that names their pain ("Still reconciling by hand?") is fine as a hook. A question you answer yourself in the next breath is not.
+**Rewrite:** Delete the question and keep the answer.
+
+Still fine: FAQ questions ("Does it work with Shopify?"), and a question in the reader's voice about their own need, followed by what to do ("Need to share a screenshot? Drop it in the thread."). The tell is a question that labels your own claim ("The result?" "The catch?" "Why does this matter?").
 
 ### 5. The colon reveal (Ban)
 
@@ -168,7 +180,7 @@ Swapping a banned word for a synonym just creates a new tell. Replace the word w
 
 **Ban:** delve, tapestry, testament to, realm, embark, beacon, multifaceted, paradigm, synergy, myriad, plethora, meticulous, intricate, utilize, leverage (as a verb), supercharge, turbocharge, game-changer, "ever-evolving landscape," "plays a crucial role"
 
-**Cap (two in a paragraph means rewrite it):** seamless, robust, streamline, empower, elevate, unlock, unleash, harness, foster, enhance, optimize, cutting-edge, innovative, revolutionary, transformative, holistic, comprehensive, pivotal, crucial, vital, powerful, effortless, next-level, world-class, best-in-class, landscape, navigate, ecosystem, journey (unless literal)
+**Cap (two in a paragraph means rewrite it):** seamless, robust, streamline, empower, elevate, unlock, unleash, harness, foster, enhance, optimize, cutting-edge, innovative, revolutionary, transformative, holistic, comprehensive, pivotal, crucial, vital, powerful, next-level, world-class, best-in-class, landscape, navigate, ecosystem, journey (unless literal)
 
 **Cap (empty intensifiers):** truly, genuinely, incredibly, deeply, fundamentally, significantly, simply, actually, literally, quietly
 
@@ -207,13 +219,15 @@ Favored words drift as models change ("delve" peaked in 2024; "enhance," "showca
 
 ## Rewrite Rules
 
-1. **Rewrite from the facts, not the words.** Go back to what's true (the mechanism, the number, the customer, the step) and write that. Synonym swaps and "humanizer" substitutions produce new tells.
+1. **Rewrite from the facts.** Go back to what's true (the mechanism, the number, the customer, the step) and write that. Synonym swaps and "humanizer" substitutions produce new tells.
 2. **Specificity test.** Every claim sentence needs a number, a name, a mechanism, or a concrete action.
 3. **Swap test.** If the line would work unchanged on a competitor's site, rewrite it.
-4. **Stacking test.** Two or more Cap patterns in one paragraph means rewrite the whole paragraph, not one phrase.
+4. **Stacking test.** Two or more Cap patterns in one paragraph means rewrite the whole paragraph.
 5. **Don't invent to de-slop.** Replacing "industry-leading" with a made-up stat is worse. Mark it `[NEED: proof]` and ask.
-6. **Choose devices on purpose.** A fragment or a contrast you picked once, for a reason, is copywriting. The same device on every line is slop.
+6. **Choose devices on purpose.** A fragment you picked once, for a reason, is copywriting. The same device on every line is slop.
 7. **Keep the brand's register.** A formal sentence that makes a specific claim is fine. Don't flatten an enterprise voice into clipped startup copy, which is its own tell.
+8. **Vary the fixes.** The ✓ examples show one way out. Don't reuse them as templates. If every reveal becomes ", because..." and every negation list becomes "There's nothing to X," those are the new tics.
+9. **Flag a missing differentiator.** If no headline can pass the swap test with what you have, write the best one and mark `[NEED: differentiator vs. named competitors]`.
 
 ---
 

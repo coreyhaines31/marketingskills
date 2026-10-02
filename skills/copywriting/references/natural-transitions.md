@@ -42,7 +42,6 @@ Use to orient readers and set expectations:
 
 ## Introducing a New Topic
 
-- When it comes to X,...
 - Regarding X,...
 - Speaking of X,...
 - Now let's talk about X.
@@ -86,7 +85,7 @@ Use to connect ideas and reinforce key points:
 - In addition,...
 - There's also...
 
-**Note:** Use "moreover" and "furthermore" sparingly. They can sound AI-generated when overused.
+**Note:** Avoid "moreover" and "furthermore" in marketing copy. They read as AI-generated.
 
 ---
 
@@ -206,15 +205,11 @@ Use when citing sources, data, or expert opinions:
 
 ## Question-Based Transitions
 
-Useful for conversational tone and featured snippet optimization:
+Useful in long-form content for conversational tone and featured snippet optimization. Use them as headings or questions the reader would really ask, then answer with substance. Don't use them as a setup for your own punchline, and keep them out of landing-page copy (see [ai-tells.md](ai-tells.md)).
 
 - So what does this mean for you?
-- But why does this matter?
 - How do you actually do this?
-- What's the catch?
-- Sound complicated? It's not.
 - Wondering where to start?
-- Still not sure? Here's the breakdown.
 
 ---
 
