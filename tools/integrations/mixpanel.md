@@ -135,3 +135,11 @@ mixpanel.track('Feature Used', {
 - analytics
 - ab-testing
 - onboarding
+
+### CLI query authentication
+
+Set `MIXPANEL_SECRET` for legacy project-secret query/export authentication. The
+secret is the HTTP Basic username; the password is empty. `MIXPANEL_API_KEY` is
+not required or used. `MIXPANEL_TOKEN` continues to authenticate event ingestion.
+Project-secret authentication is deprecated by Mixpanel; see the
+[provider authentication contract](https://docs.mixpanel.com/reference/project-secret).

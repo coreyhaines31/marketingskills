@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 const TOKEN = process.env.MIXPANEL_TOKEN
-const API_KEY = process.env.MIXPANEL_API_KEY
 const SECRET = process.env.MIXPANEL_SECRET
 const INGESTION_URL = 'https://api.mixpanel.com'
 const QUERY_URL = 'https://mixpanel.com/api/2.0'
 const EXPORT_URL = 'https://data.mixpanel.com/api/2.0'
 
-if (!TOKEN && !API_KEY) {
-  console.error(JSON.stringify({ error: 'MIXPANEL_TOKEN (for ingestion) or MIXPANEL_API_KEY + MIXPANEL_SECRET (for query/export) environment variables required' }))
+if (!TOKEN && !SECRET) {
+  console.error(JSON.stringify({ error: 'MIXPANEL_TOKEN (for ingestion) or MIXPANEL_SECRET (for query/export) environment variables required' }))
   process.exit(1)
 }
 
@@ -36,10 +35,10 @@ async function ingestApi(method, path, body) {
 }
 
 async function queryApi(method, baseUrl, path, params) {
-  if (!API_KEY || !SECRET) {
-    return { error: 'MIXPANEL_API_KEY and MIXPANEL_SECRET required for query/export operations' }
+  if (!SECRET) {
+    return { error: 'MIXPANEL_SECRET required for query/export operations' }
   }
-  const auth = Buffer.from(`${API_KEY}:${SECRET}`).toString('base64')
+  const auth = Buffer.from(`${SECRET}:`).toString('base64')
   const url = params ? `${baseUrl}${path}?${params}` : `${baseUrl}${path}`
   const headers = {
     'Authorization': `Basic ${auth}`,
@@ -61,10 +60,10 @@ async function queryApi(method, baseUrl, path, params) {
 }
 
 async function queryApiPost(path, body) {
-  if (!API_KEY || !SECRET) {
-    return { error: 'MIXPANEL_API_KEY and MIXPANEL_SECRET required for query/export operations' }
+  if (!SECRET) {
+    return { error: 'MIXPANEL_SECRET required for query/export operations' }
   }
-  const auth = Buffer.from(`${API_KEY}:${SECRET}`).toString('base64')
+  const auth = Buffer.from(`${SECRET}:`).toString('base64')
   const headers = {
     'Authorization': `Basic ${auth}`,
     'Content-Type': 'application/json',
