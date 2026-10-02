@@ -11,7 +11,7 @@ Detailed templates for common email sequences.
 ## Welcome Sequence (Post-Signup)
 
 **Email 1: Welcome (Immediate)**
-- Subject: Welcome to [Product] — here's your first step
+- Subject: Welcome to [Product]. Here's your first step
 - Deliver what was promised (lead magnet, access, etc.)
 - Single next action
 - Set expectations for future emails
@@ -35,7 +35,7 @@ Detailed templates for common email sequences.
 - Soft CTA to explore
 
 **Email 5: Overcome Objection (Day 7-8)**
-- Subject: "I don't have time for X" — sound familiar?
+- Subject: "I don't have time for X." Sound familiar?
 - Address common hesitation
 - Reframe the obstacle
 - Show easy path forward
@@ -115,7 +115,7 @@ Detailed templates for common email sequences.
 - Quick CTA
 
 **Email 3: Incentive (Day 5-7 after)**
-- Subject: We miss you — here's something special
+- Subject: We miss you. Here's something special
 - Offer if appropriate
 - Limited time
 - Clear CTA
