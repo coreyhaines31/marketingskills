@@ -130,8 +130,9 @@ Before presenting, gut-check:
 - AI tells, which prospects spot in the first line and delete:
   - Contrast reveals ("It's not about X, it's about Y") and "no X, no Y, no Z" lists
   - A claim followed by a comma and more restating clauses
-  - Self-answered questions ("The result? 40% more meetings.") and colon reveals
-  - "Here's the thing," "I'll be honest," "Quick question" as an opener, and em dashes
+  - Self-answered questions ("The result? 40% more meetings.") and colon reveals. A real question you want them to answer is fine
+  - Stock phrases: "Here's the thing," "I'll be honest," "Quick question" as an opener, "Say goodbye to," "Unlock," "Take it to the next level"
+  - Em dashes
   - For the full blacklist, use the **copywriting** skill's AI-tells reference
 - HTML, images, or multiple links
 - Fake "Re:" or "Fwd:" subject lines
