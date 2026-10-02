@@ -12,7 +12,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | attribution | 1.1.0 | 2026-07-23 |
 | churn-prevention | 2.0.0 | 2026-05-05 |
 | co-marketing | 2.0.1 | 2026-08-23 |
-| cold-email | 2.0.0 | 2026-05-05 |
+| cold-email | 2.1.0 | 2026-10-02 |
 | community-marketing | 2.0.1 | 2026-08-23 |
 | competitor-profiling | 2.1.0 | 2026-10-01 |
 | competitors | 2.3.0 | 2026-10-01 |

@@ -1,8 +1,8 @@
 ---
 name: cold-email
-description: Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions "cold outreach," "prospecting email," "outbound email," "email to leads," "reach out to prospects," "sales email," "follow-up email sequence," "nobody's replying to my emails," or "how do I write a cold email." Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch follow-up sequences. For warm/lifecycle email sequences, see emails. For sales collateral beyond emails, see sales-enablement.
+description: Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions "cold outreach," "prospecting email," "outbound email," "email to leads," "reach out to prospects," "sales email," "follow-up email sequence," "nobody's replying to my emails," or "how do I write a cold email." Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch follow-up sequences. Emails avoid AI tells like 'it's not X, it's Y' reveals and 'no X, no Y, no Z' lists. For warm/lifecycle email sequences, see emails. For sales collateral beyond emails, see sales-enablement.
 metadata:
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Cold Email Writing
@@ -30,7 +30,7 @@ Work with whatever the user gives you. If they have a strong signal and a clear 
 
 ### Write like a peer, not a vendor
 
-The email should read like it came from someone who understands their world — not someone trying to sell them something. Use contractions. Read it aloud. If it sounds like marketing copy, rewrite it.
+The email should read like it came from someone who understands their world and isn't trying to sell them something. Use contractions. Read it aloud. If it sounds like marketing copy, rewrite it.
 
 ### Every sentence must earn its place
 
@@ -88,7 +88,7 @@ For the full catalog of frameworks with examples, see [frameworks.md](references
 
 ## Subject Lines
 
-Short, boring, internal-looking. The subject line's only job is to get the email opened — not to sell.
+Short, boring, internal-looking. The subject line's only job is to get the email opened.
 
 - 2-4 words, lowercase, no punctuation tricks
 - Should look like it came from a colleague ("reply rates," "hiring ops," "Q2 forecast")
@@ -114,7 +114,7 @@ See [follow-up-sequences.md](references/follow-up-sequences.md) for cadence, ang
 
 Before presenting, gut-check:
 
-- Does it sound like a human wrote it? (Read it aloud)
+- Does it sound like a human wrote it? (Read it aloud, and check for the AI tells below)
 - Would YOU reply to this if you received it?
 - Does every sentence serve the reader, not the sender?
 - Is the personalization connected to the problem?
@@ -126,7 +126,13 @@ Before presenting, gut-check:
 
 - Opening with "I hope this email finds you well" or "My name is X and I work at Y"
 - Jargon: "synergy," "leverage," "circle back," "best-in-class," "leading provider"
-- Feature dumps — one proof point beats ten features
+- Feature dumps. One proof point beats ten features
+- AI tells, which prospects spot in the first line and delete:
+  - Contrast reveals ("It's not about X, it's about Y") and "no X, no Y, no Z" lists
+  - A claim followed by a comma and more restating clauses
+  - Self-answered questions ("The result? 40% more meetings.") and colon reveals
+  - "Here's the thing," "I'll be honest," "Quick question" as an opener, and em dashes
+  - For the full blacklist, use the **copywriting** skill's AI-tells reference
 - HTML, images, or multiple links
 - Fake "Re:" or "Fwd:" subject lines
 - Identical templates with only {{FirstName}} swapped

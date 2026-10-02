@@ -89,6 +89,19 @@
         "Does not attempt to design a nurture sequence using cold email patterns"
       ],
       "files": []
+    },
+    {
+      "prompt": "Write a cold email to a VP of Finance at a 200-person company pitching our expense-report tool.",
+      "expected_output": "Should write a short peer-style cold email following the skill's principles and avoid AI tells: no contrast reveals ('It's not about X, it's about Y'), no 'no X, no Y, no Z' lists, no self-answered questions ('The result?'), no 'Here's the thing' or 'Quick question' opener, no em dashes. One low-friction ask.",
+      "assertions": [
+        "No contrast reveal or negation list",
+        "No self-answered question",
+        "No 'Here's the thing' / 'Quick question' opener",
+        "No em dashes",
+        "One low-friction ask"
+      ],
+      "files": [],
+      "id": 7
     }
   ]
 }
