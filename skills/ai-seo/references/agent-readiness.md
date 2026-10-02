@@ -45,6 +45,8 @@ Practical today: make sure your highest-intent actions (signup, pricing, demo bo
 
 Third-party citation mixes are **not stable** — they shift overnight with model and retrieval updates, and August 2026 provided the case study: **ChatGPT's query fan-out changes nearly wiped Reddit as a citation source** within days (practitioner-reported by multiple AEO teams; one had been earning 24-hour citations from Reddit at 1M+ impressions/month before the change). Meanwhile the same practitioners report **business-owned websites dominate Gemini citations (~60%)**.
 
+LinkedIn moved in the same update: ChatGPT's LinkedIn citations fell ~36% in mid-August 2026, and its citations of Pulse articles fell ~86% from May to Oct while citations of feed posts rose. Perplexity and Copilot moved the other way. See [linkedin-ai-citations.md](linkedin-ai-citations.md).
+
 What this means for strategy:
 
 - **Never concentrate AI-visibility work in one third-party surface.** The Presence pillar's list (Wikipedia, Reddit, YouTube, podcasts, review sites, Quora) is a portfolio, not a menu to pick one from. A surface that's 2% of citations today can be 0% after one retrieval update — or vice versa.

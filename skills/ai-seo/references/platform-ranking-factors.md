@@ -85,14 +85,14 @@ Perplexity always cites its sources with clickable links, making it the most tra
 
 Copilot is embedded across Microsoft's ecosystem — Edge, Windows, Microsoft 365, and Bing Search. It relies entirely on Bing's index, so if Bing hasn't indexed your content, Copilot can't cite it.
 
-**What makes Copilot different:** The Microsoft ecosystem connection creates unique optimization opportunities. Mentions and content on LinkedIn and GitHub provide ranking boosts that other platforms don't offer. Copilot also puts more weight on page speed — sub-2-second load times are a clear threshold.
+**What makes Copilot different:** The Microsoft ecosystem connection creates unique optimization opportunities. Copilot cites LinkedIn heavily (its LinkedIn citations more than doubled May → Oct 2026 and run about 6.5× its Reddit citations, per Ahrefs data), and GitHub content is a natural fit too. Copilot also puts more weight on page speed — sub-2-second load times are a clear threshold.
 
 **What to focus on:**
 - Submit your site to Bing Webmaster Tools (many sites only submit to Google Search Console)
 - Use IndexNow protocol for faster indexing of new and updated content
 - Optimize page speed to under 2 seconds
 - Write clear entity definitions — when your content defines a term or concept, make the definition explicit and extractable
-- Build presence on LinkedIn (publish articles, maintain company page) and GitHub if relevant
+- Build presence on LinkedIn (articles, posts, and a complete company page; see [linkedin-ai-citations.md](linkedin-ai-citations.md)) and GitHub if relevant
 - Ensure Bingbot has full crawl access
 
 ---
