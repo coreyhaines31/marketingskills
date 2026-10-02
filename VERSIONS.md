@@ -57,6 +57,13 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.11.7 (2026-10-02)
+
+AI-tell blacklist for copy. Clients reject drafts that read as AI-written, and the worst tells are sentence shapes that word lists miss. Closes #613.
+
+- **copywriting** (2.0.2 → 2.1.0): new **No AI Tells** section and `references/ai-tells.md`, a researched blacklist (Wikipedia's AI-cleanup guide, excess-vocabulary studies, slop benchmarks, practitioner catalogs). Bans contrast reveals ("it's not X, it's Y," "not because X, because Y"), negation lists ("no X, no Y, no Z"), trailing pile-ons (a claim followed by more comma clauses), self-answered questions, colon reveals, stock openers and marketing phrases, and em dashes in short copy. Caps fragments, lists of three, and vague vocabulary. Rewrite rules (fix from the facts, swap test, no invented proof) and a self-check to run before every delivery. Rhetorical-question advice now warns against answering your own question. The rules are mirrored in the description. New triggers: 'this sounds like AI,' 'AI slop,' 'make it sound human.' New eval (id 9).
+- **copy-editing** (2.0.0 → 2.1.0): new **AI-Tell Check** run on every edit, inline because installed skills can't load copywriting's references; a "Reads as AI-Written" problem entry and checklist section. Rule mirrored in the description. New triggers: 'this sounds like AI,' 'AI slop,' 'de-slop this,' 'make it sound human.' New eval (id 7).
+
 ### 2.11.6 (2026-10-01)
 
 Post-merge review fixes. Closes #611.
