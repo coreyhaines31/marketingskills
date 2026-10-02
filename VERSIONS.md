@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.9.0 | 2026-10-02 |
-| ai-seo | 2.5.0 | 2026-09-04 |
+| ai-seo | 2.6.0 | 2026-10-02 |
 | analytics | 2.0.1 | 2026-07-22 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.0 | 2026-07-23 |
@@ -56,6 +56,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.1.0 | 2026-07-14 |
 
 ## Recent Changes
+
+### 2.11.10 (2026-10-02)
+
+- **ai-seo** (2.5.0 → 2.6.0): lessons from Edward Sturm's podcast with Harpreet Singh (E1182, "AEO Companies Are Selling You 2016 SEO," Sep 2026), labeled as practitioner experience throughout.
+  - New `references/positioning-and-consensus.md`: much of "AEO" is SEO without the history; brand positioning moves slowly in LLMs (repositioning, mergers, and rebrands can cause a visibility dip, so baseline both segments and move off-site signals before the on-site rewrite); every third-party profile should match the About page; work backwards from fan-out domains; small sets of industry/segment pages; managing the "cons" affiliates write; head-term plays where incumbents are already chosen; and what not to copy (invented awards, self-owned review sites, with the FTC 2024 reviews rule).
+  - Measurement: track only prompts tied to revenue, collapse wording variants like keywords, mine `site:` fan-outs for the third-party profiles that matter, and add a "what did you type?" follow-up to self-reported attribution.
+  - `citations-vs-recommendations.md` gains a sentiment-repair recipe and a third listicle option (name the leader first, show where you go further). `content-types.md` gains Industry / Segment Pages; `youtube-ai-citations.md` gains field notes (low citation bar for fresh videos, ungated demos, unattributable creator sponsorships).
+  - Fixes: two unsourced headline stats removed and the rest dated; the ~15% AI Overview overlap stat now carries its caveats and a "rankings still predict AI visibility" note; schema is no longer "the single biggest lever" (and FAQ rich results were limited in 2023); Claude's observed skepticism of self-ranked lists noted. New eval (id 12).
 
 ### 2.11.9 (2026-10-02)
 
