@@ -160,9 +160,9 @@ async function main() {
           if (!pubId) { result = { error: '--publication required' }; break }
           const title = args.title
           if (!title) { result = { error: '--title required' }; break }
-          const body = { title }
+          if (typeof args.content !== 'string' || !args.content.trim()) { result = { error: '--content required (HTML post body)' }; break }
+          const body = { title, body_content: args.content }
           if (args.subtitle) body.subtitle = args.subtitle
-          if (args.content) body.content = args.content
           if (args.status) body.status = args.status
           result = await api('POST', `/publications/${pubId}/posts`, body)
           break
@@ -235,7 +235,7 @@ async function main() {
         usage: {
           publications: 'publications [list | get --publication <id>]',
           subscriptions: 'subscriptions [list | get --id <id> | create --email <email> | update --id <id> | delete --id <id>] --publication <id>',
-          posts: 'posts [list | get --id <id> | create --title <title> | delete --id <id>] --publication <id>',
+          posts: 'posts [list | get --id <id> | create --title <title> --content <html> | delete --id <id>] --publication <id>',
           segments: 'segments [list | get --id <id>] --publication <id>',
           automations: 'automations [list | get --id <id>] --publication <id>',
           'referral-program': 'referral-program [get] --publication <id>',
