@@ -160,6 +160,9 @@ async function main() {
               result = { error: 'Invalid JSON in --params' }; break
             }
           }
+          if (eventParams === null || typeof eventParams !== 'object' || Array.isArray(eventParams)) {
+            result = { error: '--params must be a JSON object' }; break
+          }
           const body = {
             client_id: args['client-id'],
             events: [{

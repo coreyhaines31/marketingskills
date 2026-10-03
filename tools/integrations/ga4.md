@@ -74,6 +74,14 @@ gtag('event', 'signup_completed', {
 
 ### Send event via Measurement Protocol
 
+The CLI's `--params` must be a JSON object, such as
+`'{"currency":"USD","value":12.5}'`; arrays, `null`, and scalar values are
+rejected before sending. Nested ecommerce `items` arrays inside that object are
+preserved. A successful HTTP response from `collect` confirms receipt, not that
+Analytics processed the event. Use Google's validation guidance for semantic
+checks; this CLI preflight is not a complete event-schema validator.
+See the [Measurement Protocol reference](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference).
+
 ```bash
 POST https://www.google-analytics.com/mp/collect?measurement_id={measurement_id}&api_secret={api_secret}
 
