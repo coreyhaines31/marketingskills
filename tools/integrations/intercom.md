@@ -290,3 +290,17 @@ POST https://api.intercom.io/events
 - lead-generation
 - customer-support
 - in-app-messaging
+
+## CLI message creation
+
+The message creation API uses `in_app` for in-app requests (its response enum
+uses `inapp`). The CLI defaults to `in_app` and keeps `--type inapp` as an alias.
+Email messages require a subject and a `plain` or `personal` template; the CLI
+defaults the email template to `plain`.
+
+```bash
+node tools/clis/intercom.js messages create --body "Welcome" --admin-id 123 --to user1
+node tools/clis/intercom.js messages create --type email --subject "Welcome" --body "Hello" --admin-id 123 --to user1 --template personal
+```
+
+Contract: [Create a message, API 2.11](https://developers.intercom.com/docs/references/2.11/rest-api/api.intercom.io/messages/createmessage).

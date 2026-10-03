@@ -196,21 +196,30 @@ async function main() {
     case 'messages':
       switch (sub) {
         case 'create': {
-          const messageType = args.type || 'inapp'
+          const messageType = !args.type || args.type === 'inapp' ? 'in_app' : args.type
+          if (!['in_app', 'email'].includes(messageType)) { result = { error: '--type must be in_app (or inapp) or email' }; break }
           const body = args.body
           const adminId = args['admin-id']
           const to = args.to
           if (!body || !adminId || !to) { result = { error: '--body, --admin-id, and --to (user ID) required' }; break }
-          result = await api('POST', '/messages', {
+          const payload = {
             message_type: messageType,
             body,
             from: { type: 'admin', id: adminId },
             to: { type: 'user', id: to },
-          })
+          }
+          if (messageType === 'email') {
+            if (!args.subject) { result = { error: '--subject required for email messages' }; break }
+            const template = args.template || 'plain'
+            if (!['plain', 'personal'].includes(template)) { result = { error: '--template must be plain or personal' }; break }
+            payload.subject = args.subject
+            payload.template = template
+          }
+          result = await api('POST', '/messages', payload)
           break
         }
         default:
-          result = { error: 'Unknown messages subcommand. Use: create --body <text> --admin-id <id> --to <user_id> [--type inapp|email]' }
+          result = { error: 'Unknown messages subcommand. Use: create --body <text> --admin-id <id> --to <user_id> [--type in_app|email] [--subject <text>] [--template plain|personal]' }
       }
       break
 
