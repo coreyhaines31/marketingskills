@@ -119,12 +119,29 @@ async function main() {
           break
         }
         case 'import': {
-          const emails = args.emails?.split(',')
-          if (!emails) { result = { error: '--emails required (comma-separated)' }; break }
+          if (typeof args.emails !== 'string' || !args.emails.trim()) { result = { error: '--emails required (comma-separated nonempty values)' }; break }
+          const emails = args.emails.split(',').map(e => e.trim())
+          if (emails.some(e => !e)) { result = { error: '--emails must contain only nonempty values' }; break }
+          const hasLists = args['list-ids'] !== undefined
+          const hasNewList = args['new-list-name'] !== undefined
+          if (hasLists === hasNewList) { result = { error: 'Choose either --list-ids or --new-list-name for the import destination' }; break }
           const body = {
-            jsonBody: emails.map(e => ({ email: e.trim() })),
+            jsonBody: emails.map(email => ({ email })),
           }
-          if (args['list-ids']) body.listIds = args['list-ids'].split(',').map(Number)
+          if (hasLists) {
+            const ids = typeof args['list-ids'] === 'string' ? args['list-ids'].split(',').map(id => id.trim()) : []
+            if (!ids.length || ids.some(id => !/^\d+$/.test(id) || !Number.isSafeInteger(Number(id)) || Number(id) <= 0)) { result = { error: '--list-ids must be comma-separated positive integer IDs' }; break }
+            if (args['folder-id'] !== undefined) { result = { error: '--folder-id requires --new-list-name' }; break }
+            body.listIds = ids.map(Number)
+          } else {
+            if (typeof args['new-list-name'] !== 'string' || !args['new-list-name'].trim()) { result = { error: '--new-list-name requires a nonempty list name' }; break }
+            body.newList = { listName: args['new-list-name'].trim() }
+            if (args['folder-id'] !== undefined) {
+              const folder = args['folder-id']
+              if (typeof folder !== 'string' || !/^\d+$/.test(folder) || !Number.isSafeInteger(Number(folder)) || Number(folder) <= 0) { result = { error: '--folder-id must be a positive integer ID' }; break }
+              body.newList.folderId = Number(folder)
+            }
+          }
           result = await api('POST', '/contacts/import', body)
           break
         }
@@ -349,7 +366,7 @@ async function main() {
         error: 'Unknown command',
         usage: {
           account: 'account [get]',
-          contacts: 'contacts [list | get --email <email> | create --email <email> | update --email <email> | delete --email <email> | import --emails <e1,e2>]',
+          contacts: 'contacts [list | get --email <email> | create --email <email> | update --email <email> | delete --email <email> | import --emails <e1,e2> (--list-ids <id1,id2> | --new-list-name <name> [--folder-id <id>])]',
           lists: 'lists [list | get --id <id> | create --name <name> | delete --id <id> | contacts --id <id> | add-contacts --id <id> --emails <e1,e2> | remove-contacts --id <id> --emails <e1,e2>]',
           email: 'email [send --from <from> --to <to> --subject <subj>]',
           campaigns: 'campaigns [list | get --id <id> | create --name <name> | send-now --id <id> | send-test --id <id> --emails <e1,e2>]',
