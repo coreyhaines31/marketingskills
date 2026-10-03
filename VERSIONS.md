@@ -19,10 +19,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | content-strategy | 2.1.2 | 2026-10-02 |
 | copy-editing | 2.1.0 | 2026-10-02 |
 | copywriting | 2.1.0 | 2026-10-02 |
-| cro | 2.0.0 | 2026-05-05 |
+| cro | 2.0.1 | 2026-10-03 |
 | customer-research | 2.0.4 | 2026-10-02 |
 | directory-submissions | 2.1.0 | 2026-10-02 |
-| emails | 2.1.1 | 2026-10-02 |
+| emails | 2.1.2 | 2026-10-03 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.2 | 2026-10-02 |
@@ -48,7 +48,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.0.1 | 2026-10-02 |
 | sales-enablement | 2.3.2 | 2026-10-02 |
 | schema | 2.0.0 | 2026-05-05 |
-| seo-audit | 2.0.1 | 2026-08-19 |
+| seo-audit | 2.0.2 | 2026-10-03 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.1.0 | 2026-10-02 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.18 (2026-10-03)
+
+- **cro** (2.0.0 → 2.0.1), **emails** (2.1.1 → 2.1.2), and **seo-audit** (2.0.1 → 2.0.2): explicit intent-to-reference routing near the top of each skill, following the existing ads pattern and #406. Form audits and page experiments, lifecycle/sequence/copy work, and international/editorial SEO reviews load their existing specialist references before recommendations. Moves the SEO reference index instead of duplicating it so the skill remains under 500 lines. Writing-pattern checks are editorial observations, not authorship proof.
 
 ### 2.11.17 (2026-10-02)
 
