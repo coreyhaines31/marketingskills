@@ -74,6 +74,11 @@ DELETE https://api.brevo.com/v3/contacts/user@example.com
 
 ### Import contacts
 
+An import requires a destination: existing `listIds` or `newList`. In the CLI,
+choose `--list-ids 1,3` or `--new-list-name "Launch cohort"` (optionally
+`--folder-id 2`). Empty email entries and invalid destination IDs are rejected
+before a request. See [Import contacts](https://developers.brevo.com/reference/import-contacts).
+
 ```bash
 POST https://api.brevo.com/v3/contacts/import
 
