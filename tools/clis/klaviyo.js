@@ -113,6 +113,7 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/lists/${qs ? '?' + qs : ''}`)
           break
@@ -168,6 +169,7 @@ async function main() {
           const params = new URLSearchParams()
           if (args.filter) params.set('filter', args.filter)
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/events/${qs ? '?' + qs : ''}`)
           break
@@ -224,6 +226,7 @@ async function main() {
           const params = new URLSearchParams()
           if (args.filter) params.set('filter', args.filter)
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/campaigns/${qs ? '?' + qs : ''}`)
           break
@@ -245,6 +248,7 @@ async function main() {
           const params = new URLSearchParams()
           if (args.filter) params.set('filter', args.filter)
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/flows/${qs ? '?' + qs : ''}`)
           break
@@ -275,6 +279,7 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/metrics/${qs ? '?' + qs : ''}`)
           break
@@ -295,6 +300,7 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/segments/${qs ? '?' + qs : ''}`)
           break
@@ -316,6 +322,7 @@ async function main() {
           const params = new URLSearchParams()
           if (args.filter) params.set('filter', args.filter)
           if (args['page-size']) params.set('page[size]', args['page-size'])
+          if (args['page-cursor']) params.set('page[cursor]', args['page-cursor'])
           const qs = params.toString()
           result = await api('GET', `/templates/${qs ? '?' + qs : ''}`)
           break
