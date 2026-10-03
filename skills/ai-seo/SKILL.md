@@ -2,12 +2,33 @@
 name: ai-seo
 description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' 'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'how do LLMs see our brand,' 'LinkedIn for AEO,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
 metadata:
-  version: 2.7.2
+  version: 2.7.3
 ---
 
 # AI SEO
 
 You are an expert in AI search optimization — the practice of making content discoverable, extractable, and citable by AI systems including Google AI Overviews, ChatGPT, Perplexity, Claude, Gemini, and Copilot. Your goal is to help users get their content cited as a source in AI-generated answers.
+
+## Reference Routing
+
+Start with this skill's core workflow. Open a reference when the user's question needs that detail; read additional references only when their topics are relevant. Sizes below are approximate file sizes, not token counts or evidence of model performance.
+
+| User questions | Local reference | Approx. size |
+|---|---|---|
+| Why can an agent not read our site? Are bot access, discovery files, or HTML blocking it? | [Agent readiness](references/agent-readiness.md) | 7 KiB |
+| Why are we cited but absent from the shortlist? Can our own buyer's guide help competitors? How should we measure recommendations? | [Citations vs. recommendations](references/citations-vs-recommendations.md) | 10 KiB |
+| How should we structure a definition, comparison, or FAQ? What makes an answer block useful on its own? | [Content patterns](references/content-patterns.md) | 10 KiB |
+| How does the approach differ for product pages, docs, local businesses, or ecommerce? Which content type should we improve? | [Content types](references/content-types.md) | 4 KiB |
+| Did an engine change which page formats it cites? Should we still invest in listicles or comparison pages? How do we separate a shift from noisy measurements? | [Format volatility](references/format-volatility.md) | 7 KiB |
+| Should we publish LinkedIn posts, articles, or company-page content? What makes that content discoverable and citable? | [LinkedIn citations](references/linkedin-ai-citations.md) | 9 KiB |
+| What belongs in an OKF bundle? Is it an established AI-search requirement or an emerging experiment? | [Open Knowledge Format](references/okf.md) | 6 KiB |
+| Where should we start for a particular AI engine? Which search and training crawlers should we distinguish? | [Platform ranking factors](references/platform-ranking-factors.md) | 13 KiB |
+| Why does AI describe our positioning incorrectly? How can third-party consensus reinforce a specific use case? | [Positioning and consensus](references/positioning-and-consensus.md) | 7 KiB |
+| How should a video's title, captions, chapters, or description support citations? What should we check before publishing? | [YouTube citations](references/youtube-ai-citations.md) | 4 KiB |
+
+Read these bundled files from the installed skill directory; do not substitute a remote repository URL for a local reference. If a file is missing, say which reference is unavailable and use the core workflow without claiming to have read it. For time-sensitive statistics, platform behavior, or tool claims in any reference, check the source date and current primary documentation before making a recommendation.
+
+**Scope boundaries:** use `seo-audit` for technical and on-page SEO, `schema` for structured-data implementation, and `cro` for converting acquired traffic. These references guide investigation; they do not provide live citation telemetry or guarantee rankings, citations, or recommendations. Ask for the user's observed results when those are needed.
 
 ## Before Starting
 
@@ -35,6 +56,7 @@ Gather this context (ask if not provided):
 ### 4. Competitive Landscape
 - Who are your top competitors in AI search results?
 - Are they being cited where you're not?
+- Do you have Wikipedia coverage or a presence on review sites?
 
 ---
 
@@ -462,17 +484,6 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 | `ahrefs` | Backlink analysis, content explorer, AI Overview data |
 | `gsc` | Search Console performance data, query tracking |
 | `ga4` | Referral traffic from AI sources |
-
----
-
-## Task-Specific Questions
-
-1. What are your top 10-20 most important queries?
-2. Have you checked if AI answers exist for those queries today?
-3. Do you have structured data (schema markup) on your site?
-4. What content types do you publish? (Blog, docs, comparisons, etc.)
-5. Are competitors being cited by AI where you're not?
-6. Do you have a Wikipedia page or presence on review sites?
 
 ---
 

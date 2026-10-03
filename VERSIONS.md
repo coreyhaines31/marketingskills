@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.9.3 | 2026-10-02 |
-| ai-seo | 2.7.2 | 2026-10-02 |
+| ai-seo | 2.7.3 | 2026-10-03 |
 | analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.2 | 2026-10-02 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.18 (2026-10-03)
+
+- **ai-seo** (2.7.2 → 2.7.3): adds question-level routing to its ten existing local references, approximate file sizes, missing-file handling, recency checks, and scope boundaries. Implements one current skill from #433 without changing repository authoring guidance.
 
 ### 2.11.17 (2026-10-02)
 
