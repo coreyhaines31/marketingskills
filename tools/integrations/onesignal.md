@@ -13,8 +13,8 @@ Push notification, email, SMS, and in-app messaging platform for customer engage
 
 ## Authentication
 
-- **Type**: REST API Key (Basic Auth)
-- **Header**: `Authorization: Basic {REST_API_KEY}`
+- **Type**: App API Key
+- **Header**: `Authorization: Key {REST_API_KEY}`
 - **App ID**: Required as `app_id` in request bodies
 - **Get credentials**: Dashboard > Settings > Keys & IDs
 - **Security**: HTTPS required, TLS 1.2+ on port 443
@@ -27,7 +27,7 @@ Push notification, email, SMS, and in-app messaging platform for customer engage
 POST https://api.onesignal.com/api/v1/notifications
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
   Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ Headers:
 POST https://api.onesignal.com/api/v1/notifications
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
   Content-Type: application/json
 
 {
@@ -56,13 +56,26 @@ Headers:
 }
 ```
 
+### Send email using the local CLI
+
+```bash
+node tools/clis/onesignal.js notifications send --emails "user@example.com" --email-subject "Welcome" --email-body "<p>Thanks for joining.</p>"
+node tools/clis/onesignal.js notifications send --channel email --segment "Customers" --heading "News" --message "<p>Product update.</p>"
+```
+
+Email sends require an email subject and HTML body. `--heading` and `--message` remain aliases for these email fields. `--emails` selects the email channel automatically; `--channel email` also works with existing alias, segment, or subscription targeting. Push remains the default channel, and SMS uses `--channel sms --message ...`. An explicit incompatible channel with `--emails` is rejected locally.
+
+The send command uses the current `/notifications?c=<channel>` resource, `target_channel`, and `email_to` for direct email recipients. It does not send push `contents`, `headings`, `url`, `data`, or `ttl` as email content. `--dry-run` previews the same request with masked authorization and no network request.
+
+Primary contracts: [Email](https://documentation.onesignal.com/reference/email), [SMS](https://documentation.onesignal.com/reference/sms), and [sending messages](https://documentation.onesignal.com/reference/create-message).
+
 ### Schedule a notification
 
 ```bash
 POST https://api.onesignal.com/api/v1/notifications
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
   Content-Type: application/json
 
 {
@@ -79,7 +92,7 @@ Headers:
 GET https://api.onesignal.com/api/v1/notifications?app_id={APP_ID}&limit=50&offset=0
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
 ```
 
 ### View a notification
@@ -88,7 +101,7 @@ Headers:
 GET https://api.onesignal.com/api/v1/notifications/{notification_id}?app_id={APP_ID}
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
 ```
 
 ### Cancel a scheduled notification
@@ -97,7 +110,7 @@ Headers:
 DELETE https://api.onesignal.com/api/v1/notifications/{notification_id}?app_id={APP_ID}
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
 ```
 
 ### List segments
@@ -106,7 +119,7 @@ Headers:
 GET https://api.onesignal.com/api/v1/apps/{APP_ID}/segments
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
 ```
 
 ### Create a segment
@@ -115,7 +128,7 @@ Headers:
 POST https://api.onesignal.com/api/v1/apps/{APP_ID}/segments
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
   Content-Type: application/json
 
 {
@@ -132,7 +145,7 @@ Headers:
 GET https://api.onesignal.com/apps/{APP_ID}/users/by/external_id/{external_id}
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
 ```
 
 ### Create a user
@@ -141,7 +154,7 @@ Headers:
 POST https://api.onesignal.com/apps/{APP_ID}/users
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
   Content-Type: application/json
 
 {
@@ -159,7 +172,7 @@ Headers:
 GET https://api.onesignal.com/api/v1/templates?app_id={APP_ID}
 
 Headers:
-  Authorization: Basic {REST_API_KEY}
+  Authorization: Key {REST_API_KEY}
 ```
 
 ## Key Metrics
