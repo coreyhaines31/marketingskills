@@ -161,9 +161,13 @@ async function main() {
           const params = new URLSearchParams()
           params.set('start', args.start)
           params.set('end', args.end)
-          if (args.event) {
-            params.set('e', JSON.stringify([{ event_type: args.event }]))
+          for (const key of ['start-event', 'return-event', 'event']) {
+            if (args[key] !== undefined && (typeof args[key] !== 'string' || !args[key].trim())) {
+              throw new Error(`--${key} requires a nonempty event name`)
+            }
           }
+          params.set('se', JSON.stringify({ event_type: args['start-event'] || '_new' }))
+          params.set('re', JSON.stringify({ event_type: args['return-event'] || args.event || '_active' }))
           result = await queryApi('GET', '/retention', params)
           break
         }
@@ -179,7 +183,7 @@ async function main() {
           track: 'track [event --user-id <id> --event-type <type> [--properties <json>] | batch --events <json>]',
           users: 'users activity --user-id <id>',
           export: "export events --start <YYYYMMDDThh> --end <YYYYMMDDThh> (ZIP in base64 body; decode with Buffer.from(result.body, 'base64'))",
-          retention: 'retention get --start <YYYYMMDD> --end <YYYYMMDD> [--event <type>]',
+          retention: 'retention get --start <YYYYMMDD> --end <YYYYMMDD> [--start-event <type>] [--return-event <type>] [--event <return-type>]',
         }
       }
   }

@@ -82,9 +82,19 @@ fs.writeFileSync('events.zip', Buffer.from(result.body, 'base64'))
 ### Get retention data
 
 ```bash
-GET https://amplitude.com/api/2/retention?e={"event_type":"signup_completed"}&start=20240101&end=20240131
+GET https://amplitude.com/api/2/retention?se={"event_type":"signup_completed"}&re={"event_type":"purchase"}&start=20240101&end=20240131
 
 Authorization: Basic {base64(api_key:secret_key)}
+```
+
+The [Dashboard REST API](https://amplitude.com/docs/apis/analytics/dashboard-rest#retention-analysis)
+requires two event objects: `se` for the starting action and `re` for the returning action.
+The CLI defaults to new users (`_new`) returning with an active event (`_active`).
+`--event` is a compatibility alias for `--return-event`; an explicit `--return-event` wins.
+
+```bash
+node tools/clis/amplitude.js retention get --start 20240101 --end 20240131 \
+  --start-event signup_completed --return-event purchase --dry-run
 ```
 
 ### Query with SQL (Snowflake)
