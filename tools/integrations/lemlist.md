@@ -91,6 +91,10 @@ node tools/clis/lemlist.js hooks create --target-url https://example.com/webhook
 node tools/clis/lemlist.js hooks delete --id hook_123
 ```
 
+`--event` maps to the API's `type` filter. Sending a different field would omit
+the filter and subscribe the destination to all events. See the
+[Add Webhook reference](https://developer.lemlist.com/api-reference/endpoints/webhooks/add-webhook).
+
 ### Team info
 
 ```bash
