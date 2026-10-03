@@ -53,13 +53,13 @@ GET https://api.dub.co/analytics?domain=link.example.com&key=summer-sale&interva
 ### Get clicks by location
 
 ```bash
-GET https://api.dub.co/analytics/country?domain=link.example.com&key=summer-sale
+GET https://api.dub.co/analytics?groupBy=countries&domain=link.example.com&key=summer-sale
 ```
 
 ### Get clicks by device
 
 ```bash
-GET https://api.dub.co/analytics/device?domain=link.example.com&key=summer-sale
+GET https://api.dub.co/analytics?groupBy=devices&domain=link.example.com&key=summer-sale
 ```
 
 ### Update link
@@ -89,6 +89,10 @@ POST https://api.dub.co/links/bulk
   {"url": "https://example.com/page2", "key": "page2"}
 ]
 ```
+
+The country and device breakdowns use the `groupBy` query parameter on
+[`GET /analytics`](https://dub.co/docs/api-reference/analytics/retrieve).
+The CLI accepts `--interval` for each analytics subcommand.
 
 ## TypeScript SDK
 

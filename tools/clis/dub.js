@@ -125,14 +125,18 @@ async function main() {
           const params = new URLSearchParams()
           if (args.domain) params.set('domain', args.domain)
           if (args.key) params.set('key', args.key)
-          result = await api('GET', `/analytics/country?${params}`)
+          if (args.interval) params.set('interval', args.interval)
+          params.set('groupBy', 'countries')
+          result = await api('GET', `/analytics?${params}`)
           break
         }
         case 'device': {
           const params = new URLSearchParams()
           if (args.domain) params.set('domain', args.domain)
           if (args.key) params.set('key', args.key)
-          result = await api('GET', `/analytics/device?${params}`)
+          if (args.interval) params.set('interval', args.interval)
+          params.set('groupBy', 'devices')
+          result = await api('GET', `/analytics?${params}`)
           break
         }
         default:
