@@ -108,7 +108,7 @@ Headers:
 ### Get participants for event date
 
 ```bash
-GET https://my.demio.com/api/v1/date/{date_id}/participants
+GET https://my.demio.com/api/v1/report/{date_id}/participants
 
 Headers:
   Api-Key: {API_KEY}
@@ -116,6 +116,10 @@ Headers:
 ```
 
 ## API Pattern
+
+Participant reports use the `/report/{date_id}/participants` resource;
+event-date details use `/event/{event_id}/date/{date_id}`. See the
+[public Demio API reference](https://api-docs.demio.com/).
 
 Demio uses a straightforward REST API:
 - All requests require both `Api-Key` and `Api-Secret` headers
