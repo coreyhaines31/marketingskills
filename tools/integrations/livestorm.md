@@ -136,15 +136,20 @@ Headers:
   "data": {
     "type": "people",
     "attributes": {
-      "fields": {
-        "email": "attendee@example.com",
-        "first_name": "Jane",
-        "last_name": "Doe"
-      }
+      "fields": [
+        { "id": "email", "value": "attendee@example.com" },
+        { "id": "first_name", "value": "Jane" },
+        { "id": "last_name", "value": "Doe" }
+      ]
     }
   }
 }
 ```
+
+Registration fields are an array of `id`/`value` pairs, including the required
+email field. See the official [registration contract](https://developers.livestorm.co/reference/post_sessions-id-people).
+Private API tokens are sent directly in `Authorization`, as described in
+[API token authentication](https://developers.livestorm.co/docs/api-token-authentication).
 
 ### List session participants
 
