@@ -22,6 +22,9 @@ async function api(method, path, body) {
     body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()
+  if (method === 'PUT' && !text && res.ok) {
+    return { success: true, message: 'Sitemap submitted successfully' }
+  }
   try {
     return JSON.parse(text)
   } catch {
@@ -133,9 +136,6 @@ async function main() {
           if (!args['sitemap-url']) { result = { error: '--sitemap-url required' }; break }
           const sitemapUrl = encodeURIComponent(args['sitemap-url'])
           result = await api('PUT', `/webmasters/v3/sites/${encodedSiteUrl}/sitemaps/${sitemapUrl}`)
-          if (!result.body && !result.error) {
-            result = { success: true, message: 'Sitemap submitted successfully' }
-          }
           break
         }
         default:

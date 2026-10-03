@@ -85,6 +85,15 @@ PUT https://searchconsole.googleapis.com/webmasters/v3/sites/{site_url}/sitemaps
 Authorization: Bearer {access_token}
 ```
 
+A successful [sitemap submission](https://developers.google.com/webmaster-tools/v1/sitemaps/submit)
+returns an empty response body. The CLI confirms submission only for a successful
+HTTP response. `--dry-run` prints the redacted PUT request without claiming submission.
+
+```bash
+node tools/clis/google-search-console.js sitemaps submit --site-url sc-domain:example.com \
+  --sitemap-url https://example.com/sitemap.xml --dry-run
+```
+
 ### Request indexing
 
 ```bash
