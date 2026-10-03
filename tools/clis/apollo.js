@@ -10,16 +10,16 @@ if ((!API_KEY) && rawArgs.length > 0) {
 }
 
 async function api(method, path, body) {
-  const authBody = body ? { ...body, api_key: API_KEY } : { api_key: API_KEY }
   if (args['dry-run']) {
-    return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { 'Content-Type': 'application/json' }, body: { ...authBody, api_key: '***' } }
+    return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { 'Content-Type': 'application/json', 'x-api-key': '***' }, body: body || undefined }
   }
   const res = await fetch(`${BASE_URL}${path}`, {
     method,
     headers: {
       'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
     },
-    body: JSON.stringify(authBody),
+    body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()
   try {
@@ -109,7 +109,8 @@ async function main() {
         case 'enrich': {
           const domain = args.domain
           if (!domain) { result = { error: '--domain required' }; break }
-          result = await api('POST', '/organizations/enrich', { domain })
+          const params = new URLSearchParams({ domain })
+          result = await api('GET', `/organizations/enrich?${params}`)
           break
         }
         default:

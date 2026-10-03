@@ -72,12 +72,15 @@ POST https://api.apollo.io/api/v1/mixed_companies/search
 ### Organization Enrichment
 
 ```bash
-POST https://api.apollo.io/api/v1/organizations/enrich
+GET https://api.apollo.io/api/v1/organizations/enrich?domain=apollo.io
 
-{
-  "domain": "apollo.io"
-}
+x-api-key: {api_key}
 ```
+
+Organization enrichment uses a query parameter and has no request body.
+API keys belong in the `x-api-key` header for every request. See the official
+[authentication](https://docs.apollo.io/reference/authentication) and
+[organization enrichment](https://docs.apollo.io/reference/organization-enrichment) references.
 
 ## Key Metrics
 
