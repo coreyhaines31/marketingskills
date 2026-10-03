@@ -58,7 +58,7 @@ POST https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions
 ### Update subscription
 
 ```bash
-PUT https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subscriptionId}
+PATCH https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subscriptionId}
 
 {
   "tier": "premium"

@@ -123,7 +123,7 @@ async function main() {
           if (!subId) { result = { error: '--id required' }; break }
           const body = {}
           if (args.tier) body.tier = args.tier
-          result = await api('PUT', `/publications/${pubId}/subscriptions/${subId}`, body)
+          result = await api('PATCH', `/publications/${pubId}/subscriptions/${subId}`, body)
           break
         }
         case 'delete': {
