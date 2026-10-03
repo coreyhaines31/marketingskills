@@ -117,12 +117,12 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args.limit) params.set('page_size', args.limit)
-          result = await api('GET', `/marketing/campaigns?${params}`)
+          result = await api('GET', `/marketing/singlesends?${params}`)
           break
         }
         case 'get':
           if (!rest[0]) { result = { error: 'Campaign ID required' }; break }
-          result = await api('GET', `/marketing/campaigns/${rest[0]}`)
+          result = await api('GET', `/marketing/singlesends/${rest[0]}`)
           break
         default:
           result = { error: 'Unknown campaigns subcommand. Use: list, get' }
@@ -196,7 +196,7 @@ async function main() {
         usage: {
           send: 'send --from <email> --to <email> [--subject <subject>] [--html <html>] [--text <text>] [--template-id <id> (d-... supplies its own subject)] [--template-data <json>]',
           contacts: 'contacts [list|add|search] [--email <email>] [--first-name <name>] [--last-name <name>] [--list-ids <ids>] [--query <sgql>]',
-          campaigns: 'campaigns [list|get] [id] [--limit <n>]',
+          campaigns: 'campaigns [list|get] [single_send_id] [--limit <n>] (Marketing Single Sends)',
           stats: 'stats get [--start-date <YYYY-MM-DD>] [--end-date <YYYY-MM-DD>]',
           bounces: 'bounces list [--start-time <ts>] [--end-time <ts>] [--limit <n>]',
           'spam-reports': 'spam-reports list [--start-time <ts>] [--end-time <ts>] [--limit <n>]',
