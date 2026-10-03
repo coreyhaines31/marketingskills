@@ -76,9 +76,18 @@ POST https://api.close.com/api/v1/opportunity/
 {
   "lead_id": "lead_xxx",
   "value": 50000,
-  "status_type": "active"
+  "status_id": "stat_xxx"
 }
 ```
+
+To select a stage when creating an opportunity, retrieve an ID from
+`GET https://api.close.com/api/v1/status/opportunity/` and pass
+`--status-id stat_xxx` to the CLI. `--status` is accepted as an ID alias.
+The `active`, `won`, and `lost` types describe statuses; they cannot select a
+specific stage when creating an opportunity. Omitting both flags uses the
+organization default status. See the official
+[create opportunity](https://developer.close.com/api/resources/opportunities/create)
+and [list opportunity statuses](https://developer.close.com/api/resources/opportunity-statuses/list) contracts.
 
 ### List Activities
 

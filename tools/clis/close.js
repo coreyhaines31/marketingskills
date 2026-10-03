@@ -144,7 +144,12 @@ async function main() {
           if (!leadId) { result = { error: '--lead-id required' }; break }
           if (!value) { result = { error: '--value required (in cents)' }; break }
           const body = { lead_id: leadId, value: parseInt(value) }
-          if (args.status) body.status_type = args.status
+          const statusId = args['status-id'] || args.status
+          if (['active', 'won', 'lost'].includes(statusId)) {
+            result = { error: '--status-id must be an opportunity status ID (stat_...), not a status type. Retrieve IDs from GET /status/opportunity/.' }
+            break
+          }
+          if (statusId) body.status_id = statusId
           result = await api('POST', '/opportunity/', body)
           break
         }
@@ -211,7 +216,7 @@ async function main() {
           opportunities: {
             list: 'opportunities list [--status <status>]',
             get: 'opportunities get --id <id>',
-            create: 'opportunities create --lead-id <id> --value <cents> [--status <status>]',
+            create: 'opportunities create --lead-id <id> --value <cents> [--status-id <stat_id>] [--status <stat_id>]',
           },
           activities: {
             list: 'activities list [--lead-id <id>] [--type <type>]',
