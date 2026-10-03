@@ -18,6 +18,10 @@ Email finding and verification platform for outreach and link building.
 - **Env var**: `HUNTER_API_KEY`
 - **Get key**: [Hunter dashboard > API](https://hunter.io/api-keys)
 
+The CLI URL-encodes the credential and redacts the `api_key` parameter in
+`--dry-run` previews, preserving the other query values. Previews do not make
+API requests. See [Hunter's authentication reference](https://hunter.io/api-documentation/v2#authentication).
+
 ## Common Agent Operations
 
 ### Find emails for a domain
