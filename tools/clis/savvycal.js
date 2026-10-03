@@ -149,16 +149,19 @@ async function main() {
         case 'create': {
           const linkId = args['link-id']
           const startAt = args['start-at']
+          const endAt = args['end-at']
+          const timeZone = args['time-zone']
           const name = args.name
           const email = args.email
-          if (!linkId || !startAt || !name || !email) {
-            result = { error: '--link-id, --start-at, --name, and --email required' }
+          if (!linkId || !startAt || !endAt || !timeZone || !name || !email) {
+            result = { error: '--link-id, --start-at, --end-at, --time-zone, --name, and --email required' }
             break
           }
-          result = await api('POST', '/events', {
-            scheduling_link_id: linkId,
+          result = await api('POST', `/links/${encodeURIComponent(linkId)}/events`, {
             start_at: startAt,
-            name,
+            end_at: endAt,
+            time_zone: timeZone,
+            display_name: name,
             email,
           })
           break
@@ -208,7 +211,7 @@ async function main() {
         usage: {
           me: 'me',
           links: 'links [list | get --id <id> | create --name <name> | update --id <id> | delete --id <id> | duplicate --id <id> | toggle --id <id> | slots --id <id>]',
-          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --name <name> --email <email> | cancel --id <id>]',
+          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --end-at <iso> --time-zone <iana> --name <name> --email <email> | cancel --id <id>]',
           webhooks: 'webhooks [list | create --url <url> --events <e1,e2> | delete --id <id>]',
           options: '--limit <n> --after <cursor> --before <cursor>',
         }

@@ -98,15 +98,27 @@ GET https://api.savvycal.com/v1/events/{id}
 ### Create an event
 
 ```bash
-POST https://api.savvycal.com/v1/events
+POST https://api.savvycal.com/v1/links/{link_id}/events
 
 {
-  "scheduling_link_id": "{link_id}",
   "start_at": "2024-01-20T10:00:00Z",
-  "name": "John Doe",
+  "end_at": "2024-01-20T10:30:00Z",
+  "time_zone": "America/New_York",
+  "display_name": "John Doe",
   "email": "john@example.com"
 }
 ```
+
+The CLI maps `--name` to `display_name` and requires the booking start, end, and
+attendee time zone. Choose an available slot for the scheduling link:
+
+```bash
+node tools/clis/savvycal.js events create --link-id link_123 \
+  --start-at 2024-01-20T10:00:00Z --end-at 2024-01-20T10:30:00Z \
+  --time-zone America/New_York --name "John Doe" --email john@example.com
+```
+
+See the official [create event contract](https://developers.savvycal.com/api/create-event).
 
 ### Cancel an event
 
