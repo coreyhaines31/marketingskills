@@ -103,19 +103,19 @@ async function main() {
           if (args['created-at']) body.created_at = parseInt(args['created-at'])
           if (args.plan) body.plan = args.plan
           if (args.data) Object.assign(body, JSON.parse(args.data))
-          result = await trackApi('PUT', `/customers/${customerId}`, body)
+          result = await trackApi('PUT', `/customers/${encodeURIComponent(customerId)}`, body)
           break
         }
         case 'get': {
           const customerId = rest[0] || args.id
           if (!customerId) { result = { error: 'Customer ID required (positional arg or --id)' }; break }
-          result = await appApi('GET', `/customers/${customerId}/attributes`)
+          result = await appApi('GET', `/customers/${encodeURIComponent(customerId)}/attributes`)
           break
         }
         case 'delete': {
           const customerId = rest[0] || args.id
           if (!customerId) { result = { error: 'Customer ID required (positional arg or --id)' }; break }
-          result = await trackApi('DELETE', `/customers/${customerId}`)
+          result = await trackApi('DELETE', `/customers/${encodeURIComponent(customerId)}`)
           break
         }
         case 'track-event': {
@@ -124,7 +124,7 @@ async function main() {
           if (!args.name) { result = { error: '--name required (event name)' }; break }
           const body = { name: args.name }
           if (args.data) body.data = JSON.parse(args.data)
-          result = await trackApi('POST', `/customers/${customerId}/events`, body)
+          result = await trackApi('POST', `/customers/${encodeURIComponent(customerId)}/events`, body)
           break
         }
         default:
