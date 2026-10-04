@@ -3,13 +3,13 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/paddle.js')
-function run(args, fetch = false) {
+function run(args, fetch = false, expectedStatus = 0) {
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');
     return { status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', env: { ...process.env, PADDLE_API_KEY: 'fake-key' }, timeout: 5000 })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -23,7 +23,7 @@ test('max uses sets the redemption limit, not subscription recurrence', () => {
 })
 test('max uses rejects invalid and nonpositive counts before fetching', () => {
   for (const value of ['0', '-1', '1.5', 'many', 'Infinity', '9007199254740992']) {
-    assert.match(run([...discount, '--max-uses', value]).error, /positive safe integer/)
+    assert.match(run([...discount, '--max-uses', value], false, 1).error, /positive safe integer/)
   }
 })
 test('an omitted max uses preserves the existing unlimited-discount request', () => {

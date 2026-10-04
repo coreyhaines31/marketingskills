@@ -3,13 +3,13 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/klaviyo.js')
-function run(args, fetch = false) {
+function run(args, fetch = false, expectedStatus = 0) {
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');
     return { status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', env: { ...process.env, KLAVIYO_API_KEY: 'fake-key' }, timeout: 5000 })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -27,7 +27,7 @@ test('explicit zero event value is retained', () => {
 })
 test('invalid event values stop before a request can serialize NaN to null', () => {
   for (const value of ['not-a-number', 'Infinity', '1e999', '']) {
-    assert.match(run(eventArgs(value)).error, /finite number/)
+    assert.match(run(eventArgs(value), false, 1).error, /finite number/)
   }
 })
 test('events without value retain metric, profile and custom properties', () => {

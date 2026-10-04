@@ -4,10 +4,10 @@ const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
 const cli = path.resolve(__dirname, '../../tools/clis/dataforseo.js')
-function run(args, dry = false) {
+function run(args, dry = false, expectedStatus = 0) {
   const source = `global.fetch = async (url, options) => ({ status: 200, text: async () => JSON.stringify({ url, method: options.method, body: JSON.parse(options.body) }) }); process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}, ...( ${dry} ? ['--dry-run'] : [])]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], {encoding: 'utf8', env: {...process.env, DATAFORSEO_LOGIN: 'fixture-login', DATAFORSEO_PASSWORD: 'fixture-password'}})
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 test('SERP code flags select the requested market and language', () => {
@@ -24,13 +24,13 @@ test('explicit names and defaults retain their existing contract', () => {
 })
 test('invalid or missing location code is rejected before requesting a paid report', () => {
   for (const value of ['abc', '0', '1.5', '9007199254740993', undefined]) {
-    const result = run(['serp','google','--keyword','shoes','--location-code', ...(value === undefined ? [] : [value])])
+    const result = run(['serp','google','--keyword','shoes','--location-code', ...(value === undefined ? [] : [value])], false, 1)
     assert.match(result.error || '', /location-code/)
     assert.equal(result.body, undefined)
   }
 })
 test('missing language code is rejected and dry run uses the same market with masked auth', () => {
-  assert.match(run(['serp','google','--keyword','shoes','--language-code']).error || '', /language-code/)
+  assert.match(run(['serp','google','--keyword','shoes','--language-code'], false, 1).error || '', /language-code/)
   const result = run(['serp','google','--keyword','shoes','--location-code','2250','--language-code','fr'], true)
   assert.deepEqual(result.body, [{keyword:'shoes',location_code:2250,language_code:'fr'}])
   assert.equal(result.headers.Authorization, '***')
