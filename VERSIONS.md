@@ -36,7 +36,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.3 | 2026-10-02 |
+| ads | 2.4.4 | 2026-10-04 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.2 | 2026-10-02 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.18 (2026-10-04)
+
+- **ads** (2.4.3 → 2.4.4): local question-to-reference index with approximate reading costs, evidence boundaries, and on-demand loading. Adds the corresponding authoring guidance in AGENTS.md for #433; the independent AI SEO pilot is tracked in #702.
 
 ### 2.11.17 (2026-10-02)
 

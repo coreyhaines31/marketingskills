@@ -121,6 +121,23 @@ skills/skill-name/
 - Use bullet points and numbered lists liberally
 - Short paragraphs (2-4 sentences max)
 
+### Reference-heavy skills
+
+- Keep the entrypoint focused on the default workflow. Mark detailed references
+  as on-demand and route concrete user questions to the file that answers them.
+- For a large reference directory, use a compact local index with anticipated
+  questions, linked file paths, and approximate reading costs. State the estimate
+  method and observation date; do not present estimates as exact token counts.
+- Read bundled references as local files. Do not retrieve a GitHub copy in place
+  of the installed version, and do not load every reference speculatively.
+- Separate durable techniques from perishable facts. For engine behavior, prices,
+  model names, limits, or adoption claims, record a dated source and state when a
+  fresh primary-source check is needed. Missing evidence stays unknown.
+- State useful scope boundaries and unresolved gaps so the agent can route to
+  another skill or ask for missing context. Do not invent capabilities or results.
+- Validate routing with realistic questions and inspect the destination content;
+  a working Markdown link alone does not prove that the file answers the task.
+
 ### Tone
 
 - Direct and instructional
