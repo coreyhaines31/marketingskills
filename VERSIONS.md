@@ -52,10 +52,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.0.0 | 2026-05-05 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.3.2 | 2026-10-02 |
+| social | 2.3.3 | 2026-10-04 |
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.18 (2026-10-04)
+
+- **social** (2.3.2 → 2.3.3): adds a conditional MentionDrop monitoring option alongside free listening recipes, with source boundaries, account restrictions, pagination, and reviewed drafts. Adds the neutral HTTP/MCP integration guide and registry entry requested in #430.
 
 ### 2.11.17 (2026-10-02)
 

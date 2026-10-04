@@ -109,6 +109,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | - | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
+| mentiondrop | Listening/Monitoring | ✓ | ✓ | - | - | [mentiondrop.md](integrations/mentiondrop.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
@@ -316,6 +317,18 @@ Social media scheduling, management, and analytics.
 | **buffer** | Social scheduling, analytics | Multi-platform |
 
 **Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+
+### Listening / Monitoring
+
+Surface brand, competitor, and demand mentions for a reviewed engagement shortlist.
+
+| Option | Fits | MCP Available |
+|--------|------|:-------------:|
+| **mentiondrop** | Configured account monitoring and grouped digests across bounded sources | ✓ |
+| **firehose** | Raw web rule/stream infrastructure | - |
+| **DIY source recipes / Google Alerts** | Occasional public-source checks or lightweight email alerts | - |
+
+Use the [social listening reference](../skills/social/references/listening.md) for free source recipes and triage. Compare source coverage, budget, and setup effort; a tool's absence of results does not prove there are no mentions.
 
 ### Video
 
@@ -567,6 +580,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 - **exa** - AI-powered web search for LLMs and agents
+- **mentiondrop** - Account-scoped mention monitoring, digests, and draft replies
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment.
 
