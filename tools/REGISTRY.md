@@ -115,6 +115,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| reelgenie | Social | - | ✓ | - | - | [reelgenie.md](integrations/reelgenie.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -314,6 +315,7 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **reelgenie** | Codex-created media with stored brand briefs and private review | MCP; eligible Instagram direct, TikTok inbox drafts, finished-video YouTube |
 
 **Agent recommendation**: Buffer for scheduling and analytics across social platforms.
 
