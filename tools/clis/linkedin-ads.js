@@ -2,18 +2,21 @@
 
 const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.LINKEDIN_ACCESS_TOKEN
-const BASE_URL = 'https://api.linkedin.com/v2'
+const BASE_URL = 'https://api.linkedin.com/rest'
+const API_VERSION = process.env.LINKEDIN_API_VERSION || '202609'
 
 if ((!TOKEN) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'LINKEDIN_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
 }
 
-async function api(method, path, body) {
+async function api(method, path, body, extraHeaders = {}) {
   const headers = {
     'Authorization': `Bearer ${TOKEN}`,
     'X-RestLi-Protocol-Version': '2.0.0',
     'Content-Type': 'application/json',
+    'LinkedIn-Version': API_VERSION,
+    ...extraHeaders,
   }
   if (args['dry-run']) {
     return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { ...headers, Authorization: '***' }, body: body || undefined }
@@ -24,6 +27,10 @@ async function api(method, path, body) {
     body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()
+  if (!text && res.ok) {
+    const id = res.headers.get('x-restli-id')
+    if (id) return { status: res.status, id }
+  }
   try {
     return JSON.parse(text)
   } catch {
@@ -54,6 +61,15 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+// Rest.li 2.0 encodes values and URN keys, keeping record/list delimiters structural.
+function restli(value) {
+  if (Array.isArray(value)) return `List(${value.map(restli).join(',')})`
+  if (value && typeof value === 'object') {
+    return `(${Object.entries(value).map(([key, item]) => `${encodeURIComponent(key)}:${restli(item)}`).join(',')})`
+  }
+  return encodeURIComponent(String(value)).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase())
+}
+
 async function main() {
   let result
 
@@ -61,7 +77,7 @@ async function main() {
     case 'accounts':
       switch (sub) {
         case 'list':
-          result = await api('GET', '/adAccountsV2?q=search')
+          result = await api('GET', '/adAccounts?q=search')
           break
         default:
           result = { error: 'Unknown accounts subcommand. Use: list' }
@@ -72,40 +88,64 @@ async function main() {
       switch (sub) {
         case 'list': {
           if (!args['account-id']) { result = { error: '--account-id required' }; break }
-          result = await api('GET', `/adCampaignsV2?q=search&search.account.values[0]=urn:li:sponsoredAccount:${args['account-id']}`)
+          result = await api('GET', `/adAccounts/${args['account-id']}/adCampaigns?q=search`)
           break
         }
         case 'create': {
           if (!args['account-id'] || !args.name) { result = { error: '--account-id and --name required' }; break }
           if (!args['campaign-group-id']) { result = { error: '--campaign-group-id required' }; break }
+          if (!args['locale-country'] || !args['locale-language'] || !args.targeting || !args['political-intent']) {
+            result = { error: '--locale-country, --locale-language, --targeting, and --political-intent required' }; break
+          }
+          let targetingCriteria
+          try { targetingCriteria = JSON.parse(args.targeting) } catch { result = { error: 'Invalid JSON for --targeting' }; break }
+          if (!targetingCriteria || typeof targetingCriteria !== 'object' || Array.isArray(targetingCriteria)) {
+            result = { error: '--targeting must be a JSON object' }; break
+          }
+          if (['SPONSORED_UPDATES', 'DYNAMIC'].includes(args.type || 'SPONSORED_UPDATES') && !args['associated-entity']) {
+            result = { error: '--associated-entity required for Sponsored Content or Dynamic Ads' }; break
+          }
+          if (args.type === 'DYNAMIC' && !args['total-budget']) {
+            result = { error: '--total-budget required for Dynamic Ads' }; break
+          }
+          if (args.type === 'DYNAMIC' && !['FOLLOW_COMPANY', 'JOBS', 'SPOTLIGHT'].includes(args.format)) {
+            result = { error: '--format required for Dynamic Ads (FOLLOW_COMPANY, JOBS, or SPOTLIGHT)' }; break
+          }
           const body = {
+            locale: { country: args['locale-country'], language: args['locale-language'] },
+            targetingCriteria,
+            offsiteDeliveryEnabled: false,
+            politicalIntent: args['political-intent'],
             account: `urn:li:sponsoredAccount:${args['account-id']}`,
             campaignGroup: `urn:li:sponsoredCampaignGroup:${args['campaign-group-id']}`,
             name: args.name,
             type: args.type || 'SPONSORED_UPDATES',
             costType: args['cost-type'] || 'CPC',
             unitCost: {
-              amount: parseFloat(args['unit-cost'] || '5.00'),
-              currencyCode: 'USD',
+              amount: args['unit-cost'] || '5.00',
+              currencyCode: args.currency || 'USD',
             },
             dailyBudget: {
-              amount: parseFloat(args['daily-budget'] || '100.00'),
-              currencyCode: 'USD',
+              amount: args['daily-budget'] || '100.00',
+              currencyCode: args.currency || 'USD',
             },
             status: 'PAUSED',
           }
-          result = await api('POST', '/adCampaignsV2', body)
+          if (args.format) body.format = args.format
+          if (args['associated-entity']) body.associatedEntity = args['associated-entity']
+          if (args['total-budget']) body.totalBudget = { amount: args['total-budget'], currencyCode: args.currency || 'USD' }
+          result = await api('POST', `/adAccounts/${args['account-id']}/adCampaigns`, body)
           break
         }
         case 'update': {
-          if (!args.id || !args.status) { result = { error: '--id and --status required' }; break }
-          result = await api('POST', `/adCampaignsV2/${args.id}`, {
+          if (!args['account-id'] || !args.id || !args.status) { result = { error: '--account-id, --id, and --status required' }; break }
+          result = await api('POST', `/adAccounts/${args['account-id']}/adCampaigns/${args.id}`, {
             patch: {
               $set: {
                 status: args.status,
               },
             },
-          })
+          }, { 'X-RestLi-Method': 'PARTIAL_UPDATE' })
           break
         }
         case 'analytics': {
@@ -114,19 +154,11 @@ async function main() {
             result = { error: '--start-year, --start-month, --start-day, --end-year, --end-month, --end-day required' }
             break
           }
-          const params = new URLSearchParams({
-            q: 'analytics',
-            pivot: 'CAMPAIGN',
-            'dateRange.start.year': args['start-year'],
-            'dateRange.start.month': args['start-month'],
-            'dateRange.start.day': args['start-day'],
-            'dateRange.end.year': args['end-year'],
-            'dateRange.end.month': args['end-month'],
-            'dateRange.end.day': args['end-day'],
-            campaigns: `urn:li:sponsoredCampaign:${args.id}`,
-            fields: 'impressions,clicks,costInLocalCurrency,conversions',
-          })
-          result = await api('GET', `/adAnalyticsV2?${params}`)
+          const dateRange = {
+            start: { year: args['start-year'], month: args['start-month'], day: args['start-day'] },
+            end: { year: args['end-year'], month: args['end-month'], day: args['end-day'] },
+          }
+          result = await api('GET', `/adAnalytics?q=analytics&pivot=CAMPAIGN&timeGranularity=ALL&dateRange=${restli(dateRange)}&campaigns=${restli([`urn:li:sponsoredCampaign:${args.id}`])}&fields=impressions,clicks,costInLocalCurrency,externalWebsiteConversions`)
           break
         }
         default:
@@ -137,8 +169,8 @@ async function main() {
     case 'creatives':
       switch (sub) {
         case 'list': {
-          if (!args['campaign-id']) { result = { error: '--campaign-id required' }; break }
-          result = await api('GET', `/adCreativesV2?q=search&search.campaign.values[0]=urn:li:sponsoredCampaign:${args['campaign-id']}`)
+          if (!args['account-id'] || !args['campaign-id']) { result = { error: '--account-id and --campaign-id required' }; break }
+          result = await api('GET', `/adAccounts/${args['account-id']}/creatives?q=criteria&campaigns=${restli([`urn:li:sponsoredCampaign:${args['campaign-id']}`])}`)
           break
         }
         default:
@@ -157,7 +189,7 @@ async function main() {
             result = { error: 'Invalid JSON for --targeting' }
             break
           }
-          result = await api('POST', '/audienceCountsV2', { audienceCriteria: targeting })
+          result = await api('GET', `/audienceCounts?q=targetingCriteriaV2&targetingCriteria=${restli(targeting)}`)
           break
         }
         default:
@@ -170,8 +202,8 @@ async function main() {
         error: 'Unknown command',
         usage: {
           accounts: 'accounts [list]',
-          campaigns: 'campaigns [list|create|update|analytics] [--account-id <id>] [--name <name>] [--type SPONSORED_UPDATES] [--cost-type CPC] [--unit-cost 5.00] [--daily-budget 100.00] [--id <id>] [--status ACTIVE|PAUSED]',
-          creatives: 'creatives [list] --campaign-id <id>',
+          campaigns: 'campaigns [list|create|update|analytics] [--account-id <id>] [--name <name>] [--campaign-group-id <id>] [--type SPONSORED_UPDATES] [--format <format>] [--cost-type CPC] [--unit-cost 5.00] [--daily-budget 100.00] [--total-budget <amount>] [--currency USD] [--locale-country US] [--locale-language en] [--targeting <json>] [--political-intent POLITICAL|NOT_POLITICAL|NOT_DECLARED] [--associated-entity <urn>] [--id <id>] [--status ACTIVE|PAUSED]',
+          creatives: 'creatives [list] --account-id <id> --campaign-id <id>',
           audiences: 'audiences [count] --targeting <json>',
         },
       }
