@@ -6,7 +6,7 @@ const cli = path.resolve(__dirname, '../../tools/clis/paddle.js')
 function run(args, fetch = false) {
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');
-    return { status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
+    return { ok: true, status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', env: { ...process.env, PADDLE_API_KEY: 'fake-key' }, timeout: 5000 })
   assert.equal(result.status, 0, result.stderr)
