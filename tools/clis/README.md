@@ -213,3 +213,15 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `wistia.js` | Video | [Wistia](https://wistia.com) |
 | `zapier.js` | Automation | [Zapier](https://zapier.com) |
 | `zoominfo.js` | Data Enrichment | [ZoomInfo](https://zoominfo.com) |
+
+## HTTP request deadlines
+
+All bundled CLI HTTP calls use a 30-second per-request deadline. Override with `--timeout-ms <1-600000>` for a slow API, for example:
+
+```bash
+node tools/clis/exa.js search --query 'Recent market research' --timeout-ms 120000
+```
+
+The deadline covers obtaining headers and consuming the response body, including OAuth requests. Each subsequent HTTP call gets its own deadline; this is not a total command deadline or a bound on external credential commands. An aborted call exits as a failure. Aborting a local request does not cancel work already accepted by a provider: check provider status before manually retrying a mutation. The CLI does not add automatic retries. Dry runs issue no HTTP request.
+
+Implemented using [Node's AbortSignal.timeout](https://nodejs.org/api/globals.html#static-method-abortsignaltimeoutdelay), available on the supported Node 18+ runtime, preserving zero-dependency standalone scripts. Native loopback tests cover stalled headers, stalled bodies, OAuth, successful responses and malformed timeout values without live accounts.

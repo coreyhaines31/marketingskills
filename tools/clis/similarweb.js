@@ -9,13 +9,24 @@ if ((!API_KEY) && rawArgs.length > 0) {
   process.exit(1)
 }
 
+
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
+
 async function api(method, path, body) {
   const separator = path.includes('?') ? '&' : '?'
   const url = `${BASE_URL}${path}${separator}api_key=${API_KEY}`
   if (args['dry-run']) {
     return { _dry_run: true, method, url: url.replace(API_KEY, '***'), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: body || undefined }
   }
-  const res = await fetch(url, {
+  const res = await fetch(url, { signal: requestSignal(),
     method,
     headers: {
       'Content-Type': 'application/json',

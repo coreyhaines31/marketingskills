@@ -11,6 +11,17 @@ if ((!WRITE_KEY && !ACCESS_TOKEN) && rawArgs.length > 0) {
   process.exit(1)
 }
 
+
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
+
 async function trackApi(method, path, body) {
   if (!WRITE_KEY) {
     return { error: 'SEGMENT_WRITE_KEY required for tracking operations' }
@@ -19,7 +30,7 @@ async function trackApi(method, path, body) {
     return { _dry_run: true, method, url: `${TRACKING_URL}${path}`, headers: { Authorization: '***', 'Content-Type': 'application/json' }, body: body || undefined }
   }
   const auth = Buffer.from(`${WRITE_KEY}:`).toString('base64')
-  const res = await fetch(`${TRACKING_URL}${path}`, {
+  const res = await fetch(`${TRACKING_URL}${path}`, { signal: requestSignal(),
     method,
     headers: {
       'Authorization': `Basic ${auth}`,
@@ -43,7 +54,7 @@ async function profileApi(method, path) {
     return { _dry_run: true, method, url: `${PROFILE_URL}${path}`, headers: { Authorization: '***', 'Content-Type': 'application/json' } }
   }
   const auth = Buffer.from(`${ACCESS_TOKEN}:`).toString('base64')
-  const res = await fetch(`${PROFILE_URL}${path}`, {
+  const res = await fetch(`${PROFILE_URL}${path}`, { signal: requestSignal(),
     method,
     headers: {
       'Authorization': `Basic ${auth}`,

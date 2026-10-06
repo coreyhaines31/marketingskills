@@ -13,9 +13,20 @@ if ((!CLIENT_ID || !CLIENT_SECRET) && rawArgs.length > 0) {
 
 let cachedToken = null
 
+
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
+
 async function getToken() {
   if (cachedToken) return cachedToken
-  const res = await fetch(`${OAUTH_URL}/oauth/token`, {
+  const res = await fetch(`${OAUTH_URL}/oauth/token`, { signal: requestSignal(),
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: `grant_type=client_credentials&client_id=${encodeURIComponent(CLIENT_ID)}&client_secret=${encodeURIComponent(CLIENT_SECRET)}`,
@@ -33,7 +44,7 @@ async function api(method, path) {
     return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { Authorization: '***', 'Content-Type': 'application/json', Accept: 'application/json' } }
   }
   const token = await getToken()
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const res = await fetch(`${BASE_URL}${path}`, { signal: requestSignal(),
     method,
     headers: {
       'Authorization': `Bearer ${token}`,

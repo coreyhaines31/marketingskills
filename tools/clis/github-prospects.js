@@ -26,6 +26,17 @@ function parseArgs(args) {
 
 const args = parseArgs(process.argv.slice(2))
 
+
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
+
 async function api(path, opts = {}) {
   const url = path.startsWith('http') ? path : `${BASE_URL}${path}`
   const headers = {
@@ -44,7 +55,7 @@ async function api(path, opts = {}) {
     }
   }
 
-  const res = await fetch(url, { headers })
+  const res = await fetch(url, { signal: requestSignal(), headers })
   const rateLimitRemaining = res.headers.get('x-ratelimit-remaining')
   const rateLimitReset = res.headers.get('x-ratelimit-reset')
 

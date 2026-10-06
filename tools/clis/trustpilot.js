@@ -13,10 +13,21 @@ if ((!API_KEY) && rawArgs.length > 0) {
 
 let accessToken = null
 
+
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
+
 async function getAccessToken() {
   if (accessToken) return accessToken
   if (!API_SECRET) return null
-  const res = await fetch(`${BASE_URL}/oauth/oauth-business-users-for-applications/accesstoken`, {
+  const res = await fetch(`${BASE_URL}/oauth/oauth-business-users-for-applications/accesstoken`, { signal: requestSignal(),
     method: 'POST',
     headers: {
       'Authorization': 'Basic ' + Buffer.from(`${API_KEY}:${API_SECRET}`).toString('base64'),
@@ -55,7 +66,7 @@ async function api(method, path, body, auth = 'apikey') {
   } else {
     headers['apikey'] = API_KEY
   }
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const res = await fetch(`${BASE_URL}${path}`, { signal: requestSignal(),
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
