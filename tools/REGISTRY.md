@@ -110,6 +110,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | similarweb | Competitive Intelligence | ✓ | - | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
+| arcmira | Audience Research | ✓ | ✓ | ✓ | ✓ | [arcmira.md](integrations/arcmira.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
@@ -441,6 +442,7 @@ Audience intelligence and behavioral research tools.
 
 | Tool | Best For | Notes |
 |------|----------|-------|
+| **arcmira** | YouTube transcript passages and speaker/sponsor evidence | Indexed coverage; timestamped sources; API, MCP, CLI, SDKs |
 | **sparktoro** | Audience affinities, behavioral data | Clickstream + social data |
 
 **Agent recommendation**: SparkToro for discovering where your ICP spends time — what they read, watch, listen to, follow, and search for. Essential for customer research, content strategy, and media buying decisions.
