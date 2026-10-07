@@ -26,7 +26,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.2 | 2026-10-02 |
-| influencer-marketing | 1.1.2 | 2026-10-02 |
+| influencer-marketing | 1.2.0 | 2026-10-07 |
 | launch | 2.1.0 | 2026-10-06 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
@@ -52,7 +52,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.3.2 | 2026-10-02 |
+| social | 2.4.0 | 2026-10-07 |
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
