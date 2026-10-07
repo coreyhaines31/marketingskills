@@ -77,7 +77,7 @@ Use the [commercial intelligence endpoints](https://arcmira.com/docs/commercial-
 | Search indexed spoken passages across videos | Arcmira returns source timestamps through its API and MCP. It covers an indexed catalog, not every YouTube video. |
 | Produce captions from a recording you control | Use a transcription service or local speech-recognition tool. You must supply the recording and handle its processing and permissions. |
 
-Arcmira is a hosted service with a Free plan and paid plans. The Free plan has usage limits and withholds the newest 30 days of media. Speaker labels cover a minority of indexed shows. Sponsor access and Premium transcripts depend on the plan. A paid read uses credits from your plan, then your on-demand budget. See [plans and usage](https://arcmira.com/docs/usage-and-billing) for current allowances and limits.
+Arcmira is a hosted service with a Free plan and paid plans. The Free plan has usage limits and withholds the newest 30 days of media. Speaker labels cover a minority of indexed shows. Sponsor access and Premium transcripts depend on the plan. A paid read uses credits from your plan, then any top-up credits, then your on-demand budget. See [plans and usage](https://arcmira.com/docs/usage-and-billing) for current allowances and limits.
 
 Search access does not grant permission to republish a recording. Check the source's rights and the intended use separately.
 
