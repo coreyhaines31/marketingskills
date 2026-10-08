@@ -6,10 +6,10 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.1 | 2026-10-08 |
 | ad-creative | 2.10.0 | 2026-10-08 |
-| ai-seo | 2.7.5 | 2026-10-08 |
+| ai-seo | 2.7.6 | 2026-10-08 |
 | analytics | 2.0.3 | 2026-10-08 |
 | aso | 2.0.2 | 2026-10-08 |
-| attribution | 1.1.3 | 2026-10-08 |
+| attribution | 1.1.4 | 2026-10-08 |
 | churn-prevention | 2.0.2 | 2026-10-08 |
 | co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.2.0 | 2026-10-07 |
@@ -28,7 +28,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | image | 2.0.2 | 2026-10-02 |
 | influencer-marketing | 1.1.2 | 2026-10-02 |
 | launch | 2.2.0 | 2026-10-07 |
-| lead-magnets | 2.0.0 | 2026-05-05 |
+| lead-magnets | 2.1.0 | 2026-10-08 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
 | marketing-loops | 1.4.0 | 2026-10-07 |
@@ -56,6 +56,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.26 (2026-10-08)
+
+- **lead-magnets** (2.0.0 → 2.1.0): new `references/content-to-skill.md` (plus corpus design and release companions) on packaging a course, webinar series, podcast, or newsletter archive you own as an installable agent skill: a new kind of lead magnet. From @rudycelekli's #725 (closes #432), folded in rather than added as a new skill. Triggers added: 'course as a skill,' 'package our content as an agent skill.' **ai-seo** (2.7.5 → 2.7.6) points to it.
+- **attribution** (1.1.3 → 1.1.4): separates real, deduplicated conversions from overlapping platform credit, and treats a large direct or branded share as something to confirm with evidence before calling it top-of-funnel impact (#794 by @jmsheldon).
+- **Tools:** the Resend CLI exits 1 when the API rejects a request (#677 by @agammann).
 
 ### 2.11.25 (2026-10-08)
 
