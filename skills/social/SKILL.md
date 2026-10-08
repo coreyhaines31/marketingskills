@@ -50,7 +50,7 @@ Gather this context (ask if not provided):
 | TikTok | Brand awareness, younger audiences | 1-4x/day | Short-form video |
 | Facebook | Communities, local businesses | 1-2x/day | Groups, native video |
 
-**For detailed platform strategies**: See [references/platforms.md](references/platforms.md)
+**For detailed platform strategies** (LinkedIn, X, Instagram, TikTok, Facebook, Telegram): See [references/platforms.md](references/platforms.md)
 
 **For hashtag limits and character counts**: See [references/platform-limits.md](references/platform-limits.md)
 

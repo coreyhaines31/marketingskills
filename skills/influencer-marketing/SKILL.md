@@ -1,13 +1,13 @@
 ---
 name: influencer-marketing
-description: "When the user wants to run influencer, creator, or ambassador partnerships to promote their product — finding and vetting partners, structuring deals, briefing creators, disclosure compliance, and measuring ROI. Also use when the user mentions 'influencer marketing,' 'creator partnerships,' 'sponsorships,' 'YouTube sponsorships,' 'podcast sponsorships,' 'brand ambassador,' 'ambassador program,' 'creator program,' 'UGC creators,' 'tech UGC,' 'UGC creator program,' 'creator network,' 'B2B influencers,' 'thought leader ads,' 'gifting,' 'product seeding,' 'whitelisting creator content,' 'how much to pay an influencer,' or 'FTC disclosure.' For affiliate/referral payout mechanics, see referrals. For community-led advocacy, see community-marketing. For turning creator content into paid ads, see ad-creative."
+description: "When the user wants to run influencer, creator, or ambassador partnerships to promote their product — finding and vetting partners, structuring deals, briefing creators, disclosure compliance, and measuring ROI. Also use when the user mentions 'influencer marketing,' 'creator partnerships,' 'sponsorships,' 'YouTube sponsorships,' 'podcast sponsorships,' 'brand ambassador,' 'ambassador program,' 'creator program,' 'UGC creators,' 'tech UGC,' 'UGC creator program,' 'creator network,' 'B2B influencers,' 'thought leader ads,' 'gifting,' 'product seeding,' 'whitelisting creator content,' 'Telegram channel ads,' 'buy a post in a Telegram channel,' 'how much to pay an influencer,' or 'FTC disclosure.' For affiliate/referral payout mechanics, see referrals. For community-led advocacy, see community-marketing. For turning creator content into paid ads, see ad-creative."
 metadata:
-  version: 1.1.2
+  version: 1.2.0
 ---
 
 # Influencer & Creator Marketing
 
-You are an expert in influencer, creator, and ambassador marketing across B2C (Instagram, TikTok, YouTube) and B2B (LinkedIn, X, newsletters, niche podcasts). Your goal is to help the user pick the right partners, structure fair deals, keep the program compliant, and measure real ROI — not vanity reach.
+You are an expert in influencer, creator, and ambassador marketing across B2C (Instagram, TikTok, YouTube), B2B (LinkedIn, X, newsletters, niche podcasts), and paid posts in Telegram channels. Your goal is to help the user pick the right partners, structure fair deals, keep the program compliant, and measure real ROI — not vanity reach.
 
 > Foundation contributed by @Adi29102000-s; compensation benchmarks and run-of-show checklist adapted from @SamSon75's PR; expanded to the repo's standard.
 
@@ -53,6 +53,7 @@ For most brands, a portfolio of **micro + nano** partners out-converts one macro
 
 **Vetting checklist:**
 - **Engagement rate**, not follower count (a rough floor: ~1–3% is healthy on IG/TikTok at scale; higher for nano). Suspiciously round numbers, comment pods, or comments that don't match the audience are red flags.
+- **Telegram channels** show no likes-based engagement; the signal is the view counter under each post. Divide the median views of week-old posts by subscribers and compare with channels of the same size (median about 8% at 10K–20K subscribers, about 4% above 1M). For the full Telegram checklist (topic and language baselines, ad networks, channel age) and per-view pricing, see [references/telegram-channels.md](references/telegram-channels.md).
 - **Fake-follower / bot check** — a sudden follower spike, generic comments, or engagement wildly out of line with reach. Tools like SparkToro (audience intelligence) help; media kits overstate.
 - **Sponsored-content track record** — do their *ads* still get engagement, or does their audience tune out promos? Ask for past campaign results.
 - **Brand safety** — scroll their last ~3 months. Controversy, competitor conflicts, or off-brand content that would attach to you.
@@ -189,6 +190,8 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 | **SparkToro** | Audience intelligence — where your ICP actually pays attention, and vetting a creator's real audience | [sparktoro.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/sparktoro.md) |
 
 Dedicated creator-discovery/CRM platforms (e.g., Modash, GRIN, Aspire, Upfluence) and creator-sponsorship marketplaces (e.g., Passionfroot) are the category to reach for at scale; add the specific one to the registry when the user adopts it. For pulling a specific creator's recent posts to vet them, use `social-fetch`; for analyzing their content style, `watch-video`.
+
+For Telegram channels, the vetting options (the public preview with a manual reach check, the admin's built-in statistics, Telegram Ads, analytics catalogs, TGScope) are compared in [references/telegram-channels.md](references/telegram-channels.md#tools).
 
 ## Related Skills
 

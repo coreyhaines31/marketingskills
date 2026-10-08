@@ -84,6 +84,20 @@
         "Mentions platform inauthentic-behavior/spam policy risk of coordinated undisclosed fresh accounts"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "A Telegram admin offered me a '1/24' ad post in his crypto news channel for my wallet app: 1.2M subscribers, $2,400. He says that's only $2 per thousand subscribers. Good deal? How do I check before paying?",
+      "expected_output": "Should load references/telegram-channels.md and reframe the price from subscribers to views. Explains that Telegram has no likes-based engagement rate and the signal is views ÷ subscribers: take the median views of 10-20 posts at least a week old from the t.me/s/ preview and compare with the 1M+ benchmark (median about 4%, bottom tenth under 1%, and 64 of 229 million-plus channels under 2%), adjusted for the crypto baseline. Works the arithmetic: at 4% reach a typical post gets about 48,000 views, a 1/24 post deleted after a day collects only about half of that, so the $2,400 buys roughly 24,000 views, a CPM near $100 rather than $2. Lists the other checks: the channel posts weekly (quiet channels show misleadingly high ratios), ad load in the last 20-30 posts, whether the ad contact in the description sells other channels (networked channels reach less), the channel's age from its ID against its story, and screenshots of the admin's built-in statistics. Notes that paid posts must be disclosed under the rules of the market and that the placement needs its own link or promo code. Mentions vetting options neutrally (manual check first) and does not declare the deal good or bad before the channel's actual views are known.",
+      "assertions": [
+        "Reframes price per subscriber as cost per view (CPM) based on the channel's real post views",
+        "Uses views ÷ subscribers against a size benchmark (about 4% median above 1M subscribers) to estimate expected views",
+        "Discounts a 24-hour post to roughly half the views of a permanent post",
+        "Includes at least three further checks among: activity, ad load, shared ad contact / network, channel age, admin statistics",
+        "Requires ad disclosure and per-placement tracking",
+        "Does not call the deal good or bad without the channel's actual view data"
+      ],
+      "files": []
     }
   ]
 }
