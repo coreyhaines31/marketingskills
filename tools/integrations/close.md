@@ -7,7 +7,7 @@ Sales CRM for SMBs with built-in calling, email, and pipeline management designe
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Leads, Contacts, Opportunities, Activities, Tasks |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `https://mcp.close.com/mcp` (OAuth) with read, safe-write, and destructive-write scopes ([docs](https://developer.close.com/mcp)) |
 | CLI | ✓ | [close.js](../clis/close.js) |
 | SDK | - | REST API only |
 

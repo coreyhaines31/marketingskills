@@ -35,7 +35,7 @@ Pricing changes frequently — verify at https://www.rb2b.com/pricing.
 RB2B pushes identified visitor data to 50+ tools:
 - **CRM**: Salesforce, HubSpot
 - **Outreach**: Instantly, HeyReach, Lemlist
-- **Enrichment**: Clay, Apollo, Clearbit
+- **Enrichment**: Clay, Apollo, LeadMagic, FullEnrich
 - **Automation**: Zapier, Make
 - **Alerts**: Slack (real-time notifications)
 

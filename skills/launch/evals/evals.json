@@ -114,6 +114,22 @@
         "Includes post-launch Search Console monitoring"
       ],
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "You have access to our product repo. Can you look at what we merged this week and turn it into a changelog entry and some announcement drafts?",
+      "expected_output": "Should load the shipped-changes reference. Should read merged PRs (and the commit log for anything without a PR) for the week, exclude anything behind a feature flag or not deployed, and drop invisible changes like refactors, dependency bumps and CI. Should translate each visible change into a 'You can now...' line, tier it as major, medium or minor using the skill's announcement matrix, and produce a changelog entry using Keep a Changelog headings plus drafts matched to tier. Every claim should come from the change itself with no invented metrics or customer results. Should also list marketing pages the changes made wrong and new content opportunities, and stage all drafts for human review rather than publishing.",
+      "assertions": [
+        "Reads merged PRs and commits for the window",
+        "Excludes flagged, undeployed and invisible changes",
+        "Translates changes into customer-facing 'You can now' statements",
+        "Tiers changes and matches output to the tier",
+        "Uses Keep a Changelog headings",
+        "Does not invent metrics or customer outcomes",
+        "Flags existing pages the changes made inaccurate",
+        "Stages drafts for review instead of publishing"
+      ],
+      "files": []
     }
   ]
 }

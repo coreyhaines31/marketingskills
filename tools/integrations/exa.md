@@ -7,7 +7,7 @@ AI-powered web search API built for LLMs and agents. Returns high-quality search
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Search, Find Similar, Contents |
-| MCP | ✓ | Official MCP server available |
+| MCP | ✓ | Official hosted server at `https://mcp.exa.ai/mcp`; works anonymously with rate limits, OAuth or API key for higher limits ([docs](https://exa.ai/docs/get-started/exa-mcp)) |
 | CLI | ✓ | [exa.js](../clis/exa.js) |
 | SDK | ✓ | `exa-py` (Python), `exa-js` (TypeScript) |
 

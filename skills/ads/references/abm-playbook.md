@@ -50,7 +50,7 @@ Whichever you use: keep account pages `noindex` and out of the sitemap, use only
 
 Meta has no native company targeting — the play is **bring your own matched audience**:
 
-- **The match-rate problem:** raw CRM exports of work emails match under ~5% on Meta. Enrichment providers (identity-graph tools that resolve work identities to personal profiles — e.g., Primer, Metadata, ZoomInfo, Clearbit) raise matches to ~40–85%. Workflow: firmographic criteria → identity-graph match → upload as Custom Audience → target directly or seed a 1% lookalike.
+- **The match-rate problem:** raw CRM exports of work emails match under ~5% on Meta. Enrichment providers (identity-graph tools that resolve work identities to personal profiles — e.g., Primer, Metadata, ZoomInfo) raise matches to ~40–85%. Workflow: firmographic criteria → identity-graph match → upload as Custom Audience → target directly or seed a 1% lookalike.
 - **Minimum sizes:** account-list audiences ~1,000 companies (5–10K optimal); retargeting slices work down to ~100 accounts; lookalike seeds want 500+.
 - Advantage+ **conflicts with strict ABM** — it won't stay locked to your list. Run ABM campaigns manual (or hybrid: manual for the list, Advantage+ for the broad layer).
 - Meta's ABM role is cheap **air cover and multi-threading** (reaching the buying committee beyond your champion) while LinkedIn does precision — see the split below.

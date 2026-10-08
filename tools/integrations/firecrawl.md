@@ -7,7 +7,7 @@ Web scraping API that turns single pages or full sites into clean LLM-ready mark
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API + Python/Node SDKs |
-| MCP | ✓ | Official Firecrawl MCP server |
+| MCP | ✓ | Official hosted server: `https://mcp.firecrawl.dev/v2/mcp` with a Bearer API key (unattended), `/v2/mcp-oauth` for OAuth; a keyless tier covers scrape, search, and parse ([docs](https://docs.firecrawl.dev/mcp-server)) |
 | CLI | ✓ | [firecrawl.js](../clis/firecrawl.js) |
 | SDK | ✓ | Node, Python, Go, Rust |
 

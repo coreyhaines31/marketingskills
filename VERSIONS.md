@@ -6,56 +6,108 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.0 | 2026-05-05 |
 | ad-creative | 2.9.3 | 2026-10-02 |
-| ai-seo | 2.7.3 | 2026-10-06 |
+| ai-seo | 2.7.4 | 2026-10-07 |
 | analytics | 2.0.2 | 2026-10-02 |
 | aso | 2.0.1 | 2026-08-19 |
 | attribution | 1.1.2 | 2026-10-02 |
 | churn-prevention | 2.0.1 | 2026-10-02 |
 | co-marketing | 2.0.2 | 2026-10-02 |
-| cold-email | 2.1.0 | 2026-10-02 |
+| cold-email | 2.2.0 | 2026-10-07 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.1.2 | 2026-10-02 |
+| competitor-profiling | 2.1.3 | 2026-10-07 |
 | competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.2 | 2026-10-02 |
-| copy-editing | 2.1.0 | 2026-10-02 |
+| content-strategy | 2.1.3 | 2026-10-07 |
+| copy-editing | 2.1.1 | 2026-10-07 |
 | copywriting | 2.1.0 | 2026-10-02 |
-| cro | 2.0.0 | 2026-05-05 |
+| cro | 2.0.1 | 2026-10-07 |
 | customer-research | 2.0.4 | 2026-10-02 |
 | directory-submissions | 2.1.0 | 2026-10-02 |
-| emails | 2.1.1 | 2026-10-02 |
+| emails | 2.1.2 | 2026-10-07 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.2 | 2026-10-02 |
-| influencer-marketing | 1.2.0 | 2026-10-07 |
-| launch | 2.1.0 | 2026-10-06 |
+| influencer-marketing | 1.1.2 | 2026-10-02 |
+| launch | 2.2.0 | 2026-10-07 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
-| marketing-loops | 1.2.1 | 2026-10-02 |
+| marketing-loops | 1.4.0 | 2026-10-07 |
 | marketing-plan | 1.2.0 | 2026-10-02 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.4 | 2026-10-06 |
+| ads | 2.4.5 | 2026-10-07 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
 | pricing | 2.1.2 | 2026-10-02 |
 | product-marketing | 2.1.0 | 2026-07-16 |
 | programmatic-seo | 2.1.0 | 2026-10-06 |
-| prospecting | 1.1.3 | 2026-10-06 |
+| prospecting | 1.2.0 | 2026-10-07 |
 | public-relations | 1.2.0 | 2026-10-02 |
 | referrals | 2.0.2 | 2026-10-02 |
-| revops | 2.0.1 | 2026-10-02 |
-| sales-enablement | 2.3.2 | 2026-10-02 |
+| revops | 2.1.0 | 2026-10-07 |
+| sales-enablement | 2.4.0 | 2026-10-07 |
 | schema | 2.0.0 | 2026-05-05 |
-| seo-audit | 2.0.1 | 2026-08-19 |
+| seo-audit | 2.1.0 | 2026-10-07 |
 | signup | 2.0.0 | 2026-05-05 |
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.0 | 2026-10-07 |
+| social | 2.3.3 | 2026-10-07 |
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.20 (2026-10-07)
+
+Modern outbound, from a full audit of the sales and GTM skills against 2025–26 practice. Everything extends existing skills. Tools ship alongside in #791.
+
+- **cold-email** (2.1.0 → 2.2.0): scope widened from writing cold emails to running outbound. Five new references:
+  - `deliverability.md`: secondary domains, mailbox math, SPF/DKIM/DMARC, Gmail's hard rejections from November 2025 and Microsoft's enforcement from May 2025, warmup, tracking off, monitoring, and stop-loss rules.
+  - `linkedin-outreach.md`: limits, the engage-then-connect sequence, copy, and the automation decision after LinkedIn's 2025–26 actions against vendors.
+  - `multichannel-cadence.md`: cadences by tier, the rule that a reply on any channel stops all of them, calls, video, direct mail, and ads.
+  - `outbound-plays.md`: value-first teardown, product-led, problem-led, and founder-led plays.
+  - `reply-handling.md`: reply types, response speed, booking, early objections, and what an agent may send alone.
+
+  Benchmarks drop open rate and use 2025–26 data. A tool section was added, and the description now carries the core rules (secondary domains, verify first, tracking off, stop every channel on a reply).
+- **prospecting** (1.1.3 → 1.2.0): three new references.
+  - `signal-plays.md`: signal ranking and freshness windows, mapping each signal to a play, and account tiers.
+  - `account-research.md`: account briefs and rules for agent research (facts before angles, "no hook found").
+  - `sourcing-and-enrichment.md`: alternatives to scraping LinkedIn, the enrichment waterfall and provider bake-off, catch-all and re-verification policy, and a suppression list shared across channels.
+
+  `compliance.md` fixes two errors: GDPR does apply to LinkedIn messages, and Google Place IDs may be stored. It adds UK PECR (fines up to £17.5M), the consent requirement for B2B email in Germany, Australia, and US phone rules (DNC, AI voice under the TCPA). Legacy Clearbit references are replaced, and the tool table is updated with verified MCP status.
+- **sales-enablement** (2.3.2 → 2.4.0): new `references/cold-call-scripts.md` covering openers, first-minute pushback, voicemail, and gatekeepers.
+- **revops** (2.0.1 → 2.1.0): an outbound stage model with attribution fields and handoff rules.
+- **marketing-loops** (1.3.0 → 1.4.0): four outbound loops (signal sweep, reply triage, cold-domain health, sequence retro) and `references/outbound-operator.md`, with approval rules by tier. The catalog now has 52 loops.
+- **emails** (2.1.1 → 2.1.2), **competitor-profiling** (2.1.2 → 2.1.3), **ads** (2.4.4 → 2.4.5), **social** (2.3.2 → 2.3.3): route outbound requests to cold-email and account research to prospecting.
+- **cro** (2.0.0 → 2.0.1): replaces a legacy Clearbit reference.
+- **Tools** (#791):
+  - Instantly CLI moved to API v2, plus its official MCP.
+  - A new Truelist CLI.
+  - New guides for Attio, HeyReach, FullEnrich, LeadMagic, TheirStack, and Apify.
+  - MCP status checked across outbound tools; 30 are now listed.
+  - Clearbit marked legacy.
+  - LinkedIn Ads CLI moved to the versioned REST API.
+  - A sales outbound quick start in the registry.
+
+### 2.11.19 (2026-10-07)
+
+SEO operations: running SEO as a standing job, not a one-off audit. Everything extends existing skills.
+
+- **marketing-loops** (1.2.1 → 1.3.0): new `references/seo-operator.md`, a recipe that combines the SEO loops into one scheduled operator for a site the agent can edit from its repo. It covers a five-setting brief (ship mode defaults to PRs for review); shared state in `.agents/seo/` (a claims ledger, a query map with one primary query per page, and a work queue ranked by expected conversions per hour); every-run, weekly and monthly schedules; a first-run checklist; operating rules; a writing gate; and a one-screen weekly report. Three new catalog loops:
+  - **striking-distance push**: positions 8–20, plus top-5 pages with weak click-through.
+  - **AI-answer check**: a weekly prompt panel. Misstated facts send you to fix the page that should state them, and cited sources become outreach targets.
+  - **claim-drift**: product changes that make marketing claims false.
+
+  Also fixes the stale loop count (now 48). New triggers: 'run my SEO,' 'SEO operator,' 'daily SEO agent.' New eval.
+- **seo-audit** (2.0.1 → 2.1.0): two new references.
+  - `references/rankings-push.md`: finding striking-distance and weak-CTR candidates, checking cannibalization, diagnosing against the top three results, making the smallest fix that closes the gap, judging results after 3–4 weeks, and a checklist for shipping a new page.
+  - `references/title-tags.md`: title patterns by page type, why Google rewrites titles, low-CTR fixes, and a table format for bulk audits.
+
+  New triggers: 'stuck on page 2,' 'striking distance keywords,' 'title tag rewrite,' 'low CTR.' New eval.
+- **copy-editing** (2.1.0 → 2.1.1): `references/content-refresh.md` now starts from a SERP gap analysis: a coverage grid against five competitors, gaps ranked by how many competitors cover them, matching coverage rather than word count, and an approval checkpoint. It adds what to keep (the URL, linked anchors, the voice) and a handoff list for whoever publishes.
+- **launch** (2.1.0 → 2.2.0): new `references/shipped-changes.md`, which turns merged PRs into a weekly changelog entry, drafts sized to each change, a list of pages the changes made wrong, and new content opportunities. Only live, customer-visible changes count, and every claim must come from the change itself. New triggers: 'changelog,' 'release notes,' 'what did we ship this week.' New eval.
+- **content-strategy** (2.1.2 → 2.1.3): an information-gain gate for searchable content. If you can't say what the piece adds that the top results lack, don't write it.
+- **ai-seo** (2.7.3 → 2.7.4): visibility-audit prompts are spread across buyer awareness stages, plus guidance on turning findings into work: fix the page behind a misstated fact, and treat cited sources as outreach targets when you're absent.
 
 ### 2.11.18 (2026-10-06)
 

@@ -7,7 +7,7 @@ Scheduling and booking platform API for managing event types, scheduled events, 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API v2 - event types, scheduled events, invitees, availability |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `https://mcp.calendly.com` (OAuth with dynamic client registration) ([docs](https://developer.calendly.com/docs/mcp/calendly-mcp-server)) |
 | CLI | ✓ | [calendly.js](../clis/calendly.js) |
 | SDK | ✓ | No official SDK; community libraries available |
 

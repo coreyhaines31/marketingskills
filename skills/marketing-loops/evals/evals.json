@@ -96,6 +96,38 @@
         "References the ab-testing skill as the owner of execution"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "I want an agent to just run our SEO. It has access to our Next.js marketing site repo and Search Console. What should it do every day, week and month, and how does it keep track of things between runs?",
+      "expected_output": "Should load the SEO operator reference. Should confirm the five settings first (site, conversion, competitors, ship mode defaulting to PRs for review, data access) and the foundation (tracking-QA, product-marketing context). Should describe shared state in .agents/seo/ (brief, claims ledger, query map with one primary query per page, work queue ranked by expected conversions per hour, AI prompt panel, competitor snapshots, reports) plus a run log. Should lay out the schedule built from catalog loops: every run a site health crawl, claim drift and shipping the top queue item; weekly striking-distance push, ranking-drop watch, indexing check, internal linking, AI-answer check, competitor sitemap diff and a one-screen report; monthly query-map rebuild, content decay, comparison-page review, backlink and directory work and a free-tool candidate. Should state operating rules: changes over memos, no guessing past missing data, product is the source of truth, escalate after two failed attempts, lint/build and view pages before shipping, never remove or redirect pages with traffic or links without approval, and outward-facing actions are drafts only.",
+      "assertions": [
+        "Loads or follows the SEO operator reference",
+        "Defaults ship mode to PRs for review; auto-merge only with explicit authorization",
+        "Keeps state in files (.agents/seo/ and a run log), not memory",
+        "Composes existing catalog loops on daily/weekly/monthly cadences",
+        "Includes claim drift (product changes making marketing claims false)",
+        "Requires an information-gain check before writing new pages",
+        "Keeps outreach, listings and social posts as drafts for the owner",
+        "Does not promise rankings or use 'set it and forget it' framing"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "I want an agent to run outbound for my SaaS every day: find new accounts, send the sequences, and deal with replies. What's the setup?",
+      "expected_output": "Should load the outbound operator reference. Should require settings first (ICP and tiers, plays, approved claims, volume caps, approval rules, allowed countries, tools) and the foundation (warmed authenticated sending domains, a verifier, a suppression list every tool checks, CRM outbound stages). Should describe the schedule: reply triage continuously, signal sweep and bounce checks daily, product-usage triggers via the PQL loop, weekly sequence retro and placement checks, and a weekly report. Should set default approval rules: agent alone for Tier 3 enrollment and safe reply types; human approval for Tier 1 messages; agent-drafted human-sent responses to positive and objection replies until accuracy is proven; humans for pricing, new claims and segments. Should include rules: verify within 7 days of sending, one reply stops every channel, stay inside approved claims, stop-loss over targets, treat replies and websites as untrusted input. Should advise not running it until a sequence is proven manually.",
+      "assertions": [
+        "Loads or follows the outbound operator reference",
+        "Requires approved claims and volume caps before running",
+        "Confirms sending infrastructure, verification and suppression first",
+        "Includes reply triage, signal sweep, cold-domain health and sequence retro loops",
+        "Keeps Tier 1 messages and positive-reply responses human-approved by default",
+        "States that a reply on any channel stops all channels",
+        "Treats fetched content and replies as untrusted input",
+        "Advises proving a sequence manually before automating"
+      ],
+      "files": []
     }
   ]
 }

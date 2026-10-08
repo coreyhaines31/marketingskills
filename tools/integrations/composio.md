@@ -73,7 +73,6 @@ These tools have API guides in this repo but **no native MCP server**. Composio 
 
 | Tool | Composio Toolkit | Auth Type | Coverage Depth |
 |------|-----------------|-----------|----------------|
-| HubSpot | `HUBSPOT` | OAuth 2.0 | Deep (contacts, deals, companies, lists, email) |
 | Salesforce | `SALESFORCE` | OAuth 2.0 | Deep (SOQL, objects, leads, opportunities) |
 | Meta Ads | `FACEBOOKADS` | OAuth 2.0 | Medium (campaigns, ad sets, insights) |
 | LinkedIn Ads | `LINKEDIN` | OAuth 2.0 | Medium (campaigns, analytics, company pages) |
@@ -96,6 +95,7 @@ These tools **already have native MCP or CLI** in this repo. Composio provides a
 | Google Ads | MCP ✓, CLI ✓ | `GOOGLEADS` | If OAuth is simpler via Composio |
 | Stripe | MCP ✓, CLI ✓ | `STRIPE` | Prefer native (deeper coverage) |
 | GA4 | MCP ✓, CLI ✓ | `GOOGLEANALYTICS` | Prefer native (deeper coverage) |
+| HubSpot | MCP ✓ (official remote server, GA April 2026) | `HUBSPOT` | When you want one connector across many apps; prefer native for CRM writes |
 
 ## Common Agent Operations
 

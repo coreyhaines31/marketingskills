@@ -1,14 +1,14 @@
 # Lemlist
 
-Cold email outreach platform with personalization and campaign management.
+Multichannel outreach platform: email sequences plus LinkedIn steps (invitations, messages, profile visits) and WhatsApp in one campaign, with personalization, a built-in lead database and enrichment, and reply tracking. Checked against [developer.lemlist.com](https://developer.lemlist.com/api-reference/getting-started/overview) on 2026-10-07.
 
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for campaigns, leads, activities, webhooks |
-| MCP | - | Not available |
-| CLI | [✓](../clis/lemlist.js) | Zero-dependency Node.js CLI |
+| MCP | ✓ | Official hosted server at `https://app.lemlist.com/mcp`: OAuth, or an API key in `X-API-Key` ([setup](https://developer.lemlist.com/mcp/setup)) |
+| CLI | [✓](../clis/lemlist.js) | Zero-dependency Node.js CLI in this repo; lemlist also publishes an [official CLI](https://developer.lemlist.com/cli/overview) |
 | SDK | - | API-only |
 
 ## Authentication
@@ -99,12 +99,20 @@ node tools/clis/lemlist.js team info
 
 ## Rate Limits
 
-- API rate limits vary by plan
-- Recommended: stay under 10 requests/second
+- 20 requests per 2 seconds ([rate limit docs](https://developer.lemlist.com/api-reference/getting-started/rate-limits))
+- LinkedIn steps have their own daily limits per sender (invitations, messages, profile visits), settable through the API. Keep them conservative; any LinkedIn automation risks account restrictions under LinkedIn's terms.
 
 ## Use Cases
 
-- **Link building outreach**: Add prospects to campaigns for backlink requests
-- **Campaign management**: Monitor open/reply rates across outreach campaigns
-- **Lead management**: Add, remove, and track leads across campaigns
-- **Webhook integration**: Get real-time notifications for email events
+- **Sales outbound**: email + LinkedIn sequences to verified, segmented lists, from secondary domains
+- **Cross-channel stops**: a reply on any lemlist channel stops the lead's remaining steps; push replies and booked meetings that happen elsewhere back via the API so the sequence stops there too
+- **Reply tracking**: webhooks for replies, bounces, and unsubscribes feed the CRM and suppression lists
+- **Link building and PR outreach**: the same campaign mechanics work for backlink and press outreach
+
+Judge campaigns on replies, positive replies, and meetings rather than opens.
+
+## Relevant Skills
+
+- cold-email
+- prospecting
+- revops

@@ -90,6 +90,7 @@ Every CLI reads credentials from environment variables:
 | `sendgrid` | `SENDGRID_API_KEY` |
 | `tiktok-ads` | `TIKTOK_ACCESS_TOKEN`, `TIKTOK_ADVERTISER_ID` |
 | `tolt` | `TOLT_API_KEY` |
+| `truelist` | `TRUELIST_API_KEY` |
 | `trustpilot` | `TRUSTPILOT_API_KEY`, `TRUSTPILOT_API_SECRET`, `TRUSTPILOT_BUSINESS_UNIT_ID` |
 | `typeform` | `TYPEFORM_API_KEY` |
 | `hunter` | `HUNTER_API_KEY` |
@@ -208,6 +209,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `supermetrics.js` | Data Aggregation | [Supermetrics](https://supermetrics.com) |
 | `tiktok-ads.js` | Ads | [TikTok Ads](https://ads.tiktok.com) |
 | `tolt.js` | Referral | [Tolt](https://tolt.io) |
+| `truelist.js` | Email Verification | [Truelist](https://truelist.io) |
 | `trustpilot.js` | Reviews | [Trustpilot](https://trustpilot.com) |
 | `typeform.js` | Forms | [Typeform](https://typeform.com) |
 | `wistia.js` | Video | [Wistia](https://wistia.com) |

@@ -51,15 +51,18 @@ Anyone — including tool makers and partners — may contribute content that na
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
-| clearbit | Data Enrichment | ✓ | - | [✓](clis/clearbit.js) | ✓ | [clearbit.md](integrations/clearbit.md) |
-| apollo | Data Enrichment | ✓ | - | [✓](clis/apollo.js) | - | [apollo.md](integrations/apollo.md) |
+| clearbit | Data Enrichment (legacy) | ✓ | - | [✓](clis/clearbit.js) | ✓ | [clearbit.md](integrations/clearbit.md) |
+| apollo | Data Enrichment | ✓ | ✓ | [✓](clis/apollo.js) | - | [apollo.md](integrations/apollo.md) |
 | zoominfo | Data Enrichment | ✓ | ✓ | [✓](clis/zoominfo.js) | - | [zoominfo.md](integrations/zoominfo.md) |
 | clay | Data Enrichment | ✓ | ✓ | [✓](clis/clay.js) | - | [clay.md](integrations/clay.md) |
+| fullenrich | Data Enrichment | ✓ | ✓ | - | - | [fullenrich.md](integrations/fullenrich.md) |
+| leadmagic | Data Enrichment | ✓ | ✓ | ✓ | - | [leadmagic.md](integrations/leadmagic.md) |
 | supermetrics | Data Aggregation | ✓ | ✓ | [✓](clis/supermetrics.js) | - | [supermetrics.md](integrations/supermetrics.md) |
 | coupler | Data Aggregation | ✓ | ✓ | [✓](clis/coupler.js) | - | [coupler.md](integrations/coupler.md) |
-| hubspot | CRM | ✓ | - | ✓ | ✓ | [hubspot.md](integrations/hubspot.md) |
+| hubspot | CRM | ✓ | ✓ | ✓ | ✓ | [hubspot.md](integrations/hubspot.md) |
 | salesforce | CRM | ✓ | - | ✓ | ✓ | [salesforce.md](integrations/salesforce.md) |
-| close | CRM | ✓ | - | [✓](clis/close.js) | - | [close.md](integrations/close.md) |
+| close | CRM | ✓ | ✓ | [✓](clis/close.js) | - | [close.md](integrations/close.md) |
+| attio | CRM | ✓ | ✓ | - | ✓ | [attio.md](integrations/attio.md) |
 | stripe | Payments | ✓ | ✓ | ✓ | ✓ | [stripe.md](integrations/stripe.md) |
 | paddle | Payments | ✓ | - | [✓](clis/paddle.js) | ✓ | [paddle.md](integrations/paddle.md) |
 | rewardful | Referral | ✓ | - | [✓](clis/rewardful.js) | - | [rewardful.md](integrations/rewardful.md) |
@@ -84,14 +87,15 @@ Anyone — including tool makers and partners — may contribute content that na
 | postscript | SMS | ✓ | - | - | - | [postscript.md](integrations/postscript.md) |
 | attentive | SMS | ✓ | - | - | - | [attentive.md](integrations/attentive.md) |
 | audiencetap | SMS/Email | ✓ | - | - | - | [audiencetap.md](integrations/audiencetap.md) |
-| hunter | Email Outreach | ✓ | - | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
+| hunter | Email Outreach | ✓ | ✓ | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
-| truelist | Email Verification | ✓ | ✓ | - | ✓ | [truelist.md](integrations/truelist.md) |
+| truelist | Email Verification | ✓ | ✓ | [✓](clis/truelist.js) | ✓ | [truelist.md](integrations/truelist.md) |
 | github | Developer Intent | ✓ | - | [✓](clis/github-prospects.js) | ✓ | [github.md](integrations/github.md) |
 | firecrawl | Site Scraping & AI Search | ✓ | ✓ | [✓](clis/firecrawl.js) | ✓ | [firecrawl.md](integrations/firecrawl.md) |
 | browserbase | Site Scraping | ✓ | ✓ | - | ✓ | [browserbase.md](integrations/browserbase.md) |
-| lemlist | Email Outreach | ✓ | - | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |
-| instantly | Email Outreach | ✓ | - | [✓](clis/instantly.js) | - | [instantly.md](integrations/instantly.md) |
+| apify | Site Scraping | ✓ | ✓ | ✓ | ✓ | [apify.md](integrations/apify.md) |
+| lemlist | Email Outreach | ✓ | ✓ | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |
+| instantly | Email Outreach | ✓ | ✓ | [✓](clis/instantly.js) | - | [instantly.md](integrations/instantly.md) |
 | google-ads | Ads | ✓ | ✓ | [✓](clis/google-ads.js) | ✓ | [google-ads.md](integrations/google-ads.md) |
 | meta-ads | Ads | ✓ | - | [✓](clis/meta-ads.js) | ✓ | [meta-ads.md](integrations/meta-ads.md) |
 | linkedin-ads | Ads | ✓ | - | [✓](clis/linkedin-ads.js) | - | [linkedin-ads.md](integrations/linkedin-ads.md) |
@@ -99,11 +103,12 @@ Anyone — including tool makers and partners — may contribute content that na
 | zapier | Automation | ✓ | ✓ | [✓](clis/zapier.js) | ✓ | [zapier.md](integrations/zapier.md) |
 | hotjar | CRO | ✓ | - | [✓](clis/hotjar.js) | - | [hotjar.md](integrations/hotjar.md) |
 | optimizely | A/B Testing | ✓ | - | [✓](clis/optimizely.js) | ✓ | [optimizely.md](integrations/optimizely.md) |
-| calendly | Scheduling | ✓ | - | [✓](clis/calendly.js) | - | [calendly.md](integrations/calendly.md) |
+| calendly | Scheduling | ✓ | ✓ | [✓](clis/calendly.js) | - | [calendly.md](integrations/calendly.md) |
 | savvycal | Scheduling | ✓ | - | [✓](clis/savvycal.js) | - | [savvycal.md](integrations/savvycal.md) |
 | typeform | Forms | ✓ | - | [✓](clis/typeform.js) | ✓ | [typeform.md](integrations/typeform.md) |
 | intercom | Messaging | ✓ | - | [✓](clis/intercom.js) | ✓ | [intercom.md](integrations/intercom.md) |
 | outreach | Sales Engagement | ✓ | ✓ | [✓](clis/outreach.js) | - | [outreach.md](integrations/outreach.md) |
+| heyreach | LinkedIn Outreach | ✓ | ✓ | ✓ | - | [heyreach.md](integrations/heyreach.md) |
 | crossbeam | Partner Ecosystem | ✓ | ✓ | [✓](clis/crossbeam.js) | - | [crossbeam.md](integrations/crossbeam.md) |
 | introw | Partner Ecosystem | - | ✓ | - | - | [introw.md](integrations/introw.md) |
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
@@ -112,6 +117,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
+| theirstack | Hiring & Tech Signals | ✓ | ✓ | - | - | [theirstack.md](integrations/theirstack.md) |
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | - | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
@@ -177,8 +183,9 @@ Customer relationship management and sales tools.
 | **hubspot** | SMB, marketing + sales alignment | ✓ |
 | **salesforce** | Enterprise, complex sales processes | ✓ |
 | **close** | SMB, high-velocity sales | [✓](clis/close.js) |
+| **attio** | Startups and agencies, flexible objects and lists | API + hosted MCP |
 
-**Agent recommendation**: HubSpot for startups/SMBs. Close for high-velocity inside sales. Salesforce for enterprise.
+**Agent recommendation**: HubSpot for startups/SMBs. Attio for startups and agencies that want a flexible CRM an agent can read and write. Close for high-velocity inside sales. Salesforce for enterprise.
 
 ### Payments
 
@@ -335,12 +342,14 @@ Company and person data enrichment for sales and marketing.
 
 | Tool | Best For | Notes |
 |------|----------|-------|
-| **clearbit** | Company/person enrichment | Now HubSpot Breeze |
+| **clearbit** | Company/person enrichment (existing API keys only) | Now HubSpot Breeze Intelligence; no new standalone API keys; Logo API ended 2025-12-08 |
 | **apollo** | B2B prospecting, email finding | Large database |
 | **zoominfo** | B2B contacts, intent data | Enterprise-grade |
 | **clay** | Waterfall enrichment, outbound | 75+ data providers |
+| **fullenrich** | Waterfall email + mobile finding | Many providers per lookup; charges only on a hit; verify its catch-all results |
+| **leadmagic** | Email finding, job changes, technographics, lookalikes | Credit-based API; charges only on a hit |
 
-**Agent recommendation**: Clearbit for enrichment. Apollo for prospecting and outbound. ZoomInfo for enterprise B2B data with intent signals. Clay for waterfall enrichment across multiple providers.
+**Agent recommendation**: Apollo for prospecting and outbound. Clearbit only if you already hold a legacy API key (otherwise Breeze Intelligence inside HubSpot). ZoomInfo for enterprise B2B data with intent signals. Clay for waterfall enrichment across multiple providers.
 
 ### Email Verification
 
@@ -348,7 +357,7 @@ Pre-outreach email deliverability validation.
 
 | Tool | Best For | Notes |
 |------|----------|-------|
-| **truelist** | Bulk + single email deliverability validation | Returns `email_state` (ok / email_invalid / risky / unknown / accept_all) + `email_sub_state`. MCP server + 7-language SDKs available. |
+| **truelist** | Bulk + single email verification, catch-all resolution | Returns `email_state` (ok / email_invalid / accept_all / risky / unknown) + `email_sub_state`. Batches with webhook + CSV results, `enhanced` strategy for catch-alls. Hosted OAuth MCP, CLI, 7-language SDKs. |
 
 **Agent recommendation**: Truelist for any prospect list before outreach — Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
 
@@ -370,6 +379,7 @@ Programmatic page extraction for **individual public business sites** — not fo
 |------|----------|-------|
 | **firecrawl** | Page → clean markdown / structured extraction | API + MCP; lower overhead for "just give me the content" |
 | **browserbase** | Real Chromium when rendering, interaction, or session state is required | API + MCP (Stagehand); use when Firecrawl can't handle the page |
+| **apify** | Ready-made scrapers for public directories, marketplaces, job boards, and site crawls | API + hosted MCP; per-Actor pricing; never LinkedIn or Google Maps scrapers |
 
 **Agent recommendation**: Default to Firecrawl for static-ish pages and structured extraction. Use Browserbase when the site requires JS rendering, form interaction, cookie consent, or auth — and when you want session recordings for debugging. **For both: discovery happens on platforms (manual browser); extraction happens on the prospect's own website URL.** Don't point either tool at LinkedIn, Google Maps, Yelp, or similar.
 
@@ -415,6 +425,16 @@ Sales engagement and outreach automation platforms.
 
 **Agent recommendation**: Outreach for enterprise sales teams managing multi-touch sequences at scale.
 
+### LinkedIn Outreach
+
+LinkedIn connection requests, messages, and inbox across sender accounts. All third-party LinkedIn automation breaks LinkedIn's User Agreement and risks account restrictions.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **heyreach** | Multi-sender LinkedIn campaigns, email + LinkedIn with Instantly/Smartlead | API + official per-workspace MCP; LinkedIn removed its company page in March 2026 |
+
+**Agent recommendation**: Use real, owned profiles only, keep each sender well under weekly connection limits, and stop LinkedIn steps when a prospect replies on any channel. Alternatives: lemlist and La Growth Machine (email + LinkedIn in one sequence), Expandi, Waalaxy, Unipile (API for builders).
+
 ### Product Analytics
 
 Product analytics, feature adoption tracking, and in-app guidance.
@@ -454,6 +474,17 @@ Website visitor de-anonymization for B2B sales and marketing.
 | **rb2b** | Person-level visitor ID, intent signals | LinkedIn profiles, emails, page-level data |
 
 **Agent recommendation**: RB2B for identifying anonymous B2B website visitors and routing high-intent visitors to outreach tools. Pairs well with Clay for enrichment and Instantly/Lemlist for cold email.
+
+### Hiring & Tech Signals
+
+Buying signals from job postings and technology adoption: who is hiring for a role you serve, and who uses (or just adopted) a relevant tool.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **theirstack** | Companies hiring for a role; tech stack inferred from job postings | API + hosted MCP (OAuth or API key); webhooks for new postings |
+| **leadmagic** | Job-change checks for past champions; per-company technographics and funding | Credit-based API + MCP |
+
+**Agent recommendation**: Use hiring and tech signals to time and justify outreach, not as the whole list. Combine 2–3 signals with ICP fit, and act within days of a fresh signal.
 
 ### Revenue Intelligence
 
@@ -507,7 +538,7 @@ Cold email outreach and email finding tools for link building and sales prospect
 | **lemlist** | Cold email campaigns | Personalization features |
 | **instantly** | Cold email at scale | Email warmup built-in |
 
-**Agent recommendation**: Hunter for finding emails. Lemlist or Instantly for sending cold email campaigns. Snov for combined finding + outreach.
+**Agent recommendation**: Hunter for finding emails. Instantly for email-only cold campaigns at volume; lemlist when the sequence mixes email and LinkedIn. Snov for combined finding + outreach. Verify every list (Truelist) before upload, and send from secondary domains.
 
 ### Data Aggregation
 
@@ -567,12 +598,28 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 - **exa** - AI-powered web search for LLMs and agents
+- **apollo** - B2B prospecting, enrichment, and sequences
+- **hubspot** - CRM read and write
+- **attio** - CRM read and write (writes need confirmation)
+- **close** - CRM and inside sales
+- **instantly** - Cold email campaigns, leads, replies, and warmup
+- **lemlist** - Email + LinkedIn sequences
+- **heyreach** - LinkedIn outreach (per-workspace MCP key)
+- **hunter** - Email finding and verification
+- **truelist** - Email verification and batches
+- **fullenrich** - Waterfall email and mobile enrichment
+- **leadmagic** - Enrichment, job changes, technographics
+- **theirstack** - Hiring and technographic signals
+- **apify** - Ready-made scrapers (Actors)
+- **firecrawl** - Page scraping and crawling
+- **browserbase** - Cloud browser automation
+- **calendly** - Availability and booking links
 
-To use MCP tools, ensure the appropriate MCP server is configured in your environment.
+To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
 ### Composio Integration
 
-[Composio](integrations/composio.md) provides managed OAuth and pre-built connectors for 500+ tools via a single MCP server. It adds MCP access to tools that don't have native MCP servers, including HubSpot, Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion, and more.
+[Composio](integrations/composio.md) provides managed OAuth and pre-built connectors for 500+ tools via a single MCP server. It adds MCP access to tools that don't have native MCP servers, including Salesforce, Meta Ads, LinkedIn Ads, Google Sheets, Slack, Notion, and more. (HubSpot now has its own official MCP server.)
 
 - **Setup**: `npx @composio/mcp@latest setup`
 - **Quick start**: See [tools/composio/README.md](composio/README.md)
@@ -615,6 +662,30 @@ Use Glasser for occasional lookups across several paid vendors when no accounts 
 ### Setting up email automation
 1. Read [customer-io.md](integrations/customer-io.md) for behavior-based automation
 2. Read [resend.md](integrations/resend.md) for transactional email
+
+### Running sales outbound (list → signals → enrich → verify → send → LinkedIn → CRM)
+
+Strategy, copy, cadence, and compliance live in the `prospecting` and `cold-email` skills; this is the tool chain. Pick one tool per job; alternatives are listed so no single vendor is required.
+
+| Step | Job | Tools (alternatives) | Claude Code (CLI/API) | Hosted agent (MCP) |
+|------|-----|----------------------|:---------------------:|:------------------:|
+| 1 | Build the account list | [apollo](integrations/apollo.md), [zoominfo](integrations/zoominfo.md), [clay](integrations/clay.md), [exa](integrations/exa.md) (lookalikes), [leadmagic](integrations/leadmagic.md) (lookalikes), [apify](integrations/apify.md) (public directories) | ✓ | ✓ |
+| 2 | Add buying signals | [theirstack](integrations/theirstack.md) (hiring, tech), [leadmagic](integrations/leadmagic.md) (job changes), [rb2b](integrations/rb2b.md) (site visitors), [github](integrations/github.md) (dev intent) | ✓ | ✓ (rb2b via Zapier) |
+| 3 | Find contacts and emails | [apollo](integrations/apollo.md), [fullenrich](integrations/fullenrich.md) (waterfall), [leadmagic](integrations/leadmagic.md), [hunter](integrations/hunter.md), [clay](integrations/clay.md) | ✓ | ✓ |
+| 4 | Verify before sending | [truelist](integrations/truelist.md) (catch-all resolution) | ✓ | ✓ |
+| 5 | Send email sequences | [instantly](integrations/instantly.md), [lemlist](integrations/lemlist.md), [outreach](integrations/outreach.md) (enterprise) | ✓ | ✓ |
+| 6 | LinkedIn steps | [heyreach](integrations/heyreach.md), [lemlist](integrations/lemlist.md) (email + LinkedIn) | API | ✓ |
+| 7 | Book meetings | [calendly](integrations/calendly.md), [savvycal](integrations/savvycal.md) | ✓ | ✓ (calendly) |
+| 8 | Log in the CRM | [hubspot](integrations/hubspot.md), [attio](integrations/attio.md), [close](integrations/close.md), [salesforce](integrations/salesforce.md) | ✓ | ✓ (salesforce via [composio](integrations/composio.md)) |
+| 9 | Retarget target accounts | [linkedin-ads](integrations/linkedin-ads.md) (Matched Audiences) | ✓ | via composio |
+
+**Rules that apply to every run:**
+- **Verify every list before it reaches a sender** (step 4), and re-verify anything older than 30–60 days. Keep hard bounces under 2%.
+- **One suppression list across tools**: customers, open deals, opt-outs from any channel, and past bounces, synced to every sender's blocklist.
+- **A reply on any channel stops every channel** (email, LinkedIn, calls) for that person.
+- **No LinkedIn scraping** with logged-in accounts, cookies, or fake profiles, and no Google Maps scrapers.
+- **Hosted MCPs mostly sign in with per-user OAuth**, which suits interactive sessions with a human approving writes. Scheduled or unattended runs (a nightly signal sweep, reply triage) should use API keys through the CLIs or APIs, or MCPs that accept a key header (Instantly, Apollo, lemlist, Hunter, TheirStack, Firecrawl).
+- **Stage outward-facing actions for approval** until the workflow has a track record: new campaigns, first sends to a segment, and CRM writes.
 
 ### Running email outreach for backlinks
 1. Read [hunter.md](integrations/hunter.md) for finding emails

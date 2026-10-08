@@ -1,8 +1,8 @@
 ---
 name: revops
-description: "When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes. Also use when the user mentions 'RevOps,' 'revenue operations,' 'lead scoring,' 'lead routing,' 'MQL,' 'SQL,' 'pipeline stages,' 'deal desk,' 'CRM automation,' 'marketing-to-sales handoff,' 'data hygiene,' 'leads aren't getting to sales,' 'pipeline management,' 'lead qualification,' or 'when should marketing hand off to sales.' Use this for anything involving the systems and processes that connect marketing to revenue. For cold outreach emails, see cold-email. For email drip campaigns, see emails. For pricing decisions, see pricing."
+description: "When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes. Also use when the user mentions 'RevOps,' 'revenue operations,' 'lead scoring,' 'outbound pipeline stages,' 'lead routing,' 'MQL,' 'SQL,' 'pipeline stages,' 'deal desk,' 'CRM automation,' 'marketing-to-sales handoff,' 'data hygiene,' 'leads aren't getting to sales,' 'pipeline management,' 'lead qualification,' or 'when should marketing hand off to sales.' Use this for anything involving the systems and processes that connect marketing to revenue. For cold outreach emails, see cold-email. For email drip campaigns, see emails. For pricing decisions, see pricing."
 metadata:
-  version: 2.0.1
+  version: 2.1.0
 ---
 
 # RevOps
@@ -56,6 +56,8 @@ Marketing, sales, and customer success must agree on definitions. If marketing c
 | **Opportunity** | Budget, authority, need, timeline confirmed | Closed-won or closed-lost | Sales (AE) |
 | **Customer** | Closed-won deal | Expands, renews, or churns | CS / Account Mgmt |
 | **Evangelist** | High NPS, referral activity, case study | Ongoing program participation | CS / Marketing |
+
+Outbound contacts follow their own stages (targeted → in sequence → replied → positive → meeting booked → meeting held → opportunity), with fields for signal, tier, sequence, and channel so meetings can be attributed. See [references/lifecycle-definitions.md](references/lifecycle-definitions.md#outbound-stages).
 
 ### MQL Definition
 
@@ -254,7 +256,7 @@ Document every exception. Track which non-standard terms get requested most — 
 
 | Tool | Strength |
 |------|----------|
-| Clearbit | Real-time enrichment, good for tech companies |
+| Clay | Waterfall enrichment across many providers |
 | Apollo | Contact data + sequences, strong for prospecting |
 | ZoomInfo | Enterprise-grade, largest B2B database |
 
@@ -326,7 +328,7 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 | **Salesforce** | Enterprise CRM, pipeline management, reporting | [salesforce.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/salesforce.md) |
 | **Calendly** | Meeting scheduling, round-robin routing | [calendly.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/calendly.md) |
 | **SavvyCal** | Scheduling with priority-based availability | [savvycal.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/savvycal.md) |
-| **Clearbit** | Real-time lead enrichment and scoring | [clearbit.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/clearbit.md) |
+| **Attio** | CRM with a hosted MCP for agents | [attio.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/attio.md) |
 | **Apollo** | Contact data, enrichment, and outbound sequences | [apollo.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/apollo.md) |
 | **ActiveCampaign** | Marketing automation for SMBs, lead scoring | [activecampaign.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/activecampaign.md) |
 | **Zapier** | Cross-tool automation and workflow glue | [zapier.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/zapier.md) |

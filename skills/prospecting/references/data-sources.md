@@ -14,7 +14,7 @@ Tool selection guide for prospecting across all three branches.
 | **Funding signals (SaaS)** | Crunchbase, Pitchbook | Crunchbase free tier sufficient for early signals; Pitchbook for deeper investor data |
 | **Email pattern discovery** | Hunter, Snov, Apollo | Pattern guessing — followed by verification |
 | **Email deliverability verification** | Truelist, Hunter, NeverBounce, ZeroBounce | Always verify before adding to outreach lists |
-| **Visitor identification (warm intent)** | RB2B, Clearbit Reveal, Ploy ◆ (sites hosted on Ploy) | Anonymous traffic → company or person identification |
+| **Visitor identification (warm intent)** | RB2B, Warmly, Vector, Ploy ◆ (sites hosted on Ploy) | Anonymous traffic → company or person identification |
 | **Intent data** | ZoomInfo Intent, 6sense, Bombora | Pre-warmed signals; mid-market+ pricing |
 | **Trigger event monitoring** | Google Alerts, Feedly, LinkedIn Sales Nav alerts | Free options are sufficient for most |
 | **Local business discovery** | Google Maps (manual), Yelp, Facebook Pages | Browser-assisted, not bulk-extracted |
@@ -45,7 +45,7 @@ Tool selection guide for prospecting across all three branches.
 **Use for**: Multi-source enrichment, waterfall lookups, custom scoring logic. When list quality matters more than list size.
 
 **Strengths**:
-- Waterfall logic: try Apollo first → fallback to ZoomInfo → fallback to Clearbit
+- Waterfall logic: query providers in order and stop at the first verified result (see [sourcing-and-enrichment.md](sourcing-and-enrichment.md) for ordering and the bake-off)
 - 100+ data provider integrations
 - AI-powered enrichment (LLM-driven extraction from URLs)
 - Custom columns + scoring formulas
@@ -78,19 +78,21 @@ Tool selection guide for prospecting across all three branches.
 
 ---
 
-## Clearbit
+## Waterfall aggregators (FullEnrich, LeadMagic)
 
-**Use for**: Email → company enrichment, anonymous visitor identification (Clearbit Reveal).
-
-**Strengths**:
-- Strong company enrichment (industry, size, funding, tech stack)
-- Email lookup by domain
-- Reveal: identify anonymous site visitors at company level
-- API-first
+**Use for**: Email and phone enrichment through one API call that queries several providers in sequence. The simpler alternative to building a waterfall in Clay.
 
 **Watch out for**:
-- HubSpot acquisition (2023) — bundled into HubSpot Breeze Intelligence now
-- Standalone API still available but pricing/access depends on tier
+- Coverage and false-positive rates vary by ICP; run the bake-off in [sourcing-and-enrichment.md](sourcing-and-enrichment.md) before committing
+- Verify results anyway; finding an address isn't the same as confirming it
+
+**Integration**: see [fullenrich.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/fullenrich.md) and [leadmagic.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/leadmagic.md)
+
+---
+
+## Clearbit (legacy)
+
+Clearbit was absorbed into HubSpot (Breeze Intelligence). Its free tools ended in 2025, and new standalone API access is no longer generally available. Use HubSpot's enrichment if you're on HubSpot; otherwise use the providers above.
 
 **Integration**: see [clearbit.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/clearbit.md)
 
@@ -238,7 +240,7 @@ Discovery happens on platforms (manual browser-assisted research). Extraction ha
 
 ---
 
-## RB2B / Clearbit Reveal
+## Visitor identification (RB2B, Warmly, Vector)
 
 **Use for**: Identifying anonymous site visitors as warm intent signals.
 
@@ -258,7 +260,7 @@ Discovery happens on platforms (manual browser-assisted research). Extraction ha
 Some site platforms identify visitors natively. Ploy, a [Verified Partner](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md#verified-partners) of this repository (disclosure, not endorsement), returns person, company, title, and pages viewed for visitors to sites hosted on it, with contact enrichment alongside.
 
 **Watch out for**:
-- Only works if the site is hosted on Ploy; for any other site use a pixel tool like RB2B or Clearbit Reveal
+- Only works if the site is hosted on Ploy; for any other site use a pixel tool like RB2B, Warmly, or Vector
 - Metered by plan (as of 2026-10: 50 enrichments a month on Starter, 1,000 on Pro)
 - Ploy says no consent banner is needed; the same privacy and person-level cautions as above still apply, and the legal call is yours
 

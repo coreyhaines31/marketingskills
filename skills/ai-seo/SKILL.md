@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' 'optimize for Claude/Gemini,' 'llms.txt,' 'llms-full.txt,' 'OKF,' 'Open Knowledge Format,' 'knowledge bundle,' 'agent-readable site,' 'agent readiness,' 'is my site agent-ready,' 'WebMCP,' 'do listicles still work for AI,' 'ChatGPT stopped citing comparison pages,' 'how do LLMs see our brand,' 'LinkedIn for AEO,' or 'AI citation format shift.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see seo-audit. For structured data implementation, see schema."
 metadata:
-  version: 2.7.3
+  version: 2.7.4
 ---
 
 # AI SEO
@@ -119,12 +119,11 @@ Test 10-20 of your most important queries across platforms:
 | [query 1] | Yes/No | Yes/No | Yes/No | Yes/No | [who] |
 | [query 2] | Yes/No | Yes/No | Yes/No | Yes/No | [who] |
 
-**Query types to test:**
-- "What is [your product category]?"
-- "Best [product category] for [use case]"
-- "[Your brand] vs [competitor]"
-- "How to [problem your product solves]"
-- "[Your product category] pricing"
+**Query types to test**, spread across buyer awareness stages and written the way people actually type into a chat box:
+- Problem-aware: "How do I [problem your product solves]?"
+- Solution-aware: "What is [your product category]?" / "Best [category] for [use case]"
+- Product-aware: "[Your brand] vs [competitor]" / "Is [your brand] good for [use case]?"
+- Most aware: "[Your brand] pricing" / "Does [your brand] integrate with [tool]?"
 
 Keep the list to prompts that would change revenue. A citation for a glossary question ("what is gross profit?") rarely sells anything. Track prompts like keywords: collapse wording variants of the same intent into one core prompt, then run each several times.
 
@@ -136,6 +135,8 @@ When your competitors get cited and you don't, examine:
 - **Freshness** — Is their content more recently updated?
 - **Schema markup** — Do they have structured data you're missing?
 - **Third-party presence** — Are they cited via Wikipedia, Reddit, review sites?
+
+**Turn findings into work.** If an assistant states something wrong or vague about you, the page that should state that fact isn't saying it plainly; fix that page first. If you're absent, the sources it cites for the prompt are your target list for PR, review sites, and directories.
 
 ### Step 3: Content Extractability Check
 

@@ -7,7 +7,7 @@ CRM platform for marketing, sales, and customer service.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for CRM, Marketing, Sales |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `mcp.hubspot.com` (OAuth 2.1 + PKCE), GA since 2026-04-13 on all plans, read and write ([changelog](https://developers.hubspot.com/changelog/remote-hubspot-mcp-server-is-now-generally-available)) |
 | CLI | ✓ | `hs` CLI for local development |
 | SDK | ✓ | Official client libraries |
 

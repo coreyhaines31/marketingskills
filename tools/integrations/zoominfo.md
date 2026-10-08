@@ -7,7 +7,7 @@ B2B contact database and intent data platform with 100M+ business contacts and c
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Contact Search, Company Search, Enrichment, Intent Data, Scoops |
-| MCP | ✓ | [Claude connector](https://claude.com/connectors/zoominfo) |
+| MCP | ✓ | Official remote server at `https://mcp.zoominfo.com/mcp` (OAuth); search and lookup are free, enrichment uses data credits |
 | CLI | ✓ | [zoominfo.js](../clis/zoominfo.js) |
 | SDK | - | REST API only |
 

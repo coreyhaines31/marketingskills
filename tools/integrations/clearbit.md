@@ -2,11 +2,13 @@
 
 Company and person data enrichment API for converting leads with 100+ firmographic and technographic attributes.
 
+> **Status (checked 2026-10-07): legacy API, not for new projects.** HubSpot acquired Clearbit and now sells its data as Breeze Intelligence inside HubSpot. Per [Clearbit's changelog](https://www.clearbit.com/changelog), the free platform, weekly visitor report, Clearbit Connect, and TAM calculator were discontinued on 2025-04-30, and the public Logo API ended on 2025-12-08. The changelog has no sunset notice for the Enrichment, Reveal, or Prospector APIs, so existing API keys keep working, but third-party reports agree that new standalone API keys aren't issued to accounts created since 2024. If you don't already have a key, use Breeze Intelligence inside HubSpot, or an alternative: [apollo](apollo.md), [zoominfo](zoominfo.md), [leadmagic](leadmagic.md), or [fullenrich](fullenrich.md) for enrichment, and [rb2b](rb2b.md) or similar for visitor identification.
+
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | Person, Company, Combined Enrichment, Reveal, Name to Domain, Prospector |
+| API | Legacy | Person, Company, Combined Enrichment, Reveal, Name to Domain, Prospector; existing keys only (see status) |
 | MCP | - | Not available |
 | CLI | ✓ | [clearbit.js](../clis/clearbit.js) |
 | SDK | ✓ | Node, Ruby, Python, PHP |
@@ -135,8 +137,7 @@ Standard endpoints return `202 Accepted` if data is being processed (use webhook
 
 ## Relevant Skills
 
-- lead-scoring
-- personalization
-- abm-strategy
-- lead-enrichment
-- competitors
+- prospecting
+- revops (lead scoring and routing)
+- ads (ABM targeting)
+- competitor-profiling

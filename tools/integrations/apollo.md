@@ -7,7 +7,7 @@ B2B prospecting and data enrichment platform with 210M+ contacts and 35M+ compan
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | People Search, Company Search, Enrichment, Sequences |
-| MCP | - | Not available |
+| MCP | ✓ | Official hosted server at `https://mcp.apollo.io/mcp`: OAuth 2.0, or an `X-Api-Key` master key for headless use ([docs](https://docs.apollo.io/docs/apollo-mcp)); tool availability varies by plan |
 | CLI | ✓ | [apollo.js](../clis/apollo.js) |
 | SDK | - | REST API only |
 
@@ -141,8 +141,7 @@ POST https://api.apollo.io/api/v1/organizations/enrich
 
 ## Relevant Skills
 
-- abm-strategy
-- lead-enrichment
-- lead-scoring
+- prospecting
 - cold-email
-- competitors
+- revops (lead scoring and routing)
+- ads (ABM targeting)

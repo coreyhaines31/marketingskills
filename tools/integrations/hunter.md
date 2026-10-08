@@ -1,13 +1,13 @@
 # Hunter.io
 
-Email finding and verification platform for outreach and link building.
+Email finding and verification: domain search (everyone with a public email at a company), email finder (name + domain), verifier, enrichment, a B2B company database (Discover), and simple sending campaigns. Used for sales prospecting, PR, and link building. Checked against [hunter.io/api-documentation](https://hunter.io/api-documentation/v2) on 2026-10-07.
 
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for domain search, email finder, verification |
-| MCP | - | Not available |
+| MCP | ✓ | Official server at `https://mcp.hunter.io/mcp`: API key in `X-API-Key`, or OAuth where the client supports it; all plans ([hunter.io/mcp](https://hunter.io/mcp)) |
 | CLI | [✓](../clis/hunter.js) | Zero-dependency Node.js CLI |
 | SDK | - | API-only |
 
@@ -81,10 +81,20 @@ node tools/clis/hunter.js account info
 
 - Free plan: 25 searches/month, 50 verifications/month
 - Paid plans scale with tier
-- API rate limit: 10 requests/second
+- Domain Search and Email Finder: 15 requests/second, 500/minute
+- Email Verifier: 10 requests/second, 300/minute
+- Discover: 5 requests/second, 50/minute
 
 ## Use Cases
 
-- **Link building**: Find email contacts at target domains for outreach
-- **Prospecting**: Build lead lists from company domains
-- **Verification**: Clean email lists before sending campaigns
+- **Sales prospecting**: find the decision maker's email at each target account (one step in an enrichment waterfall), using Discover or Domain Search to list companies and people
+- **Verification**: check emails before they enter a sequence; resolve catch-all results with a dedicated verifier before sending
+- **Link building and PR**: find editors and site owners at target domains
+
+Hunter's confidence score is a guide, not a guarantee. Verify every address before it reaches a sending tool, and keep hard bounces under 2%.
+
+## Relevant Skills
+
+- prospecting
+- cold-email
+- public-relations
