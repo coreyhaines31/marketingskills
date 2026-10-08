@@ -43,10 +43,8 @@ POST https://api.keywordseverywhere.com/v1/get_related_keywords
 Authorization: Bearer {api_key}
 
 {
-  "country": "us",
-  "currency": "USD",
-  "dataSource": "gkp",
-  "kw": ["email marketing"]
+  "keyword": "email marketing",
+  "num": 5
 }
 ```
 
@@ -58,12 +56,22 @@ POST https://api.keywordseverywhere.com/v1/get_pasf_keywords
 Authorization: Bearer {api_key}
 
 {
-  "country": "us",
-  "currency": "USD",
-  "dataSource": "gkp",
-  "kw": ["email marketing"]
+  "keyword": "email marketing",
+  "num": 5
 }
 ```
+
+Related and PASF suggestions each take one seed in `keyword`, with optional `num`
+for the number of suggestions. The CLI accepts `--keyword`; `--kw` remains a scalar
+alias for these two commands. Use comma-separated `--kw` only with `keywords data`.
+
+```bash
+node tools/clis/keywords-everywhere.js keywords related --keyword "email marketing" --num 5 --dry-run
+node tools/clis/keywords-everywhere.js keywords pasf --keyword "email marketing" --num 5 --dry-run
+```
+
+Official request examples: [Related keywords](https://api.keywordseverywhere.com/docs/keyword_data/get_related_keywords.md),
+[PASF keywords](https://api.keywordseverywhere.com/docs/keyword_data/get_pasf_keywords.md).
 
 ### Get domain keywords (what a domain ranks for)
 

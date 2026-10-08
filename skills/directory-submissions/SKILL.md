@@ -2,7 +2,7 @@
 name: directory-submissions
 description: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories," "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing," "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "publish my MCP server," "awesome list," "llms.txt directory," "Claude plugin directory," "agent directory," "dofollow backlinks," "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Directory Submissions
@@ -137,7 +137,16 @@ Per submission:
 3. Upload assets.
 4. Submit.
 5. Log: date, URL, status, moderator notes.
-6. Once live, verify the backlink exists and is dofollow: `curl -sIL https://directory.com/your-listing | grep -i rel=`. If absent, the link is dofollow.
+6. Once live, inspect the actual link to your product using the procedure below; an empty HTTP-header search does not verify a backlink.
+
+### Verify the Actual Backlink
+
+Fetch the listing's HTML with `curl -fsSL https://directory.com/your-listing`, or inspect its rendered DOM in a browser. `curl -I` requests headers; it cannot inspect an anchor's `href` or `rel` attributes.
+
+1. Locate the specific `<a>` that links to your product. Check the destination, including redirects; don't classify an unrelated navigation link or a canonical tag.
+2. Record its actual `rel` tokens, such as `nofollow`, `sponsored`, or `ugc`. For an inspected anchor without those qualifiers, record **unqualified link observed**. There is no `dofollow` attribute to look for, and this is not a guarantee of indexing, ranking credit, or referral traffic. See [Google's link-qualification guidance](https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links).
+3. If the destination anchor is absent from downloaded HTML, check whether the page renders it with JavaScript. If the page is blocked, requires login, or cannot be inspected, record **unverified**; if inspection confirms no destination link, record **missing**. Neither outcome proves an unqualified backlink.
+4. Save the listing URL, checked destination, observed attributes, timestamp, and any access limitation in the tracker notes. Recheck after a directory changes its template or submission tier.
 
 ---
 

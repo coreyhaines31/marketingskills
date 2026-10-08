@@ -54,6 +54,25 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function addPagination(params) {
+  const integer = (name, fallback, minimum) => {
+    const raw = args[name]
+    if (raw === undefined) return fallback
+    if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(Number(raw)) || Number(raw) < minimum) {
+      throw new Error(`--${name} requires an integer of at least ${minimum}`)
+    }
+    return Number(raw)
+  }
+  if (args.page !== undefined && args.skip !== undefined) throw new Error('--page and --skip are mutually exclusive')
+  const limit = integer('limit', 100, 1)
+  if (limit > 100) throw new Error('--limit must be at most 100')
+  const page = integer('page', 1, 1)
+  const skip = integer('skip', (page - 1) * limit, 0)
+  if (!Number.isSafeInteger(skip)) throw new Error('Pagination offset is too large')
+  if (args.limit !== undefined || args.page !== undefined) params.set('_limit', String(limit))
+  if (args.page !== undefined || args.skip !== undefined) params.set('_skip', String(skip))
+}
+
 async function main() {
   let result
 
@@ -63,7 +82,7 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args.query) params.set('query', args.query)
-          if (args.page) params.set('_skip', (parseInt(args.page) - 1) * 100)
+          addPagination(params)
           const qs = params.toString()
           result = await api('GET', `/lead/${qs ? '?' + qs : ''}`)
           break
@@ -93,6 +112,7 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args['lead-id']) params.set('lead_id', args['lead-id'])
+          addPagination(params)
           const qs = params.toString()
           result = await api('GET', `/contact/${qs ? '?' + qs : ''}`)
           break
@@ -128,6 +148,7 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args.status) params.set('status', args.status)
+          addPagination(params)
           const qs = params.toString()
           result = await api('GET', `/opportunity/${qs ? '?' + qs : ''}`)
           break
@@ -144,7 +165,12 @@ async function main() {
           if (!leadId) { result = { error: '--lead-id required' }; break }
           if (!value) { result = { error: '--value required (in cents)' }; break }
           const body = { lead_id: leadId, value: parseInt(value) }
-          if (args.status) body.status_type = args.status
+          const statusId = args['status-id'] || args.status
+          if (['active', 'won', 'lost'].includes(statusId)) {
+            result = { error: '--status-id must be an opportunity status ID (stat_...), not a status type. Retrieve IDs from GET /status/opportunity/.' }
+            break
+          }
+          if (statusId) body.status_id = statusId
           result = await api('POST', '/opportunity/', body)
           break
         }
@@ -159,6 +185,7 @@ async function main() {
           const params = new URLSearchParams()
           if (args['lead-id']) params.set('lead_id', args['lead-id'])
           if (args.type) params.set('_type__type', args.type)
+          addPagination(params)
           const qs = params.toString()
           result = await api('GET', `/activity/${qs ? '?' + qs : ''}`)
           break
@@ -174,6 +201,7 @@ async function main() {
           const params = new URLSearchParams()
           if (args['assigned-to']) params.set('assigned_to', args['assigned-to'])
           if (args['is-complete']) params.set('is_complete', args['is-complete'])
+          addPagination(params)
           const qs = params.toString()
           result = await api('GET', `/task/${qs ? '?' + qs : ''}`)
           break
@@ -199,7 +227,7 @@ async function main() {
         error: 'Unknown command',
         usage: {
           leads: {
-            list: 'leads list [--query <q>] [--page <n>]',
+            list: 'leads list [--query <q>] [--page <n> | --skip <n>] [--limit <1-100>]',
             get: 'leads get --id <id>',
             create: 'leads create --name <name> [--url <url>] [--description <desc>]',
           },
@@ -211,7 +239,7 @@ async function main() {
           opportunities: {
             list: 'opportunities list [--status <status>]',
             get: 'opportunities get --id <id>',
-            create: 'opportunities create --lead-id <id> --value <cents> [--status <status>]',
+            create: 'opportunities create --lead-id <id> --value <cents> [--status-id <stat_id>] [--status <stat_id>]',
           },
           activities: {
             list: 'activities list [--lead-id <id>] [--type <type>]',

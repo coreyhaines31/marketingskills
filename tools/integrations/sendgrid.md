@@ -82,6 +82,17 @@ POST https://api.sendgrid.com/v3/marketing/contacts/search
 }
 ```
 
+### Read marketing campaigns (Single Sends)
+
+The CLI's `campaigns list` and `campaigns get <id>` commands read Marketing Single Sends:
+
+```bash
+GET https://api.sendgrid.com/v3/marketing/singlesends?page_size=25
+GET https://api.sendgrid.com/v3/marketing/singlesends/{single_send_id}
+```
+
+List responses contain `result` and `_metadata`; get responses contain the Single Send object. The CLI prints these provider responses without reshaping them. These commands use the current Marketing API, which is also used by the contact commands. Legacy Marketing Campaigns use the separate `/v3/campaigns` API and are not supported by these commands.
+
 ### Get email statistics
 
 ```bash

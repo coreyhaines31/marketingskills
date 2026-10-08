@@ -134,6 +134,20 @@
         "Recommends interviews or transcripts before changing the battle card"
       ],
       "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "Write me a cold call opener and voicemail for calling heads of growth at SaaS companies that just posted growth marketer jobs.",
+      "expected_output": "Should load the cold call scripts reference. Opener should follow four beats: name and company plainly, a permission-based ask for 30 seconds, the specific reason tied to the job posting and the problem it implies, and one question about their situation. Should avoid 'Did I catch you at a bad time?' and 'How are you today?'. Voicemail should be 20-30 seconds with name, one specific reason, a promise to send an email, and the name repeated, followed by an email referencing the voicemail. Should include brief responses to first-minute pushback such as 'just send me an email' and 'not interested', and mention Do Not Call scrubbing.",
+      "assertions": [
+        "Uses a permission-based opener",
+        "Ties the reason to the job posting signal",
+        "Ends the opener with a question about their situation",
+        "Avoids 'Did I catch you at a bad time?' and 'How are you today?'",
+        "Voicemail is about 20-30 seconds and points to a follow-up email",
+        "Includes responses to common first-minute pushback"
+      ],
+      "files": []
     }
   ]
 }

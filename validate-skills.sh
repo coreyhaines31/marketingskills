@@ -41,13 +41,20 @@ for skill_dir in "$SKILLS_DIR"/*/; do
         continue
     fi
 
-    # Extract frontmatter (between the first two `---` markers, exclusive)
-    frontmatter=$(awk '/^---$/{count++; next} count==1' "$skill_file")
+    # Frontmatter must start the file and have a closing marker. Body sections
+    # containing `---` must not supply skill metadata.
+    frontmatter=$(awk '
+        { sub(/\r$/, "") }
+        NR == 1 && $0 != "---" { exit 1 }
+        /^---$/ { count++; if (count == 2) exit; next }
+        count == 1 { print }
+        END { if (count != 2) exit 1 }
+    ' "$skill_file")
 
-    # Validate frontmatter exists
-    if [[ -z "$frontmatter" ]]; then
+    # Validate both marker boundaries before using the extracted metadata.
+    if [[ $? -ne 0 || -z "$frontmatter" ]]; then
         echo -e "${RED}❌ $skill_name${NC}"
-        echo "   Missing YAML frontmatter (---)"
+        echo "   Missing or unclosed YAML frontmatter (---)"
         ((ISSUES++))
         continue
     fi

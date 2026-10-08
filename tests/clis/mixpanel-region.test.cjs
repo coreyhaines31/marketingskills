@@ -8,9 +8,9 @@ const operations=[
  {args:['track','event','--distinct-id','owned','--event','Owned'],host:0,path:'/track',method:'POST'},
  {args:['profiles','set','--distinct-id','owned','--properties','{"plan":"owned"}'],host:0,path:'/engage',method:'POST'},
  {args:['query','events','--project-id','42'],host:1,path:'/api/2.0/insights',method:'POST'},
- {args:['funnels','get','--funnel-id','owned'],host:1,path:'/api/2.0/funnels',method:'GET'},
- {args:['retention','get','--from-date','2026-01-01','--to-date','2026-01-02'],host:1,path:'/api/2.0/retention',method:'GET'},
- {args:['export','events','--from-date','2026-01-01','--to-date','2026-01-02'],host:2,path:'/api/2.0/export',method:'GET'}
+ {args:['funnels','get','--funnel-id','owned','--project-id','42'],host:1,path:'/api/2.0/funnels',method:'GET'},
+ {args:['retention','get','--from-date','2026-01-01','--to-date','2026-01-02','--project-id','42'],host:1,path:'/api/2.0/retention',method:'GET'},
+ {args:['export','events','--from-date','2026-01-01','--to-date','2026-01-02','--project-id','42'],host:2,path:'/api/2.0/export',method:'GET'}
 ]
 function run(args,region,oracle=''){
  const code=`global.fetch=async(url,options)=>{const assert=require('node:assert/strict');const parsed=new URL(url);${oracle};return new Response(JSON.stringify({owned:true}),{status:200})};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`

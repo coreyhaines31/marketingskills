@@ -232,3 +232,13 @@ Postmark uses simple REST endpoints with PascalCase field names in request/respo
 - transactional-email
 - email-deliverability
 - onboarding-email
+
+### Structured template models
+
+Use `--model-json` for nested template data, line-item arrays, numbers and booleans. The existing `--model key:value,...` shorthand remains available for simple strings; choose one input format per invocation.
+
+```bash
+node tools/clis/postmark.js email send-template --from sender@example.com --to recipient@example.com --template receipt --model-json '{"customer":{"name":"Growth, Inc."},"items":[{"title":"Service: priority","quantity":2}],"paid":true}' --dry-run
+```
+
+The CLI requires a JSON object and preserves its nested value types in `TemplateModel`. Preview first; removing `--dry-run` sends the message. See the [Postmark Templates API](https://postmarkapp.com/developer/api/templates-api).

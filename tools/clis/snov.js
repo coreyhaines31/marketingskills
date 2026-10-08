@@ -27,9 +27,9 @@ async function getToken() {
   return cachedToken
 }
 
-async function api(method, path, body) {
+async function api(method, path, body, base = BASE_URL) {
   if (args['dry-run']) {
-    return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { Authorization: '***', 'Content-Type': 'application/json', Accept: 'application/json' }, body: body || undefined }
+    return { _dry_run: true, method, url: `${base}${path}`, headers: { Authorization: '***', 'Content-Type': 'application/json', Accept: 'application/json' }, body: body || undefined }
   }
   const token = await getToken()
   const opts = {
@@ -41,7 +41,7 @@ async function api(method, path, body) {
     },
   }
   if (body) opts.body = JSON.stringify(body)
-  const res = await fetch(`${BASE_URL}${path}`, opts)
+  const res = await fetch(`${base}${path}`, opts)
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -73,12 +73,64 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function domainTaskPath() {
+  const routes = { company: '', emails: '/domain-emails', generic: '/generic-contacts', prospects: '/prospects' }
+  if (typeof args.kind !== 'string' || !Object.hasOwn(routes, args.kind)) {
+    throw new Error('--kind must be company, emails, generic, or prospects')
+  }
+  for (const flag of ['type', 'limit']) {
+    if (args[flag] !== undefined) throw new Error(`--${flag} belongs to legacy domain search`)
+  }
+  const root = `/domain-search${routes[args.kind]}`
+  if (sub === 'result') {
+    for (const flag of ['domain', 'page', 'positions', 'next']) {
+      if (args[flag] !== undefined) throw new Error(`--${flag} belongs to domain start`)
+    }
+    if (typeof args['task-hash'] !== 'string' || !/^[A-Za-z0-9_-]+$/.test(args['task-hash'])) {
+      throw new Error('--task-hash must be a nonempty task identifier (letters, digits, underscores or hyphens)')
+    }
+    return `${root}/result/${encodeURIComponent(args['task-hash'])}`
+  }
+  if (typeof args.domain !== 'string' || !args.domain.trim()) throw new Error('--domain required')
+  if (args['task-hash'] !== undefined) throw new Error('--task-hash belongs to domain result')
+  const params = new URLSearchParams({ domain: args.domain })
+  if (args.next !== undefined) {
+    if (!['emails', 'generic'].includes(args.kind) || typeof args.next !== 'string' || !args.next) {
+      throw new Error('--next requires a nonempty cursor and kind emails or generic')
+    }
+    params.set('next', args.next)
+  }
+  if (args.page !== undefined || args.positions !== undefined) {
+    if (args.kind !== 'prospects') throw new Error('--page and --positions require kind prospects')
+    if (args.page !== undefined) {
+      const page = Number(args.page)
+      if (typeof args.page !== 'string' || !/^\d+$/.test(args.page) || !Number.isSafeInteger(page) || page < 1) {
+        throw new Error('--page must be a positive safe integer')
+      }
+      params.set('page', args.page)
+    }
+    if (args.positions !== undefined) {
+      if (typeof args.positions !== 'string') throw new Error('--positions requires comma-separated job titles')
+      const positions = args.positions.split(',').map(position => position.trim())
+      if (positions.length > 10 || positions.some(position => !position)) {
+        throw new Error('--positions must contain one to ten nonempty job titles')
+      }
+      for (const position of positions) params.append('positions[]', position)
+    }
+  }
+  return `${root}/start?${params}`
+}
+
 async function main() {
   let result
 
   switch (cmd) {
     case 'domain':
       switch (sub) {
+        case 'start':
+        case 'result':
+          result = await api(sub === 'start' ? 'POST' : 'GET', domainTaskPath(), undefined, 'https://api.snov.io/v2')
+          break
         case 'search': {
           const domain = args.domain
           if (!domain) { result = { error: '--domain required' }; break }
@@ -93,7 +145,7 @@ async function main() {
           break
         }
         default:
-          result = { error: 'Unknown domain subcommand. Use: search, count' }
+          result = { error: 'Unknown domain subcommand. Use: search, count, start, result' }
       }
       break
 
@@ -123,7 +175,7 @@ async function main() {
         case 'find': {
           const email = args.email
           if (!email) { result = { error: '--email required' }; break }
-          result = await api('POST', '/get-prospect-by-email', { email })
+          result = await api('POST', '/get-prospects-by-email', { email })
           break
         }
         case 'add': {
@@ -204,6 +256,8 @@ async function main() {
         error: 'Unknown command',
         usage: {
           domain: {
+            start: 'domain start --kind company|emails|generic|prospects --domain <domain> [--next <cursor>] [--page <n>] [--positions <titles>]',
+            result: 'domain result --kind company|emails|generic|prospects --task-hash <hash>',
             search: 'domain search --domain <domain> [--type all|personal|generic] [--limit <n>]',
             count: 'domain count --domain <domain>',
           },

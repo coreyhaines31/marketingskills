@@ -1,8 +1,8 @@
 ---
 name: marketing-loops
-description: "When the user wants to set up a recurring, self-running marketing workflow — a repeatable loop an AI agent runs on a cadence (weekly, daily, on a trigger) rather than a one-off task. Also use when the user mentions 'marketing loop,' 'recurring marketing workflow,' 'automate my marketing,' 'marketing on autopilot,' 'weekly marketing review,' 'ad fatigue check,' 'content refresh loop,' 'churn watch,' 'ranking drop alert,' 'always-on marketing,' 'marketing automation workflow,' or 'run this every week.' Use this to pick, adapt, and schedule an ongoing marketing loop that orchestrates the other marketing skills. For one-off marketing ideas, see marketing-ideas. For the experimentation loop specifically, see ab-testing."
+description: "When the user wants to set up a recurring, self-running marketing workflow — a repeatable loop an AI agent runs on a cadence (weekly, daily, on a trigger) rather than a one-off task. Also use when the user mentions 'marketing loop,' 'recurring marketing workflow,' 'automate my marketing,' 'marketing on autopilot,' 'weekly marketing review,' 'ad fatigue check,' 'content refresh loop,' 'churn watch,' 'ranking drop alert,' 'run my SEO,' 'SEO operator,' 'daily SEO agent,' 'run my outbound,' 'AI SDR,' 'reply triage,' 'always-on marketing,' 'marketing automation workflow,' or 'run this every week.' Use this to pick, adapt, and schedule an ongoing marketing loop that orchestrates the other marketing skills. For one-off marketing ideas, see marketing-ideas. For the experimentation loop specifically, see ab-testing."
 metadata:
-  version: 1.2.1
+  version: 1.4.0
 ---
 
 # Marketing Loops
@@ -22,7 +22,7 @@ Then:
 4. **Confirm the human checkpoint.** Decide what the loop does autonomously vs. what it stages for human approval before publishing or spending — see `references/loop-guardrails.md`.
 5. **Schedule it** (see "Scheduling a loop" below).
 
-Building more than one loop, or a whole marketing operating system? See `references/loop-orchestration.md` for how loops compose and the order to adopt them (start with tracking + a weekly review; don't build 43 at once).
+Building more than one loop, or a whole marketing operating system? See `references/loop-orchestration.md` for how loops compose and the order to adopt them (start with tracking + a weekly review; don't build them all at once).
 
 ## Anatomy of a Marketing Loop
 
@@ -81,7 +81,15 @@ Default to time-of-day cron for review-style loops (weekly review, ranking watch
 
 ## The Catalog
 
-`references/loop-catalog.md` holds the full library — 43 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
+`references/loop-catalog.md` holds the full library — 52 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Outbound, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
+
+## Running a whole channel: the SEO operator
+
+When the user wants an agent to own SEO for a site rather than run one loop, use `references/seo-operator.md`. It bundles the SEO loops (site health, claim drift, striking-distance push, AI-answer check, keyword gap, content decay, competitor watch, and more) into one schedule with shared memory in `.agents/seo/`, a first-run checklist, operating rules, a writing gate, and a one-screen weekly report.
+
+## Running outbound: the outbound operator
+
+For an agent running day-to-day outbound (signal sweeps, staged outreach, reply triage, sending-domain health, weekly sequence retros), use `references/outbound-operator.md`. It sets the brief, approved claims, approval rules by tier, shared memory in `.agents/outbound/`, and a weekly report.
 
 ## Authoring a new loop
 

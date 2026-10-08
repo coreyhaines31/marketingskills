@@ -64,7 +64,7 @@ async function main() {
     case 'reportsuites':
       switch (sub) {
         case 'list':
-          result = await api('GET', '/reportsuites')
+          result = await api('GET', '/reportsuites/collections/suites')
           break
         default:
           result = { error: 'Unknown reportsuites subcommand. Use: list' }

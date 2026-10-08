@@ -54,6 +54,32 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function paginationParams() {
+  const params = new URLSearchParams()
+  const after = args.after
+  const before = args.before
+  if (after !== undefined && before !== undefined) throw new Error('Use --after or --before, not both')
+  if ((after !== undefined || before !== undefined) && args.page !== undefined) throw new Error('Use cursor pagination or --page, not both')
+  for (const [name, value] of [['after', after], ['before', before]]) {
+    if (value !== undefined) {
+      if (typeof value !== 'string' || value.length === 0) throw new Error(`--${name} requires a cursor token`)
+      params.set(`page[${name}]`, value)
+    }
+  }
+  const size = args['per-page'] === undefined ? 50 : Number(args['per-page'])
+  if ((args['per-page'] !== undefined && (typeof args['per-page'] !== 'string' || !/^[0-9]+$/.test(args['per-page']))) || !Number.isSafeInteger(size) || size < 1 || size > 1000) throw new Error('--per-page must be an integer from 1 to 1000')
+  if (args['per-page'] !== undefined && args.page === undefined) params.set('page[size]', String(size))
+  if (args.page !== undefined) {
+    const page = Number(args.page)
+    if (typeof args.page !== 'string' || !/^[0-9]+$/.test(args.page) || !Number.isSafeInteger(page) || page < 1) throw new Error('--page must be a positive integer')
+    const offset = (page - 1) * size
+    if (!Number.isSafeInteger(offset) || offset > 10000) throw new Error('--page exceeds the provider offset limit; use --after instead')
+    params.set('page[offset]', String(offset))
+    params.set('page[limit]', String(size))
+  }
+  return params
+}
+
 async function main() {
   let result
 
@@ -61,9 +87,7 @@ async function main() {
     case 'prospects':
       switch (sub) {
         case 'list': {
-          const params = new URLSearchParams()
-          if (args.page) params.set('page[number]', args.page)
-          if (args['per-page']) params.set('page[size]', args['per-page'])
+          const params = paginationParams()
           const qs = params.toString()
           result = await api('GET', `/prospects${qs ? '?' + qs : ''}`)
           break
@@ -92,7 +116,9 @@ async function main() {
     case 'sequences':
       switch (sub) {
         case 'list': {
-          result = await api('GET', '/sequences')
+          const params = paginationParams()
+          const qs = params.toString()
+          result = await api('GET', `/sequences${qs ? '?' + qs : ''}`)
           break
         }
         case 'get': {
@@ -136,7 +162,7 @@ async function main() {
     case 'mailings':
       switch (sub) {
         case 'list': {
-          const params = new URLSearchParams()
+          const params = paginationParams()
           if (args['sequence-id']) params.set('filter[sequence][id]', args['sequence-id'])
           const qs = params.toString()
           result = await api('GET', `/mailings${qs ? '?' + qs : ''}`)
@@ -150,7 +176,9 @@ async function main() {
     case 'accounts':
       switch (sub) {
         case 'list': {
-          result = await api('GET', '/accounts')
+          const params = paginationParams()
+          const qs = params.toString()
+          result = await api('GET', `/accounts${qs ? '?' + qs : ''}`)
           break
         }
         case 'get': {
@@ -167,7 +195,7 @@ async function main() {
     case 'tasks':
       switch (sub) {
         case 'list': {
-          const params = new URLSearchParams()
+          const params = paginationParams()
           const state = args.state || args.status
           if (state) params.set('filter[state]', state)
           const qs = params.toString()
@@ -183,6 +211,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
+          pagination: 'All list commands: [--after <cursor> | --before <cursor> | --page <n>] [--per-page <n>]',
           prospects: {
             list: 'prospects list [--page <n>] [--per-page <n>]',
             get: 'prospects get --id <id>',

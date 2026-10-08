@@ -1,29 +1,38 @@
 #!/usr/bin/env node
 
+// Instantly API v2 (v1 was deprecated on 2026-01-19).
+// Docs: https://developer.instantly.ai/api-reference/introduction
+
 const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.INSTANTLY_API_KEY
-const BASE_URL = 'https://api.instantly.ai/api/v1'
+const BASE_URL = 'https://api.instantly.ai/api/v2'
 
 if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'INSTANTLY_API_KEY environment variable required' }))
   process.exit(1)
 }
 
+const INTEREST_STATUSES = {
+  'out-of-office': 0,
+  interested: 1,
+  'meeting-booked': 2,
+  'meeting-completed': 3,
+  won: 4,
+  'not-interested': -1,
+  'wrong-person': -2,
+  lost: -3,
+  'no-show': -4,
+}
+
 async function api(method, path, body) {
-  const separator = path.includes('?') ? '&' : '?'
-  const url = `${BASE_URL}${path}${separator}api_key=${API_KEY}`
+  const url = `${BASE_URL}${path}`
+  const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
   if (args['dry-run']) {
-    const maskedUrl = url.replace(API_KEY, '***')
-    const maskedBody = body ? JSON.parse(JSON.stringify(body)) : undefined
-    if (maskedBody && maskedBody.api_key) maskedBody.api_key = '***'
-    return { _dry_run: true, method, url: maskedUrl, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: maskedBody }
+    return { _dry_run: true, method, url, headers: { ...headers, Authorization: 'Bearer ***' }, body: body || undefined }
   }
   const res = await fetch(url, {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
+    headers: { ...headers, Authorization: `Bearer ${API_KEY}` },
     body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()
@@ -54,8 +63,28 @@ function parseArgs(args) {
   return result
 }
 
+function query(map) {
+  const params = new URLSearchParams()
+  for (const [key, value] of Object.entries(map)) {
+    if (value !== undefined && value !== true && value !== '') params.set(key, value)
+  }
+  const qs = params.toString()
+  return qs ? `?${qs}` : ''
+}
+
+function list(value) {
+  return String(value).split(',').map(v => v.trim()).filter(Boolean)
+}
+
+function target() {
+  if (args['campaign-id'] && args['list-id']) return { error: 'Use --campaign-id or --list-id, not both' }
+  if (args['campaign-id']) return { campaign_id: args['campaign-id'] }
+  if (args['list-id']) return { list_id: args['list-id'] }
+  return { error: '--campaign-id or --list-id required' }
+}
+
 const args = parseArgs(rawArgs)
-const [cmd, sub, ...rest] = args._
+const [cmd, sub] = args._
 
 async function main() {
   let result
@@ -63,162 +92,160 @@ async function main() {
   switch (cmd) {
     case 'campaigns':
       switch (sub) {
-        case 'list': {
-          const params = new URLSearchParams()
-          if (args.limit) params.set('limit', args.limit)
-          if (args.skip) params.set('skip', args.skip)
-          const qs = params.toString()
-          result = await api('GET', `/campaign/list${qs ? '?' + qs : ''}`)
+        case 'list':
+          result = await api('GET', `/campaigns${query({ limit: args.limit, starting_after: args['starting-after'], search: args.search, status: args.status })}`)
           break
-        }
-        case 'get': {
-          const id = args.id
-          if (!id) { result = { error: '--id required' }; break }
-          const params = new URLSearchParams({ campaign_id: id })
-          result = await api('GET', `/campaign/get?${params.toString()}`)
+        case 'get':
+          if (!args.id) { result = { error: '--id required' }; break }
+          result = await api('GET', `/campaigns/${encodeURIComponent(args.id)}`)
           break
-        }
-        case 'status': {
-          const id = args.id
-          if (!id) { result = { error: '--id required' }; break }
-          const params = new URLSearchParams({ campaign_id: id })
-          result = await api('GET', `/campaign/get/status?${params.toString()}`)
+        case 'activate':
+        case 'launch':
+          if (!args.id) { result = { error: '--id required' }; break }
+          result = await api('POST', `/campaigns/${encodeURIComponent(args.id)}/activate`)
           break
-        }
-        case 'launch': {
-          const id = args.id
-          if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', '/campaign/launch', { api_key: API_KEY, campaign_id: id })
+        case 'pause':
+          if (!args.id) { result = { error: '--id required' }; break }
+          result = await api('POST', `/campaigns/${encodeURIComponent(args.id)}/pause`)
           break
-        }
-        case 'pause': {
-          const id = args.id
-          if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', '/campaign/pause', { api_key: API_KEY, campaign_id: id })
+        case 'sending-status':
+          if (!args.id) { result = { error: '--id required' }; break }
+          result = await api('GET', `/campaigns/${encodeURIComponent(args.id)}/sending-status`)
           break
-        }
         default:
-          result = { error: 'Unknown campaigns subcommand. Use: list, get, status, launch, pause' }
+          result = { error: 'Unknown campaigns subcommand. Use: list, get, activate, pause, sending-status' }
       }
       break
 
     case 'leads':
       switch (sub) {
         case 'list': {
-          const campaignId = args['campaign-id']
-          if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          const params = new URLSearchParams({ campaign_id: campaignId })
-          if (args.limit) params.set('limit', args.limit)
-          if (args.skip) params.set('skip', args.skip)
-          result = await api('GET', `/lead/get?${params.toString()}`)
+          const body = {}
+          if (args['campaign-id']) body.campaign = args['campaign-id']
+          if (args['list-id']) body.list_id = args['list-id']
+          if (args.search) body.search = args.search
+          if (args.limit) body.limit = Number(args.limit)
+          if (args['starting-after']) body.starting_after = args['starting-after']
+          result = await api('POST', '/leads/list', body)
           break
         }
         case 'add': {
-          const campaignId = args['campaign-id']
-          const email = args.email
-          if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          if (!email) { result = { error: '--email required' }; break }
-          const lead = { email }
-          if (args['first-name']) lead.first_name = args['first-name']
-          if (args['last-name']) lead.last_name = args['last-name']
-          if (args.company) lead.company_name = args.company
-          result = await api('POST', '/lead/add', { api_key: API_KEY, campaign_id: campaignId, leads: [lead] })
+          if (!args.email) { result = { error: '--email required' }; break }
+          const dest = target()
+          if (dest.error) { result = dest; break }
+          const body = { email: args.email }
+          if (dest.campaign_id) body.campaign = dest.campaign_id
+          if (dest.list_id) body.list_id = dest.list_id
+          if (args['first-name']) body.first_name = args['first-name']
+          if (args['last-name']) body.last_name = args['last-name']
+          if (args.company) body.company_name = args.company
+          if (args['job-title']) body.job_title = args['job-title']
+          if (args.website) body.website = args.website
+          if (args.personalization) body.personalization = args.personalization
+          if (args['skip-if-in-workspace']) body.skip_if_in_workspace = true
+          result = await api('POST', '/leads', body)
           break
         }
-        case 'delete': {
-          const campaignId = args['campaign-id']
-          const email = args.email
-          if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          if (!email) { result = { error: '--email required' }; break }
-          result = await api('POST', '/lead/delete', { api_key: API_KEY, campaign_id: campaignId, delete_list: [email] })
+        case 'bulk-add': {
+          const dest = target()
+          if (dest.error) { result = dest; break }
+          if (!args.file) { result = { error: '--file required (JSON array of lead objects, max 1000)' }; break }
+          let leads
+          try {
+            leads = JSON.parse(require('node:fs').readFileSync(args.file, 'utf8'))
+          } catch (e) {
+            result = { error: `Could not read --file as JSON: ${e.message}` }; break
+          }
+          if (!Array.isArray(leads) || leads.length === 0 || leads.length > 1000) {
+            result = { error: '--file must contain a JSON array of 1 to 1000 leads' }; break
+          }
+          const body = { ...dest, leads }
+          if (args['skip-if-in-workspace']) body.skip_if_in_workspace = true
+          if (args['verify-on-import']) body.verify_leads_on_import = true
+          result = await api('POST', '/leads/add', body)
           break
         }
-        case 'status': {
-          const campaignId = args['campaign-id']
-          const email = args.email
-          if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          if (!email) { result = { error: '--email required' }; break }
-          const params = new URLSearchParams({ campaign_id: campaignId, email })
-          result = await api('GET', `/lead/get/status?${params.toString()}`)
+        case 'delete':
+          if (!args.id) { result = { error: '--id required (lead ID; find it with leads list)' }; break }
+          result = await api('DELETE', `/leads/${encodeURIComponent(args.id)}`)
+          break
+        case 'interest': {
+          if (!args.email) { result = { error: '--email required' }; break }
+          if (args.status === undefined || args.status === true) {
+            result = { error: `--status required. Use one of: ${Object.keys(INTEREST_STATUSES).join(', ')}` }; break
+          }
+          const value = INTEREST_STATUSES[args.status]
+          if (value === undefined) {
+            result = { error: `Unknown --status. Use one of: ${Object.keys(INTEREST_STATUSES).join(', ')}` }; break
+          }
+          const body = { lead_email: args.email, interest_value: value }
+          if (args['campaign-id']) body.campaign_id = args['campaign-id']
+          result = await api('POST', '/leads/update-interest-status', body)
           break
         }
         default:
-          result = { error: 'Unknown leads subcommand. Use: list, add, delete, status' }
+          result = { error: 'Unknown leads subcommand. Use: list, add, bulk-add, delete, interest' }
       }
       break
 
     case 'accounts':
       switch (sub) {
-        case 'list': {
-          const params = new URLSearchParams()
-          if (args.limit) params.set('limit', args.limit)
-          if (args.skip) params.set('skip', args.skip)
-          const qs = params.toString()
-          result = await api('GET', `/account/list${qs ? '?' + qs : ''}`)
+        case 'list':
+          result = await api('GET', `/accounts${query({ limit: args.limit, starting_after: args['starting-after'], search: args.search })}`)
           break
-        }
-        case 'status': {
-          const accountId = args['account-id']
-          if (!accountId) { result = { error: '--account-id required' }; break }
-          const params = new URLSearchParams({ email: accountId })
-          result = await api('GET', `/account/get/status?${params.toString()}`)
+        case 'get':
+          if (!args.email) { result = { error: '--email required' }; break }
+          result = await api('GET', `/accounts/${encodeURIComponent(args.email)}`)
           break
-        }
-        case 'warmup-status': {
-          const accountId = args['account-id']
-          if (!accountId) { result = { error: '--account-id required' }; break }
-          const params = new URLSearchParams({ email: accountId })
-          result = await api('GET', `/account/get/warmup?${params.toString()}`)
+        case 'warmup-analytics':
+          if (!args.emails) { result = { error: '--emails required (comma-separated sending accounts)' }; break }
+          result = await api('POST', '/accounts/warmup-analytics', { emails: list(args.emails) })
           break
-        }
         default:
-          result = { error: 'Unknown accounts subcommand. Use: list, status, warmup-status' }
+          result = { error: 'Unknown accounts subcommand. Use: list, get, warmup-analytics' }
       }
       break
 
     case 'analytics':
       switch (sub) {
-        case 'campaign': {
-          const campaignId = args['campaign-id']
-          if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          const body = { api_key: API_KEY, campaign_id: campaignId }
-          if (args['start-date']) body.start_date = args['start-date']
-          if (args['end-date']) body.end_date = args['end-date']
-          result = await api('POST', '/analytics/campaign/summary', body)
+        case 'campaign':
+          result = await api('GET', `/campaigns/analytics${query({ id: args['campaign-id'], start_date: args['start-date'], end_date: args['end-date'] })}`)
           break
-        }
-        case 'steps': {
-          const campaignId = args['campaign-id']
-          if (!campaignId) { result = { error: '--campaign-id required' }; break }
-          const body = { api_key: API_KEY, campaign_id: campaignId }
-          if (args['start-date']) body.start_date = args['start-date']
-          if (args['end-date']) body.end_date = args['end-date']
-          result = await api('POST', '/analytics/campaign/step', body)
+        case 'overview':
+          result = await api('GET', `/campaigns/analytics/overview${query({ id: args['campaign-id'], start_date: args['start-date'], end_date: args['end-date'] })}`)
           break
-        }
-        case 'account': {
-          const startDate = args['start-date']
-          const endDate = args['end-date']
-          if (!startDate) { result = { error: '--start-date required' }; break }
-          if (!endDate) { result = { error: '--end-date required' }; break }
-          result = await api('POST', '/analytics/campaign/count', { api_key: API_KEY, start_date: startDate, end_date: endDate })
+        case 'steps':
+          if (!args['campaign-id']) { result = { error: '--campaign-id required' }; break }
+          result = await api('GET', `/campaigns/analytics/steps${query({ campaign_id: args['campaign-id'], start_date: args['start-date'], end_date: args['end-date'] })}`)
           break
-        }
         default:
-          result = { error: 'Unknown analytics subcommand. Use: campaign, steps, account' }
+          result = { error: 'Unknown analytics subcommand. Use: campaign, overview, steps' }
+      }
+      break
+
+    case 'emails':
+      switch (sub) {
+        case 'replies':
+          result = await api('GET', `/emails${query({ email_type: 'received', campaign_id: args['campaign-id'], is_unread: args.unread ? 'true' : undefined, limit: args.limit, starting_after: args['starting-after'] })}`)
+          break
+        case 'unread-count':
+          result = await api('GET', '/emails/unread/count')
+          break
+        default:
+          result = { error: 'Unknown emails subcommand. Use: replies, unread-count' }
       }
       break
 
     case 'blocklist':
       switch (sub) {
         case 'list':
-          result = await api('GET', '/blocklist')
+          result = await api('GET', `/block-lists-entries${query({ limit: args.limit, starting_after: args['starting-after'], search: args.search })}`)
           break
         case 'add': {
-          const entries = args.entries
-          if (!entries) { result = { error: '--entries required (comma-separated emails or domains)' }; break }
-          const entryList = entries.split(',').map(e => e.trim())
-          result = await api('POST', '/blocklist/add', { api_key: API_KEY, entries: entryList })
+          if (!args.entries) { result = { error: '--entries required (comma-separated emails or domains)' }; break }
+          const values = list(args.entries)
+          if (values.length > 1000) { result = { error: 'At most 1000 entries per call' }; break }
+          result = await api('POST', '/block-lists-entries/bulk-create', { bl_values: values })
           break
         }
         default:
@@ -231,30 +258,35 @@ async function main() {
         error: 'Unknown command',
         usage: {
           campaigns: {
-            list: 'campaigns list [--limit <n>] [--skip <n>]',
+            list: 'campaigns list [--limit <n>] [--starting-after <cursor>] [--search <text>] [--status <n>]',
             get: 'campaigns get --id <id>',
-            status: 'campaigns status --id <id>',
-            launch: 'campaigns launch --id <id>',
+            activate: 'campaigns activate --id <id>',
             pause: 'campaigns pause --id <id>',
+            'sending-status': 'campaigns sending-status --id <id>',
           },
           leads: {
-            list: 'leads list --campaign-id <id> [--limit <n>] [--skip <n>]',
-            add: 'leads add --campaign-id <id> --email <email> [--first-name <name>] [--last-name <name>] [--company <name>]',
-            delete: 'leads delete --campaign-id <id> --email <email>',
-            status: 'leads status --campaign-id <id> --email <email>',
+            list: 'leads list [--campaign-id <id> | --list-id <id>] [--search <text>] [--limit <n>] [--starting-after <cursor>]',
+            add: 'leads add --campaign-id <id> | --list-id <id> --email <email> [--first-name] [--last-name] [--company] [--job-title] [--website] [--personalization] [--skip-if-in-workspace]',
+            'bulk-add': 'leads bulk-add --campaign-id <id> | --list-id <id> --file leads.json [--skip-if-in-workspace] [--verify-on-import]',
+            delete: 'leads delete --id <lead-id>',
+            interest: `leads interest --email <email> --status <${Object.keys(INTEREST_STATUSES).join('|')}> [--campaign-id <id>]`,
           },
           accounts: {
-            list: 'accounts list [--limit <n>] [--skip <n>]',
-            status: 'accounts status --account-id <email>',
-            'warmup-status': 'accounts warmup-status --account-id <email>',
+            list: 'accounts list [--limit <n>] [--starting-after <cursor>] [--search <text>]',
+            get: 'accounts get --email <sending-account>',
+            'warmup-analytics': 'accounts warmup-analytics --emails <a@x.com,b@x.com>',
           },
           analytics: {
-            campaign: 'analytics campaign --campaign-id <id> [--start-date YYYY-MM-DD] [--end-date YYYY-MM-DD]',
+            campaign: 'analytics campaign [--campaign-id <id>] [--start-date YYYY-MM-DD] [--end-date YYYY-MM-DD]',
+            overview: 'analytics overview [--campaign-id <id>] [--start-date YYYY-MM-DD] [--end-date YYYY-MM-DD]',
             steps: 'analytics steps --campaign-id <id> [--start-date YYYY-MM-DD] [--end-date YYYY-MM-DD]',
-            account: 'analytics account --start-date YYYY-MM-DD --end-date YYYY-MM-DD',
+          },
+          emails: {
+            replies: 'emails replies [--campaign-id <id>] [--unread] [--limit <n>] [--starting-after <cursor>]',
+            'unread-count': 'emails unread-count',
           },
           blocklist: {
-            list: 'blocklist list',
+            list: 'blocklist list [--search <text>] [--limit <n>]',
             add: 'blocklist add --entries <email-or-domain,email-or-domain>',
           },
           options: '--dry-run (show request without executing)',

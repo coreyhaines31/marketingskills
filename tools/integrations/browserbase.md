@@ -7,7 +7,7 @@ Headless browser as a service. Spin up real Chromium browsers via API, drive the
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for session management |
-| MCP | ✓ | Official Browserbase MCP server (Stagehand) |
+| MCP | ✓ | Official hosted server at `https://mcp.browserbase.com/mcp` (Stagehand); the self-hosted GitHub repo was archived 2026-07-20 ([docs](https://docs.browserbase.com/integrations/mcp/introduction)) |
 | CLI | - | None official |
 | SDK | ✓ | Node, Python; drives Playwright/Puppeteer |
 

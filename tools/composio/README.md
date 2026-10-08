@@ -57,7 +57,6 @@ Agent: "Here are your top contacts: ..."
 See [marketing-tools.md](marketing-tools.md) for the full list of Composio toolkits mapped to marketing use cases.
 
 Key tools with new MCP access (no native MCP server in this repo):
-- **HubSpot** — contacts, deals, companies, lists
 - **Salesforce** — SOQL queries, leads, opportunities
 - **Meta Ads** — campaigns, ad sets, insights
 - **LinkedIn Ads** — campaigns, analytics

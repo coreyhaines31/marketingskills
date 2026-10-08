@@ -2,7 +2,7 @@
 name: attribution
 description: When the user wants to figure out which marketing actually drives conversions and revenue, choose or interpret an attribution model, or reconcile conflicting numbers across tools. Also use when the user mentions "attribution," "attribution model," "first-touch vs last-touch," "multi-touch," "which channel drives revenue," "what's my real CAC," "my dashboards disagree," "Google/Meta says X but GA says Y," "media mix model," "MMM," "incrementality," "geo lift," "holdout test," "how did you hear about us," "self-reported attribution," "dark social," or wants to instrument attribution themselves — "stitch my bookings to their source," "SavvyCal/Calendly attribution," "close the identify gap," "track conversions on a third-party domain," "first-party / self-hosted attribution." For event tracking setup and UTMs, see analytics. For ad-platform pixels/CAPI, see ads. For pipeline and CRM revenue reporting, see revops. For the AI-search attribution blind spot, see ai-seo.
 metadata:
-  version: 1.1.2
+  version: 1.1.4
 ---
 
 # Attribution
@@ -37,7 +37,7 @@ Set expectations before touching a number:
 
 - **Attribution is directional, not truth.** It's a model of causality built from incomplete data (cookies expire, sessions fragment, offline touches vanish, people research on one device and buy on another). Treat it as a strong hint, never a verdict.
 - **Every model is an opinion.** "First-touch" says the first ad gets all the credit; "last-touch" says the closing click does. Both are wrong in opposite directions. Choosing a model is choosing whose story to believe — say so out loud.
-- **The attribution gap is normal.** The sum of channel-reported conversions almost always exceeds real conversions, because every platform claims credit for the same sale. Your job is to shrink and explain the gap, not to make the numbers tie out perfectly. They won't.
+- **The attribution gap is normal, so separate outcomes from credit.** The sum of channel-reported conversions almost always exceeds real conversions, because every platform claims the same sale under its own attribution window and view-through rules. Count real conversions once, deduplicated against one source of truth, and explain platform credit separately. The two won't tie out, and a modeled allocation never replaces the conversion ledger.
 
 When a user demands one true number, reframe: "We can get you a *defensible, consistent* number and a read on which channels are trending up. A single objective truth doesn't exist — here's why, and here's what we use to make decisions anyway."
 
@@ -115,12 +115,12 @@ The output is an honest allocation with confidence levels, not a false reconcili
 
 Where conversions hide, making real channels look weak:
 
-- **Direct** — the junk drawer. Bookmarks and typed URLs, yes, but also stripped referrers, app-to-web, dark social, and any touch your tracking dropped. A large direct share is a *measurement* problem, not a channel.
+- **Direct** — the junk drawer. Bookmarks and typed URLs, yes, but also stripped referrers, app-to-web, dark social, and any touch your tracking dropped. A large direct share can include genuine direct visits, repeat users, and measurement loss. Investigate its composition before treating it as a tracking defect.
 - **Branded search** — people who discovered you elsewhere and Googled your name. Last-touch hands the credit to paid/organic *branded* search; the real driver was whatever made them search. Segment branded vs. non-branded or you'll defund the top of funnel.
 - **Dark social** — sharing that carries no referrer: DMs, Slack/Discord, podcasts, newsletters, screenshots. Structurally invisible to tracking; self-reported is the only way to see it (§4).
 - **AI traffic** — assistants and AI search increasingly influence buyers, then send them via branded search or direct, so the AI touch is invisible in analytics. Name it and hand deeper work to **ai-seo**.
 
-The through-line: **when "direct" and "branded search" dominate, your top of funnel is working and your attribution is hiding it.** Say that explicitly — it's the single most common misread in marketing.
+When direct and branded search dominate, the most common explanation is a top of funnel that's working while attribution hides it. Confirm before concluding: rule out existing customers, lost referrers, and offline discovery, then check self-reported attribution or run an incrementality test. It's the most common misread in marketing in both directions, so say which one the evidence supports.
 
 ### 7. Business-type fork
 

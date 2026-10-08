@@ -69,7 +69,11 @@ All data from support.google.com and developer.android.com as of March 2026.
 - **Format:** YouTube URL (public or unlisted)
 - **Duration:** 30 seconds to 2 minutes recommended
 - No ads, no monetization, must be embeddable, not age-restricted
-- **Does NOT autoplay** (only ~6% of visitors tap to play)
+- **Playback:** Can autoplay inline with muted audio for up to 30 seconds, depending on device, user settings, network and placement. A play button appears when autoplay is unavailable.
+- **Creative:** Demonstrate actual app use and the main benefit early, with visuals understandable without audio. Do not assume every visitor autoplays or watches the full video.
+- **Measurement:** Tap-to-play rates exclude autoplay exposure; use listing experiments and your own conversion data before deciding whether a video is worthwhile.
+
+Source: [Google Play preview asset guidelines](https://support.google.com/googleplay/android-developer/answer/9866151).
 
 ## Store Listing Experiments (A/B Testing)
 

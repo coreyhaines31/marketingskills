@@ -131,6 +131,74 @@
         "May briefly mention FAQ schema benefits"
       ],
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Search Console shows a bunch of our pages sitting at positions 9 to 15, and our pricing page ranks #3 but barely gets clicks. Where do we start?",
+      "expected_output": "Should load the rankings push reference. Should bucket candidates: striking distance (positions 8-20 above an impression floor) for content and link fixes, and weak click-through at a top-5 position for title and meta description fixes only. Should prioritize by business value, check for cannibalization first, diagnose each page against the top three results (intent, missing section, freshness, format, links), and make the smallest change that closes the gap, including answering the query in the first two sentences and adding internal links from strong pages. For the pricing page, should rewrite only the title and meta description using the pricing pattern from the title-tags reference. Should record baselines, wait 3-4 weeks before judging, and stop after two rounds with no movement.",
+      "assertions": [
+        "Separates striking-distance pages from the weak-CTR pricing page",
+        "For the pricing page, changes only title and meta description",
+        "Checks for cannibalization before editing",
+        "Diagnoses against the top three results with a concrete reason",
+        "Recommends internal links from strong related pages",
+        "Records baselines and waits 3-4 weeks before judging",
+        "Does not recommend repeatedly resubmitting URLs in Search Console"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Our example.de/ and example.com/de/ pages contain equivalent German content for two regions. The audit says every locale must self-canonicalize and cross-locale canonicals always conflict with hreflang. Must we keep both self-canonicals? Our separate French translation and page-two pagination also need review.",
+      "expected_output": "Reject the blanket rule. For similar or duplicate same-language regional content, consider a preferred canonical with consistent hreflang using current Google guidance. Preserve distinct French translation and per-page pagination strategies; do not consolidate different languages merely because the product matches. Check actual content and signals and avoid promising all regional URLs will stay indexed.",
+      "assertions": [
+        "Distinguishes same-language regional duplicates from distinct translations",
+        "Allows a preferred canonical for same-language duplicates",
+        "Keeps canonical and hreflang signals consistent",
+        "Preserves distinct-language and pagination controls",
+        "Does not guarantee independent indexing"
+      ],
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "I am a mobile locksmith based at my house in Denver. Customers never visit me. I cover Denver and Aurora and want three profiles to rank everywhere. My old citation has the wrong phone. Also write a review request offering $10 off for five stars, and local schema. Give me a practical plan.",
+      "expected_output": "Diagnoses one actual service-area base, hides the private address, corrects the wrong phone, replaces an incentivized/rating-directed request with a neutral honest request, and avoids invented branches or an address in public markup. Explains Google rich-result address requirements without claiming areaServed substitutes or guaranteed map rankings.",
+      "assertions": [
+        "Distinguishes service coverage from additional eligible locations",
+        "Keeps private home address out of public citations and markup",
+        "Corrects observed wrong phone before growing listings",
+        "Provides an honest review request without incentive or five-star requirement",
+        "Does not promise Google rich-result eligibility without a public address",
+        "Explains searcher distance and avoids ranking guarantees"
+      ],
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "Write a Google Business Profile description for Harbor Cycle, our staffed bike shop in Bristol. We sell commuter bikes and do same-day puncture repairs when capacity allows. Open Tuesday to Saturday, 10–6. Keep this focused on the description.",
+      "expected_output": "Produces a factual concise description using supplied facts. Does not add unsupported superlatives, promotions, links, or require a full audit. Keeps conditional same-day availability accurate.",
+      "assertions": [
+        "Delivers requested description directly",
+        "Preserves capacity condition for same-day repairs",
+        "No invented prices, promotions, reviews, links, or unsupported superiority claims",
+        "Does not require unrelated analytics or a complete audit"
+      ],
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "We have two staffed dental practices. One moved last month and has an old profile address; the other is correct. Make a local SEO recovery plan. A crawler text export has no JSON-LD; can you say schema is missing? We also want to seed 20 profile Q&A through the API.",
+      "expected_output": "Treats the move as a location identity/update task, preserves the other real branch, requests specific profile and website evidence, refuses to infer absence of rendered JSON-LD from stripped text, and explains that the old Q&A API is discontinued. Gives a prioritized location-specific plan and measured outcomes without assuming suspension or promising recovery speed.",
+      "assertions": [
+        "Maintains two distinct actual practices",
+        "Prioritizes old-address correction for moved location",
+        "Labels unknown profile status and asks for relevant evidence",
+        "Does not infer absent schema from a stripped text export",
+        "Does not propose discontinued Q&A API calls",
+        "Links follow-up to correct contact paths and qualified bookings"
+      ],
+      "files": []
     }
   ]
 }

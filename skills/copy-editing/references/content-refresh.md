@@ -19,6 +19,39 @@ Copy editing isn't just for new content. Existing pages and posts decay over tim
 5. **Proof pass** — Can you add newer testimonials, case studies, or data points that didn't exist when this was first published?
 6. **Structure pass** — Add comparison tables, FAQ sections, or other scannable formats that make the content easier to consume.
 
+## Before You Edit: Find the Gap
+
+A refresh aimed at a ranking page should start from the results page. The first question to answer is why the pages above yours are winning.
+
+1. **Read the results page for the post's main query.** Note the dominant format (list, guide, tool, comparison), the featured snippet and how it's formatted, People Also Ask questions, and related searches.
+2. **Pick five competitors**: the top three results, plus any direct competitor or recently updated page ranking near you.
+3. **Map coverage.** List the subtopics each page covers in a simple grid, with your post as the first column:
+
+| Subtopic / element | Your post | Comp 1 | Comp 2 | Comp 3 | Comp 4 | Comp 5 |
+|--------------------|:---------:|:------:|:------:|:------:|:------:|:------:|
+| [Subtopic A] | ✗ | ✓ | ✓ | ✓ | ✓ | — |
+| Comparison table | ✗ | ✓ | — | ✓ | — | — |
+| Current-year data | ✗ | ✓ | ✓ | — | ✓ | ✓ |
+
+4. **Rank what's missing** by how many competitors cover it:
+   - **Expected** (4–5 of 5): searchers assume it's there. Add it.
+   - **Common** (2–3): add it if it serves your reader.
+   - **Distinctive** (1): add it only if it's genuinely useful, not to copy one page.
+   - **Uncovered** (0): the angle nobody has. Your best chance to be the result worth citing.
+5. **Match coverage.** Ignore competitors' word counts. Close the gaps that matter, and stop when the reader's question is answered.
+
+Present the gap grid and a proposed outline before rewriting. Mark each section **Keep**, **Revise**, or **New**, propose 2–3 title options (see the `seo-audit` skill's title-tags reference), and wait for approval. Don't promise a ranking or traffic outcome.
+
+## Keep What Already Works
+
+A page that ranks has signals worth protecting:
+- **Keep the URL.** If it must change, 301 the old one.
+- **Keep heading anchors** other pages link to, and the sections that rank for their own queries (check Search Console's query list for the page).
+- **Keep the voice.** A refresh shouldn't read like a different author wrote it.
+- **Show the update**: a visible "Last updated" date, with the year next to every statistic.
+
+When handing the refresh to whoever publishes it, include the new meta description, schema types to add, internal links to add to and from the post, images or screenshots needed, and the URL plan.
+
 ## Refresh vs. Rewrite
 
 | Signal | Action |

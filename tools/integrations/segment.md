@@ -163,3 +163,52 @@ analytics.page('Pricing');
 Pass the raw user ID to `profiles traits` or `profiles events`. The CLI URL-encodes
 the value so characters such as `/`, `+`, `?`, and `#` remain part of the user ID.
 Do not pre-encode it. See [Profile API identifiers](https://www.twilio.com/docs/segment/unify/profile-api).
+
+## CLI anonymous and known identities
+
+The `track event`, `page view`, and `identify user` commands accept either
+`--user-id`, `--anonymous-id`, or both. Use an existing anonymous identifier
+for pre-signup activity rather than inventing a known customer ID:
+
+```bash
+node tools/clis/segment.js track event --anonymous-id anon-owned \
+  --event 'Pricing Viewed' --properties '{"plan":"pro"}' --dry-run
+
+# When this same visitor becomes a known user
+node tools/clis/segment.js identify user --user-id user-owned \
+  --anonymous-id anon-owned --traits '{"plan":"paid"}' --dry-run
+```
+
+The CLI passes the IDs through unchanged; it does not generate an anonymous
+ID, store identity state, or infer that two people are the same. Reuse the
+actual identifier associated with that visitor and supply both only when the
+association is known. Destination identity handling varies: acceptance by
+Segment does not prove every destination merged the history. An anonymous ID
+is an identifier, not a guarantee of anonymity or permission to collect data.
+Send events only when the collection is already authorized.
+
+At least one ID is required before sending these single-event requests.
+Existing `--user-id` calls and raw batch payloads are unchanged. Profile
+lookups continue to require a known `--user-id`; `--anonymous-id` does not
+change their resource path. Previews mask the write key and make no request.
+
+Official [common identity fields](https://www.twilio.com/docs/segment/connections/spec/common)
+and [Identify semantics](https://www.twilio.com/docs/segment/connections/spec/identify).
+
+## Importing and retrying individual events
+
+Single `track event`, `identify user`, and `page view` calls accept
+`--timestamp` and `--message-id`. Use an ISO datetime with a timezone to retain
+when a historical event occurred, and reuse the source event's ID when retrying:
+
+```bash
+node tools/clis/segment.js track event --user-id customer-1 --event "Order Completed" \
+  --timestamp 2024-04-12T10:15:30Z --message-id order-123 --dry-run
+```
+
+Both fields are omitted when flags are absent, leaving Segment's defaults
+intact. Message IDs must contain 1–100 characters. For `batch send`, place the
+metadata on each event in `--events`; these individual-call flags do not rewrite
+batches. See [common fields](https://www.twilio.com/docs/segment/connections/spec/common)
+and [duplicate handling](https://www.twilio.com/docs/segment/guides/duplicate-data).
+Downstream destinations can handle these fields differently.

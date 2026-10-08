@@ -88,6 +88,20 @@
         "Does not attempt to write a full email sequence"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Our Paddle Billing dunning handler listens for subscription.payment_failed and subscription.cancelled but never runs. A failed transaction has no subscription_id, and another active subscription has a scheduled cancellation next month. Which events should we configure, and should both customers lose access now?",
+      "expected_output": "Should use the linked dunning playbook and diagnose the invalid Paddle Billing event names. Should recommend transaction.payment_failed for payment attempts, subscription.past_due for overdue subscription state, and subscription.canceled for effective cancellation. Should distinguish one-off transaction failures using subscription_id and explain that a scheduled cancellation emits subscription.updated before subscription.canceled at its effective date. Should not treat either case as immediate subscription cancellation or confuse Paddle Classic alerts with Billing events.",
+      "assertions": [
+        "Corrects the payment event to transaction.payment_failed",
+        "Uses subscription.canceled with the Billing spelling",
+        "Uses subscription.past_due for overdue subscription state",
+        "Does not classify a failed transaction without subscription_id as subscription churn",
+        "Keeps scheduled cancellation distinct from effective cancellation",
+        "References current Paddle Billing documentation and separates Classic alert names"
+      ],
+      "files": []
     }
   ]
 }

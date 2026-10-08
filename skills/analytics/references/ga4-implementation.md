@@ -27,10 +27,14 @@ Detailed implementation guide for Google Analytics 4.
 |-------|-------------|---------------|
 | page_view | Page loads | Automatic |
 | scroll | 90% scroll depth | Toggle on/off |
-| outbound_click | Click to external domain | Automatic |
-| site_search | Search query used | Configure parameter |
-| video_engagement | YouTube video plays | Toggle on/off |
+| click | Outbound link click (`outbound: true`); cross-domain measurement domains are excluded | Toggle on/off |
+| view_search_results | Search results page with a configured search query parameter | Configure query parameters |
+| video_start, video_progress, video_complete | Embedded YouTube start, progress and completion | Toggle on/off; JS API support required |
 | file_download | PDF, docs, etc. | Configurable extensions |
+
+Use these exact names in event filters and triggers. The option labels "outbound clicks", "site search" and "video engagement" are not automatic event names. For video, report starts, progress milestones and completions separately; adding all three counts double-counts a viewing journey. A custom event with one of the old labels needs its own implementation. Verify enabled options and observed parameters in DebugView before expecting data.
+
+Contract: [Google enhanced measurement events](https://support.google.com/analytics/answer/9216061).
 
 ### Recommended Events
 

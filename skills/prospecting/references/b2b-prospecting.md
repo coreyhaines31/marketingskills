@@ -38,7 +38,7 @@ For when the user sells to non-SaaS B2B — services, agencies, manufacturers, m
 - **Apollo**: best general B2B firmographic + contact discovery
 - **ZoomInfo**: enterprise B2B + intent signals (mid-market+)
 - **LinkedIn Sales Navigator**: industry + role + signal search; the gold standard for decision-maker mapping (manual)
-- **Clay**: when you need custom waterfall lookups (e.g., enrich Apollo records with Hunter + Clearbit)
+- **Clay**: when you need custom waterfall lookups (e.g., enrich Apollo records with Hunter, then a waterfall aggregator)
 
 ### Tier 2 — industry-specific directories
 

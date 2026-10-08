@@ -60,6 +60,18 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function contactFieldValues() {
+  let values
+  try { values = JSON.parse(args['field-values']) } catch {
+    throw new Error('--field-values must be a JSON array of {field, value} objects')
+  }
+  if (!Array.isArray(values) || values.some(item => !item || typeof item !== 'object' || Array.isArray(item)
+    || !Object.hasOwn(item, 'field') || !Object.hasOwn(item, 'value'))) {
+    throw new Error('--field-values must be a JSON array of {field, value} objects')
+  }
+  return values
+}
+
 async function main() {
   let result
   const limit = args.limit ? Number(args.limit) : 20
@@ -92,6 +104,7 @@ async function main() {
           if (args['first-name']) contact.firstName = args['first-name']
           if (args['last-name']) contact.lastName = args['last-name']
           if (args.phone) contact.phone = args.phone
+          if (args['field-values'] !== undefined) contact.fieldValues = contactFieldValues()
           result = await api('POST', '/contacts', { contact })
           break
         }
@@ -103,6 +116,7 @@ async function main() {
           if (args['first-name']) contact.firstName = args['first-name']
           if (args['last-name']) contact.lastName = args['last-name']
           if (args.phone) contact.phone = args.phone
+          if (args['field-values'] !== undefined) contact.fieldValues = contactFieldValues()
           result = await api('PUT', `/contacts/${id}`, { contact })
           break
         }
@@ -119,11 +133,21 @@ async function main() {
           if (args['first-name']) contact.firstName = args['first-name']
           if (args['last-name']) contact.lastName = args['last-name']
           if (args.phone) contact.phone = args.phone
+          if (args['field-values'] !== undefined) contact.fieldValues = contactFieldValues()
           result = await api('POST', '/contact/sync', { contact })
           break
         }
         default:
           result = { error: 'Unknown contacts subcommand. Use: list, get, create, update, delete, sync' }
+      }
+      break
+
+    case 'fields':
+      if (sub !== 'list') { result = { error: 'Unknown fields subcommand. Use: list' }; break }
+      {
+        const params = new URLSearchParams({ limit: String(limit), offset: String(offset) })
+        if (args.search) params.set('search', args.search)
+        result = await api('GET', `/fields?${params}`)
       }
       break
 
@@ -413,7 +437,8 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          contacts: 'contacts [list | get --id <id> | create --email <email> | update --id <id> | delete --id <id> | sync --email <email>]',
+          contacts: 'contacts [list | get --id <id> | create --email <email> | update --id <id> | delete --id <id> | sync --email <email>]; create/update/sync: [--field-values <JSON array of {field,value}>]',
+          fields: 'fields list [--search <title>] [--limit <n>] [--offset <n>]',
           lists: 'lists [list | get --id <id> | create --name <name> | delete --id <id> | subscribe --list-id <lid> --contact-id <cid> | unsubscribe --list-id <lid> --contact-id <cid>]',
           campaigns: 'campaigns [list | get --id <id>]',
           deals: 'deals [list | get --id <id> | create --title <title> | update --id <id> | delete --id <id>]',

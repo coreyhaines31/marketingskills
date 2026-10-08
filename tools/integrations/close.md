@@ -7,7 +7,7 @@ Sales CRM for SMBs with built-in calling, email, and pipeline management designe
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Leads, Contacts, Opportunities, Activities, Tasks |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `https://mcp.close.com/mcp` (OAuth) with read, safe-write, and destructive-write scopes ([docs](https://developer.close.com/mcp)) |
 | CLI | ✓ | [close.js](../clis/close.js) |
 | SDK | - | REST API only |
 
@@ -76,9 +76,18 @@ POST https://api.close.com/api/v1/opportunity/
 {
   "lead_id": "lead_xxx",
   "value": 50000,
-  "status_type": "active"
+  "status_id": "stat_xxx"
 }
 ```
+
+To select a stage when creating an opportunity, retrieve an ID from
+`GET https://api.close.com/api/v1/status/opportunity/` and pass
+`--status-id stat_xxx` to the CLI. `--status` is accepted as an ID alias.
+The `active`, `won`, and `lost` types describe statuses; they cannot select a
+specific stage when creating an opportunity. Omitting both flags uses the
+organization default status. See the official
+[create opportunity](https://developer.close.com/api/resources/opportunities/create)
+and [list opportunity statuses](https://developer.close.com/api/resources/opportunity-statuses/list) contracts.
 
 ### List Activities
 
@@ -189,3 +198,13 @@ POST https://api.close.com/api/v1/task/
 - revops
 - sales-enablement
 - cold-email
+
+## Paging bundled CLI CRM collections
+
+All five list commands (`leads`, `contacts`, `opportunities`, `activities`, `tasks`) accept `--page <positive_integer>` or `--skip <nonnegative_offset>` and optional `--limit <1-100>`. Page offsets use the selected limit, so page 2 at limit 25 starts at offset 25, not 100. Omitted flags preserve provider defaults; legacy `--page` without a limit uses 100 records per page.
+
+```bash
+node tools/clis/close.js contacts list --lead-id lead_example --page 2 --limit 25 --dry-run
+```
+
+Read `has_more` and request subsequent pages manually; the CLI preserves raw responses and never fetches extra pages silently. The CLI conservatively supports limits up to 100; provider resource-specific limits still apply. [Close pagination](https://developer.close.com/api/overview/pagination) documents `_skip` and `_limit`. Contract tests use fixtures, not real CRM records.

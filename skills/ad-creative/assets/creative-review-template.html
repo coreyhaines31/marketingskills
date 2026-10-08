@@ -16,7 +16,8 @@
       also HTML-escaped again at render time.
 
   DATA SHAPE — see references/creative-review-page.md for the annotated spec.
-  Images: each frame's "image" may be a URL, a relative path, or a data URI.
+  Images: each frame's "image" may be a local path/file URL or a data URI.
+  Remote and protocol-relative URLs are blocked; package images with the page.
   If omitted (or the file is missing), a placeholder shows the frame label +
   the image prompt — use this for concepts not yet rendered to image.
 -->
@@ -322,11 +323,27 @@ function renderToggles() {
   document.getElementById("preview-label").textContent = (hs.length > 1 ? "Whitelisted ad · " : "") + "In-feed preview";
 }
 
+// Classify with the browser URL parser; tabs/newlines and backslashes can hide a remote URL.
+function localImageSource(value) {
+  if (typeof value !== "string") return "";
+  const syntax = value.replace(/[\t\n\r]/g, "").replace(/\\/g, "/")
+    .replace(/^[\u0000-\u0020]+|[\u0000-\u0020]+$/g, "");
+  if (/^\/\//.test(syntax)) return "";
+  try {
+    const base = new URL(document.baseURI);
+    const image = new URL(value, base);
+    if (image.protocol === "data:" || (image.protocol === "file:" && !image.host)) return value;
+    // Hosted relative assets stay on the review page's origin; absolute network URLs stay blocked.
+    if (!/^[a-z][a-z0-9+.-]*:/i.test(syntax) && image.origin === base.origin) return value;
+  } catch (_) { /* An invalid source falls back to the placeholder. */ }
+  return "";
+}
+
 // placeholder underneath + image on top; a missing/broken image removes itself → placeholder shows
 function frameVisual(f, phCls) {
   const ph = `<div class="${phCls}"><div class="plabel">${esc(f.label)}</div><div class="pprompt">${esc(f.prompt || "")}</div></div>`;
   // Only local/relative or data: image sources — block remote URLs so the page stays offline and cannot beacon on open.
-  const localImg = (typeof f.image === "string" && !/^\s*(https?:|\/\/)/i.test(f.image)) ? f.image : "";
+  const localImg = localImageSource(f.image);
   const img = localImg ? `<img src="${esc(localImg)}" alt="${esc(f.label)}" onerror="this.remove()" />` : "";
   return ph + img;
 }

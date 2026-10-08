@@ -117,6 +117,47 @@
         "Produces the evidence report structure with a 7-day manual outreach plan and limits"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "I sell CRO services to B2B SaaS companies. How do I find companies that are likely to need us right now instead of just pulling a big list from Apollo?",
+      "expected_output": "Should load the signal plays reference. Should rank signals by closeness and pick ones that fit a CRO agency: recent funding (30-60 day window), a new VP Marketing or growth leader (first 90 days), open growth or performance marketing roles, a redesigned site or new pricing page, launched paid campaigns. Should stack signals with ICP fit rather than act on one weak signal, record signal dates, map signals to plays (value-first teardown), and assign account tiers (Tier 1 1:1 top 25-50 with account briefs, Tier 2 segments, Tier 3). Should name ways to detect each signal (job data, funding news, visitor ID) and warn against opening with the signal itself or mentioning tracked visits.",
+      "assertions": [
+        "Uses buying signals as a timing filter on top of ICP fit",
+        "Names signals relevant to a CRO agency",
+        "Gives freshness windows for signals",
+        "Maps signals to a play, including a value-first teardown",
+        "Assigns account tiers that set research depth",
+        "Says not to open with 'congrats on the raise' or mention tracked visits"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "About a fifth of the emails in my list come back as catch-all from our verifier. Should I send to them or drop them?",
+      "expected_output": "Should load the sourcing and enrichment reference and explain that catch-all domains accept any address, so basic SMTP verification can't confirm the person. Should recommend a policy: resolve catch-alls with a verifier that goes beyond SMTP checks; send resolved-valid ones from separate lower-volume mailboxes; send unresolved ones only to Tier 1 accounts while watching bounces; keep campaign bounces under 2% with automatic pause; re-verify within 7 days of sending. Should not recommend sending all of them blind or dropping all of them without considering account value.",
+      "assertions": [
+        "Explains why catch-all addresses can't be confirmed by basic verification",
+        "Recommends resolving catch-alls with a specialist verifier",
+        "Recommends separate lower-volume mailboxes for resolved catch-alls",
+        "Limits unresolved catch-alls to Tier 1",
+        "Keeps bounce rate under 2% with a pause rule",
+        "Neither sends all blindly nor drops all by default"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "We have 200 B2B prospects and several connected enrichment providers. Some records are fresh in our cache, some caches are expired, one API says429 and another finds a same-name company in the wrong country. Design a cost-bounded waterfall without overwriting verified CRM contacts.",
+      "expected_output": "Defines identity and accepted-field criteria, exact account/provider/input cache matching, differentiated expiry/no-match/error handling, and conditional ordered lookups. Preserves stronger CRM evidence, contact verification, and unresolved reasons.",
+      "assertions": [
+        "Reuses only applicable fresh cache entries",
+        "Does not treat429 or timeout as no-match",
+        "Rejects a wrong-entity result instead of counting any nonempty response as success",
+        "Stops when an accepted field is found instead of running every provider",
+        "Preserves stronger verified CRM fields and separate contact verification"
+      ],
+      "files": []
     }
   ]
 }

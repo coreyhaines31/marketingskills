@@ -146,6 +146,14 @@ GET https://api.zapier.com/v1/profiles/me
 
 ## Webhooks (Triggers)
 
+Catch Hook URLs do not require `ZAPIER_API_KEY`; the unique URL identifies the hook. The local CLI requires that key only for its management API commands, and never attaches it to a webhook request.
+
+```bash
+node tools/clis/zapier.js hooks send --url "https://hooks.zapier.com/hooks/catch/{account_id}/{hook_id}/" --data '{"event":"user.created"}'
+```
+
+Use `--dry-run` to preview the JSON POST without sending it. Treat the hook URL as a secret. Non-success HTTP responses exit unsuccessfully; an HTTP 200 only confirms reception, not completion of the Zap. [Zapier documents the hook setup and response behavior](https://help.zapier.com/hc/en-us/articles/8496288690317-Trigger-Zap-workflows-from-webhooks).
+
 ### Catch Hook (receive data)
 
 Create a "Webhooks by Zapier" trigger to receive data:

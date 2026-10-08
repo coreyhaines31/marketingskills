@@ -19,7 +19,7 @@ Reference for calculating sample sizes and test duration.
 
 1. **Baseline conversion rate**: Your current rate
 2. **Minimum detectable effect (MDE)**: Smallest change worth detecting
-3. **Statistical significance level**: Usually 95% (α = 0.05)
+3. **Statistical significance level**: Usually α = 0.05 (5%)
 4. **Statistical power**: Usually 80% (β = 0.20)
 
 ### What These Mean
@@ -31,7 +31,7 @@ Reference for calculating sample sizes and test duration.
 - Implementation cost (worth the effort?)
 - Realistic expectations (what have past tests shown?)
 
-**Statistical significance (95%)**: Means there's less than 5% chance the observed difference is due to random chance.
+**Significance level (α = 0.05)**: For the planned test and its assumptions, limits the long-run probability of rejecting a true null hypothesis to 5%. It is not the probability that an observed difference is “due to chance.” Repeated unadjusted looks or multiple comparisons do not retain that error rate. See the [ASA's interpretation guidance](https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf).
 
 **Statistical power (80%)**: Means if there's a real effect of size MDE, you have 80% chance of detecting it.
 

@@ -34,6 +34,14 @@ Three motions, by list size:
 - List-based targeting typically buys reach materially cheaper than native firmographic targeting, with stronger decision-maker engagement.
 - Use the per-company engagement report (Audiences → click into the list) to find under-served priority accounts, then break them into a dedicated campaign.
 
+**Account pages.** For 1:1 and 1:few, send the click to a page built for that account or segment, not the generic homepage. Ways to build them:
+- **Personalization layer on the existing site** (Mutiny and similar): swaps headlines and proof by visiting company.
+- **CMS template fed from a list** (Webflow, WordPress, or Framer CMS, with Clay, Whalesync, or the CMS API filling one item per account).
+- **Hand-coded dynamic route** reading from your CRM or a sheet.
+- **AI site platform** (Ploy ◆ documents a Clay row posting to a webhook that runs a Ploybook to publish `/for/<company>`; ◆ marks a [Verified Partner](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md#verified-partners) of this repository, disclosure not endorsement).
+
+Whichever you use: keep account pages `noindex` and out of the sitemap, use only public or first-party facts about the account, and have a human review before anything publishes.
+
 **Personalized 1:1 creative:** putting the target account's name/logo in the creative can lift CTR ~5–10× over generic ads. **Legal exception: do not run company-name/logo-personalized ads into Germany** — privacy law, not platform policy.
 
 **Frequency capping:** target ~3 impressions/person/week in priority accounts. Mechanic: build a company-engagement audience of accounts that crossed ~500 impressions in the last 7 days and add it as an *exclusion* — it self-rotates accounts out as they cool down. Tune the threshold (300 if fatigue shows, 750 for more pressure).
@@ -42,7 +50,7 @@ Three motions, by list size:
 
 Meta has no native company targeting — the play is **bring your own matched audience**:
 
-- **The match-rate problem:** raw CRM exports of work emails match under ~5% on Meta. Enrichment providers (identity-graph tools that resolve work identities to personal profiles — e.g., Primer, Metadata, ZoomInfo, Clearbit) raise matches to ~40–85%. Workflow: firmographic criteria → identity-graph match → upload as Custom Audience → target directly or seed a 1% lookalike.
+- **The match-rate problem:** raw CRM exports of work emails match under ~5% on Meta. Enrichment providers (identity-graph tools that resolve work identities to personal profiles — e.g., Primer, Metadata, ZoomInfo) raise matches to ~40–85%. Workflow: firmographic criteria → identity-graph match → upload as Custom Audience → target directly or seed a 1% lookalike.
 - **Minimum sizes:** account-list audiences ~1,000 companies (5–10K optimal); retargeting slices work down to ~100 accounts; lookalike seeds want 500+.
 - Advantage+ **conflicts with strict ABM** — it won't stay locked to your list. Run ABM campaigns manual (or hybrid: manual for the list, Advantage+ for the broad layer).
 - Meta's ABM role is cheap **air cover and multi-threading** (reaching the buying committee beyond your champion) while LinkedIn does precision — see the split below.

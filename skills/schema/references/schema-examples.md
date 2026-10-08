@@ -4,7 +4,7 @@ Complete JSON-LD examples for common schema types.
 
 ## Contents
 - Organization
-- WebSite (with SearchAction)
+- WebSite (site identity)
 - Article / BlogPosting
 - Product
 - SoftwareApplication
@@ -42,24 +42,16 @@ For company/brand homepage or about page.
 
 ---
 
-## WebSite (with SearchAction)
+## WebSite (site identity)
 
-For homepage, enables sitelinks search box.
+For homepage/site identity. Google retired the sitelinks search box in November 2024; adding `SearchAction` cannot restore it. Keep useful `WebSite` markup for site names. See the [search box announcement](https://developers.google.com/search/blog/2024/10/sitelinks-search-box).
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Example",
-  "url": "https://example.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://example.com/search?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+  "url": "https://example.com"
 }
 ```
 
@@ -162,7 +154,7 @@ For SaaS product pages and app landing pages.
 
 ## FAQPage
 
-For pages with frequently asked questions.
+For visible frequently asked questions when a consumer needs Schema.org semantics. Google FAQ rich results were retired in May 2026; this example cannot enable expandable Google search results. Use the Schema.org Validator for vocabulary validation, not missing Rich Results Test detection as a failure. See [Google's documentation updates](https://developers.google.com/search/updates).
 
 ```json
 {
@@ -193,7 +185,7 @@ For pages with frequently asked questions.
 
 ## HowTo
 
-For instructional content and tutorials.
+For instructional content and tutorials when a consumer needs Schema.org semantics. Google retired HowTo rich results in September 2023; this example does not restore that appearance. See the [retirement announcement](https://developers.google.com/search/blog/2023/08/howto-faq-changes).
 
 ```json
 {
@@ -388,7 +380,7 @@ export default function ProductPage({ product }) {
       <Head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}
         />
       </Head>
       {/* Page content */}
@@ -396,3 +388,5 @@ export default function ProductPage({ product }) {
   );
 }
 ```
+
+When JSON-LD is inserted as raw HTML, JSON escaping alone does not stop a product string containing a script-closing tag from terminating the element. Escape every `<` in the serialized JSON as `\u003c`, as in the example above; parsing the JSON recovers the original product text. Do this at the HTML embedding boundary, without deleting legitimate characters from the source data. See the [Next.js JSON-LD guide](https://nextjs.org/docs/app/guides/json-ld).
