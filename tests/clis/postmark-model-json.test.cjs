@@ -5,7 +5,7 @@ const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/postmark.js')
 function run(extra) {
   const args = ['email', 'send-template', '--from', 'sender@example.com', '--to', 'recipient@example.com', '--template', 'receipt', ...extra]
-  const code = `global.fetch=async(url,options)=>({status:200,text:async()=>JSON.stringify({url,body:JSON.parse(options.body)})});process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
+  const code = `global.fetch=async(url,options)=>({ok:true,status:200,text:async()=>JSON.stringify({url,body:JSON.parse(options.body)})});process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath, ['-e', code], { encoding: 'utf8', env: { ...process.env, POSTMARK_API_KEY: 'fixture-only' } })
 }
 const model = { customer: { name: 'Growth, Inc.' }, items: [{ title: 'Service: priority', quantity: 2 }], paid: true, total: 29.5 }

@@ -4,7 +4,7 @@ const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/exa.js')
 function run(args, network = true) {
-  const code=`global.fetch=async(url,opts)=>{if(!${network})throw Error('Unexpected request');return{status:200,text:async()=>JSON.stringify({url,body:JSON.parse(opts.body),output:{content:{vendors:['Example']},grounding:[{field:'vendors',citations:[{url:'https://example.com'}],confidence:'low'}]},requestId:'test',costDollars:{total:0.02}})}};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
+  const code=`global.fetch=async(url,opts)=>{if(!${network})throw Error('Unexpected request');return{ok:true,status:200,text:async()=>JSON.stringify({url,body:JSON.parse(opts.body),output:{content:{vendors:['Example']},grounding:[{field:'vendors',citations:[{url:'https://example.com'}],confidence:'low'}]},requestId:'test',costDollars:{total:0.02}})}};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath,['-e',code],{encoding:'utf8',timeout:5000,env:{...process.env,EXA_API_KEY:'fake-key'}})
 }
 function output(r){assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout)}

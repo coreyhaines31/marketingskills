@@ -6,7 +6,7 @@ const cli = path.resolve(__dirname, '../../tools/clis/exa.js')
 function run(args, network = true) {
   const script = `global.fetch = async (url, options) => {
     if (!${network}) throw new Error('Unexpected network request');
-    return {status:200, text:async()=>JSON.stringify({url,method:options.method,request:JSON.parse(options.body),answer:'Fixture answer',citations:[{url:'https://example.org/source'}]})};
+    return {ok:true,status:200, text:async()=>JSON.stringify({url,method:options.method,request:JSON.parse(options.body),answer:'Fixture answer',citations:[{url:'https://example.org/source'}]})};
   }; process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath,['-e',script],{encoding:'utf8',timeout:5000,env:{PATH:process.env.PATH,EXA_API_KEY:'fixture-secret'}})
 }

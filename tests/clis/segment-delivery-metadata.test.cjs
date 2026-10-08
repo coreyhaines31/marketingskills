@@ -5,7 +5,7 @@ const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/segment.js')
 function run(command, extra = [], allowFetch = true) {
   const args = [...command, '--user-id', 'customer-1', ...extra]
-  const code = `global.fetch=async(url,options)=>{if(!${allowFetch})throw new Error('unexpected fetch');return {status:200,text:async()=>JSON.stringify({url,body:JSON.parse(options.body)})}};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
+  const code = `global.fetch=async(url,options)=>{if(!${allowFetch})throw new Error('unexpected fetch');return {ok:true,status:200,text:async()=>JSON.stringify({url,body:JSON.parse(options.body)})}};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath, ['-e', code], { encoding: 'utf8', env: { ...process.env, SEGMENT_WRITE_KEY: 'fixture-only' } })
 }
 for (const [command, endpoint] of [[['track', 'event', '--event', 'Order Completed'], '/track'], [['identify', 'user', '--traits', '{"tier":"Gold"}'], '/identify'], [['page', 'view', '--name', 'Pricing'], '/page']]) {

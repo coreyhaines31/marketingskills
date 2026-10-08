@@ -6,7 +6,7 @@ function run(vendor, args, fetch = true) {
   const cli = path.resolve(__dirname, `../../tools/clis/${vendor}.js`)
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');
-    return { status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
+    return { ok: true, status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', timeout: 5000, env: {
     ...process.env, REWARDFUL_API_KEY: 'fake-key', RESEND_API_KEY: 'fake-key', POSTMARK_API_KEY: 'fake-key', BEEHIIV_API_KEY: 'fake-key', KLAVIYO_API_KEY: 'fake-key',

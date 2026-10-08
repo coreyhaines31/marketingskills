@@ -11,7 +11,7 @@ function run(args, network = false) {
     if (!${network}) throw new Error('Unexpected request');
     const query = new URL(url).searchParams;
     if (query.get('scope') === 'user' && !query.get('user')) throw new Error('400 missing user');
-    return {status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null })};
+    return {ok: true, status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null })};
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath, ['-e', code], {encoding:'utf8', env:{...process.env, CALENDLY_API_KEY:'test-only-key'}})
 }

@@ -18,7 +18,7 @@ test('renaming uses a title-only JSON patch, preserving fields and responses', (
       if (JSON.stringify(patches) !== JSON.stringify([{op: 'replace', path: '/title', value: '新しい title'}])) throw new Error('Invalid patch');
       form.title = patches[0].value;
     } else throw new Error('Unexpected method');
-    return { status: 204, text: async () => JSON.stringify(form) };
+    return { ok: true, status: 204, text: async () => JSON.stringify(form) };
   `)
   assert.equal(result.status, 0, result.stderr)
   const form = JSON.parse(result.stdout)

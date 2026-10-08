@@ -258,6 +258,7 @@ async function main() {
       }
   }
 
+  if (result?.error && result.status >= 400) process.exitCode = 1
   console.log(JSON.stringify(result, null, 2))
 }
 
