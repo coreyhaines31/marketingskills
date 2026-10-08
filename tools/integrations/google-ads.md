@@ -8,7 +8,7 @@ Pay-per-click advertising platform for search, display, and video campaigns.
 |-------------|-----------|-------|
 | API | ✓ | Google Ads API for campaign management |
 | MCP | ✓ | Available via Google Ads MCP server |
-| CLI | - | Use gcloud or API scripts |
+| CLI | ✓ | Repository zero-dependency Node.js CLI |
 | SDK | ✓ | Client libraries for multiple languages |
 
 ## Authentication
@@ -16,7 +16,20 @@ Pay-per-click advertising platform for search, display, and video campaigns.
 - **Type**: OAuth 2.0
 - **Scopes**: `https://www.googleapis.com/auth/adwords`
 - **Setup**: Create credentials in Google Cloud Console, link to Google Ads account
-- **Headers**: `developer-token`, `login-customer-id` (for MCC)
+- **Headers**: `Authorization: Bearer <access_token>`; `login-customer-id` when acting through a manager account
+- **API access**: Google Ads API access is assigned to the Google Cloud project that owns your OAuth credentials. Developer tokens were sunset on September 9, 2026; the `developer-token` header is now optional and ignored. Apply for the appropriate project access level in Google Cloud Console, not the retired manager-account API Center process. [Official migration guide](https://developers.google.com/google-ads/api/docs/api-policy/developer-token).
+
+### Repository CLI credentials
+
+The repository's [Google Ads CLI](../clis/google-ads.js) uses `GOOGLE_ADS_TOKEN` (OAuth access token) and `GOOGLE_ADS_CUSTOMER_ID` (target customer ID without hyphens). Set `GOOGLE_ADS_LOGIN_CUSTOMER_ID` when access goes through a manager; it is normalized to digits. Existing setups can still supply `GOOGLE_ADS_DEVELOPER_TOKEN`, but new setups do not need it. The CLI consumes an access token; it does not exchange or refresh OAuth tokens for you. OAuth scopes, user access to the target account, and the Cloud project's API access level remain required.
+
+Use a read-only first call after selecting the intended account:
+
+```bash
+node tools/clis/google-ads.js account info
+```
+
+A successful response verifies this read's access; it does not establish permission for campaign edits or budget changes.
 
 ## Common Agent Operations
 
@@ -252,3 +265,28 @@ and sends `login-customer-id` on both report and mutation requests. Keep
 `GOOGLE_ADS_CUSTOMER_ID` set to the target client account. Direct client access
 does not require the manager variable. See
 [Google Ads REST authorization](https://developers.google.com/google-ads/api/rest/auth).
+
+### Run custom reports with the CLI
+
+The built-in report commands cover common summaries. Use `query run` for the
+[analysis recipes above](#analysis-recipes), additional dimensions, and conversion
+actions without writing another client:
+
+```bash
+node tools/clis/google-ads.js query run --query \
+  "SELECT campaign.id, segments.date, metrics.clicks FROM campaign WHERE segments.date BETWEEN '2026-01-01' AND '2026-01-03' ORDER BY segments.date LIMIT 100"
+```
+
+The command forwards the supplied GAQL unchanged to the same authenticated
+`googleAds:searchStream` endpoint. Google validates resource and field
+compatibility; it does not call a mutation endpoint. `--dry-run` previews the
+request with credentials masked. Empty queries and unknown subcommands fail
+locally before transport.
+
+Select the fields you need, bound the result with `LIMIT`, and use explicit dates
+for reproducible reporting. Adding a segment changes the row grain: campaign
+plus date rows are not campaign totals. JSON output preserves every returned
+stream chunk and provider integer strings; do not coerce large IDs into JavaScript
+numbers. Cost fields in micros still require division by one million.
+
+See [Google's GAQL overview](https://developers.google.com/google-ads/api/docs/query/overview).

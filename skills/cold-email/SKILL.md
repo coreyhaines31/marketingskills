@@ -1,13 +1,13 @@
 ---
 name: cold-email
-description: Write B2B cold emails and follow-up sequences that get replies. Use when the user wants to write cold outreach emails, prospecting emails, cold email campaigns, sales development emails, or SDR emails. Also use when the user mentions "cold outreach," "prospecting email," "outbound email," "email to leads," "reach out to prospects," "sales email," "follow-up email sequence," "nobody's replying to my emails," or "how do I write a cold email." Covers subject lines, opening lines, body copy, CTAs, personalization, and multi-touch follow-up sequences. Emails avoid AI tells like 'it's not X, it's Y' reveals and 'no X, no Y, no Z' lists. For warm/lifecycle email sequences, see emails. For sales collateral beyond emails, see sales-enablement.
+description: Write and run B2B cold outbound that gets replies, from cold emails and follow-ups to sending setup, LinkedIn, multichannel cadences, and reply handling. Use when the user mentions "cold email," "cold outreach," "outbound," "prospecting email," "SDR emails," "follow-up sequence," "nobody's replying," "email deliverability," "sending domains," "warm up inboxes," "LinkedIn outreach," "connection request message," "multichannel sequence," "cadence," "cold call," "voicemail," "handle replies," "AI SDR," "teardown outreach," or "product-led outbound." Send from secondary domains, verify lists first, turn off open tracking, and stop every channel when a prospect replies. Copy avoids AI tells like 'it's not X, it's Y' reveals. For building the list and account research, see prospecting. For lifecycle email, see emails. For call scripts and sales collateral, see sales-enablement.
 metadata:
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Cold Email Writing
 
-You are an expert cold email writer. Your goal is to write emails that sound like they came from a sharp, thoughtful human — not a sales machine following a template.
+You are an expert in cold outbound. Your goal is to write emails that sound like they came from a sharp, thoughtful human — not a sales machine following a template — and to make sure they reach the inbox, work alongside the other channels, and turn replies into meetings.
 
 ## Before Writing
 
@@ -110,6 +110,31 @@ See [follow-up-sequences.md](references/follow-up-sequences.md) for cadence, ang
 
 ---
 
+## Before You Send
+
+Copy only matters if it reaches the inbox. Before the first send:
+- Send from **secondary domains**, never your primary one, with SPF, DKIM, and DMARC set up and mailboxes warmed for 3–4 weeks.
+- **Verify every list** right before upload and keep bounces under 2%.
+- **Turn off open and click tracking.** Measure replies.
+- Include a plain-text **opt-out line and your postal address** in every email.
+
+Domain and mailbox math, the Google, Yahoo, and Microsoft rules, monitoring, and stop-loss thresholds are in [deliverability.md](references/deliverability.md).
+
+---
+
+## Beyond Email
+
+Most outbound that works in 2026 runs on more than one channel:
+- **LinkedIn**: profile, limits, the engage-then-connect sequence, message copy, and the automation decision. See [linkedin-outreach.md](references/linkedin-outreach.md).
+- **Cadence**: how email, LinkedIn, calls, video, and ads fit together by tier, and the rule that a reply on any channel stops all of them. See [multichannel-cadence.md](references/multichannel-cadence.md). Call scripts are in the sales-enablement skill.
+- **Plays**: value-first teardowns for services, product-led outbound for self-serve SaaS, problem-led outbound with a free sample, and founder-led outreach. See [outbound-plays.md](references/outbound-plays.md).
+
+## When They Reply
+
+Classify every reply (positive, information request, objection, not now, referral, out of office, unsubscribe), answer positive replies within minutes, and book with two proposed times plus a link. What an agent can handle alone and what needs a human is in [reply-handling.md](references/reply-handling.md).
+
+---
+
 ## Quality Check
 
 Before presenting, gut-check:
@@ -147,6 +172,11 @@ Before presenting, gut-check:
 The references contain performance data if you need to make informed choices:
 
 - [benchmarks.md](references/benchmarks.md) — Reply rates, conversion funnels, expert methods, common mistakes
+- [deliverability.md](references/deliverability.md) — Sending domains, mailboxes, mailbox-provider rules, warmup, monitoring, stop-loss rules
+- [linkedin-outreach.md](references/linkedin-outreach.md) — LinkedIn profile, limits, sequence, copy, automation risk
+- [multichannel-cadence.md](references/multichannel-cadence.md) — Cadences by tier, cross-channel rules, calls, video, direct mail, ads
+- [outbound-plays.md](references/outbound-plays.md) — Value-first teardown, product-led, problem-led, and founder-led plays
+- [reply-handling.md](references/reply-handling.md) — Reply types, speed, booking, early objections, agent permissions
 - [personalization.md](references/personalization.md) — 4-level personalization system, research signals
 - [subject-lines.md](references/subject-lines.md) — Subject line data and optimization
 - [follow-up-sequences.md](references/follow-up-sequences.md) — Cadence, angles, breakup emails
@@ -156,11 +186,29 @@ Use this data to inform your writing — not as a checklist to satisfy.
 
 ---
 
+## Tool Integrations
+
+For setup, see the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md), including its sales outbound quick start. Tools most used with this skill:
+
+| Job | Tools | Guides |
+|-----|-------|--------|
+| Email sending and sequences | Instantly, lemlist, Outreach | [instantly.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/instantly.md), [lemlist.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/lemlist.md), [outreach.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/outreach.md) |
+| LinkedIn steps | HeyReach, lemlist (both carry LinkedIn terms-of-service risk) | [heyreach.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/heyreach.md) |
+| Verification before send | Truelist, Hunter | [truelist.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/truelist.md), [hunter.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/hunter.md) |
+| CRM and reply logging | HubSpot, Attio, Close | [attio.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/attio.md), [close.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/close.md) |
+| Booking | Calendly, SavvyCal | [calendly.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/calendly.md), [savvycal.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/savvycal.md) |
+
+Instantly's webhooks (reply received, lead interested, bounced, unsubscribed) are the simplest way to drive the cross-channel stop and reply triage from an agent.
+
+---
+
 ## Related Skills
 
-- **prospecting**: For building and qualifying the prospect list that this skill writes outreach against — the natural upstream step before cold-email
+- **prospecting**: For building and qualifying the prospect list, signals, enrichment, verification, and account research — the natural upstream step before cold-email
 - **copywriting**: For landing pages and web copy
 - **emails**: For lifecycle/nurture email sequences (not cold outreach)
 - **social**: For LinkedIn and social posts
 - **product-marketing**: For establishing foundational positioning
-- **revops**: For lead scoring, routing, and pipeline management
+- **revops**: For lead scoring, routing, pipeline management, and the outbound stage model
+- **sales-enablement**: For cold call scripts, voicemails, and deal-stage objections
+- **marketing-loops**: For running outbound on a schedule (signal sweeps, reply triage, domain health, sequence reviews)

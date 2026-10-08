@@ -62,13 +62,13 @@
     {
       "id": 5,
       "prompt": "We only have 3 screenshots and no preview video. Does this really matter that much?",
-      "expected_output": "Should explain that screenshot count and video presence are heavily weighted in the Visual Assets dimension (25% of total score). Should cite specific data: Apple allows up to 10 screenshots per device with the first 3 visible in search, and 90% of users never scroll past the 3rd. Should note Apple screenshot captions are indexed for search since June 2025. Should cite the conversion benchmark: app preview video delivers +20-40% conversion lift on iOS (note Google Play video has lower ROI — only ~6% tap play). Should recommend adding 5-8 screenshots minimum with caption text, and a 15-30s preview video. Should flag fewer than 5 screenshots as an always-flag issue across all tiers.",
+      "expected_output": "Should explain that screenshot count and video presence are heavily weighted in the Visual Assets dimension (25% of total score). Should cite specific data: Apple allows up to 10 screenshots per device with the first 3 visible in search, and 90% of users never scroll past the 3rd. Should note Apple screenshot captions are indexed for search since June 2025. Should cite the conversion benchmark: app preview video delivers +20-40% conversion lift on iOS (do not infer Google Play video ROI from tap-to-play rates; previews may autoplay muted for up to 30 seconds depending on device, settings, network and placement). Should recommend adding 5-8 screenshots minimum with caption text, and a 15-30s preview video. Should flag fewer than 5 screenshots as an always-flag issue across all tiers.",
       "assertions": [
         "Notes Visual Assets is 25% of score",
         "Cites first 3 screenshots are most important",
         "Mentions screenshot caption indexing (Apple, 2025)",
         "Cites video conversion lift benchmark",
-        "Notes Google Play video has lower ROI",
+        "Describes conditional muted Google Play autoplay without asserting universal lower ROI",
         "Recommends specific screenshot count and video specs",
         "Flags <5 screenshots as always-flag issue"
       ],
@@ -84,6 +84,19 @@
         "Explains CPP can match traffic source intent",
         "Cross-references ab-testing or ads skill",
         "Notes Google Play equivalents"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We are deciding whether to create a Google Play preview video. Our team says only 6% tap play, so video cannot be worth it. Should we skip it? What should the opening show if we test one?",
+      "expected_output": "Should correct the claim that Google Play preview videos never autoplay: they may autoplay inline, muted, for up to 30 seconds depending on device, settings, network and placement. Should not promise autoplay for every visitor or derive universal conversion lift or ROI from tap-to-play rates. Should recommend showing actual app use and value early without relying on audio, and testing the creative using own listing conversion results. Should preserve the possibility that skipping a video is rational for the specific product and budget.",
+      "assertions": [
+        "Corrects never-autoplay claim with conditional muted playback",
+        "Distinguishes tap-to-play from total exposure and conversion lift",
+        "Does not guarantee playback or a conversion improvement",
+        "Recommends early app demonstration understandable without sound",
+        "Uses product-specific evidence to decide whether to invest"
       ],
       "files": []
     }

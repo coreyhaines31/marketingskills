@@ -17,6 +17,12 @@ Email marketing platform for campaigns, automation, and audience management.
 - **Header**: `Authorization: Bearer {api_key}` or `Authorization: apikey {api_key}`
 - **Base URL**: `https://{dc}.api.mailchimp.com/3.0/` (dc = datacenter from API key)
 
+## Updating member tags
+
+`members update <subscriber_hash> --list-id <list_id> --tags newsletter,trial` activates named tags through Mailchimp's member-tags endpoint. This adds the requested tags and does not replace or remove existing tags. Member creation still accepts its supported string-array `--tags` field.
+
+Tag changes and member profile/status changes use separate API endpoints. Run them as separate commands; combining `--tags` with `--status`, `--first-name` or `--last-name` is rejected before either write. A tag-only preview shows the POST `/lists/{list_id}/members/{subscriber_hash}/tags` request with `{tags: [{name, status: "active"}]}`. Its successful response is HTTP 204 with no JSON body.
+
 ## Common Agent Operations
 
 ### List audiences (lists)

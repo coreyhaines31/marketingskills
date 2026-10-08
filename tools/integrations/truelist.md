@@ -1,184 +1,133 @@
 # Truelist
 
-Email verification and deliverability validation. Validates single emails synchronously or bulk lists asynchronously. Returns an `email_state` + `email_sub_state` plus rich metadata (domain, MX record, suggested correction, disposable/role classification).
+Email verification and list hygiene. Verifies single addresses synchronously and lists asynchronously as batches, resolves catch-all (accept-all) domains with its Enhanced strategy, and returns an `email_state` plus a more specific `email_sub_state` for each address. Truelist also sells **Outbound**, sending infrastructure for cold email (see below).
 
-Spec source: [Truelist-Labs/truelist-openapi](https://github.com/Truelist-Labs/truelist-openapi) (OpenAPI 3.1).
+API facts below were checked against Truelist's live spec ([truelist.io/spec.yaml](https://truelist.io/spec.yaml), v0.2.2; reference at [truelist.io/docs/api](https://truelist.io/docs/api)) and [MCP docs](https://truelist.io/docs/sdks/mcp) on 2026-10-07. The older [GitHub OpenAPI repo](https://github.com/Truelist-Labs/truelist-openapi) lags the live spec.
 
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | REST API, OpenAPI 3.1 spec |
-| MCP | ✓ | Official [truelist-mcp](https://github.com/Truelist-Labs/truelist-mcp) server (Claude, Cursor, VS Code) |
-| CLI | ✓ | Official Go [truelist-cli](https://github.com/Truelist-Labs/truelist-cli) |
-| SDK | ✓ | Official: Node/TypeScript, Python, Ruby, PHP, Go, Java, C#/.NET. Framework integrations: Django, Laravel, Next.js, Rails, React, Svelte, Vue, WordPress |
+| API | ✓ | REST API: inline verification, batches, results, account |
+| MCP | ✓ | Official hosted server at `https://api.truelist.io/mcp` (OAuth sign-in, 7 tools). A self-hostable [truelist-mcp](https://github.com/Truelist-Labs/truelist-mcp) repo also exists |
+| CLI | [✓](../clis/truelist.js) | Zero-dependency Node.js CLI in this repo; Truelist also publishes a Go [truelist-cli](https://github.com/Truelist-Labs/truelist-cli) |
+| SDK | ✓ | Official: Node/TypeScript, Python, Ruby, PHP, Go, Java, .NET; plus WordPress and n8n |
 
 ## Authentication
 
-- **Type**: Bearer token (API key)
-- **Header**: `Authorization: Bearer YOUR_API_KEY`
-- **Get key**: https://truelist.io/settings/api-keys
+- **API and CLI**: Bearer token, `Authorization: Bearer <key>`. Env var `TRUELIST_API_KEY`. Create a key in account settings.
+- **MCP**: no API key. The client opens a browser to sign in to Truelist once, and stays authorized until you revoke it. Because sign-in is per user, the hosted MCP suits interactive sessions; scheduled jobs should use the API key with the CLI or API.
 - **Base URL**: `https://api.truelist.io`
+
+```bash
+# Claude Code
+claude mcp add --transport http truelist https://api.truelist.io/mcp
+```
 
 ## Common Agent Operations
 
-### Verify a single email (synchronous)
+### Verify one or a few addresses (synchronous)
 
 ```bash
-POST https://api.truelist.io/api/v1/verify_inline?email=user@example.com
-Authorization: Bearer YOUR_API_KEY
+node tools/clis/truelist.js verify --email jane@acme.com
+node tools/clis/truelist.js verify --email "jane@acme.com,bo@beta.io" --strategy enhanced
 ```
 
-No request body — the email is a query parameter. Returns a single-element `emails` array with verification fields:
+Underlying call: `POST /api/v1/verify_inline?email=<space-separated addresses>&validation_strategy=<strategy>`.
 
-```json
-{
-  "emails": [
-    {
-      "address": "user@example.com",
-      "domain": "example.com",
-      "canonical": "user@example.com",
-      "mx_record": null,
-      "first_name": null,
-      "last_name": null,
-      "email_state": "ok",
-      "email_sub_state": "email_ok",
-      "verified_at": "2026-02-21T10:39:12.570Z",
-      "did_you_mean": null
-    }
-  ]
-}
-```
+| Strategy | Use when |
+|----------|----------|
+| `accurate` (default) | Normal verification with retries |
+| `fast` | Speed matters more than certainty; skips retry logic |
+| `thorough` | Greylisting servers; waits longer (5-minute retry delay) |
+| `enhanced` | Catch-all domains; adds post-validation checks to resolve accept-all results. Uses enhanced credits |
 
-### Bulk verification (asynchronous)
+The inline endpoint also takes a `checks` parameter (`syntax`, `mx`, `disposable`, `role`, `smtp`) for sub-200ms signup-form checks that skip SMTP; see the API reference.
+
+### Verify a list (asynchronous batch)
 
 ```bash
-POST https://api.truelist.io/api/v1/verify
-Authorization: Bearer YOUR_API_KEY
-Content-Type: application/json
+# CSV/text with the email in the first column, or a JSON array of emails (2+ addresses)
+node tools/clis/truelist.js batch create --file prospects.csv --name "Q4 SaaS list" --webhook-url https://example.com/truelist-done
 
-{
-  "emails": [
-    "user1@example.com",
-    "user2@example.com"
-  ]
-}
+# Poll status (batch_state: pending → processing → completed)
+node tools/clis/truelist.js batch get --id <batch-uuid>
+
+# Pull results by state once completed (paginated, max 100 per page)
+node tools/clis/truelist.js results --batch-id <batch-uuid> --state ok --per-page 100
+node tools/clis/truelist.js results --batch-id <batch-uuid> --state invalid
+
+node tools/clis/truelist.js batch list
 ```
 
-Processes the list in the background. The response acknowledges submission; results are available via the dashboard, the Truelist UI's CSV download, or via integrations (Mailchimp, Klaviyo, HubSpot, Zapier, Make, n8n, etc.).
+A completed batch includes four CSV download URLs: `safest_bet_csv_url` (only addresses safe to send), `highest_reach_csv_url` (adds accept-all/catch-all addresses), `only_invalid_csv_url`, and `annotated_csv_url` (your original rows plus result columns). Counts aren't updated until the batch completes. Supply `--webhook-url` to get a POST with the batch ID on completion instead of polling.
 
-For large lists, the dashboard's CSV upload + download flow is typically the lowest-friction path.
-
-### Get account information
+### Account
 
 ```bash
-GET https://api.truelist.io/me
-Authorization: Bearer YOUR_API_KEY
+node tools/clis/truelist.js account
 ```
 
-Returns email, name, UUID, time zone, admin role, API keys, and account plan info.
+## Result States
 
-## Response Fields (per email)
+`email_state` (overall verdict):
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `address` | string | The email address validated |
-| `domain` | string | The domain part of the address |
-| `canonical` | string | Canonical form of the address |
-| `mx_record` | string \| null | MX record for the domain |
-| `first_name` | string \| null | First name if detected |
-| `last_name` | string \| null | Last name if detected |
-| `email_state` | enum | Overall validation verdict (see below) |
-| `email_sub_state` | enum | More specific reason (see below) |
-| `verified_at` | datetime (ISO 8601) | When verification ran |
-| `did_you_mean` | string \| null | Suggested correction for typos |
+| State | Meaning | Outbound action |
+|-------|---------|-----------------|
+| `ok` | Deliverable | Send |
+| `email_invalid` | Not deliverable | Remove; it would bounce |
+| `accept_all` | Catch-all domain; the mailbox can't be confirmed | Resolve with the `enhanced` strategy first. If still unresolved, send only for high-value accounts, from separate lower-volume inboxes |
+| `risky` | May deliver but carries risk (role, disposable, and similar) | Exclude from cold outreach by default |
+| `unknown` | Couldn't be determined (timeouts, greylisting) | Re-verify with `thorough`; don't send until resolved |
 
-## `email_state` values
+`email_sub_state` (reason): `email_ok`, `accept_all`, `is_disposable`, `is_role`, `failed_mx_check`, `failed_smtp_check`, `failed_spam_trap`, `failed_no_mailbox`, `failed_greylisted`, `failed_syntax_check`, `unknown_error`.
 
-| State | Meaning | What to do |
-|-------|---------|-----------|
-| `ok` | The email address is deliverable. | Include in outreach |
-| `email_invalid` | The email address is not deliverable. | Exclude — would bounce |
-| `risky` | May be deliverable but carries risk (role address, disposable, etc.) | Include cautiously, lower priority |
-| `unknown` | Deliverability could not be determined (timeout/connection). | Skip or re-verify with Thorough strategy |
-| `accept_all` | The mail server accepts all addresses (catch-all domain) | Include cautiously — can't confirm specific mailbox |
+Read the two together. `ok` + `is_role` is deliverable but a shared inbox (info@, sales@), which cold outreach should skip. `email_invalid` + `failed_no_mailbox` means the address doesn't exist. Any `failed_spam_trap` result should be removed and the source of that list questioned.
 
-## `email_sub_state` values
+Results filtering (`results --state`) accepts `ok`, `risky`, `invalid`, and `unknown`.
 
-| Sub-state | Meaning |
-|-----------|---------|
-| `email_ok` | Passed all checks |
-| `is_disposable` | Disposable / temporary provider (e.g., 10minutemail) |
-| `is_role` | Role-based address (info@, sales@, admin@) |
-| `unknown_error` | Sub-state could not be determined |
-| `failed_smtp_check` | SMTP check failed |
+## MCP Tools
 
-Pair the two: `email_state: ok` + `email_sub_state: is_role` means "deliverable but a role inbox," whereas `email_state: email_invalid` + `email_sub_state: failed_smtp_check` means "doesn't exist."
+| Tool | Does | Credits |
+|------|------|---------|
+| `check_account` | Account, plan, and connected user | No |
+| `validate_email` | One address, full validation chain | 1 (recent cached results free) |
+| `validate_emails` | Up to 50 addresses; returns partial results with `stopped_reason` if a limit trips | 1 per email |
+| `create_batch` | Batch of up to 10,000 addresses | 1 per email (cache hits free) |
+| `list_batches` | Batches with progress counters | No |
+| `get_batch` | One batch, with the four CSV download URLs when complete | No |
+| `list_email_addresses` | Past results filtered by batch or state | No |
 
 ## Rate Limits
 
-| Endpoint | Limit |
-|----------|-------|
-| `/api/v1/verify_inline` | 10 requests/second |
-| `/api/v1/verify` | 10 requests/second |
-| `/me` | 10 requests/second |
+- 10 API requests per second per endpoint; `429` when exceeded. The email validation rate is separate and depends on plan.
+- Source: [API reference](https://truelist.io/docs/api)
 
-A 429 is returned on rate-limit exceed. Note: the per-email validation rate is separate and depends on your plan.
+## Truelist Outbound (sending infrastructure)
 
-## Error Responses
+Separate from verification, [Truelist Outbound](https://truelist.io/docs/outbound/overview) provides cold email sending infrastructure that you connect to a sequencer (Instantly, Smartlead, lemlist, or anything that sends over SMTP):
+- Domains registered in your name, with SPF, DKIM, and DMARC configured automatically
+- Mailboxes with SMTP/IMAP credentials for your sequencer, on a sending IP reserved for your account
+- A 21-day sending ramp (10 → 20 → 30 → 40 sends a day per mailbox) enforced on Truelist's mail server, regardless of what the sequencer tries to send. There is no warmup network.
+- Every recipient verified at send time; invalid or unverifiable recipients are rejected
+- Server-enforced suppressions for hard bounces and complaints, and recurring blocklist monitoring
 
-| Code | Meaning |
-|------|---------|
-| 401 | Unauthorized — API key missing, invalid, or expired |
-| 429 | Rate limit exceeded |
-| 500 | Server error |
-
-All error bodies follow `{"error": "<human-readable message>"}`.
+It doesn't run campaigns or write copy; the sequencer still does that. Compare it with general inbox providers in the `cold-email` skill's deliverability guidance.
 
 ## When to Use
 
-- **Before adding contacts to any cold outreach list** — non-negotiable safety step. Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%; Truelist catches the rest.
-- **Real-time form validation** — block disposable / typo'd emails at signup. Use the inline endpoint (or the [form validation widget](https://truelist.io/docs/form-validation-widget)).
-- **Periodic list hygiene** — re-verify your active list quarterly to remove bounces before they hurt sender reputation.
-- **Pre-import validation** on email platform imports (Mailchimp, Klaviyo, HubSpot, etc.) — direct integrations exist for most.
-- **AI agent workflows** via the official MCP server for Claude, Cursor, and VS Code.
+- **Before any cold outreach**: verify every list before it reaches a sequencer, and re-verify anything older than 30–60 days before sending. Keep hard bounces under 2% (under 1% is the target).
+- **Catch-all heavy lists** (B2B domains often accept all mail): use the `enhanced` strategy rather than dropping or blindly sending to accept-all results.
+- **Signup and form validation**: inline verification with fast checks.
+- **Recurring list hygiene** for CRM and ESP lists, via native integrations or scheduled batches.
 
-## Why This Step is Non-Negotiable
+## Native Integrations
 
-Cold email reputation is built over months and destroyed in days. ISPs (Gmail, Outlook, etc.) track sender reputation through:
-
-- **Bounce rate** — bounces over 2% trigger throttling
-- **Spam complaints** — spam traps in unvalidated lists generate complaints
-- **Engagement** — sending to dead mailboxes hurts engagement metrics
-
-A single unvalidated send to a bought or scraped list can damage a domain's sending reputation for months.
-
-## Workflow Integration
-
-Typical prospecting flow:
-
-1. Build initial prospect list (Apollo, Clay, ZoomInfo, Hunter, GitHub stargazers, etc.)
-2. **For agent-driven workflows**: use the Truelist MCP server to validate inline as the agent builds the list
-3. **For programmatic workflows**: POST emails to `/api/v1/verify` for async bulk OR `/api/v1/verify_inline` for sync single
-4. **For one-offs**: CSV upload via dashboard, download annotated CSV
-5. Filter: keep `email_state: ok`, include `risky`/`accept_all` cautiously with a strategy, exclude `email_invalid`, re-verify `unknown`
-6. Hand cleaned list to outreach platform (Instantly, Lemlist, Outreach, etc.) — see [outreach.md](outreach.md), [instantly.md](instantly.md), [lemlist.md](lemlist.md)
-
-## Native Integrations (no API code required)
-
-For non-developer workflows, Truelist has direct integrations:
-
-- **Email platforms**: Mailchimp, Klaviyo, HubSpot, ActiveCampaign, Brevo, Constant Contact, ConvertKit, Drip
-- **Automation**: Zapier, Make.com, n8n
-- **CRM / sales**: Salesforce, Go High Level, Clay.com
-- **Ecom**: BigCommerce
-- **AI / agents**: MCP server (Claude, Cursor, VS Code)
-
-See https://truelist.io/integrations for the current list.
+Email platforms (Mailchimp, Klaviyo, HubSpot, ActiveCampaign, Brevo, Constant Contact, Kit, Drip), automation (Zapier, Make, n8n), CRM and sales (Salesforce, Go High Level, Clay), and ecommerce (BigCommerce, Shopify). Current list: [truelist.io/integrations](https://truelist.io/integrations).
 
 ## Relevant Skills
 
-- prospecting (primary use case — validate before adding to outreach lists)
-- cold-email (downstream outreach against the validated list)
-- emails (transactional senders + subscriber list hygiene)
-- popups (real-time form validation on opt-in capture)
+- prospecting (verify before anything enters an outreach list)
+- cold-email (deliverability and list hygiene for sending)
+- emails (subscriber list hygiene)
+- popups (real-time form validation)

@@ -4,58 +4,194 @@ Current versions of all skills. Agents can compare against local versions to che
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
-| ab-testing | 2.0.0 | 2026-05-05 |
-| ad-creative | 2.9.3 | 2026-10-02 |
-| ai-seo | 2.7.2 | 2026-10-02 |
-| analytics | 2.0.2 | 2026-10-02 |
-| aso | 2.0.1 | 2026-08-19 |
-| attribution | 1.1.2 | 2026-10-02 |
-| churn-prevention | 2.0.1 | 2026-10-02 |
+| ab-testing | 2.0.1 | 2026-10-08 |
+| ad-creative | 2.10.0 | 2026-10-08 |
+| ai-seo | 2.7.5 | 2026-10-08 |
+| analytics | 2.0.3 | 2026-10-08 |
+| aso | 2.0.2 | 2026-10-08 |
+| attribution | 1.1.3 | 2026-10-08 |
+| churn-prevention | 2.0.2 | 2026-10-08 |
 | co-marketing | 2.0.2 | 2026-10-02 |
-| cold-email | 2.1.0 | 2026-10-02 |
+| cold-email | 2.2.0 | 2026-10-07 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.1.2 | 2026-10-02 |
+| competitor-profiling | 2.1.3 | 2026-10-07 |
 | competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.2 | 2026-10-02 |
-| copy-editing | 2.1.0 | 2026-10-02 |
+| content-strategy | 2.1.3 | 2026-10-07 |
+| copy-editing | 2.1.1 | 2026-10-07 |
 | copywriting | 2.1.0 | 2026-10-02 |
-| cro | 2.0.0 | 2026-05-05 |
+| cro | 2.0.3 | 2026-10-08 |
 | customer-research | 2.0.4 | 2026-10-02 |
-| directory-submissions | 2.1.0 | 2026-10-02 |
-| emails | 2.1.1 | 2026-10-02 |
+| directory-submissions | 2.1.1 | 2026-10-08 |
+| emails | 2.1.3 | 2026-10-08 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.1 | 2026-08-23 |
 | image | 2.0.2 | 2026-10-02 |
 | influencer-marketing | 1.1.2 | 2026-10-02 |
-| launch | 2.0.3 | 2026-10-02 |
+| launch | 2.2.0 | 2026-10-07 |
 | lead-magnets | 2.0.0 | 2026-05-05 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
-| marketing-loops | 1.2.1 | 2026-10-02 |
-| marketing-plan | 1.2.0 | 2026-10-02 |
+| marketing-loops | 1.4.0 | 2026-10-07 |
+| marketing-plan | 1.2.1 | 2026-10-08 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.1 | 2026-08-23 |
 | onboarding | 2.0.1 | 2026-08-23 |
-| ads | 2.4.3 | 2026-10-02 |
+| ads | 2.4.6 | 2026-10-08 |
 | paywalls | 2.0.0 | 2026-05-05 |
 | popups | 2.0.0 | 2026-05-05 |
-| pricing | 2.1.2 | 2026-10-02 |
+| pricing | 2.1.3 | 2026-10-08 |
 | product-marketing | 2.1.0 | 2026-07-16 |
-| programmatic-seo | 2.0.0 | 2026-05-05 |
-| prospecting | 1.1.2 | 2026-10-02 |
+| programmatic-seo | 2.1.0 | 2026-10-06 |
+| prospecting | 1.3.0 | 2026-10-08 |
 | public-relations | 1.2.0 | 2026-10-02 |
-| referrals | 2.0.2 | 2026-10-02 |
-| revops | 2.0.1 | 2026-10-02 |
-| sales-enablement | 2.3.2 | 2026-10-02 |
-| schema | 2.0.0 | 2026-05-05 |
-| seo-audit | 2.0.1 | 2026-08-19 |
-| signup | 2.0.0 | 2026-05-05 |
-| site-architecture | 2.0.0 | 2026-05-05 |
+| referrals | 2.2.0 | 2026-10-08 |
+| revops | 2.2.0 | 2026-10-08 |
+| sales-enablement | 2.4.0 | 2026-10-07 |
+| schema | 2.0.2 | 2026-10-08 |
+| seo-audit | 2.2.0 | 2026-10-08 |
+| signup | 2.0.1 | 2026-10-08 |
+| site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.3.2 | 2026-10-02 |
+| social | 2.3.3 | 2026-10-07 |
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.25 (2026-10-08)
+
+Three contributions from @rudycelekli that answer maintainer issues.
+
+- **Per-skill ZIPs for claude.ai** (#730, closes #431): each release now attaches one ZIP per skill for people uploading skills in Claude's web or desktop app, plus full-source ZIPs and manifests. Claude's web upload limits descriptions to 200 characters, so a reviewed short description per skill lives in `scripts/claude-web-descriptions.json`. When a skill's description changes, the release leaves it out of the web ZIPs and lists it in the manifest until its short description is reviewed. All 50 are current. Built by `scripts/package_skills.py`; see `docs/skill-release-packaging.md`.
+- **prospecting** (1.2.0 → 1.3.0), **revops** (2.1.0 → 2.2.0), **cro** (2.0.2 → 2.0.3), **signup** (2.0.0 → 2.0.1) (#721, part of #498):
+  - New `prospecting/references/enrichment-playbook.md`: acceptance rules per field, exact cache keys, and keeping errors separate from genuine no-matches.
+  - New `revops/references/inbound-routing.md`: form routing that survives enrichment failures and duplicate events.
+  - Pointers from cro and signup.
+- **Guided tool connections** (#720, closes #405): `tools/SETUP.md` walks an agent through connecting Google Ads, Meta Ads, LinkedIn Ads, GA4, or Stripe. It keeps credentials in a private local file, never in chat, and verifies each connection with a read-only test.
+
+### 2.11.24 (2026-10-08)
+
+Two contributions from @rudycelekli, folded into existing skills instead of becoming new skills.
+
+- **seo-audit** (2.1.1 → 2.2.0): local SEO from #717 (closes #486). New `references/local-seo.md` covers diagnosing the map pack separately from organic results, Business Profile and citation cleanup built on real business facts, honest review requests, and useful location pages, with two companion references for profile details and page measurement. Triggers added: 'local SEO,' 'Google Business Profile,' 'map pack.'
+- **referrals** (2.1.0 → 2.2.0): review programs from #722 (closes #475), building on @Adi29102000-s's contribution in #417. New `references/review-programs.md` covers review requests, responses, reputation triage, and permissioned testimonial reuse, with platform rules and program operations in two companion references. Triggers added: 'get more reviews,' 'G2 reviews,' 'review campaign,' 'respond to a bad review.'
+
+### 2.11.23 (2026-10-08)
+
+Skill and tooling fixes from @rudycelekli: corrected platform facts, sounder math in the finance and testing guidance, and validator fixes.
+
+- **Platform facts:**
+  - **schema** (2.0.1 → 2.0.2): FAQ rich results ended in 2026, and HowTo and the sitelinks search box were retired earlier; Schema.org vocabulary is now kept separate from what Google displays (#767).
+  - **analytics** (2.0.2 → 2.0.3): GA4 enhanced-measurement event names in reports (#774), and localized price text kept out of monetary tracking (#779).
+  - **churn-prevention** (2.0.1 → 2.0.2): correct Paddle Billing dunning webhook events (#776).
+  - **aso** (2.0.1 → 2.0.2): Google Play preview videos can autoplay muted (#784).
+  - **seo-audit** (2.1.0 → 2.1.1): preferred canonicals for same-language regional duplicates, which must sit inside the hreflang cluster (#782).
+  - **directory-submissions** (2.1.0 → 2.1.1): verify the actual link and its rel qualifiers rather than HTTP headers (#768).
+- **Math and reasoning:**
+  - **ab-testing** (2.0.0 → 2.0.1): correct p-value and confidence-interval interpretation for fixed-horizon tests (#769).
+  - **ads** (2.4.5 → 2.4.6): CAC payback uses gross margin and cohort recovery, keeping firm verdicts (#773). The Meta Andromeda playbook moved into `references/meta-andromeda-playbook.md`, bringing SKILL.md under 500 lines.
+  - **marketing-plan** (1.2.0 → 1.2.1): ARR budgets account for churn in the starting base (#772).
+  - **pricing** (2.1.2 → 2.1.3): Van Westendorp measures price perception, not demand (#771).
+  - **referrals** (2.0.2 → 2.1.0): rewards are capped by total CAC (#780). A new `references/affiliate-operations.md` covers cohort economics, partner activation, payout policy, and incrementality; it builds on @Adi29102000-s's contribution in #417 (#724).
+  - **attribution** (1.1.2 → 1.1.3): stale booking-link identity is cleared (#770), and webhook analytics failures are non-fatal (#778).
+- **Routing and creative:**
+  - **cro** (2.0.1 → 2.0.2) and **emails** (2.1.2 → 2.1.3): a routing table that sends each question to the right reference (#699).
+  - **ai-seo** (2.7.4 → 2.7.5): question-level routing to its references (#702).
+  - **ad-creative** (2.9.4 → 2.10.0): headline treatments by buyer awareness stage (#727).
+- **Tooling:** the validator and sync script now handle Windows line endings (#709), ignore indented metadata keys (#763), keep literal `$` text (#764), and require frontmatter that opens and closes the file (#762).
+
+### 2.11.22 (2026-10-08)
+
+75 CLI fixes from @rudycelekli, each checked against the vendor's current API docs. Endpoints, auth, pagination, encoding, and error handling now match what the APIs actually accept.
+
+- **Correct endpoints and payloads:** Dub (#661, #729), Beehiiv (#662, #663), SendGrid Single Sends (#664), Apollo org enrichment (#668), Amplitude retention (#670), SavvyCal (#671, #742), Livestorm (#672), Close (#673), Keywords Everywhere (#675), Pendo (#676), Intercom (#680, #686), Optimizely archive (#681), Hotjar (#682), Trustpilot invitations (#683), Similarweb v4 (#684), AirOps (#685), Tolt (#687), lemlist webhook filters (#689), Demio (#692), Ahrefs backlinks (#693), Crossbeam (#696), Rewardful (#698), Mailchimp tags (#701), Snov (#707, #752), Semrush backlinks (#711), PartnerStack (#723), Adobe (#741).
+- **Auth:** ZoomInfo signed-key login (#690), Supermetrics (#691), Zapier catch hooks without management keys (#694), OneSignal `Key` auth (#695), Wistia Bearer (#706), Google Ads without a developer token, now that Google has sunset them (#718), Apollo key in a header (#668).
+- **Failing loudly instead of silently:** GSC (#674), TikTok (#710), DataForSEO task errors (#714), Postmark partial batches (#715), Mixpanel ingestion (#716), GA4 event params (#700), Intercom metadata (#766).
+- **Pagination and identifiers:** Klaviyo cursors (#666), Customer.io ID encoding and EU region (#665, #738), Plausible (#733), GA4 (#735), GSC (#736), Hunter (#746), Resend (#749), Close page size (#750), Rewardful (#754), Outreach cursors (#755), Pendo IDs (#728), Apollo employee ranges (#765), github-prospects truncation (#708), Buffer `--now false` (#704).
+- **New capabilities:** Amplitude external-ID lookup and device-only events (#726, #758), Paddle plan and billing-date changes (#731), Firecrawl crawl errors (#734), ActiveCampaign custom fields (#737), Segment anonymous IDs and delivery metadata (#739, #760), Google Ads read-only GAQL (#743), Brevo channel suppression (#745), Exa answers and structured search output (#747, #753), Resend idempotency keys (#748), Postmark template models (#756), Klaviyo structured properties (#757), Customer.io suppression (#759).
+- **Interface changes to know about:**
+  - `amplitude users activity --user-id` now takes your external user ID; use `--amplitude-id` for Amplitude's internal ID (#726).
+  - `airops --id` is now the app UUID, and `AIROPS_WORKSPACE_ID` is no longer used (#685).
+  - Tolt drops `--name`, `--commission-rate`, `payouts`, and customer lookup by `--customer-id` (#687).
+  - ZoomInfo passwords move from `ZOOMINFO_PRIVATE_KEY` to `ZOOMINFO_PASSWORD` (#690).
+  - OneSignal switches to `Key` auth, so check older-format keys (#695).
+  - PartnerStack `transactions create` and `webhooks create` require `--currency` and `--events` (#723).
+  - `mailchimp` rejects `--tags` combined with other update flags (#701).
+  - DataForSEO exits 1 on "no results" and "partial results" task codes as well as errors (#714).
+
+
+### 2.11.21 (2026-10-08)
+
+Community fixes from @rudycelekli: credential handling in three CLIs, Mixpanel service accounts, and two hardening fixes in skills.
+
+- **Tools:**
+  - **mixpanel** (#669): the CLI prefers service-account auth, with project-secret auth as a fallback, and requires a project ID for service accounts.
+  - **kit** (#679) and **hunter** (#688): dry-run previews now redact credentials by query parameter, and Hunter URL-encodes its key.
+- **ad-creative** (2.9.3 → 2.9.4): classify review images using browser URL semantics, block normalized remote/authority forms, retain portable local/data assets, and align the image instructions with the preview restriction. (#775)
+- **schema** (2.0.0 → 2.0.1): escape serialized JSON-LD at the HTML script boundary in the Next.js example, preserving the original product text. Add a matching diagnostic eval and link official framework guidance. (#777)
+
+### 2.11.20 (2026-10-07)
+
+Modern outbound, from a full audit of the sales and GTM skills against 2025–26 practice. Everything extends existing skills. Tools ship alongside in #791.
+
+- **cold-email** (2.1.0 → 2.2.0): scope widened from writing cold emails to running outbound. Five new references:
+  - `deliverability.md`: secondary domains, mailbox math, SPF/DKIM/DMARC, Gmail's hard rejections from November 2025 and Microsoft's enforcement from May 2025, warmup, tracking off, monitoring, and stop-loss rules.
+  - `linkedin-outreach.md`: limits, the engage-then-connect sequence, copy, and the automation decision after LinkedIn's 2025–26 actions against vendors.
+  - `multichannel-cadence.md`: cadences by tier, the rule that a reply on any channel stops all of them, calls, video, direct mail, and ads.
+  - `outbound-plays.md`: value-first teardown, product-led, problem-led, and founder-led plays.
+  - `reply-handling.md`: reply types, response speed, booking, early objections, and what an agent may send alone.
+
+  Benchmarks drop open rate and use 2025–26 data. A tool section was added, and the description now carries the core rules (secondary domains, verify first, tracking off, stop every channel on a reply).
+- **prospecting** (1.1.3 → 1.2.0): three new references.
+  - `signal-plays.md`: signal ranking and freshness windows, mapping each signal to a play, and account tiers.
+  - `account-research.md`: account briefs and rules for agent research (facts before angles, "no hook found").
+  - `sourcing-and-enrichment.md`: alternatives to scraping LinkedIn, the enrichment waterfall and provider bake-off, catch-all and re-verification policy, and a suppression list shared across channels.
+
+  `compliance.md` fixes two errors: GDPR does apply to LinkedIn messages, and Google Place IDs may be stored. It adds UK PECR (fines up to £17.5M), the consent requirement for B2B email in Germany, Australia, and US phone rules (DNC, AI voice under the TCPA). Legacy Clearbit references are replaced, and the tool table is updated with verified MCP status.
+- **sales-enablement** (2.3.2 → 2.4.0): new `references/cold-call-scripts.md` covering openers, first-minute pushback, voicemail, and gatekeepers.
+- **revops** (2.0.1 → 2.1.0): an outbound stage model with attribution fields and handoff rules.
+- **marketing-loops** (1.3.0 → 1.4.0): four outbound loops (signal sweep, reply triage, cold-domain health, sequence retro) and `references/outbound-operator.md`, with approval rules by tier. The catalog now has 52 loops.
+- **emails** (2.1.1 → 2.1.2), **competitor-profiling** (2.1.2 → 2.1.3), **ads** (2.4.4 → 2.4.5), **social** (2.3.2 → 2.3.3): route outbound requests to cold-email and account research to prospecting.
+- **cro** (2.0.0 → 2.0.1): replaces a legacy Clearbit reference.
+- **Tools** (#791):
+  - Instantly CLI moved to API v2, plus its official MCP.
+  - A new Truelist CLI.
+  - New guides for Attio, HeyReach, FullEnrich, LeadMagic, TheirStack, and Apify.
+  - MCP status checked across outbound tools; 30 are now listed.
+  - Clearbit marked legacy.
+  - LinkedIn Ads CLI moved to the versioned REST API.
+  - A sales outbound quick start in the registry.
+
+### 2.11.19 (2026-10-07)
+
+SEO operations: running SEO as a standing job, not a one-off audit. Everything extends existing skills.
+
+- **marketing-loops** (1.2.1 → 1.3.0): new `references/seo-operator.md`, a recipe that combines the SEO loops into one scheduled operator for a site the agent can edit from its repo. It covers a five-setting brief (ship mode defaults to PRs for review); shared state in `.agents/seo/` (a claims ledger, a query map with one primary query per page, and a work queue ranked by expected conversions per hour); every-run, weekly and monthly schedules; a first-run checklist; operating rules; a writing gate; and a one-screen weekly report. Three new catalog loops:
+  - **striking-distance push**: positions 8–20, plus top-5 pages with weak click-through.
+  - **AI-answer check**: a weekly prompt panel. Misstated facts send you to fix the page that should state them, and cited sources become outreach targets.
+  - **claim-drift**: product changes that make marketing claims false.
+
+  Also fixes the stale loop count (now 48). New triggers: 'run my SEO,' 'SEO operator,' 'daily SEO agent.' New eval.
+- **seo-audit** (2.0.1 → 2.1.0): two new references.
+  - `references/rankings-push.md`: finding striking-distance and weak-CTR candidates, checking cannibalization, diagnosing against the top three results, making the smallest fix that closes the gap, judging results after 3–4 weeks, and a checklist for shipping a new page.
+  - `references/title-tags.md`: title patterns by page type, why Google rewrites titles, low-CTR fixes, and a table format for bulk audits.
+
+  New triggers: 'stuck on page 2,' 'striking distance keywords,' 'title tag rewrite,' 'low CTR.' New eval.
+- **copy-editing** (2.1.0 → 2.1.1): `references/content-refresh.md` now starts from a SERP gap analysis: a coverage grid against five competitors, gaps ranked by how many competitors cover them, matching coverage rather than word count, and an approval checkpoint. It adds what to keep (the URL, linked anchors, the voice) and a handoff list for whoever publishes.
+- **launch** (2.1.0 → 2.2.0): new `references/shipped-changes.md`, which turns merged PRs into a weekly changelog entry, drafts sized to each change, a list of pages the changes made wrong, and new content opportunities. Only live, customer-visible changes count, and every claim must come from the change itself. New triggers: 'changelog,' 'release notes,' 'what did we ship this week.' New eval.
+- **content-strategy** (2.1.2 → 2.1.3): an information-gain gate for searchable content. If you can't say what the piece adds that the top results lack, don't write it.
+- **ai-seo** (2.7.3 → 2.7.4): visibility-audit prompts are spread across buyer awareness stages, plus guidance on turning findings into work: fix the page behind a misstated fact, and treat cited sources as outreach targets when you're absent.
+
+### 2.11.18 (2026-10-06)
+
+Website platform coverage, prompted by Ploy (◆ Verified Partner, Website & landing page builders). The repo had the strategy layer for sites (copywriting, cro, site-architecture, programmatic-seo) but nothing on where to build, adding sections to an existing site, migrating, or go-live QA. Added to existing skills, no new skill. Ploy appears as one option among alternatives with disclosure, including that the maintainer authors Ploybooks in Ploy's library. Closes #653.
+
+- **site-architecture** (2.0.0 → 2.1.0): new `references/platforms-and-migration.md`: six questions before choosing a platform; an options table (Webflow, Framer, WordPress, Wix Studio and Squarespace, landing-page tools, AI-native site platforms incl. Ploy ◆, AI app builders, hand-coded, headless); adding a section to an existing site (same platform, subpath via reverse proxy, subdomain, separate domain) with a proxy checklist; and migrating without losing traffic (crawl, redirect map, what imports don't carry, post-launch monitoring). New triggers: 'which website builder should I use,' 'migrate my website,' 'add a blog to my existing site.' New evals (ids 7–8).
+- **programmatic-seo** (2.0.0 → 2.1.0): new Implementation Framework step 6 and `references/implementation-platforms.md`: what a platform has to do for pages at scale (item limits, data refresh, server-rendered HTML, conditional sections, per-page indexation, internal linking, publish time) and the options (Webflow CMS, WordPress, Framer CMS, hand-coded generation, headless CMS, AI-native platforms incl. Ploy ◆ PloyDB). New trigger 'which CMS for pSEO.' New eval.
+- **ai-seo** (2.7.2 → 2.7.3): `agent-readiness.md` gains ways to implement WebMCP (yourself, platform support with Ploy ◆'s Ploybook as one example, a coding agent) and the tests every path needs.
+- **launch** (2.0.3 → 2.1.0): new `references/site-launch-qa.md`, a before/at/after go-live checklist (forms and conversion tracking, SEO incl. the shipped staging noindex, redirects, performance, a practiced rollback per platform, Search Console monitoring). New triggers: 'site launch,' 'go live,' 'pre-launch QA.' New eval.
+- **prospecting** (1.1.2 → 1.1.3): `references/data-sources.md` and the tool table add Ploy ◆ as a visitor-identification option for Ploy-hosted sites, alongside RB2B and Clearbit Reveal, with its limits (hosting requirement, metering, consent caveat).
+- **ads** (2.4.3 → 2.4.4): `references/abm-playbook.md` gains account pages for 1:1 and 1:few ABM (personalization layer, CMS fed from a list, hand-coded route, or an AI site platform such as Ploy ◆), with guardrails (noindex, only public or first-party facts, human review).
+- **tools/integrations/ploy.md**: rewritten from current docs. Corrects the claims of a general REST API and an MCP server (the CLI is the management surface; WebMCP is a Ploybook), adds real CLI workflows (v0.16.x), pricing, and tradeoffs, and notes that OIDC SSO is live on Enterprise. Reviewed by Ploy. REGISTRY's MCP flag and the partner blurb are updated to match.
 
 ### 2.11.17 (2026-10-02)
 

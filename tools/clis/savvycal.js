@@ -69,13 +69,13 @@ async function main() {
           params.set('limit', String(limit))
           if (args.after) params.set('after', args.after)
           if (args.before) params.set('before', args.before)
-          result = await api('GET', `/scheduling-links?${params}`)
+          result = await api('GET', `/links?${params}`)
           break
         }
         case 'get': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('GET', `/scheduling-links/${id}`)
+          result = await api('GET', `/links/${id}`)
           break
         }
         case 'create': {
@@ -84,7 +84,7 @@ async function main() {
           const body = { name }
           if (args.slug) body.slug = args.slug
           if (args.duration) body.duration_minutes = Number(args.duration)
-          result = await api('POST', '/scheduling-links', body)
+          result = await api('POST', '/links', body)
           break
         }
         case 'update': {
@@ -94,25 +94,25 @@ async function main() {
           if (args.name) body.name = args.name
           if (args.slug) body.slug = args.slug
           if (args.duration) body.duration_minutes = Number(args.duration)
-          result = await api('PATCH', `/scheduling-links/${id}`, body)
+          result = await api('PATCH', `/links/${id}`, body)
           break
         }
         case 'delete': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('DELETE', `/scheduling-links/${id}`)
+          result = await api('DELETE', `/links/${id}`)
           break
         }
         case 'duplicate': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', `/scheduling-links/${id}/duplicate`)
+          result = await api('POST', `/links/${id}/duplicate`)
           break
         }
         case 'toggle': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('POST', `/scheduling-links/${id}/toggle`)
+          result = await api('POST', `/links/${id}/toggle`)
           break
         }
         case 'slots': {
@@ -122,7 +122,7 @@ async function main() {
           if (args['start-time']) params.set('start_time', args['start-time'])
           if (args['end-time']) params.set('end_time', args['end-time'])
           const qs = params.toString()
-          result = await api('GET', `/scheduling-links/${id}/slots${qs ? '?' + qs : ''}`)
+          result = await api('GET', `/links/${id}/slots${qs ? '?' + qs : ''}`)
           break
         }
         default:
@@ -149,16 +149,19 @@ async function main() {
         case 'create': {
           const linkId = args['link-id']
           const startAt = args['start-at']
+          const endAt = args['end-at']
+          const timeZone = args['time-zone']
           const name = args.name
           const email = args.email
-          if (!linkId || !startAt || !name || !email) {
-            result = { error: '--link-id, --start-at, --name, and --email required' }
+          if (!linkId || !startAt || !endAt || !timeZone || !name || !email) {
+            result = { error: '--link-id, --start-at, --end-at, --time-zone, --name, and --email required' }
             break
           }
-          result = await api('POST', '/events', {
-            scheduling_link_id: linkId,
+          result = await api('POST', `/links/${encodeURIComponent(linkId)}/events`, {
             start_at: startAt,
-            name,
+            end_at: endAt,
+            time_zone: timeZone,
+            display_name: name,
             email,
           })
           break
@@ -208,7 +211,7 @@ async function main() {
         usage: {
           me: 'me',
           links: 'links [list | get --id <id> | create --name <name> | update --id <id> | delete --id <id> | duplicate --id <id> | toggle --id <id> | slots --id <id>]',
-          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --name <name> --email <email> | cancel --id <id>]',
+          events: 'events [list | get --id <id> | create --link-id <id> --start-at <iso> --end-at <iso> --time-zone <iana> --name <name> --email <email> | cancel --id <id>]',
           webhooks: 'webhooks [list | create --url <url> --events <e1,e2> | delete --id <id>]',
           options: '--limit <n> --after <cursor> --before <cursor>',
         }

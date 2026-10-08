@@ -13,9 +13,9 @@ AI content platform for crafting content that wins AI search. Build and execute 
 
 ## Authentication
 
-- **Type**: API Key + Workspace ID
+- **Type**: Workspace API Key
 - **Header**: `Authorization: Bearer {api_key}`
-- **Env vars**: `AIROPS_API_KEY`, `AIROPS_WORKSPACE_ID`
+- **Env vars**: `AIROPS_API_KEY` (no separate workspace ID is required by these public routes)
 - **Get key**: Settings > API Keys at https://app.airops.com
 
 ## Common Agent Operations
@@ -23,19 +23,19 @@ AI content platform for crafting content that wins AI search. Build and execute 
 ### List Flows
 
 ```bash
-GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows
+GET https://api.airops.com/public_api/airops_apps
 ```
 
 ### Get Flow Details
 
 ```bash
-GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_id}
+GET https://api.airops.com/public_api/airops_apps/{app_uuid}
 ```
 
 ### Execute a Flow
 
 ```bash
-POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_id}/execute
+POST https://api.airops.com/public_api/airops_apps/{app_uuid}/execute
 
 {
   "inputs": {
@@ -48,25 +48,25 @@ POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_
 ### List Runs for a Flow
 
 ```bash
-GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/flows/{flow_id}/runs
+GET https://api.airops.com/public_api/airops_apps/{numeric_app_id}/executions?airops_app_id={numeric_app_id}
 ```
 
 ### Get Run Status
 
 ```bash
-GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/runs/{run_id}
+GET https://api.airops.com/public_api/airops_apps/executions/{execution_uuid}
 ```
 
 ### List Workflows
 
 ```bash
-GET https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows
+GET https://api.airops.com/public_api/airops_apps
 ```
 
 ### Execute a Workflow
 
 ```bash
-POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows/{workflow_id}/execute
+POST https://api.airops.com/public_api/airops_apps/{app_uuid}/execute
 
 {
   "inputs": {
@@ -89,7 +89,7 @@ POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows/{w
 ### Run Data
 - `id` - Run identifier
 - `flow_id` - Parent flow ID
-- `status` - pending, running, completed, failed
+- `status` - pending, running, error, success, cancelled, review_needed
 - `inputs` - Input parameters used
 - `outputs` - Generated results
 - `started_at` - Run start time
@@ -126,3 +126,18 @@ POST https://api.airops.com/public_api/v1/workspaces/{workspace_id}/workflows/{w
 - content-strategy
 - programmatic-seo
 - copywriting
+
+## CLI identifiers and execution limits
+
+`flows` and `workflows` refer to the same public app catalog. Use the app UUID
+from Integrate for detail and execution operations, and the returned execution
+UUID for `run-status`. Run history uses the numeric app ID and accepts `--cursor`
+and `--items` (1–100). The list operation returns both app ID and UUID.
+
+Apps must be published before execution. The synchronous execution endpoint can
+fail when workspace capacity is exhausted or a run takes more than ten minutes;
+this CLI does not automatically retry or enqueue work. `--inputs` must contain a
+JSON object. The provider also documents async execution for longer workflows.
+
+Contracts: [Apps](https://docs.airops.com/api-reference/api-reference/apps) and
+[Executions](https://docs.airops.com/api-reference/api-reference/executions).

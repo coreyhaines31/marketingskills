@@ -86,6 +86,19 @@
         "Explains RevOps covers systems and processes, not email content"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Our demo form uses company enrichment before showing a calendar. A valid existing-customer submission already has an owner; the provider times out and then returns a different territory. We also receive the same webhook twice. Design the routing and tell us what to measure.",
+      "expected_output": "Keeps valid submissions and existing ownership, deduplicates the webhook, provides a bounded-wait fallback, and guards late updates. Separates actual rep response from enrichment latency and proposes a shadow/pilot with observed outcomes.",
+      "assertions": [
+        "Does not reject a valid submission because enrichment timed out",
+        "Preserves the existing account owner unless an explicit reassignment rule applies",
+        "Avoids duplicate contacts/tasks/bookings on replay",
+        "Does not silently swap a calendar or owner on late provider output",
+        "Measures both form experience and actual assignment/response outcomes"
+      ],
+      "files": []
     }
   ]
 }

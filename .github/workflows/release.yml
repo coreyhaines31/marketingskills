@@ -2,8 +2,8 @@ name: Release on version bump
 
 # Auto-creates a git tag + GitHub Release whenever the repo version in
 # .claude-plugin/plugin.json changes on main. Release notes are pulled from
-# the matching `### x.y.z` block in VERSIONS.md. Idempotent: if the tag
-# already exists, it does nothing (safe to re-run / backfill manually).
+# the matching `### x.y.z` block in VERSIONS.md. Re-runs retain the existing
+# tag's commit and replace only the named ZIP/manifest release assets.
 
 on:
   push:
@@ -30,18 +30,19 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
-            echo "v$VERSION already tagged — nothing to do."
+            echo "package_ref=$(git rev-parse "refs/tags/v$VERSION^{commit}")" >> "$GITHUB_OUTPUT"
+            echo "v$VERSION already tagged — reuse that commit for assets."
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "package_ref=${{ github.sha }}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Extract release notes + title from VERSIONS.md
-        if: steps.ver.outputs.exists == 'false'
         run: |
-          python3 - "${{ steps.ver.outputs.version }}" <<'PY'
-          import re, sys
+          python3 - "${{ steps.ver.outputs.version }}" "${{ steps.ver.outputs.package_ref }}" <<'PY'
+          import re, subprocess, sys
           v = sys.argv[1]
-          text = open("VERSIONS.md").read()
+          text = subprocess.check_output(["git", "show", f"{sys.argv[2]}:VERSIONS.md"], text=True)
           parts = re.split(r"\n### (\d+\.\d+\.\d+) \([^)]*\)\n", text)
           blocks = {}
           for i in range(1, len(parts), 2):
@@ -58,14 +59,42 @@ jobs:
           print("Title:", title)
           PY
 
-      - name: Create tag + release
-        if: steps.ver.outputs.exists == 'false'
+      - name: Build complete source ZIPs and reviewed web ZIPs
+        run: |
+          python3 scripts/package_skills.py --ref "${{ steps.ver.outputs.package_ref }}" --target source --output dist/skill-zips
+          python3 scripts/package_skills.py --ref "${{ steps.ver.outputs.package_ref }}" --target claude-web --mapped-only --output dist/skill-zips
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path("dist/skill-zips")
+          source = json.loads((root / "source-manifest.json").read_text())
+          web = json.loads((root / "claude-web-manifest.json").read_text())
+          lines = ["## Skill ZIP assets", "", f"Complete source catalog: {len(source['bundles'])} skills.",
+                   f"Claude web target: {len(web['bundles'])} skills with reviewed short descriptions.", "",
+                   "Choose `<name>-claude-web.zip` for the documented single-folder web upload format.",
+                   "Source ZIPs retain original metadata; they are not substitutes for omitted web ZIPs.",
+                   "Live client upload, account limits, and invocation behavior have not been verified.", "",
+                   "Web omissions (also recorded in `claude-web-manifest.json`):"]
+          lines.extend(f"- {item['skill']}: {item['reason']}" for item in web["omitted"])
+          if not web["omitted"]:
+              lines.append("- None.")
+          report = "\n".join(lines) + "\n"
+          with open("release-notes.md", "a") as notes:
+              notes.write("\n" + report)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as summary:
+              summary.write(report)
+          PY
+
+      - name: Create release if needed and upload ZIP assets
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           VERSION="${{ steps.ver.outputs.version }}"
-          gh release create "v$VERSION" \
-            --target "${{ github.sha }}" \
-            --title "$(cat release-title.txt)" \
-            --notes-file release-notes.md
-          echo "Created release v$VERSION"
+          if ! gh release view "v$VERSION" >/dev/null 2>&1; then
+            gh release create "v$VERSION" \
+              --target "${{ steps.ver.outputs.package_ref }}" \
+              --title "$(cat release-title.txt)" \
+              --notes-file release-notes.md
+          fi
+          gh release upload "v$VERSION" dist/skill-zips/*.zip dist/skill-zips/*-manifest.json --clobber
+          echo "Uploaded skill ZIP assets for v$VERSION"

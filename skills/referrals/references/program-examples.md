@@ -77,16 +77,24 @@ Real-world examples of successful referral programs.
 
 ## Incentive Sizing Framework
 
-**Calculate your maximum incentive:**
+**Keep the incentive inside the total acquisition budget:**
 ```
-Max Referral Reward = (Customer LTV × Gross Margin) - Target CAC
+Total Referral CAC = Total Reward Cost + Other Acquisition Cost
+Max Total Reward Cost = max(0, Target CAC - Other Acquisition Cost)
 ```
 
+Use costs per newly acquired paying customer over the same cohort and period. Total reward cost includes both sides of a two-sided reward; other acquisition cost includes allocated tool, campaign, and management costs. Estimate the actual cost or foregone contribution of credits and free months consistently, rather than treating their face value as cash cost or ignoring it.
+
 **Example:**
-- LTV: $1,200
-- Gross margin: 70%
-- Target CAC: $200
-- Max reward: ($1,200 × 0.70) - $200 = $640
+- Lifetime revenue: $1,200; gross margin: 70% → lifetime gross profit: $840
+- Target total referral CAC: $200
+- Other acquisition cost per acquired customer: $40
+- Maximum combined reward cost: $200 - $40 = $160 (for example, $80 cash to each side)
+- Total referral CAC: $160 + $40 = $200
+
+The old $640 reward would produce $680 CAC with these other costs, exceeding the $200 target. Lifetime gross profit helps assess whether the chosen acquisition budget is viable; it is not the reward budget minus target CAC. Check retention, refunds, and cash payback before committing the budget. If other costs already meet or exceed target CAC, pause or redesign the program; a zero remaining reward budget does not make an already over-budget acquisition acceptable.
+
+For the CAC cost/cohort definition, see [Stripe's CAC calculation guide](https://stripe.com/resources/more/cac-in-saas).
 
 **Typical referral rewards:**
 - B2C: $10-50 or 10-25% of first purchase

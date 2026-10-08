@@ -382,9 +382,15 @@ function() {
   return match ? match[2] : null;
 }
 
-// Get data from page
+// Read a machine-readable amount, not the localized display text.
+// Example: <span class="product-price" data-price="1234.56">$1,234.56</span>
 function() {
   var el = document.querySelector('.product-price');
-  return el ? parseFloat(el.textContent.replace('$', '')) : 0;
+  var raw = el ? el.getAttribute('data-price') : null;
+  if (raw === null || !/^(?:0|[1-9][0-9]*)(?:\.[0-9]+)?$/.test(raw)) return null;
+  var amount = Number(raw);
+  return isFinite(amount) ? amount : null;
 }
 ```
+
+For monetary tracking, prefer the numeric amount and currency from the application data layer. If a DOM variable is needed, have the application render `data-price` as an unformatted, non-negative decimal in major currency units; pass its currency separately. Do not infer the amount or currency from presentation text: `parseFloat` turns `$1,234.56` into `1` after removing `$`, and localized separators have different meanings. A missing or invalid amount returns `null`, so skip that monetary event or diagnose it before sending; reserve `0` for an explicitly free item.

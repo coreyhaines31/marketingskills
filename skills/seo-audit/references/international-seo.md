@@ -64,30 +64,28 @@ For both engines: implement hreflang (Google/Yandex) + `<html lang="...">` + `<m
 
 ## Canonicalization & i18n
 
-### Self-Referencing Canonicals
+### Choose Canonicals by Content and Language
 
-Each locale page must canonical to itself. John Mueller: "Don't use a rel=canonical across languages/countries, only use it on a per-country/language basis."
+Use self-referencing canonicals for distinct locale pages, including genuinely translated content. Do not consolidate different-language translations merely because they describe the same product.
 
-Google's docs: "Specify a canonical page in the same language, or the best possible substitute language if a canonical doesn't exist for the same language."
+For similar or duplicate regional pages in the **same language**, Google recommends choosing a preferred canonical and using consistent `hreflang` annotations. For example, equivalent German content at `example.de/` and `example.com/de/` can share a preferred canonical; every regional URL is not required to canonicalize to itself.
 
-- [John Mueller: hreflang canonical](https://johnmu.com/hreflang-canonical/)
+- [Google: Handling duplicate multilingual/multi-regional pages](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites#handling-duplicate-pages-with-multilingualmulti-regional-sites)
 - [Google: Consolidate Duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
 
-### Canonical Overrides Hreflang
+### Align Canonical and Hreflang Signals
 
-Mueller: "If your canonical is pointing somewhere else, Google will follow that and ignore your hreflang annotation." The canonical URL must be one of the URLs in the hreflang set, or all hreflang markup is ignored.
+Keep canonical targets and `hreflang` clusters consistent with the chosen content/language strategy. `hreflang` identifies localized alternatives; it does not force Google to index each URL independently. Canonicals are signals to Google's selection process, not an indexing guarantee.
 
-Google also states: "Google prefers URLs that are part of hreflang clusters for canonicalization" -- when signals align, hreflang strengthens canonical selection.
+The preferred canonical must be a URL inside the `hreflang` cluster. Google ignores `hreflang` on a URL that is canonicalized to another one.
 
-- [John Mueller: hreflang canonical](https://johnmu.com/hreflang-canonical/)
-- [SEJ: Hreflang Tags Are Hints](https://www.searchenginejournal.com/google-reminds-that-hreflang-tags-are-hints-not-directives/546428/)
 - [Google: Consolidate Duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
 
 ### Near-Duplicate Regional Variants
 
 Mueller (2023 Office Hours): "If the content is completely the same, and we can't tell any difference, then for simplicity and user experience we may just show one version -- even if hreflang is present."
 
-Google's duplicate detection runs BEFORE hreflang evaluation. To keep both versions indexed, you need substantive content differences beyond currency symbols.
+Google may consolidate identical or near-duplicate regional content despite `hreflang`. Use the same-language preferred-canonical strategy above where appropriate; do not promise that either self-canonicals or cosmetic differences will keep every regional URL indexed.
 
 - [International Web Mastery: Same-Language Duplicate Pages](https://internationalwebmastery.com/blog/how-google-handles-canonicalization-of-same-language-duplicate-near-duplicate-pages/)
 - [Google: Managing Multi-Regional Sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)
@@ -194,7 +192,7 @@ Reddit scaled AI translations to 35+ languages with Google's knowledge. The key 
 
 Google: "Localized versions of a page are only considered duplicates if the main content of the page remains untranslated." Pages with only translated boilerplate get clustered as duplicates.
 
-Do NOT use noindex for unwanted locale pages (wastes crawl budget). Do NOT canonical cross-locale (conflicts with hreflang). Best approach: don't create locale pages you can't make genuinely helpful.
+Do NOT use noindex for unwanted locale pages (wastes crawl budget). Do not canonicalize distinct translations to another language merely to hide thin content. Best approach: don't create locale pages you can't make genuinely helpful.
 
 - [Google: Localized Versions](https://developers.google.com/search/docs/specialty/international/localized-versions)
 - [Google: Crawl Budget Management](https://developers.google.com/search/docs/crawling-indexing/large-site-managing-crawl-budget)

@@ -28,7 +28,9 @@ Ask each respondent:
    - **Indifference Price Point (IDP):** "Expensive" crosses "Cheap"
 
 **The acceptable price range:** PMC to PME
-**Optimal pricing zone:** Between OPP and IDP
+**Candidate prices to test:** OPP and IDP can inform a shortlist; they do not establish an economically optimal zone.
+
+The four questions measure price perceptions, not purchase probabilities. Before forecasting demand, use additional purchase-intent research (such as the Newton-Miller-Smith extension, with its assumptions stated), a choice study or actual price tests. Compare revenue, margin and retention; a higher acceptable price does not guarantee unchanged demand. See [Sawtooth's explanation of the method and its limits](https://sawtoothsoftware.com/resources/blog/posts/van-westendorp-pricing-sensitivity-meter).
 
 ### Survey Tips
 - Need 100-300 respondents for reliable data
@@ -46,9 +48,11 @@ Optimal Price Point:          $49/mo
 Indifference Price Point:     $59/mo
 Point of Marginal Expensiveness: $79/mo
 
-Recommended range: $49-59/mo
-Current price: $39/mo (below optimal)
-Opportunity: 25-50% price increase without significant demand impact
+Candidate test prices: $49 and $59/mo
+Current price: $39/mo
+Price changes: +25.6% and +51.3%
+Demand, conversion and churn impact: not measured by these four questions
+Next step: validate purchase behavior and unit economics before rollout
 ```
 
 ---

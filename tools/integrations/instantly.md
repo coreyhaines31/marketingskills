@@ -1,104 +1,122 @@
-# Instantly.ai
+# Instantly
 
-Cold email platform with built-in email warmup and campaign management at scale.
+Cold email sending platform: campaigns and sequences, sending-account management with warmup, inbox rotation, a shared reply inbox (Unibox), lead lists, a built-in lead database (SuperSearch), and inbox placement tests.
+
+API facts below were checked against [developer.instantly.ai](https://developer.instantly.ai/api-reference/introduction) on 2026-10-07.
 
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | REST API for campaigns, leads, accounts, analytics |
-| MCP | - | Not available |
-| CLI | [✓](../clis/instantly.js) | Zero-dependency Node.js CLI |
+| API | ✓ | REST API v2. v1 was deprecated on 2026-01-19 ([migration guide](https://developer.instantly.ai/guides/api-v1-migration)) |
+| MCP | ✓ | Official hosted server at `https://mcp.instantly.ai/mcp`, exposing the full v2 API as tools ([docs](https://developer.instantly.ai/mcp/introduction)) |
+| CLI | [✓](../clis/instantly.js) | Zero-dependency Node.js CLI (API v2) |
 | SDK | - | API-only |
 
 ## Authentication
 
-- **Type**: API Key (query parameter)
-- **Parameter**: `api_key={key}`
+- **Type**: Bearer token (`Authorization: Bearer <key>`), with scoped API keys
 - **Env var**: `INSTANTLY_API_KEY`
-- **Get key**: [Instantly Settings > Integrations > API](https://app.instantly.ai/app/settings/integrations)
+- **Get key**: Instantly Settings > Integrations > API. Create a v2 key; v1 keys don't work with v2.
+- **MCP**: send the same key as an `Authorization` header (preferred) or `x-instantly-api-key`. Avoid the URL-embedded key option; it ends up in logs. Because the MCP takes an API key rather than per-user OAuth, it also works for scheduled, unattended agent runs.
 
 ## Common Agent Operations
 
-### Manage campaigns
+### Campaigns
 
 ```bash
-# List campaigns
 node tools/clis/instantly.js campaigns list --limit 20
+node tools/clis/instantly.js campaigns get --id <campaign-id>
+node tools/clis/instantly.js campaigns activate --id <campaign-id>
+node tools/clis/instantly.js campaigns pause --id <campaign-id>
 
-# Get campaign details
-node tools/clis/instantly.js campaigns get --id cam_abc123
-
-# Check campaign status
-node tools/clis/instantly.js campaigns status --id cam_abc123
-
-# Launch a campaign
-node tools/clis/instantly.js campaigns launch --id cam_abc123
-
-# Pause a campaign
-node tools/clis/instantly.js campaigns pause --id cam_abc123
+# Why is a campaign not sending (or sending slowly)?
+node tools/clis/instantly.js campaigns sending-status --id <campaign-id>
 ```
 
-### Manage leads
+### Leads
+
+Verify every list before it goes in (see the `prospecting` skill and the [Truelist guide](truelist.md)).
 
 ```bash
-# List leads in a campaign
-node tools/clis/instantly.js leads list --campaign-id cam_abc123 --limit 50
+# Add one lead to a campaign
+node tools/clis/instantly.js leads add --campaign-id <id> --email jane@acme.com \
+  --first-name Jane --company "Acme" --job-title "VP Marketing" --skip-if-in-workspace
 
-# Add a lead
-node tools/clis/instantly.js leads add --campaign-id cam_abc123 --email john@example.com --first-name John --last-name Doe --company "Example Inc"
+# Add up to 1,000 leads from a JSON file
+node tools/clis/instantly.js leads bulk-add --campaign-id <id> --file leads.json --skip-if-in-workspace
 
-# Delete a lead
-node tools/clis/instantly.js leads delete --campaign-id cam_abc123 --email john@example.com
+# List leads in a campaign (cursor pagination)
+node tools/clis/instantly.js leads list --campaign-id <id> --limit 100
 
-# Check lead status
-node tools/clis/instantly.js leads status --campaign-id cam_abc123 --email john@example.com
+# Record a reply outcome
+node tools/clis/instantly.js leads interest --email jane@acme.com --status meeting-booked
 ```
 
-### Manage email accounts
+Interest statuses: `interested`, `meeting-booked`, `meeting-completed`, `won`, `out-of-office`, `not-interested`, `wrong-person`, `lost`, `no-show`.
+
+### Replies
 
 ```bash
-# List connected accounts
-node tools/clis/instantly.js accounts list --limit 20
-
-# Check account status
-node tools/clis/instantly.js accounts status --account-id me@example.com
-
-# Check warmup status
-node tools/clis/instantly.js accounts warmup-status --account-id me@example.com
+# Received emails, newest first (filter to a campaign, or unread only)
+node tools/clis/instantly.js emails replies --campaign-id <id> --unread
+node tools/clis/instantly.js emails unread-count
 ```
 
-### View analytics
+For near-real-time reply handling, use Instantly's [webhooks](https://developer.instantly.ai/guides/webhook-events) (reply, interest-change, and bounce events) instead of polling.
+
+### Sending accounts and warmup
 
 ```bash
-# Campaign analytics
-node tools/clis/instantly.js analytics campaign --campaign-id cam_abc123 --start 2024-01-01 --end 2024-01-31
-
-# Step-by-step analytics
-node tools/clis/instantly.js analytics steps --campaign-id cam_abc123
-
-# Account-level analytics
-node tools/clis/instantly.js analytics account --start 2024-01-01 --end 2024-01-31
+node tools/clis/instantly.js accounts list --limit 50
+node tools/clis/instantly.js accounts get --email sender@yourdomain.com
+node tools/clis/instantly.js accounts warmup-analytics --emails sender1@yourdomain.com,sender2@yourdomain.com
 ```
 
-### Manage blocklist
+### Analytics
 
 ```bash
-# List blocked emails/domains
-node tools/clis/instantly.js blocklist list
-
-# Add to blocklist
-node tools/clis/instantly.js blocklist add --entries "competitor.com,spam@example.com"
+node tools/clis/instantly.js analytics campaign --campaign-id <id> --start-date 2026-09-01 --end-date 2026-09-30
+node tools/clis/instantly.js analytics overview
+node tools/clis/instantly.js analytics steps --campaign-id <id>
 ```
+
+Judge campaigns on replies, positive replies, and meetings. Open rates are unreliable since Apple Mail Privacy Protection, and many teams turn open tracking off for cold email.
+
+### Blocklist (suppression)
+
+```bash
+node tools/clis/instantly.js blocklist list --search acme.com
+node tools/clis/instantly.js blocklist add --entries "customer.com,unsubscribed@example.com"
+```
+
+Keep customers, open deals, competitors, and everyone who opted out on any channel in the blocklist.
 
 ## Rate Limits
 
-- API rate limits vary by plan
-- Recommended: stay under 10 requests/second
+- 100 requests per second and 6,000 per minute, shared across the whole workspace and all its API keys (v1 and v2 combined). Exceeding either returns `429`.
+- A few endpoints are slower: listing emails is 20 requests per minute; sending a test email is 10 per minute.
+- Source: [Rate limit docs](https://developer.instantly.ai/getting-started/rate-limit)
+
+## Other API surfaces
+
+Not wrapped by the CLI; call them through the MCP or the API directly:
+- **Inbox placement tests** (seed tests across providers before launching a campaign)
+- **Lead lists** and verification statistics per list
+- **SuperSearch** lead database and enrichment
+- **Done-for-you domains and mailboxes**, with domain availability checks
+- **Webhooks** and custom tags
 
 ## Use Cases
 
-- **Link building at scale**: Run large-volume outreach campaigns with built-in warmup
-- **Campaign management**: Launch, pause, and monitor cold email campaigns
-- **Account health**: Monitor email account warmup and deliverability
-- **Analytics**: Track open rates, reply rates, and campaign performance
+- **Sales outbound**: run cold email campaigns to verified, segmented lists, from secondary domains with warmed sending accounts
+- **Reply triage**: pull received replies, classify them, and set interest status so stopped leads leave the sequence
+- **Deliverability monitoring**: check warmup analytics, account vitals, sending status, and placement tests before scaling volume
+- **Link building and PR outreach**: the same campaign mechanics work for backlink and press outreach
+
+## Relevant Skills
+
+- cold-email
+- prospecting
+- revops
+- marketing-loops

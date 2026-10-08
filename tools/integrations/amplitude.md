@@ -54,8 +54,15 @@ POST https://api2.amplitude.com/batch
 
 ### Get user activity
 
+The activity endpoint requires an internal Amplitude ID, distinct from the
+external `user_id` used to track events. The CLI resolves `users activity
+--user-id <external-user-id>` through User Search and selects an exact user ID
+match before requesting activity. Use `--amplitude-id <internal-id>` for a
+direct lookup. A dry run with `--user-id` previews the initial search request;
+it cannot determine an internal ID without contacting the API.
+
 ```bash
-GET https://amplitude.com/api/2/useractivity?user={user_id}
+GET https://amplitude.com/api/2/useractivity?user={amplitude_id}
 
 Authorization: Basic {base64(api_key:secret_key)}
 ```
@@ -82,9 +89,19 @@ fs.writeFileSync('events.zip', Buffer.from(result.body, 'base64'))
 ### Get retention data
 
 ```bash
-GET https://amplitude.com/api/2/retention?e={"event_type":"signup_completed"}&start=20240101&end=20240131
+GET https://amplitude.com/api/2/retention?se={"event_type":"signup_completed"}&re={"event_type":"purchase"}&start=20240101&end=20240131
 
 Authorization: Basic {base64(api_key:secret_key)}
+```
+
+The [Dashboard REST API](https://amplitude.com/docs/apis/analytics/dashboard-rest#retention-analysis)
+requires two event objects: `se` for the starting action and `re` for the returning action.
+The CLI defaults to new users (`_new`) returning with an active event (`_active`).
+`--event` is a compatibility alias for `--return-event`; an explicit `--return-event` wins.
+
+```bash
+node tools/clis/amplitude.js retention get --start 20240101 --end 20240131 \
+  --start-event signup_completed --return-event purchase --dry-run
 ```
 
 ### Query with SQL (Snowflake)
@@ -144,3 +161,19 @@ amplitude.track('Feature Used', {
 - analytics
 - ab-testing
 - onboarding
+
+## Tracking before signup
+
+`track event` accepts `--device-id` without `--user-id` for events before an
+account exists. At least one identity is required; when both are known, include
+both to send them together. Device IDs are identifiers, not a privacy guarantee.
+
+```bash
+node tools/clis/amplitude.js track event --device-id visitor-device-123 \
+  --event-type "Viewed Pricing" --properties '{"experiment":"pricing-b"}' --dry-run
+```
+
+The CLI leaves existing user-only payloads intact and masks the API key in
+previews. Amplitude's default minimum identifier length is five characters;
+provider-side identity and project ingestion rules still apply. See the
+[HTTP V2 API](https://amplitude.com/docs/apis/analytics/http-v2).

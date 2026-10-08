@@ -29,8 +29,11 @@ Business at $1M ARR, 5% allocation:
 - Annual marketing budget: **$50,000**
 - Blended CAC: $100 → can acquire **500 new customers**
 - ARPC: $50/mo → adds **$300K** to ARR
-- Account for 15% annual churn → 85% × $300K = **+$255K net new ARR**
-- End-of-year goal: **$1.255M ARR**
+- Assume 85% revenue retention for both the starting base and new acquisitions, with no expansion/reactivation. This is an illustrative assumption, not a measured forecast.
+- Retained starting ARR: 85% × $1M = **$850K**
+- Retained new-customer ARR: 85% × $300K = **$255K**
+- Net change: $255K − $150K lost from the starting base = **+$105K ARR**
+- End-of-year goal under these assumptions: **$1.105M ARR**
 
 ### The math (Aggressive example)
 
@@ -39,7 +42,7 @@ Business at $1M ARR, 40% allocation:
 - Annual marketing budget: **$400,000**
 - Blended CAC: $100 → can acquire **4,000 new customers**
 - ARPC: $50/mo → adds **$2.4M** to ARR
-- End-of-year goal: **$3.4M ARR**
+- With the same illustrative 85% revenue-retention assumptions: $850K retained starting ARR + $2.04M retained new-customer ARR = **$2.89M year-end ARR**. The $3.4M figure would require no revenue loss in either cohort.
 
 ### Two keys to making this method work
 
@@ -59,32 +62,38 @@ You start with the revenue goal and work backward through the unit economics to 
 ### The formula
 
 ```
-Marketing budget = [(New ARR / (ARPC × 12)) × CAC] / annual retention rate
+Required retained new-customer ARR = max(0, Target ending ARR − Retained starting-base ARR)
+Retained starting-base ARR = Starting ARR × Existing-base net revenue retention
+New customers = ceil(Required retained new-customer ARR / (ARPC × 12 × New-cohort retention))
+Acquisition budget = New customers × CAC
 ```
+
+Use revenue retention to bridge ARR, not logo retention unless equal customer values are explicitly assumed. Existing-base net revenue retention can include expansion/contraction; do not add them again. New-cohort retention must reflect acquisition timing and remaining exposure before year end, not automatically a full-year rate. If the retained base already meets the target, no additional acquisitions are required by this formula. [MRR/ARR movement definitions](https://help.chartmogul.com/article/158-chart-mrr-movements) separate new business from expansion, contraction and churn.
 
 ### Worked example: $1M ARR → $2M ARR
 
-Step 1 — How much new ARR per customer?
-ARPC × 12 = $50 × 12 = **$600 ARR per new customer**
+Assume $50 monthly ARPC, $100 CAC, 85% revenue retention on the existing base, and an illustrative 85% retention on new acquisitions. No expansion/reactivation is assumed.
 
-Step 2 — How many new customers do we need?
-$1,000,000 / $600 = **1,667 new customers**
+Step 1 — Retain the starting base
+$1,000,000 × 0.85 = **$850,000 retained starting ARR**
 
-Step 3 — What's the raw acquisition cost?
-1,667 × $100 CAC = **$166,700**
+Step 2 — Required retained new-customer ARR
+$2,000,000 − $850,000 = **$1,150,000** — acquisitions must replace the $150K lost from the base as well as deliver the $1M net increase.
 
-Step 4 — Account for churn (15% annual = 85% retention)
-$166,700 / 0.85 = **$196,118** (round to **$200K**)
+Step 3 — Retained year-end ARR per acquired customer
+$50 × 12 × 0.85 = **$510**
+
+Step 4 — Customers and acquisition budget
+ceil($1,150,000 / $510) = **2,255 new customers**
+2,255 × $100 = **$225,500 acquisition budget** before the buffer below.
+
+Check: $850,000 + 2,255 × $510 = **$2,000,050 year-end ARR**. Budgeting only for the $1M net increase would miss the target because it ignores losses from existing customers.
 
 When someone asks how you got to the budget, walk them through the four steps. It's defensible.
 
 ### Why this formula and not something simpler
 
-The four steps each correspond to a real economic reality:
-- Step 1 converts MRR-language into the ARR-language a board talks in
-- Step 2 names the customer count, which is what the funnel actually has to deliver
-- Step 3 anchors the budget in the cost of acquisition
-- Step 4 acknowledges that churned customers don't count toward net new ARR, so the budget needs to cover the gap
+The four steps reconcile the target to the surviving base, then convert the remaining ARR gap into retained new customers and acquisition cost. Keep existing-base and new-cohort retention separate so replacement revenue is neither omitted nor counted twice.
 
 ### Required buffer
 

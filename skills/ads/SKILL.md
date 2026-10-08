@@ -1,8 +1,8 @@
 ---
 name: ads
-description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' 'when should I kill an ad,' 'search terms report,' 'wasted spend,' or 'is this campaign working.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro."
+description: "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' 'audience targeting,' 'Google Ads,' 'Facebook ads,' 'LinkedIn ads,' 'ad budget,' 'cost per click,' 'ad spend,' 'should I run ads,' 'ABM,' 'account-based marketing,' 'B2B ads,' 'lead quality,' 'negative keywords,' 'Performance Max,' 'thought leader ads,' 'when should I kill an ad,' 'search terms report,' 'wasted spend,' or 'is this campaign working.' Use this for campaign strategy, audience targeting, bidding, and optimization. For bulk ad creative generation and iteration, see ad-creative. For landing page optimization, see cro. For outbound to target accounts, see cold-email."
 metadata:
-  version: 2.4.3
+  version: 2.4.6
 ---
 
 # Paid Ads
@@ -46,7 +46,7 @@ This skill's depth lives in references — load by intent. For **any operational
 
 | User intent | Load | Covers |
 |---|---|---|
-| "Can I afford this channel?", payback math, budgeting per plan, whether LTV:CAC lies | [payback-period.md](references/payback-period.md) | Why LTV:CAC is useless (4 flaws), Payback = CAC/ARPU (3–12mo), Discounted Payback, $9-vs-$999 worked examples, OOH+social, narrative momentum |
+| "Can I afford this channel?", payback math, budgeting per plan, whether LTV:CAC lies | [payback-period.md](references/payback-period.md) | Why LTV:CAC is useless (4 flaws), Gross-margin payback and cohort recovery (3–12mo planning target), $9-vs-$999 worked examples, OOH+social, narrative momentum |
 | B2B strategy, funnel stages, budget splits, kill rules, lead quality, breakeven math | [b2b-paid-playbook.md](references/b2b-paid-playbook.md) | Demand lifecycle, leading/lagging signals, kill rules, offline conversion loop, U/B/F lead scoring, scaling quadrant |
 | Meta operations: when to kill/graduate/scale an ad, fatigue, testing structure, partnership/creator ads, declining reach | [meta-decision-system.md](references/meta-decision-system.md) | TCPL-anchored decision tree, ad-count ceiling, 80/20 CBO structure, fatigue bands, lead forms, Advantage+ transition, partnership-ads playbook, rolling-reach signal |
 | LinkedIn operations: bidding, audience sizing, scaling, benchmarks, TLAs, formats | [linkedin-b2b-playbook.md](references/linkedin-b2b-playbook.md) | Bidding progression, penetration scaling, sizing rules, funnel benchmarks, document/conversation ads, audit shortlist |
@@ -178,48 +178,9 @@ Trying to make up for weak creative with hyper-precise targeting. If your creati
 
 ## Modern Meta playbook (Andromeda era — 2026+)
 
-Meta launched the **Andromeda** algorithm in 2025, which fundamentally changed Meta ads. The old playbook (interest stacking, polished video creative, single-winner scaling) underperforms. The new playbook:
+Meta's Andromeda algorithm (2025) made creative volume and variety the main lever: target broadly and let specific creative do the targeting, ship many cheap static concepts, and make ads look native rather than polished. The full playbook (creative volume, creative as targeting, identity keywords, AI variants, zombie campaigns, native-looking ads) is in [references/meta-andromeda-playbook.md](references/meta-andromeda-playbook.md).
 
-### Creative volume is the constraint (statics > polished video)
-- Andromeda is "a hungry panda" — it needs constant fresh creative or it fatigues
-- **Statics often outperform video in 2026** because:
-  - Meta's algorithm has a bias toward statics — it can show more statics per session per user, so they're cheaper to deliver
-  - Static creative is 10x cheaper and faster to produce than video, enabling the volume Andromeda needs
-  - Even top advertisers running 17+ VSLs report that down-and-dirty native statics often beat 2.5-month-production VSLs
-- **Dedicate 1 hour per week** to producing fresh creatives for your winning offer. Volume > polish.
-
-### Creative IS the targeting (broad audience + specific creative)
-- The old playbook: stack interests, narrow the audience, hope to find the right buyer
-- The new playbook: target broadly (just the country) and let the creative do the targeting
-- **Long-form ad copy works better than short-form** in 2026 — gives Meta a wider context window to understand who to show the ad to
-- Test it: take your best winning ad with interest-stacked targeting, duplicate it, remove all targeting (just pick the country), run side-by-side for 7 days. Check CPAs. Broad typically wins.
-
-### The one-keyword hack (identity-trigger keywords)
-- Take your winning ad
-- Duplicate it with a niche/identity keyword inserted in the headline or body copy
-- *"Here's how to get 462 leads per week on autopilot"* → *"Here's how to get 462 **dental** leads per week on autopilot"* / *"...**lawyer** leads..."* / *"...**property investment** leads..."*
-- The keyword is an **identity trigger** for the viewer AND a targeting signal for Andromeda
-- Dramatically drops CPL and opens audience pockets you couldn't reach with a generic ad
-
-### AI variant farming (the 100-people test)
-- Take your winning ad
-- Feed to Claude/ChatGPT/Kong with the prompt:
-  > *"I want you to read this ad and be the author. If I show the next ad I'm going to ask you to write to 100 people, not 1 in 100 would be able to tell you it's written by a different person. Now write this for [demographic/niche]."*
-- The output should read essentially the same with subtle relevance shifts for the target
-- Apply in sequence: body copy → headlines → creative
-- Drop all variants in a CBO, let Meta's AI allocate spend
-
-### Zombie campaigns
-- After running a CBO, Meta will give 80% of variants no spend
-- Take the dead variants you have **high conviction** about
-- Launch them in a separate ad set ("zombie campaign")
-- Typically resurrects 20% as winners that Meta's first allocation passed over
-
-### Don't make ads look like ads
-- Hundreds of millions of people have ad blockers — the polished-ad aesthetic kills performance
-- Study what content **natively performs** in your niche on TikTok/Instagram/YouTube → produce ads that match that aesthetic
-- **Burner account technique:** create a clean Instagram/TikTok account, follow all influencers and pages in your niche, like their content. Your feed becomes a curated view of what's natively winning. Produce ads that match.
-- If you have an organic video with millions of views, **run that exact video as a paid ad** — proven content + paid distribution = the highest-leverage move
+---
 
 ## Creative Best Practices
 

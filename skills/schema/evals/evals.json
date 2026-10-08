@@ -82,6 +82,46 @@
         "Does not attempt full SEO audit using schema markup patterns"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Our Next.js product page embeds JSON-LD with dangerouslySetInnerHTML and JSON.stringify(schema). Product names come from a CMS and can contain HTML, quotes, ampersands and Unicode. How do we keep product text intact without allowing it to terminate the JSON-LD script element?",
+      "expected_output": "Should use the schema implementation example and escape the serialized JSON for its HTML script context by replacing every less-than character with a literal JSON Unicode escape before assigning __html. Should explain that JSON.stringify alone does not protect the HTML parser boundary, preserve the original product text when JSON is parsed, and avoid deleting content, HTML-entity escaping JSON or directly interpolating raw names. Should refer to the current official Next.js guidance.",
+      "assertions": [
+        "Identifies the script element HTML parsing boundary",
+        "Escapes every less-than character after JSON serialization",
+        "Preserves original product text after JSON.parse",
+        "Does not treat JSON.stringify alone as safe HTML embedding",
+        "Uses the linked Next.js guidance"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "It's October 2026. Our product FAQ has 20 questions. Add FAQ schema so Google shows expandable questions in our search result, and tell us how to validate that feature.",
+      "expected_output": "Should explain before offering implementation that Google stopped showing FAQ rich results in May 2026, citing Google's current documentation updates. The earlier government/health exception does not apply now. Should separate Schema.org vocabulary validity from Google feature eligibility. If semantic FAQPage markup is still wanted for another consumer, ask for the actual visible questions and answers and use mainEntity > Question > acceptedAnswer; don't invent product answers. Recommend Schema.org Validator for vocabulary. Missing FAQ detection or reports in Rich Results Test or Search Console is not an implementation defect. Do not promise expandable results or tell the user to delete unrelated supported markup.",
+      "assertions": [
+        "Explains Google FAQ rich results were retired before proposing code",
+        "Cites current official Google feature guidance",
+        "Does not present the old government/health exception as current eligibility",
+        "Separates Schema.org validity from Google feature eligibility",
+        "Offers semantic markup only with a separate purpose and actual visible content",
+        "Does not treat missing retired-feature detection/reporting as a defect",
+        "Does not promise the requested retired search appearance"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Our tutorial uses valid HowTo JSON-LD but the Rich Results Test does not detect it. Should we fix the syntax until Google shows tutorial steps? Also, our homepage lost its sitelinks search box; should we delete all WebSite markup?",
+      "expected_output": "Should check current feature support and explain Google's HowTo and sitelinks search box retirements with official references. Valid vocabulary cannot restore those appearances. Use Schema.org Validator if there is a semantic consumer; do not diagnose missing retired-feature detection as a syntax failure. Preserve useful WebSite site-name markup and unrelated supported features. Separate remaining syntax/content issues from feature availability.",
+      "assertions": [
+        "Recognizes retired HowTo and sitelinks search box features",
+        "Separates syntax errors from unavailable appearances",
+        "Keeps WebSite site identity and unrelated supported markup",
+        "Uses official feature-support sources and appropriate validators"
+      ],
+      "files": []
     }
   ]
 }

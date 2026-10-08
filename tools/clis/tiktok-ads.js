@@ -26,11 +26,16 @@ async function api(method, path, body) {
   }
   const res = await fetch(`${BASE_URL}${path}`, opts)
   const text = await res.text()
+  let result
   try {
-    return JSON.parse(text)
+    result = JSON.parse(text)
   } catch {
-    return { status: res.status, body: text }
+    result = { status: res.status, body: text }
   }
+  if (!res.ok || (typeof result?.code === 'number' && result.code !== 0)) {
+    process.exitCode = 1
+  }
+  return result
 }
 
 function parseArgs(args) {

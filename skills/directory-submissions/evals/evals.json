@@ -78,7 +78,7 @@
     {
       "id": 6,
       "prompt": "We submitted to 50 directories last week. Now what?",
-      "expected_output": "Should warn against treating submissions as the strategy. Should reference 'What NOT to Do' rule 11: don't over-index on launch spike. Flywheel is templates + alternatives + reviews + ongoing content. Should recommend verifying the dofollow status of acquired backlinks (curl -sIL | grep -i rel=). Should pivot to ongoing distribution: destination pages strategy (alternative pages converting 5-15%, use-case/ICP pages, template gallery if applicable, 'best of' listicles you write yourself, integration pages), GEO tactics for AI citation (single H1, FAQ schema, comparison tables, get cited on Reddit/HN, claim Crunchbase/LinkedIn/Wikidata), community presence (Reddit 90/10 rule, LinkedIn 3-5 posts/week, Twitter build-in-public, Indie Hackers, Dev.to/Hashnode). Should remind to track weekly KPIs (DR, referring domains, indexed pages, organic clicks, signups from directory referrals) and investigate if numbers aren't moving rather than submitting more.",
+      "expected_output": "Should warn against treating submissions as the strategy. Should reference 'What NOT to Do' rule 11: don't over-index on launch spike. Flywheel is templates + alternatives + reviews + ongoing content. Should recommend checking the actual destination anchor in fetched HTML or the rendered DOM, recording its href and rel tokens; HEAD headers alone cannot verify a backlink. Should pivot to ongoing distribution: destination pages strategy (alternative pages converting 5-15%, use-case/ICP pages, template gallery if applicable, 'best of' listicles you write yourself, integration pages), GEO tactics for AI citation (single H1, FAQ schema, comparison tables, get cited on Reddit/HN, claim Crunchbase/LinkedIn/Wikidata), community presence (Reddit 90/10 rule, LinkedIn 3-5 posts/week, Twitter build-in-public, Indie Hackers, Dev.to/Hashnode). Should remind to track weekly KPIs (DR, referring domains, indexed pages, organic clicks, signups from directory referrals) and investigate if numbers aren't moving rather than submitting more.",
       "assertions": [
         "Warns against over-indexing on launch spike",
         "Recommends verifying dofollow status of backlinks",
@@ -100,6 +100,20 @@
         "Flags launchstreak.com and launchpanda.com as lookalike domains and uses the .dev sites",
         "Warns about high-DR, zero-traffic badge-ring launch sites",
         "Applies the safety gate (liveness check, approval before submitting)"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Our directory submission is live. curl -sIL on the listing returns 200 but grep rel= is empty. Can I mark the backlink dofollow? Another listing has only a canonical tag pointing at itself, and a third requires login.",
+      "expected_output": "Should explain that HEAD returns headers and cannot establish destination anchor attributes or even link existence. Inspect HTML or the rendered DOM for the actual product anchor and destination; distinguish canonical tags and unrelated links. Record nofollow/sponsored/ugc tokens when observed. Mark an inspected anchor without those qualifiers unqualified, without promising ranking credit. Missing anchor is missing only after inspection; blocked/login/JS content that cannot be inspected is unverified. Log evidence and timestamp.",
+      "assertions": [
+        "Does not classify an empty header grep as dofollow",
+        "Inspects the actual destination anchor href and rel",
+        "Distinguishes missing and unverified links from observed unqualified links",
+        "Does not confuse canonical tags with backlinks",
+        "Does not guarantee search-engine credit from an unqualified link",
+        "Records evidence and access limitations"
       ],
       "files": []
     }
