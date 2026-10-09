@@ -3,13 +3,13 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/mailchimp.js')
-function run(args, fetch = false) {
+function run(args, fetch = false, expectedStatus = 0) {
   const source = `global.fetch = async (url, options) => {
     if (!${fetch}) throw new Error('Unexpected network request');
     return { status: 200, text: async () => JSON.stringify({ url, method: options.method, body: options.body ? JSON.parse(options.body) : null }) };
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', env: { ...process.env, MAILCHIMP_API_KEY: 'fake-key-us7' }, timeout: 5000 })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -26,7 +26,7 @@ test('member add dry run redacts authorization and never fetches', () => {
   assert.equal(JSON.stringify(result).includes('fake-key'), false)
 })
 test('member update without subscriber hash stops before fetching an undefined member', () => {
-  const result = run(['members', 'update', '--list-id', 'audience123', '--status', 'unsubscribed'])
+  const result = run(['members', 'update', '--list-id', 'audience123', '--status', 'unsubscribed'], false, 1)
   assert.match(result.error, /Subscriber hash required/)
 })
 test('existing member update preserves the selected audience and hash', () => {
@@ -36,6 +36,6 @@ test('existing member update preserves the selected audience and hash', () => {
   assert.deepEqual(result.body, { status: 'unsubscribed' })
 })
 test('member add still requires email and audience', () => {
-  assert.match(run(['members', 'add', '--list-id', 'audience123']).error, /email/)
-  assert.match(run(['members', 'add', '--email', 'member@example.com']).error, /list-id/)
+  assert.match(run(['members', 'add', '--list-id', 'audience123'], false, 1).error, /email/)
+  assert.match(run(['members', 'add', '--email', 'member@example.com'], false, 1).error, /list-id/)
 })

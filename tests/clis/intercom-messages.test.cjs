@@ -3,10 +3,10 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/intercom.js')
-function run(args, oracle = "throw new Error('unexpected fetch')", response = "new Response(JSON.stringify({accepted:true}))") {
+function run(args, oracle = "throw new Error('unexpected fetch')", response = "new Response(JSON.stringify({accepted:true}))", expectedStatus = 0) {
   const code = `global.fetch = async (url, options) => { const assert = require('node:assert/strict'); const parsed = new URL(url); const body = options.body ? JSON.parse(options.body) : undefined; ${oracle}; return ${response}; }; process.argv = ['node',${JSON.stringify(cli)},...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const r = spawnSync(process.execPath,['-e',code],{encoding:'utf8',timeout:10000,env:{...process.env,INTERCOM_API_KEY:'fixture-token'}})
-  assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout)
+  assert.equal(r.status,expectedStatus,r.stderr);return JSON.parse(r.stdout)
 }
 
 const required = ['--body','hello','--admin-id','123','--to','user1']
@@ -21,9 +21,9 @@ for (const template of [undefined,'personal']) {
     assert.equal(run(['messages','create',...required,'--type','email','--subject','Welcome',...(template ? ['--template',template] : [])], `assert.equal(body.message_type,'email'); assert.equal(body.subject,'Welcome'); assert.equal(body.template,${JSON.stringify(template || 'plain')});`).accepted,true)
   })
 }
-test('missing email subject never sends', () => assert.match(run(['messages','create',...required,'--type','email']).error,/subject/))
-test('unsupported message type never sends', () => assert.match(run(['messages','create',...required,'--type','sms']).error,/type/))
-test('unsupported email template never sends', () => assert.match(run(['messages','create',...required,'--type','email','--subject','Welcome','--template','custom']).error,/template/))
+test('missing email subject never sends', () => assert.match(run(['messages','create',...required,'--type','email'], undefined, undefined, 1).error,/subject/))
+test('unsupported message type never sends', () => assert.match(run(['messages','create',...required,'--type','sms'], undefined, undefined, 1).error,/type/))
+test('unsupported email template never sends', () => assert.match(run(['messages','create',...required,'--type','email','--subject','Welcome','--template','custom'], undefined, undefined, 1).error,/template/))
 test('email preview is complete and stays offline', () => {
   const p=run(['messages','create',...required,'--type','email','--subject','Welcome','--dry-run'])
   assert.equal(p.body.subject,'Welcome');assert.equal(p.body.template,'plain');assert.equal(p.headers.Authorization,'***')

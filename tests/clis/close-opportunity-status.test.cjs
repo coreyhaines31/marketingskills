@@ -16,7 +16,7 @@ function run(args, oracle = '') {
     env: { ...process.env, CLOSE_API_KEY: 'fixture-token' },
   })
 }
-function result(r) { assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout) }
+function result(r, expectedStatus = 0) { assert.equal(r.status, expectedStatus, r.stderr); return JSON.parse(r.stdout) }
 
 for (const flag of ['--status-id','--status']) {
   test(`${flag} selects the actual opportunity status ID`, () => {
@@ -29,7 +29,7 @@ for (const flag of ['--status-id','--status']) {
 }
 for (const type of ['active','won','lost']) {
   test(`ambiguous ${type} status type cannot fall back to a default opportunity stage`, () => {
-    const p = result(run(['opportunities','create','--lead-id','lead_123','--value','50000','--status',type], "throw new Error('unexpected opportunity creation')"))
+    const p = result(run(['opportunities','create','--lead-id','lead_123','--value','50000','--status',type], "throw new Error('unexpected opportunity creation')"), 1)
     assert.match(p.error, /--status-id/)
   })
 }

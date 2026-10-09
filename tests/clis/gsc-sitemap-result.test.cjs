@@ -15,8 +15,8 @@ function run(argv, env = {}, response = "throw new Error('unexpected network req
     return spawnSync(process.execPath, ['--require', mock, cli, ...argv], { env: childEnv, encoding: 'utf8', timeout: 10000 })
   } finally { fs.rmSync(tmp, { recursive: true, force: true }) }
 }
-function value(result) {
-  assert.equal(result.status, 0, result.stderr)
+function value(result, expectedStatus = 0) {
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -46,7 +46,7 @@ for (const status of [400, 403, 500]) {
 }
 test('provider JSON errors remain intact', () => {
   const error = { error: { code: 403, message: 'Permission denied' } }
-  const result = value(run(argv, env, `return new Response(${JSON.stringify(JSON.stringify(error))},{status:403});`))
+  const result = value(run(argv, env, `return new Response(${JSON.stringify(JSON.stringify(error))},{status:403});`), 1)
   assert.deepEqual(result, error)
 })
 test('a nonempty provider response is preserved', () => {

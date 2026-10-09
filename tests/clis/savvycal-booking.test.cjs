@@ -16,7 +16,7 @@ function run(args, oracle = '') {
     env: { ...process.env, SAVVYCAL_API_KEY: 'fixture-token' },
   })
 }
-function result(r) { assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout) }
+function result(r, expectedStatus = 0) { assert.equal(r.status, expectedStatus, r.stderr); return JSON.parse(r.stdout) }
 
 const booking = ['events','create','--link-id','link_123','--start-at','2026-10-10T14:00:00Z','--end-at','2026-10-10T14:30:00Z','--time-zone','America/New_York','--name','Jane Doe','--email','jane@example.com']
 const expected = {start_at:'2026-10-10T14:00:00Z',end_at:'2026-10-10T14:30:00Z',time_zone:'America/New_York',display_name:'Jane Doe',email:'jane@example.com'}
@@ -31,7 +31,7 @@ for (const missing of ['--end-at','--time-zone']) {
   test(`missing ${missing} is rejected before a booking request`, () => {
     const incomplete = booking.filter((v,i,a) => v !== missing && a[i-1] !== missing)
     const r = run(incomplete, "throw new Error('booking must not be attempted')")
-    const p = result(r)
+    const p = result(r, 1)
     assert.match(p.error, new RegExp(missing))
   })
 }

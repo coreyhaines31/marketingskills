@@ -3,10 +3,10 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/intercom.js')
-function run(args, oracle = '') {
+function run(args, oracle = '', expectedStatus = 0) {
   const code = `global.fetch = async (url, options) => { const assert = require('node:assert/strict'); const parsed = new URL(url); const body = JSON.parse(options.body); ${oracle}; return new Response(JSON.stringify({accepted:true})); }; process.argv = ['node',${JSON.stringify(cli)},...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const r = spawnSync(process.execPath,['-e',code],{encoding:'utf8',timeout:10000,env:{...process.env,INTERCOM_API_KEY:'fixture-token'}})
-  assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout)
+  assert.equal(r.status,expectedStatus,r.stderr);return JSON.parse(r.stdout)
 }
 for (const group of ['contacts','conversations']) {
   test(`${group} search sends next-page cursor in body with unchanged filter`, () => {
@@ -21,7 +21,7 @@ for (const group of ['contacts','conversations']) {
     })
   }
   test(`${group} invalid JSON never sends`, () => {
-    assert.match(run([group,'search','--field','open','--value-json','{broken'], "throw new Error('unexpected fetch')").error,/Invalid JSON/)
+    assert.match(run([group,'search','--field','open','--value-json','{broken'], "throw new Error('unexpected fetch')", 1).error,/Invalid JSON/)
   })
   test(`${group} next-page preview contains cursor and stays offline`, () => {
     const p = run([group,'search','--field','id','--value','0012','--starting-after','cursor','--dry-run'], "throw new Error('unexpected fetch')")

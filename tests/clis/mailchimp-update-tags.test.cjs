@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/mailchimp.js')
-function run(args) {
+function run(args, expectedStatus = 0) {
   // A real local HTTP server enforces the published distinction between
   // PATCH member fields and POST tag activation objects, without Mailchimp calls.
   const code = `const http = require('node:http'); const realFetch = global.fetch;
@@ -27,7 +27,7 @@ function run(args) {
       process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});
     });`
   const r = spawnSync(process.execPath, ['-e', code], {encoding: 'utf8', env: {...process.env, MAILCHIMP_API_KEY: 'test-only-us7'}, timeout: 10000})
-  assert.equal(r.status, 0, r.stderr)
+  assert.equal(r.status, expectedStatus, r.stderr)
   const requests = r.stderr.split('\n').filter(line => line.startsWith('fixture_request=')).map(line => JSON.parse(line.slice('fixture_request='.length)))
   return {result: JSON.parse(r.stdout), requests}
 }
@@ -39,14 +39,14 @@ test('tag-only updates use the tag activation endpoint on actual HTTP', () => {
 })
 for (const extra of [['--status', 'unsubscribed'], ['--first-name', 'Zoë']]) {
   test(`mixed tag and member-field update ${extra[0]} fails before either mutation`, () => {
-    const r = run([...update, '--tags', 'newsletter', ...extra])
+    const r = run([...update, '--tags', 'newsletter', ...extra], 1)
     assert.match(r.result.error || '', /separately/)
     assert.equal(r.requests.length, 0)
   })
 }
 for (const tags of ['newsletter,,trial', '  ', null]) {
   test(`invalid tag list ${JSON.stringify(tags)} is rejected before HTTP`, () => {
-    const r = run([...update, '--tags', ...(tags === null ? [] : [tags])])
+    const r = run([...update, '--tags', ...(tags === null ? [] : [tags])], 1)
     assert.match(r.result.error || '', /non-empty tag/)
     assert.equal(r.requests.length, 0)
   })

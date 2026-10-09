@@ -10,7 +10,7 @@ function run(args, { status = 200, network = true } = {}) {
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   return spawnSync(process.execPath, ['-e', code], { encoding: 'utf8', env: { ...process.env, REWARDFUL_API_KEY: 'dummy-secret' } })
 }
-function output(r) { assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout) }
+function output(r, expectedStatus = 0) { assert.equal(r.status, expectedStatus, r.stderr); return JSON.parse(r.stdout) }
 test('affiliate update uses the documented form wire format', () => {
   const p = output(run(['affiliates', 'update', 'affiliate', '--first-name', 'Zoë & Co', '--last-name', 'A+B', '--paypal-email', 'pay+test@example.test']))
   assert.equal(p.method, 'PUT'); assert.equal(p.headers['Content-Type'], 'application/x-www-form-urlencoded')
@@ -28,7 +28,7 @@ test('provider-generated link token remains optional', () => {
   assert.equal(new URLSearchParams(p.body).has('token'), false)
 })
 test('unsupported destination URL is rejected rather than sent or silently ignored', () => {
-  const p = output(run(['links', 'create', '--affiliate-id', 'affiliate', '--url', 'https://example.test'], { network: false }))
+  const p = output(run(['links', 'create', '--affiliate-id', 'affiliate', '--url', 'https://example.test'], { network: false }), 1)
   assert.match(p.error, /url.*not supported/)
 })
 test('mutation preview is the same encoded wire body with masked authentication', () => {

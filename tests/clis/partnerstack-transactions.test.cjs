@@ -4,7 +4,7 @@ const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
 const cli = path.resolve(__dirname, '../../tools/clis/partnerstack.js')
-function run(args, network = false) {
+function run(args, network = false, expectedStatus = 0) {
   const source = `global.fetch = async (url, options) => {
     if (!${network}) throw new Error('Unexpected network request');
     return { ok: true, status: 200, text: async () => JSON.stringify({ url,
@@ -14,7 +14,7 @@ function run(args, network = false) {
     encoding: 'utf8', timeout: 5000,
     env: { ...process.env, PARTNERSTACK_PUBLIC_KEY: 'owned-public', PARTNERSTACK_SECRET_KEY: 'owned-secret' },
   })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -26,7 +26,7 @@ test('transaction category uses the commission category key field', () => {
   assert.equal(result.method, 'POST')
 })
 test('transaction creation requires its currency before fetching', () => {
-  assert.match(run(create).error, /--currency required/)
+  assert.match(run(create, undefined, 1).error, /--currency required/)
 })
 test('transaction product selection remains unchanged without a category', () => {
   assert.deepEqual(run([...create, '--currency', 'EUR', '--product-key', 'pro_plan'], true).body,

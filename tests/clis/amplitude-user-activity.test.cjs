@@ -4,7 +4,7 @@ const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/amplitude.js')
 
-function run(args, matches = [], network = false) {
+function run(args, matches = [], network = false, expectedStatus = 0) {
   const source = `const requests = []; global.fetch = async (url, options) => {
     if (!${network}) throw new Error('Unexpected network request');
     const u = new URL(url); requests.push(url);
@@ -18,7 +18,7 @@ function run(args, matches = [], network = false) {
     encoding: 'utf8', timeout: 5000,
     env: { ...process.env, AMPLITUDE_API_KEY: 'owned-key', AMPLITUDE_SECRET_KEY: 'owned-secret' },
   })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -40,20 +40,20 @@ test('numeric external user IDs are resolved rather than treated as internal IDs
 test('prefix-only search matches do not select another user activity', () => {
   assert.match(run(['users', 'activity', '--user-id', 'user_owned'], [
     { user_id: 'user_owned_other', amplitude_id: 87654 },
-  ], true).error, /No exact user ID match/)
+  ], true, 1).error, /No exact user ID match/)
 })
 test('no search matches stop before requesting activity', () => {
-  assert.match(run(['users', 'activity', '--user-id', 'user_owned'], [], true).error, /No exact user ID match/)
+  assert.match(run(['users', 'activity', '--user-id', 'user_owned'], [], true, 1).error, /No exact user ID match/)
 })
 test('multiple exact search matches require an explicit internal ID', () => {
   assert.match(run(['users', 'activity', '--user-id', 'user_owned'], [
     { user_id: 'user_owned', amplitude_id: 87654 },
     { user_id: 'user_owned', amplitude_id: 34567 },
-  ], true).error, /Multiple exact user ID matches; use --amplitude-id/)
+  ], true, 1).error, /Multiple exact user ID matches; use --amplitude-id/)
 })
 test('a rejected search preserves its provider error without an activity request', () => {
   const error = { error: 'Forbidden', code: 403 }
-  assert.deepEqual(run(['users', 'activity', '--user-id', 'user_owned'], error, true), error)
+  assert.deepEqual(run(['users', 'activity', '--user-id', 'user_owned'], error, true, 1), error)
 })
 test('dry run previews identity lookup without issuing a request', () => {
   const result = run(['users', 'activity', '--user-id', 'user_owned', '--dry-run'])
@@ -73,7 +73,7 @@ test('internal ID preview targets activity without a search', () => {
   assert.equal(result.url, 'https://amplitude.com/api/2/useractivity?user=87654')
 })
 test('two identity flags fail before making any request', () => {
-  assert.match(run(['users', 'activity', '--user-id', 'user_owned', '--amplitude-id', '87654']).error, /Use only one/)
+  assert.match(run(['users', 'activity', '--user-id', 'user_owned', '--amplitude-id', '87654'], undefined, undefined, 1).error, /Use only one/)
 })
 test('missing query credentials return the existing error without a request', () => {
   const source = `global.fetch = () => { throw new Error('Unexpected network request') };
@@ -82,6 +82,6 @@ test('missing query credentials return the existing error without a request', ()
     encoding: 'utf8', timeout: 5000,
     env: { ...process.env, AMPLITUDE_API_KEY: 'owned-key', AMPLITUDE_SECRET_KEY: '' },
   })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, 1, result.stderr)
   assert.match(JSON.parse(result.stdout).error, /AMPLITUDE_SECRET_KEY required/)
 })

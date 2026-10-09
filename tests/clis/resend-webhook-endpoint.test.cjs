@@ -12,7 +12,7 @@ function run(vendor, args, fetch = true) {
     ...process.env, REWARDFUL_API_KEY: 'fake-key', RESEND_API_KEY: 'fake-key', POSTMARK_API_KEY: 'fake-key', BEEHIIV_API_KEY: 'fake-key', KLAVIYO_API_KEY: 'fake-key',
   } })
 }
-function output(result) { assert.equal(result.status, 0, result.stderr); return JSON.parse(result.stdout) }
+function output(result, expectedStatus = 0) { assert.equal(result.status, expectedStatus, result.stderr); return JSON.parse(result.stdout) }
 
 test('the documented endpoint flag posts the provider-required field', () => {
   const result = output(run('resend', ['webhooks', 'create', '--endpoint', 'https://example.com/events', '--events', 'email.sent,email.bounced']))
@@ -25,7 +25,7 @@ test('the existing url flag remains a compatible alias with correct API field', 
   assert.deepEqual(result.body, { endpoint: 'https://example.com/events', events: ['email.sent', 'email.delivered', 'email.bounced'] })
 })
 test('missing callback stops before any request', () => {
-  assert.match(output(run('resend', ['webhooks', 'create'], false)).error, /endpoint/)
+  assert.match(output(run('resend', ['webhooks', 'create'], false), 1).error, /endpoint/)
 })
 test('webhook dry run sends no request and masks authentication', () => {
   const result = output(run('resend', ['webhooks', 'create', '--endpoint', 'https://example.com/events', '--dry-run'], false))

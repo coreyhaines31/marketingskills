@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
-function run(args, dryRun = false) {
+function run(args, dryRun = false, expectedStatus = 0) {
   const cli = path.resolve(__dirname, '../../tools/clis/beehiiv.js')
   const source = `global.fetch = async (url, options) => {
     if (${dryRun}) throw new Error('Unexpected network request');
@@ -13,7 +13,7 @@ function run(args, dryRun = false) {
   const result = spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', timeout: 5000, env: {
     ...process.env, BEEHIIV_API_KEY: 'fixture-secret'
   } })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -25,10 +25,10 @@ test('HTML post creation sends the API body_content field', () => {
   assert.deepEqual(result.body, { title: 'Launch', subtitle: 'This week', body_content: html, status: 'draft' })
 })
 test('omitting post content stops before a network request', () => {
-  assert.match(run(['posts', 'create', '--publication', 'pub_123', '--title', 'Empty'], true).error, /content.*required/i)
+  assert.match(run(['posts', 'create', '--publication', 'pub_123', '--title', 'Empty'], true, 1).error, /content.*required/i)
 })
 test('bare --content is rejected instead of sending a boolean', () => {
-  assert.match(run(['posts', 'create', '--publication', 'pub_123', '--title', 'Empty', '--content'], true).error, /content.*required/i)
+  assert.match(run(['posts', 'create', '--publication', 'pub_123', '--title', 'Empty', '--content'], true, 1).error, /content.*required/i)
 })
 test('post dry run previews raw HTML and redacts authentication', () => {
   const result = run(['posts', 'create', '--publication', 'pub_123', '--title', 'Launch', '--content', '<p>News</p>', '--dry-run'], true)

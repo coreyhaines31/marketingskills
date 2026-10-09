@@ -4,7 +4,7 @@ const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/ga4.js')
 const command = ['events', 'send', '--measurement-id', 'G-TEST', '--api-secret', 'test-only-secret', '--client-id', '123.456', '--event-name', 'purchase']
-function run(args) {
+function run(args, expectedStatus = 0) {
   // The actual CLI fetch reaches an actual local HTTP server returning 204,
   // matching the documented collect response for malformed payloads.
   const code = `const http = require('node:http'); const realFetch = global.fetch;
@@ -24,12 +24,12 @@ function run(args) {
     });`
   const env = {...process.env}; delete env.GA4_ACCESS_TOKEN
   const r = spawnSync(process.execPath, ['-e', code], {encoding: 'utf8', timeout: 10000, env})
-  assert.equal(r.status, 0, r.stderr)
+  assert.equal(r.status, expectedStatus, r.stderr)
   return {result: JSON.parse(r.stdout), stderr: r.stderr}
 }
 for (const params of ['null', '[]', 'true', '42', '"hello"']) {
   test(`non-object event parameters ${params} are rejected before an HTTP 204 receipt`, () => {
-    const r = run(['--params', params])
+    const r = run(['--params', params], 1)
     assert.match(r.result.error || '', /JSON object/, JSON.stringify(r.result))
     assert.equal(r.stderr.includes('fixture_request='), false)
   })

@@ -148,6 +148,8 @@ async function main() {
         }
       }
   }
+
+  if (result?.error && rawArgs.length > 0) process.exitCode = 1
   console.log(JSON.stringify(result, null, 2))
 }
 

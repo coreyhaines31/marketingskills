@@ -3,9 +3,9 @@ const assert=require('node:assert/strict')
 const {spawnSync}=require('node:child_process')
 const path=require('node:path')
 const cli=path.resolve(__dirname,'../../tools/clis/airops.js')
-function run(args,oracle="throw new Error('unexpected fetch')",workspace='legacy-workspace') {
+function run(args,oracle="throw new Error('unexpected fetch')",workspace='legacy-workspace', expectedStatus = 0) {
  const code=`global.fetch=async(url,options)=>{const assert=require('node:assert/strict');const u=new URL(url);const body=options.body?JSON.parse(options.body):undefined;assert.equal(options.headers.Authorization,'Bearer fixture-key');${oracle};return new Response(JSON.stringify({accepted:true}));};process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)});`
- const r=spawnSync(process.execPath,['-e',code],{encoding:'utf8',timeout:10000,env:{...process.env,AIROPS_API_KEY:'fixture-key',AIROPS_WORKSPACE_ID:workspace}});assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout)
+ const r=spawnSync(process.execPath,['-e',code],{encoding:'utf8',timeout:10000,env:{...process.env,AIROPS_API_KEY:'fixture-key',AIROPS_WORKSPACE_ID:workspace}});assert.equal(r.status,expectedStatus,r.stderr);return JSON.parse(r.stdout)
 }
 for (const group of ['flows','workflows']) {
  test(`${group} list uses published app catalog`,()=>assert.equal(run([group,'list'],"assert.equal(u.href,'https://api.airops.com/public_api/airops_apps');assert.equal(options.method,'GET');").accepted,true))
@@ -16,7 +16,7 @@ test('run status uses the execution UUID route',()=>assert.equal(run(['flows','r
 test('run history uses numeric app ID and forwards paging',()=>assert.equal(run(['flows','runs','--id','123','--cursor','cursor+/=','--items','25'],"assert.equal(u.pathname,'/public_api/airops_apps/123/executions');assert.equal(u.searchParams.get('airops_app_id'),'123');assert.equal(u.searchParams.get('cursor'),'cursor+/=');assert.equal(u.searchParams.get('items'),'25');").accepted,true))
 test('public execution needs the API key but no workspace environment variable',()=>assert.equal(run(['flows','execute','--id','app-uuid'],"assert.deepEqual(body,{inputs:{}});",'').accepted,true))
 for (const inputs of ['{broken','null','[]']) {
- test(`invalid input object ${inputs} never fetches`,()=>assert.match(run(['flows','execute','--id','app-uuid','--inputs',inputs]).error,/inputs/))
+ test(`invalid input object ${inputs} never fetches`,()=>assert.match(run(['flows','execute','--id','app-uuid','--inputs',inputs], undefined, undefined, 1).error,/inputs/))
 }
-test('run history rejects UUID where a numeric app ID is required',()=>assert.match(run(['flows','runs','--id','app-uuid']).error,/numeric/))
+test('run history rejects UUID where a numeric app ID is required',()=>assert.match(run(['flows','runs','--id','app-uuid'], undefined, undefined, 1).error,/numeric/))
 test('execution preview uses public route and stays offline',()=>{const p=run(['workflows','execute','--id','app-uuid','--dry-run']);assert.equal(p.url,'https://api.airops.com/public_api/airops_apps/app-uuid/execute');assert.equal(p.headers.Authorization,'Bearer ***')})

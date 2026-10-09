@@ -11,7 +11,7 @@ function run(args, network = true, status = 200) {
   return spawnSync(process.execPath,['-e',source],{encoding:'utf8',timeout:5000,
     env:{...process.env,SUPERMETRICS_API_KEY:'fixture-key'}})
 }
-function output(r) { assert.equal(r.status,0,r.stderr);return JSON.parse(r.stdout) }
+function output(r, expectedStatus = 0) { assert.equal(r.status,expectedStatus,r.stderr);return JSON.parse(r.stdout) }
 const query=['query','--ds-id','GA4','--ds-accounts','123,456','--date-range','last_month','--fields','sessions, date']
 test('query uses supported Bearer authentication and field IDs',()=>{
   const r=output(run(query));assert.equal(r.headers.Authorization,'Bearer fixture-key')
@@ -44,19 +44,19 @@ test('users list is scoped to the requested team',()=>{
   const r=output(run(['users','list','--team-id','123']));assert.equal(r.url,'https://api.supermetrics.com/v1/teams/123/users')
 })
 test('undocumented team list no longer dispatches a fictional endpoint',()=>{
-  assert.match(output(run(['teams','list'],false)).error,/teams get/)
+  assert.match(output(run(['teams','list'],false), 1).error,/teams get/)
 })
 test('missing team scope fails before a request',()=>{
-  assert.match(output(run(['users','list'],false)).error,/team-id/)
+  assert.match(output(run(['users','list'],false), 1).error,/team-id/)
 })
 test('invalid team ID cannot change the resource path',()=>{
-  assert.match(output(run(['teams','get','--team-id','1/users'],false)).error,/team-id/)
+  assert.match(output(run(['teams','get','--team-id','1/users'],false), 1).error,/team-id/)
 })
 test('empty field IDs are rejected before a query',()=>{
-  assert.match(output(run(['query','--ds-id','GA4','--ds-accounts','123','--date-range','last_month','--fields','sessions,,date'],false)).error,/fields/)
+  assert.match(output(run(['query','--ds-id','GA4','--ds-accounts','123','--date-range','last_month','--fields','sessions,,date'],false), 1).error,/fields/)
 })
 test('custom dates must be complete before a query',()=>{
-  assert.match(output(run(['query','--ds-id','GA4','--ds-accounts','123','--date-range','custom','--fields','date'],false)).error,/start-date.*end-date/)
+  assert.match(output(run(['query','--ds-id','GA4','--ds-accounts','123','--date-range','custom','--fields','date'],false), 1).error,/start-date.*end-date/)
 })
 test('provider failure exits unsuccessfully',()=>{
   const r=run(query,true,401);assert.equal(r.status,1);assert.match(r.stderr,/401/)

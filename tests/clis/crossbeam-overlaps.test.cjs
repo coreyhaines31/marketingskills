@@ -3,13 +3,13 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/crossbeam.js')
-function run(args, network = false) {
+function run(args, network = false, expectedStatus = 0) {
   const code = `global.fetch = async (url, options) => {
     if (!${network}) throw new Error('Unexpected request');
     return new Response(JSON.stringify({url, method: options.method}));
   }; process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}]; require(${JSON.stringify(cli)});`
   const r = spawnSync(process.execPath, ['-e', code], {encoding: 'utf8', timeout: 5000, env: {...process.env, CROSSBEAM_API_KEY: 'test-only-token'}})
-  assert.equal(r.status, 0, r.stderr)
+  assert.equal(r.status, expectedStatus, r.stderr)
   return JSON.parse(r.stdout)
 }
 test('default overlap list uses accounts and the documented own-population/partner filters', () => {
@@ -43,8 +43,8 @@ test('legacy id flag remains a source-record alias on lead lookups', () => {
   assert.equal(url.searchParams.get('record_id'), 'crm123')
 })
 test('unsupported record kind and missing source record stop before fetch', () => {
-  assert.match(run(['overlaps', 'list', '--type', 'contacts']).error, /type/)
-  assert.match(run(['overlaps', 'get']).error, /record-id/)
+  assert.match(run(['overlaps', 'list', '--type', 'contacts'], undefined, 1).error, /type/)
+  assert.match(run(['overlaps', 'get'], undefined, 1).error, /record-id/)
 })
 test('overlap preview uses the same typed endpoint and masks the access token', () => {
   const result = run(['overlaps', 'list', '--type', 'leads', '--dry-run'])

@@ -16,7 +16,7 @@ function run(args, oracle = '') {
     env: { ...process.env, LIVESTORM_API_TOKEN: 'fixture-token' },
   })
 }
-function result(r) { assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout) }
+function result(r, expectedStatus = 0) { assert.equal(r.status, expectedStatus, r.stderr); return JSON.parse(r.stdout) }
 
 test('registration sends an array of field IDs and values using the API token header', () => {
   assert.equal(result(run(['sessions','register','--id','session_123','--email','jane+event@example.com','--first-name','Jane','--last-name','Doe'], `
@@ -50,5 +50,5 @@ test('read requests use the same raw API token authentication', () => {
   `))
 })
 test('missing registration email remains rejected without a request', () => {
-  assert.match(result(run(['sessions','register','--id','session_123'], "throw new Error('unexpected fetch')")).error, /--email required/)
+  assert.match(result(run(['sessions','register','--id','session_123'], "throw new Error('unexpected fetch')"), 1).error, /--email required/)
 })

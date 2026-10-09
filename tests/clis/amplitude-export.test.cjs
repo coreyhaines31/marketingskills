@@ -18,8 +18,8 @@ function run(argv, env, response = "throw new Error('unexpected network request'
     fs.rmSync(tmp, { recursive: true, force: true })
   }
 }
-function value(result) {
-  assert.equal(result.status, 0, result.stderr)
+function value(result, expectedStatus = 0) {
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -36,7 +36,7 @@ test('ZIP exports preserve every binary byte in a labelled base64 payload', () =
 })
 test('export HTTP errors keep their JSON error response', () => {
   const result=run(exportArgs,env,"return new Response(JSON.stringify({error:'no data'}),{status:404});")
-  assert.deepEqual(value(result),{error:'no data'})
+  assert.deepEqual(value(result, 1),{error:'no data'})
 })
 test('ordinary dashboard responses remain JSON', () => {
   const result=run(['users','activity','--user-id','12345'],env,"return new Response(JSON.stringify({events:[{event_type:'Fixture'}]}));")

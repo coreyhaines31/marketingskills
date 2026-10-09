@@ -12,7 +12,7 @@ function run(vendor, args, fetch = true) {
     ...process.env, REWARDFUL_API_KEY: 'fake-key', RESEND_API_KEY: 'fake-key', POSTMARK_API_KEY: 'fake-key', BEEHIIV_API_KEY: 'fake-key', KLAVIYO_API_KEY: 'fake-key',
   } })
 }
-function output(result) { assert.equal(result.status, 0, result.stderr); return JSON.parse(result.stdout) }
+function output(result, expectedStatus = 0) { assert.equal(result.status, expectedStatus, result.stderr); return JSON.parse(result.stdout) }
 
 test('positional affiliate selects the update route and payout data', () => {
   const result = output(run('rewardful', ['affiliates', 'update', 'affiliate123', '--paypal-email', 'payee@example.com']))
@@ -26,10 +26,10 @@ test('documented id flag also selects the affiliate', () => {
   assert.deepEqual(result.body, { first_name: 'Zoë' })
 })
 test('conflicting identifiers cannot silently update another affiliate', () => {
-  assert.match(output(run('rewardful', ['affiliates', 'update', 'affiliate123', '--id', 'other456', '--first-name', 'Zoë'], false)).error, /must match/)
+  assert.match(output(run('rewardful', ['affiliates', 'update', 'affiliate123', '--id', 'other456', '--first-name', 'Zoë'], false), 1).error, /must match/)
 })
 test('missing identifier stops before fetching', () => {
-  assert.match(output(run('rewardful', ['affiliates', 'update', '--first-name', 'Zoë'], false)).error, /Affiliate ID/)
+  assert.match(output(run('rewardful', ['affiliates', 'update', '--first-name', 'Zoë'], false), 1).error, /Affiliate ID/)
 })
 test('update dry run uses the selected affiliate with masked authorization', () => {
   const result = output(run('rewardful', ['affiliates', 'update', 'affiliate123', '--first-name', 'Zoë', '--dry-run'], false))

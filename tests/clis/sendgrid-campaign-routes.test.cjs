@@ -3,7 +3,7 @@ const assert = require('node:assert/strict')
 const { spawnSync } = require('node:child_process')
 const path = require('node:path')
 
-function run(args, dryRun = false, response = null) {
+function run(args, dryRun = false, response = null, expectedStatus = 0) {
   const cli = path.resolve(__dirname, '../../tools/clis/sendgrid.js')
   const source = `global.fetch = async (url, options) => {
     if (${dryRun}) throw new Error('Unexpected network request');
@@ -13,7 +13,7 @@ function run(args, dryRun = false, response = null) {
   const result = spawnSync(process.execPath, ['-e', source], { encoding: 'utf8', timeout: 5000, env: {
     ...process.env, SENDGRID_API_KEY: 'fixture-secret'
   } })
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
 
@@ -29,7 +29,7 @@ test('campaign get reads a Single Send by ID', () => {
   assert.equal(result.method, 'GET')
 })
 test('missing campaign ID never fetches', () => {
-  assert.match(run(['campaigns', 'get'], true).error, /Campaign ID required/)
+  assert.match(run(['campaigns', 'get'], true, undefined, 1).error, /Campaign ID required/)
 })
 test('campaign dry run previews the Single Sends route and masks auth', () => {
   const result = run(['campaigns', 'list', '--dry-run'], true)

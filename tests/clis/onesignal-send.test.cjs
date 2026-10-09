@@ -56,7 +56,7 @@ for (const [name, args, pattern] of [
   ['unknown channel', ['--channel', 'fax', '--message', 'Hello'], /channel/],
   ['missing push contents', ['--channel', 'push'], /message/]
 ]) test(name + ' fails before a request', () => {
-  const r = run(args, false); assert.equal(r.status, 0, r.stderr)
+  const r = run(args, false); assert.equal(r.status, 1, r.stderr)
   assert.match(JSON.parse(r.stdout).error, pattern)
 })
 test('email preview masks credentials and shares the actual payload', () => {

@@ -17,7 +17,7 @@ function run(args, oracle = '', env = {}) {
   for (const [key, value] of Object.entries(childEnv)) if (value === undefined) delete childEnv[key]
   return spawnSync(process.execPath, ['-e', code], {encoding:'utf8', env:childEnv, timeout:10000})
 }
-function result(r) { assert.equal(r.status,0,r.stderr); return JSON.parse(r.stdout) }
+function result(r, expectedStatus = 0) { assert.equal(r.status,expectedStatus,r.stderr); return JSON.parse(r.stdout) }
 const noFetch = "throw new Error('unexpected fetch')"
 
 test('requests go to API v2 with Bearer auth and no key in the URL', () => {
@@ -33,8 +33,8 @@ test('adding a lead targets a campaign in the body', () => {
   assert.deepEqual(p.body, {email:'jane@acme.com', campaign:'c1', company_name:'Acme', skip_if_in_workspace:true})
 })
 test('adding a lead requires exactly one destination', () => {
-  assert.match(result(run(['leads','add','--email','a@b.com'], noFetch)).error, /campaign-id or --list-id/)
-  assert.match(result(run(['leads','add','--email','a@b.com','--campaign-id','c','--list-id','l'], noFetch)).error, /not both/)
+  assert.match(result(run(['leads','add','--email','a@b.com'], noFetch), 1).error, /campaign-id or --list-id/)
+  assert.match(result(run(['leads','add','--email','a@b.com','--campaign-id','c','--list-id','l'], noFetch), 1).error, /not both/)
 })
 test('bulk add sends the file contents and rejects oversize files', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'instantly-'))
@@ -42,12 +42,12 @@ test('bulk add sends the file contents and rejects oversize files', () => {
   const p = result(run(['leads','bulk-add','--list-id','l1','--file',good], "assert.equal(parsed.pathname, '/api/v2/leads/add');"))
   assert.equal(p.body.list_id,'l1'); assert.equal(p.body.leads.length,2)
   const big = path.join(dir, 'big.json'); fs.writeFileSync(big, JSON.stringify(Array.from({length:1001}, (_, i) => ({email:`u${i}@x.com`}))))
-  assert.match(result(run(['leads','bulk-add','--list-id','l1','--file',big], noFetch)).error, /1 to 1000/)
+  assert.match(result(run(['leads','bulk-add','--list-id','l1','--file',big], noFetch), 1).error, /1 to 1000/)
 })
 test('interest status maps names to Instantly values and rejects unknown names', () => {
   const p = result(run(['leads','interest','--email','a@b.com','--status','wrong-person'], "assert.equal(parsed.pathname, '/api/v2/leads/update-interest-status');"))
   assert.deepEqual(p.body, {lead_email:'a@b.com', interest_value:-2})
-  assert.match(result(run(['leads','interest','--email','a@b.com','--status','maybe'], noFetch)).error, /Unknown --status/)
+  assert.match(result(run(['leads','interest','--email','a@b.com','--status','maybe'], noFetch), 1).error, /Unknown --status/)
 })
 test('replies list only received emails', () => {
   assert.equal(result(run(['emails','replies','--campaign-id','c1','--unread'], "assert.equal(parsed.pathname, '/api/v2/emails'); assert.equal(parsed.searchParams.get('email_type'),'received'); assert.equal(parsed.searchParams.get('is_unread'),'true');")).accepted, true)

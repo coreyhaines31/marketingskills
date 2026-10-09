@@ -28,7 +28,7 @@ test('preview uses the same resource without requesting a token', () => {
 })
 test('missing email does not obtain a token or send a request', () => {
   const result = run(['prospect', 'find'], "throw new Error('unexpected fetch')")
-  assert.equal(result.status, 0, result.stderr)
+  assert.equal(result.status, 1, result.stderr)
   assert.match(JSON.parse(result.stdout).error, /--email required/)
 })
 test('unrelated list route still authenticates and uses GET', () => {
