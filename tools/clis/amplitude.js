@@ -87,6 +87,19 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function isObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value)
+}
+
+function jsonArg(name, description) {
+  if (typeof args[name] !== 'string') throw new Error(`--${name} must be ${description}`)
+  try {
+    return JSON.parse(args[name])
+  } catch {
+    throw new Error(`--${name} must be ${description}`)
+  }
+}
+
 async function main() {
   let result
 
@@ -104,8 +117,9 @@ async function main() {
             ...(args['device-id'] !== undefined ? { device_id: args['device-id'] } : {}),
             event_type: args['event-type'],
           }
-          if (args.properties) {
-            event.event_properties = JSON.parse(args.properties)
+          if (args.properties !== undefined) {
+            event.event_properties = jsonArg('properties', 'a JSON object')
+            if (!isObject(event.event_properties)) throw new Error('--properties must be a JSON object')
           }
           result = await ingestApi('POST', '/2/httpapi', {
             api_key: API_KEY,
@@ -115,7 +129,13 @@ async function main() {
         }
         case 'batch': {
           if (!args.events) { result = { error: '--events required (JSON array)' }; break }
-          const events = JSON.parse(args.events)
+          const events = jsonArg('events', 'a JSON array of event objects')
+          if (!Array.isArray(events) || events.some(event => !isObject(event))) {
+            throw new Error('--events must be a JSON array of event objects')
+          }
+          if (events.some(event => Object.hasOwn(event, 'event_properties') && !isObject(event.event_properties))) {
+            throw new Error('--events event_properties must be a JSON object')
+          }
           result = await ingestApi('POST', '/batch', {
             api_key: API_KEY,
             events,
