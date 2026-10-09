@@ -228,3 +228,19 @@ Klaviyo uses the JSON:API specification. All request/response bodies use `{ "dat
 - ecommerce-email
 - lifecycle-marketing
 - customer-segmentation
+
+## Structured event properties
+
+For product arrays and typed event fields, use a JSON object instead of the
+flat `--property key:value,key:value` shorthand:
+
+```bash
+node tools/clis/klaviyo.js events create --metric "Placed Order" --email buyer@example.com \
+  --properties '{"items":[{"SKU":"sku-1","quantity":2}],"VIP":true}' --value 42.50 --dry-run
+```
+
+`--properties` preserves JSON types and nested values; it cannot be combined
+with `--property`. The CLI retains the existing API revision. API acceptance
+and eligibility for segmentation are separate: Klaviyo excludes some values
+(such as zero, null and empty strings) from segmentation. See the official
+[Create Event API](https://developers.klaviyo.com/en/reference/create_event).

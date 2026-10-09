@@ -15,45 +15,49 @@ A "healthy" 3:1 LTV:CAC can sit on top of a channel that bankrupts you, because 
 
 ## The replacement: Payback Period
 
-**Payback Period = CAC / ARPU** (monthly).
+**Revenue-only ratio = CAC / monthly ARPU.** For acquisition-cost recovery use **gross-margin payback = CAC / (monthly ARPU × gross margin)**, with gross margin as a fraction. The revenue-only ratio assumes 100% gross margin; it excludes serving costs. See [the CAC payback definition](https://chartmogul.com/saas-metrics/cac-payback/).
 
-The answer is in **months** — how long until a customer pays back what you spent to acquire them. **Target 3–12 months.** Under 3 is often leaving growth on the table; over 12 means you're financing customers longer than most early-stage balance sheets can survive.
+The simplified ratio is in **months** and assumes steady monthly gross profit with no churn or collection delay. **A 3–12 month target is a planning reference.** Choose a target using your cash runway, margins and cohort recovery; a shorter or longer ratio alone does not justify changing spend.
 
 Because it's per-cohort and per-plan (not blended), it exposes exactly what LTV:CAC hides.
 
 ### Worked example — same CAC, wildly different payback
 
-Say a channel costs **$300 to acquire a customer** (CAC = $300):
+Say a channel costs **$300 to acquire a customer** (CAC = $300). The table below is revenue-only, before serving costs and churn; it is a comparison, not permission to scale:
 
-| Plan | ARPU (monthly) | Payback = CAC / ARPU | Verdict |
+| Plan | ARPU (monthly) | Revenue-only ratio = CAC / ARPU | Verdict |
 |------|---------------|----------------------|---------|
-| Starter | $9 | 300 / 9 = **33.3 months** | Unaffordable. You wait ~3 years to break even on acquisition — before churn. Do not run this channel for this plan. |
-| Pro | $99 | 300 / 99 = **3.0 months** | Healthy. Bottom of the target band. Scale it. |
-| Enterprise | $999 | 300 / 999 = **0.3 months** | Excellent. Pays back in ~9 days. Pour budget in. |
+| Starter | $9 | 300 / 9 = **33.3 months** | Don't fund paid acquisition for this plan. 33.3 months before costs and churn, and longer once margin is included. |
+| Pro | $99 | 300 / 99 = **3.0 months** | Check margin first. At 80% gross margin it's 3.8 months; at 20% it's 15.2 months, which is too slow to scale. |
+| Enterprise | $999 | 300 / 999 = **0.3 months** | Scale, after confirming when cash is actually collected (annual invoices, net-60 terms). |
 
-Same CAC, same channel. On the $9 plan the channel is a cash incinerator; on the $999 plan it's a printing press. **Blended LTV:CAC would have averaged these into one meaningless "we're fine."** Payback Period forces you to run the channel only for the plans it can actually afford.
+Same CAC does not imply the same affordability. At 20% gross margin the $99 plan takes 300 / (99 × 0.20) = **15.2 months** even before churn, despite its 3.0-month revenue-only ratio. Compare plans separately and verify serving costs before approving spend.
 
-The practical move: compute payback **per plan (or per cohort)**, then only turn on paid acquisition for the segments where it lands inside 3–12 months. Route the cheap-plan buyers to organic/product-led motions instead.
+The practical move: compute recovery **per plan (or per cohort)** against measured margin, retention and cash timing. Use the 3–12 month target as a planning assumption to compare with runway, not a universal approval rule.
 
-## Discounted Payback Period (churn-adjusted)
+## Cohort recovery — account for when churn happens
 
-Raw payback assumes everyone survives to pay you back. They don't — especially in those first 3 months. Adjust for it:
+`CAC / (ARPU × annual retention)` is not discounted payback. A single year-end retention percentage cannot identify the monthly recovery path. Time-value discounting requires an explicit discount rate; retention describes customer survival.
 
-**Discounted Payback Period = CAC / (ARPU × annual retention)**
+For a cohort, find the first month where cumulative gross profit per original acquired customer covers CAC:
 
-Multiply ARPU by the fraction of customers still paying, so the denominator reflects real, retained revenue instead of theoretical revenue.
+```
+Cumulative recovery through month n = sum(ARPU_t × gross_margin_t × retained_fraction_t)
+```
 
-Example: CAC $300, ARPU $99, annual retention 70%:
-- Raw: 300 / 99 = 3.0 months
-- Discounted: 300 / (99 × 0.70) = 300 / 69.3 = **4.3 months**
+Use measured retained revenue per original customer instead when available; do not multiply by retention again. Include collection delay when assessing cash recovery. If the observed cohort has not recovered CAC, report that rather than inventing a payback date.
 
-Still inside the band — but the discounted number is the one to budget against. When retention is weak, discounted payback blows past 12 months even when raw payback looked fine; that gap is your early warning.
+Example: CAC $300, ARPU $99 and 80% gross margin. Two cohorts both retain 70% at month 12:
+- Early loss: 70% retained in every month 1–12 → $55.44 monthly gross profit per original customer; recovery first crosses $300 in **month 6**.
+- Late loss: 100% retained in months 1–11, 70% at month 12 → $79.20 for the first eleven months; recovery crosses $300 in **month 4**.
+
+The old single-retention ratio gives the same 4.3 months to both cohorts and ignores gross margin. Their actual recovery differs despite identical year-end retention.
 
 ## Using it as the channel gate
 
 1. Compute CAC for the channel (all-in: spend / customers, including creative and management).
-2. Compute discounted payback per plan/cohort.
-3. **Turn the channel on only where discounted payback ≤ 12 months** (aim for 3–12).
+2. Compute gross-margin payback and check the measured cohort recovery path, including revenue collection timing.
+3. Compare recovery with runway and your chosen target (the 3–12 month band is a planning reference). Do not scale on a revenue-only ratio or annual retention multiplier.
 4. Re-run monthly — CAC drifts up as you scale; the gate moves with it.
 
 This composes with breakeven CPL/CPC math in [b2b-paid-playbook.md](b2b-paid-playbook.md): breakeven tells you the *most* you can pay per lead; payback tells you *how long your cash is tied up* — you need both to scale without running dry.

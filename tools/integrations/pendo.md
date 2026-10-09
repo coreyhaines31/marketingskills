@@ -117,6 +117,17 @@ POST https://app.pendo.io/api/v1/aggregation
 }
 ```
 
+`reports funnel --pipeline` accepts a JSON array of aggregation steps and wraps it
+in `response.mimeType` and `request.pipeline`, as described in Pendo's
+[aggregation guide](https://www.pendo.io/pendo-blog/pendo-aggs-writing-your-first-aggregation/).
+Existing full aggregation objects are also accepted, preserving request settings.
+The supplied steps determine the report; the CLI does not construct funnel logic.
+
+```bash
+node tools/clis/pendo.js reports funnel \
+  --pipeline '[{"source":{"visitors":null}},{"limit":10}]' --dry-run
+```
+
 ### List Metadata Fields
 
 ```bash

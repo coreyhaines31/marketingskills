@@ -6,9 +6,9 @@ Affiliate program management for SaaS, with Stripe and Paddle integration.
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | REST API for affiliates, referrals, payouts |
+| API | ✓ | REST API for partners, customers, commissions |
 | MCP | - | Not available |
-| CLI | - | Not available |
+| CLI | ✓ | [tolt.js](../clis/tolt.js) |
 | SDK | - | JavaScript snippet for tracking |
 
 ## Authentication
@@ -17,66 +17,58 @@ Affiliate program management for SaaS, with Stripe and Paddle integration.
 - **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: Settings > API in Tolt dashboard
 
-## Common Agent Operations
+## Current Public API
 
-### List affiliates
+The API base is `https://api.tolt.com/v1`, with `partners`, `customers`, and
+`commissions` resources. The CLI keeps `affiliates` as an alias for `partners`
+and `referrals` as an alias for `customers`.
 
-```bash
-GET https://api.tolt.io/v1/affiliates
-```
-
-### Get affiliate
+### List partners, customers, or commissions
 
 ```bash
-GET https://api.tolt.io/v1/affiliates/{affiliate_id}
+node tools/clis/tolt.js partners list --program-id prg_example
+node tools/clis/tolt.js customers list --program-id prg_example --partner-id part_example
+node tools/clis/tolt.js commissions list --program-id prg_example --partner-id part_example
 ```
 
-### Create affiliate
+These list operations require `program_id`. `--affiliate-id` remains an alias
+for the `--partner-id` filter. Use `--limit`, `--starting-after`, or
+`--ending-before` to page through results. Cursors are the returned record IDs.
+
+### Create or update a partner
 
 ```bash
-POST https://api.tolt.io/v1/affiliates
-
-{
-  "email": "affiliate@example.com",
-  "name": "John Doe"
-}
+node tools/clis/tolt.js partners create --program-id prg_example --email jane@example.com --first-name Jane --last-name Doe
+node tools/clis/tolt.js partners update --id part_example --payout-method paypal --paypal-email jane@example.com
 ```
 
-### List referrals
+Creation requires email, first name, last name, and program ID. Update uses
+`PUT /partners/{id}` and puts the payout email inside `payout_details`.
+Use explicit first/last names instead of the old ambiguous `--name` input.
+
+### Retrieve a record
 
 ```bash
-GET https://api.tolt.io/v1/referrals?affiliate_id={affiliate_id}
+node tools/clis/tolt.js partners get part_example
+node tools/clis/tolt.js customers get --id cust_example
 ```
 
-### Get referral by customer
+Customer retrieval uses the Tolt customer record ID, not an external billing
+customer ID. The old `--customer-id` lookup returns a migration error rather
+than silently treating a Stripe/customer reference as a Tolt record ID.
 
-```bash
-GET https://api.tolt.io/v1/referrals?customer_id={stripe_customer_id}
-```
+### Migration limits
 
-### List commissions
+The current public reference does not document payout-history retrieval or
+`commission_rate` as a partner update field. Those old commands/options return
+an actionable error directing users to the dashboard rather than issuing an
+undocumented request. `--dry-run` previews the request without sending it.
 
-```bash
-GET https://api.tolt.io/v1/commissions?affiliate_id={affiliate_id}
-```
-
-### Get payout history
-
-```bash
-GET https://api.tolt.io/v1/payouts?affiliate_id={affiliate_id}
-```
-
-### Update affiliate
-
-```bash
-PATCH https://api.tolt.io/v1/affiliates/{affiliate_id}
-
-{
-  "commission_rate": 30,
-  "payout_method": "paypal",
-  "paypal_email": "affiliate@paypal.com"
-}
-```
+Primary contracts: [partners list](https://docs.tolt.com/partners/list),
+[create](https://docs.tolt.com/partners/create), [update](https://docs.tolt.com/partners/update),
+[customers list](https://docs.tolt.com/customers/list),
+[retrieve](https://docs.tolt.com/customers/retrieve), and
+[commissions list](https://docs.tolt.com/commissions/list).
 
 ## JavaScript Tracking
 

@@ -2,7 +2,7 @@
 
 const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.TOLT_API_KEY
-const BASE_URL = 'https://api.tolt.io/v1'
+const BASE_URL = 'https://api.tolt.com/v1'
 
 if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'TOLT_API_KEY environment variable required' }))
@@ -52,95 +52,99 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function listParams() {
+  const params = new URLSearchParams({ program_id: args['program-id'] })
+  for (const [flag, field] of [['limit', 'limit'], ['starting-after', 'starting_after'], ['ending-before', 'ending_before']]) {
+    if (args[flag]) params.set(field, args[flag])
+  }
+  return params
+}
+
 async function main() {
   let result
-
+  const id = rest[0] || args.id
   switch (cmd) {
+    case 'partners':
     case 'affiliates':
       switch (sub) {
-        case 'list':
-          result = await api('GET', '/affiliates')
-          break
-        case 'get': {
-          const id = rest[0] || args.id
-          if (!id) { result = { error: 'Affiliate ID required (positional arg or --id)' }; break }
-          result = await api('GET', `/affiliates/${id}`)
+        case 'list': {
+          if (!args['program-id']) { result = { error: '--program-id required' }; break }
+          const params = listParams()
+          if (args.email) params.set('email', args.email)
+          result = await api('GET', `/partners?${params}`)
           break
         }
+        case 'get':
+          if (!id) { result = { error: 'Partner ID required (positional arg or --id)' }; break }
+          result = await api('GET', `/partners/${encodeURIComponent(id)}`)
+          break
         case 'create': {
-          const body = {}
-          if (args.email) body.email = args.email
-          if (args.name) body.name = args.name
-          result = await api('POST', '/affiliates', body)
+          if (!args.email || !args['first-name'] || !args['last-name'] || !args['program-id']) {
+            result = { error: '--email, --first-name, --last-name, and --program-id required' }; break
+          }
+          const body = {
+            first_name: args['first-name'], last_name: args['last-name'],
+            email: args.email, program_id: args['program-id'],
+          }
+          result = await api('POST', '/partners', body)
           break
         }
         case 'update': {
-          if (!args.id) { result = { error: '--id required (affiliate ID)' }; break }
+          if (!id) { result = { error: '--id required (Tolt partner ID)' }; break }
+          if (args['commission-rate'] !== undefined) {
+            result = { error: '--commission-rate is not a documented partner update field; configure the program/group in the Tolt dashboard' }; break
+          }
           const body = {}
-          if (args['commission-rate']) body.commission_rate = Number(args['commission-rate'])
+          if (args['company-name']) body.company_name = args['company-name']
           if (args['payout-method']) body.payout_method = args['payout-method']
-          if (args['paypal-email']) body.paypal_email = args['paypal-email']
-          result = await api('PATCH', `/affiliates/${args.id}`, body)
+          if (args['paypal-email']) body.payout_details = { email: args['paypal-email'] }
+          if (Object.keys(body).length === 0) { result = { error: 'Provide --company-name, --payout-method, or --paypal-email' }; break }
+          result = await api('PUT', `/partners/${encodeURIComponent(id)}`, body)
           break
         }
         default:
-          result = { error: 'Unknown affiliates subcommand. Use: list, get, create, update' }
+          result = { error: 'Unknown partners subcommand. Use: list, get, create, update' }
       }
       break
-
+    case 'customers':
     case 'referrals':
       switch (sub) {
         case 'list': {
-          const params = new URLSearchParams()
-          if (args['affiliate-id']) params.set('affiliate_id', args['affiliate-id'])
-          result = await api('GET', `/referrals?${params}`)
+          if (!args['program-id']) { result = { error: '--program-id required' }; break }
+          const params = listParams()
+          const partnerId = args['partner-id'] || args['affiliate-id']
+          if (partnerId) params.set('partner_id', partnerId)
+          result = await api('GET', `/customers?${params}`)
           break
         }
-        case 'get': {
-          const params = new URLSearchParams()
-          if (args['customer-id']) params.set('customer_id', args['customer-id'])
-          result = await api('GET', `/referrals?${params}`)
+        case 'get':
+          if (args['customer-id']) { result = { error: 'Use the Tolt customer record ID with --id; an external --customer-id is not a supported lookup' }; break }
+          if (!id) { result = { error: '--id required (Tolt customer record ID)' }; break }
+          result = await api('GET', `/customers/${encodeURIComponent(id)}`)
           break
-        }
         default:
-          result = { error: 'Unknown referrals subcommand. Use: list, get' }
+          result = { error: 'Unknown customers subcommand. Use: list, get' }
       }
       break
-
     case 'commissions':
-      switch (sub) {
-        case 'list': {
-          const params = new URLSearchParams()
-          if (args['affiliate-id']) params.set('affiliate_id', args['affiliate-id'])
-          result = await api('GET', `/commissions?${params}`)
-          break
-        }
-        default:
-          result = { error: 'Unknown commissions subcommand. Use: list' }
-      }
+      if (sub !== 'list') { result = { error: 'Use: commissions list' }; break }
+      if (!args['program-id']) { result = { error: '--program-id required' }; break }
+      const params = listParams()
+      const partnerId = args['partner-id'] || args['affiliate-id']
+      if (partnerId) params.set('partner_id', partnerId)
+      result = await api('GET', `/commissions?${params}`)
       break
-
     case 'payouts':
-      switch (sub) {
-        case 'list': {
-          const params = new URLSearchParams()
-          if (args['affiliate-id']) params.set('affiliate_id', args['affiliate-id'])
-          result = await api('GET', `/payouts?${params}`)
-          break
-        }
-        default:
-          result = { error: 'Unknown payouts subcommand. Use: list' }
-      }
+      result = { error: 'Payout history is not documented in the current public API; use the Tolt dashboard' }
       break
-
     default:
       result = {
         error: 'Unknown command',
         usage: {
-          affiliates: 'affiliates [list|get|create|update] [id] [--email <email>] [--name <name>] [--id <id>] [--commission-rate <rate>] [--payout-method <method>] [--paypal-email <email>]',
-          referrals: 'referrals [list|get] [--affiliate-id <id>] [--customer-id <id>]',
-          commissions: 'commissions [list] [--affiliate-id <id>]',
-          payouts: 'payouts [list] [--affiliate-id <id>]',
+          partners: 'partners (or affiliates) [list --program-id <id> | get <id> | create --email <email> --first-name <name> --last-name <name> --program-id <id> | update --id <id> [--company-name <name>] [--payout-method <method>] [--paypal-email <email>]]',
+          customers: 'customers (or referrals) [list --program-id <id> [--partner-id <id>] | get --id <Tolt_customer_id>]',
+          commissions: 'commissions list --program-id <id> [--partner-id <id>]',
+          options: '--limit <n> --starting-after <id> --ending-before <id> --dry-run',
         }
       }
   }

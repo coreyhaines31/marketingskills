@@ -192,3 +192,36 @@ presets (such as `7d`) and the default `30d` remain strings. Malformed arrays or
 arrays without exactly two nonempty strings fail before the stats request;
 Plausible validates the date values. See the
 [Stats API date_range contract](https://plausible.io/docs/stats-api).
+
+## Paginating CLI results
+
+The CLI returns one page per invocation; it does not automatically fetch every
+page. Use the pagination scheme of the endpoint you selected:
+
+- **Sites and goals:** pass the response's opaque `meta.after` or `meta.before`
+  cursor unchanged as `--after` or `--before`. Keep `--limit` unchanged between
+  requests (or leave it unset for the default 100). A null cursor means there is
+  no next or previous page. Do not supply both cursors in one request.
+- **Stats breakdowns and query:** use `--limit` and `--offset` for `pages`,
+  `sources`, `countries`, `devices`, `utm`, or `query`. Offset zero starts at the
+  first result; increase it by the page size for the next page. Keep metrics,
+  dimensions, filters, date range and ordering consistent while paging. These
+  flags do not paginate aggregate, timeseries or realtime operations.
+
+```bash
+node tools/clis/plausible.js sites list --limit 20
+# Copy meta.after from the response, without decoding or altering it:
+node tools/clis/plausible.js sites list --limit 20 --after '<returned cursor>'
+
+node tools/clis/plausible.js goals list --site-id example.com --limit 20 \
+  --before '<returned cursor>'
+
+node tools/clis/plausible.js stats pages --site-id example.com --limit 20 --offset 20
+```
+
+`--dry-run` previews the same encoded query or stats pagination body without
+making a request. See the official [Sites API pagination](https://plausible.io/docs/sites-api#pagination)
+and [Stats API pagination](https://plausible.io/docs/stats-api#pagination-optional)
+contracts. Read-only Sites endpoints, including listing sites and goals, also
+accept a Stats API key on plans that include that API; Sites API mutations
+require the appropriate Enterprise permissions.

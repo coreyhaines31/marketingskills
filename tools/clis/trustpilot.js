@@ -5,6 +5,7 @@ const API_KEY = process.env.TRUSTPILOT_API_KEY
 const API_SECRET = process.env.TRUSTPILOT_API_SECRET
 const BUSINESS_UNIT_ID = process.env.TRUSTPILOT_BUSINESS_UNIT_ID
 const BASE_URL = 'https://api.trustpilot.com/v1'
+const INVITATIONS_URL = 'https://invitations-api.trustpilot.com/v1'
 
 if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'TRUSTPILOT_API_KEY environment variable required' }))
@@ -32,7 +33,7 @@ async function getAccessToken() {
   return null
 }
 
-async function api(method, path, body, auth = 'apikey') {
+async function api(method, path, body, auth = 'apikey', baseUrl = BASE_URL) {
   if (args['dry-run']) {
     const maskedHeaders = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
     if (auth === 'bearer') {
@@ -40,7 +41,8 @@ async function api(method, path, body, auth = 'apikey') {
     } else {
       maskedHeaders['apikey'] = '***'
     }
-    return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: maskedHeaders, body: body || undefined }
+    if (baseUrl === INVITATIONS_URL && args['business-user-id']) maskedHeaders['x-business-user-id'] = args['business-user-id']
+    return { _dry_run: true, method, url: `${baseUrl}${path}`, headers: maskedHeaders, body: body || undefined }
   }
   const headers = {
     'Content-Type': 'application/json',
@@ -55,7 +57,8 @@ async function api(method, path, body, auth = 'apikey') {
   } else {
     headers['apikey'] = API_KEY
   }
-  const res = await fetch(`${BASE_URL}${path}`, {
+  if (baseUrl === INVITATIONS_URL && args['business-user-id']) headers['x-business-user-id'] = args['business-user-id']
+  const res = await fetch(`${baseUrl}${path}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
@@ -191,11 +194,15 @@ async function main() {
             consumerName: name,
             referenceNumber: args.reference || '',
             senderEmail: args['sender-email'] || undefined,
+            senderName: args['sender-name'] || undefined,
             replyTo: args['reply-to'] || undefined,
-            templateId: templateId || undefined,
-            redirectUri,
+            type: 'email',
+            serviceReviewInvitation: {
+              templateId: templateId || undefined,
+              redirectUri,
+            },
           }
-          result = await api('POST', `/private/business-units/${businessUnitId}/email-invitations`, payload, 'bearer')
+          result = await api('POST', `/private/business-units/${businessUnitId}/email-invitations`, payload, 'bearer', INVITATIONS_URL)
           break
         }
         case 'link': {
@@ -209,12 +216,12 @@ async function main() {
             name,
             referenceId: args.reference || '',
             redirectUri: args['redirect-uri'] || 'https://trustpilot.com',
-          }, 'bearer')
+          }, 'bearer', INVITATIONS_URL)
           break
         }
         case 'templates': {
           if (!businessUnitId) { result = { error: '--business-unit or TRUSTPILOT_BUSINESS_UNIT_ID required' }; break }
-          result = await api('GET', `/private/business-units/${businessUnitId}/templates`, null, 'bearer')
+          result = await api('GET', `/private/business-units/${businessUnitId}/templates`, null, 'bearer', INVITATIONS_URL)
           break
         }
         default:

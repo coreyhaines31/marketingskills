@@ -266,6 +266,25 @@ POST https://api.intercom.io/events
 - `pagination.starting_after` - Cursor for next page
 - `sort.field` / `sort.order` - Sort configuration
 
+### CLI search values and pagination
+
+`--value` preserves a string, including identifiers such as `0012`. Use
+`--value-json` for numbers, booleans, or arrays required by the search field
+and operator. Invalid JSON is rejected before making a request.
+
+```bash
+node tools/clis/intercom.js contacts search --field created_at --operator '>' --value-json 1700000000
+node tools/clis/intercom.js conversations search --field open --value-json false
+node tools/clis/intercom.js contacts search --field id --operator IN --value-json '["0012","0034"]'
+```
+
+To retrieve another search page, repeat the original filter and pass the returned
+`pages.next.starting_after` as `--starting-after`, optionally with `--per-page`.
+Both flags are sent inside the search request's `pagination` object.
+
+API contracts: [contact search](https://developers.intercom.com/docs/references/2.11/rest-api/api.intercom.io/contacts/searchcontacts)
+and [conversation search](https://developers.intercom.com/docs/references/2.11/rest-api/api.intercom.io/conversations/searchconversations).
+
 ## When to Use
 
 - Managing customer contact records and segments
@@ -290,3 +309,17 @@ POST https://api.intercom.io/events
 - lead-generation
 - customer-support
 - in-app-messaging
+
+## CLI message creation
+
+The message creation API uses `in_app` for in-app requests (its response enum
+uses `inapp`). The CLI defaults to `in_app` and keeps `--type inapp` as an alias.
+Email messages require a subject and a `plain` or `personal` template; the CLI
+defaults the email template to `plain`.
+
+```bash
+node tools/clis/intercom.js messages create --body "Welcome" --admin-id 123 --to user1
+node tools/clis/intercom.js messages create --type email --subject "Welcome" --body "Hello" --admin-id 123 --to user1 --template personal
+```
+
+Contract: [Create a message, API 2.11](https://developers.intercom.com/docs/references/2.11/rest-api/api.intercom.io/messages/createmessage).

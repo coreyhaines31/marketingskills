@@ -43,16 +43,29 @@ Authorization: Bearer {api_key}
 ### List Overlaps
 
 ```bash
-GET https://api.crossbeam.com/v1/overlaps?partner_id={partner_id}&population_id={population_id}
+GET https://api.crossbeam.com/v1/overlaps/accounts?partner-id={partner_id}&population-ids[]={own_population_id}
 Authorization: Bearer {api_key}
 ```
 
-### Get Overlap Details
+### Find a Source Record's Overlaps
 
 ```bash
-GET https://api.crossbeam.com/v1/overlaps/{id}
+GET https://api.crossbeam.com/v1/overlaps/accounts/search?record_id={source_record_id}
 Authorization: Bearer {api_key}
 ```
+
+The CLI defaults to partner account overlaps; `--type leads` selects partner
+lead overlaps. The type describes the partner's records, not necessarily your
+own source records. Use `overlaps list --population-id` for your own population
+and `overlaps get --partner-population-id` for the partner's population filter.
+
+`overlaps get --record-id` performs exact source-record matching and returns the
+API's overlap search results. `--id` remains an alias for that source record ID;
+it is not an overlap object's ID. List responses expose `pagination.next_cursor`
+and `has_more`; pass the cursor with `--cursor` and continue until `has_more` is
+false, even if a page is empty. The search endpoint is not paged.
+
+See the [Crossbeam Partner API reference](https://developers.crossbeam.com/).
 
 ### Search Accounts
 

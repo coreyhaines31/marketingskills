@@ -276,3 +276,34 @@ Complete templates for lead lifecycle stages, MQL criteria by business type, SLA
 - **Content:** Industry insights, case studies, product updates
 - **Duration:** 6 months, then archive if no engagement
 - **Re-MQL trigger:** High-intent action (demo request, pricing page revisit)
+
+---
+
+## Outbound Stages
+
+Outbound contacts don't fit the inbound lifecycle: they never "convert" on a form, and most never reply. Track them on their own stages, so outbound pipeline isn't hidden inside "Lead" and replies don't get lost.
+
+| Stage | Entry | Exit | Owner |
+|-------|-------|------|-------|
+| **Targeted** | Added to an outbound list: fit checked, email verified, tier assigned | Enrolled in a sequence, or skipped | SDR / outbound owner |
+| **In sequence** | First touch sent | Any reply, sequence finished, or opted out | SDR / outbound owner |
+| **Replied** | Any human reply on any channel | Classified within one business day | SDR |
+| **Positive** | Reply shows interest or asks for information | Meeting booked, or gone quiet for 14 days | SDR |
+| **Meeting booked** | Calendar invite accepted | Meeting held or no-show | SDR → AE |
+| **Meeting held** | Meeting took place | Qualified into an opportunity, or recycled | AE |
+| **Opportunity** | Qualified (same definition as inbound) | Closed-won or closed-lost | AE |
+| **Not now** | Asked to be contacted later | Reminder date reached → back to Targeted | SDR |
+| **Suppressed** | Opted out, bounced, hostile, customer, or competitor | Never (unless they opt back in) | System |
+
+**Fields to capture on every outbound contact** so meetings can be attributed and sequences compared:
+- Source list and data provider
+- Signal (type and date) that put them on the list
+- Tier
+- Sequence and step that produced the reply
+- Channel of the reply (email, LinkedIn, phone, other)
+- Reply type (see the cold-email skill's reply handling reference)
+- Last verification date and result
+
+**Handoff SLA:** positive replies get a human response within minutes during business hours, and a meeting proposal in that first response. Meetings booked by an SDR transfer to the AE with the account brief and the full thread attached.
+
+**Outbound and inbound collide.** If an outbound contact fills out a form or signs up, keep the outbound history and owner, and record the inbound action. Don't let the inbound workflow reassign the contact and restart a nurture sequence mid-conversation.

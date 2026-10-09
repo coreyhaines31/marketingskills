@@ -1,0 +1,31 @@
+name: Validate skill packaging
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/package_skills.py"
+      - "scripts/claude-web-descriptions.json"
+      - "tests/test_skill_packaging.py"
+      - ".github/workflows/skill-packaging.yml"
+      - ".github/workflows/release.yml"
+      - "LICENSE"
+      - "skills/**"
+
+permissions:
+  contents: read
+
+jobs:
+  packaging:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test actual ZIP structure and integrity
+        run: python3 -m unittest discover -s tests -p test_skill_packaging.py -v
+      - name: Build the checked-out library without uploading
+        run: |
+          python3 scripts/package_skills.py --target source --output "$RUNNER_TEMP/skill-zips"
+          python3 scripts/package_skills.py --target claude-web --mapped-only --output "$RUNNER_TEMP/skill-zips"

@@ -38,7 +38,7 @@ Authorization: Bearer {api_token}
 ### Referring domains
 
 ```bash
-GET https://api.ahrefs.com/v3/site-explorer/refdomains?target=example.com&mode=domain&limit=100
+GET https://api.ahrefs.com/v3/site-explorer/refdomains?target=example.com&mode=domain&limit=100&select=domain,domain_rating,links_to_target
 
 Authorization: Bearer {api_token}
 ```
@@ -46,7 +46,7 @@ Authorization: Bearer {api_token}
 ### Backlinks list
 
 ```bash
-GET https://api.ahrefs.com/v3/site-explorer/backlinks?target=example.com&mode=domain&limit=100
+GET https://api.ahrefs.com/v3/site-explorer/all-backlinks?target=example.com&mode=domain&limit=100&select=url_from,url_to,anchor,is_dofollow
 
 Authorization: Bearer {api_token}
 ```
@@ -143,12 +143,23 @@ Authorization: Bearer {api_token}
 
 ## Dated reports in the CLI
 
-`domain-rating get`, `keywords organic`, and `top-pages list` require an explicit
-`--date YYYY-MM-DD`. Organic keywords and top pages also require `--select` with
-the columns you want to request. The CLI validates the calendar date and rejects
-missing or empty column lists before making a request; it does not guess paid
-columns. Choose fields from the provider response schema:
+`domain-rating get`, `keywords organic`, and `top-pages list` accept an explicit
+`--date YYYY-MM-DD`, defaulting to today's UTC date when omitted. Organic
+keywords and top pages supply default columns; `--select` overrides them.
+The CLI validates calendar dates and rejects empty column lists before a request.
+Choose fields from the provider response schema:
 
 - [Domain rating](https://docs.ahrefs.com/en/api/reference/site-explorer/get-domain-rating)
 - [Organic keywords](https://docs.ahrefs.com/en/api/reference/site-explorer/get-organic-keywords)
 - [Top pages](https://docs.ahrefs.com/en/api/reference/site-explorer/get-top-pages)
+
+## Backlink report columns
+
+`backlinks list` calls `all-backlinks` and defaults to
+`url_from,url_to,anchor,is_dofollow`. `refdomains list` defaults to
+`domain,domain_rating,links_to_target`. Both APIs require `select`; use
+`--select` to choose other columns. These defaults omit columns marked with
+additional unit costs in the schemas. Requests still consume API units.
+
+- [Backlinks](https://docs.ahrefs.com/en/api/reference/site-explorer/get-all-backlinks)
+- [Refdomains](https://docs.ahrefs.com/en/api/reference/site-explorer/get-refdomains)

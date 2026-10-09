@@ -112,7 +112,22 @@ async function main() {
     case 'crawl-status': {
       const id = args.id || rest[0]
       if (!id) { result = { error: '--id required' }; break }
-      result = await api('GET', `/v2/crawl/${id}`)
+      let query = ''
+      if (args.skip !== undefined) {
+        const skip = Number(args.skip)
+        if (typeof args.skip !== 'string' || !/^\d+$/.test(args.skip) || !Number.isSafeInteger(skip)) {
+          result = { error: '--skip must be a nonnegative integer from the returned next URL' }; break
+        }
+        query = `?${new URLSearchParams({ skip: args.skip })}`
+      }
+      result = await api('GET', `/v2/crawl/${id}${query}`)
+      break
+    }
+
+    case 'crawl-errors': {
+      const id = args.id || rest[0]
+      if (!id) { result = { error: '--id required' }; break }
+      result = await api('GET', `/v2/crawl/${id}/errors`)
       break
     }
 
@@ -124,7 +139,8 @@ async function main() {
           search: 'search --query <q> [--limit <n>] [--sources web,news,images] [--tbs qdr:d|qdr:w|qdr:m] [--scrape] [--formats markdown,html]',
           map: 'map --url <url> [--limit <n>] [--search <term>] [--include-subdomains]',
           crawl: 'crawl --url <url> [--limit <n>] [--max-depth <n>] [--include-paths /blog,/docs] [--exclude-paths /tag] [--formats markdown,html]',
-          'crawl-status': 'crawl-status --id <crawlId>',
+          'crawl-status': 'crawl-status --id <crawlId> [--skip <offset from next URL>]',
+          'crawl-errors': 'crawl-errors --id <crawlId>',
           options: '--dry-run (preview request without sending)',
         }
       }

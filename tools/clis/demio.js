@@ -121,7 +121,7 @@ async function main() {
         case 'list': {
           const dateId = args['date-id']
           if (!dateId) { result = { error: '--date-id required' }; break }
-          result = await api('GET', `/date/${dateId}/participants`)
+          result = await api('GET', `/report/${dateId}/participants`)
           break
         }
         default:

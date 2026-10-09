@@ -14,7 +14,7 @@ Marketing data pipeline that connects 200+ marketing platforms. Pulls data from 
 ## Authentication
 
 - **Type**: API Key
-- **Query param**: `api_key={api_key}` or **Header**: `x-api-key: {api_key}`
+- **Query param**: `api_key={api_key}` or **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: Supermetrics Hub > API settings at https://hub.supermetrics.com
 
 ## Common Agent Operations
@@ -22,16 +22,18 @@ Marketing data pipeline that connects 200+ marketing platforms. Pulls data from 
 ### Query a Data Source
 
 ```bash
-POST https://api.supermetrics.com/enterprise/v2/query/data/json
+POST https://api.supermetrics.com/query/data/json
 
 {
   "ds_id": "GA4",
   "ds_accounts": "123456789",
-  "date_range_type": "last_28_days",
+  "date_range_type": "custom",
+  "start_date": "-28 days",
+  "end_date": "yesterday",
   "fields": [
-    { "name": "sessions" },
-    { "name": "pageviews" },
-    { "name": "date" }
+    { "id": "sessions" },
+    { "id": "pageviews" },
+    { "id": "date" }
   ]
 }
 ```
@@ -39,17 +41,17 @@ POST https://api.supermetrics.com/enterprise/v2/query/data/json
 ### Query with Filters
 
 ```bash
-POST https://api.supermetrics.com/enterprise/v2/query/data/json
+POST https://api.supermetrics.com/query/data/json
 
 {
   "ds_id": "AW",
   "ds_accounts": "123-456-7890",
   "date_range_type": "last_month",
   "fields": [
-    { "name": "campaign_name" },
-    { "name": "clicks" },
-    { "name": "impressions" },
-    { "name": "cost" }
+    { "id": "campaign_name" },
+    { "id": "clicks" },
+    { "id": "impressions" },
+    { "id": "cost" }
   ],
   "max_rows": 100
 }
@@ -58,25 +60,25 @@ POST https://api.supermetrics.com/enterprise/v2/query/data/json
 ### List Available Data Sources
 
 ```bash
-GET https://api.supermetrics.com/enterprise/v2/datasources
+GET https://api.supermetrics.com/datasource/search
 ```
 
 ### List Connected Accounts
 
 ```bash
-GET https://api.supermetrics.com/enterprise/v2/datasources/accounts?ds_id=GA4
+GET https://api.supermetrics.com/query/accounts?ds_id=GA4
 ```
 
-### List Teams
+### Get a Team
 
 ```bash
-GET https://api.supermetrics.com/enterprise/v2/teams
+GET https://api.supermetrics.com/v1/teams/{team_id}
 ```
 
 ### List Users
 
 ```bash
-GET https://api.supermetrics.com/enterprise/v2/users
+GET https://api.supermetrics.com/v1/teams/{team_id}/users
 ```
 
 ## Key Metrics
@@ -96,7 +98,7 @@ GET https://api.supermetrics.com/enterprise/v2/users
 - `HubSpot` - HubSpot
 
 ### Date Range Values
-- `last_28_days` - Last 28 days
+- `last_28_days` - CLI shorthand for a custom range from `-28 days` through `yesterday`
 - `last_month` - Previous calendar month
 - `this_month` - Current month to date
 - `custom` - Custom range (requires `start_date` and `end_date`)
@@ -107,7 +109,7 @@ GET https://api.supermetrics.com/enterprise/v2/users
 - `ds_id` - Data source identifier (required)
 - `ds_accounts` - Account ID for the data source (required)
 - `date_range_type` - Date range preset or "custom" (required)
-- `fields` - Array of field objects with `name` property (required)
+- `fields` - Array of field objects with required `id` property (required)
 - `filter` - Filter expression for narrowing results
 - `max_rows` - Maximum number of rows to return
 - `start_date` - Start date for custom range (YYYY-MM-DD)
@@ -143,3 +145,11 @@ GET https://api.supermetrics.com/enterprise/v2/users
 - seo-audit
 - content-strategy
 - social
+
+## CLI Contract Notes
+
+- `teams get --team-id <id>` retrieves one team; `users list --team-id <id>` lists that team's users. These require a key with the corresponding management permissions. The former unscoped `teams list` has no documented public equivalent and now returns migration guidance.
+- Query custom ranges require both `--start-date` and `--end-date`. Field names passed to `--fields` are provider field IDs, not display-name overrides. Empty IDs are rejected before a request.
+- HTTP failures exit unsuccessfully; `--dry-run` masks the Bearer credential without sending any request.
+
+Primary contracts: [authentication](https://docs.supermetrics.com/apidocs/authentication), [fields](https://docs.supermetrics.com/apidocs/fields), [relative dates](https://docs.supermetrics.com/apidocs/date-strings), [query data](https://docs.supermetrics.com/apidocs/query-data-3), [source search](https://docs.supermetrics.com/apidocs/search-data-sources), [accounts](https://docs.supermetrics.com/apidocs/get-accounts), [team lookup](https://docs.supermetrics.com/apidocs/get-team-details-by-team-id), and [team users](https://docs.supermetrics.com/apidocs/list-all-users-in-a-team).

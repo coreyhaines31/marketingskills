@@ -2,7 +2,7 @@
 name: content-strategy
 description: When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions "content strategy," "what should I write about," "content ideas," "blog strategy," "topic clusters," "content planning," "editorial calendar," "content marketing," "content roadmap," "what content should I create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social.
 metadata:
-  version: 2.1.2
+  version: 2.1.3
 ---
 
 # Content Strategy
@@ -54,6 +54,8 @@ Every piece of content must be searchable, shareable, or both. Prioritize in tha
 **Shareable content** creates demand. Spreads ideas and gets people talking.
 
 ### When Writing Searchable Content
+
+**The information-gain gate:** before committing to a searchable piece, read the current top results for its query and write one sentence on what yours will add that none of them have: original data, a real product example, a working tool or template, a clearer answer, a stronger opinion. If you can't write that sentence, don't write the piece. It will be the eleventh copy of the same article, and neither Google nor AI assistants have a reason to prefer it.
 
 - Target a specific keyword or question
 - Match search intent exactly—answer what the searcher wants

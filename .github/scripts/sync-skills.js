@@ -19,13 +19,15 @@ const README_FILE = "README.md";
  * Parse YAML frontmatter from a SKILL.md file
  */
 function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  const match = content.replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---/);
   if (!match) return {};
 
   const frontmatter = {};
   const lines = match[1].split("\n");
 
   for (const line of lines) {
+    // Nested metadata keys are not skill name/description fields.
+    if (/^\s/.test(line)) continue;
     const colonIndex = line.indexOf(":");
     if (colonIndex === -1) continue;
 
@@ -123,7 +125,7 @@ function updateReadme(skills) {
     return false;
   }
 
-  const newContent = content.replace(tableRegex, `$1${newTable}$2`);
+  const newContent = content.replace(tableRegex, (_match, start, end) => start + newTable + end);
 
   if (newContent === content) {
     return false;

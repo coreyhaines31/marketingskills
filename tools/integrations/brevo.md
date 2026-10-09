@@ -266,3 +266,31 @@ Brevo uses standard REST with offset-based pagination (`limit` and `offset` para
 - transactional-email
 - lifecycle-marketing
 - contact-management
+
+## Contact channel suppression with the CLI
+
+Contact creation and updates accept `--email-blacklisted true|false` and
+`--sms-blacklisted true|false`. The literal values become JSON booleans; omitted
+flags leave the existing request unchanged. Bare flags and other values are
+rejected before transport. These options change contact channel suppression;
+they do not send messages, delete the contact, or change list membership.
+
+```bash
+node tools/clis/brevo.js contacts get --email owned@example.com
+node tools/clis/brevo.js contacts update --email owned@example.com --email-blacklisted true --dry-run
+node tools/clis/brevo.js contacts create --email owned@example.com --email-blacklisted true --sms-blacklisted true --dry-run
+```
+
+Read the current contact and the user's requested channel preference before
+changing an existing record. Use `true` to carry an opt-out into the documented
+channel flag. Setting a flag to `false` allows that channel again: only restore
+it when the user has authorized that change and there is appropriate permission
+to contact the person. List membership alone is not evidence of consent.
+Unrelated name or list updates should omit these flags rather than defaulting
+them to `false`. The CLI does not establish consent or guarantee compliance with
+communication rules. Brevo's separate transactional-email sender blocklist is
+not managed by these options.
+
+See the current [create-contact](https://developers.brevo.com/reference/create-contact)
+and [update-contact](https://developers.brevo.com/reference/update-contact)
+request schemas for `emailBlacklisted` and `smsBlacklisted`.

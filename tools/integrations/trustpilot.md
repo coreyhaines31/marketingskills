@@ -83,7 +83,7 @@ Headers:
 ### Send email invitation
 
 ```bash
-POST https://api.trustpilot.com/v1/private/business-units/{businessUnitId}/email-invitations
+POST https://invitations-api.trustpilot.com/v1/private/business-units/{businessUnitId}/email-invitations
 
 Headers:
   Authorization: Bearer {access_token}
@@ -92,14 +92,21 @@ Headers:
   "consumerEmail": "customer@example.com",
   "consumerName": "Jane Doe",
   "referenceNumber": "order-123",
-  "redirectUri": "https://example.com/thanks"
+  "senderEmail": "sender@example.com",
+  "senderName": "Team",
+  "replyTo": "reply@example.com",
+  "type": "email",
+  "serviceReviewInvitation": {
+    "templateId": "<template_id>",
+    "redirectUri": "https://example.com/thanks"
+  }
 }
 ```
 
 ### Generate review invitation link
 
 ```bash
-POST https://api.trustpilot.com/v1/private/business-units/{businessUnitId}/invitation-links
+POST https://invitations-api.trustpilot.com/v1/private/business-units/{businessUnitId}/invitation-links
 
 Headers:
   Authorization: Bearer {access_token}
@@ -115,7 +122,7 @@ Headers:
 ### List invitation templates
 
 ```bash
-GET https://api.trustpilot.com/v1/private/business-units/{businessUnitId}/templates
+GET https://invitations-api.trustpilot.com/v1/private/business-units/{businessUnitId}/templates
 
 Headers:
   Authorization: Bearer {access_token}
@@ -189,3 +196,17 @@ Headers:
 - review-generation
 - social-proof
 - post-purchase-flow
+
+## CLI invitation requests
+
+Invitation creation, links, and templates use `invitations-api.trustpilot.com`;
+OAuth and review operations retain `api.trustpilot.com`. Email invitations put
+`templateId` and `redirectUri` inside `serviceReviewInvitation`, rather than at
+the top level. Links retain their separate `email`/`name`/`referenceId` payload.
+
+Supply `--business-user-id` for the `x-business-user-id` header when using the
+CLI's client credentials grant on behalf of an Admin or Manager. Use
+`--sender-name`, `--sender-email`, and `--reply-to` for email sender fields.
+No real invitation is sent by `--dry-run`.
+
+Contract: [Trustpilot Invitation API](https://developers.trustpilot.com/invitation-api).

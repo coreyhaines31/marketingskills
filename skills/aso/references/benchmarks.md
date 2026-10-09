@@ -51,14 +51,16 @@ Sources: AppFollow, MobileAction, Sensor Tower, Troof.ai
 ## Preview Video Impact
 
 **iOS:** +20-40% conversion lift (video autoplays on product page)
-**Google Play:** Minimal lift (only ~6% of visitors tap to play)
+**Google Play:** Preview videos may autoplay muted for up to 30 seconds on eligible devices and placements. A tap-to-play rate does not measure all video exposure or establish conversion lift.
 
 - Autoplay introduced in iOS 11 caused **+47% conversion jump**
 - Users who watch video are **2x more likely to install**
 - Average watch time: **4-6.5 seconds** (first 5 seconds are critical)
 - 50%+ of viewers watch to the end
 
-**Takeaway:** Video is high-ROI on iOS, low-ROI on Google Play.
+**Takeaway:** Treat reported video benchmarks as context, not a guaranteed lift. For either store, test the creative against your own conversion results. On Google Play, make the opening understandable without sound.
+
+Playback source: [Google Play preview asset guidelines](https://support.google.com/googleplay/android-developer/answer/9866151).
 
 Sources: StoreMaven, SplitMetrics, Leanplum
 

@@ -5,7 +5,7 @@ const path = require('node:path')
 
 const cli = path.resolve(__dirname, '../../tools/clis/dataforseo.js')
 function run(args, dry = false, expectedStatus = 0) {
-  const source = `global.fetch = async (url, options) => ({ status: 200, text: async () => JSON.stringify({ url, method: options.method, body: JSON.parse(options.body) }) }); process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}, ...( ${dry} ? ['--dry-run'] : [])]; require(${JSON.stringify(cli)});`
+  const source = `global.fetch = async (url, options) => ({ ok: true, status: 200, text: async () => JSON.stringify({ url, method: options.method, body: JSON.parse(options.body) }) }); process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}, ...( ${dry} ? ['--dry-run'] : [])]; require(${JSON.stringify(cli)});`
   const result = spawnSync(process.execPath, ['-e', source], {encoding: 'utf8', env: {...process.env, DATAFORSEO_LOGIN: 'fixture-login', DATAFORSEO_PASSWORD: 'fixture-password'}})
   assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)

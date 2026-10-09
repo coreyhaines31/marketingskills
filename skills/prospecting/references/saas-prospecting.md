@@ -55,7 +55,7 @@ Combine 2+ sources for cross-verification.
 ### Tier 3 — buying signals
 
 - **Job boards** (LinkedIn Jobs, Indeed, AngelList): role openings as signals
-- **RB2B / Clearbit Reveal**: visitor identification (warm anonymous traffic)
+- **RB2B, Warmly, or Vector**: visitor identification (warm anonymous traffic)
 - **GitHub stars/forks of competitor or adjacent repos**: developer-level intent signal (see `tools/integrations/github.md` and the `github-prospects.js` CLI). Especially strong for dev-tool SaaS — a developer who starred `vercel/next.js` last week is in-market for adjacent Next.js infrastructure.
 - **Recent blog posts / changelog**: product direction signals
 - **G2 reviews mentioning competitor switches**: explicit dissatisfaction signal

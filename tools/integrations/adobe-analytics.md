@@ -22,11 +22,20 @@ Enterprise analytics platform for cross-channel measurement and attribution.
 ### Get report suite info
 
 ```bash
-GET https://analytics.adobe.io/api/{company_id}/reportsuites
+GET https://analytics.adobe.io/api/{company_id}/reportsuites/collections/suites
 
 Authorization: Bearer {access_token}
 x-api-key: {client_id}
 ```
+
+The CLI's `reportsuites list` uses this collection endpoint and returns the
+provider's suite array unchanged. Read each suite's `rsid` before using the
+existing dimension, metric, or report commands. `--dry-run` previews the same
+resource with credentials masked. Availability depends on the account's
+permissions; an empty collection does not prove that no suites exist in the
+organization.
+
+Reference: [official Report Suites API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/report-suites).
 
 ### Get dimensions
 

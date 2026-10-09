@@ -2,7 +2,7 @@
 name: signup
 description: When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions "signup conversions," "registration friction," "signup form optimization," "free trial signup," "reduce signup dropoff," "account creation flow," "people aren't signing up," "signup abandonment," "trial conversion rate," "nobody completes registration," "too many steps to sign up," or "simplify our signup." Use this whenever the user has a signup or registration flow that isn't performing. For post-signup onboarding, see onboarding. For lead capture forms (not account creation), see cro.
 metadata:
-  version: 2.0.0
+  version: 2.0.1
 ---
 
 # Signup Flow CRO
@@ -350,6 +350,10 @@ Organized by:
 5. What happens immediately after signup?
 
 ---
+
+## Enrichment and Sales-Assisted Routing
+
+If a signup needs enriched company data for a sales-assist handoff, use the [revops inbound-routing playbook](https://github.com/coreyhaines31/marketingskills/blob/main/skills/revops/references/inbound-routing.md). Keep account creation separate from enrichment availability; a timeout or ambiguous company match must not become an implicit signup rejection.
 
 ## Related Skills
 

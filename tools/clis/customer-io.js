@@ -5,8 +5,13 @@ const APP_KEY = process.env.CUSTOMERIO_APP_KEY
 const SITE_ID = process.env.CUSTOMERIO_SITE_ID
 const API_KEY = process.env.CUSTOMERIO_API_KEY
 
-const TRACK_URL = 'https://track.customer.io/api/v1'
-const APP_URL = 'https://api.customer.io/v1'
+const REGION = process.env.CUSTOMERIO_REGION || 'us'
+if (rawArgs.length > 0 && !['us', 'eu'].includes(REGION)) {
+  console.error(JSON.stringify({ error: 'CUSTOMERIO_REGION must be us or eu' }))
+  process.exit(1)
+}
+const TRACK_URL = REGION === 'eu' ? 'https://track-eu.customer.io/api/v1' : 'https://track.customer.io/api/v1'
+const APP_URL = REGION === 'eu' ? 'https://api-eu.customer.io/v1' : 'https://api.customer.io/v1'
 
 const hasTrackAuth = SITE_ID && API_KEY
 const hasAppAuth = APP_KEY
@@ -103,19 +108,26 @@ async function main() {
           if (args['created-at']) body.created_at = parseInt(args['created-at'])
           if (args.plan) body.plan = args.plan
           if (args.data) Object.assign(body, JSON.parse(args.data))
-          result = await trackApi('PUT', `/customers/${customerId}`, body)
+          result = await trackApi('PUT', `/customers/${encodeURIComponent(customerId)}`, body)
           break
         }
         case 'get': {
           const customerId = rest[0] || args.id
           if (!customerId) { result = { error: 'Customer ID required (positional arg or --id)' }; break }
-          result = await appApi('GET', `/customers/${customerId}/attributes`)
+          result = await appApi('GET', `/customers/${encodeURIComponent(customerId)}/attributes`)
           break
         }
         case 'delete': {
           const customerId = rest[0] || args.id
           if (!customerId) { result = { error: 'Customer ID required (positional arg or --id)' }; break }
-          result = await trackApi('DELETE', `/customers/${customerId}`)
+          result = await trackApi('DELETE', `/customers/${encodeURIComponent(customerId)}`)
+          break
+        }
+        case 'suppress':
+        case 'unsuppress': {
+          const customerId = rest[0] || args.id
+          if (typeof customerId !== 'string' || customerId.trim().length === 0) throw new Error('Customer ID must be a non-empty string (positional arg or --id)')
+          result = await trackApi('POST', `/customers/${encodeURIComponent(customerId)}/${sub}`)
           break
         }
         case 'track-event': {
@@ -124,11 +136,11 @@ async function main() {
           if (!args.name) { result = { error: '--name required (event name)' }; break }
           const body = { name: args.name }
           if (args.data) body.data = JSON.parse(args.data)
-          result = await trackApi('POST', `/customers/${customerId}/events`, body)
+          result = await trackApi('POST', `/customers/${encodeURIComponent(customerId)}/events`, body)
           break
         }
         default:
-          result = { error: 'Unknown customers subcommand. Use: identify, get, delete, track-event' }
+          result = { error: 'Unknown customers subcommand. Use: identify, get, delete, suppress, unsuppress, track-event' }
       }
       break
 
@@ -190,7 +202,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          customers: 'customers [identify|get|delete|track-event] <customer_id> [--email <email>] [--first-name <name>] [--plan <plan>] [--data <json>] [--name <event>]',
+          customers: 'customers [identify|get|delete|suppress|unsuppress|track-event] <customer_id> [--email <email>] [--first-name <name>] [--plan <plan>] [--data <json>] [--name <event>]',
           campaigns: 'campaigns [list|get|metrics|trigger] [campaign_id] [--emails <e1,e2>] [--ids <id1,id2>] [--data <json>]',
           send: 'send email --message-id <id> --to <email> [--identifier-id <id>] [--identifier-email <email>] [--data <json>]',
         }

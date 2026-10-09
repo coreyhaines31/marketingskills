@@ -39,7 +39,7 @@ The template renders entirely from a JSON block near the top of the file — `<s
         {
           label: "Hook",                    // the frame's job in the narrative arc
           prompt: "Product bag hero on soft pink, gold-lace overlay",  // image description (shown as placeholder if no image)
-          image: "images/heavy-metal-01.png",   // optional — URL, relative path, or data URI; omit for text-only concepts
+          image: "images/heavy-metal-01.png",   // optional — local path/file URL or data URI; omit for text-only concepts
           headline: "Finally, a plant-based protein that's third-party tested for heavy metals.",  // optional per-frame overlay
           headlineTheme: "dark"             // optional: "dark" (default, white text) or "light" (dark text on light imagery)
         }
@@ -71,8 +71,10 @@ A concept's `frames` are its storyboard. Label each frame by the *job it does*, 
 ### Images vs. placeholders
 
 Every frame renders one of two ways:
-- **`image` provided** — the real creative (from the Mode 3 `images/` folder, a hosted URL, or a data URI) fills the frame.
+- **`image` provided** — the real creative (from the Mode 3 `images/` folder or a data URI) fills the frame.
 - **`image` omitted** — a styled placeholder shows the frame `label` + `prompt`. This is the intended state for concepts that are copy + image-prompt but not yet rendered to image — the review page is useful *before* images exist, and stays useful as they get filled in.
+
+Remote and protocol-relative image URLs are blocked, including URL spellings the browser normalizes. Download authorized creative assets into the local `images/` folder and keep paths relative when hosting or sharing; hosted relative assets still load from that host. This restriction applies to the supplied image sources, not a sandbox for arbitrary edits to the HTML or an assurance about a hosting server.
 
 Ship review pages with placeholders freely; they communicate the concept. Swap in images as they're generated.
 
