@@ -2,7 +2,7 @@
 
 const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.SUPERMETRICS_API_KEY
-const BASE_URL = 'https://api.supermetrics.com/enterprise/v2'
+const BASE_URL = 'https://api.supermetrics.com'
 
 if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'SUPERMETRICS_API_KEY environment variable required' }))
@@ -25,10 +25,10 @@ async function api(method, path, body) {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'x-api-key': API_KEY,
+    'Authorization': `Bearer ${API_KEY}`,
   }
   if (args['dry-run']) {
-    return { _dry_run: true, method, url, headers: { ...headers, 'x-api-key': '***' }, body: body || undefined }
+    return { _dry_run: true, method, url, headers: { ...headers, Authorization: 'Bearer ***' }, body: body || undefined }
   }
   const res = await fetch(url, { signal: requestSignal(),
     method,
@@ -36,6 +36,7 @@ async function api(method, path, body) {
     body: body ? JSON.stringify(body) : undefined,
   })
   const text = await res.text()
+  if (!res.ok) throw new Error(`Supermetrics request failed (${res.status}): ${text}`)
   try {
     return JSON.parse(text)
   } catch {
@@ -79,11 +80,21 @@ async function main() {
       if (!dsAccounts) { result = { error: '--ds-accounts required' }; break }
       if (!dateRange) { result = { error: '--date-range required (e.g., last_28_days, last_month, this_month, custom)' }; break }
       if (!fields) { result = { error: '--fields required (comma-separated field names)' }; break }
+      const fieldIds = fields.split(',').map(f => f.trim())
+      if (fieldIds.some(f => !f)) { result = { error: '--fields must contain nonempty field IDs' }; break }
+      if (dateRange === 'custom' && (!args['start-date'] || !args['end-date'])) {
+        result = { error: '--start-date and --end-date required for a custom date range' }; break
+      }
       const body = {
         ds_id: dsId,
         ds_accounts: dsAccounts,
         date_range_type: dateRange,
-        fields: fields.split(',').map(f => ({ name: f.trim() })),
+        fields: fieldIds.map(id => ({ id })),
+      }
+      if (dateRange === 'last_28_days') {
+        body.date_range_type = 'custom'
+        body.start_date = '-28 days'
+        body.end_date = 'yesterday'
       }
       if (args.filter) body.filter = args.filter
       if (args['max-rows']) body.max_rows = parseInt(args['max-rows'], 10)
@@ -96,7 +107,7 @@ async function main() {
     case 'sources':
       switch (sub) {
         case 'list':
-          result = await api('GET', '/datasources')
+          result = await api('GET', '/datasource/search')
           break
         default:
           result = { error: 'Unknown sources subcommand. Use: list' }
@@ -109,7 +120,7 @@ async function main() {
           const dsId = args['ds-id']
           if (!dsId) { result = { error: '--ds-id required (e.g., GA4, AW, FB)' }; break }
           const params = new URLSearchParams({ ds_id: dsId })
-          result = await api('GET', `/datasources/accounts?${params.toString()}`)
+          result = await api('GET', `/query/accounts?${params.toString()}`)
           break
         }
         default:
@@ -119,19 +130,28 @@ async function main() {
 
     case 'teams':
       switch (sub) {
+        case 'get': {
+          const id = args['team-id']
+          if (!id || !/^[1-9]\d*$/.test(id)) { result = { error: '--team-id required (positive integer team ID)' }; break }
+          result = await api('GET', `/v1/teams/${id}`)
+          break
+        }
         case 'list':
-          result = await api('GET', '/teams')
+          result = { error: 'The public API has no teams list endpoint. Use: teams get --team-id <id>' }
           break
         default:
-          result = { error: 'Unknown teams subcommand. Use: list' }
+          result = { error: 'Unknown teams subcommand. Use: get --team-id <id>' }
       }
       break
 
     case 'users':
       switch (sub) {
-        case 'list':
-          result = await api('GET', '/users')
+        case 'list': {
+          const id = args['team-id']
+          if (!id || !/^[1-9]\d*$/.test(id)) { result = { error: '--team-id required (positive integer team ID)' }; break }
+          result = await api('GET', `/v1/teams/${id}/users`)
           break
+        }
         default:
           result = { error: 'Unknown users subcommand. Use: list' }
       }
@@ -149,10 +169,10 @@ async function main() {
             list: 'accounts list --ds-id <data-source>',
           },
           teams: {
-            list: 'teams list',
+            get: 'teams get --team-id <id>',
           },
           users: {
-            list: 'users list',
+            list: 'users list --team-id <id>',
           },
           'data-source-ids': {
             'GA4': 'Google Analytics 4',

@@ -7,6 +7,7 @@ on:
       - "validate-skills.sh"
       - "tests/**"
       - "tools/clis/**"
+      - "skills/ad-creative/assets/creative-review-template.html"
       - ".github/workflows/regression-tests.yml"
   pull_request:
     branches: [main]
@@ -14,6 +15,7 @@ on:
       - "validate-skills.sh"
       - "tests/**"
       - "tools/clis/**"
+      - "skills/ad-creative/assets/creative-review-template.html"
       - ".github/workflows/regression-tests.yml"
 
 concurrency:
@@ -44,5 +46,5 @@ jobs:
       - name: Check CLI syntax
         run: for f in tools/clis/*.js; do node --check "$f"; done
 
-      - name: Run CLI contract tests
-        run: node --test tests/clis/*.test.cjs
+      - name: Run CLI and asset contract tests
+        run: node --test tests/clis/*.test.cjs tests/assets/*.test.cjs

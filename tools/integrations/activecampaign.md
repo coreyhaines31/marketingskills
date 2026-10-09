@@ -2,6 +2,38 @@
 
 Email marketing automation platform with CRM, contacts, deals pipeline, tags, automations, and campaign management.
 
+## Custom contact fields from the CLI
+
+Discover the account's existing contact field IDs before assigning values:
+
+```bash
+node tools/clis/activecampaign.js fields list --search 'Plan' --limit 20 --offset 0
+node tools/clis/activecampaign.js contacts sync --email owned@example.com \
+  --field-values '[{"field":"12","value":"Enterprise"}]' --dry-run
+```
+
+Use the field definition's `id`, rather than its title, personalization tag,
+or a field option ID. `fields list` returns one page of provider definitions,
+including side-loaded options and relationships; use its `meta.total` and
+`--offset` to continue. Search is a partial title match.
+
+`--field-values` is available for contact `create`, `update`, and `sync`.
+It preserves the supplied array under `contact.fieldValues`. Format each
+value for the selected field type; the provider validates IDs, types,
+and permissions. Omitting the option preserves the existing request.
+
+Choose `sync` to create or update by email, `update --id` for an existing ID,
+and `create` when an existing email should be rejected. Custom fields do not
+subscribe a contact to a list or record marketing consent. Use the existing
+list operations only when the user has authorized the subscription.
+Preview with `--dry-run` before a user-authorized write; the preview masks
+the API token and makes no request.
+
+See the official [contact creation contract](https://developers.activecampaign.com/reference/create-a-new-contact),
+[contact update contract](https://developers.activecampaign.com/reference/update-a-contact-new),
+[email upsert contract](https://developers.activecampaign.com/reference/sync-a-contacts-data),
+and [field discovery contract](https://developers.activecampaign.com/reference/retrieve-fields).
+
 ## Capabilities
 
 | Integration | Available | Notes |

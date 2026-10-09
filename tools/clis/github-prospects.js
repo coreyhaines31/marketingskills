@@ -100,7 +100,7 @@ async function paginate(path, { limit, perPage = 100 } = {}) {
     lastRate = result.rate_limit_remaining
     all.push(...result.data)
     if (limit && all.length >= limit) {
-      return { data: all.slice(0, limit), rate_limit_remaining: lastRate, truncated: true }
+      return { data: all.slice(0, limit), rate_limit_remaining: lastRate, truncated: all.length > limit || Boolean(result.next) }
     }
     next = result.next
   }

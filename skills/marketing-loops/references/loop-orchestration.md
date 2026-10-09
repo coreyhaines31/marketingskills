@@ -1,6 +1,6 @@
 # Loop Orchestration & Rollout
 
-Loops aren't independent scripts — they compose into a marketing operating system. This reference covers how they fit together and the order to adopt them so you never build 43 at once.
+Loops aren't independent scripts — they compose into a marketing operating system. This reference covers how they fit together and the order to adopt them so you never build them all at once.
 
 ## The system view
 
@@ -59,7 +59,7 @@ Once volume is healthy, tune revenue per user — judged on revenue quality, not
 `referral-nudge`, `review-and-UGC-harvest`, `review-site-management`, `case-study-sourcing`, `partner-pipeline`, `brand-mention/reputation`, `experiment-backlog`, `campaign-postmortem`.
 The flywheel: happy customers and earned media that feed back into acquisition, plus the learning loops that make everything compound.
 
-The remaining catalog loops (content-decay, internal-linking, programmatic-SEO quality, content-calendar refill, paid-search query-mining, retargeting-hygiene, landing-page regression, community-engagement, competitor-watch, backlink-prospecting, directory-submission, feature-adoption, lead-capture-asset, email-deliverability, voice-of-customer) slot into the stage that matches their function as each channel becomes a priority.
+The remaining catalog loops (content-decay, striking-distance push, AI-answer check, claim-drift, signal-sweep, reply-triage, cold-domain health, sequence-retro, internal-linking, programmatic-SEO quality, content-calendar refill, paid-search query-mining, retargeting-hygiene, landing-page regression, community-engagement, competitor-watch, backlink-prospecting, directory-submission, feature-adoption, lead-capture-asset, email-deliverability, voice-of-customer) slot into the stage that matches their function as each channel becomes a priority.
 
 ## Rollout rules
 
@@ -67,3 +67,5 @@ The remaining catalog loops (content-decay, internal-linking, programmatic-SEO q
 - **Foundation before growth.** Acquisition loops before solid tracking + retention = pouring water into a leaky bucket.
 - **Cap the total.** If you're running more loops than you can review the output of, you have vanity loops. Retire the ones nobody acts on.
 - **Re-audit quarterly.** Recalibrate thresholds, kill dead loops, promote the ones that consistently drive action.
+
+For worked examples of several loops composed into one channel operator, see `seo-operator.md` and `outbound-operator.md`.

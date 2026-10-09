@@ -53,7 +53,7 @@ When the conversion completes on a third-party domain (a booking tool, hosted ch
 One document-level listener rewrites every outbound booking link at click time — no per-CTA edits, and it covers plain clicks, keyboard activation, and middle-click (`auxclick`):
 
 ```js
-// Append the anonymous distinct_id to any SavvyCal link at click time.
+// Refresh anonymous metadata on each SavvyCal activation; clear stale IDs.
 function decorate(e) {
   const anchor = e.target?.closest?.("a[href]");
   if (!(anchor instanceof HTMLAnchorElement)) return;
@@ -64,14 +64,19 @@ function decorate(e) {
   if (host !== "savvycal.com" && !host.endsWith(".savvycal.com")) return;
 
   const distinctId = getPostHogDistinctId();   // anonymous-only — see guard
-  if (!distinctId) return;                       // fail closed
-
-  url.searchParams.set("metadata[ph_distinct_id]", distinctId);
+  if (distinctId) {
+    url.searchParams.set("metadata[ph_distinct_id]", distinctId);
+  } else {
+    // The same anchor may have been decorated before identify() or reset().
+    url.searchParams.delete("metadata[ph_distinct_id]");
+  }
   anchor.href = url.toString();
 }
 document.addEventListener("click", decorate, true);    // capture phase
 document.addEventListener("auxclick", decorate, true);
 ```
+
+An early return when the guard rejects the current ID leaves any previously added metadata on the anchor. Remove that one parameter instead, preserving the booking path, other parameters and fragment. Check both `click` and `auxclick` after an identity change.
 
 For an **inline embed** (e.g. `/demo` with an embedded calendar), pass the same id in the embed's metadata config instead; poll briefly (~2s) for the id on fresh visits, but never block the calendar from rendering.
 
@@ -126,12 +131,22 @@ events.push({
   properties: { booking_id, journey_linked: Boolean(anonId) },  // track the fallback rate
 });
 
-await fetch(`${POSTHOG_HOST}/batch/`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ api_key: POSTHOG_API_KEY, batch: events }),
-  signal: AbortSignal.timeout(3000),   // bound it; never hang the webhook
-});
+// Run after the booking's business-critical work; analytics must not fail it.
+try {
+  const response = await fetch(`${POSTHOG_HOST}/batch/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ api_key: POSTHOG_API_KEY, batch: events }),
+    signal: AbortSignal.timeout(3000),
+  });
+  // fetch resolves for HTTP errors too; a resolved promise isn't acceptance.
+  if (!response.ok) {
+    console.warn("Analytics ingestion rejected", { booking_id, status: response.status });
+  }
+} catch {
+  // Timeouts and network errors stay non-fatal. Never log the payload or email.
+  console.warn("Analytics ingestion unavailable", { booking_id });
+}
 ```
 
 When no id survives (link bypassed the decorator, e.g. a booking link inside a generated email/PDF), fall back to **email-only capture** with `journey_linked: false`. You still get the conversion; you just don't get the journey for that one.
@@ -193,7 +208,7 @@ Mark these fallback-attributed conversions with a lower-confidence `basis` (see 
 
 - Verify the provider's **signature** (`SAVVYCAL_WEBHOOK_SECRET` etc.).
 - **Validate** the smuggled id (string, ≤100 chars, no `@`) before merging.
-- Run the analytics call **after** any business-critical work, bounded by a timeout, **non-fatal** on failure.
+- Run the analytics call **after** any business-critical work, bounded by a timeout, **non-fatal** on failure. Check HTTP status and catch timeout/network rejections, as in Step 2c. If delivery needs retry guarantees, enqueue analytics separately with idempotency rather than failing or replaying the booking.
 - **Log the booking id, never the email.**
 
 ## Step 4 — Report

@@ -121,7 +121,7 @@ Provide affiliates with:
 **Partner Relationship Management (PRM):**
 - Introw — Full PRM with deal registration, commissions, tiers, QBRs, and partner engagement tracking ([integration guide](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/introw.md))
 
-**Self-hosted:**
+**Additional platforms:**
 - Rewardful — Stripe-integrated affiliates
 - Refersion — E-commerce affiliates
 
@@ -142,7 +142,7 @@ Consider:
 ### Common Referral Fraud
 - Self-referrals (creating fake accounts)
 - Referral rings (groups referring each other)
-- Coupon sites posting referral codes
+- Unauthorized coupon distribution or attribution interception
 - Fake email addresses
 - VPN/device spoofing
 

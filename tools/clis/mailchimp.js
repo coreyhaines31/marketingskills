@@ -136,7 +136,17 @@ async function main() {
             if (args['first-name']) body.merge_fields.FNAME = args['first-name']
             if (args['last-name']) body.merge_fields.LNAME = args['last-name']
           }
-          if (args.tags) body.tags = args.tags.split(',')
+          if (args.tags !== undefined) {
+            if (typeof args.tags !== 'string' || args.tags.split(',').some(tag => !tag.trim())) {
+              result = { error: '--tags must contain comma-separated non-empty tag names' }; break
+            }
+            if (Object.keys(body).length) {
+              result = { error: 'Update tags and member fields separately: Mailchimp uses separate endpoints' }; break
+            }
+            const tags = args.tags.split(',').map(name => ({ name: name.trim(), status: 'active' }))
+            result = await api('POST', `/lists/${args['list-id']}/members/${subscriberHash}/tags`, { tags })
+            break
+          }
           result = await api('PATCH', `/lists/${args['list-id']}/members/${subscriberHash}`, body)
           break
         }

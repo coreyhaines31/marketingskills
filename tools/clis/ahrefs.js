@@ -104,9 +104,9 @@ async function main() {
       switch (sub) {
         case 'list': {
           if (!args.target) { result = { error: '--target required (domain or URL)' }; break }
-          const params = new URLSearchParams({ target: args.target, mode })
+          const params = new URLSearchParams({ target: args.target, mode, select: reportSelect('url_from,url_to,anchor,is_dofollow') })
           if (args.limit) params.set('limit', args.limit)
-          result = await api('GET', `/site-explorer/backlinks?${params}`)
+          result = await api('GET', `/site-explorer/all-backlinks?${params}`)
           break
         }
         default:
@@ -118,7 +118,7 @@ async function main() {
       switch (sub) {
         case 'list': {
           if (!args.target) { result = { error: '--target required (domain or URL)' }; break }
-          const params = new URLSearchParams({ target: args.target, mode })
+          const params = new URLSearchParams({ target: args.target, mode, select: reportSelect('domain,domain_rating,links_to_target') })
           if (args.limit) params.set('limit', args.limit)
           result = await api('GET', `/site-explorer/refdomains?${params}`)
           break
@@ -203,8 +203,8 @@ async function main() {
         error: 'Unknown command',
         usage: {
           'domain-rating': 'domain-rating get --target <domain> [--date <YYYY-MM-DD>]',
-          'backlinks': 'backlinks list --target <domain> [--mode <mode>] [--limit <n>]',
-          'refdomains': 'refdomains list --target <domain> [--mode <mode>] [--limit <n>]',
+          'backlinks': 'backlinks list --target <domain> [--mode <mode>] [--select <columns>] [--limit <n>]',
+          'refdomains': 'refdomains list --target <domain> [--mode <mode>] [--select <columns>] [--limit <n>]',
           'keywords': 'keywords organic --target <domain> [--date <YYYY-MM-DD>] [--select <columns>] [--country <cc>] [--limit <n>]',
           'top-pages': 'top-pages list --target <domain> [--date <YYYY-MM-DD>] [--select <columns>] [--country <cc>] [--limit <n>]',
           'keyword-overview': 'keyword-overview get --keywords <kw1,kw2> [--country <cc>]',

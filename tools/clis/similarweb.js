@@ -2,13 +2,12 @@
 
 const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.SIMILARWEB_API_KEY
-const BASE_URL = 'https://api.similarweb.com/v1'
+const BASE_URL = 'https://api.similarweb.com'
 
 if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'SIMILARWEB_API_KEY environment variable required' }))
   process.exit(1)
 }
-
 
 function requestSignal() {
   const raw = args['timeout-ms'] ?? '30000'
@@ -19,12 +18,13 @@ function requestSignal() {
   return AbortSignal.timeout(ms)
 }
 
-
-async function api(method, path, body) {
-  const separator = path.includes('?') ? '&' : '?'
-  const url = `${BASE_URL}${path}${separator}api_key=${API_KEY}`
+async function api(method, path, body, version = 'v1') {
+  const url = new URL(`${BASE_URL}/${version}${path}`)
+  url.searchParams.set('api_key', API_KEY)
   if (args['dry-run']) {
-    return { _dry_run: true, method, url: url.replace(API_KEY, '***'), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: body || undefined }
+    const previewUrl = new URL(url)
+    previewUrl.searchParams.set('api_key', '***')
+    return { _dry_run: true, method, url: previewUrl.toString(), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: body || undefined }
   }
   const res = await fetch(url, { signal: requestSignal(),
     method,
@@ -136,8 +136,8 @@ async function main() {
       if (!args.start) { result = { error: '--start required (YYYY-MM)' }; break }
       if (!args.end) { result = { error: '--end required (YYYY-MM)' }; break }
       const params = new URLSearchParams({ start_date: args.start, end_date: args.end })
-      if (args.country) params.set('country', args.country)
-      result = await api('GET', `/website/${encodeURIComponent(domain)}/traffic-sources/referrals?${params.toString()}`)
+      params.set('country', args.country || 'world')
+      result = await api('GET', `/website/${encodeURIComponent(domain)}/traffic-sources/referrals?${params.toString()}`, undefined, 'v4')
       break
     }
 

@@ -196,7 +196,7 @@ async function main() {
         case 'create': {
           if (!args['target-url']) { result = { error: '--target-url required' }; break }
           if (!args.event) { result = { error: '--event required' }; break }
-          result = await api('POST', '/hooks', { targetUrl: args['target-url'], event: args.event })
+          result = await api('POST', '/hooks', { targetUrl: args['target-url'], type: args.event })
           break
         }
         case 'delete': {

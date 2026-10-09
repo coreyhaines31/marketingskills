@@ -1,19 +1,23 @@
 # Benchmarks, Data & Expert Methods
 
-## Core Performance Metrics (2024–2025)
+## Core Performance Metrics
 
-| Metric                     | Average | Good   | Excellent | Source                   |
-| -------------------------- | ------- | ------ | --------- | ------------------------ |
-| Open rate                  | 27.7%   | 40–45% | 50%+      | Belkins, Snov.io         |
-| Reply rate                 | 4–5.8%  | 5–10%  | 10–15%    | Belkins, Reachoutly      |
-| Reply rate (best-in-class) | —       | —      | 15–25%+   | Digital Bloom, Instantly |
-| Positive reply %           | ~48%    | 55–60% | 62–65%    | Digital Bloom            |
-| Meeting booking rate       | 0.5–1%  | 1–2%   | 2.3%+     | Reachoutly               |
-| Bounce rate                | 7.5%    | <4%    | <2%       | Belkins                  |
+Almost every public cold email benchmark comes from a vendor that sells sending, data, or agency services, and each measures differently (some count auto-replies as replies, some don't). Use these as ranges, and judge yourself against your own baseline.
+
+| Metric | Average | Good | Excellent | Source |
+|--------|---------|------|-----------|--------|
+| Reply rate | ~3.4% | 5.5%+ (top quartile) | 10%+ (top decile) | Instantly, 2025 sends (published 2026) |
+| Reply rate (signal-based, small segments) | — | 2–3× your static-list rate | — | Inferred from several 2025–26 vendor datasets; claims of 15–25% are unverified |
+| Share of replies from email 1 | ~58% | — | — | Instantly 2026 |
+| Meetings booked | 0.5–1% of contacts | 1–2% | 2.5%+ | Reachoutly, Cleverly |
+| Bounce rate | — | under 2% | under 1% | Mailbox-provider guidance; see deliverability.md |
+| Spam complaints | — | under 0.1% | — | Google sender guidelines |
+
+**Don't use open rate.** Apple Mail Privacy Protection opens tracked emails automatically, many filters treat the tracking pixel as a spam signal, and one large sender dataset found reply rates roughly doubled with open tracking off. Measure replies, positive replies, and meetings.
 
 ## Realistic Funnel Model
 
-500 emails → 100 opens (20%) → 25 replies (5%) → 8 positive replies (30%) → 4 meetings (50%) → 1 client (25% close). ~**0.2% end-to-end conversion** for average performers.
+1,000 contacts → ~34 replies (3.4%) → ~10–15 positive (30–45% of replies) → ~5–8 meetings → 1–2 customers. Roughly **100–200 contacts per meeting** on a static list; signal-based segments often need 30–60 (an estimate from the ranges above, not a measured benchmark).
 
 ## Performance Levers (ranked by impact)
 
@@ -27,7 +31,7 @@
 
 ## Declining Effectiveness Trend
 
-Reply rates dropped from 7–8% (2020–2022) to 4–5.8% (2024–2025), ~15% YoY decline. Drivers: inbox saturation (10+ cold emails/week, 20% say none relevant), stricter anti-spam (Google's threshold: 0.1% complaints), AI email flood (more volume, less quality signal). Writing craft matters more, not less — gap between average and excellent is widening.
+Reply rates fell from 7–8% (2020–2022) to roughly 3.5–5.8% (2024–2025 datasets). Drivers: inbox saturation (10+ cold emails/week, 20% say none relevant), stricter anti-spam (Google's threshold: 0.1% complaints), AI email flood (more volume, less quality signal). Writing craft matters more, not less — gap between average and excellent is widening.
 
 ## Response Rates by Seniority
 

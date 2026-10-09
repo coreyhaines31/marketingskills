@@ -77,3 +77,14 @@ Tapping into what prospects are passionate about drives significantly higher res
 ## The "So What?" Test
 
 After writing any opening line, read from prospect's perspective: "So what? Why would I care?" If the answer is nothing, rewrite.
+
+## Personalizing With AI
+
+Agents make Level 4 research affordable at scale, and they make invented personalization just as cheap. Buyers in 2026 spot it fast: praise for the company mission, congratulations on a year-old funding round, "I noticed you're in SaaS."
+
+- **Relevance beats personalization.** A specific trigger, the pain it implies, and a concrete offer outperform a clever personal line attached to a generic pitch.
+- **Facts first, then the angle,** in two separate steps, with a source URL for every fact.
+- **Allow "no hook found."** When research turns up nothing specific, use the segment-level message instead of a manufactured one.
+- **Review before sending** for Tier 1 and a sample of Tier 2.
+
+The full research rules and the account brief template are in the prospecting skill's account research reference.

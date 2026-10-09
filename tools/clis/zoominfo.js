@@ -6,7 +6,7 @@ const BASE_URL = 'https://api.zoominfo.com'
 let ACCESS_TOKEN = process.env.ZOOMINFO_ACCESS_TOKEN
 
 if ((!ACCESS_TOKEN && !process.env.ZOOMINFO_USERNAME) && rawArgs.length > 0) {
-  console.error(JSON.stringify({ error: 'ZOOMINFO_ACCESS_TOKEN or ZOOMINFO_USERNAME + ZOOMINFO_PRIVATE_KEY environment variables required' }))
+  console.error(JSON.stringify({ error: 'ZOOMINFO_ACCESS_TOKEN, or ZOOMINFO_USERNAME with ZOOMINFO_PASSWORD or ZOOMINFO_PRIVATE_KEY + ZOOMINFO_CLIENT_ID required' }))
   process.exit(1)
 }
 
@@ -24,14 +24,39 @@ function requestSignal() {
 async function authenticate() {
   if (ACCESS_TOKEN) return ACCESS_TOKEN
   const username = process.env.ZOOMINFO_USERNAME
-  const password = process.env.ZOOMINFO_PRIVATE_KEY
-  if (!username || !password) {
-    throw new Error('ZOOMINFO_USERNAME and ZOOMINFO_PRIVATE_KEY required for authentication')
+  if (!username) throw new Error('ZOOMINFO_USERNAME required for authentication')
+  const privateKey = process.env.ZOOMINFO_PRIVATE_KEY
+  const headers = { 'Content-Type': 'application/json', Accept: 'application/json' }
+  let body
+  if (privateKey) {
+    const clientId = process.env.ZOOMINFO_CLIENT_ID
+    if (!clientId) throw new Error('ZOOMINFO_CLIENT_ID required for private-key authentication')
+    const crypto = require('node:crypto')
+    let key
+    try {
+      key = crypto.createPrivateKey(privateKey)
+      if (key.asymmetricKeyType !== 'rsa') throw new Error('RS256 requires an RSA key')
+    } catch {
+      throw new Error('ZOOMINFO_PRIVATE_KEY must be a valid RSA private key')
+    }
+    const now = Math.floor(Date.now() / 1000)
+    const header = Buffer.from(JSON.stringify({ alg: 'RS256', typ: 'JWT' })).toString('base64url')
+    const payload = Buffer.from(JSON.stringify({
+      aud: 'enterprise_api', iss: 'api-client@zoominfo.com', iat: now, exp: now + 300,
+      client_id: clientId, username,
+    })).toString('base64url')
+    const signingInput = `${header}.${payload}`
+    const signature = crypto.sign('RSA-SHA256', Buffer.from(signingInput), key).toString('base64url')
+    headers.Authorization = `Bearer ${signingInput}.${signature}`
+  } else {
+    const password = process.env.ZOOMINFO_PASSWORD
+    if (!password) throw new Error('ZOOMINFO_PASSWORD or ZOOMINFO_PRIVATE_KEY + ZOOMINFO_CLIENT_ID required for authentication')
+    body = JSON.stringify({ username, password })
   }
   const res = await fetch(`${BASE_URL}/authenticate`, { signal: requestSignal(),
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
+    headers,
+    body,
   })
   const text = await res.text()
   if (!res.ok) {

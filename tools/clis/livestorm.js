@@ -22,7 +22,7 @@ function requestSignal() {
 
 async function api(method, path, body) {
   const headers = {
-    'Authorization': `Bearer ${API_TOKEN}`,
+    'Authorization': API_TOKEN,
     'Content-Type': 'application/vnd.api+json',
     'Accept': 'application/vnd.api+json',
   }
@@ -181,9 +181,9 @@ async function main() {
           if (!id) { result = { error: '--id (session id) required' }; break }
           const email = args.email
           if (!email) { result = { error: '--email required' }; break }
-          const fields = { email }
-          if (args['first-name']) fields.first_name = args['first-name']
-          if (args['last-name']) fields.last_name = args['last-name']
+          const fields = [{ id: 'email', value: email }]
+          if (args['first-name']) fields.push({ id: 'first_name', value: args['first-name'] })
+          if (args['last-name']) fields.push({ id: 'last_name', value: args['last-name'] })
           result = await api('POST', `/sessions/${id}/people`, {
             data: {
               type: 'people',

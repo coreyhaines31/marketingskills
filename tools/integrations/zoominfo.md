@@ -7,16 +7,17 @@ B2B contact database and intent data platform with 100M+ business contacts and c
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Contact Search, Company Search, Enrichment, Intent Data, Scoops |
-| MCP | ✓ | [Claude connector](https://claude.com/connectors/zoominfo) |
+| MCP | ✓ | Official remote server at `https://mcp.zoominfo.com/mcp` (OAuth); search and lookup are free, enrichment uses data credits |
 | CLI | ✓ | [zoominfo.js](../clis/zoominfo.js) |
 | SDK | - | REST API only |
 
 ## Authentication
 
 - **Type**: JWT Token (Bearer)
-- **Flow**: POST `/authenticate` with username + password, receive JWT token
+- **Flow**: POST `/authenticate` using either username/password or a locally signed PKI assertion; receive the API JWT
 - **Header**: `Authorization: Bearer {jwt_token}`
-- **Env vars**: `ZOOMINFO_USERNAME` + `ZOOMINFO_PRIVATE_KEY` or `ZOOMINFO_ACCESS_TOKEN`
+- **Env vars**: `ZOOMINFO_ACCESS_TOKEN`, or `ZOOMINFO_USERNAME` + `ZOOMINFO_PASSWORD`, or `ZOOMINFO_USERNAME` + `ZOOMINFO_CLIENT_ID` + `ZOOMINFO_PRIVATE_KEY`
+- **PKI**: Set `ZOOMINFO_PRIVATE_KEY` to the multiline RSA PEM issued for your API client. The CLI signs a five-minute RS256 assertion locally and sends it as `Authorization: Bearer ...` to `/authenticate`. It never sends the key as a password. A configured private key requires its client ID and cannot fall back to password authentication.
 - **Get credentials**: Contact ZoomInfo sales or admin portal at https://app.zoominfo.com
 
 ## Common Agent Operations
@@ -28,9 +29,11 @@ POST https://api.zoominfo.com/authenticate
 
 {
   "username": "user@company.com",
-  "password": "private-key-here"
+  "password": "account-password-here"
 }
 ```
+
+The JSON example above is the password flow. PKI instead sends the signed assertion in the header with no credentials in the body. The assertion uses the claims documented by [ZoomInfo's official authentication client](https://github.com/Zoominfo/api-auth-python-client/blob/master/zi_api_auth_client/zi_api_auth_client.py). API calls then use the returned JWT, not the short-lived client assertion. Dry runs mask authorization and make no authentication request.
 
 ### Contact Search
 

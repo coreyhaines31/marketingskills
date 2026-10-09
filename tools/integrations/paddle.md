@@ -88,6 +88,24 @@ GET https://api.paddle.com/subscriptions?status=active
 GET https://api.paddle.com/subscriptions/{subscription_id}
 ```
 
+### Change a subscription plan or billing date
+
+Use the subscription update operation, with an explicit proration choice:
+
+```bash
+node tools/clis/paddle.js subscriptions update --id sub_01example \
+  --items '[{"price_id":"pri_01example","quantity":1}]' \
+  --proration-billing-mode prorated_next_billing_period --dry-run
+
+node tools/clis/paddle.js subscriptions update --id sub_01example \
+  --next-billed-at 2026-11-01T00:00:00Z \
+  --proration-billing-mode do_not_bill --dry-run
+```
+
+`--items` replaces the **complete** subscription item list. Include retained items; omitted items are removed. Check the dry-run payload and the chosen billing mode before running without `--dry-run`. The CLI does not pick a billing policy for you. Existing `--scheduled-change null` still removes a scheduled change without an item or billing-date edit.
+
+[Paddle's update contract](https://developer.paddle.com/api-reference/subscriptions/update-subscription/) requires `proration_billing_mode` when changing items or the next billing date; its [proration guide](https://developer.paddle.com/concepts/subscriptions/proration/) explains the available modes.
+
 ### Cancel a subscription
 
 ```bash

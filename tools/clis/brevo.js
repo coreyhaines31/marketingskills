@@ -64,6 +64,15 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function contactSuppression(body) {
+  for (const [flag, field] of [['email-blacklisted', 'emailBlacklisted'], ['sms-blacklisted', 'smsBlacklisted']]) {
+    if (args[flag] === undefined) continue
+    if (args[flag] !== 'true' && args[flag] !== 'false') throw new Error(`--${flag} must be true or false`)
+    body[field] = args[flag] === 'true'
+  }
+  return body
+}
+
 async function main() {
   let result
   const limit = args.limit ? Number(args.limit) : 50
@@ -106,7 +115,7 @@ async function main() {
             if (args['last-name']) body.attributes.LASTNAME = args['last-name']
           }
           if (args['list-ids']) body.listIds = args['list-ids'].split(',').map(Number)
-          result = await api('POST', '/contacts', body)
+          result = await api('POST', '/contacts', contactSuppression(body))
           break
         }
         case 'update': {
@@ -120,7 +129,7 @@ async function main() {
           }
           if (args['list-ids']) body.listIds = args['list-ids'].split(',').map(Number)
           if (args['unlink-list-ids']) body.unlinkListIds = args['unlink-list-ids'].split(',').map(Number)
-          result = await api('PUT', `/contacts/${encodeURIComponent(id)}`, body)
+          result = await api('PUT', `/contacts/${encodeURIComponent(id)}`, contactSuppression(body))
           break
         }
         case 'delete': {
@@ -366,7 +375,7 @@ async function main() {
           campaigns: 'campaigns [list | get --id <id> | create --name <name> | send-now --id <id> | send-test --id <id> --emails <e1,e2>]',
           sms: 'sms [send --from <name> --to <phone> --content <msg> | campaigns]',
           senders: 'senders [list | create --name <name> --email <email>]',
-          options: '--limit <n> --offset <n> --status <status>',
+          options: '--limit <n> --offset <n> --status <status>; contacts create/update: --email-blacklisted <true|false> --sms-blacklisted <true|false>',
         }
       }
   }

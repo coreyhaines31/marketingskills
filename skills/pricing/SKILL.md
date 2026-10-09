@@ -2,7 +2,7 @@
 name: pricing
 description: "When the user wants help with pricing decisions, packaging, or monetization strategy. Also use when the user mentions 'pricing,' 'pricing tiers,' 'freemium,' 'free trial,' 'packaging,' 'price increase,' 'value metric,' 'Van Westendorp,' 'willingness to pay,' 'monetization,' 'how much should I charge,' 'my pricing is wrong,' 'pricing page,' 'annual vs monthly,' 'per seat pricing,' 'should I offer a free plan,' 'pricing page teardown,' 'pricing page audit,' 'is my pricing page AI-readable,' or 'can AI read my pricing.' Use this whenever someone is figuring out what to charge, how to structure their plans, or wants to audit a pricing page (for humans and for the AI agents that shortlist tools). For in-app upgrade screens, see paywalls. For offer construction (bonuses, guarantees, value framing, naming) on services/courses/coaching/high-ticket B2B, see offers."
 metadata:
-  version: 2.1.2
+  version: 2.1.3
 ---
 
 # Pricing Strategy
@@ -163,7 +163,7 @@ Four questions that identify acceptable price range:
 3. Expensive but might consider
 4. A bargain
 
-Analyze intersections to find optimal pricing zone.
+Use intersections to identify perceived price acceptability and candidate prices to test. The named "Optimal Price Point" is a survey intersection, not proof of revenue or profit maximization. The four questions alone do not estimate conversion, churn or demand at a new price.
 
 ### MaxDiff Analysis
 

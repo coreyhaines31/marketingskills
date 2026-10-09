@@ -4,12 +4,6 @@ const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.ZAPIER_API_KEY
 const BASE_URL = 'https://api.zapier.com/v1'
 
-if ((!API_KEY) && rawArgs.length > 0) {
-  console.error(JSON.stringify({ error: 'ZAPIER_API_KEY environment variable required' }))
-  process.exit(1)
-}
-
-
 function requestSignal() {
   const raw = args['timeout-ms'] ?? '30000'
   const ms = Number(raw)
@@ -19,8 +13,8 @@ function requestSignal() {
   return AbortSignal.timeout(ms)
 }
 
-
 async function api(method, path, body) {
+  if (!API_KEY) throw new Error('ZAPIER_API_KEY environment variable required')
   if (args['dry-run']) {
     return { _dry_run: true, method, url: `${BASE_URL}${path}`, headers: { 'X-API-Key': '***', 'Content-Type': 'application/json' }, body: body || undefined }
   }
@@ -50,6 +44,7 @@ async function webhookPost(url, data) {
     body: JSON.stringify(data),
   })
   const text = await res.text()
+  if (!res.ok) throw new Error(`Webhook failed (HTTP ${res.status}): ${text}`)
   try {
     return JSON.parse(text)
   } catch {

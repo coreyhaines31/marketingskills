@@ -6,7 +6,7 @@ Behavior analytics platform with heatmaps, session recordings, and surveys for u
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | Surveys, Responses, Sites, Heatmaps, Recordings |
+| API | ✓ | Survey export and user lookup (Scale plans) |
 | MCP | - | Not available |
 | CLI | ✓ | [hotjar.js](../clis/hotjar.js) |
 | SDK | ✓ | JavaScript tracking snippet, Identify API, Events API |
@@ -40,14 +40,6 @@ grant_type=client_credentials&client_id={client_id}&client_secret={client_secret
 
 ## Common Agent Operations
 
-### List Sites
-
-```bash
-GET https://api.hotjar.io/v1/sites
-
-Authorization: Bearer {access_token}
-```
-
 ### List Surveys
 
 ```bash
@@ -66,29 +58,23 @@ Authorization: Bearer {access_token}
 
 Supports cursor-based pagination with `cursor` and `limit` parameters.
 
-### List Heatmaps
+The public API reference documents survey export and user lookup. It does not
+provide the site-list, heatmap, recording, or form-export routes shown in the
+legacy CLI commands. Those commands are not verified public API integrations;
+use the dashboard for those workflows. Find site IDs in Sites & Organizations.
+
+Survey export requires Ask Scale. API credentials expire after one year and
+must be replaced. The documented public API version is `v1`.
 
 ```bash
-GET https://api.hotjar.io/v1/sites/{site_id}/heatmaps
-
-Authorization: Bearer {access_token}
+node tools/clis/hotjar.js surveys list --site-id 42 --limit 25 --cursor '<next_cursor>'
+node tools/clis/hotjar.js surveys responses --site-id 42 --survey-id '<survey_id>' --cursor '<next_cursor>'
 ```
 
-### List Recordings
+Repeat the original command with the returned `next_cursor` to retrieve another
+page. Request previews use the same URL and remain offline.
 
-```bash
-GET https://api.hotjar.io/v1/sites/{site_id}/recordings
-
-Authorization: Bearer {access_token}
-```
-
-### List Forms
-
-```bash
-GET https://api.hotjar.io/v1/sites/{site_id}/forms
-
-Authorization: Bearer {access_token}
-```
+Source: [Hotjar API Reference](https://help.hotjar.com/hc/en-us/articles/36820005914001-Hotjar-API-Reference).
 
 ## Key Metrics
 
@@ -98,30 +84,12 @@ Authorization: Bearer {access_token}
 - `created_at` - Response timestamp
 - `device_type` - Desktop, mobile, tablet
 
-### Heatmap Data
-- `url` - Page URL
-- `click_count` - Total clicks tracked
-- `visitors` - Unique visitors
-- `created_at` - Heatmap creation date
-
-### Recording Data
-- `recording_id` - Unique recording ID
-- `duration` - Session duration
-- `pages_visited` - Pages in session
-- `device` - Device information
-
 ## Parameters
 
-### Survey Responses
-- `limit` - Results per page (default: 100)
-- `cursor` - Pagination cursor from previous response
-- `sort` - Sort order (default: created_at desc)
-
-### Recordings
-- `limit` - Results per page
-- `cursor` - Pagination cursor
-- `date_from` - Start date filter
-- `date_to` - End date filter
+### Surveys and Survey Responses
+- `limit` - Results per page (CLI default: 100; API maximum: 100)
+- `cursor` - The `next_cursor` returned by the previous page
+- Responses are sorted by creation date descending; filtering by date is not supported.
 
 ## When to Use
 

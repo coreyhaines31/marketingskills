@@ -83,6 +83,31 @@
         "Explains site-architecture covers design, not technical SEO"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're a 20-person B2B SaaS on Webflow. Marketing wants a new blog and about 300 integration pages, and someone suggested moving the whole site to an AI website builder. What should we do?",
+      "expected_output": "Should start from the architecture and the questions in the platforms reference (who edits, page volume and data, integrations, lock-in, cost at real size) rather than naming a platform first. Should keep the current platform (Webflow) in the running and note that moving platforms often costs more than it fixes when the site works. Should compare a shortlist (e.g., staying on Webflow's CMS within its item limits, a reverse-proxied subpath from another tool, or an AI-native platform) with tradeoffs. Any Verified Partner tool named (e.g., Ploy) carries the disclosure and an alternative. Should cover subpath vs subdomain for the new sections and, if migrating, the redirect map and SEO checks.",
+      "assertions": [
+        "Asks or reasons through the platform criteria before recommending",
+        "Keeps the current platform as a real option",
+        "Gives a shortlist with tradeoffs, not a single answer",
+        "Discloses any partner tool and names an alternative",
+        "Covers subpath vs subdomain for the new sections"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "We're migrating our marketing site from WordPress to a new platform next month. How do we not lose our SEO traffic?",
+      "expected_output": "Should lay out the migration plan from the platforms reference: crawl and save every URL with metadata, pull top pages by clicks/conversions/backlinks, keep URLs where possible, check what the CMS import carries (many don't move routes, metadata, redirects), build a one-to-one 301 map (never all to homepage), deploy redirects at switch time, submit the new sitemap, spot-check top pages, verify tracking and forms, and monitor Search Console for 404s afterwards.",
+      "assertions": [
+        "Crawls and saves current URLs and metadata first",
+        "Builds a one-to-one 301 redirect map",
+        "Warns that imports may not carry routes, metadata, or redirects",
+        "Includes launch-day checks and post-launch Search Console monitoring"
+      ],
+      "files": []
     }
   ]
 }

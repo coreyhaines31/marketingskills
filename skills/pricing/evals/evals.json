@@ -114,6 +114,18 @@
         "Notes value/price ratio (~10:1) or that low prices hurt retention"
       ],
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Our four-question Van Westendorp survey found PMC $29, OPP $49, IDP $59 and PME $79 per month. We charge $39. Can I tell the board that raising to $49-$59 will not significantly reduce demand, and that $49 maximizes revenue? No purchase-intent, actual sales or retention data were collected.",
+      "expected_output": "Should reject both claims as unsupported by four price-perception questions. Describe OPP as a named intersection, not revenue optimum. Use $49 and $59 as candidate test prices (+25.6% and +51.3% vs $39), keep demand/churn/revenue forecasts unknown, and propose purchase-intent/choice research or a controlled actual price test with conversion, margin and retention guardrails. Do not infer probabilities from price acceptability.",
+      "assertions": [
+        "Separates price perception from purchase behavior",
+        "Does not promise unchanged demand or claim a revenue-maximizing OPP",
+        "Computes price increases using the current $39 denominator",
+        "Recommends collecting purchase behavior and unit economics before rollout"
+      ],
+      "files": []
     }
   ]
 }

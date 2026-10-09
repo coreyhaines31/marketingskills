@@ -78,10 +78,22 @@ function statsDateRange(value) {
   return range
 }
 
+function sitesPagination(siteId) {
+  const params = new URLSearchParams()
+  if (siteId !== undefined) params.set('site_id', siteId)
+  if (args.limit !== undefined) params.set('limit', args.limit)
+  if (args.after !== undefined) params.set('after', args.after)
+  if (args.before !== undefined) params.set('before', args.before)
+  const query = params.toString()
+  return query ? `?${query}` : ''
+}
+
 async function main() {
   let result
   const siteId = args['site-id']
   const limit = args.limit ? Number(args.limit) : 100
+  const pagination = { limit }
+  if (args.offset !== undefined) pagination.offset = Number(args.offset)
 
   switch (cmd) {
     case 'stats':
@@ -115,7 +127,7 @@ async function main() {
             metrics,
             date_range: dateRange,
             dimensions: ['event:page'],
-            pagination: { limit },
+            pagination,
           })
           break
         }
@@ -126,7 +138,7 @@ async function main() {
             metrics,
             date_range: dateRange,
             dimensions: ['visit:source'],
-            pagination: { limit },
+            pagination,
           })
           break
         }
@@ -137,7 +149,7 @@ async function main() {
             metrics,
             date_range: dateRange,
             dimensions: ['visit:country'],
-            pagination: { limit },
+            pagination,
           })
           break
         }
@@ -148,7 +160,7 @@ async function main() {
             metrics,
             date_range: dateRange,
             dimensions: ['visit:device'],
-            pagination: { limit },
+            pagination,
           })
           break
         }
@@ -160,7 +172,7 @@ async function main() {
             metrics,
             date_range: dateRange,
             dimensions: [`visit:${param}`],
-            pagination: { limit },
+            pagination,
           })
           break
         }
@@ -172,7 +184,7 @@ async function main() {
           if (args.filters) {
             try { body.filters = JSON.parse(args.filters) } catch { result = { error: '--filters must be valid JSON' }; break }
           }
-          body.pagination = { limit }
+          body.pagination = pagination
           result = await api('POST', '/api/v2/query', body)
           break
         }
@@ -187,7 +199,7 @@ async function main() {
     case 'sites':
       switch (sub) {
         case 'list':
-          result = await api('GET', '/api/v1/sites')
+          result = await api('GET', `/api/v1/sites${sitesPagination()}`)
           break
         case 'get': {
           if (!siteId) { result = { error: '--site-id required' }; break }
@@ -216,7 +228,7 @@ async function main() {
       if (!siteId) { result = { error: '--site-id required' }; break }
       switch (sub) {
         case 'list':
-          result = await api('GET', `/api/v1/sites/goals?site_id=${encodeURIComponent(siteId)}`)
+          result = await api('GET', `/api/v1/sites/goals${sitesPagination(siteId)}`)
           break
         case 'create': {
           const goalType = args['goal-type']
@@ -258,9 +270,9 @@ async function main() {
             query: 'stats query --site-id <domain> --metrics <m1,m2> [--dimensions <d1,d2>] [--filters <json>]',
             realtime: 'stats realtime --site-id <domain>',
           },
-          sites: 'sites [list | get --site-id <domain> | create --domain <domain> | delete --site-id <domain>]',
-          goals: 'goals [list | create --goal-type <event|page> --event-name <name> | delete --goal-id <id>] --site-id <domain>',
-          options: '--date-range <preset|JSON array [start,end]> --limit <n>',
+          sites: 'sites [list [--limit <n>] [--after <cursor> | --before <cursor>] | get --site-id <domain> | create --domain <domain> | delete --site-id <domain>]',
+          goals: 'goals [list [--limit <n>] [--after <cursor> | --before <cursor>] | create --goal-type <event|page> --event-name <name> | delete --goal-id <id>] --site-id <domain>',
+          options: '--date-range <preset|JSON array [start,end]> --limit <n>; stats breakdown/query: --offset <n>; sites/goals list: --after <cursor> | --before <cursor>',
           env: 'PLAUSIBLE_BASE_URL for self-hosted instances (default: https://plausible.io)',
         }
       }

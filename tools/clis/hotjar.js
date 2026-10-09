@@ -3,8 +3,8 @@
 const rawArgs = process.argv.slice(2)
 const CLIENT_ID = process.env.HOTJAR_CLIENT_ID
 const CLIENT_SECRET = process.env.HOTJAR_CLIENT_SECRET
-const OAUTH_URL = 'https://api.hotjar.io'
-const BASE_URL = 'https://api.hotjar.io/v2'
+const OAUTH_URL = 'https://api.hotjar.io/v1'
+const BASE_URL = 'https://api.hotjar.io/v1'
 
 if ((!CLIENT_ID || !CLIENT_SECRET) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'HOTJAR_CLIENT_ID and HOTJAR_CLIENT_SECRET environment variables required' }))
@@ -103,9 +103,12 @@ async function main() {
     case 'surveys':
       if (!siteId) { result = { error: '--site-id required' }; break }
       switch (sub) {
-        case 'list':
-          result = await api('GET', `/sites/${siteId}/surveys`)
+        case 'list': {
+          const params = new URLSearchParams({ limit })
+          if (cursor) params.set('cursor', cursor)
+          result = await api('GET', `/sites/${siteId}/surveys?${params}`)
           break
+        }
         case 'responses': {
           const surveyId = args['survey-id']
           if (!surveyId) { result = { error: '--survey-id required' }; break }

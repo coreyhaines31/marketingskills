@@ -49,7 +49,11 @@ async function api(method, path, body, useSecret = true) {
   }
   if (args['dry-run']) {
     const dryRunHeaders = { ...opts.headers }
-    const dryRunUrl = url.toString().replace(API_SECRET, '***').replace(API_KEY, '***')
+    const previewUrl = new URL(url)
+    for (const key of ['api_secret', 'api_key']) {
+      if (previewUrl.searchParams.has(key)) previewUrl.searchParams.set(key, '***')
+    }
+    const dryRunUrl = previewUrl.toString()
     let dryRunBody = undefined
     if (opts.body) {
       const parsed = JSON.parse(opts.body)

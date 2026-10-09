@@ -112,12 +112,19 @@ async function main() {
         case 'search': {
           const field = args.field
           const operator = args.operator || '='
-          const value = args.value
-          if (!field || !value) { result = { error: '--field and --value required' }; break }
+          let value = args.value
+          if (args['value-json'] !== undefined) {
+            try { value = JSON.parse(args['value-json']) } catch { result = { error: 'Invalid JSON in --value-json' }; break }
+          }
+          if (!field || value === undefined) { result = { error: '--field and --value or --value-json required' }; break }
           const body = {
             query: { field, operator, value },
           }
-          if (perPage) body.pagination = { per_page: perPage }
+          if (perPage || args['starting-after']) {
+            body.pagination = {}
+            if (perPage) body.pagination.per_page = perPage
+            if (args['starting-after']) body.pagination.starting_after = args['starting-after']
+          }
           result = await api('POST', '/contacts/search', body)
           break
         }
@@ -165,12 +172,19 @@ async function main() {
         case 'search': {
           const field = args.field
           const operator = args.operator || '='
-          const value = args.value
-          if (!field || value === undefined) { result = { error: '--field and --value required' }; break }
+          let value = args.value
+          if (args['value-json'] !== undefined) {
+            try { value = JSON.parse(args['value-json']) } catch { result = { error: 'Invalid JSON in --value-json' }; break }
+          }
+          if (!field || value === undefined) { result = { error: '--field and --value or --value-json required' }; break }
           const body = {
             query: { field, operator, value },
           }
-          if (perPage) body.pagination = { per_page: perPage }
+          if (perPage || args['starting-after']) {
+            body.pagination = {}
+            if (perPage) body.pagination.per_page = perPage
+            if (args['starting-after']) body.pagination.starting_after = args['starting-after']
+          }
           result = await api('POST', '/conversations/search', body)
           break
         }
@@ -207,21 +221,30 @@ async function main() {
     case 'messages':
       switch (sub) {
         case 'create': {
-          const messageType = args.type || 'inapp'
+          const messageType = !args.type || args.type === 'inapp' ? 'in_app' : args.type
+          if (!['in_app', 'email'].includes(messageType)) { result = { error: '--type must be in_app (or inapp) or email' }; break }
           const body = args.body
           const adminId = args['admin-id']
           const to = args.to
           if (!body || !adminId || !to) { result = { error: '--body, --admin-id, and --to (user ID) required' }; break }
-          result = await api('POST', '/messages', {
+          const payload = {
             message_type: messageType,
             body,
             from: { type: 'admin', id: adminId },
             to: { type: 'user', id: to },
-          })
+          }
+          if (messageType === 'email') {
+            if (!args.subject) { result = { error: '--subject required for email messages' }; break }
+            const template = args.template || 'plain'
+            if (!['plain', 'personal'].includes(template)) { result = { error: '--template must be plain or personal' }; break }
+            payload.subject = args.subject
+            payload.template = template
+          }
+          result = await api('POST', '/messages', payload)
           break
         }
         default:
-          result = { error: 'Unknown messages subcommand. Use: create --body <text> --admin-id <id> --to <user_id> [--type inapp|email]' }
+          result = { error: 'Unknown messages subcommand. Use: create --body <text> --admin-id <id> --to <user_id> [--type in_app|email] [--subject <text>] [--template plain|personal]' }
       }
       break
 
@@ -367,7 +390,7 @@ async function main() {
             created_at: args['created-at'] ? Number(args['created-at']) : Math.floor(Date.now() / 1000),
           }
           if (args.metadata) {
-            try { body.metadata = JSON.parse(args.metadata) } catch { body.metadata = {} }
+            try { body.metadata = JSON.parse(args.metadata) } catch { throw new Error('Invalid JSON in --metadata') }
           }
           result = await api('POST', '/events', body)
           break
@@ -389,15 +412,15 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          contacts: 'contacts [list | get --id <id> | create --email <email> | update --id <id> | search --field <f> --value <v> | delete --id <id> | tag --id <id> --tag-id <id> | untag --id <id> --tag-id <id>]',
-          conversations: 'conversations [list | get --id <id> | search --field <f> --value <v> | reply --id <id> --body <text> --admin-id <id> | close --id <id> --admin-id <id>]',
+          contacts: 'contacts [list | get --id <id> | create --email <email> | update --id <id> | search --field <f> [--value <v> | --value-json <json>] | delete --id <id> | tag --id <id> --tag-id <id> | untag --id <id> --tag-id <id>]',
+          conversations: 'conversations [list | get --id <id> | search --field <f> [--value <v> | --value-json <json>] | reply --id <id> --body <text> --admin-id <id> | close --id <id> --admin-id <id>]',
           messages: 'messages [create --body <text> --admin-id <id> --to <user_id>]',
           companies: 'companies [list | get --id <id> | create --company-id <id> --name <name> | update --id <id>]',
           tags: 'tags [list | create --name <name> | delete --id <id>]',
           articles: 'articles [list | get --id <id> | create --title <title> --author-id <id> | update --id <id> | delete --id <id>]',
           admins: 'admins [list | get --id <id>]',
           events: 'events [create --name <name> --user-id <id> | list --user-id <id>]',
-          options: '--per-page <n> --starting-after <cursor> --page <n>',
+          options: '--per-page <n> --starting-after <cursor> --page <n> --value-json <json>',
         }
       }
   }

@@ -185,3 +185,49 @@ _cio.page();
 - emails
 - onboarding
 - analytics
+
+## CLI account region
+
+Set `CUSTOMERIO_REGION=eu` for a workspace hosted in Customer.io's EU region.
+The CLI then uses `track-eu.customer.io` for Track operations and
+`api-eu.customer.io` for App operations. Both request previews and actual
+requests use the selected region, retaining their existing Basic/Bearer
+authentication and request bodies.
+
+```bash
+export CUSTOMERIO_REGION=eu
+node tools/clis/customer-io.js customers get --id owned-customer-id --dry-run
+```
+
+The default is `us`; `CUSTOMERIO_REGION=us` explicitly retains the existing
+US hosts. Other values are rejected before requests. Check the workspace's
+region rather than guessing it from an email address or the user's location.
+This selects documented provider endpoints; it does not migrate a workspace
+or guarantee how the provider stores/processes data. Select scoped credentials
+for that workspace, and perform writes only when already authorized.
+
+Customer.io notes that sending EU Track requests to its US host can redirect
+but still pass through US servers. Use the regional host directly.
+See the official [Track server regions](https://docs.customer.io/integrations/api/track/#server-addresses-us-and-eu)
+and [App server regions](https://docs.customer.io/integrations/api/app/#server-addresses-us-and-eu).
+
+## Suppression lifecycle
+
+For an explicit erasure/suppression request, `customers suppress` invokes the
+Track API operation that permanently deletes the profile and blocks its
+identifier from being re-added. This is different from the existing
+`customers delete` operation. Preview the request first:
+
+```bash
+node tools/clis/customer-io.js customers suppress --id customer-123 --dry-run
+node tools/clis/customer-io.js customers unsuppress --id customer-123 --dry-run
+```
+
+Both commands require the Track API Site ID and API key. Unsuppressing only
+releases the identifier; it does not recreate the deleted profile or restore
+history. For ordinary message preferences while keeping a profile, update its
+`unsubscribed` attribute instead. Use the operation appropriate to the person's
+request and your workspace identifier configuration. See the official
+[suppress](https://docs.customer.io/integrations/api/track/tag/track-customers/suppress/)
+and [unsuppress](https://docs.customer.io/integrations/api/track/tag/track-customers/unsuppress/)
+contracts. Neither operation is a substitute for handling data in other systems.

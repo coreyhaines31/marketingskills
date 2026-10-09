@@ -35,9 +35,16 @@ async function api(method, path, body) {
     },
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (!res.ok) process.exitCode = 1
   const text = await res.text()
   try {
-    return JSON.parse(text)
+    const payload = JSON.parse(text)
+    const codes = [payload?.status_code, ...(Array.isArray(payload?.tasks) ? payload.tasks.map(task => task?.status_code) : [])]
+    // 40601/40602 describe accepted tasks that have not finished, not failures.
+    if (codes.some(code => typeof code === 'number' && code >= 40000 && ![40601, 40602].includes(code))) {
+      process.exitCode = 1
+    }
+    return payload
   } catch {
     return { status: res.status, body: text }
   }

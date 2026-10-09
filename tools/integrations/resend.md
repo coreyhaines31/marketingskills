@@ -210,3 +210,23 @@ await resend.emails.send({
 
 - emails
 - onboarding
+
+## Retry identity in the bundled CLI
+
+For single `send` and whole `batch` operations, pass `--idempotency-key <stable_key>` to send the `Idempotency-Key` header. Use one key per logical send and retain the same payload/key when retrying; use a new key for a different send. The CLI accepts 1–256 printable ASCII characters, forwards the caller's key, and never generates a new key or retries automatically.
+
+```bash
+node tools/clis/resend.js send --from sender@example.org --to user@example.org --subject Welcome --text Hello --idempotency-key welcome/user-123 --dry-run
+```
+
+Resend retains keys for 24 hours. Reusing a key with a different payload returns a conflict; once retention expires it cannot prevent duplicates. This is a provider feature, not permanent exactly-once delivery. See [Resend idempotency keys](https://resend.com/docs/dashboard/emails/idempotency-keys). Dry runs show the key with authentication redacted; contract tests use fixtures and send no email.
+
+## Paging bundled CLI collections
+
+The `emails list`, `domains list`, `broadcasts list`, `segments list`, `api-keys list` and `templates list` commands accept `--limit <1-100>` and either `--after <id>` or `--before <id>`. Inspect the provider's `has_more` and returned object IDs, then request the next page manually. The CLI preserves raw responses and does not silently aggregate or issue more calls.
+
+```bash
+node tools/clis/resend.js emails list --limit 100 --after <last_email_id> --dry-run
+```
+
+No flags retains provider defaults, including unpaginated legacy lists where the provider returns all items unless a limit is supplied. Supplying both directions, an empty cursor or an invalid limit fails before fetch. See [Resend pagination](https://resend.com/docs/api-reference/pagination); fixtures verify request construction without live account calls.

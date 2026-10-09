@@ -2,7 +2,7 @@
 name: aso
 description: "When the user wants to audit or optimize an App Store or Google Play listing. Also use when the user mentions 'ASO audit,' 'app store optimization,' 'optimize my app listing,' 'improve app visibility,' 'app store ranking,' 'audit my listing,' 'why aren't people downloading my app,' 'improve my app conversion,' 'keyword optimization for app,' or 'compare my app to competitors.' Use when the user shares an App Store or Google Play URL and wants to improve it."
 metadata:
-  version: 2.0.1
+  version: 2.0.2
 ---
 
 # ASO Audit
@@ -241,7 +241,7 @@ The report must include:
 - Prohibited in title: emojis, ALL CAPS, "best"/"#1"/"free", CTAs (enforced since 2021)
 - Screenshots: min 2, **max 8** per device (not 10 like Apple)
 - Feature graphic (1024x500, exact) required for featured placements
-- Video does NOT autoplay — only ~6% of users tap play (low ROI vs iOS)
+- Preview video can autoplay muted for up to 30 seconds, depending on device, settings, network and placement. Show the app's value without sound; assess conversion with your own experiment rather than inferring low ROI from tap-to-play rates.
 - Android Vitals directly affect ranking: crash >1.09% or ANR >0.47% = reduced visibility
 - Promotional Content: submit 14 days early for featuring. Apps see 2x explore acquisitions
 - Custom Store Listings: up to 50 (can target churned users, specific countries, ad campaigns)

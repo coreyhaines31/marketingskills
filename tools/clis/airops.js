@@ -2,19 +2,12 @@
 
 const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.AIROPS_API_KEY
-const WORKSPACE_ID = process.env.AIROPS_WORKSPACE_ID
-const BASE_URL = 'https://api.airops.com/public_api/v1'
+const BASE_URL = 'https://api.airops.com/public_api'
 
 if ((!API_KEY) && rawArgs.length > 0) {
   console.error(JSON.stringify({ error: 'AIROPS_API_KEY environment variable required' }))
   process.exit(1)
 }
-
-if ((!WORKSPACE_ID) && rawArgs.length > 0) {
-  console.error(JSON.stringify({ error: 'AIROPS_WORKSPACE_ID environment variable required' }))
-  process.exit(1)
-}
-
 
 function requestSignal() {
   const raw = args['timeout-ms'] ?? '30000'
@@ -24,7 +17,6 @@ function requestSignal() {
   }
   return AbortSignal.timeout(ms)
 }
-
 
 async function api(method, path, body) {
   const url = `${BASE_URL}${path}`
@@ -75,16 +67,17 @@ async function main() {
   let result
 
   switch (cmd) {
+    case 'workflows':
     case 'flows':
       switch (sub) {
         case 'list': {
-          result = await api('GET', `/workspaces/${WORKSPACE_ID}/flows`)
+          result = await api('GET', '/airops_apps')
           break
         }
         case 'get': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('GET', `/workspaces/${WORKSPACE_ID}/flows/${id}`)
+          result = await api('GET', `/airops_apps/${encodeURIComponent(id)}`)
           break
         }
         case 'execute': {
@@ -100,50 +93,28 @@ async function main() {
               break
             }
           }
-          result = await api('POST', `/workspaces/${WORKSPACE_ID}/flows/${id}/execute`, { inputs: parsedInputs })
+          if (!parsedInputs || typeof parsedInputs !== 'object' || Array.isArray(parsedInputs)) { result = { error: '--inputs must be a JSON object' }; break }
+          result = await api('POST', `/airops_apps/${encodeURIComponent(id)}/execute`, { inputs: parsedInputs })
           break
         }
         case 'runs': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
-          result = await api('GET', `/workspaces/${WORKSPACE_ID}/flows/${id}/runs`)
+          if (!/^\d+$/.test(id)) { result = { error: '--id must be the numeric app ID for run history (not the app UUID)' }; break }
+          const params = new URLSearchParams({ airops_app_id: id })
+          if (args.cursor) params.set('cursor', args.cursor)
+          if (args.items) params.set('items', args.items)
+          result = await api('GET', `/airops_apps/${id}/executions?${params}`)
           break
         }
         case 'run-status': {
           const runId = args['run-id']
           if (!runId) { result = { error: '--run-id required' }; break }
-          result = await api('GET', `/workspaces/${WORKSPACE_ID}/runs/${runId}`)
+          result = await api('GET', `/airops_apps/executions/${encodeURIComponent(runId)}`)
           break
         }
         default:
           result = { error: 'Unknown flows subcommand. Use: list, get, execute, runs, run-status' }
-      }
-      break
-
-    case 'workflows':
-      switch (sub) {
-        case 'list': {
-          result = await api('GET', `/workspaces/${WORKSPACE_ID}/workflows`)
-          break
-        }
-        case 'execute': {
-          const id = args.id
-          if (!id) { result = { error: '--id required' }; break }
-          const inputs = args.inputs
-          let parsedInputs = {}
-          if (inputs) {
-            try {
-              parsedInputs = JSON.parse(inputs)
-            } catch {
-              result = { error: '--inputs must be valid JSON' }
-              break
-            }
-          }
-          result = await api('POST', `/workspaces/${WORKSPACE_ID}/workflows/${id}/execute`, { inputs: parsedInputs })
-          break
-        }
-        default:
-          result = { error: 'Unknown workflows subcommand. Use: list, execute' }
       }
       break
 
@@ -153,14 +124,14 @@ async function main() {
         usage: {
           flows: {
             list: 'flows list',
-            get: 'flows get --id <id>',
-            execute: 'flows execute --id <id> --inputs <json>',
-            runs: 'flows runs --id <id>',
+            get: 'flows get --id <app_uuid>',
+            execute: 'flows execute --id <app_uuid> --inputs <json>',
+            runs: 'flows runs --id <numeric_app_id> [--cursor <cursor>] [--items <1-100>]',
             'run-status': 'flows run-status --run-id <id>',
           },
           workflows: {
             list: 'workflows list',
-            execute: 'workflows execute --id <id> --inputs <json>',
+            execute: 'workflows execute --id <app_uuid> --inputs <json>',
           },
         }
       }

@@ -8,13 +8,14 @@ Affiliate and referral tracking for Stripe-based SaaS businesses.
 |-------------|-----------|-------|
 | API | ✓ | REST API for affiliates, referrals, commissions |
 | MCP | - | Not available |
-| CLI | - | Not available |
+| CLI | ✓ | [rewardful.js](../clis/rewardful.js) |
 | SDK | - | API-only, JavaScript snippet for tracking |
 
 ## Authentication
 
-- **Type**: API Key
-- **Header**: `Authorization: Bearer {api_secret}`
+- **Type**: HTTP Basic authentication
+- **Username**: API secret; leave the password empty
+- **Header**: `Authorization: Basic {base64(api_secret + ":")}`
 - **Get key**: Settings > API in Rewardful dashboard
 
 ## Common Agent Operations
@@ -64,25 +65,26 @@ GET https://api.getrewardful.com/v1/commissions?affiliate_id={affiliate_id}
 ### Create affiliate link
 
 ```bash
-POST https://api.getrewardful.com/v1/affiliates/{affiliate_id}/links
+POST https://api.getrewardful.com/v1/affiliate_links
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "token": "custom-link-token",
-  "url": "https://example.com/pricing"
-}
+affiliate_id={affiliate_id}&token=custom-link-token
 ```
 
 ### Update affiliate
 
 ```bash
 PUT https://api.getrewardful.com/v1/affiliates/{affiliate_id}
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "first_name": "John",
-  "last_name": "Doe",
-  "paypal_email": "john@example.com"
-}
+first_name=John&last_name=Doe&paypal_email=john%40example.com
 ```
+
+Mutation requests use form encoding, including spaces, Unicode, `+`, `&`, and email addresses. `--dry-run` shows the exact encoded request body with masked authentication. HTTP errors exit unsuccessfully.
+
+`links create --affiliate-id <id> [--token <token>]` passes the affiliate ID in the form body. The token is optional; Rewardful can generate one. The API does not accept a destination `--url`; configure the campaign destination in Rewardful. Additional affiliate links require a Growth or Enterprise plan.
+
+Primary contracts: [request format and authentication](https://developers.rewardful.com/rest-api/overview), [affiliate update](https://developers.rewardful.com/rest-api/affiliates/update), and [affiliate link creation](https://developers.rewardful.com/rest-api/affiliate-links/create).
 
 ## JavaScript Tracking
 
@@ -145,3 +147,17 @@ Rewardful automatically:
 
 - referrals
 - pricing
+
+### Listing all collection pages with the CLI
+
+Rewardful returns paginated affiliate, referral and commission collections. Pass `--page` and `--limit` (provider maximum 100) to advance while preserving the selected filters:
+
+```bash
+node tools/clis/rewardful.js referrals list --affiliate-id aff_123 --page 3 --limit 50
+node tools/clis/rewardful.js commissions list --affiliate-id aff_123 --page 2 --limit 50
+node tools/clis/rewardful.js affiliates list --page 2 --limit 50
+```
+
+Read the response's pagination metadata before requesting another page. No flags retain the provider's default page and size; the CLI does not automatically fetch every page.
+
+Sources: [referrals](https://developers.rewardful.com/rest-api/referrals/list), [commissions](https://developers.rewardful.com/rest-api/commissions/list), [affiliates](https://developers.rewardful.com/rest-api/affiliates/list).

@@ -90,14 +90,25 @@
     {
       "id": 7,
       "prompt": "We ran an A/B test on our pricing page for 4 weeks. Control: 2.1% conversion. Variant: 2.4% conversion. 12,000 visitors per variant. Is this statistically significant? Should we ship it?",
-      "expected_output": "Should evaluate the results against statistical significance criteria. Should calculate or estimate whether the sample size is sufficient to detect a 0.3 percentage point lift from a 2.1% baseline (this is a ~14% relative lift). Should reference the 95% confidence threshold. Should discuss practical significance vs statistical significance. Should recommend whether to ship, continue testing, or iterate. Should consider segment analysis if results are borderline.",
+      "expected_output": "Should calculate the result under a declared analysis: 252/12,000 vs 288/12,000 gives approximately p = 0.117 for an uncorrected two-sided pooled-proportion z-test, so it does not meet alpha = 0.05. Should distinguish the 0.3 percentage-point / ~14% relative estimate from evidence for a reliably positive effect. Report uncertainty and practical business impact. Respect the pre-specified duration and stopping rule; do not recommend continuing the completed fixed-horizon test until significant. Unplanned segments are exploratory; a follow-up test needs its own plan.",
       "assertions": [
-        "Evaluates against statistical significance criteria",
-        "Addresses whether sample size is sufficient for this effect size",
-        "References 95% confidence threshold",
-        "Distinguishes statistical significance from practical significance",
-        "Provides clear recommendation on shipping",
-        "Suggests segment analysis or follow-up if borderline"
+        "Uses actual conversion counts and states the analysis assumptions",
+        "Does not call p ~0.117 significant at alpha = 0.05",
+        "Distinguishes statistical uncertainty from business value",
+        "Does not extend a completed fixed-horizon test until significant",
+        "Labels unplanned segment findings exploratory"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Our fixed-horizon A/B test reached its planned sample today with p = 0.04. Can I tell the CEO there is a 96% chance the change works and just a 4% chance the lift was random? We have a +2% estimate, an interval of +0.1% to +3.9%, and a higher refund rate in the variant.",
+      "expected_output": "Reject both probability interpretations. Explain the p-value conditional on the null model and assumptions, and repeated-sampling interval coverage without asserting a posterior probability. Consider the effect interval, practical impact and refund guardrail before recommending rollout. Do not substitute a numerical significance threshold for the business decision.",
+      "assertions": [
+        "Does not interpret 1-p as the probability the variant works",
+        "Does not interpret p as the probability the result was random",
+        "Explains the conditional null-model meaning",
+        "Uses interval, business effect and refund guardrail before rollout"
       ],
       "files": []
     }

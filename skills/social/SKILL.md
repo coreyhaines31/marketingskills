@@ -2,7 +2,7 @@
 name: social
 description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, or Facebook, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social content, repurposing, scheduling, video scripts, and listening. Posts avoid AI tells like 'it's not X, it's Y' reveals and broetry. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
-  version: 2.3.2
+  version: 2.3.3
 ---
 
 # Social Content
@@ -235,7 +235,7 @@ Extract "content atoms" — self-contained moments from any long-form content th
 1. Respond to all comments on your posts (5 min)
 2. Comment on 5-10 posts from target accounts (15 min)
 3. Share/repost with added insight (5 min)
-4. Send 2-3 DMs to new connections (5 min)
+4. Send 2-3 DMs to new connections (5 min). For LinkedIn as an outbound channel (limits, sequences, connection and message copy), see the cold-email skill's LinkedIn outreach reference
 
 **For surfacing *which* posts to comment on** (top-10 daily lists, brand/competitor monitoring, intent-signal triage), see [references/listening.md](references/listening.md). Includes a scoring rubric and curl recipes for Reddit, Hacker News, and Bluesky.
 

@@ -4,12 +4,13 @@ const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.MIXPANEL_TOKEN
 const API_KEY = process.env.MIXPANEL_API_KEY
 const SECRET = process.env.MIXPANEL_SECRET
+const PROJECT_SECRET = process.env.MIXPANEL_PROJECT_SECRET
 const INGESTION_URL = 'https://api.mixpanel.com'
 const QUERY_URL = 'https://mixpanel.com/api/2.0'
 const EXPORT_URL = 'https://data.mixpanel.com/api/2.0'
 
-if ((!TOKEN && !API_KEY) && rawArgs.length > 0) {
-  console.error(JSON.stringify({ error: 'MIXPANEL_TOKEN (for ingestion) or MIXPANEL_API_KEY + MIXPANEL_SECRET (for query/export) environment variables required' }))
+if ((!TOKEN && !API_KEY && !SECRET && !PROJECT_SECRET) && rawArgs.length > 0) {
+  console.error(JSON.stringify({ error: 'MIXPANEL_TOKEN (ingestion), MIXPANEL_API_KEY + MIXPANEL_SECRET (service account), or MIXPANEL_PROJECT_SECRET (legacy project auth) required' }))
   process.exit(1)
 }
 
@@ -39,19 +40,32 @@ async function ingestApi(method, path, body) {
     headers,
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (!res.ok) process.exitCode = 1
   const text = await res.text()
   try {
-    return JSON.parse(text)
+    const payload = JSON.parse(text)
+    if (payload === 0) process.exitCode = 1
+    return payload
   } catch {
     return { status: res.status, body: text }
   }
 }
 
-async function queryApi(method, baseUrl, path, params) {
-  if (!API_KEY || !SECRET) {
-    return { error: 'MIXPANEL_API_KEY and MIXPANEL_SECRET required for query/export operations' }
+function queryAuth() {
+  // Existing KEY:SECRET credentials are a service account, and always win.
+  if (API_KEY) {
+    if (!SECRET) throw new Error('MIXPANEL_SECRET required with MIXPANEL_API_KEY for service-account auth')
+    if (!args['project-id']) throw new Error('--project-id required for service-account query/export operations')
+    return Buffer.from(`${API_KEY}:${SECRET}`).toString('base64')
   }
-  const auth = Buffer.from(`${API_KEY}:${SECRET}`).toString('base64')
+  const secret = PROJECT_SECRET || SECRET
+  if (!secret) throw new Error('Service-account credentials or MIXPANEL_PROJECT_SECRET required for query/export operations')
+  return Buffer.from(`${secret}:`).toString('base64')
+}
+
+async function queryApi(method, baseUrl, path, params) {
+  const auth = queryAuth()
+  if (args['project-id']) params.set('project_id', args['project-id'])
   const url = params ? `${baseUrl}${path}?${params}` : `${baseUrl}${path}`
   const headers = {
     'Authorization': `Basic ${auth}`,
@@ -73,10 +87,7 @@ async function queryApi(method, baseUrl, path, params) {
 }
 
 async function queryApiPost(path, body) {
-  if (!API_KEY || !SECRET) {
-    return { error: 'MIXPANEL_API_KEY and MIXPANEL_SECRET required for query/export operations' }
-  }
-  const auth = Buffer.from(`${API_KEY}:${SECRET}`).toString('base64')
+  const auth = queryAuth()
   const headers = {
     'Authorization': `Basic ${auth}`,
     'Content-Type': 'application/json',
@@ -244,9 +255,9 @@ async function main() {
           track: 'track event --distinct-id <id> --event <name> [--properties <json>]',
           profiles: 'profiles set --distinct-id <id> [--properties <json>]',
           query: 'query events --project-id <id> [--event <name>] [--from-date <date>] [--to-date <date>]',
-          funnels: 'funnels get --funnel-id <id> [--from-date <date>] [--to-date <date>]',
-          retention: 'retention get [--from-date <date>] [--to-date <date>] [--born-event <event>]',
-          export: 'export events --from-date <date> --to-date <date>',
+          funnels: 'funnels get --funnel-id <id> [--project-id <id>] [--from-date <date>] [--to-date <date>]',
+          retention: 'retention get [--project-id <id>] [--from-date <date>] [--to-date <date>] [--born-event <event>]',
+          export: 'export events --from-date <date> --to-date <date> [--project-id <id>]',
         }
       }
   }

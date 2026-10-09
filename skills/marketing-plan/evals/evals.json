@@ -122,6 +122,19 @@
         "Names the highest-impact assumption and a way to validate it"
       ],
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "We start at $1M ARR and target $2M year-end ARR. Monthly ARPC is $50, CAC $100. Assume existing-base revenue retention 85% with no expansion, and new acquisitions retain 85% of their ARR by year end. A colleague budgets $196,118 using only the $1M net increase divided by retention. Is that enough? Show a reconciled year-end ARR bridge and round customers up.",
+      "expected_output": "Should first retain $850K of starting ARR, leaving $1.15M retained new-customer ARR needed. Each acquired customer contributes $50*12*.85=$510 at year end, requiring ceil(1150000/510)=2255 customers and $225500 before buffer. Reconcile $850000+2255*$510=$2000050. Explain omitted $150K starting-base churn in the old approach. Treat the new-cohort retention as the supplied assumption, not a universal full-year retention multiplier; revenue and logo retention differ.",
+      "assertions": [
+        "Retains the starting base before computing the acquisition gap",
+        "Replaces existing-base losses as well as delivering net growth",
+        "Uses 2255 customers and $225500 before optional buffer",
+        "Reconciles ending ARR to $2000050",
+        "States acquisition timing and revenue-retention assumptions"
+      ],
+      "files": []
     }
   ]
 }

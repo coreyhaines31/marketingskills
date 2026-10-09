@@ -102,6 +102,36 @@
       ],
       "files": [],
       "id": 7
+    },
+    {
+      "id": 8,
+      "prompt": "We're about to start cold email for our agency. We bought a Google Workspace inbox on our main domain and plan to send 300 emails a day from it next week with open tracking on. Anything we should change?",
+      "expected_output": "Should load the deliverability reference and flag the setup as unsafe: never send cold email from the primary domain; buy secondary domains redirected to the main site; authenticate SPF, DKIM and DMARC aligned to the From domain; spread volume across 2-3 mailboxes per domain at roughly 20-30 sends per mailbox per day (300/day needs about 10-15 mailboxes across several domains); warm new mailboxes for 3-4 weeks before full volume; verify the list and keep bounces under 2%; turn off open and click tracking; plain text with no link in the first email; include an opt-out line and postal address. Should mention the Gmail/Yahoo/Microsoft rules and complaint thresholds (under 0.1%, never 0.3%) and set stop-loss rules.",
+      "assertions": [
+        "Says not to send from the primary domain",
+        "Recommends secondary domains with SPF, DKIM and DMARC",
+        "Splits volume across multiple mailboxes with a per-mailbox cap",
+        "Requires a 3-4 week warmup",
+        "Says to turn off open tracking",
+        "Requires list verification and a bounce limit around 2%",
+        "Includes an opt-out line and postal address",
+        "Gives stop-loss thresholds"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Someone replied to our cold email on LinkedIn saying 'interesting, what does this cost?' but our email sequence is still running. What should happen now?",
+      "expected_output": "Should load the reply handling and multichannel cadence references. Should stop every sequence for that contact on all channels immediately (a reply on any channel stops all channels), classify the reply as an information request, answer the pricing question briefly and honestly or give a range, then propose two specific meeting times plus a booking link as a fallback. Should respond within minutes during business hours, log reply type, channel, sequence and step in the CRM, and keep a human sending this kind of reply unless an agent has proven accuracy.",
+      "assertions": [
+        "Stops the email sequence and all other channels for that contact",
+        "Classifies it as an information request",
+        "Answers the question briefly before asking for a meeting",
+        "Proposes two specific times plus a booking link",
+        "Emphasizes responding within minutes",
+        "Logs the reply in the CRM with channel and sequence step"
+      ],
+      "files": []
     }
   ]
 }

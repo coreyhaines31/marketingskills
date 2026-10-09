@@ -7,7 +7,7 @@ Data enrichment and outbound automation platform for building lead lists with wa
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Tables, People Enrichment, Company Enrichment |
-| MCP | ✓ | [Claude connector](https://claude.com/connectors/clay) |
+| MCP | ✓ | Official hosted server at `https://api.clay.com/v3/mcp` (OAuth): find and enrich people and companies, run your Clay workflows ([guide](https://www.clay.com/guides/clay-mcp)) |
 | CLI | ✓ | [clay.js](../clis/clay.js) |
 | SDK | - | REST API only |
 

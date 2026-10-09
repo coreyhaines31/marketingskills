@@ -1,113 +1,88 @@
 # LinkedIn Ads
 
-B2B advertising platform with professional targeting.
+B2B advertising platform with professional targeting (job title, function, seniority, company, industry, company size) and account-based targeting from uploaded company and contact lists.
+
+API facts below were checked against the [LinkedIn Marketing API docs](https://learn.microsoft.com/en-us/linkedin/marketing/versioning) on 2026-10-07.
 
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | Marketing API for campaigns, audiences, analytics |
-| MCP | - | Not available |
-| CLI | - | Not available |
+| API | ✓ | Versioned Marketing API at `https://api.linkedin.com/rest` (accounts, campaigns, creatives, targeting, audiences, reporting) |
+| MCP | - | No official server; [Composio](composio.md) offers a LinkedIn toolkit |
+| CLI | [✓](../clis/linkedin-ads.js) | Zero-dependency Node.js CLI (versioned REST API) |
 | SDK | - | API-only (community libraries available) |
 
 ## Authentication
 
-- **Type**: OAuth 2.0
+- **Type**: OAuth 2.0 (3-legged) access token from an app approved for the Marketing API program
 - **Header**: `Authorization: Bearer {access_token}`
-- **Scopes**: `r_ads`, `r_ads_reporting`, `rw_ads`
+- **Scopes**: `r_ads`, `rw_ads`, `r_ads_reporting`
+- **Env vars**: `LINKEDIN_ACCESS_TOKEN`; optional `LINKEDIN_API_VERSION` (YYYYMM, CLI default `202609`)
+
+## Versioning
+
+- Every call needs a `Linkedin-Version: YYYYMM` header plus `X-Restli-Protocol-Version: 2.0.0`. Requests without a version, or with a sunset version, return an error; the latest version is never applied by default.
+- New versions ship monthly and each is supported for at least a year. Version `202510` sunsets on 2026-10-15. Bump the version at least once a year.
+- The old unversioned `/v2/adAccountsV2`, `/v2/adCampaignsV2`, `/v2/adCreativesV2`, `/v2/adAnalyticsV2`, and `/v2/audienceCountsV2` paths are replaced by the versioned paths below.
+- Rest.li 2.0 syntax: lists are `List(a,b)`, objects are `(key:value)`, and URNs inside query parameters must be URL-encoded (`urn%3Ali%3AsponsoredCampaign%3A123`).
 
 ## Common Agent Operations
 
-### Get ad accounts
+### Ad accounts
 
 ```bash
-GET https://api.linkedin.com/v2/adAccountsV2?q=search
-
-Authorization: Bearer {access_token}
+node tools/clis/linkedin-ads.js accounts list
+# GET https://api.linkedin.com/rest/adAccounts?q=search
 ```
 
-### Get campaigns
+### Campaigns (scoped to an ad account)
 
 ```bash
-GET https://api.linkedin.com/v2/adCampaignsV2?q=search&search.account.values[0]=urn:li:sponsoredAccount:{account_id}
+node tools/clis/linkedin-ads.js campaigns list --account-id 507404993 --status ACTIVE
+# GET /rest/adAccounts/{accountId}/adCampaigns?q=search&search=(status:(values:List(ACTIVE)))
 
-Authorization: Bearer {access_token}
+node tools/clis/linkedin-ads.js campaigns create --account-id 507404993 --campaign-group-id 600 --name "ABM retargeting" --daily-budget 50
+# POST /rest/adAccounts/{accountId}/adCampaigns   (created PAUSED; add targeting before activating)
+
+node tools/clis/linkedin-ads.js campaigns update --account-id 507404993 --id 123456 --status PAUSED
+# POST /rest/adAccounts/{accountId}/adCampaigns/{campaignId}
+# X-RestLi-Method: PARTIAL_UPDATE   body: {"patch":{"$set":{"status":"PAUSED"}}}
 ```
 
-### Get campaign analytics
+### Reporting
 
 ```bash
-GET https://api.linkedin.com/v2/adAnalyticsV2?q=analytics&pivot=CAMPAIGN&dateRange.start.year=2024&dateRange.start.month=1&dateRange.start.day=1&dateRange.end.year=2024&dateRange.end.month=1&dateRange.end.day=31&campaigns=urn:li:sponsoredCampaign:{campaign_id}&fields=impressions,clicks,costInLocalCurrency,conversions
-
-Authorization: Bearer {access_token}
+node tools/clis/linkedin-ads.js campaigns analytics --id 123456 --start 2026-09-01 --end 2026-09-30
+# GET /rest/adAnalytics?q=analytics&pivot=CAMPAIGN&timeGranularity=ALL
+#     &dateRange=(start:(year:2026,month:9,day:1),end:(year:2026,month:9,day:30))
+#     &campaigns=List(urn%3Ali%3AsponsoredCampaign%3A123456)
+#     &fields=impressions,clicks,landingPageClicks,costInLocalCurrency,externalWebsiteConversions,dateRange,pivotValues
 ```
 
-### Create campaign
+Request metrics explicitly with `fields` (up to 20); otherwise only impressions and clicks come back. Use `q=statistics` with `pivots=List(...)` for up to three pivots, and the `MEMBER_COMPANY` pivot to see which companies saw an ABM campaign. Professional demographic metrics are approximate and delayed 12–24 hours.
+
+### Creatives
 
 ```bash
-POST https://api.linkedin.com/v2/adCampaignsV2
-
-Authorization: Bearer {access_token}
-
-{
-  "account": "urn:li:sponsoredAccount:{account_id}",
-  "name": "Campaign Name",
-  "type": "SPONSORED_UPDATES",
-  "costType": "CPC",
-  "unitCost": {
-    "amount": "5.00",
-    "currencyCode": "USD"
-  },
-  "dailyBudget": {
-    "amount": "100.00",
-    "currencyCode": "USD"
-  },
-  "status": "PAUSED"
-}
+node tools/clis/linkedin-ads.js creatives list --account-id 507404993 --campaign-id 123456
+# GET /rest/adAccounts/{accountId}/creatives?q=criteria&campaigns=List(urn%3Ali%3AsponsoredCampaign%3A123456)
 ```
 
-### Update campaign status
+### Audience size
 
 ```bash
-POST https://api.linkedin.com/v2/adCampaignsV2/{campaign_id}
-
-Authorization: Bearer {access_token}
-
-{
-  "patch": {
-    "$set": {
-      "status": "ACTIVE"
-    }
-  }
-}
+node tools/clis/linkedin-ads.js audiences count \
+  --targeting "(include:(and:List((or:(urn%3Ali%3AadTargetingFacet%3Alocations:List(urn%3Ali%3Ageo%3A103644278))))))"
+# GET /rest/audienceCounts?q=targetingCriteriaV2&targetingCriteria=...
 ```
 
-### Get creatives
+The count is 0 when the audience is under 300 members (privacy threshold). Look up targeting entity URNs with `/rest/adTargetingEntities` (typeahead or by facet).
 
-```bash
-GET https://api.linkedin.com/v2/adCreativesV2?q=search&search.campaign.values[0]=urn:li:sponsoredCampaign:{campaign_id}
+## Account-Based and Outbound Use
 
-Authorization: Bearer {access_token}
-```
-
-### Get audience counts
-
-```bash
-POST https://api.linkedin.com/v2/audienceCountsV2
-
-{
-  "audienceCriteria": {
-    "include": {
-      "and": [{
-        "or": {
-          "urn:li:adTargetingFacet:titles": ["urn:li:title:123"]
-        }
-      }]
-    }
-  }
-}
-```
+- **Matched Audiences**: upload a target account list (companies) or contact list to retarget the accounts you're prospecting, so your name is familiar before and during outreach. See [Matched Audiences](https://learn.microsoft.com/en-us/linkedin/marketing/matched-audiences/matched-audiences). Test ad accounts can't upload audience segments.
+- **Company engagement**: the `MEMBER_COMPANY` reporting pivot shows which target companies are seeing and clicking ads, a warm signal for sales follow-up (see the `ads` skill's ABM playbook).
 
 ## Key Metrics
 
@@ -115,9 +90,10 @@ POST https://api.linkedin.com/v2/audienceCountsV2
 |--------|-------------|
 | `impressions` | Ad impressions |
 | `clicks` | Total clicks |
+| `landingPageClicks` | Clicks to the landing page |
 | `costInLocalCurrency` | Spend |
-| `conversions` | Conversion count |
-| `leadGenerationMailContactInfoShares` | Lead form submissions |
+| `externalWebsiteConversions` | Conversions tracked with the Insight Tag or Conversions API |
+| `oneClickLeads` | Lead Gen Form submissions |
 
 ## Campaign Types
 
@@ -126,39 +102,14 @@ POST https://api.linkedin.com/v2/audienceCountsV2
 - `SPONSORED_INMAILS` - Message ads
 - `DYNAMIC` - Dynamic ads
 
-## Targeting Options
-
-### Job-Based
-- Job titles
-- Job functions
-- Seniority levels
-- Years of experience
-
-### Company-Based
-- Company names
-- Industries
-- Company size
-- Company followers
-
-### Professional
-- Skills
-- Groups
-- Schools
-- Degrees
-
-## When to Use
-
-- B2B advertising
-- Job title targeting
-- Account-based marketing
-- Lead generation campaigns
-
 ## Rate Limits
 
-- 100 requests/day (basic)
-- 10,000 requests/day (Marketing Developer Platform)
+- Limits are set per application and per member and shown in your app's Developer Portal analytics; LinkedIn doesn't publish fixed numbers for most endpoints.
+- `adAnalytics` throttles above 45 million metric values per 5-minute window; request only the fields you need. Long URLs can hit `414`; use [query tunneling](https://learn.microsoft.com/en-us/linkedin/shared/references/migrations/query-tunneling-migration).
 
 ## Relevant Skills
 
 - ads
 - analytics
+- attribution
+- prospecting (account lists for ABM)

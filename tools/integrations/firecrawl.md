@@ -7,7 +7,7 @@ Web scraping API that turns single pages or full sites into clean LLM-ready mark
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API + Python/Node SDKs |
-| MCP | ✓ | Official Firecrawl MCP server |
+| MCP | ✓ | Official hosted server: `https://mcp.firecrawl.dev/v2/mcp` with a Bearer API key (unattended), `/v2/mcp-oauth` for OAuth; a keyless tier covers scrape, search, and parse ([docs](https://docs.firecrawl.dev/mcp-server)) |
 | CLI | ✓ | [firecrawl.js](../clis/firecrawl.js) |
 | SDK | ✓ | Node, Python, Go, Rust |
 
@@ -169,3 +169,34 @@ node tools/clis/firecrawl.js crawl-status --id <crawlId>
 - competitor-profiling (primary use: full-site competitor analysis)
 - ai-seo (scrape your own content for AI search optimization)
 - content-strategy (scrape industry sites for content gap analysis)
+
+## Inspecting asynchronous crawl results in the CLI
+
+`crawl` starts a job and returns its ID. `crawl-status` retrieves a single result
+page; it does not wait for completion or fetch every page automatically:
+
+```bash
+node tools/clis/firecrawl.js crawl-status --id <crawlId>
+# If the returned next URL ends in ?skip=26, request that next result page:
+node tools/clis/firecrawl.js crawl-status --id <crawlId> --skip 26
+node tools/clis/firecrawl.js crawl-errors --id <crawlId>
+```
+
+Read the returned `next` URL and use its `skip` value unchanged for the same job.
+Do not invent the offset from `completed` or increment it by a guessed page size.
+A `completed` status can still have more result pages: Firecrawl uses pagination
+for responses over 10MB. Follow returned pages until `next` is absent or null.
+If the job is still `scraping`, a currently empty page does not establish that
+there will be no more results; check status again later using your existing
+workflow. `--dry-run` previews either read request with authorization masked.
+
+Job completion does not prove every discovered URL was successfully scraped.
+Inspect `crawl-errors` for failed scrapes and `robotsBlocked`, and inspect each
+returned page's `metadata.statusCode` for target-site HTTP failures. Firecrawl's
+error endpoint may omit some internal failure classes, so an empty error list is
+not a guarantee of complete coverage. Keep the result page, job status and error
+output together when reporting crawl coverage.
+
+See [crawl response handling](https://docs.firecrawl.dev/features/crawl#response-handling)
+and [crawl error reporting](https://docs.firecrawl.dev/api-reference/endpoint/crawl-get-errors)
+for the current provider contracts.

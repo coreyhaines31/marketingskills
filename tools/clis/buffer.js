@@ -85,6 +85,12 @@ function parseArgs(args) {
   return result
 }
 
+function booleanFlag(value, name) {
+  if (value === true || value === 'true') return true
+  if (value === 'false') return false
+  throw new Error(`--${name} must be true or false`)
+}
+
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
@@ -170,9 +176,9 @@ async function main() {
           formBody.append('text', text)
           profileIds.split(',').forEach(id => formBody.append('profile_ids[]', id.trim()))
           if (args['scheduled-at']) formBody.append('scheduled_at', args['scheduled-at'])
-          if (args.now) formBody.append('now', 'true')
-          if (args.top) formBody.append('top', 'true')
-          if (args.shorten) formBody.append('shorten', 'true')
+          if (args.now !== undefined) formBody.append('now', String(booleanFlag(args.now, 'now')))
+          if (args.top !== undefined) formBody.append('top', String(booleanFlag(args.top, 'top')))
+          if (args.shorten !== undefined) formBody.append('shorten', String(booleanFlag(args.shorten, 'shorten')))
           if (args['dry-run']) {
             result = { _dry_run: true, method: 'POST', url: `${BASE_URL}/updates/create.json`, headers: { 'Authorization': '***', 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: formBody.toString() }
             break

@@ -58,7 +58,7 @@ POST https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions
 ### Update subscription
 
 ```bash
-PUT https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subscriptionId}
+PATCH https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{subscriptionId}
 
 {
   "tier": "premium"
@@ -77,7 +77,7 @@ DELETE https://api.beehiiv.com/v2/publications/{publicationId}/subscriptions/{su
 GET https://api.beehiiv.com/v2/publications/{publicationId}/posts?limit=10&status=confirmed
 ```
 
-### Create post (Enterprise only)
+### Create post (Pro and Enterprise plans)
 
 ```bash
 POST https://api.beehiiv.com/v2/publications/{publicationId}/posts
@@ -85,10 +85,12 @@ POST https://api.beehiiv.com/v2/publications/{publicationId}/posts
 {
   "title": "Weekly Update",
   "subtitle": "What happened this week",
-  "content": "<p>Hello subscribers...</p>",
+  "body_content": "<p>Hello subscribers...</p>",
   "status": "draft"
 }
 ```
+
+The API requires `body_content` or structured `blocks`. The CLI accepts raw HTML through `--content` and sends it as `body_content`.
 
 ### List segments
 

@@ -85,6 +85,14 @@ if (!ACCESS_TOKEN && rawArgs.length > 0 && !(cmd === 'events' && sub === 'send')
   process.exit(1)
 }
 
+function reportInteger(name, minimum) {
+  const value = args[name]
+  if (typeof value !== 'string' || !/^\d+$/.test(value) || BigInt(value) < minimum || BigInt(value) > 9223372036854775807n) {
+    throw new Error(`--${name} must be an integer between ${minimum} and 9223372036854775807`)
+  }
+  return BigInt(value).toString()
+}
+
 async function main() {
   let result
 
@@ -105,6 +113,19 @@ async function main() {
           }
           if (args.metrics) {
             body.metrics = args.metrics.split(',').map(m => ({ name: m.trim() }))
+          }
+          // The Data API represents pagination integers as decimal strings.
+          if (args.limit !== undefined) body.limit = reportInteger('limit', 1n)
+          if (args.offset !== undefined) body.offset = reportInteger('offset', 0n)
+          if (args['order-bys'] !== undefined) {
+            let orderBys
+            try { orderBys = JSON.parse(args['order-bys']) } catch {
+              throw new Error('--order-bys must be a JSON array of ordering objects')
+            }
+            if (!Array.isArray(orderBys) || !orderBys.length || orderBys.some(order => !order || typeof order !== 'object' || Array.isArray(order))) {
+              throw new Error('--order-bys must be a nonempty JSON array of ordering objects')
+            }
+            body.orderBys = orderBys
           }
           result = await api('POST', DATA_API, `/properties/${property}:runReport`, body)
           break
@@ -171,6 +192,9 @@ async function main() {
               result = { error: 'Invalid JSON in --params' }; break
             }
           }
+          if (eventParams === null || typeof eventParams !== 'object' || Array.isArray(eventParams)) {
+            result = { error: '--params must be a JSON object' }; break
+          }
           const body = {
             client_id: args['client-id'],
             events: [{
@@ -190,7 +214,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          reports: 'reports run --property <id> [--start-date <date>] [--end-date <date>] [--dimensions <dims>] [--metrics <metrics>]',
+          reports: 'reports run --property <id> [--start-date <date>] [--end-date <date>] [--dimensions <dims>] [--metrics <metrics>] [--limit <rows>] [--offset <start-row>] [--order-bys <JSON array>]',
           realtime: 'realtime run --property <id> [--dimensions <dims>] [--metrics <metrics>]',
           conversions: 'conversions [list|create] --property <id> [--event-name <name>]',
           events: 'events send --measurement-id <id> --api-secret <secret> --client-id <id> --event-name <name> [--params <json>]',

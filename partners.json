@@ -22,7 +22,7 @@
       "categoryShort": "AI website & growth platform",
       "tier": "skill-partner",
       "tagline": "Turns your website into a growth engine",
-      "blurb": "AI marketing platform built around a Webflow-grade website builder — site optimization, SEO/AEO, visitor identification, and ad creative in one, with WebMCP to expose site actions to AI assistants.",
+      "blurb": "AI marketing platform built around a hosted website builder — an in-app agent that builds and publishes pages, PloyDB for pages at scale, routing to add pages to an existing site, built-in analytics and visitor identification, and a CLI for coding agents.",
       "logoUrl": "/logos/ploy.png",
       "integration": "tools/integrations/ploy.md",
       "active": true
