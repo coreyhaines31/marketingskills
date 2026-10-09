@@ -24,13 +24,22 @@ const INTEREST_STATUSES = {
   'no-show': -4,
 }
 
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
 async function api(method, path, body) {
   const url = `${BASE_URL}${path}`
   const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
   if (args['dry-run']) {
     return { _dry_run: true, method, url, headers: { ...headers, Authorization: 'Bearer ***' }, body: body || undefined }
   }
-  const res = await fetch(url, {
+  const res = await fetch(url, { signal: requestSignal(),
     method,
     headers: { ...headers, Authorization: `Bearer ${API_KEY}` },
     body: body ? JSON.stringify(body) : undefined,

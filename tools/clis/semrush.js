@@ -46,6 +46,15 @@ function parseCSV(text) {
   return rows.map(cells => Object.fromEntries(headers.map((header, index) => [header, cells[index] || ''])))
 }
 
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
 async function api(params, baseUrl = BASE_URL) {
   params.set('key', API_KEY)
   params.set('export_escape', '1')
@@ -54,7 +63,7 @@ async function api(params, baseUrl = BASE_URL) {
     maskedParams.set('key', '***')
     return { _dry_run: true, method: 'GET', url: `${baseUrl}?${maskedParams}`, headers: {}, body: undefined }
   }
-  const res = await fetch(`${baseUrl}?${params}`)
+  const res = await fetch(`${baseUrl}?${params}`, { signal: requestSignal() })
   const text = await res.text()
   if (!res.ok) {
     process.exitCode = 1

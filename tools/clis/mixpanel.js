@@ -14,6 +14,17 @@ if ((!TOKEN && !API_KEY && !SECRET && !PROJECT_SECRET) && rawArgs.length > 0) {
   process.exit(1)
 }
 
+
+function requestSignal() {
+  const raw = args['timeout-ms'] ?? '30000'
+  const ms = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw) || !Number.isSafeInteger(ms) || ms < 1 || ms > 600000) {
+    throw new Error('--timeout-ms must be an integer from 1 to 600000')
+  }
+  return AbortSignal.timeout(ms)
+}
+
+
 async function ingestApi(method, path, body) {
   const headers = { 'Content-Type': 'application/json' }
   if (args['dry-run']) {
@@ -24,7 +35,7 @@ async function ingestApi(method, path, body) {
     })
     return { _dry_run: true, method, url: `${INGESTION_URL}${path}`, headers, body: maskedBody }
   }
-  const res = await fetch(`${INGESTION_URL}${path}`, {
+  const res = await fetch(`${INGESTION_URL}${path}`, { signal: requestSignal(),
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
@@ -63,7 +74,7 @@ async function queryApi(method, baseUrl, path, params) {
   if (args['dry-run']) {
     return { _dry_run: true, method, url, headers: { ...headers, Authorization: '***' } }
   }
-  const res = await fetch(url, {
+  const res = await fetch(url, { signal: requestSignal(),
     method,
     headers,
   })
@@ -84,7 +95,7 @@ async function queryApiPost(path, body) {
   if (args['dry-run']) {
     return { _dry_run: true, method: 'POST', url: `${QUERY_URL}${path}`, headers: { ...headers, Authorization: '***' }, body: body || undefined }
   }
-  const res = await fetch(`${QUERY_URL}${path}`, {
+  const res = await fetch(`${QUERY_URL}${path}`, { signal: requestSignal(),
     method: 'POST',
     headers,
     body: JSON.stringify(body),
