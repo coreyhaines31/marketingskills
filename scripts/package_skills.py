@@ -90,6 +90,9 @@ def build(repo, output, target="source", skills=None, revision="HEAD", descripti
     license_entry = files.get("LICENSE")
     if not license_entry or license_entry[0] not in {"100644", "100755"}:
         raise ValueError("A tracked regular LICENSE file is required")
+    license_size = int(git(repo, "cat-file", "-s", license_entry[2]))
+    if license_size > max_bytes:
+        raise ValueError("Bundle exceeds the configured uncompressed size bound: LICENSE")
     license_data = git(repo, "cat-file", "blob", license_entry[2])
 
     overrides = {}
@@ -109,6 +112,7 @@ def build(repo, output, target="source", skills=None, revision="HEAD", descripti
     for name in selected:
         prefix = f"skills/{name}/"
         resources = {}
+        source_bytes = license_size
         for path, (mode, kind, object_id) in files.items():
             if not path.startswith(prefix):
                 continue
@@ -122,7 +126,15 @@ def build(repo, output, target="source", skills=None, revision="HEAD", descripti
                 raise ValueError(f"Unsafe resource path: {path}")
             if mode not in {"100644", "100755"} or kind != "blob":
                 raise ValueError(f"Resource must be a tracked regular file: {path}")
-            resources[relative] = (git(repo, "cat-file", "blob", object_id), mode, path)
+            # SKILL.md may shrink when the web description is replaced; the
+            # final packaged-size check below accounts for its actual bytes.
+            if relative != "SKILL.md" or target == "source":
+                source_bytes += int(git(repo, "cat-file", "-s", object_id))
+            if source_bytes > max_bytes:
+                raise ValueError(f"Bundle exceeds the configured uncompressed size bound: {name}")
+            resources[relative] = (object_id, mode, path)
+        resources = {relative: (git(repo, "cat-file", "blob", object_id), mode, path)
+                     for relative, (object_id, mode, path) in resources.items()}
         original = resources["SKILL.md"][0]
         fields = metadata(original)
         if fields["name"] != name:
