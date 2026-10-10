@@ -267,6 +267,9 @@ async function main() {
       } catch (e) {
         result = { error: 'Invalid JSON for --emails: ' + e.message }; break
       }
+      if (!Array.isArray(emails) || emails.length < 1 || emails.length > 100 || emails.some(email => email === null || typeof email !== 'object' || Array.isArray(email))) {
+        throw new Error('--emails must be a JSON array of 1–100 email objects')
+      }
       result = await api('POST', '/emails/batch', emails, idempotencyHeaders())
       break
     }
