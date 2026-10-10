@@ -117,7 +117,7 @@ function updateReadme(skills) {
   const content = fs.readFileSync(README_FILE, "utf8");
 
   // Match content between skill list markers
-  const tableRegex = /(<!-- SKILLS:START -->\n)[\s\S]*?(\n<!-- SKILLS:END -->)/;
+  const tableRegex = /(<!-- SKILLS:START -->\r?\n)[\s\S]*?(\r?\n<!-- SKILLS:END -->)/;
   const newTable = generateSkillsTable(skills);
 
   if (!tableRegex.test(content)) {
@@ -125,7 +125,10 @@ function updateReadme(skills) {
     return false;
   }
 
-  const newContent = content.replace(tableRegex, (_match, start, end) => start + newTable + end);
+  const newContent = content.replace(tableRegex, (_match, start, end) => {
+    const newline = start.endsWith("\r\n") ? "\r\n" : "\n";
+    return start + newTable.replaceAll("\n", newline) + end;
+  });
 
   if (newContent === content) {
     return false;
