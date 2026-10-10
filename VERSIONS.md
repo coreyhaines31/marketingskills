@@ -10,7 +10,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | analytics | 2.0.3 | 2026-10-08 |
 | aso | 2.0.2 | 2026-10-08 |
 | attribution | 1.1.4 | 2026-10-08 |
-| churn-prevention | 2.0.2 | 2026-10-08 |
+| churn-prevention | 2.0.3 | 2026-10-10 |
 | co-marketing | 2.0.2 | 2026-10-02 |
 | cold-email | 2.2.0 | 2026-10-07 |
 | community-marketing | 2.0.1 | 2026-08-23 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.27 (2026-10-10)
+
+- Distinguish recovered invoice cash, revenue multiples, and net dunning ROI.
 
 ### 2.11.26 (2026-10-08)
 

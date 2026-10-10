@@ -403,11 +403,14 @@ Don't rely on email alone. Show payment failures in the app:
 ### ROI Calculation
 
 ```
-Monthly failed payment MRR:        $10,000
-Current recovery rate:              30% ($3,000 recovered)
-Target recovery rate:               60% ($6,000 recovered)
-Monthly improvement:                $3,000/month
-Annual improvement:                 $36,000/year
-Cost of dunning optimization:       ~$200-500/month (tooling)
-ROI:                                6-15x
+Assumed failed invoice amount:       $10,000/month
+Baseline collected amount:           30% ($3,000/month)
+Scenario collected amount:           60% ($6,000/month)
+Additional recovered cash:           $3,000/month
+If repeated for 12 months:           $36,000/year
+Assumed incremental tooling cost:    $200-500/month
+Recovered-revenue / tooling ratio:   6-15x
+After tooling alone / tooling cost:  5-14x (500-1,400%)
 ```
+
+The 6–15x figure is a gross recovered-revenue-to-tooling-cost ratio, not net profit ROI. At $500/month, `(3,000 - 500) / 500 = 5`; at $200/month it is 14. Include incremental servicing, payment, and labor costs before reporting profit ROI, and compare equivalent periods. The 60% recovery assumption must be validated against the baseline; recovered invoices do not by themselves prove recurring MRR, continued retention, or causal improvement from the tool. The annual cash figure assumes the same incremental collections each month rather than adding the same recovered invoice repeatedly. [Business Queensland defines promotional ROI as net profit divided by promotional costs](https://www.business.qld.gov.au/running-business/marketing-sales/marketing/activities/sales-promotions). See [gross versus net profit](https://stripe.com/resources/more/gross-vs-net-profit-what-businesses-need-to-know) for the distinction between revenue and profit.
