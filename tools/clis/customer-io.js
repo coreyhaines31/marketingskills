@@ -92,6 +92,14 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+function objectData() {
+  const data = JSON.parse(args.data)
+  if (data === null || typeof data !== 'object' || Array.isArray(data)) {
+    throw new Error('--data must be a JSON object')
+  }
+  return data
+}
+
 async function main() {
   let result
 
@@ -107,7 +115,7 @@ async function main() {
           if (args['last-name']) body.last_name = args['last-name']
           if (args['created-at']) body.created_at = parseInt(args['created-at'])
           if (args.plan) body.plan = args.plan
-          if (args.data) Object.assign(body, JSON.parse(args.data))
+          if (args.data) Object.assign(body, objectData())
           result = await trackApi('PUT', `/customers/${encodeURIComponent(customerId)}`, body)
           break
         }
@@ -135,7 +143,7 @@ async function main() {
           if (!customerId) { result = { error: 'Customer ID required (positional arg or --id)' }; break }
           if (!args.name) { result = { error: '--name required (event name)' }; break }
           const body = { name: args.name }
-          if (args.data) body.data = JSON.parse(args.data)
+          if (args.data) body.data = objectData()
           result = await trackApi('POST', `/customers/${encodeURIComponent(customerId)}/events`, body)
           break
         }
@@ -167,7 +175,7 @@ async function main() {
           const body = {}
           if (args.emails) body.emails = args.emails.split(',')
           if (args.ids) body.ids = args.ids.split(',')
-          if (args.data) body.data = JSON.parse(args.data)
+          if (args.data) body.data = objectData()
           result = await appApi('POST', `/campaigns/${campaignId}/triggers`, body)
           break
         }
@@ -186,7 +194,7 @@ async function main() {
           }
           if (args['identifier-id']) body.identifiers.id = args['identifier-id']
           if (args['identifier-email']) body.identifiers.email = args['identifier-email']
-          if (args.data) body.message_data = JSON.parse(args.data)
+          if (args.data) body.message_data = objectData()
           if (args.from) body.from = args.from
           if (args.subject) body.subject = args.subject
           if (args.body) body.body = args.body
