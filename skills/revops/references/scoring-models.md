@@ -213,11 +213,15 @@ Detailed scoring templates, example models by business type, and calibration gui
 
 ### Setting the Initial Threshold
 
-1. **Pull closed-won data** from the last 6-12 months
-2. **Retroactively score** each deal using your new model
-3. **Find the natural breakpoint** — what score separated wins from losses?
-4. **Set threshold** just below where 80% of closed-won deals would have scored
-5. **Validate** against closed-lost — if many closed-lost score above threshold, tighten criteria
+1. **Define the decision and outcome first.** For example, score an eligible lead at its first qualification review and predict a win within the next 90 days. Use a horizon appropriate to your sales cycle. Select the full eligible lead cohort, including leads never promoted to MQL; retain won and lost outcomes, and keep unresolved leads separate until their observation window matures.
+2. **Reconstruct features as of that decision time.** Use only attributes and events available then, including the time the CRM actually received them. Current CRM values and a lead's lifetime activity are not historical snapshots. Exclude later stage changes, close status, onboarding, and teammate invitations when they occurred after the scoring cutoff. Product events before the cutoff remain valid PLG signals. If history is missing, collect snapshots prospectively and label the retrospective evaluation incomplete.
+3. **Split before tuning.** Use earlier cohorts to develop weights and choose a threshold, and reserve a later, fully observed cohort as an untouched holdout. Development outcome labels must have matured and been available before the first holdout qualification decision; exclude or delay cohorts whose outcome windows cross that training cutoff. Keep related contacts/deals from the same account from leaking across partitions. Freeze feature rules, weights, and threshold before evaluating the holdout; never tune them on its outcomes. See [data-leakage guidance](https://scikit-learn.org/stable/common_pitfalls.html#data-leakage) and [time-ordered validation](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html).
+4. **Choose a threshold using costs and sales capacity.** On development data, compare precision (wins among flagged leads), recall (flagged wins among all wins), false positives, missed wins, and workload with the current routing rule. Capturing 80% of wins alone does not establish a useful threshold: it says nothing about how many non-winners sales must work.
+5. **Evaluate the frozen rule on the holdout.** Report cohort dates, cutoff and outcome horizon, eligible and resolved counts, precision/recall, false-positive/negative counts, and expected review cost or contribution under labeled assumptions. Compare the same population with the existing rule. Small or incomplete cohorts are inconclusive; a retrospective score is not proof of incremental revenue. Pilot with monitoring and a rollback before broad promotion.
+
+**Leakage example (illustrative):** a lead has 20 points at qualification, then earns 20 for onboarding and 25 for inviting a teammate after becoming a customer. Scoring today's record yields 65 and seems to clear a 60-point threshold. The historical qualification score was 20; the later 45 points cannot be used to claim the rule would have identified that win.
+
+[HubSpot's scoring documentation](https://knowledge.hubspot.com/scoring/understand-the-lead-scoring-tool) describes scoring current record properties and events with time-frame filters. Those product capabilities do not by themselves reconstruct what was known at a past qualification decision.
 
 ### Calibration Cadence
 
@@ -229,14 +233,11 @@ Detailed scoring templates, example models by business type, and calibration gui
 
 ### Calibration Steps
 
-1. **Pull MQL-to-closed data** for the calibration period
-2. **Compare scored MQLs vs. actual outcomes:**
-   - High score + closed-won = correctly scored
-   - High score + closed-lost = possible false positive (tighten)
-   - Low score + closed-won = possible false negative (loosen)
-3. **Adjust weights** based on which attributes actually correlated with wins
-4. **Adjust threshold** if MQL volume is too high (raise) or too low (lower)
-5. **Document changes** and communicate to sales team
+1. **Rebuild the eligible cohort with decision-time snapshots** and mature outcomes, including leads below the threshold; MQL-only data cannot measure missed wins among excluded leads.
+2. **Compare the frozen model with actual outcomes and the current routing baseline** on the same population. Report precision, recall, false positives/negatives, and sales workload with sample sizes.
+3. **Propose weight and threshold changes on development data only.** Separate market drift from missing history, changed definitions, and delayed outcome labels.
+4. **Validate the candidate on a new later holdout** before promotion. A holdout used to choose a change becomes development data; retain another untouched cohort for the next decision.
+5. **Version the model and preserve the decision record:** feature cutoff rules, cohort dates, weights, threshold, results, owner, and rollback. Communicate changes to sales and monitor the pilot.
 
 ### Warning Signs Your Model Needs Recalibration
 

@@ -2,7 +2,7 @@
 name: revops
 description: "When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes. Also use when the user mentions 'RevOps,' 'revenue operations,' 'lead scoring,' 'outbound pipeline stages,' 'lead routing,' 'MQL,' 'SQL,' 'pipeline stages,' 'deal desk,' 'CRM automation,' 'marketing-to-sales handoff,' 'data hygiene,' 'leads aren't getting to sales,' 'pipeline management,' 'lead qualification,' or 'when should marketing hand off to sales.' Use this for anything involving the systems and processes that connect marketing to revenue. For cold outreach emails, see cold-email. For email drip campaigns, see emails. For pricing decisions, see pricing."
 metadata:
-  version: 2.2.0
+  version: 2.2.1
 ---
 
 # RevOps
@@ -104,11 +104,11 @@ Define response times and document them:
 ### Building a Scoring Model
 
 1. Define your ICP attributes and weight them
-2. Identify high-intent behavioral signals from closed-won data
+2. Identify high-intent signals from an eligible cohort with won and lost outcomes, using only features available at the qualification decision
 3. Set point values for each attribute and behavior
 4. Set MQL threshold (typically 50-80 points on a 100-point scale)
-5. Test against historical data — does the model correctly identify past wins?
-6. Launch, measure, and recalibrate quarterly
+5. Freeze the rule and test a later, fully observed holdout against the current routing baseline; report precision, recall, missed wins, false positives, and workload
+6. Pilot with monitoring and rollback; tune on development cohorts and preserve an untouched holdout for each promotion
 
 ### Common Scoring Mistakes
 

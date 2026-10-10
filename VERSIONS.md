@@ -45,7 +45,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | prospecting | 1.3.0 | 2026-10-08 |
 | public-relations | 1.2.0 | 2026-10-02 |
 | referrals | 2.2.0 | 2026-10-08 |
-| revops | 2.2.0 | 2026-10-08 |
+| revops | 2.2.1 | 2026-10-10 |
 | sales-enablement | 2.4.0 | 2026-10-07 |
 | schema | 2.0.2 | 2026-10-08 |
 | seo-audit | 2.2.0 | 2026-10-08 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.27 (2026-10-10)
+
+- Prevent historical lead-score leakage and validate frozen thresholds on later cohorts.
 
 ### 2.11.26 (2026-10-08)
 
