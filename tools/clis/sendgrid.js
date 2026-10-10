@@ -71,6 +71,10 @@ async function main() {
         body.template_id = args['template-id']
         if (args['template-data']) {
           try { body.personalizations[0].dynamic_template_data = JSON.parse(args['template-data']) } catch (e) { result = { error: 'Invalid JSON for --template-data: ' + e.message }; break }
+          const data = body.personalizations[0].dynamic_template_data
+          if (data === null || typeof data !== 'object' || Array.isArray(data)) {
+            throw new Error('--template-data must be a JSON object')
+          }
         }
       } else {
         const content = []
