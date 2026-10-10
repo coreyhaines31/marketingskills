@@ -24,7 +24,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | directory-submissions | 2.1.1 | 2026-10-08 |
 | emails | 2.1.3 | 2026-10-08 |
 | events | 1.0.0 | 2026-08-23 |
-| free-tools | 2.0.1 | 2026-08-23 |
+| free-tools | 2.0.2 | 2026-10-10 |
 | image | 2.0.2 | 2026-10-02 |
 | influencer-marketing | 1.1.2 | 2026-10-02 |
 | launch | 2.2.0 | 2026-10-07 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.27 (2026-10-10)
+
+- Replace unsourced tool conversion benchmarks with sourced examples and evidence-aware evaluation.
 
 ### 2.11.26 (2026-10-08)
 

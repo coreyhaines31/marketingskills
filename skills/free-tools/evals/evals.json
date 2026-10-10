@@ -89,10 +89,10 @@
     {
       "id": 7,
       "prompt": "We're deciding whether a free tool is worth building for our SaaS. What kind of results do free tools actually get, and what usually goes wrong?",
-      "expected_output": "Should reference the named case benchmarks (e.g. Crew/Unsplash 3 hrs to 11M monthly visitors and Getty acquisition, HubSpot Website Grader 250K leads / $6M, Moz Keyword Explorer 40% trial conversion / CAC down 65%, Buffer Salary Calculator 1.5M visitors / 12% signup, Shopify Hatchful 25% trial conversion) to set realistic expectations. Should invoke the 'your product is my marketing opportunity' framing. Should surface the common pitfalls: over-engineering, poor product integration, maintenance/security debt, and vanity metrics. Should tie expectations to tool type (analyzers convert/qualify leads, calculators drive reach, generators feed onboarding). Should recommend tracking leads and conversion rather than vanity metrics.",
+      "expected_output": "Should cite sourced named examples as design patterns, distinguish documented facts from unverified conversion claims, and avoid quoting unsupported rates. Should explain that forecasts require the user's baseline or labeled assumptions, with cohort, denominator, funnel stage, and attribution limits for any quantitative case. Should surface over-engineering, poor product integration, maintenance/security debt, and vanity metrics; track qualified leads and customer contribution rather than traffic alone.",
       "assertions": [
-        "Cites named case benchmarks with real numbers",
-        "Invokes 'your product is my marketing opportunity' framing",
+        "Cites sourced named examples without inventing conversion rates",
+        "Distinguishes documented outcomes from assumptions and requires cohort and denominator for numerical benchmarks",
         "Lists the common pitfalls (over-engineering, poor product integration, maintenance/security debt, vanity metrics)",
         "Connects expected results to tool type",
         "Recommends tracking leads/conversion over vanity metrics"
