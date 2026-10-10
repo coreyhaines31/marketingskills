@@ -5,6 +5,7 @@ import os
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 from pathlib import Path
 
@@ -187,6 +188,43 @@ class PackagingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "size bound"):
             packager.build(self.repo, self.output, max_bytes=10)
         self.assertFalse(self.output.exists())
+
+    def test_oversized_resource_is_rejected_before_blob_loading(self):
+        self.write("skills/sample/assets/large.bin", b"x" * 4096)
+        self.commit()
+        object_id = self.git("rev-parse", "HEAD:skills/sample/assets/large.bin").decode().strip()
+        original_git = packager.git
+        with patch.object(packager, "git", wraps=original_git) as calls:
+            with self.assertRaisesRegex(ValueError, "size bound"):
+                packager.build(self.repo, self.output, max_bytes=2048)
+        self.assertFalse(any(call.args[1:] == ("cat-file", "blob", object_id) for call in calls.call_args_list))
+        self.assertFalse(self.output.exists())
+
+    def test_oversized_license_is_rejected_before_blob_loading(self):
+        self.write("LICENSE", b"x" * 4096)
+        self.commit()
+        object_id = self.git("rev-parse", "HEAD:LICENSE").decode().strip()
+        with patch.object(packager, "git", wraps=packager.git) as calls:
+            with self.assertRaisesRegex(ValueError, "size bound"):
+                packager.build(self.repo, self.output, max_bytes=2048)
+        self.assertFalse(any(call.args[1:] == ("cat-file", "blob", object_id) for call in calls.call_args_list))
+        self.assertFalse(self.output.exists())
+
+    def test_oversized_source_skill_is_rejected_before_blob_loading(self):
+        self.write("skills/sample/SKILL.md", self.skill + b"x" * 4096)
+        self.commit()
+        object_id = self.git("rev-parse", "HEAD:skills/sample/SKILL.md").decode().strip()
+        with patch.object(packager, "git", wraps=packager.git) as calls:
+            with self.assertRaisesRegex(ValueError, "size bound"):
+                packager.build(self.repo, self.output, max_bytes=2048)
+        self.assertFalse(any(call.args[1:] == ("cat-file", "blob", object_id) for call in calls.call_args_list))
+        self.assertFalse(self.output.exists())
+
+    def test_web_metadata_shrink_uses_packaged_size_bound(self):
+        source = packager.build(self.repo, self.output)
+        limit = source["bundles"][0]["uncompressed_bytes"] - 100
+        web = packager.build(self.repo, self.output, target="claude-web", max_bytes=limit)
+        self.assertLessEqual(web["bundles"][0]["uncompressed_bytes"], limit)
 
     def test_crlf_body_and_quoted_description_are_preserved(self):
         original = self.skill.replace(b"\n", b"\r\n")
