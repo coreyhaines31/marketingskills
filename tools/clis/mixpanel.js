@@ -132,6 +132,9 @@ async function main() {
           if (!args.event) { result = { error: '--event required' }; break }
           let properties
           try { properties = args.properties ? JSON.parse(args.properties) : {} } catch { result = { error: 'Invalid JSON in --properties' }; break }
+          if (properties === null || typeof properties !== 'object' || Array.isArray(properties)) {
+            throw new Error('--properties must be a JSON object')
+          }
           properties.token = TOKEN
           properties.distinct_id = args['distinct-id']
           result = await ingestApi('POST', '/track', [{
@@ -152,6 +155,9 @@ async function main() {
           if (!args['distinct-id']) { result = { error: '--distinct-id required' }; break }
           let properties
           try { properties = args.properties ? JSON.parse(args.properties) : {} } catch { result = { error: 'Invalid JSON in --properties' }; break }
+          if (properties === null || typeof properties !== 'object' || Array.isArray(properties)) {
+            throw new Error('--properties must be a JSON object')
+          }
           result = await ingestApi('POST', '/engage', [{
             $token: TOKEN,
             $distinct_id: args['distinct-id'],
