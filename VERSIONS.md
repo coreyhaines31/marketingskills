@@ -57,6 +57,10 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.11.27 (2026-10-10)
+
+- Validate nested skill references and resolve sibling reference links relative to their file.
+
 ### 2.11.26 (2026-10-08)
 
 - **lead-magnets** (2.0.0 → 2.1.0): new `references/content-to-skill.md` (plus corpus design and release companions) on packaging a course, webinar series, podcast, or newsletter archive you own as an installable agent skill: a new kind of lead magnet. From @rudycelekli's #725 (closes #432), folded in rather than added as a new skill. Triggers added: 'course as a skill,' 'package our content as an agent skill.' **ai-seo** (2.7.5 → 2.7.6) points to it.
