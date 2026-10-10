@@ -1,35 +1,26 @@
-# Free Tool Case Benchmarks
+# Free Tool Case Examples
 
-Real free tools and the numbers they produced. Use these to set expectations, justify the build, and pattern-match your concept against what actually worked.
+Use these sourced examples to study product design and distribution. They are not transferable conversion benchmarks: a tool's existence or later acquisition does not establish its visitor-to-lead rate, CAC, or incremental revenue.
 
 ## Framing: "Your product is my marketing opportunity"
 
-Bezos's line was **"your margin is my opportunity"** — where a competitor monetizes something, undercut it. The engineering-as-marketing version is **"your product is my marketing opportunity."** Take a capability others sell, build a simple free version, and turn it into an acquisition channel. Unsplash gave away the stock photos that Getty charged for — and Getty ended up acquiring it.
+Give away a useful capability that others sell, and test whether it attracts the audience for your product. [Unsplash's founders describe](https://unsplash.com/blog/hello-unsplash-inc/) starting with ten leftover photographs and a Tumblr blog that took about an hour; [Unsplash later announced its acquisition by Getty Images](https://unsplash.com/blog/unsplash-getty/). These are historical facts, not a promise of similar acquisition outcomes.
 
 ## Case Library
 
-| Tool | Company | Build cost | Result |
-|------|---------|-----------|--------|
-| Unsplash | Crew | 3 hrs, leftover redesign photos | 11M monthly visitors; acquired by Getty |
-| Website Grader | HubSpot | 2 engineers, 2 weeks | 250K leads, 98% auto-qualification, $6M revenue |
-| Forecasting | Baremetrics | — | 35% trial conversion |
-| Headline Analyzer | CoSchedule | — | ~20% of users convert to subscribers |
-| Keyword Explorer | Moz | — | 40% trial conversion, CAC down 65% |
-| Salary Calculator | Buffer | — | 1.5M visitors, 12% signup rate |
-| Hatchful | Shopify | — | 25% trial conversion |
+| Tool | Company | What the primary source establishes | Design lesson to test |
+|------|---------|-------------------------------------|-----------------------|
+| Unsplash | Crew | Founder account of a small photo-library launch; later Getty acquisition | A useful byproduct can become a resource library |
+| [Website Grader](https://blog.hubspot.com/marketing/website-grader) | HubSpot | A free website assessment tool | An analyzer can demonstrate expertise before a sales conversation |
+| [SaaS business calculators](https://changelog.baremetrics.com/saas-business-calculators-25uoes) | Baremetrics | A free calculator suite including startup runway | Solve a calculation adjacent to your paid product |
+| [Headline Analyzer](https://coschedule.com/headline-analyzer) | CoSchedule | A free headline analysis entry point | Repeatable feedback can introduce a broader product |
+| [Salary Calculator](https://buffer.com/resources/transparent-salaries/) | Buffer | A public calculator based on Buffer's salary formula | A shareable resource can communicate company values |
+| [Logo Maker](https://www.shopify.com/tools/logo-maker) | Shopify | A free logo creation tool | Solve a task prospective merchants face while starting a business |
 
-## What each case teaches
+The sources above do not establish comparable trial-conversion or signup rates. Do not quote the former unsourced rates as benchmarks. If you add a quantitative case, attach its primary source, reporting date, cohort, numerator and denominator, funnel stage, and attribution limits. Distinguish visitors, leads, trials, paying customers, and incremental outcomes.
 
-- **Crew → Unsplash** — The anchor case. A near-zero-cost byproduct (leftover photos from a redesign, ~3 hrs to ship) became a top-of-funnel giant. Give away what others charge for; the reach compounds.
-- **HubSpot Website Grader** — Small build (2 engineers, 2 weeks), enormous return. Proof that an analyzer/grader can double as a lead engine *and* a qualification engine — 98% of leads auto-qualified because the tool's inputs revealed fit.
-- **Baremetrics Forecasting** — A tool adjacent to the core product (revenue analytics) that converts trials at 35% because using it makes the paid product's value obvious.
-- **CoSchedule Headline Analyzer** — Repeat-use analyzer with a low-friction path to subscription (~20%). High recurring usage keeps the brand in front of the audience.
-- **Moz Keyword Explorer** — A free surface of the paid product itself: 40% trial conversion and a 65% drop in CAC because the tool *is* the demo.
-- **Buffer Salary Calculator** — Not adjacent to the product at all, but massively shareable: 1.5M visitors, 12% signup. Pure reach + brand play that still converts.
-- **Shopify Hatchful** — A generator (logo maker) that feeds the core product's onboarding, converting trials at 25%.
+## How to use these examples
 
-## How to use these benchmarks
-
-- **Set expectations**: Analyzer/grader tools tend to convert visitors to leads well and qualify them; calculators skew toward reach and share-worthiness; generators feed onboarding.
-- **Justify the build**: Compare your expected lead value × volume against these ratios before committing engineering time.
-- **Pattern-match**: Find the case closest to your concept (adjacent-to-product vs pure-reach) and borrow its gating and distribution approach.
+- **Pattern-match**: Borrow a useful mechanism, such as grading, calculating, or generating. Treat the proposed effect on your funnel as a hypothesis.
+- **Forecast explicitly**: Use your own baseline or label low/base/high conversion assumptions. Do not substitute another company's traffic or lifetime revenue for your expected outcome.
+- **Justify the build**: Compare expected qualified-customer contribution against build, distribution, and ongoing maintenance costs. Track tool use → qualified lead → customer by cohort, then test incremental contribution where feasible.
