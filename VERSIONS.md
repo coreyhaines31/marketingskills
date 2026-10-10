@@ -11,7 +11,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | aso | 2.0.2 | 2026-10-08 |
 | attribution | 1.1.4 | 2026-10-08 |
 | churn-prevention | 2.0.2 | 2026-10-08 |
-| co-marketing | 2.0.2 | 2026-10-02 |
+| co-marketing | 2.0.3 | 2026-10-10 |
 | cold-email | 2.2.0 | 2026-10-07 |
 | community-marketing | 2.0.1 | 2026-08-23 |
 | competitor-profiling | 2.1.3 | 2026-10-07 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.27 (2026-10-10)
+
+- Correct HubSpot marketplace routing and separate recurring marketplace fees from acquisition cost.
 
 ### 2.11.26 (2026-10-08)
 

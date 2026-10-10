@@ -83,8 +83,8 @@ Joint campaigns with a non-competing peer who shares your audience. Covered in d
 List your product inside a platform's ecosystem and inherit its distribution.
 
 - **Grammarly's Chrome Web Store extension** took it from **0 to 10M users** — the store *was* the acquisition channel.
-- Platforms take **15–30% of revenue**. Treat that cut as **effective CAC**: you're buying distribution instead of running ads.
-- **Go all-in on one platform when it maps to your ICP.** Arrows built its entire GTM around **HubSpot** — deep integration, AppExchange presence, co-selling — rather than spreading thin across many ecosystems.
+- **Model marketplace fees from the actual contract.** Rates depend on platform, region, product, and program; [Apple's commission terms](https://developer.apple.com/support/payment-options-on-the-app-store-in-the-eu) illustrate why one universal range is insufficient. A fee charged on every renewal is a recurring distribution cost, not a one-time acquisition cost. Include it in contribution margin and cash payback, then add actual upfront acquisition costs separately. For example, a $100 monthly subscription with a $30 marketplace fee and $20 serving cost contributes $50 per month; a separate $300 acquisition cost takes six months to recover before churn or cash delays. Avoid counting the same fee in both CAC and recurring costs.
+- **Go all-in on one platform when it maps to your ICP.** Arrows built its entire GTM around **HubSpot** — deep integration, presence in the [HubSpot Marketplace](https://www.hubspot.com/technology-partner-case-studies/arrows), and co-selling — rather than spreading thin across many ecosystems.
 
 **When to choose this:** if a single platform owns your buyer's daily workflow, being *inside* it beats trying to pull users out to your own site.
 
