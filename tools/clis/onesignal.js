@@ -69,6 +69,10 @@ async function main() {
     case 'notifications':
       switch (sub) {
         case 'send': {
+          const targetingFlags = ['segment', 'emails', 'player-ids', 'aliases'].filter(name => args[name] !== undefined)
+          if (targetingFlags.length > 1) {
+            throw new Error('Use only one audience option: --segment, --emails, --player-ids, or --aliases')
+          }
           const channel = args.channel || (args.emails ? 'email' : 'push')
           if (!['push', 'email', 'sms'].includes(channel)) { result = { error: '--channel must be push, email, or sms' }; break }
           if (args.emails && channel !== 'email') { result = { error: '--emails requires the email channel' }; break }
