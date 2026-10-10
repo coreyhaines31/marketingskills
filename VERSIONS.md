@@ -34,7 +34,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-loops | 1.4.0 | 2026-10-07 |
 | marketing-plan | 1.2.1 | 2026-10-08 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
-| offers | 1.0.1 | 2026-08-23 |
+| offers | 1.0.2 | 2026-10-10 |
 | onboarding | 2.0.1 | 2026-08-23 |
 | ads | 2.4.6 | 2026-10-08 |
 | paywalls | 2.0.0 | 2026-05-05 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.27 (2026-10-10)
+
+- Correct compounded offer-lift arithmetic and separate forecasts from measured effects.
 
 ### 2.11.26 (2026-10-08)
 
