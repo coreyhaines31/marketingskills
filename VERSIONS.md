@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.2 | 2026-10-12 |
 | ad-creative | 2.11.0 | 2026-10-12 |
-| ai-seo | 2.7.6 | 2026-10-08 |
+| ai-seo | 2.7.7 | 2026-10-14 |
 | analytics | 2.1.0 | 2026-10-12 |
 | aso | 2.0.2 | 2026-10-08 |
 | attribution | 1.1.5 | 2026-10-12 |
@@ -56,6 +56,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.11.30 (2026-10-14)
+
+- **ai-seo** (2.7.6 → 2.7.7): adds Omnia alongside existing AI visibility monitoring options, with agent-assisted content optimization and outreach.
 
 ### 2.11.29 (2026-10-13)
 
