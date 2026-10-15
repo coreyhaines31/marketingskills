@@ -4,13 +4,15 @@ Use this workflow when a user wants to connect marketing accounts to their local
 
 ## 1. Check the Environment Before Collecting Credentials
 
-Confirm that the agent can run local commands and edit private files in the user's chosen workspace. In a chat-only environment, explain that limitation and offer these instructions for a local agent; do not ask the user to paste credentials into chat.
+For local CLI setup, confirm that the agent can run commands and edit private files in the user's chosen workspace. For hosted MCP, check whether the client can add the selected connector and complete its authentication flow. If neither setup method is available, explain the limitation and offer these instructions for a compatible client; do not ask the user to paste credentials into chat.
 
-Confirm the checkout path, then run `node --version` and check that the selected CLI exists. The CLIs require Node 18+ and no dependency installation. The optional `--env-file` examples below require Node 20.6+; check `node --help` for support. On older Node versions, use the agent client's environment/secret configuration instead, or ask before installing a supported runtime. Do not silently change the user's runtime or system configuration.
+For a repository CLI, confirm the checkout path, then run `node --version` and check that the selected CLI exists. The repository CLIs require Node 18+ and no dependency installation. A hosted MCP connection instead needs the selected client's connector support; it does not require a repository CLI or Node installation. The optional `--env-file` examples below require Node 20.6+; check `node --help` for support. On older Node versions, use the agent client's environment/secret configuration instead, or ask before installing a supported runtime. Do not silently change the user's runtime or system configuration.
 
 ## 2. Select Only the Needed Tools
 
 Ask which tools the user wants to connect and which account/property and environment (sandbox or production) to use. Work on one chosen tool at a time. Do not create applications, request unrelated scopes, or configure all tools by default.
+
+For SEO, search, social, or company data, options include direct providers in the [registry](REGISTRY.md), [AIsa](aisa/README.md), and manual exports. [Composio](composio/README.md) is another option for connecting supported SaaS accounts. Choose based on the required operation, existing access, and cost; partner status does not select the provider.
 
 Keep each setup message to 3–5 lines: one action, why it is needed, the official link, and what nonsensitive confirmation to return. Wait for the user after app creation, permission approval, token generation, redirect setup, or account selection. Reuse completed steps and existing authorization. Never ask them to return a token, client secret, refresh token, or private key.
 
@@ -23,7 +25,7 @@ Example:
 
 ## 3. Store Selected Credentials Locally
 
-Use the user's existing secret manager or environment setup when available. Otherwise, with their permission create `.env.marketing` in the chosen workspace. Do not overwrite an existing file. In a POSIX shell, this creates an empty owner-private file and fails if it already exists:
+For client-managed OAuth, complete sign-in in the client; no local credential file is needed. For key or token variables, use the user's existing secret manager or environment setup when available. Otherwise, with their permission create `.env.marketing` in the chosen workspace. Do not overwrite an existing file. In a POSIX shell, this creates an empty owner-private file and fails if it already exists:
 
 ```bash
 (umask 077; set -C; : > .env.marketing)
@@ -38,6 +40,7 @@ Build a template with only the chosen tool's variables from the table below. Use
 | LinkedIn Ads | `LINKEDIN_ACCESS_TOKEN` | Advertising API-approved app and member's ad-account access |
 | GA4 | `GA4_ACCESS_TOKEN` | OAuth access token; numeric property ID is passed separately |
 | Stripe | `STRIPE_API_KEY` for the HTTP example below | Restricted server-side key with permission to read customers; use a sandbox first |
+| ◆ AIsa | `AISA_API_KEY` for a Bearer-key connection; none for domain MCP browser OAuth | Keep client-managed OAuth tokens in the client; account access and billing belong to the selected credential |
 
 Refresh tokens and app secrets belong in the user's secret manager for the selected OAuth flow. The repository CLIs consume access tokens and do not refresh them automatically. Do not put refresh tokens into an access-token variable. The `.env.marketing` file is data: use Node's environment loader or client configuration, not shell `source`/`eval`.
 
@@ -73,6 +76,13 @@ Refresh tokens and app secrets belong in the user's secret manager for the selec
 1. Select the intended account and a sandbox for initial setup. In the Dashboard, create a restricted key with only the customer-read permission needed below. A publishable `pk_...` key cannot read account data; a webhook signing secret is not an API key. See [Stripe's key guide](https://docs.stripe.com/keys).
 2. Save the restricted key locally as `STRIPE_API_KEY`. This repository has no `tools/clis/stripe.js`; use the provider's CLI/MCP or the read-only HTTP check below. Configure only the selected connection.
 
+### AIsa
+
+1. Review the [coverage map](aisa/coverage-map.md) for the requested data and alternatives. AIsa is a [◆ Verified Partner](REGISTRY.md#verified-partners); that status does not change provider selection.
+2. Follow the [quick start](aisa/README.md#choose-the-connection) for the selected interface. Domain MCP at `https://mcp.aisa.one/mcp` supports browser OAuth or a Bearer key; AIsa also publishes a separate Tool Router with different tools. Reuse a working connection and inspect its actual contract.
+3. Complete client-managed OAuth, or supply `AISA_API_KEY` through the client's secret/environment configuration for a key-based connection. There is no `tools/clis/aisa.js`; a remote MCP connection does not require installing a CLI.
+4. Verify with the free protected check below. Before any paid data lookup, confirm its scope, pricing, and sufficient budget authorization using the [integration guide](integrations/aisa.md#run-a-lookup-with-a-budget).
+
 ## 5. Test a Small Read and Inspect the Response
 
 Run from the repository root after the user authorizes the selected account read. These Node `--env-file` examples require Node 20.6+. With client-managed environment variables, omit `--env-file=.env.marketing`. Substitute the confirmed GA4 property ID.
@@ -102,6 +112,8 @@ node --env-file=.env.marketing -e '
 '
 ```
 
+For AIsa domain MCP, inspect the client's `use` tool schema and invoke its documented free account read with `operation_id: "account"`, supplying other required fields according to that schema. An already configured AIsa CLI can use `aisa balance` instead. Report connection status without copying account details or identifiers into chat. Router users must verify a free protected operation using that interface's own discovery and schema. Tool listings alone do not prove authenticated access, and setup must not trigger a paid lookup.
+
 Check both process status **and** provider response. Some older CLIs can exit zero with an error payload. Record account/property, environment, operation, and outcome without secrets or customer data. Empty results can be a valid connection; they do not prove a broken account or permission to write.
 
 | Failure | Next step |
@@ -117,4 +129,4 @@ Check both process status **and** provider response. Some older CLIs can exit ze
 
 Report each selected tool as connected, waiting for user, waiting for provider approval, or failed with a specific next step. A completed setup for one tool does not imply the others are ready.
 
-Offer a small read-only result: account inventory for Ads, yesterday's active users for GA4, or an authorized sandbox billing check for Stripe. Reuse permission already granted for that result; otherwise ask before accessing another account or a broader dataset. Route a full audit to the appropriate marketing skill. Campaign edits, sends, payments, and budget changes remain separate actions requiring the user's authorization.
+Offer a small read-only result: account inventory for Ads, yesterday's active users for GA4, an authorized sandbox billing check for Stripe, or a free AIsa connection check and a scoped proposal for data retrieval. Reuse permission already granted for that result; otherwise ask before accessing another account or a broader dataset. Route a full audit to the appropriate marketing skill. Campaign edits, sends, payments, and budget changes remain separate actions requiring the user's authorization.
