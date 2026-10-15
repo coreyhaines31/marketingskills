@@ -84,7 +84,7 @@ Diagnose with the granular classes; report to executives with the three roll-ups
 **Then follow the mix:**
 
 - **Engines already cite company sites, and yours lacks the facts:** strengthen owned content first. State specific, current facts on the page that should own them.
-- **Editorial or institutional sources dominate:** pursue earned coverage and analyst inclusion.
+- **Editorial or institutional sources dominate:** pursue earned coverage and analyst inclusion. The **link-building** skill turns the cited pages into a prospect list.
 - **Communities contribute materially:** participate where you can do it honestly and in your own name. Skip communities the engines don't cite.
 - **Competitor pages get cited:** read them for the facts and framing you're missing. Don't copy them.
 - **Engines disagree:** plan per engine. A blended average can hide opposite behavior.

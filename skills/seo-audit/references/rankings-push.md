@@ -26,7 +26,7 @@ Open the three results above you and write down, for each one, the concrete reas
 - **Format.** They have the table, steps, or tool the query calls for.
 - **Links.** They're linked from more, and stronger, pages, inside their site and out.
 
-If you can't name a reason, don't guess with a rewrite. The gap is more likely authority than on-page, and the fix is links (the `backlink-prospecting` loop in `marketing-loops`) rather than content.
+If you can't name a reason, don't guess with a rewrite. The gap is more likely authority than on-page, and the fix is links (the **link-building** skill, run weekly as the `backlink-prospecting` loop in `marketing-loops`) rather than content.
 
 ## Make the smallest change that closes the gap
 

@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.2 | 2026-10-12 |
 | ad-creative | 2.12.1 | 2026-10-15 |
-| ai-seo | 2.9.0 | 2026-10-15 |
+| ai-seo | 2.9.1 | 2026-10-15 |
 | analytics | 2.2.0 | 2026-10-15 |
 | aso | 2.0.2 | 2026-10-08 |
 | attribution | 1.1.5 | 2026-10-12 |
@@ -14,24 +14,25 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.3 | 2026-10-12 |
 | cold-email | 2.2.0 | 2026-10-07 |
 | community-marketing | 2.0.1 | 2026-08-23 |
-| competitor-profiling | 2.1.3 | 2026-10-07 |
+| competitor-profiling | 2.1.4 | 2026-10-15 |
 | competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.3 | 2026-10-07 |
+| content-strategy | 2.1.4 | 2026-10-15 |
 | copy-editing | 2.2.0 | 2026-10-15 |
 | copywriting | 2.3.1 | 2026-10-15 |
 | cro | 2.0.3 | 2026-10-08 |
 | customer-research | 2.0.4 | 2026-10-02 |
-| directory-submissions | 2.1.1 | 2026-10-08 |
+| directory-submissions | 2.1.2 | 2026-10-15 |
 | emails | 2.1.4 | 2026-10-15 |
 | events | 1.0.0 | 2026-08-23 |
-| free-tools | 2.0.2 | 2026-10-15 |
+| free-tools | 2.0.3 | 2026-10-15 |
 | image | 2.0.2 | 2026-10-02 |
 | influencer-marketing | 1.4.0 | 2026-10-15 |
 | launch | 2.2.0 | 2026-10-07 |
 | lead-magnets | 2.1.0 | 2026-10-08 |
+| link-building | 1.0.0 | 2026-10-15 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.1 | 2026-08-23 |
-| marketing-loops | 1.6.0 | 2026-10-15 |
+| marketing-loops | 1.6.1 | 2026-10-15 |
 | marketing-plan | 1.2.2 | 2026-10-12 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.2 | 2026-10-12 |
@@ -43,12 +44,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | product-marketing | 2.2.0 | 2026-10-15 |
 | programmatic-seo | 2.1.0 | 2026-10-06 |
 | prospecting | 1.3.0 | 2026-10-08 |
-| public-relations | 1.2.0 | 2026-10-02 |
+| public-relations | 1.2.1 | 2026-10-15 |
 | referrals | 2.2.1 | 2026-10-12 |
 | revops | 2.2.1 | 2026-10-12 |
 | sales-enablement | 2.4.0 | 2026-10-07 |
 | schema | 2.0.2 | 2026-10-08 |
-| seo-audit | 2.2.1 | 2026-10-12 |
+| seo-audit | 2.2.2 | 2026-10-15 |
 | signup | 2.0.1 | 2026-10-08 |
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
@@ -56,6 +57,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.12.0 (2026-10-15)
+
+New skill: **link-building**, for earning links and third-party mentions that lift rankings and AI citations.
+
+- **link-building** (new, 1.0.0): confirms links are the bottleneck with a page-level link gap before any outreach, then ranks tactics by effort and quality (unlinked mention reclamation, partner and integration pages, moved and broken links, "best X" list inclusion, resource pages, broken link replacement, editorial guest articles) and hands PR, podcasts, directories, reviews, and communities to their own skills. Every placement is judged for SEO authority and for whether AI engines cite the page, so mentions without links count. References cover tactic playbooks, prospecting and qualification with outreach templates and a tracker, and a risk policy built on Google's spam policies (updated 2026-08-28): paid placements carry rel=sponsored or nofollow, plus vendor vetting, manual actions, and when disavow is warranted. Five evals.
+- **Routing** (patch bumps): seo-audit, content-strategy, directory-submissions, public-relations, competitor-profiling, free-tools, and ai-seo now point link work to link-building. The marketing-loops backlink-prospecting loop runs through it, adds AI-cited pages as prospects, and uses the outreach tracker as its state.
 
 ### 2.11.37 (2026-10-15)
 

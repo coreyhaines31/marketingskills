@@ -360,16 +360,16 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 ### The backlink-prospecting loop
 - **Check cadence**: Weekly
 - **Acts when**: New relevant link/guest-post/mention targets appear (or the pipeline is thin).
-- **Purpose**: Keep a steady flow of link-building and earned-mention opportunities.
-- **Skills used**: `public-relations`, `seo-audit`
+- **Purpose**: Keep a steady flow of link-building and earned-mention opportunities aimed at the pages that need authority.
+- **Skills used**: `link-building`, `public-relations`, `seo-audit`
 - **Loop body**:
-  1. Find new prospects: sites linking to competitors, relevant roundups, unlinked brand mentions, resource pages.
-  2. Qualify by relevance + authority.
-  3. Draft outreach angles for the top targets.
-- **Self-check**: Is the target genuinely relevant, or a low-quality link that could hurt? Skip spammy sites.
-- **State / idempotency**: Track already-contacted targets + outcomes; respect a follow-up cadence, don't re-pitch cold.
+  1. Find new prospects: sites linking to two or more competitors' ranking pages, unlinked brand mentions, the third-party pages AI engines cite for the target prompts, resource pages, and broken links to dead resources.
+  2. Qualify by relevance, legitimacy, and value to a target page (checks in `link-building`'s prospecting reference).
+  3. Draft outreach for the top targets, one ask each.
+- **Self-check**: Is the target genuinely relevant, or a low-quality link that could hurt? Skip spammy sites, and never propose paying for a followed link.
+- **State / idempotency**: The outreach tracker is the state: skip anyone already contacted, respect a single follow-up, don't re-pitch cold.
 - **Stop / bail-out**: No qualified new targets → skip. Human-approve outreach sends.
-- **Output**: A qualified prospect list with drafted outreach.
+- **Output**: A qualified prospect list with drafted outreach, plus placements won since the last run.
 
 ### The directory-submission loop
 - **Check cadence**: Monthly

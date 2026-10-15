@@ -2,7 +2,7 @@
 name: competitor-profiling
 description: "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific battle cards, see sales-enablement. For researching accounts you're selling to, see prospecting."
 metadata:
-  version: 2.1.3
+  version: 2.1.4
 ---
 
 # Competitor Profiling
@@ -434,6 +434,7 @@ Only ask if not answered by context or input:
 - **customer-research**: For mining reviews and community sentiment in depth
 - **content-strategy**: For using competitor content gaps to plan your own content
 - **seo-audit**: For auditing your own site relative to competitors
+- **link-building**: For turning competitors' referring domains into a link gap prospect list
 - **sales-enablement**: For turning profiles into battle cards and sales collateral
 - **ads**: For analyzing competitor ad strategies
 - **pricing**: For deeper pricing analysis informed by competitor profiles

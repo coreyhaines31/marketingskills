@@ -2,7 +2,7 @@
 name: seo-audit
 description: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," "SEO health check," "my traffic dropped," "lost rankings," "not showing up in Google," "site isn't ranking," "Google update hit me," "page speed," "core web vitals," "crawl errors," "indexing issues," "stuck on page 2," "striking distance keywords," "title tag rewrite," "low CTR," "local SEO," "Google Business Profile," or "map pack." Use this even if the user just says something vague like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.
 metadata:
-  version: 2.2.1
+  version: 2.2.2
 ---
 
 # SEO Audit
@@ -489,6 +489,7 @@ Same format as above
 ## Related Skills
 
 - **ai-seo**: For optimizing content for AI search engines (AEO, GEO, LLMO)
+- **link-building**: For closing an authority gap with earned links and mentions
 - **programmatic-seo**: For building SEO pages at scale
 - **site-architecture**: For page hierarchy, navigation design, and URL structure
 - **schema**: For implementing structured data
