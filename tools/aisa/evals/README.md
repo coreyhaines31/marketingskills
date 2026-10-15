@@ -26,15 +26,15 @@ These fixtures exercise decisions; they do not measure provider data accuracy or
 
 Live checks are separate, scoped integration checks. Do not replay the synthetic fixtures or their operation IDs against AIsa.
 
-- Record the client, model, date, and chosen server URL. The domain MCP at `https://mcp.aisa.one/mcp` uses `search`, `list_categories`, `get_details`, `use`, and `batch_use`. The separate Tool Router at `https://tools.aisa.one/mcp` uses `search`, `batch_get_schema`, `batch_quote`, and `batch_use`. Do not transfer one interface's arguments or authentication assumptions to the other.
-- Start with discovery and schema inspection. Verify authentication with a documented free protected operation supported by that interface; public metadata alone is not proof of an authenticated connection. Redact keys, tokens, and account identifiers from evidence.
-- Copy exact operation/tool IDs and arguments from current discovery and schemas. Verify that requested filters, limits, dates, and pagination exist. If a capability is missing, record that outcome rather than inventing an endpoint.
+- Record the client, model, date, and server URL. AIsa MCP at `https://mcp.aisa.one/mcp` uses `search`, `list_categories`, `get_details`, `use`, and `batch_use`.
+- Start with `search` and use `get_details` to inspect the full schema and pricing for each candidate operation. Verify authentication with a documented free protected operation; public metadata alone is not proof of an authenticated connection. Redact keys, tokens, and account identifiers from evidence.
+- Copy exact operation IDs and arguments from current discovery and schemas. Verify that requested filters, limits, dates, and pagination exist. If a capability is missing, record that outcome rather than inventing an endpoint.
 - Keep paid execution disabled unless the user has explicitly authorized the exact test scope and spend. A quote is neither authorization nor proof of a maximum final charge. Re-quote changed arguments and include pagination, batches, and any authorized retries in the total.
-- For the domain interface, `max_price_usd` checks a preflight estimate; it does **not** guarantee a final-charge ceiling for metered operations. Under a fixed budget, execute only when a documented maximum or a provable bound fits the remaining authorization. If no bound is available, stop and record the limitation. For the Router, verify its current quote and execution contracts rather than assuming equivalent cap semantics.
+- `max_price_usd` checks a preflight estimate; it does **not** guarantee a final-charge ceiling for metered operations. Under a fixed budget, execute only when a documented maximum or a provable bound fits the remaining authorization. If no bound is available, stop and record the limitation.
 - Keep read-only research separate from posting, sending outreach, or changing accounts. A successful lookup does not authorize those actions.
 - Retain source links, retrieval dates, provider labels, relevant filters, pagination state, quoted costs, and actual charges when reported. Report missing evidence as missing.
 
-Contract references checked on 2026-10-15: [AIsa interface index](https://aisa.one/llms.txt), [domain MCP quickstart](https://aisa.one/docs/agent-quickstart), [billing and budget semantics](https://aisa.one/docs/guides/pricing), and [domain catalogue](https://mcp.aisa.one/servers). Recheck these before a live run; provider availability and pricing can change.
+Contract references checked on 2026-10-15: [MCP documentation](https://mcp.aisa.one/llms.txt), [MCP quickstart](https://aisa.one/docs/agent-quickstart), [billing and budget semantics](https://aisa.one/docs/guides/pricing), and [MCP catalogue](https://mcp.aisa.one/servers). Recheck these before a live run; provider availability and pricing can change.
 
 ## Score and report
 
@@ -58,7 +58,7 @@ Suggested result record:
   "status": "not_run",
   "run_at": null,
   "agent": null,
-  "interface": "domain",
+  "interface": "AIsa MCP",
   "assertion_results": [],
   "evidence": [],
   "quoted_usd": null,

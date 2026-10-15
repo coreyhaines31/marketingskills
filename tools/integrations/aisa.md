@@ -4,7 +4,7 @@
 
 One account and one key for third-party data APIs, billed per call. For marketing work, the relevant parts are SEO data (DataForSEO, Semrush, and Ahrefs endpoints), Similarweb market data, social data (X/Twitter, Instagram, Reddit, Pinterest, YouTube), web search and research (Tavily, Firecrawl, Exa, Perplexity), and people and company search. AIsa also offers model inference and finance data, which this guide doesn't cover.
 
-The MCP workflows, authentication, pricing guidance, and coverage below were reviewed against [aisa.one/llms.txt](https://aisa.one/llms.txt), the [domain MCP guide](https://mcp.aisa.one/llms.txt), the [public catalogue](https://mcp.aisa.one/servers), and the linked authentication and billing docs on 2026-10-15. This review did not execute authenticated provider calls. Coverage and prices change; inspect the selected operation before use.
+The MCP workflows, authentication, pricing guidance, and coverage below were reviewed against the [MCP guide](https://mcp.aisa.one/llms.txt), the [agent quickstart](https://aisa.one/docs/agent-quickstart), the [public catalogue](https://mcp.aisa.one/servers), and the linked authentication and billing docs on 2026-10-15. This review did not execute authenticated provider calls. Coverage and prices change; inspect the selected operation before use.
 
 See the [quick start](../aisa/README.md), [coverage map](../aisa/coverage-map.md), and [evaluation scenarios](../aisa/evals/README.md) for task-specific setup and validation.
 
@@ -13,15 +13,13 @@ See the [quick start](../aisa/README.md), [coverage map](../aisa/coverage-map.md
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST, Bearer auth. [API reference](https://aisa.one/docs/api-reference), [OpenAPI spec](https://aisa.one/openapi.yaml) |
-| MCP | ✓ | Remote, Streamable HTTP. Domain MCP: `https://mcp.aisa.one/mcp` (OAuth or Bearer key); separate Tool Router: `https://tools.aisa.one/mcp` |
+| MCP | ✓ | Remote, Streamable HTTP: `https://mcp.aisa.one/mcp`. OAuth or Bearer key |
 | CLI | ✓ | `@aisa-one/cli` on npm (`aisa login`, `aisa balance`) |
 | Agent skill | ✓ | `npx skills add AIsa-team/agent-skills --skill aisa` |
 
-## How the MCP Interfaces Work
+## How the MCP Server Works
 
-AIsa's [product index](https://aisa.one/llms.txt) now lists the Tool Router as its recommended connector: `search`, `batch_get_schema`, `batch_quote`, and `batch_use`. Its Bearer-key setup and tool contracts differ from domain MCP. The [agent quickstart](https://aisa.one/docs/agent-quickstart) still documents domain MCP; the examples below use that interface. Reuse the user's selected connection and inspect its actual schemas rather than mixing operation IDs or parameters between interfaces.
-
-The **domain MCP** root endpoint lists five tools:
+Connect to `https://mcp.aisa.one/mcp`. The endpoint lists five tools:
 
 | Tool | What it does | Billed |
 |------|--------------|--------|
@@ -31,7 +29,7 @@ The **domain MCP** root endpoint lists five tools:
 | `use` | Runs one operation; `max_price_usd` rejects an execution estimate above the supplied limit | Per call; the documented `account` read is free |
 | `batch_use` | Up to 20 operations; inspect its current budget semantics and every item result | Per call |
 
-For a shorter tool list, connect a module endpoint instead: `https://mcp.aisa.one/seo/mcp` (keywords, SERPs, backlinks, site audit, AI-answer visibility), or `social`, `search`, `sales`, `gtm`. `search` still reaches the whole catalogue from any entry point.
+Use `list_categories` to browse capabilities and `search` to find relevant operations through the same connection.
 
 A `402` can report insufficient balance, an exhausted key limit, missing subscription access, or a price admission rejection. Read the specific error; do not automatically top up, upgrade, or retry.
 
@@ -42,7 +40,7 @@ A `402` can report insufficient balance, an exhausted key limit, missing subscri
 
 ## Authentication
 
-- **Interactive domain MCP:** OAuth. Add the domain MCP server and approve in the browser; no key has to exist first. The token is scoped to that client and revocable on its own. For the separate Router, follow its [current authentication instructions](https://aisa.one/llms.txt).
+- **Interactive MCP:** OAuth. Add the MCP server and approve in the browser; no key has to exist first. The token is scoped to that client and revocable on its own.
 - **Headless and CI:** an API key from [console.aisa.one](https://console.aisa.one) exported as `AISA_API_KEY` and sent as `Authorization: Bearer $AISA_API_KEY`. Keep it in a secret manager or the CI's secret store, never in the repo, client-side code, or screenshots.
 - The current CLI stores its OAuth session in `~/.aisa/tokens.json`; `AISA_API_KEY` overrides the stored session. Confirm the intended account with `aisa balance` without printing credentials. See [authentication](https://aisa.one/docs/guides/authentication).
 
@@ -74,7 +72,7 @@ If a CLI is needed, check its [current prerequisites](https://aisa.one/docs/get-
 3. Establish the scope, maximum possible cost, and sufficient user authorization. Reuse approval already given for that exact scope; if a metered maximum cannot be bounded within the budget, stop before execution.
 4. Call `use` with `max_price_usd` set to the approved admission limit. Account for pagination and additional requests, and reconcile observed charges before retries. Re-quote if arguments change.
 
-For a free connection check on this interface, inspect and run the documented `account` operation. Discovery metadata alone does not confirm authenticated access. The separate Router uses `batch_quote` and `batch_use` with its own schemas; do not assume it accepts domain MCP budget fields.
+For a free connection check, inspect the client's `use` tool schema and invoke the documented `account` read. Discovery metadata alone does not confirm authenticated access.
 
 **Cross-check a number across providers.** Domain authority and backlink counts come from more than one index (DataForSEO, Semrush, Ahrefs). When a decision depends on the figure, pull it from two and report both, labeled by source. They won't match, because each provider crawls differently.
 

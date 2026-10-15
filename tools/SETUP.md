@@ -40,7 +40,7 @@ Build a template with only the chosen tool's variables from the table below. Use
 | LinkedIn Ads | `LINKEDIN_ACCESS_TOKEN` | Advertising API-approved app and member's ad-account access |
 | GA4 | `GA4_ACCESS_TOKEN` | OAuth access token; numeric property ID is passed separately |
 | Stripe | `STRIPE_API_KEY` for the HTTP example below | Restricted server-side key with permission to read customers; use a sandbox first |
-| ◆ AIsa | `AISA_API_KEY` for a Bearer-key connection; none for domain MCP browser OAuth | Keep client-managed OAuth tokens in the client; account access and billing belong to the selected credential |
+| ◆ AIsa | `AISA_API_KEY` for a Bearer-key connection; none for MCP browser OAuth | Keep client-managed OAuth tokens in the client; account access and billing belong to the selected credential |
 
 Refresh tokens and app secrets belong in the user's secret manager for the selected OAuth flow. The repository CLIs consume access tokens and do not refresh them automatically. Do not put refresh tokens into an access-token variable. The `.env.marketing` file is data: use Node's environment loader or client configuration, not shell `source`/`eval`.
 
@@ -79,7 +79,7 @@ Refresh tokens and app secrets belong in the user's secret manager for the selec
 ### AIsa
 
 1. Review the [coverage map](aisa/coverage-map.md) for the requested data and alternatives. AIsa is a [◆ Verified Partner](REGISTRY.md#verified-partners); that status does not change provider selection.
-2. Follow the [quick start](aisa/README.md#choose-the-connection) for the selected interface. Domain MCP at `https://mcp.aisa.one/mcp` supports browser OAuth or a Bearer key; AIsa also publishes a separate Tool Router with different tools. Reuse a working connection and inspect its actual contract.
+2. Follow the [quick start](aisa/README.md#mcp-connection) to connect to `https://mcp.aisa.one/mcp` using browser OAuth or a Bearer key. Reuse a working connection and inspect the selected operation's actual contract.
 3. Complete client-managed OAuth, or supply `AISA_API_KEY` through the client's secret/environment configuration for a key-based connection. There is no `tools/clis/aisa.js`; a remote MCP connection does not require installing a CLI.
 4. Verify with the free protected check below. Before any paid data lookup, confirm its scope, pricing, and sufficient budget authorization using the [integration guide](integrations/aisa.md#run-a-lookup-with-a-budget).
 
@@ -112,7 +112,7 @@ node --env-file=.env.marketing -e '
 '
 ```
 
-For AIsa domain MCP, inspect the client's `use` tool schema and invoke its documented free account read with `operation_id: "account"`, supplying other required fields according to that schema. An already configured AIsa CLI can use `aisa balance` instead. Report connection status without copying account details or identifiers into chat. Router users must verify a free protected operation using that interface's own discovery and schema. Tool listings alone do not prove authenticated access, and setup must not trigger a paid lookup.
+For AIsa MCP, inspect the client's `use` tool schema and invoke its documented free account read with `operation_id: "account"`, supplying other required fields according to that schema. An already configured AIsa CLI can use `aisa balance` instead. Report connection status without copying account details or identifiers into chat. Tool listings alone do not prove authenticated access, and setup must not trigger a paid lookup.
 
 Check both process status **and** provider response. Some older CLIs can exit zero with an error payload. Record account/property, environment, operation, and outcome without secrets or customer data. Empty results can be a valid connection; they do not prove a broken account or permission to write.
 
