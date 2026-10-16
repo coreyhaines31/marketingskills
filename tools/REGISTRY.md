@@ -633,6 +633,14 @@ To use MCP tools, ensure the appropriate MCP server is configured in your enviro
 
 Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP servers (GA4, Stripe, Mailchimp, etc.) when available — they have deeper coverage.
 
+### AIsa Data Access
+
+[◆ AIsa](integrations/aisa.md) offers access to supported SEO, search, social, and company-data providers through one account. Check operation coverage, account access, and pricing before choosing it alongside direct provider connections or manual exports. Its data access serves a different need from connecting existing SaaS accounts through Composio.
+
+- **Quick start**: [tools/aisa/README.md](aisa/README.md)
+- **Coverage and alternatives**: [tools/aisa/coverage-map.md](aisa/coverage-map.md)
+- **Evaluation scenarios**: [tools/aisa/evals/README.md](aisa/evals/README.md)
+
 ### Cogny Integration
 
 [Cogny](integrations/cogny.md) is a hosted MCP gateway focused on marketing channels — one federated MCP URL with managed OAuth across every channel you've connected. Narrower than Composio (marketing-only) and useful when you want SEO, paid social, and privacy-friendly analytics behind a single MCP login.
