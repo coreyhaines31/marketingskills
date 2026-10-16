@@ -29,7 +29,7 @@
           {
             "type": "TEMPLATE",
             "key": "html",
-            "value": "<script>\n(function () {\n  if (window.__ctDetectWsForm) return;\n  window.__ctDetectWsForm = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'ws_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Same form-resolution chain the production module uses to find the\n  // form element (it just never used it for anything but PII \u2014 here we\n  // read a generic, non-PII form_id off whatever it resolves to).\n  function resolveForm(event, formObject) {\n    var formEl = null;\n    try {\n      if (formObject && formObject.form_canvas_obj && formObject.form_canvas_obj[0]) {\n        formEl = formObject.form_canvas_obj[0].querySelector('form.wsf-form');\n      }\n      if (!formEl && event && event.target) {\n        var target = event.target;\n        if ((target.tagName || '').toLowerCase() === 'form') {\n          formEl = target;\n        } else if (target.querySelector) {\n          formEl = target.querySelector('form.wsf-form');\n        }\n      }\n      if (!formEl) {\n        formEl = document.querySelector('form.wsf-form');\n      }\n    } catch (e) {\n      // non-fatal \u2014 fall through with whatever we have (possibly null)\n    }\n    return formEl;\n  }\n\n  // Fire path \u2014 WS Form's own jQuery event, fired on `document` once an\n  // AJAX submission passes server-side validation. This is the ONLY path\n  // that ever fires a conversion.\n  var successHooked = false;\n\n  function hookWsFormSuccess() {\n    if (successHooked) return true;\n    if (typeof jQuery === 'undefined' && typeof $ === 'undefined') return false;\n\n    var jQ = typeof jQuery !== 'undefined' ? jQuery : $;\n    jQ(document).on('wsf-success', function (event, formObject) {\n      var formEl = resolveForm(event, formObject);\n      fireConversion(formEl ? (formEl.id || '') : '');\n    });\n    successHooked = true;\n    return true;\n  }\n\n  // Retry hooking on DOMContentLoaded and window load \u2014 some sites load\n  // jQuery very late.\n  if (!hookWsFormSuccess()) {\n    document.addEventListener('DOMContentLoaded', function () {\n      hookWsFormSuccess();\n    });\n    window.addEventListener('load', function () {\n      hookWsFormSuccess();\n    });\n  }\n})();\n</script>"
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWsForm) return;\n  window.__ctDetectWsForm = true;\n  window.dataLayer = window.dataLayer || [];\n  var seenEvents = typeof WeakSet === 'function' ? new WeakSet() : null;\n  var lastSuccessByInstance = {};\n  function unwrap(value) { return value && value.jquery ? value[0] : (value && value[0] && value[0].nodeType ? value[0] : value); }\n  function onAcceptedSubmit(event, formObject, formId, instanceId, formEl) {\n    if (event && seenEvents) {\n      if (seenEvents.has(event)) return;\n      seenEvents.add(event);\n    }\n    var form = unwrap(formEl);\n    if (!form || !form.matches || !form.matches('form.wsf-form')) return;\n    var id;\n    if (typeof formId === 'string') {\n      if (!/^\\d+$/.test(formId) || Number(formId) < 1) return;\n      id = formId;\n    } else if (typeof formId === 'number') {\n      if (!isFinite(formId) || Math.floor(formId) !== formId || formId < 1) return;\n      id = String(formId);\n    } else {\n      return;\n    }\n    // WS Form can finish both requests from a double-click. Count the rapid\n    // success callbacks once, without changing the form or reading answers.\n    var instance = typeof instanceId === 'string' || typeof instanceId === 'number' ? instanceId : '';\n    var key = id + ':' + instance;\n    var now = Date.now();\n    if (lastSuccessByInstance[key] !== undefined && now - lastSuccessByInstance[key] < 2000) return;\n    lastSuccessByInstance[key] = now;\n    var adapter = window.__ctWsFormMethod2Emit;\n    if (typeof adapter === 'function') {\n      try { if (adapter(form, id, instanceId) === true) return; }\n      catch (e) { return; }\n    }\n    window.dataLayer.push({ event: 'ws_form_submitted', form_id: id });\n  }\n  var handlerBound = false;\n  function hook() {\n    if (handlerBound) return true;\n    var jq = typeof jQuery !== 'undefined' ? jQuery : (typeof $ !== 'undefined' ? $ : null);\n    if (!jq) return false;\n    jq(document).on('wsf-submit-success', onAcceptedSubmit);\n    handlerBound = true;\n    return true;\n  }\n  if (!hook()) {\n    document.addEventListener('DOMContentLoaded', hook, { once: true });\n    window.addEventListener('load', hook, { once: true });\n  }\n})();\n</script>"
           },
           {
             "type": "BOOLEAN",
@@ -55,18 +55,18 @@
         "containerId": "0",
         "triggerId": "2",
         "name": "CE - WS Form Submitted",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "ws_form_submitted"
               }
@@ -85,12 +85,12 @@
         "type": "v",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "name",
             "value": "form_id"
           },
           {
-            "type": "integer",
+            "type": "INTEGER",
             "key": "dataLayerVersion",
             "value": "2"
           }

@@ -2,316 +2,200 @@
  *  Detects: form submission. Pushes dataLayer event: formidable_forms_submitted
  *  From the conversion-tracking skill in Marketing Skills */
 (function () {
+  'use strict';
+
+  // Shared with the recipe snippet so template + recipe installation is one listener.
   if (window.__ctDetectFormidableForms) return;
   window.__ctDetectFormidableForms = true;
+  if (!/^https?:$/.test(window.location.protocol)) return;
   window.dataLayer = window.dataLayer || [];
 
-  var SUCCESS_WINDOW_MS = 10000;
-  var DEFERRED_MARKER_KEY = '__ctDetectFormidableNativePending';
-  var DEFERRED_MARKER_TTL_MS = 60000;
+  var MARKER_KEY = '__ctDetectFormidableNativePendingV2';
+  var MARKER_TTL_MS = 60000;
+  var handledResponses = typeof WeakSet === 'function' ? new WeakSet() : [];
+  var activeAttempts = [];
+  var jqueryHooked = false;
 
-  function isFormidableForm(formEl) {
-    if (!formEl) return false;
+  function safeId(value) {
+    var id = String(value || '');
+    return /^[1-9][0-9]*$/.test(id) ? id : '';
+  }
+
+  // Formidable's hidden form_id is non-sensitive structural metadata. No other
+  // field value, response property, label, HTML, or rendered text is inspected.
+  function formId(form) {
+    if (!form || typeof form.querySelector !== 'function') return '';
     try {
-      if (formEl.closest && formEl.closest('.frm_forms')) return true;
+      var input = form.querySelector('input[name="form_id"]');
+      return input && input.getAttribute ? safeId(input.getAttribute('value')) : '';
     } catch (e) {
-      // .closest not available — fall back to class check
+      return '';
     }
-    var cls = ' ' + (formEl.className || '') + ' ';
-    return cls.indexOf(' frm-show-form ') !== -1;
   }
 
-  function fireConversion(formId, formEl) {
-    // Both AJAX events (and the native path) can resolve to the same
-    // submission — dedupe with a short-lived flag on the form when it's
-    // resolvable. If it isn't resolvable we still fire (favors counting a
-    // real submission over silently dropping it).
-    if (!formEl && formId) formEl = document.getElementById('form_' + formId);
-    if (formEl) {
-      if (formEl.getAttribute('data-ct-processing') === 'true') return;
-      formEl.setAttribute('data-ct-processing', 'true');
-      setTimeout(function () { formEl.removeAttribute('data-ct-processing'); }, 2000);
-      disarmWatcher(formEl);
-    }
-    window.dataLayer.push({
-      event: 'formidable_forms_submitted',
-      form_id: formId || ''
-    });
+  function wrapperFor(id) {
+    if (!id) return null;
+    try { return document.getElementById('frm_form_' + id + '_container'); } catch (e) { return null; }
   }
 
-  // ---- Shared validation-marker check (used by both fire paths) ----
-
-  function isNodeHidden(el) {
-    try {
-      if (el.hidden) return true;
-      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;
-      var view = el.ownerDocument && el.ownerDocument.defaultView;
-      if (view && view.getComputedStyle) {
-        var cs = view.getComputedStyle(el);
-        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
+  function hasNode(scope, selector) {
+    if (!scope || typeof scope.querySelector !== 'function') return false;
+    try { return !!scope.querySelector(selector); } catch (e) { return false; }
   }
 
-  // Formidable's standard error markers: .frm_error (per-field message),
-  // .frm_error_style (form-level rejection box), .frm_blank_field (state
-  // class on a required-but-blank field), [aria-invalid="true"].
-  function hasVisibleValidationErrors(scopeEl) {
-    if (!scopeEl || !scopeEl.querySelectorAll) return false;
-    try {
-      var nodes = scopeEl.querySelectorAll(
-        '.frm_error, .frm_error_style, .frm_blank_field, [aria-invalid="true"]'
-      );
-      for (var i = 0; i < nodes.length; i++) {
-        var node = nodes[i];
-        if (isNodeHidden(node)) continue;
-        if (node.getAttribute && node.getAttribute('aria-invalid') === 'true') return true;
-        var cls = ' ' + (typeof node.className === 'string' ? node.className : '') + ' ';
-        if (cls.indexOf(' frm_blank_field ') !== -1) return true;
-        if ((node.textContent || '').trim()) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
+  function hasRejectionMarker(id) {
+    return hasNode(wrapperFor(id), '.frm_error, .frm_error_style, .frm_blank_field, [aria-invalid="true"]');
   }
 
-  function hasServerRejectionMarkers() {
-    try {
-      var wrappers = document.querySelectorAll('.frm_forms');
-      for (var i = 0; i < wrappers.length; i++) {
-        if (hasVisibleValidationErrors(wrappers[i])) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
+  function hasSuccessMarker(id) {
+    return hasNode(wrapperFor(id), '.frm_message');
   }
 
-  function hasSuccessMessage() {
-    try {
-      var nodes = document.querySelectorAll('.frm_message');
-      for (var i = 0; i < nodes.length; i++) {
-        if (isNodeHidden(nodes[i])) continue;
-        if ((nodes[i].textContent || '').trim()) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
-  }
-
-  // ---- Fire path 1: AJAX success events ----
-
-  var activeWatchers = [];
-
-  function findWatcher(formEl) {
-    for (var w = 0; w < activeWatchers.length; w++) {
-      if (activeWatchers[w].form === formEl) return activeWatchers[w];
-    }
-    return null;
-  }
-
-  function disarmWatcher(formEl) {
-    var existing = findWatcher(formEl);
-    if (existing && typeof existing.cleanup === 'function') existing.cleanup();
-  }
-
-  function handleAjaxSuccessEvent(event) {
-    var formId = '';
-    try {
-      if (event.detail && event.detail.frmVars && event.detail.frmVars.formID) {
-        formId = event.detail.frmVars.formID;
-      }
-    } catch (e) {
-      // detail not available
-    }
-
-    var formEl = formId ? document.getElementById('form_' + formId) : null;
-    if (!formEl) {
-      // Fallback: the first form inside the first .frm_forms wrapper.
-      try {
-        var wrappers = document.querySelectorAll('.frm_forms');
-        for (var i = 0; i < wrappers.length; i++) {
-          var f = wrappers[i].querySelector('form');
-          if (f) { formEl = f; break; }
-        }
-      } catch (e) {
-        // querySelectorAll unavailable — give up
-      }
-    }
-
-    fireConversion(formId, formEl);
-  }
-
-  // ---- Fire path 2: native (non-AJAX) pagehide watcher + deferred verdict ----
-
-  function writeDeferredMarker(formId) {
-    try {
-      window.sessionStorage.setItem(DEFERRED_MARKER_KEY, JSON.stringify({
-        t: Date.now(),
-        path: window.location.pathname,
-        formId: formId
-      }));
-      return true;
-    } catch (e) {
+  function responseWasHandled(response) {
+    if (!response || (typeof response !== 'object' && typeof response !== 'function')) return true;
+    if (typeof WeakSet === 'function' && handledResponses instanceof WeakSet) {
+      if (handledResponses.has(response)) return true;
+      handledResponses.add(response);
       return false;
     }
+    for (var i = 0; i < handledResponses.length; i++) {
+      if (handledResponses[i] === response) return true;
+    }
+    handledResponses.push(response);
+    if (handledResponses.length > 100) handledResponses.shift();
+    return false;
   }
 
-  function takeDeferredMarker() {
+  function push(id) {
+    if (!id) return;
+    window.dataLayer.push({ event: 'formidable_forms_submitted', form_id: id });
+  }
+
+  // Optional Method 2 adapter owns any enriched push. The detector passes only
+  // structural metadata and accepts only a literal true handled verdict; it
+  // never receives or inspects an adapter payload.
+  function emitAccepted(id, form, source) {
+    var handled = false;
     try {
-      var raw = window.sessionStorage.getItem(DEFERRED_MARKER_KEY);
+      if (typeof window.__ctFormidableMethod2Emit === 'function') {
+        handled = window.__ctFormidableMethod2Emit(id, form, source) === true;
+      }
+    } catch (e) {}
+    if (!handled) push(id);
+  }
+
+  // In 6.32.1 these are jQuery events: formidable.js calls
+  // jQuery(document).trigger(name, [form, response]). addEventListener does not
+  // receive these success events. The response is used only by object identity
+  // so the redirect and completion callbacks for one response count once.
+  function onAjaxSuccess(event, form, response) {
+    var id = formId(form);
+    if (!id || !response || responseWasHandled(response)) return;
+    emitAccepted(id, form, 'ajax');
+    disarmAttempt(form);
+  }
+
+  function hookJquery() {
+    if (jqueryHooked) return true;
+    var jq = window.jQuery || window.$;
+    if (typeof jq !== 'function') return false;
+    jq(document).on(
+      'frmFormComplete.ctRecipe frmBeforeFormRedirect.ctRecipe',
+      onAjaxSuccess
+    );
+    jqueryHooked = true;
+    return true;
+  }
+
+  function readMarker() {
+    try {
+      var raw = window.sessionStorage.getItem(MARKER_KEY);
       if (!raw) return null;
-      window.sessionStorage.removeItem(DEFERRED_MARKER_KEY);
-      var data = JSON.parse(raw);
-      if (!data || typeof data !== 'object') return null;
-      if (!data.t || Date.now() - data.t > DEFERRED_MARKER_TTL_MS) return null;
-      return data;
+      window.sessionStorage.removeItem(MARKER_KEY);
+      var marker = JSON.parse(raw);
+      if (!marker || typeof marker !== 'object') return null;
+      if (typeof marker.t !== 'number' || Date.now() < marker.t || Date.now() - marker.t > MARKER_TTL_MS) return null;
+      if (marker.hadSuccessAtSubmit === true) return null;
+      return { id: safeId(marker.id), origin: marker.origin, path: marker.path };
     } catch (e) {
-      try { window.sessionStorage.removeItem(DEFERRED_MARKER_KEY); } catch (e2) {}
+      try { window.sessionStorage.removeItem(MARKER_KEY); } catch (e2) {}
       return null;
     }
   }
 
-  // Runs once at module init on every page load. Consumes the marker the
-  // previous page wrote at pagehide (if any) and reads the verdict from the
-  // markup Formidable rendered into THIS page. Rejection is checked first:
-  // the rejected-POST re-render always carries error markers, so a missed
-  // fire here degrades to under-counting, never fabricating.
-  function processDeferredVerdict() {
-    var marker = takeDeferredMarker();
-    if (!marker) return;
-
-    if (hasServerRejectionMarkers()) return;
-
-    if (hasSuccessMessage()) {
-      fireConversion(marker.formId, null);
-      return;
+  // Native success either renders a form-specific message or redirects away
+  // from the submitted form. Rejection stays on the form page with errors.
+  // Only origin and pathname are retained, never query strings or form answers.
+  function processNativeMessage() {
+    var marker = readMarker();
+    if (!marker || !marker.id || hasRejectionMarker(marker.id)) return;
+    var redirected = marker.origin === window.location.origin &&
+      typeof marker.path === 'string' && marker.path !== window.location.pathname &&
+      !wrapperFor(marker.id) && !hasNode(document, '.frm_error, .frm_error_style');
+    if (hasSuccessMarker(marker.id) || redirected) {
+      var wrapper = wrapperFor(marker.id);
+      var form = null;
+      try { form = wrapper && wrapper.querySelector ? wrapper.querySelector('form') : null; } catch (e) {}
+      emitAccepted(marker.id, form, 'native');
     }
-    // No Formidable markup either way. A success configured to redirect
-    // lands on a different path with no .frm_message — treat a changed
-    // pathname as that redirect. A rejection can't look like this: the
-    // rejected POST always re-renders the form WITH error markers.
-    if (marker.path && window.location.pathname !== marker.path) {
-      fireConversion(marker.formId, null);
-    }
-    // Same page, no markers either way — ambiguous, do not fire.
   }
 
-  function armNativeWatcher(formEl, formId, pagehideTrusted) {
-    var existing = findWatcher(formEl);
-    if (existing) {
-      existing.refresh(formId, pagehideTrusted);
-      return;
+  function getAttempt(form) {
+    for (var i = 0; i < activeAttempts.length; i++) {
+      if (activeAttempts[i].form === form) return activeAttempts[i];
     }
+    return null;
+  }
 
-    var entry = { form: formEl, refresh: refresh, cleanup: cleanup };
-    activeWatchers.push(entry);
+  function disarmAttempt(form) {
+    var attempt = getAttempt(form);
+    if (!attempt) return;
+    try { window.removeEventListener('pagehide', attempt.onPageHide, true); } catch (e) {}
+    var index = activeAttempts.indexOf(attempt);
+    if (index !== -1) activeAttempts.splice(index, 1);
+  }
 
-    var fired = false;
-    var timer = null;
-    var pagehideArmed = false;
-
-    function onPageHide() {
-      if (fired) return;
-      // Click-then-leave guard: a visitor blocked by Formidable's own
-      // validation who then navigates away must not count.
-      if (hasVisibleValidationErrors(formEl)) return;
-      fired = true;
-      if (formEl.getAttribute('data-ct-processing') !== 'true') {
-        writeDeferredMarker(formId);
-      }
-      cleanup();
-    }
-
-    function armPagehide() {
-      if (pagehideArmed) return;
+  function armNativeMessageAttempt(event) {
+    var form = event && event.target;
+    if (!form || String(form.tagName || '').toLowerCase() !== 'form') return;
+    var isFormidable = false;
+    try { isFormidable = !!(form.closest && form.closest('.frm_forms')); } catch (e) {}
+    if (!isFormidable) return;
+    var id = formId(form);
+    if (!id) return;
+    var wrapper = wrapperFor(id);
+    var hadSuccessAtSubmit = hasNode(wrapper, '.frm_message');
+    var prior = getAttempt(form);
+    if (prior) disarmAttempt(form);
+    var attempt = { form: form, id: id, hadSuccessAtSubmit: hadSuccessAtSubmit, onPageHide: null };
+    attempt.onPageHide = function () {
+      disarmAttempt(form);
+      // Old server errors remain visible while a corrected native POST leaves.
+      // Decide acceptance from the response page, not the departing page.
+      if (attempt.hadSuccessAtSubmit) return;
       try {
-        window.addEventListener('pagehide', onPageHide, true);
-        pagehideArmed = true;
-      } catch (e) {
-        // fall through
-      }
-    }
-
-    function disarmPagehide() {
-      if (!pagehideArmed) return;
-      try { window.removeEventListener('pagehide', onPageHide, true); } catch (e) {}
-      pagehideArmed = false;
-    }
-
-    function startTimer() {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(function () {
-        if (!fired) cleanup();
-      }, SUCCESS_WINDOW_MS);
-    }
-
-    function cleanup() {
-      if (timer) { clearTimeout(timer); timer = null; }
-      disarmPagehide();
-      var idx = activeWatchers.indexOf(entry);
-      if (idx !== -1) activeWatchers.splice(idx, 1);
-    }
-
-    // A later submit on the same form: the visitor corrected a failed
-    // field and re-submitted. Refresh everything to the latest attempt.
-    function refresh(nextFormId, nextPagehideTrusted) {
-      if (fired) return;
-      formId = nextFormId;
-      if (nextPagehideTrusted) armPagehide();
-      else disarmPagehide();
-      startTimer();
-    }
-
-    if (pagehideTrusted) armPagehide();
-    startTimer();
+        window.sessionStorage.setItem(MARKER_KEY, JSON.stringify({
+          t: Date.now(),
+          id: attempt.id,
+          hadSuccessAtSubmit: false,
+          origin: window.location.origin,
+          path: window.location.pathname
+        }));
+      } catch (e) {}
+    };
+    activeAttempts.push(attempt);
+    try { window.addEventListener('pagehide', attempt.onPageHide, true); } catch (e) {}
   }
 
-  // Bubble-phase submit listener — arms the native watcher on every
-  // Formidable submit attempt. This fires even when Formidable
-  // preventDefaults it (the event still dispatches) — this is the moment
-  // we snapshot, NOT the moment we fire.
-  function handleNativeSubmit(event) {
-    var formEl = event.target;
-    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;
-    if (!isFormidableForm(formEl)) return;
-
-    var formId = '';
-    var m = /^form_(\d+)$/.exec(formEl.id || '');
-    if (m) formId = m[1];
-
-    // Client-validity gate: trust the pagehide path when the form is valid
-    // (or checkValidity is unavailable). NOTE per the source module:
-    // Formidable's required-ness is often enforced only server-side, so a
-    // form can pass checkValidity() while still blank — the pagehide-time
-    // visible-error check is the real safety net here, not this gate alone.
-    var pagehideTrusted = true;
-    try {
-      if (typeof formEl.checkValidity === 'function' && formEl.checkValidity() === false) {
-        pagehideTrusted = false;
-      }
-    } catch (e) {
-      // constraint validation unavailable — pagehide's visible-error check
-      // still guards this path
-    }
-
-    armNativeWatcher(formEl, formId, pagehideTrusted);
+  hookJquery();
+  if (!jqueryHooked) {
+    document.addEventListener('DOMContentLoaded', hookJquery, { once: true });
+    window.addEventListener('load', hookJquery, { once: true });
   }
-
-  document.addEventListener('frmFormComplete', handleAjaxSuccessEvent, true);
-  document.addEventListener('frmBeforeFormRedirect', handleAjaxSuccessEvent, true);
-  document.addEventListener('submit', handleNativeSubmit, false);
-
+  document.addEventListener('submit', armNativeMessageAttempt, true);
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      processDeferredVerdict();
-    });
+    document.addEventListener('DOMContentLoaded', processNativeMessage, { once: true });
   } else {
-    processDeferredVerdict();
+    processNativeMessage();
   }
 })();

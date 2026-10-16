@@ -2,119 +2,54 @@
  *  Detects: form submission. Pushes dataLayer event: webflow_form_submitted
  *  From the conversion-tracking skill in Marketing Skills */
 (function () {
-  if (window.__ctDetectWebflowForms) return;
-  window.__ctDetectWebflowForms = true;
+  if (window.__ctWebflowForms) return;
+  window.__ctWebflowForms = true;
   window.dataLayer = window.dataLayer || [];
-
-  // How long after a submit we keep watching for Webflow's success box
-  // before giving up. Webflow's AJAX round-trip is normally 1–2 seconds.
-  var WATCH_TIMEOUT_MS = 30000;
-
-  function fireConversion(formName) {
-    window.dataLayer.push({
-      event: 'webflow_form_submitted',
-      form_name: formName || ''
-    });
+  var listeners = [], timeout = 30000;
+  window.__ctWebflowSubscribe = function (listener) {
+    if (listener && typeof listener === 'object') listeners.push(listener);
+  };
+  function isForm(form) {
+    try { return !!(form && String(form.tagName || '').toLowerCase() === 'form' && form.closest && form.closest('.w-form')); }
+    catch (e) { return false; }
   }
-
-  // Webflow marks every form component with the `.w-form` wrapper class,
-  // regardless of theme or custom classes added on top. This is the same
-  // check the production module uses to scope its listener to real Webflow
-  // forms (and not e.g. a hand-coded <form> elsewhere on the page).
-  function isWebflowForm(formEl) {
-    if (!formEl || !formEl.closest) return false;
-    return formEl.closest('.w-form') !== null;
+  function notify(phase, form, candidate) {
+    var handled = false;
+    for (var i=0;i<listeners.length;i++) {
+      try { var fn=listeners[i] && listeners[i][phase]; if (typeof fn==='function' && fn(form,candidate)===true) handled=true; } catch(e) {}
+    }
+    return handled;
   }
-
-  function isVisible(el) {
-    if (!el) return false;
+  function visible(el) { try { return !!el && window.getComputedStyle(el).display !== 'none'; } catch(e) { return false; } }
+  function emit(form) {
+    var name=''; try { name=form.getAttribute('data-name') || form.id || ''; } catch(e) {}
+    if (!notify('onCandidate', form, true)) window.dataLayer.push({event:'webflow_form_submitted',form_name:name});
+  }
+  function submit(event) {
     try {
-      return window.getComputedStyle(el).display !== 'none';
-    } catch (e) {
-      return false;
-    }
-  }
-
-  // Arm a success watcher for one form. Fires only when Webflow's own
-  // success box (`.w-form-done`, a sibling of the form inside the `.w-form`
-  // wrapper) becomes visible — Webflow sets inline `display: block` on it
-  // after its AJAX call succeeds (live-verified). A visible `.w-form-fail`
-  // (Webflow's failure box), or the timeout elapsing with neither box shown
-  // (Webflow's JS can also reject a submission silently, with no UI change
-  // at all), tears the watcher down WITHOUT firing. One watcher per form:
-  // a re-submit while armed (e.g. a retry after a failure) resets it.
-  function armWatcher(formEl, formName) {
-    var wrap = formEl.closest('.w-form');
-    if (!wrap) return;
-    var doneEl = wrap.querySelector('.w-form-done');
-    var failEl = wrap.querySelector('.w-form-fail');
-    if (!doneEl) return; // nothing to confirm success against — never fire unconfirmed
-
-    var prev = formEl.__ctDetectWatch;
-    if (prev) prev.teardown();
-
-    var state = { fired: false };
-    var observer = null;
-    var pollTimer = null;
-    var killTimer = null;
-
-    function teardown() {
-      if (state.fired) return;
-      state.fired = true;
-      if (observer) { try { observer.disconnect(); } catch (e) {} }
-      if (pollTimer) clearInterval(pollTimer);
-      if (killTimer) clearTimeout(killTimer);
-      formEl.__ctDetectWatch = null;
-    }
-    state.teardown = teardown;
-
-    function check() {
-      if (state.fired) return;
-      if (isVisible(doneEl)) {
-        teardown();
-        fireConversion(formName); // confirmed Webflow success
-      } else if (isVisible(failEl)) {
-        teardown(); // confirmed Webflow failure — no conversion
+      var form=event.target; if (!isForm(form)) return;
+      notify('beforeAttempt', form, false);
+      var wrap=form.closest('.w-form'), done=wrap.querySelector('.w-form-done'), fail=wrap.querySelector('.w-form-fail');
+      if (!done) return;
+      var old=form.__ctWebflowWatch;
+      if (old) { notify('onOverlap', form, false); old.cancel(false); form.__ctWebflowWatch=null; }
+      var staleFail=visible(fail), settled=false, observer=null, poll=null, kill=null, jq=window.jQuery;
+      function stop(rejected) { if(settled)return; settled=true; if(observer)try{observer.disconnect();}catch(e){} if(jq)jq(document).off('ajaxComplete',check); if(poll)clearInterval(poll); if(kill)clearTimeout(kill); if(form.__ctWebflowWatch===state)form.__ctWebflowWatch=null; if(rejected)notify('onRejected',form,false); }
+      var state={cancel:function(){stop(false);}};
+      function check() {
+        if(settled)return;
+        // Webflow sets success only after its server accepts the form. A redirect
+        // skips the success box, so check that state after its AJAX callback.
+        var wf=jq && jq(form).data('.w-form');
+        if(wf && wf.form && wf.form[0]===form && wf.redirect && wf.success===true){ stop(); emit(form); return; }
+        if(visible(done)){ stop(); emit(form); return; }
+        if(!visible(fail)){staleFail=false;return;}
+        if(!staleFail)stop(true);
       }
-    }
-
-    if (typeof MutationObserver === 'function') {
-      observer = new MutationObserver(check);
-      observer.observe(wrap, {
-        attributes: true,
-        attributeFilter: ['style', 'class'],
-        subtree: true,
-        childList: true
-      });
-    }
-    pollTimer = setInterval(check, 300); // belt-and-braces alongside the observer
-    killTimer = setTimeout(teardown, WATCH_TIMEOUT_MS);
-
-    formEl.__ctDetectWatch = state;
+      if(typeof MutationObserver==='function'){observer=new MutationObserver(check);observer.observe(wrap,{attributes:true,attributeFilter:['style','class'],subtree:true,childList:true});}
+      if(jq)jq(document).on('ajaxComplete',check);
+      poll=setInterval(check,300); kill=setTimeout(function(){stop(true);},timeout); form.__ctWebflowWatch=state;
+    } catch(e) {}
   }
-
-  // Attached at the document level in CAPTURE phase so it runs before the
-  // handler Webflow attaches in bubble phase — the same technique the
-  // production module uses to see the submit reliably. The submit itself
-  // never fires the conversion; it only snapshots the form name and arms
-  // the success watcher above.
-  function handleSubmit(event) {
-    try {
-      var formEl = event.target;
-      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;
-      if (!isWebflowForm(formEl)) return;
-
-      // The form's own name/id — set by the site builder in the Webflow
-      // Designer, not user-submitted data. Snapshotted at submit time.
-      var formName = formEl.getAttribute('data-name') || formEl.id || '';
-
-      armWatcher(formEl, formName);
-    } catch (e) {
-      // Never throw back into Webflow's own form handling.
-    }
-  }
-
-  if (typeof document !== 'undefined' && document.addEventListener) {
-    document.addEventListener('submit', handleSubmit, true);
-  }
+  if(typeof document!=='undefined'&&document.addEventListener)document.addEventListener('submit',submit,true);
 })();

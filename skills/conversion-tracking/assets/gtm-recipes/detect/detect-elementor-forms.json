@@ -29,7 +29,7 @@
           {
             "type": "TEMPLATE",
             "key": "html",
-            "value": "<script>\n(function () {\n  if (window.__ctDetectElementorForms) return;\n  window.__ctDetectElementorForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Best-effort, non-PII identifier: the form's own id/name, or the\n  // nearest ancestor carrying Elementor's standard data-id widget-instance\n  // attribute. Never reads field values.\n  function bestEffortFormId(formEl) {\n    if (!formEl) return '';\n    if (formEl.id) return formEl.id;\n    var name = formEl.getAttribute && formEl.getAttribute('name');\n    if (name) return name;\n    try {\n      var withId = formEl.closest && formEl.closest('[data-id]');\n      if (withId) return withId.getAttribute('data-id') || '';\n    } catch (e) {\n      // .closest not available — non-fatal\n    }\n    return '';\n  }\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'elementor_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Same form-resolution chain the production module uses (event.target\n  // -> most recently clicked Elementor submit button's form -> the sole\n  // .elementor-form on the page) — ported here so the recipe can attach a\n  // real form_id instead of firing event-only.\n  var lastClickedForm = null;\n\n  function trackClick(event) {\n    try {\n      var target = event.target;\n      if (!target || !target.closest) return;\n      var form = target.closest('form.elementor-form');\n      if (form) lastClickedForm = form;\n    } catch (e) {\n      // non-fatal\n    }\n  }\n\n  function resolveFormFromTarget(target) {\n    if (!target || target === document || target === window) return null;\n    try {\n      if ((target.tagName || '').toLowerCase() === 'form' &&\n          target.classList && target.classList.contains('elementor-form')) {\n        return target;\n      }\n      if (target.closest) {\n        var parentForm = target.closest('form.elementor-form');\n        if (parentForm) return parentForm;\n      }\n    } catch (e) {\n      // non-fatal\n    }\n    return null;\n  }\n\n  // Fire path — Elementor Pro's own jQuery event, triggered on `document`\n  // once an AJAX submission passes server-side validation. This is the ONLY\n  // path this recipe tracks; Elementor Pro forms submit exclusively via\n  // Elementor's own AJAX pipeline, so there is no non-AJAX mode to miss.\n  var successHooked = false;\n\n  function hookElementorSuccess() {\n    if (successHooked) return true;\n    // A bare $ is only trusted when it looks like jQuery ($.fn exists), so\n    // another library that claims $ cannot break the hook.\n    var jQ = null;\n    if (typeof jQuery !== 'undefined') jQ = jQuery;\n    else if (typeof $ !== 'undefined' && typeof $.fn !== 'undefined') jQ = $;\n    if (!jQ) return false;\n    jQ(document).on('submit_success', function (event) {\n      var formEl = resolveFormFromTarget(event && event.target);\n      if (!formEl && lastClickedForm) formEl = lastClickedForm;\n      lastClickedForm = null;\n\n      if (!formEl) {\n        try {\n          var forms = document.querySelectorAll('.elementor-form');\n          if (forms.length === 1) formEl = forms[0];\n        } catch (e) {\n          // non-fatal\n        }\n      }\n\n      fireConversion(bestEffortFormId(formEl));\n    });\n    successHooked = true;\n    return true;\n  }\n\n  document.addEventListener('click', trackClick, true);\n\n  if (!hookElementorSuccess()) {\n    document.addEventListener('DOMContentLoaded', function () {\n      hookElementorSuccess();\n    });\n    window.addEventListener('load', function () {\n      hookElementorSuccess();\n    });\n  }\n})();\n</script>"
+            "value": "<script>\n(function () {\n  if (window.__ctDetectElementorForms) return;\n  window.__ctDetectElementorForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var seenEvents = typeof WeakSet === 'function' ? new WeakSet() : null;\n  function formFrom(target) {\n    try {\n      if (!target || target === document || target === window) return null;\n      if (target.matches && target.matches('form.elementor-form')) return target;\n      return target.closest ? target.closest('form.elementor-form') : null;\n    } catch (e) { return null; }\n  }\n  function formId(form) {\n    if (!form) return '';\n    if (form.id) return form.id;\n    var name = form.getAttribute && form.getAttribute('name');\n    if (name && name !== 'New Form') return name;\n    var widget = form.closest && form.closest('[data-id]');\n    return widget && widget.getAttribute('data-id') || '';\n  }\n  function onSuccess(event) {\n    if (event && seenEvents) {\n      if (seenEvents.has(event)) return;\n      seenEvents.add(event);\n    }\n    var form = formFrom(event && event.target);\n    var id = formId(form);\n    if (!form || !id) return;\n    var adapter = window.__ctElementorMethod2Emit;\n    if (typeof adapter === 'function') {\n      try { if (adapter(form, id) === true) return; }\n      catch (e) { return; }\n    }\n    window.dataLayer.push({ event: 'elementor_form_submitted', form_id: String(id) });\n  }\n  var handlerBound = false;\n  function hook() {\n    if (handlerBound) return true;\n    var jq = typeof jQuery !== 'undefined' ? jQuery : (typeof $ !== 'undefined' ? $ : null);\n    if (!jq) return false;\n    jq(document).on('submit_success', onSuccess);\n    handlerBound = true;\n    return true;\n  }\n  if (!hook()) {\n    document.addEventListener('DOMContentLoaded', hook, { once: true });\n    window.addEventListener('load', hook, { once: true });\n  }\n})();\n</script>"
           },
           {
             "type": "BOOLEAN",
@@ -55,18 +55,18 @@
         "containerId": "0",
         "triggerId": "2",
         "name": "CE - Elementor Forms Submitted",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "elementor_form_submitted"
               }
@@ -85,12 +85,12 @@
         "type": "v",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "name",
             "value": "form_id"
           },
           {
-            "type": "integer",
+            "type": "INTEGER",
             "key": "dataLayerVersion",
             "value": "2"
           }

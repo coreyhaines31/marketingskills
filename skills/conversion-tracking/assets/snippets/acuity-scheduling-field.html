@@ -1,0 +1,28 @@
+<!-- Paste this into Acuity's Custom Conversion Tracking field (Integrations, then
+     Custom Conversion Tracking). Put your own website address in SITES below, or
+     nothing counts. Then install acuity-scheduling.js, or its GTM recipe, on your site. -->
+<span hidden id="gtm-acuity-type">%appointmentType%</span>
+<script>
+(function () {
+  // Your website's address: https:// and the domain, nothing after it.
+  // Embedded on more than one site? Add each one: ['https://a.com', 'https://b.com']
+  var SITES = ['https://www.example.com'];
+  var id = '%id%', kind = '%type%', price = '%price%', el = document.getElementById('gtm-acuity-type');
+  function clean(v) {
+    v = String(v || '').replace(/^\s+|\s+$/g, '');
+    return v && !/^%[A-Za-z]+%$/.test(v) ? v : '';
+  }
+  id = clean(id);
+  if (!/^[A-Za-z0-9_-]{1,64}$/.test(id)) return;
+  var msg = { source: 'gtm-acuity-booking', version: 1, appointment_id: id };
+  kind = clean(kind);
+  if (/^[A-Za-z_-]{1,32}$/.test(kind)) msg.kind = kind;
+  var type = clean(el && el.textContent);
+  if (type) msg.appointment_type = type.slice(0, 200);
+  price = clean(price);
+  if (price) msg.price = price.slice(0, 32);
+  for (var i = 0; i < SITES.length; i++) {
+    try { window.top.postMessage(msg, SITES[i]); } catch (e) {}
+  }
+})();
+</script>

@@ -26,12 +26,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function (w, d, t, r, u) {\n  if (w.uetq && w.uetq.push !== Array.prototype.push) { return; }\n  var f, n, i;\n  w[u] = w[u] || [];\n  f = function () { var o = { ti: '__MICROSOFT_UET_TAG_ID__', enableAutoSpaTracking: true }; o.q = w[u]; w[u] = new UET(o); w[u].push('pageLoad'); };\n  n = d.createElement(t); n.src = r; n.async = 1;\n  n.onload = n.onreadystatechange = function () {\n    var s = this.readyState;\n    if (s && s !== 'loaded' && s !== 'complete') { return; }\n    f(); n.onload = n.onreadystatechange = null;\n  };\n  i = d.getElementsByTagName(t)[0];\n  i.parentNode.insertBefore(n, i);\n})(window, document, 'script', '//bat.bing.com/bat.js', 'uetq');\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -64,12 +64,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function () {\n  window.uetq = window.uetq || [];\n  /* Microsoft matches event goals on Action, Category and Label. This must\n     match the goal you created in the UET conversion goal screen exactly,\n     and it is case sensitive. */\n  window.uetq.push('event', '__MICROSOFT_EVENT_ACTION__', { event_category: 'conversion' });\n})();\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -101,18 +101,18 @@
         "containerId": "0",
         "triggerId": "201",
         "name": "CE - __RECIPE_LABEL__",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "__DETECTION_EVENT__"
               }

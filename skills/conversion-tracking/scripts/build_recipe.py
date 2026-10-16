@@ -27,8 +27,10 @@ DETECT_DIR = ROOT / "assets" / "gtm-recipes" / "detect"
 SEND_DIR = ROOT / "assets" / "gtm-recipes" / "send"
 EVENT_MAP = ROOT / "assets" / "gtm-recipes" / "event-map.json"
 
-# (pattern, human description) per kind of ID. Kept strict on purpose: every
-# accepted value is also safe inside a quoted or unquoted JavaScript literal.
+# (pattern, human description) per kind of ID. Kept strict on purpose, so most
+# formats are safe inside any quoted or unquoted JavaScript literal. The
+# Microsoft event action allows spaces, - and . too, and it is only ever used
+# inside a quoted string in Custom HTML, where js_escape applies.
 FORMATS = {
     "google_ads_id": (r"[0-9]{6,15}", "digits, e.g. 123456789 (AW- prefix optional)"),
     "google_ads_label": (r"[A-Za-z0-9_-]{1,64}", "letters, digits, _ and -, e.g. AbCdEfGhIj"),
@@ -40,6 +42,9 @@ FORMATS = {
     "uet_tag": (r"[0-9]{4,15}", "digits, e.g. 187000000"),
     "event_name": (r"[A-Za-z][A-Za-z0-9_]{0,49}", "a letter then letters, digits or _, max 50 chars"),
     "ga4_event_name": (r"[A-Za-z][A-Za-z0-9_]{0,39}", "a letter then letters, digits or _, max 40 chars"),
+    "microsoft_event_action": (r"(?!.*__)[A-Za-z0-9](?:[A-Za-z0-9 _.-]{0,98}[A-Za-z0-9_.-])?",
+                               "starts with a letter or digit; letters, digits, spaces, _, - and .; "
+                               "no double underscore; max 100 chars"),
 }
 TOKEN_RE = re.compile(r"__[A-Z0-9]+(?:_[A-Z0-9]+)*__")
 
@@ -139,7 +144,7 @@ def main():
         tokens["__META_EVENT_NAME__"] = event_name("Lead")
     elif args.send == "tiktok":
         require(args.pixel_id, "--pixel-id")
-        tokens["__TIKTOK_PIXEL_ID__"] = validated(args.pixel_id.strip(), "tiktok_pixel", "--pixel-id")
+        tokens["__TIKTOK_PIXEL_ID__"] = validated(args.pixel_id.strip().upper(), "tiktok_pixel", "--pixel-id")
         tokens["__TIKTOK_EVENT_NAME__"] = event_name("SubmitForm")
     elif args.send == "linkedin":
         require(args.partner_id, "--partner-id")
@@ -152,7 +157,13 @@ def main():
     elif args.send == "microsoft":
         require(args.uet_tag_id, "--uet-tag-id")
         tokens["__MICROSOFT_UET_TAG_ID__"] = validated(args.uet_tag_id.strip(), "uet_tag", "--uet-tag-id")
-        tokens["__MICROSOFT_EVENT_ACTION__"] = event_name("submit_lead_form")
+        if args.event_name is not None:
+            # Reject control characters anywhere before stripping, so a
+            # leading or trailing newline can't be stripped into a valid value.
+            if re.search(r"[\x00-\x1f\x7f]", args.event_name):
+                fail(f"--event-name {args.event_name!r} is not valid (control characters are not allowed)")
+            args.event_name = args.event_name.strip()
+        tokens["__MICROSOFT_EVENT_ACTION__"] = event_name("submit_lead_form", "microsoft_event_action")
 
     tool = events[args.tool]
     tokens["__RECIPE_LABEL__"] = tool["label"]
@@ -164,7 +175,9 @@ def main():
 
     # The detect recipe already has a custom-event trigger on the tool's
     # event; rewire the send tags to it and drop the template's duplicate.
-    detect_trigger = next(t for t in dcv["trigger"] if t["type"] == "customEvent")
+    # Recipes use Tag Manager's import format (CUSTOM_EVENT). The API spelling
+    # (customEvent) is accepted too, for any older copy.
+    detect_trigger = next(t for t in dcv["trigger"] if t["type"] in ("CUSTOM_EVENT", "customEvent"))
     send_trigger_ids = {t["triggerId"] for t in scv.get("trigger", [])}
 
     next_id = 1000
@@ -193,8 +206,8 @@ def main():
     print(f"  detects : {tool['label']} ({tool['moment']}) via dataLayer event '{tool['event']}'")
     print(f"  sends to: {args.send}")
     print("  import  : GTM > Admin > Import Container > choose this file > existing workspace > MERGE")
-    print("  consent : send tags require consent (see Consent and privacy in "
-          "assets/gtm-recipes/README.md); the site needs Consent Mode or a CMP, or they never fire")
+    print("  consent : ad tags require ad_storage consent (GA4 analytics_storage); with no consent "
+          "setup they fire, with a denied default they wait (see assets/gtm-recipes/README.md)")
     if args.send == "google-ads":
         print("  note    : if the container already has a Conversion Linker tag, delete the duplicate after import")
     if args.send in ("meta", "tiktok", "linkedin", "microsoft"):
@@ -203,7 +216,7 @@ def main():
               f"is a top cause of doubled conversions.")
     if args.send == "microsoft":
         print("  note    : Microsoft counts nothing until a UET conversion goal exists. Create an "
-              "event goal whose Action exactly matches the event name above; it is case sensitive.")
+              f"event goal whose Action is exactly '{tokens['__MICROSOFT_EVENT_ACTION__']}' (case sensitive).")
 
 
 if __name__ == "__main__":

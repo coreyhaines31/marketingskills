@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "WordPress site, Gravity Forms contact form, we have Google Tag Manager already. I want form submissions showing up as conversions in Google Ads. Where do I start?",
-      "expected_output": "Should pin the three facts (moment, destination, stack) and recognise all three are already answered. Should hook Gravity Forms' confirmation event (gform_confirmation_loaded), never the submit click. Should offer the merged GTM recipe via build_recipe.py (detection listener + custom event trigger + Conversion Linker + conversion tag in one import file, MERGE not overwrite). Should walk conversion action creation in Google Ads and collect the conversion ID and label. Should verify with a test conversion and close with a status (fired confirmed vs arrival pending). Should state browser-side loss (roughly 30%) once so the choice is informed, without turning it into a pitch for any tool.",
+      "expected_output": "Should pin the three facts (moment, destination, stack) and recognise all three are already answered. Should hook Gravity Forms' confirmation event (gform_confirmation_loaded), never the submit click. Should offer the merged GTM recipe via build_recipe.py (detection listener + custom event trigger + Conversion Linker + conversion tag in one import file, MERGE not overwrite). Should walk conversion action creation in Google Ads and collect the conversion ID and label. Should verify with a test conversion and close with a status (fired confirmed vs arrival pending). Should state browser-side loss (an estimated 10 to 30%, more for B2B and developer audiences) once so the choice is informed, without turning it into a pitch for any tool.",
       "assertions": [
         "Fires on confirmed success (gform_confirmation_loaded or confirmation element), not on submit click",
         "Uses or offers the GTM recipe system with MERGE import",
@@ -43,7 +43,7 @@
     {
       "id": 4,
       "prompt": "B2B SaaS, spending on Google Ads. The signup completes in our Next.js backend after email verification. No form tool. How do these become conversions?",
-      "expected_output": "Should recognise no browser event exists for the true conversion moment, so no snippet or GTM recipe applies; the send must originate server-side from the backend moment, with the click ID captured browser-side at landing and carried across. Should present the implementation options (direct Google Ads API upload, a server-side container, or a managed tool that pairs backend events with browser click IDs) as options with effort and cost, not one answer. Should warn against the tempting wrong answer of firing on the signup form submit, which counts unverified signups.",
+      "expected_output": "Should recognise no browser event exists for the true conversion moment, so no snippet or GTM recipe applies; the send must originate server-side from the backend moment, with the click ID captured browser-side at landing and carried across. Should present the implementation options (a direct upload through Google's Data Manager API, a server-side container, or a managed tool that pairs backend events with browser click IDs) as options with effort and cost, not one answer. Should warn against the tempting wrong answer of firing on the signup form submit, which counts unverified signups.",
       "assertions": [
         "States that no browser event exists for the real moment",
         "Explains click ID capture at landing plus server-side send",
@@ -142,10 +142,10 @@
     {
       "id": 12,
       "prompt": "I'm on Squarespace using their built-in contact form. Want leads in Google Ads. Is that even possible?",
-      "expected_output": "Should say yes and never call the tool unsupported. Squarespace forms submit via AJAX with an inline success message; the free paths are the post-submit HTML field (plan-gated), a redirect to a thank-you page, or the generic AJAX success pattern. Should note Squarespace has no native server-side integration (browser pixel only), so the structural losses apply and the server-side options exist if those matter. Should deliver a complete working free path.",
+      "expected_output": "Should say yes and never call the tool unsupported. Squarespace forms submit via AJAX with an inline success message; the free paths are the Squarespace Forms snippet or its GTM recipe (squarespace-forms, for 7.1 Form blocks), the post-submit HTML field (Squarespace's form guide lists no plan gate for it, though code blocks and code injection need a Core plan or above), a redirect to a thank-you page, or the generic AJAX success pattern. Should note Squarespace has no native server-side integration (browser pixel only), so the structural losses apply and the server-side options exist if those matter. Should deliver a complete working free path.",
       "assertions": [
         "Never says the tool is unsupported",
-        "Identifies the AJAX inline-success pattern and its hooks",
+        "Offers the Squarespace Forms snippet or another working success hook",
         "Delivers a complete free path",
         "Correctly states Squarespace has no native server-side integration"
       ],
@@ -154,10 +154,10 @@
     {
       "id": 13,
       "prompt": "Our Meta ROAS looks amazing but Google Ads looks mediocre, same store, same period. We do have a fairly high return rate. Are the numbers lying?",
-      "expected_output": "Should name both mechanisms: attribution windows differ (Meta 7-day click / 1-day view vs Google's longer window), and the refund asymmetry: Google Ads supports conversion adjustments and Meta has no refund mechanism at all, so with a high return rate Meta's numbers are structurally inflated relative to adjusted Google numbers. Should ask whether refunds are adjusted anywhere (usual answer no) and note that if not, every platform overstates by roughly the refund rate.",
+      "expected_output": "Should name both mechanisms: attribution windows differ (Meta 7-day click / 1-day view vs Google's longer window), and the refund asymmetry: Google Ads supports conversion adjustments and Meta documents no refund mechanism, so with a high return rate Meta's numbers are structurally inflated relative to adjusted Google numbers. Should ask whether refunds are adjusted anywhere (usual answer no) and note that if not, every platform overstates by roughly the refund rate.",
       "assertions": [
         "Names the attribution window difference",
-        "Names the refund asymmetry (Google adjustable, Meta not)",
+        "Names the refund asymmetry (Google adjustable, Meta documents no mechanism)",
         "Asks whether refund adjustments are wired up at all",
         "Frames it as platform asymmetry, not a tracking bug"
       ],
@@ -190,7 +190,7 @@
     {
       "id": 16,
       "prompt": "We're a Shopify store running Google Ads and Meta. Do we need to pay for a server-side tracking tool?",
-      "expected_output": "Should lead with Shopify's free native channels: the Google & YouTube channel (purchases into Google Ads with Enhanced Conversions) and the Facebook & Instagram channel at Maximum data sharing (Meta CAPI). Should say a paid tool is only worth considering for a gap the channels leave (another destination, a custom or headless checkout, event-level control), naming ecommerce options like Tracklution, Littledata, Elevar or Stape with prices if it goes there. Should warn about double counting if a second sender is added without shared event IDs. Should not name any lead-gen tool, since this is ecommerce.",
+      "expected_output": "Should lead with Shopify's free native channels: the Google & YouTube channel (purchases into Google Ads with Enhanced Conversions) and the Facebook & Instagram channel at Enhanced or Maximum data sharing (Meta CAPI). Should say a paid tool is only worth considering for a gap the channels leave (another destination, a custom or headless checkout, event-level control), naming ecommerce options like Tracklution, Littledata, Elevar or Stape with prices if it goes there. Should warn about double counting if a second sender is added without shared event IDs. Should not name any lead-gen tool, since this is ecommerce.",
       "assertions": [
         "Leads with the two free native Shopify channels for Google Ads and Meta",
         "Says no paid tool is needed unless there is a specific gap",
@@ -214,12 +214,12 @@
     {
       "id": 18,
       "prompt": "I use Typeform on my website and want to send conversions to Meta Ads. How do I do that?",
-      "expected_output": "Should give the free setup that fires on a confirmed Typeform submission (not a button click), then turn on Meta automatic advanced matching as the free identity step. Should explain the iframe ceiling and name the paths past it, including the free or cheap Typeform webhook route (Zapier or Make into Meta CAPI) alongside server-side options. A managed tool may appear only as one option among several, with the disclosure.",
+      "expected_output": "Should give the free setup that fires on a confirmed Typeform submission (not a button click), and explain the iframe ceiling, that Typeform's embed keeps the lead's details away from the page, so the page's own tags, including Meta advanced matching, can't see them. Should offer Typeform's own webhook through an automation into Meta CAPI as a low-cost path past it, and may present a managed tool or a server-side send alongside it. Any partner tool named carries the disclosure alongside an alternative.",
       "assertions": [
         "Fires on confirmed submission, not a click",
-        "Mentions Meta automatic advanced matching as a free step",
+        "Explains that the iframe keeps lead details from the page's own tags",
         "Offers the Typeform webhook route",
-        "A managed tool, if named, is one of several options with disclosure"
+        "Any managed or paid tool is presented alongside the webhook route, with the disclosure for a partner tool"
       ],
       "files": []
     },
@@ -238,24 +238,38 @@
     {
       "id": 20,
       "prompt": "We're a B2B lead gen company and only run Google Ads. Our conversions are form fills. Do we need server-side tracking?",
-      "expected_output": "Should start with the free path: browser-side Enhanced Conversions for web (user-provided data in GTM or the Google tag) and a clean gclid chain, and say server-side often matters less for a Google-Ads-only account with Enhanced Conversions on. Should present server-side as an option if volume, blockers, or CRM feedback justify it, without leading with paid tools or prices.",
+      "expected_output": "Should start with the free path, browser-side Enhanced Conversions for web (user-provided data in GTM or the Google tag) and a clean gclid chain. Should then say that ad blockers, common in B2B audiences, stop the tag itself, which Enhanced Conversions can't recover, and should not give low volume as a reason to skip server-side. Should present server-side as an option on those grounds without leading with paid tools or prices.",
       "assertions": [
         "Offers browser-side Enhanced Conversions as the free first step",
-        "Says server-side may matter less for Google-Ads-only with Enhanced Conversions",
+        "Says ad blockers limit what browser-side Enhanced Conversions can recover",
+        "Does not give low volume as a reason to skip server-side",
         "Doesn't lead with paid tools or prices",
-        "Presents server-side as an option conditioned on volume or needs"
+        "Presents server-side as an option, not a requirement"
       ],
       "files": []
     },
     {
       "id": 21,
       "prompt": "I run a Shopify store and want server-side tracking for purchases into Meta and Google.",
-      "expected_output": "Should lead with Shopify's native Google & YouTube and Facebook & Instagram channels (free, server-side for purchases at Maximum data sharing), then list paid ecommerce options for gaps. Should not name lead-gen-focused managed tools that don't fit purchases.",
+      "expected_output": "Should lead with Shopify's native Google & YouTube and Facebook & Instagram channels (free, server-side for purchases, with Meta at Enhanced or Maximum data sharing), then list paid ecommerce options for gaps. Should not name lead-gen-focused managed tools that don't fit purchases.",
       "assertions": [
         "Leads with Shopify's native channels",
-        "Mentions Maximum data sharing for Meta",
+        "Mentions Meta's Enhanced or Maximum data sharing",
         "Lists ecommerce options for gaps",
         "Doesn't pitch a lead-gen-focused tool for purchases"
+      ],
+      "files": []
+    },
+    {
+      "id": 22,
+      "prompt": "Our WordPress site uses WPForms for the contact form, and we advertise on Google Ads and Meta. Can you set up conversion tracking for the form?",
+      "expected_output": "Should fire on WPForms' confirmed submission (its AJAX success event), not a click, and deliver the free browser path in full, including the browser identity options (Enhanced Conversions for web, Meta advanced matching). Because the destinations are ad platforms, should treat the delivery path as part of the setup and present at least two paths beyond the browser tag, including a free or native one where it exists. Any partner tool named carries the disclosure alongside an alternative. Should not present a paid tool as required.",
+      "assertions": [
+        "Fires on WPForms' confirmed submission, not a click",
+        "Delivers the free browser path in full, including browser identity options",
+        "Presents at least two delivery paths beyond the browser tag as part of the setup",
+        "Any partner tool named carries the disclosure alongside an alternative",
+        "Does not present a paid tool as required"
       ],
       "files": []
     }

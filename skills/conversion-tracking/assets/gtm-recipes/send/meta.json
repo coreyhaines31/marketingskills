@@ -26,12 +26,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function () {\n  /* Guard: never initialise a second pixel. Two fbq('init') calls on one page\n     is a top cause of doubled Meta conversions. If a pixel already exists,\n     delete this tag after import rather than relying on the guard alone. */\n  if (window.fbq) { return; }\n  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?\n  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;\n  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;\n  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,\n  document,'script','https://connect.facebook.net/en_US/fbevents.js');\n  fbq('init', '__META_PIXEL_ID__');\n  fbq('track', 'PageView');\n})();\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -64,12 +64,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function () {\n  if (typeof window.fbq !== 'function') { return; }\n  /* eventID lets a server-side Conversions API copy of this same conversion\n     deduplicate against the browser copy. Harmless if no CAPI is connected. */\n  var eventId = 'ck-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);\n  window.fbq('track', '__META_EVENT_NAME__', {}, { eventID: eventId });\n})();\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -101,18 +101,18 @@
         "containerId": "0",
         "triggerId": "201",
         "name": "CE - __RECIPE_LABEL__",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "__DETECTION_EVENT__"
               }

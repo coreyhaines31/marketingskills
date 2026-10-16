@@ -23,9 +23,9 @@
         "name": "GA4 Event - __RECIPE_LABEL__",
         "type": "gaawe",
         "parameter": [
-          { "type": "boolean", "key": "sendEcommerceData", "value": "false" },
-          { "type": "template", "key": "eventName", "value": "__GA4_EVENT_NAME__" },
-          { "type": "template", "key": "measurementIdOverride", "value": "__GA4_MEASUREMENT_ID__" }
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "__GA4_EVENT_NAME__" },
+          { "type": "TEMPLATE", "key": "measurementIdOverride", "value": "__GA4_MEASUREMENT_ID__" }
         ],
         "firingTriggerId": ["201"],
         "tagFiringOption": "ONCE_PER_EVENT",
@@ -39,13 +39,13 @@
         "containerId": "0",
         "triggerId": "201",
         "name": "CE - __RECIPE_LABEL__",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
-              { "type": "template", "key": "arg0", "value": "{{_event}}" },
-              { "type": "template", "key": "arg1", "value": "__DETECTION_EVENT__" }
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "__DETECTION_EVENT__" }
             ]
           }
         ],

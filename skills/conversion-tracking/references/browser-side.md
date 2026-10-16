@@ -10,7 +10,7 @@ Whatever is installed below, the non-negotiables apply: fire on confirmed succes
 
 | Platform | Pixel/Tag Name | Events API | Key Events |
 |----------|---------------|:----------:|------------|
-| **Google Ads** | Google tag (gtag.js) | Enhanced Conversions | purchase, sign_up, generate_lead |
+| **Google Ads** | Google tag (gtag.js) | Data Manager API (offline and enhanced conversions for leads uploads) | purchase, sign_up, generate_lead |
 | **Meta** | Meta Pixel + CAPI | Conversions API | Purchase, Lead, ViewContent, AddToCart |
 | **LinkedIn** | Insight Tag | Conversions API | conversion (URL or event-based) |
 | **TikTok** | TikTok Pixel | Events API | Purchase, ViewContent, AddToCart, CompleteRegistration |
@@ -34,18 +34,18 @@ Add to every page, in `<head>`:
 </script>
 ```
 
-Replace `AW-XXXXXXXXX` with your Conversion ID from Google Ads > Tools > Conversions.
+Replace `AW-XXXXXXXXX` with your Conversion ID, shown in the conversion action's tag setup in Google Ads (Goals, then Conversions, then Summary).
 
 ### Set up conversion actions
 
-In Google Ads > Goals > Conversions > New conversion action:
+In Google Ads, go to Goals, then Conversions, then Summary, and click + Create conversion action. Use these settings:
 
 | Conversion | Category | Value | Count |
 |-----------|----------|-------|-------|
 | Purchase | Purchase | Dynamic (order value) | Every |
-| Sign up / Lead | Sign-up | Fixed ($X estimated value) | One |
-| Demo request | Lead | Fixed ($X estimated value) | One |
-| Free trial start | Sign-up | Fixed ($X estimated value) | One |
+| Sign up / Lead | Sign up | Fixed ($X estimated value) | One |
+| Demo request | Submit lead form (or Book appointment for a booked demo) | Fixed ($X estimated value) | One |
+| Free trial start | Sign up | Fixed ($X estimated value) | One |
 
 ### Fire conversion events
 
@@ -79,7 +79,7 @@ gtag('set', 'user_data', {
 
 ### The GTM route and the recipe system
 
-With GTM installed, prefer importing a prebuilt container over hand-building tags. This skill ships importable recipes for 18 form and booking tools, 4 universal patterns, and 6 destinations:
+With GTM installed, prefer importing a prebuilt container over hand-building tags. This skill ships importable recipes for 22 form and booking tools, 4 universal patterns, and 6 destinations:
 
 ```
 python3 ../scripts/build_recipe.py --tool gravity-forms --send google-ads \
@@ -418,7 +418,7 @@ The quick first-pass checklist, the full evidence procedure, and the report form
 | Platform | Tool |
 |----------|------|
 | Google | Google Tag Assistant, Chrome DevTools Network tab |
-| Meta | Meta Pixel Helper (Chrome extension), Events Manager Test Events |
-| LinkedIn | Insight Tag Validator in Campaign Manager |
+| Meta | Meta Ads Data Advisor (formerly Pixel Helper) Chrome extension, Events Manager Test Events |
+| LinkedIn | The Insight Tag's status in Campaign Manager (Active can take up to 24 hours) and the browser Network tab (a request to ads.linkedin.com returning 302) |
 | TikTok | TikTok Pixel Helper (Chrome extension), Events Manager |
 | All | GTM Preview Mode (if using Google Tag Manager) |

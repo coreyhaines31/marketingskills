@@ -1,327 +1,196 @@
 /*! WPForms conversion detection (MIT)
  *  Detects: form submission. Pushes dataLayer event: wpforms_form_submitted
  *  From the conversion-tracking skill in Marketing Skills */
+/* WPForms listener. Records message and redirect confirmations.
+ * Native redirects use a short-lived submission marker and changed pathname.
+ * Does not read form values, labels, rendered text/HTML, response bodies,
+ * redirect URLs, or URL query strings. */
 (function () {
+  'use strict';
   if (window.__ctDetectWpforms) return;
   window.__ctDetectWpforms = true;
-  // Only run in real http(s) documents. about:blank / srcdoc iframes inherit
-  // the parent's origin, so they SHARE sessionStorage — a copy of this script
-  // running in one would consume the deferred native-mode marker and, because
-  // its pathname can never equal the form page's path, fabricate a fire via
-  // the redirect heuristic. Observed live on parkhousesoftware.com (an
-  // about:blank iframe stole the marker during verification, 2026-07-05).
   if (!/^https?:$/.test(window.location.protocol)) return;
   window.dataLayer = window.dataLayer || [];
 
-  var NATIVE_WINDOW_MS = 10000;
-  var DEFERRED_MARKER_KEY = '__ctDetectWpformsNativePending';
-  var DEFERRED_MARKER_TTL_MS = 60000;
+  var PENDING_KEY = '__ctWpformsNativePendingV1';
+  var PENDING_TTL_MS = 120000;
 
-  function isWPForm(formEl) {
-    if (!formEl) return false;
-    try {
-      if (formEl.closest && formEl.closest('.wpforms-container')) return true;
-    } catch (e) {
-      // .closest not available — fall back to ID check
+  function formId(form) {
+    var match = /^wpforms-form-(\d+)$/.exec((form && form.id) || '');
+    return match ? match[1] : null;
+  }
+  function confirmationNode(id) {
+    if (!id || !/^\d+$/.test(id)) return null;
+    try { return document.querySelector('#wpforms-confirmation-' + id); } catch (e) { return null; }
+  }
+  // A delayed callback can run after another callback has already observed
+  // the same inserted node. Deduplicate by node identity, not by form ID, so
+  // a later accepted response with a distinct confirmation node still counts.
+  var supportsWeakSet = typeof WeakSet === 'function';
+  var handledConfirmationNodes = supportsWeakSet ? new WeakSet() : [];
+  function markConfirmationSeen(node) {
+    if (supportsWeakSet) {
+      if (handledConfirmationNodes.has(node)) return false;
+      handledConfirmationNodes.add(node);
+      return true;
     }
-    var id = formEl.id || '';
-    return /^wpforms-form-\d+$/.test(id);
-  }
-
-  function parseFormId(formEl) {
-    var id = (formEl && formEl.id) || '';
-    var m = /^wpforms-form-(\d+)$/.exec(id);
-    return m ? m[1] : '';
-  }
-
-  function fireConversion(formId) {
-    window.dataLayer.push({
-      event: 'wpforms_form_submitted',
-      form_id: formId || ''
-    });
-  }
-
-  // ---- Shared validation-marker check (used by both fire paths) ----
-
-  function isNodeHidden(el) {
-    try {
-      if (el.hidden) return true;
-      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;
-      var view = el.ownerDocument && el.ownerDocument.defaultView;
-      if (view && view.getComputedStyle) {
-        var cs = view.getComputedStyle(el);
-        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
-  }
-
-  function hasVisibleValidationErrors(scopeEl) {
-    if (!scopeEl || !scopeEl.querySelectorAll) return false;
-    try {
-      var nodes = scopeEl.querySelectorAll(
-        '.wpforms-error, .wpforms-error-container, [aria-invalid="true"]'
-      );
-      for (var i = 0; i < nodes.length; i++) {
-        var node = nodes[i];
-        if (isNodeHidden(node)) continue;
-        if (node.getAttribute && node.getAttribute('aria-invalid') === 'true') return true;
-        if ((node.textContent || '').trim()) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
-  }
-
-  function hasServerRejectionMarkers() {
-    try {
-      var wrappers = document.querySelectorAll('.wpforms-container');
-      for (var i = 0; i < wrappers.length; i++) {
-        if (hasVisibleValidationErrors(wrappers[i])) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
-  }
-
-  function hasConfirmationMessage() {
-    try {
-      var nodes = document.querySelectorAll(
-        '.wpforms-confirmation-container-full, .wpforms-confirmation-container, div[id^="wpforms-confirmation-"]'
-      );
-      for (var i = 0; i < nodes.length; i++) {
-        if (isNodeHidden(nodes[i])) continue;
-        if ((nodes[i].textContent || '').trim()) return true;
-      }
-    } catch (e) {
-      // fall through
-    }
-    return false;
-  }
-
-  // ---- Fire path 1: AJAX success event ----
-
-  var activeWatchers = [];
-
-  function findWatcher(formEl) {
-    for (var w = 0; w < activeWatchers.length; w++) {
-      if (activeWatchers[w].form === formEl) return activeWatchers[w];
-    }
-    return null;
-  }
-
-  // An AJAX success disarms any pagehide watcher armed for this form — the
-  // 2s dedup flag self-clears but the native watcher would otherwise stay
-  // armed for the full 10s window and could re-fire on a later navigation.
-  function disarmWatcher(formEl) {
-    var existing = findWatcher(formEl);
-    if (existing && typeof existing.cleanup === 'function') existing.cleanup();
-  }
-
-  var successHooked = false;
-
-  function hookWpformsSuccess() {
-    if (successHooked) return true;
-    if (typeof jQuery === 'undefined' && typeof $ === 'undefined') return false;
-
-    var jQ = typeof jQuery !== 'undefined' ? jQuery : $;
-    jQ(document).on('wpformsAjaxSubmitSuccess', function (event) {
-      var formEl = event.target;
-      if (!formEl) return;
-
-      if (formEl.getAttribute('data-ct-processing') === 'true') return;
-      formEl.setAttribute('data-ct-processing', 'true');
-      setTimeout(function () { formEl.removeAttribute('data-ct-processing'); }, 2000);
-
-      disarmWatcher(formEl);
-      fireConversion(parseFormId(formEl));
-    });
-    successHooked = true;
+    if (handledConfirmationNodes.indexOf(node) !== -1) return false;
+    handledConfirmationNodes.push(node);
     return true;
   }
-
-  // ---- Fire path 2: native (non-AJAX) pagehide watcher + deferred verdict ----
-
-  function writeDeferredMarker(formId) {
-    try {
-      window.sessionStorage.setItem(DEFERRED_MARKER_KEY, JSON.stringify({
-        t: Date.now(),
-        path: window.location.pathname,
-        formId: formId
-      }));
-      return true;
-    } catch (e) {
-      return false;
-    }
+  function push(id) {
+    if (!id || !/^\d+$/.test(id)) return;
+    window.dataLayer.push({ event: 'wpforms_form_submitted', form_id: id });
   }
-
-  function takeDeferredMarker() {
+  // Method 2 owns and pushes its enriched payload. The detector sees only a
+  // literal handled marker; arbitrary objects or PII are never read/forwarded.
+  function emitConfirmed(id, form, mode) {
+    var adapter = window.__ctWpformsMethod2Emit;
+    try { if (typeof adapter === 'function' && adapter(id, form || null, mode) === true) return; } catch (e) {}
+    push(id);
+  }
+  function discardAdapterSnapshot(id, form, mode) {
+    var discard = window.__ctWpformsMethod2Discard;
+    try { if (typeof discard === 'function') discard(id, form || null, mode); } catch (e) {}
+  }
+  function storePending(id) {
+    if (!id) return;
     try {
-      var raw = window.sessionStorage.getItem(DEFERRED_MARKER_KEY);
+      window.sessionStorage.setItem(PENDING_KEY, JSON.stringify({ id: id, time: Date.now(), path: window.location.pathname }));
+    } catch (e) {}
+  }
+  function takePending() {
+    try {
+      var raw = window.sessionStorage.getItem(PENDING_KEY);
       if (!raw) return null;
-      window.sessionStorage.removeItem(DEFERRED_MARKER_KEY);
-      var data = JSON.parse(raw);
-      if (!data || typeof data !== 'object') return null;
-      if (!data.t || Date.now() - data.t > DEFERRED_MARKER_TTL_MS) return null;
-      return data;
-    } catch (e) {
-      try { window.sessionStorage.removeItem(DEFERRED_MARKER_KEY); } catch (e2) {}
-      return null;
-    }
+      window.sessionStorage.removeItem(PENDING_KEY);
+      var value = JSON.parse(raw);
+      if (!value || !/^\d+$/.test(String(value.id || '')) ||
+          typeof value.time !== 'number' || Date.now() - value.time > PENDING_TTL_MS ||
+          Date.now() < value.time) return null;
+      return { id: String(value.id), path: typeof value.path === 'string' ? value.path : null };
+    } catch (e) { return null; }
   }
-
-  // Runs once at module init on every page load. Consumes the marker the
-  // previous page wrote at pagehide (if any) and reads the verdict from the
-  // markup WPForms rendered into THIS page. Rejection is checked first: the
-  // rejected-POST re-render always carries error markers, so a missed fire
-  // here degrades to under-counting, never fabricating.
-  function processDeferredVerdict() {
-    var marker = takeDeferredMarker();
+  function hasVisibleErrors(root) {
+    var errors = root.querySelectorAll('.wpforms-error, .wpforms-error-container, [aria-invalid="true"]');
+    for (var i = 0; i < errors.length; i++) {
+      if (errors[i].getClientRects().length) return true;
+    }
+    return false;
+  }
+  function processNativeVerdict() {
+    var marker = takePending();
     if (!marker) return;
-
-    if (hasServerRejectionMarkers()) return;
-
-    if (hasConfirmationMessage()) {
-      fireConversion(marker.formId);
-      return;
+    if (hasVisibleErrors(document)) discardAdapterSnapshot(marker.id, null, 'native-no-confirmation');
+    else if (confirmationNode(marker.id)) emitConfirmed(marker.id, null, 'native-message');
+    else if (marker.path && marker.path !== window.location.pathname) {
+      // A clean submit followed by a new page is the redirect confirmation.
+      // An optional Method 2 adapter may attach what it saved on the form page.
+      emitConfirmed(marker.id, null, 'native-redirect');
     }
-    // No WPForms markup either way. A success configured to redirect lands
-    // on a different path with no confirmation container — treat a changed
-    // pathname as that redirect. A rejection can't look like this: the
-    // rejected POST always re-renders the form WITH error markers.
-    if (marker.path && window.location.pathname !== marker.path) {
-      fireConversion(marker.formId);
-    }
-    // Same page, no markers either way — ambiguous, do not fire.
+    else discardAdapterSnapshot(marker.id, null, 'native-no-confirmation');
   }
 
-  function watchForSuccess(formEl, formId, pagehideTrusted) {
-    var entry = { form: formEl, refresh: refresh, cleanup: cleanup };
-    activeWatchers.push(entry);
-
-    var fired = false;
-    var timer = null;
-    var pagehideArmed = false;
-
-    function onPageHide() {
-      if (fired) return;
-      // Click-then-leave guard: a visitor who submitted an invalid form,
-      // got blocked, then navigated away produces a pagehide too. Visible
-      // error markers mean the submit never went through — do not fire.
-      if (hasVisibleValidationErrors(formEl)) return;
-      fired = true;
-      if (formEl.getAttribute('data-ct-processing') !== 'true') {
-        writeDeferredMarker(formId);
-      }
-      cleanup();
-    }
-
-    function armPagehide() {
-      if (pagehideArmed) return;
-      try {
-        window.addEventListener('pagehide', onPageHide, true);
-        pagehideArmed = true;
-      } catch (e) {
-        // fall through
-      }
-    }
-
-    function disarmPagehide() {
-      if (!pagehideArmed) return;
-      try { window.removeEventListener('pagehide', onPageHide, true); } catch (e) {}
-      pagehideArmed = false;
-    }
-
-    function startTimer() {
-      if (timer) clearTimeout(timer);
-      // No navigation within the window → either AJAX already fired (page
-      // stayed) or the submit was abandoned/rejected. Either way: clean up,
-      // do not fire.
-      timer = setTimeout(function () {
-        if (!fired) cleanup();
-      }, NATIVE_WINDOW_MS);
-    }
-
+  // Keep one short-lived navigation watcher per form. Client validation can
+  // cancel submission, so a submit attempt alone must not leave a marker.
+  var nativeWatchers = new WeakMap();
+  document.addEventListener('submit', function (event) {
+    var form = event && event.target;
+    if (!form || (form.tagName || '').toLowerCase() !== 'form') return;
+    var id = formId(form);
+    if (!id) return;
+    var classes = typeof form.className === 'string' ? form.className : '';
+    if (/(^|\s)wpforms-ajax-form(\s|$)/.test(classes)) return;
+    var previous = nativeWatchers.get(form);
+    if (previous) previous();
+    var timer;
     function cleanup() {
-      if (timer) { clearTimeout(timer); timer = null; }
-      disarmPagehide();
-      var idx = activeWatchers.indexOf(entry);
-      if (idx !== -1) activeWatchers.splice(idx, 1);
+      window.removeEventListener('pagehide', onPageHide, true);
+      clearTimeout(timer);
+      nativeWatchers.delete(form);
     }
-
-    // A later submit on the same form refreshes the snapshot + verdict +
-    // timer — a visitor who failed validation, fixed it, and re-submitted
-    // inside the window is a fresh attempt.
-    function refresh(nextFormId, nextPagehideTrusted) {
-      if (fired) return;
-      formId = nextFormId;
-      if (nextPagehideTrusted) armPagehide();
-      else disarmPagehide();
-      startTimer();
+    function onPageHide() {
+      cleanup();
+      // A corrected retry can still display the previous server error box.
+      // Use the current client-validation result, without reading answers.
+      var jq = window.jQuery;
+      var validator = typeof jq === 'function' ? jq(form).data('validator') : null;
+      if (validator && validator.errorList) {
+        if (validator.errorList.length) return;
+      } else if (hasVisibleErrors(form)) return;
+      storePending(id);
     }
+    nativeWatchers.set(form, cleanup);
+    window.addEventListener('pagehide', onPageHide, true);
+    timer = setTimeout(cleanup, 10000);
+  }, true);
 
-    // Only arm pagehide when the form was client-valid at submit time. An
-    // invalid form cannot have submitted, so its pagehide must not confirm.
-    if (pagehideTrusted) armPagehide();
-    startTimer();
+  // AJAX message confirmation: the callback alone is ambiguous. Wait until
+  // WPForms has inserted a new, form-attributed confirmation node.
+  var jqueryHooked = false;
+  var redirectEpochByForm = typeof WeakMap === 'function' ? new WeakMap() : null;
+  var seenRedirectEvents = typeof WeakSet === 'function' ? new WeakSet() : [];
+  var seenSuccessEvents = typeof WeakSet === 'function' ? new WeakSet() : [];
+  function markEventSeen(set, event) {
+    if (!event || (typeof event !== 'object' && typeof event !== 'function')) return false;
+    if (typeof WeakSet === 'function' && set instanceof WeakSet) {
+      if (set.has(event)) return false;
+      set.add(event);
+      return true;
+    }
+    if (set.indexOf(event) !== -1) return false;
+    set.push(event);
+    return true;
   }
-
-  // Bubble-through-capture submit handler: arms the native watcher on every
-  // WPForms submit attempt. This fires even when WPForms preventDefaults the
-  // submit (the event still dispatches) — this is the moment we snapshot,
-  // NOT the moment we fire. Capture phase is required: WPForms' own submit
-  // handler stops the event's propagation before it reaches a bubble-phase
-  // document listener (verified on a live form in the production module).
-  function armNativeWatcher(event) {
-    var formEl = event.target;
-    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;
-    if (!isWPForm(formEl)) return;
-
-    var formId = parseFormId(formEl);
-
-    // Client-validity gate: only trust the pagehide path when the form is
-    // valid (or checkValidity is unavailable). An invalid form cannot have
-    // submitted, so its navigation must not be read as a success.
-    var pagehideTrusted = true;
-    try {
-      if (typeof formEl.checkValidity === 'function' && formEl.checkValidity() === false) {
-        pagehideTrusted = false;
-      }
-    } catch (e) {
-      // constraint validation unavailable — the visible-error check at
-      // pagehide time still guards this path
-    }
-
-    var existing = findWatcher(formEl);
-    if (existing) {
-      existing.refresh(formId, pagehideTrusted);
-      return;
-    }
-
-    watchForSuccess(formEl, formId, pagehideTrusted);
+  function markRedirectEvent(event) {
+    return markEventSeen(seenRedirectEvents, event);
   }
-
-  document.addEventListener('submit', armNativeWatcher, true);
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      processDeferredVerdict();
+  function hookWpformsEvents() {
+    if (jqueryHooked) return;
+    var jq = window.jQuery || window.$;
+    if (typeof jq !== 'function') return;
+    jqueryHooked = true;
+    jq(document).on('wpformsAjaxSubmitSuccess.ctWpforms', function (event) {
+      if (!markEventSeen(seenSuccessEvents, event)) return;
+      var form = event && event.target;
+      var id = formId(form);
+      if (!id) return;
+      var redirectEpoch = redirectEpochByForm ? (redirectEpochByForm.get(form) || 0) : 0;
+      var before = confirmationNode(id);
+      setTimeout(function () {
+        var after = confirmationNode(id);
+        if (after && after !== before && markConfirmationSeen(after)) {
+          emitConfirmed(id, form, 'ajax-message');
+        } else if (!redirectEpochByForm || (redirectEpochByForm.get(form) || 0) === redirectEpoch) {
+          discardAdapterSnapshot(id, form, 'ajax-no-confirmation');
+        }
+      }, 0);
     });
-  } else {
-    processDeferredVerdict();
-  }
-
-  hookWpformsSuccess();
-  if (!successHooked) {
-    document.addEventListener('DOMContentLoaded', function () {
-      hookWpformsSuccess();
+    jq(document).on('wpformsAjaxSubmitFailed.ctWpforms wpformsAjaxSubmitError.ctWpforms wpformsAjaxSubmitActionRequired.ctWpforms', function (event) {
+      var form = event && event.target;
+      var id = formId(form);
+      if (id) discardAdapterSnapshot(id, form, 'ajax-rejected');
     });
-    window.addEventListener('load', function () {
-      hookWpformsSuccess();
+    // WPForms 1.6.7 triggers this only after ajax_process_redirect has
+    // produced a nonempty redirect_url from accepted processing. The URL and
+    // response object are intentionally not inspected.
+    jq(document).on('wpformsAjaxSubmitBeforeRedirect.ctWpforms', function (event) {
+      if (!markRedirectEvent(event)) return;
+      var form = event && event.target;
+      var id = formId(form);
+      if (!id) return;
+      if (redirectEpochByForm) redirectEpochByForm.set(form, (redirectEpochByForm.get(form) || 0) + 1);
+      emitConfirmed(id, form, 'ajax-redirect');
     });
   }
+  function ready() {
+    processNativeVerdict();
+    hookWpformsEvents();
+  }
+  // Let sibling Method 2 tags in the same page task install their enrichment
+  // delegate before a native confirmation verdict is dispatched.
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true });
+  else setTimeout(ready, 0);
+  document.addEventListener('DOMContentLoaded', hookWpformsEvents, { once: true });
+  window.addEventListener('load', hookWpformsEvents, { once: true });
 })();

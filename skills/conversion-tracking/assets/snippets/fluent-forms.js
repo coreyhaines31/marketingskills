@@ -2,142 +2,100 @@
  *  Detects: form submission. Pushes dataLayer event: fluent_forms_submitted
  *  From the conversion-tracking skill in Marketing Skills */
 (function () {
-  if (window.__ctDetectFluentForms) return;
-  window.__ctDetectFluentForms = true;
+  if (window.__ctFluentForms) return;
+  window.__ctFluentForms = true;
   window.dataLayer = window.dataLayer || [];
-
-  function isFluentForm(formEl) {
-    if (!formEl) return false;
-    if (formEl.className && formEl.className.indexOf('frm-fluent-form') !== -1) return true;
+  var listeners = [], lastEvent = null;
+  // Fluent Forms 6.2.5 reports one success response through three different
+  // event objects. Deduplicate by response-object identity and original form
+  // node; never inspect or retain a response's fields.
+  var seenResponses = typeof WeakMap === 'function' ? new WeakMap() : null;
+  window.__ctFluentSubscribe = function (listener) {
+    if (listener && typeof listener === 'object') listeners.push(listener);
+  };
+  function isForm(form) {
     try {
-      if (formEl.closest && formEl.closest('.fluentform')) return true;
-    } catch (e) {
-      // .closest not available — fall back to ID check
+      if (!form || String(form.tagName || '').toLowerCase() !== 'form') return false;
+      if (String(form.className || '').indexOf('frm-fluent-form') !== -1) return true;
+      if (form.closest && form.closest('.fluentform')) return true;
+      return /^fluentform_\d+$/.test(form.id || '');
+    } catch (e) { return false; }
+  }
+  function asForm(candidate) {
+    try {
+      var el = candidate;
+      if (el && el.jquery && el.length) el = el[0];
+      return isForm(el) ? el : null;
+    } catch (e) { return null; }
+  }
+  function notify(phase, form, candidate, event, arg2, arg3) {
+    var handled = false;
+    for (var i=0;i<listeners.length;i++) {
+      try { var fn=listeners[i] && listeners[i][phase]; if(typeof fn==='function' && fn(form,candidate,event,arg2,arg3)===true)handled=true; } catch(e) {}
     }
-    var id = formEl.id || '';
-    return /^fluentform_\d+$/.test(id);
+    return handled;
   }
-
-  // Accepts a jQuery object or a DOM element; returns the underlying DOM
-  // element if it is a Fluent Forms <form>, else null.
-  function asFluentForm(candidate) {
-    if (!candidate) return null;
-    var el = candidate;
-    if (el.jquery && el.length) el = el[0]; // unwrap jQuery objects only —
-    // never plain elements: form[0] on a raw <form> is its first control.
-    if ((el.tagName || '').toLowerCase() === 'form' && isFluentForm(el)) return el;
-    return null;
+  function submit(event) {
+    try { var form=event.target; if(isForm(form)) notify('beforeAttempt',form,false,event); } catch(e) {}
   }
-
-  // Click-tracking fallback for form attribution: remember the Fluent form
-  // whose submit button was most recently clicked, in case an old Fluent
-  // Forms version fires the success event without a form reference.
-  var lastActiveForm = null;
-
-  function trackSubmitClick(event) {
+  function resolve(event,arg2,arg3) {
     try {
-      var target = event.target;
-      if (!target || !target.closest) return;
-      var btn = target.closest('.ff-btn-submit');
-      if (!btn) return;
-      var form = btn.closest('form');
-      if (form && isFluentForm(form)) lastActiveForm = form;
-    } catch (e) {
-      // non-fatal
-    }
+      var form=asForm(arg2 && arg2.form) || asForm(arg3) || asForm(arg2);
+      if(form)return form;
+      var oe=event && event.originalEvent;
+      if(oe && oe.detail) return asForm(oe.detail.form);
+      return asForm(event && event.target);
+    } catch(e) { return null; }
   }
-
-  // Resolution order (first valid Fluent form wins) — live-verified against
-  // Fluent Forms 6.2.5, 2026-07-05:
-  //   1. data.form from the handler's data argument — the <body> dispatch
-  //      passes { form, config, response } where form is the jQuery-wrapped
-  //      form (also accept data itself being the form, defensively)
-  //   2. event.originalEvent.detail.form — the native CustomEvent dispatch
-  //      carries the raw form element in detail
-  //   3. event.target, if it IS a Fluent form (direct-on-form re-trigger)
-  //   4. the form whose submit button was most recently clicked
-  //   5. the only .frm-fluent-form on the page, if exactly one exists
-  function resolveSuccessForm(event, data) {
-    var el = asFluentForm(data && data.form) || asFluentForm(data);
-    if (el) return el;
-
+  function responseFor(event, arg2) {
     try {
-      var oe = event && event.originalEvent;
-      if (oe && oe.detail) {
-        el = asFluentForm(oe.detail.form);
-        if (el) return el;
+      var descriptor = arg2 && Object.getOwnPropertyDescriptor(arg2, 'response');
+      var response = descriptor && Object.prototype.hasOwnProperty.call(descriptor, 'value') ? descriptor.value : null;
+      if (response && typeof response === 'object') return response;
+      var originalEvent = event && event.originalEvent;
+      var detail = originalEvent && originalEvent.detail;
+      descriptor = detail && Object.getOwnPropertyDescriptor(detail, 'response');
+      response = descriptor && Object.prototype.hasOwnProperty.call(descriptor, 'value') ? descriptor.value : null;
+      return response && typeof response === 'object' ? response : null;
+    } catch(e) { return null; }
+  }
+  function alreadySeen(response, form) {
+    try {
+      if (!seenResponses || !response || !form || typeof response !== 'object' || typeof form !== 'object') return true;
+      var forms = seenResponses.get(response);
+      if (!forms) {
+        forms = typeof WeakSet === 'function' ? new WeakSet() : null;
+        if (!forms) return true;
+        seenResponses.set(response, forms);
       }
-    } catch (e) {
-      // originalEvent/detail unreadable — keep falling back
-    }
-
-    el = asFluentForm(event && event.target);
-    if (el) return el;
-
-    if (lastActiveForm && document.contains(lastActiveForm) && isFluentForm(lastActiveForm)) {
-      return lastActiveForm;
-    }
-
+      if (forms.has(form)) return true;
+      forms.add(form);
+      return false;
+    } catch(e) { return true; }
+  }
+  function success(event,arg2,arg3) {
     try {
-      var forms = document.querySelectorAll('.frm-fluent-form');
-      if (forms.length === 1) return forms[0];
-    } catch (e) {
-      // querySelectorAll unavailable — give up
-    }
-
-    return null;
+      if (event && typeof event === 'object' && event === lastEvent) return;
+      lastEvent=event;
+      if (event && typeof event === 'object') setTimeout(function(){if(lastEvent===event)lastEvent=null;},0);
+      var form=resolve(event,arg2,arg3);
+      if(!form)return;
+      var response=responseFor(event,arg2);
+      if(!response || alreadySeen(response,form))return;
+      if(!notify('onCandidate',form,true,event,arg2,arg3)) window.dataLayer.push({event:'fluent_forms_submitted',form_id:form.id || ''});
+    } catch(e) {}
   }
-
-  // Dedup: one successful submission reaches a document-level jQuery
-  // listener TWICE on current Fluent Forms (the jQuery <body> trigger and
-  // the native CustomEvent) — verified live. Both duplicates resolve to the
-  // same form within the same tick, so fire once per form per 2s window
-  // (matches production listener behaviour). Rapid legitimate
-  // re-submissions of the same form take well over 2s (server round trip +
-  // success render), so none are lost.
-  var lastFiredForm = null;
-  var lastFiredAt = 0;
-
-  function fireConversion(formEl) {
-    var now = new Date().getTime();
-    if (lastFiredForm === formEl && now - lastFiredAt < 2000) return;
-    lastFiredForm = formEl;
-    lastFiredAt = now;
-    window.dataLayer.push({
-      event: 'fluent_forms_submitted',
-      form_id: (formEl && formEl.id) || ''
-    });
+  document.addEventListener('submit',submit,true);
+  function hook() {
+    try {
+      if (window.__ctFluentSuccessHooked || !window.jQuery) return false;
+      window.__ctFluentSuccessHooked=true;
+      window.jQuery(document).on('fluentform_submission_success',success);
+      return true;
+    } catch(e) { return false; }
   }
-
-  // Fire path — Fluent Forms' success signal, fired once an AJAX submission
-  // passes server-side validation. This is the ONLY path this recipe
-  // tracks; Fluent Forms always submits via AJAX (there is no non-AJAX
-  // mode to miss). Client-side validation failures, native HTML5 blocks,
-  // and server-side rejections never fire it. Hooked via jQuery because
-  // the <body> dispatch is jQuery-only AND jQuery is guaranteed on any
-  // working Fluent Forms page (Fluent Forms' own submission handler
-  // requires it — without jQuery the form cannot submit at all).
-  var successHooked = false;
-
-  function hookFluentSuccess() {
-    if (successHooked) return true;
-    if (typeof window.jQuery === 'undefined') return false;
-
-    window.jQuery(document).on('fluentform_submission_success', function (event, data) {
-      fireConversion(resolveSuccessForm(event, data));
-    });
-    successHooked = true;
-    return true;
-  }
-
-  document.addEventListener('click', trackSubmitClick, true);
-
-  if (!hookFluentSuccess()) {
-    document.addEventListener('DOMContentLoaded', function () {
-      hookFluentSuccess();
-    });
-    window.addEventListener('load', function () {
-      hookFluentSuccess();
-    });
+  if(!hook()) {
+    document.addEventListener('DOMContentLoaded',hook);
+    window.addEventListener('load',hook);
   }
 })();

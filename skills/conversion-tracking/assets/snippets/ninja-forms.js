@@ -2,117 +2,151 @@
  *  Detects: form submission. Pushes dataLayer event: ninja_forms_submitted
  *  From the conversion-tracking skill in Marketing Skills */
 (function () {
-  if (window.__ctDetectNinjaForms) return;
+  'use strict';
+  var runtime = window.__ctNinjaFormsRuntime;
+  if (runtime && runtime.installed) return;
+
+  // Preserve the recipe's public duplicate-install guard. If a superseded
+  // snippet already set it without this runtime, fail closed: don't layer a
+  // second listener over an unknown old detector.
+  if (!runtime && window.__ctDetectNinjaForms) return;
+
+  if (!runtime) {
+    runtime = { seenEntryIds: Object.create(null), installed: false };
+    window.__ctNinjaFormsRuntime = runtime;
+  }
   window.__ctDetectNinjaForms = true;
   window.dataLayer = window.dataLayer || [];
 
-  function fireConversion(formId) {
-    window.dataLayer.push({
-      event: 'ninja_forms_submitted',
-      form_id: formId || ''
-    });
+  var MISSING = {};
+  var MAX_SAFE_INTEGER = 9007199254740991;
+
+  // Read only own data properties. Callback payloads are normally parsed JSON,
+  // but a filter or another page script can supply accessor-backed objects.
+  // Do not execute getters while deciding whether a response proves a save.
+  function ownDataValue(object, key) {
+    if (!object || typeof object !== 'object' || !Object.prototype.hasOwnProperty.call(object, key)) return MISSING;
+    if (typeof Object.getOwnPropertyDescriptor !== 'function') return MISSING;
+    var descriptor = Object.getOwnPropertyDescriptor(object, key);
+    if (!descriptor || !Object.prototype.hasOwnProperty.call(descriptor, 'value')) return MISSING;
+    return descriptor.value;
   }
 
-  function responseHasErrors(response) {
-    if (!response || !response.errors) return false;
-    var errors = response.errors;
-    if (typeof errors.length === 'number') return errors.length > 0;
-    if (typeof errors !== 'object') return !!errors;
-    for (var key in errors) {
-      if (!Object.prototype.hasOwnProperty.call(errors, key)) continue;
-      var group = errors[key];
-      if (!group) continue;
-      if (typeof group.length === 'number') {
-        if (group.length > 0) return true;
-      } else if (typeof group === 'object') {
-        for (var sub in group) {
-          if (Object.prototype.hasOwnProperty.call(group, sub)) return true;
-        }
-      } else {
-        return true;
-      }
+  function emptyErrors(value) {
+    if (Object.prototype.toString.call(value) === '[object Array]') return value.length === 0;
+    if (!value || typeof value !== 'object') return false;
+    for (var key in value) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) return false;
     }
-    return false;
+    return true;
   }
 
-  function handleSubmitResponse(response) {
-    if (responseHasErrors(response)) return;
-    var formId = (response && response.data && response.data.form_id) ? response.data.form_id : '';
-    fireConversion(formId);
+  // Accept only primitive safe integers or canonical decimal strings. Never
+  // coerce booleans, arrays, objects, boxed numbers, or accessor-backed IDs.
+  function positiveIntegerId(value) {
+    if (typeof value === 'number') {
+      if (!isFinite(value) || value <= 0 || Math.floor(value) !== value || value > MAX_SAFE_INTEGER) return null;
+      return String(value);
+    }
+    if (typeof value !== 'string' || !/^[1-9]\d*$/.test(value)) return null;
+    var number = Number(value);
+    if (!isFinite(number) || number > MAX_SAFE_INTEGER || String(number) !== value) return null;
+    return value;
   }
 
-  var radioHooked = false;
+  function canonicalFormId(value) {
+    var formId;
+    if (typeof value === 'number') {
+      if (!isFinite(value) || value <= 0 || Math.floor(value) !== value || value > MAX_SAFE_INTEGER) return null;
+      formId = String(value);
+    } else if (typeof value === 'string') {
+      formId = value;
+    } else {
+      return null;
+    }
+    if (!/^[1-9]\d*(?:_(?:0|[1-9]\d*))*$/.test(formId)) return null;
+    var parts = formId.split('_');
+    for (var i = 0; i < parts.length; i++) {
+      var part = Number(parts[i]);
+      if (!isFinite(part) || part > MAX_SAFE_INTEGER || String(part) !== parts[i]) return null;
+    }
+    return formId;
+  }
+
+  function inspectResponse(response, callbackFormId) {
+    var errors = ownDataValue(response, 'errors');
+    if (errors === MISSING || !emptyErrors(errors)) return null;
+    var data = ownDataValue(response, 'data');
+    if (!data || typeof data !== 'object') return null;
+    var halt = ownDataValue(data, 'halt');
+    if (halt !== MISSING && halt) return null;
+    var nestedErrors = ownDataValue(data, 'errors');
+    if (nestedErrors !== MISSING && !emptyErrors(nestedErrors)) return null;
+    var formValue = ownDataValue(data, 'form_id');
+    var formId = formValue === MISSING ? null : canonicalFormId(formValue);
+    if (!formId || canonicalFormId(callbackFormId) !== formId) return null;
+    var actions = ownDataValue(data, 'actions');
+    if (!actions || typeof actions !== 'object') return null;
+    var save = ownDataValue(actions, 'save');
+    if (!save || typeof save !== 'object') return null;
+    var saveValue = ownDataValue(save, 'sub_id');
+    var entryId = saveValue === MISSING ? null : positiveIntegerId(saveValue);
+    if (!entryId) return null;
+    return { formId: formId, entryId: entryId };
+  }
+
+  runtime.inspectResponse = inspectResponse;
+
+  function handleSubmitResponse(response, textStatus, jqXHR, callbackFormId) {
+      var accepted = inspectResponse(response, callbackFormId);
+      if (!accepted) {
+        if (typeof window.__ctNinjaMethod2AfterResponse === 'function') {
+          window.__ctNinjaMethod2AfterResponse(callbackFormId, false, false);
+        }
+        return;
+      }
+
+      var key = '$' + accepted.entryId;
+      if (runtime.seenEntryIds[key]) {
+        if (typeof window.__ctNinjaMethod2AfterResponse === 'function') {
+          window.__ctNinjaMethod2AfterResponse(accepted.formId, false, true);
+        }
+        return;
+      }
+      runtime.seenEntryIds[key] = true;
+
+      var enriched = false;
+      if (typeof window.__ctNinjaMethod2Emit === 'function') {
+        try {
+          enriched = window.__ctNinjaMethod2Emit(accepted.formId, accepted.entryId) === true;
+        } catch (e) {
+          enriched = false;
+        }
+      }
+      if (!enriched) {
+        window.dataLayer.push({ event: 'ninja_forms_submitted', form_id: accepted.formId });
+      }
+      if (typeof window.__ctNinjaMethod2AfterResponse === 'function') {
+        window.__ctNinjaMethod2AfterResponse(accepted.formId, true, false);
+      }
+  }
 
   function hookNfRadio() {
-    if (radioHooked) return true;
-
-    if (typeof nfRadio !== 'undefined' && nfRadio.channel) {
-      try {
-        nfRadio.channel('forms').on('submit:response', handleSubmitResponse);
-        radioHooked = true;
-        return true;
-      } catch (e) {
-      }
-    }
-
-    if (typeof Backbone !== 'undefined' && Backbone.Radio) {
-      try {
-        Backbone.Radio.channel('forms').on('submit:response', handleSubmitResponse);
-        radioHooked = true;
-        return true;
-      } catch (e) {
-      }
-    }
-
-    return false;
-  }
-
-  var observerStarted = false;
-
-  function startMutationObserver() {
-    if (observerStarted) return;
-    if (typeof MutationObserver === 'undefined') return;
-
-    var containers = document.querySelectorAll('.nf-form-cont');
-    if (containers.length === 0) return;
-
-    observerStarted = true;
-
-    for (var c = 0; c < containers.length; c++) {
-      (function (container) {
-        var observer = new MutationObserver(function (mutations) {
-          for (var m = 0; m < mutations.length; m++) {
-            var addedNodes = mutations[m].addedNodes;
-            for (var n = 0; n < addedNodes.length; n++) {
-              var node = addedNodes[n];
-              if (!node || node.nodeType !== 1) continue;
-
-              var isResponseMsg = false;
-              if (node.classList && node.classList.contains('nf-response-msg')) {
-                isResponseMsg = true;
-              } else if (node.querySelector) {
-                isResponseMsg = !!node.querySelector('.nf-response-msg');
-              }
-
-              if (isResponseMsg) fireConversion('');
-            }
-          }
-        });
-
-        observer.observe(container, { childList: true, subtree: true });
-      })(containers[c]);
+    if (runtime.installed) return true;
+    var radio = typeof nfRadio !== 'undefined' && nfRadio.channel ? nfRadio :
+      (typeof Backbone !== 'undefined' && Backbone.Radio ? Backbone.Radio : null);
+    if (!radio) return false;
+    try {
+      radio.channel('forms').on('submit:response', handleSubmitResponse);
+      runtime.installed = true;
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
-  var hooked = hookNfRadio();
-  if (!hooked) {
-    document.addEventListener('DOMContentLoaded', function () {
-      var retryHooked = hookNfRadio();
-      if (!retryHooked) startMutationObserver();
-    });
-    window.addEventListener('load', function () {
-      if (!radioHooked) hookNfRadio();
-      if (!observerStarted && !radioHooked) startMutationObserver();
-    });
+  if (!hookNfRadio()) {
+    document.addEventListener('DOMContentLoaded', hookNfRadio);
+    window.addEventListener('load', hookNfRadio);
   }
 })();

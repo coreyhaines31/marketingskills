@@ -29,7 +29,7 @@
           {
             "type": "TEMPLATE",
             "key": "html",
-            "value": "<script>\n(function () {\n  if (window.__ctDetectDiviForms) return;\n  window.__ctDetectDiviForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Real id if the container has one, else a synthetic per-page-load key\n  // stamped onto it \u2014 ported directly from the production module's\n  // getFormKey helper, so multiple Divi forms on one page stay distinct.\n  var keyCounter = 0;\n\n  function getFormKey(container) {\n    if (!container) return '';\n    if (container.id) return container.id;\n    var key = container.getAttribute('data-ct-key');\n    if (!key) {\n      keyCounter++;\n      key = 'divi-' + keyCounter;\n      container.setAttribute('data-ct-key', key);\n    }\n    return key;\n  }\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'divi_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // Divi renders BOTH validation errors and the success notice into\n  // .et-pb-contact-message \u2014 the element itself carries no success/error\n  // marker. Errors mark the offending inputs with .et_contact_error and\n  // wrap the message text in .et_pb_contact_error_text. Only fire when\n  // the message has text and no error markers are present.\n  function maybeReportSuccess(container) {\n    if (!container || !container.querySelector) return;\n\n    var msg = container.querySelector('.et-pb-contact-message');\n    if (!msg) return;\n\n    var text = (msg.textContent || '').trim();\n    if (!text) return;\n\n    try {\n      if (msg.querySelector('.et_pb_contact_error_text')) return;\n      if (container.querySelector('.et_contact_error')) return;\n    } catch (e) {\n      // Can't tell success from error \u2014 do not fire\n      return;\n    }\n\n    // Permanent stamp: long-tail mutations of the container (other\n    // plugins, widgets) must not re-report a message that already fired\n    if (msg.getAttribute('data-ct-reported') === 'true') return;\n    msg.setAttribute('data-ct-reported', 'true');\n\n    fireConversion(getFormKey(container));\n  }\n\n  function observeContainer(container) {\n    if (typeof MutationObserver === 'undefined') return;\n    if (!container || !container.getAttribute) return;\n    if (container.getAttribute('data-ct-observed') === 'true') return;\n    container.setAttribute('data-ct-observed', 'true');\n\n    var observer = new MutationObserver(function () {\n      maybeReportSuccess(container);\n    });\n\n    observer.observe(container, {\n      childList: true,\n      subtree: true,\n      characterData: true\n    });\n  }\n\n  function startMutationObserver() {\n    if (typeof MutationObserver === 'undefined') return;\n\n    var containers = document.querySelectorAll('.et_pb_contact_form_container');\n    for (var c = 0; c < containers.length; c++) {\n      observeContainer(containers[c]);\n    }\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', function () {\n      startMutationObserver();\n    });\n  } else {\n    startMutationObserver();\n  }\n\n  // Also rescan after window load in case Divi loads forms late\n  // (observeContainer is idempotent per container)\n  window.addEventListener('load', function () {\n    startMutationObserver();\n  });\n})();\n</script>"
+            "value": "<script>\n(function () {\n  if (window.__ctDetectDiviForms) return;\n  window.__ctDetectDiviForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var reported = typeof WeakSet === 'function' ? new WeakSet() : null;\n  function inspect(container) {\n    if (!container || !container.querySelector) return;\n    var notice;\n    try {\n      notice = container.querySelector('.et-pb-contact-message.et_pb_success_message');\n      if (!notice || container.querySelector('form.et_pb_contact_form') ||\n          container.querySelector('.et_pb_contact_error_meesage') ||\n          container.querySelector('.et_contact_error')) return;\n    } catch (e) { return; }\n    if (reported && reported.has(notice)) return;\n    if (reported) reported.add(notice);\n    var id = container.id || (container.getAttribute && container.getAttribute('data-id')) || '';\n    if (!id) return;\n    var adapter = window.__ctDiviMethod2Emit;\n    if (typeof adapter === 'function' && adapter(container, String(id)) === true) return;\n    window.dataLayer.push({ event: 'divi_form_submitted', form_id: String(id) });\n  }\n  function observe(container) {\n    if (!container || container.__ctDiviObserved || typeof MutationObserver === 'undefined') return;\n    container.__ctDiviObserved = true;\n    new MutationObserver(function () { inspect(container); }).observe(container,\n      { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });\n    inspect(container);\n  }\n  function start() {\n    var existing = document.querySelectorAll('.et_pb_contact_form_container');\n    for (var i = 0; i < existing.length; i++) observe(existing[i]);\n    if (typeof MutationObserver !== 'undefined' && document.documentElement) {\n      new MutationObserver(function (records) {\n        for (var r = 0; r < records.length; r++) {\n          for (var n = 0; n < records[r].addedNodes.length; n++) {\n            var node = records[r].addedNodes[n];\n            if (node.nodeType !== 1) continue;\n            if (node.matches && node.matches('.et_pb_contact_form_container')) observe(node);\n            var nested = node.querySelectorAll ? node.querySelectorAll('.et_pb_contact_form_container') : [];\n            for (var j = 0; j < nested.length; j++) observe(nested[j]);\n          }\n        }\n      }).observe(document.documentElement, { childList: true, subtree: true });\n    }\n  }\n  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });\n  else start();\n})();\n</script>"
           },
           {
             "type": "BOOLEAN",
@@ -55,18 +55,18 @@
         "containerId": "0",
         "triggerId": "2",
         "name": "CE - Divi Forms Submitted",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "divi_form_submitted"
               }
@@ -85,12 +85,12 @@
         "type": "v",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "name",
             "value": "form_id"
           },
           {
-            "type": "integer",
+            "type": "INTEGER",
             "key": "dataLayerVersion",
             "value": "2"
           }

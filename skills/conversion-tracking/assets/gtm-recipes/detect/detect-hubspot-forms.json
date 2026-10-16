@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-09-24 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - HubSpot Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - HubSpot Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectHubspotForms) return;\n  window.__ctDetectHubspotForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Updated-editor conversions are keyed by HubSpot's documented conversion\n  // ID. Legacy messages use event-object identity because their documented\n  // callback payload has no conversion ID.\n  var seenConversions = {};\n  var seenLegacyEvents = typeof WeakSet === 'function' ? new WeakSet() : [];\n\n  function fireConversion(formId, conversionId, acceptedContext) {\n    var id = formId ? String(formId) : '';\n    if (typeof conversionId !== 'string' || !conversionId) return false;\n    var key = '$' + conversionId;\n    if (seenConversions[key]) return false;\n    seenConversions[key] = true;\n    var handled = false;\n    var adapter = window.__ctHubspotMethod2Handler;\n    if (typeof adapter === 'function') {\n      try {\n        handled = adapter({\n          formId: id,\n          instanceId: acceptedContext && acceptedContext.instanceId || '',\n          conversionId: conversionId,\n          form: acceptedContext && acceptedContext.form || null\n        }) === true;\n      } catch (e) {\n        handled = false;\n      }\n    }\n    // The push is contained, and a conversion whose push failed is\n    // forgotten, so a repeat of HubSpot's event can still count it.\n    if (!handled) {\n      try {\n        window.dataLayer = window.dataLayer || [];\n        window.dataLayer.push({ event: 'hubspot_form_submitted', form_id: id });\n      } catch (e) {\n        delete seenConversions[key];\n        return false;\n      }\n    }\n    return true;\n  }\n\n  function claimLegacyEvent(event) {\n    if (!event || typeof event !== 'object') return false;\n    if (seenLegacyEvents && typeof seenLegacyEvents.has === 'function') {\n      if (seenLegacyEvents.has(event)) return false;\n      seenLegacyEvents.add(event);\n      return true;\n    }\n    if (seenLegacyEvents.indexOf(event) !== -1) return false;\n    seenLegacyEvents.push(event);\n    return true;\n  }\n\n  function releaseLegacyEvent(event) {\n    try {\n      if (typeof seenLegacyEvents.delete === 'function') { seenLegacyEvents.delete(event); return; }\n      var i = seenLegacyEvents.indexOf(event);\n      if (i !== -1) seenLegacyEvents.splice(i, 1);\n    } catch (e) {}\n  }\n\n  // ------------------------------------------------------------\n  // Path 1: current forms editor (live-verified)\n  // ------------------------------------------------------------\n  // HubSpot dispatches this on the .hs-form-frame container and lets it bubble\n  // (or on document itself when it cannot find the container), with\n  // detail = { formId, instanceId }. It only ever follows a submission\n  // HubSpot's server accepted. Listening on document in the capture phase\n  // catches both dispatch points and cannot be silenced by page code that\n  // stops the event's propagation further down.\n  function hubspotFormsApi() {\n    return window.HubSpotFormsV4 || window.HubspotFormsV4 || null;\n  }\n\n  function handleSubmissionSuccess(event) {\n    try {\n      var detail = event && event.detail;\n      if (!detail || typeof detail.formId !== 'string' || !detail.formId) return;\n      if (typeof detail.instanceId !== 'string' || !detail.instanceId) return;\n      // When HubSpot's forms API is on the page, the event must name a form\n      // instance HubSpot actually rendered here. A stray or malformed event\n      // with a made-up instance id is ignored.\n      var api = hubspotFormsApi();\n      if (!api || typeof api.getFormFromEvent !== 'function') return;\n      var form = api.getFormFromEvent(event);\n      if (!form || typeof form.getFormId !== 'function' ||\n          typeof form.getInstanceId !== 'function' ||\n          typeof form.getConversionId !== 'function') return;\n      if (form.getFormId() !== detail.formId ||\n          form.getInstanceId() !== detail.instanceId) return;\n      // HubSpot documents getConversionId as valid after successful\n      // submission. It is the stable key for event replay and repeated submits.\n      fireConversion(detail.formId, form.getConversionId(), { form: form, instanceId: detail.instanceId });\n    } catch (e) {\n      // Never throw back into HubSpot's own event dispatch.\n    }\n  }\n\n  // ------------------------------------------------------------\n  // Path 2: legacy forms editor (ported from the production module)\n  // ------------------------------------------------------------\n  // Legacy forms announce each lifecycle step with a postMessage of\n  // { type: 'hsFormCallback', eventName, id, data }. Only 'onFormSubmitted'\n  // means the submission was accepted; 'onFormSubmit' also fires for\n  // submissions that then fail validation, so it is ignored.\n  //\n  // The legacy callback payload documents its form ID but not a safe mapping\n  // from a cross-origin source WindowProxy to that ID. Accept only the inline\n  // same-window callback; cross-origin iframe messages fail closed until a\n  // vendor-supported source/form binding can be verified.\n  function isTrustedOrigin(event) {\n    return !!(event && event.source === window &&\n      event.origin === window.location.origin);\n  }\n\n  function handleMessage(event) {\n    try {\n      // Reject an unbound source before even reading its structured-clone data.\n      if (!isTrustedOrigin(event)) return;\n      var data = event && event.data;\n      if (!data || typeof data !== 'object') return;\n      if (data.type !== 'hsFormCallback') return;\n      if (data.eventName !== 'onFormSubmitted') return;\n      var formId = data.id;\n      if (typeof formId !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/.test(formId)) return;\n      if (!claimLegacyEvent(event)) return;\n      // The documented legacy callback runs after persistence, but has no\n      // stable conversion ID. The local guard only recognizes replay of this\n      // exact MessageEvent object; a distinct event object may be a replay or a\n      // new conversion, so cross-event deduplication is not claimed.\n      var handled = false;\n      var adapter = window.__ctHubspotMethod2Handler;\n      if (typeof adapter === 'function') {\n        try {\n          handled = adapter({ formId: formId, legacyEvent: event }) === true;\n        } catch (e) { handled = false; }\n      }\n      if (!handled) {\n        try {\n          window.dataLayer = window.dataLayer || [];\n          window.dataLayer.push({ event: 'hubspot_form_submitted', form_id: formId });\n        } catch (e) {\n          releaseLegacyEvent(event);\n        }\n      }\n    } catch (e) {\n      // Never throw back into the page's own message handling.\n    }\n  }\n\n  document.addEventListener('hs-form-event:on-submission:success', handleSubmissionSuccess, true);\n  window.addEventListener('message', handleMessage, false);\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - HubSpot Form Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "hubspot_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - HubSpot Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

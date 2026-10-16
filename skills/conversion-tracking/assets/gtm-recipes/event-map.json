@@ -1,4 +1,14 @@
 {
+  "acuity-scheduling": {
+    "label": "Acuity Scheduling",
+    "moment": "meeting booked",
+    "event": "acuity_appointment_scheduled"
+  },
+  "cal-com": {
+    "label": "Cal.com",
+    "moment": "meeting booked",
+    "event": "calcom_booking_successful"
+  },
   "calendly": {
     "label": "Calendly",
     "moment": "meeting booked",
@@ -54,6 +64,11 @@
     "moment": "form submission",
     "event": "gravity_form_submitted"
   },
+  "hubspot-forms": {
+    "label": "HubSpot Forms",
+    "moment": "form submission",
+    "event": "hubspot_form_submitted"
+  },
   "jotform": {
     "label": "Jotform",
     "moment": "form submission",
@@ -68,6 +83,11 @@
     "label": "Phone call click",
     "moment": "phone call intent",
     "event": "phone_click"
+  },
+  "squarespace-forms": {
+    "label": "Squarespace Forms",
+    "moment": "form submission",
+    "event": "squarespace_form_submitted"
   },
   "tally": {
     "label": "Tally",

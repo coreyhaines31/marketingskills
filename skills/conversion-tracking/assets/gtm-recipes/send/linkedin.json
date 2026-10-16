@@ -26,12 +26,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function () {\n  window._linkedin_partner_id = '__LINKEDIN_PARTNER_ID__';\n  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];\n  window._linkedin_data_partner_ids.push(window._linkedin_partner_id);\n  if (window.lintrk) { return; }\n  window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); };\n  window.lintrk.q = [];\n  var s = document.getElementsByTagName('script')[0];\n  var t = document.createElement('script');\n  t.type = 'text/javascript'; t.async = true;\n  t.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';\n  s.parentNode.insertBefore(t, s);\n})();\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -64,12 +64,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function () {\n  if (typeof window.lintrk !== 'function') { return; }\n  window.lintrk('track', { conversion_id: __LINKEDIN_CONVERSION_ID__ });\n})();\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -101,18 +101,18 @@
         "containerId": "0",
         "triggerId": "201",
         "name": "CE - __RECIPE_LABEL__",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "__DETECTION_EVENT__"
               }

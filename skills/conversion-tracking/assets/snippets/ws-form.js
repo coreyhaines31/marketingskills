@@ -5,66 +5,51 @@
   if (window.__ctDetectWsForm) return;
   window.__ctDetectWsForm = true;
   window.dataLayer = window.dataLayer || [];
-
-  function fireConversion(formId) {
-    window.dataLayer.push({
-      event: 'ws_form_submitted',
-      form_id: formId || ''
-    });
-  }
-
-  // Same form-resolution chain the production module uses to find the
-  // form element (it just never used it for anything but PII — here we
-  // read a generic, non-PII form_id off whatever it resolves to).
-  function resolveForm(event, formObject) {
-    var formEl = null;
-    try {
-      if (formObject && formObject.form_canvas_obj && formObject.form_canvas_obj[0]) {
-        formEl = formObject.form_canvas_obj[0].querySelector('form.wsf-form');
-      }
-      if (!formEl && event && event.target) {
-        var target = event.target;
-        if ((target.tagName || '').toLowerCase() === 'form') {
-          formEl = target;
-        } else if (target.querySelector) {
-          formEl = target.querySelector('form.wsf-form');
-        }
-      }
-      if (!formEl) {
-        formEl = document.querySelector('form.wsf-form');
-      }
-    } catch (e) {
-      // non-fatal — fall through with whatever we have (possibly null)
+  var seenEvents = typeof WeakSet === 'function' ? new WeakSet() : null;
+  var lastSuccessByInstance = {};
+  function unwrap(value) { return value && value.jquery ? value[0] : (value && value[0] && value[0].nodeType ? value[0] : value); }
+  function onAcceptedSubmit(event, formObject, formId, instanceId, formEl) {
+    if (event && seenEvents) {
+      if (seenEvents.has(event)) return;
+      seenEvents.add(event);
     }
-    return formEl;
+    var form = unwrap(formEl);
+    if (!form || !form.matches || !form.matches('form.wsf-form')) return;
+    var id;
+    if (typeof formId === 'string') {
+      if (!/^\d+$/.test(formId) || Number(formId) < 1) return;
+      id = formId;
+    } else if (typeof formId === 'number') {
+      if (!isFinite(formId) || Math.floor(formId) !== formId || formId < 1) return;
+      id = String(formId);
+    } else {
+      return;
+    }
+    // WS Form can finish both requests from a double-click. Count the rapid
+    // success callbacks once, without changing the form or reading answers.
+    var instance = typeof instanceId === 'string' || typeof instanceId === 'number' ? instanceId : '';
+    var key = id + ':' + instance;
+    var now = Date.now();
+    if (lastSuccessByInstance[key] !== undefined && now - lastSuccessByInstance[key] < 2000) return;
+    lastSuccessByInstance[key] = now;
+    var adapter = window.__ctWsFormMethod2Emit;
+    if (typeof adapter === 'function') {
+      try { if (adapter(form, id, instanceId) === true) return; }
+      catch (e) { return; }
+    }
+    window.dataLayer.push({ event: 'ws_form_submitted', form_id: id });
   }
-
-  // Fire path — WS Form's own jQuery event, fired on `document` once an
-  // AJAX submission passes server-side validation. This is the ONLY path
-  // that ever fires a conversion.
-  var successHooked = false;
-
-  function hookWsFormSuccess() {
-    if (successHooked) return true;
-    if (typeof jQuery === 'undefined' && typeof $ === 'undefined') return false;
-
-    var jQ = typeof jQuery !== 'undefined' ? jQuery : $;
-    jQ(document).on('wsf-success', function (event, formObject) {
-      var formEl = resolveForm(event, formObject);
-      fireConversion(formEl ? (formEl.id || '') : '');
-    });
-    successHooked = true;
+  var handlerBound = false;
+  function hook() {
+    if (handlerBound) return true;
+    var jq = typeof jQuery !== 'undefined' ? jQuery : (typeof $ !== 'undefined' ? $ : null);
+    if (!jq) return false;
+    jq(document).on('wsf-submit-success', onAcceptedSubmit);
+    handlerBound = true;
     return true;
   }
-
-  // Retry hooking on DOMContentLoaded and window load — some sites load
-  // jQuery very late.
-  if (!hookWsFormSuccess()) {
-    document.addEventListener('DOMContentLoaded', function () {
-      hookWsFormSuccess();
-    });
-    window.addEventListener('load', function () {
-      hookWsFormSuccess();
-    });
+  if (!hook()) {
+    document.addEventListener('DOMContentLoaded', hook, { once: true });
+    window.addEventListener('load', hook, { once: true });
   }
 })();

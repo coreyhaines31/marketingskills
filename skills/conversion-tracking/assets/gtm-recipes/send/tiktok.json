@@ -26,12 +26,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function (w, d, t) {\n  if (w.ttq) { return; }\n  w.TiktokAnalyticsObject = t;\n  var ttq = w[t] = w[t] || [];\n  ttq.methods = ['page','track','identify','instances','debug','on','off','once','ready','alias','group','enableCookie','disableCookie'];\n  ttq.setAndDefer = function (obj, m) { obj[m] = function () { obj.push([m].concat(Array.prototype.slice.call(arguments, 0))); }; };\n  for (var i = 0; i < ttq.methods.length; i++) { ttq.setAndDefer(ttq, ttq.methods[i]); }\n  ttq.instance = function (id) {\n    var inst = ttq._i[id] || [];\n    for (var j = 0; j < ttq.methods.length; j++) { ttq.setAndDefer(inst, ttq.methods[j]); }\n    return inst;\n  };\n  ttq.load = function (id, opts) {\n    var url = 'https://analytics.tiktok.com/i18n/pixel/events.js';\n    ttq._i = ttq._i || {}; ttq._i[id] = []; ttq._i[id]._u = url;\n    ttq._t = ttq._t || {}; ttq._t[id] = +new Date();\n    ttq._o = ttq._o || {}; ttq._o[id] = opts || {};\n    var s = d.createElement('script');\n    s.type = 'text/javascript'; s.async = true; s.src = url + '?sdkid=' + id + '&lib=' + t;\n    var f = d.getElementsByTagName('script')[0];\n    f.parentNode.insertBefore(s, f);\n  };\n  ttq.load('__TIKTOK_PIXEL_ID__');\n  ttq.page();\n})(window, document, 'ttq');\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -64,12 +64,12 @@
         "type": "html",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "html",
             "value": "<script>\n(function () {\n  if (!window.ttq || typeof window.ttq.track !== 'function') { return; }\n  window.ttq.track('__TIKTOK_EVENT_NAME__');\n})();\n</script>"
           },
           {
-            "type": "boolean",
+            "type": "BOOLEAN",
             "key": "supportDocumentWrite",
             "value": "false"
           }
@@ -101,18 +101,18 @@
         "containerId": "0",
         "triggerId": "201",
         "name": "CE - __RECIPE_LABEL__",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "__DETECTION_EVENT__"
               }

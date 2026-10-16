@@ -8,7 +8,7 @@ Server-side conversion tracking for lead generation. When a visitor submits a fo
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | REST API for conversions your backend confirms. [developers.converly.io](https://developers.converly.io) |
+| API | ✓ | REST API to manage sites, flows and destinations and read the conversion log. Backend-confirmed conversions go through the API trigger webhook, via the SDK below or a signed HTTP call. [developers.converly.io](https://developers.converly.io) |
 | MCP | ✓ | Hosted MCP server at `https://app.converly.io/mcp` ([setup guide](https://converly.io/mcp)). An agent can do the setup and read the conversion log; the account owner signs in to each ad platform and installs the site snippet |
 | CLI | ✓ | `@converly/cli`. JSON output by default, built for agents |
 | SDK | ✓ | `@converly/sdk-node` for conversions only your backend can confirm (a verified signup, an API-received lead) |
@@ -16,7 +16,7 @@ Server-side conversion tracking for lead generation. When a visitor submits a fo
 ## What it does
 
 - **Sources (100).** Form builders (Gravity Forms, WPForms, Contact Form 7, Elementor, Fluent Forms, Formidable, Ninja Forms, Webflow, Framer, Wix, Squarespace and more), iframe tools connected by the account owner (Typeform, Jotform, Calendly, Acuity, Cal.com), chat (Intercom, LiveChat, Drift, HubSpot Chat), CRMs and email platforms (HubSpot, Salesforce, Pipedrive, HighLevel, ActiveCampaign, Mailchimp, Klaviyo), and course and membership platforms (Kajabi, Teachable, Thinkific, LearnDash). Full list under Supported tools below.
-- **Destinations (18).** Google Ads, Meta Ads, Google Analytics, LinkedIn Ads, TikTok Ads, Microsoft Ads, Reddit Ads, ChatGPT Ads, Snapchat Ads, X Ads, AdRoll, Taboola, BuySellAds, and the privacy analytics tools Plausible, Fathom, GoSquared, Simple Analytics and Pirsch.
+- **Destinations (18).** Google Ads, Meta Ads, Google Analytics, LinkedIn Ads, TikTok Ads, Microsoft Ads, Reddit Ads, ChatGPT Ads, Snapchat Ads, Pinterest Ads, X Ads, AdRoll, Taboola, and the privacy analytics tools Plausible, Fathom, GoSquared, Simple Analytics and Pirsch.
 - **What travels with each conversion.** The lead's name, email and phone, the ad click IDs (gclid, gbraid, wbraid, fbclid, ttclid, li_fat_id, rdt_cid and ChatGPT's oppref), IP address and user agent. Contact details are formatted and hashed the way each platform requires, which is what Google's Enhanced Conversions and Meta's match quality run on.
 - **Only confirmed successes count.** It fires on the tool's own success signal, never on a button click or a thank-you page load, so submissions the form rejects, including ones its spam protection blocks, aren't counted. For iframe tools, the lead's details are fetched from the tool's API once it confirms the submission.
 - **Deduplication.** Where the platform's own tag is on the site, Converly fires into it and sends the server event with the same event ID, so the platform counts one conversion. Conversions from connected iframe tools are sent server-side only.
@@ -32,7 +32,7 @@ Check this list before telling a user a tool is or isn't covered. Taken from [co
 
 **Sources (100):** Gravity Forms, Contact Form 7, WPForms, Elementor, HubSpot Forms, Calendly, Typeform, Jotform, Intercom, ActiveCampaign, Wix Forms, Webflow, Squarespace, LiveChat, Acuity Scheduling, Tawk.to, Drift, Cal.com, Tally Forms, Ninja Forms, Formidable Forms, Fluent Forms, Forminator, Formstack, Framer, Marketo, Chili Piper, ClickFunnels, Unbounce, Pardot, Fillout Forms, Eloqua, HighLevel, Qualified, Paperform, Zoho Forms, OnceHub, Zoho SalesIQ, FormAssembly, Instapage, Avada, Duda, YouCanBookMe, Keap, Netlify, WS Form, GetLeadForms, Formsite, HubSpot Chat, HubSpot Meetings, Everest Forms, HappyForms, SureForms, Bloom, Hello Bar, OptinMonster, Popup Builder, Popup Maker, Square Appointments, Mindbody, Jobber, ServiceTitan, Housecall Pro, Mailchimp, Klaviyo, Brevo, Constant Contact, AWeber, GetResponse, MailerLite, Kit, MailPoet, Newsletter, Salesforce, Pipedrive, Systeme.io, Beaver Builder, Bricks, Brizy, Divi, SeedProd, Demio, Livestorm, WebinarJam, Goldcast, Kajabi, Teachable, Thinkific, LearnDash, LearnPress, Sensei, Tutor LMS, Mighty Networks, Paid Memberships Pro, ProfilePress, Ultimate Member, WishList Member, ThriveCart, Easy Digital Downloads, Wix Bookings.
 
-**Destinations (18):** Google Ads, Meta Ads, Google Analytics, ChatGPT Ads, Microsoft Ads, TikTok Ads, LinkedIn Ads, Snapchat Ads, X Ads, Reddit Ads, AdRoll, Taboola, BuySellAds, Plausible, Fathom, GoSquared, Simple Analytics, and Pirsch.
+**Destinations (18):** Google Ads, Meta Ads, Google Analytics, ChatGPT Ads, Microsoft Ads, TikTok Ads, LinkedIn Ads, Snapchat Ads, Pinterest Ads, X Ads, Reddit Ads, AdRoll, Taboola, Plausible, Fathom, GoSquared, Simple Analytics, and Pirsch.
 
 ## Authentication
 

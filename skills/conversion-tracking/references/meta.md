@@ -63,7 +63,7 @@ src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
 - Goal. Load the base code on every page through Google Tag Manager.
 - Do this. In tagmanager.google.com, open the site's container. Click Tags, then New. Name it "Meta Pixel - Base Code". Choose Tag Configuration, then Custom HTML, and paste the snippet above without the noscript block (GTM injects with JavaScript, so the noscript part does nothing there). Under Triggering choose All Pages. Save, then click Submit and Publish.
 - Expect to see. A new published container version listing the tag. On any page of the live site, the browser's Network tab shows a request to connect.facebook.net.
-- On error. The classic miss is saving without publishing. GTM Preview will show the tag while the live site stays silent until Submit is clicked. The other is a second base code already in the site theme or a plugin, which later shows as "pixel activated multiple times" in Pixel Helper. Keep exactly 1.
+- On error. The classic miss is saving without publishing. GTM Preview will show the tag while the live site stays silent until Submit is clicked. The other is a second base code already in the site theme or a plugin, which later shows as "pixel activated multiple times" in Meta Ads Data Advisor (formerly Pixel Helper). Keep exactly 1.
 
 **Step 5 - Paste into the site head (Path B)**
 - Goal. Load the base code sitewide without GTM.
@@ -121,8 +121,8 @@ Use the standard Lead event, not a custom name. Meta parks first-seen custom eve
 
 **Step 8 - Run a live test**
 - Goal. Watch the events arrive in Meta in real time.
-- Do this. Ask the user to open Events Manager, open the dataset, and click the Test events tab. They enter the URL of the page carrying the form and click the button to open it. In that new tab, they submit a test entry on the form. Optionally install the Meta Pixel Helper Chrome extension first, which adds a badge showing what fired on the page.
-- Expect to see. A PageView row appears as the page loads, then a Lead row within a few seconds of the submission. A healthy Lead shows the correct Pixel ID, arrives exactly once per submission, and is marked as received from the browser. Pixel Helper shows 1 pixel with the right ID and lists PageView and Lead.
+- Do this. Ask the user to open Events Manager, open the dataset, and click the Test events tab. They enter the URL of the page carrying the form and click the button to open it. In that new tab, they submit a test entry on the form. Optionally install the Meta Ads Data Advisor Chrome extension first, which adds a badge showing what fired on the page.
+- Expect to see. A PageView row appears as the page loads, then a Lead row within a few seconds of the submission. A healthy Lead shows the correct Pixel ID, arrives exactly once per submission, and is marked as received from the browser. Meta Ads Data Advisor shows 1 pixel with the right ID and lists PageView and Lead.
 - On error. PageView appears but Lead never does, which means the conversion moment is not wired (revisit Step 6 or 7, and confirm the detection snippet is installed). Or 2 Lead rows appear per submission, which means a double install. Nothing appears at all usually means the test browser runs an ad blocker or the consent banner was silently rejected, so retest in a normal window and accept the banner.
 
 ### 5. Event Match Quality and the Conversions API
@@ -143,7 +143,7 @@ Run every check that applies. All are observable, no guessing.
 
 - Test Events shows exactly 1 Lead row per test submission, never 0 and never 2.
 - The browser Network tab shows a request to facebook.com/tr with ev=Lead returning a 2xx status on submission.
-- Meta Pixel Helper reports exactly 1 pixel, and its ID matches the Dataset ID from Step 3.
+- Meta Ads Data Advisor reports exactly 1 pixel, and its ID matches the Dataset ID from Step 3.
 - Within 24 to 48 hours, the dataset's Overview tab shows the Lead event with a nonzero count.
 - In Ads Manager, the Lead event is selectable as the conversion goal when editing a campaign.
 
@@ -188,7 +188,7 @@ Events will show. Two behaviours worth knowing before interpreting what a user r
 - **M6. Duplicate events** (VERY COMMON): two installs (theme+GTM+plugin); click AND thank-you both firing; Pixel + CAPI without matching event_id. Meta dedups on event_name + event_id ONLY. Case mismatch ("lead" vs "Lead"), regenerated IDs, reused IDs all break dedup. Healthy pair shows one row marked "Deduplicated" in Test Events.
 - **M7. CAPI arrives but low Event Match Quality** (VERY COMMON): EMQ 1-10; drivers in order: hashed email, hashed phone (E.164), fbc, fbp, IP+UA, name/zip, external_id. PII must be SHA-256 after normalization (lowercase, trimmed). Missing phone or unforwarded _fbp/_fbc tanks it. Check event card > View Details; allow 24-48h after changes.
 - **M8. CAPI plumbing failures** (COMMON): expired token, wrong dataset ID, event_time >7 days old rejected (physical-store events up to 62 days), missing action_source, no user_data at all. Use Test Events with test_event_code.
-- **M9. Pixel Helper warnings**: "did not load" = fbevents.js blocked; "activated multiple times" = duplicate; "took too long" = lost on redirect; "new domain sending data" = hijacked pixel (fix with Traffic Permissions).
+- **M9. Meta Ads Data Advisor warnings**: "did not load" = fbevents.js blocked; "activated multiple times" = duplicate; "took too long" = lost on redirect; "new domain sending data" = hijacked pixel (fix with Traffic Permissions).
 - **M10. Browser/device attrition** (STRUCTURAL): typically 10–30% below the form backend depending on audience; iOS worst. The core CAPI argument.
 - **M11. iOS14/AEM legacy** (mostly resolved): 8-event cap + domain verification requirement dropped (announced May 2023); the AEM tab left Events Manager around mid-2025. Residual: modeled/delayed iOS conversions.
 - **M12. Custom event not selectable in Ads Manager** (OCCASIONAL): custom names need a custom conversion wrapper to optimize on. Prefer standard `Lead` event.
@@ -199,4 +199,4 @@ Meta's standalone Offline Conversions API shut down on 14 May 2025; offline and 
 Dataset ID + access token (Events Manager > Settings), POST to `graph.facebook.com/v*/{dataset_id}/events`. Needs event_name, event_time (≤7d), action_source, event_id (dedup), user_data with ≥1 identifier (email/phone SHA-256 lowercased/trimmed; fbp/fbc/IP/UA raw). SMB difficulty: server code or paid intermediary, event_id coordination, hashing rules, token management, dedup verification.
 
 ### Test tooling
-Test Events (browser + server via test_event_code, shows dedup status), Meta Pixel Helper extension, Events Manager Diagnostics tab.
+Test Events (browser + server via test_event_code, shows dedup status), Meta Ads Data Advisor extension, Events Manager Diagnostics tab.

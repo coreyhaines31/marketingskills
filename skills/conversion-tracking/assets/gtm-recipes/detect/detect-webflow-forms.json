@@ -29,7 +29,7 @@
           {
             "type": "TEMPLATE",
             "key": "html",
-            "value": "<script>\n(function () {\n  if (window.__ctDetectWebflowForms) return;\n  window.__ctDetectWebflowForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // How long after a submit we keep watching for Webflow's success box\n  // before giving up. Webflow's AJAX round-trip is normally 1\u20132 seconds.\n  var WATCH_TIMEOUT_MS = 30000;\n\n  function fireConversion(formName) {\n    window.dataLayer.push({\n      event: 'webflow_form_submitted',\n      form_name: formName || ''\n    });\n  }\n\n  // Webflow marks every form component with the `.w-form` wrapper class,\n  // regardless of theme or custom classes added on top. This is the same\n  // check the production module uses to scope its listener to real Webflow\n  // forms (and not e.g. a hand-coded <form> elsewhere on the page).\n  function isWebflowForm(formEl) {\n    if (!formEl || !formEl.closest) return false;\n    return formEl.closest('.w-form') !== null;\n  }\n\n  function isVisible(el) {\n    if (!el) return false;\n    try {\n      return window.getComputedStyle(el).display !== 'none';\n    } catch (e) {\n      return false;\n    }\n  }\n\n  // Arm a success watcher for one form. Fires only when Webflow's own\n  // success box (`.w-form-done`, a sibling of the form inside the `.w-form`\n  // wrapper) becomes visible \u2014 Webflow sets inline `display: block` on it\n  // after its AJAX call succeeds (live-verified). A visible `.w-form-fail`\n  // (Webflow's failure box), or the timeout elapsing with neither box shown\n  // (Webflow's JS can also reject a submission silently, with no UI change\n  // at all), tears the watcher down WITHOUT firing. One watcher per form:\n  // a re-submit while armed (e.g. a retry after a failure) resets it.\n  function armWatcher(formEl, formName) {\n    var wrap = formEl.closest('.w-form');\n    if (!wrap) return;\n    var doneEl = wrap.querySelector('.w-form-done');\n    var failEl = wrap.querySelector('.w-form-fail');\n    if (!doneEl) return; // nothing to confirm success against \u2014 never fire unconfirmed\n\n    var prev = formEl.__ctDetectWatch;\n    if (prev) prev.teardown();\n\n    var state = { fired: false };\n    var observer = null;\n    var pollTimer = null;\n    var killTimer = null;\n\n    function teardown() {\n      if (state.fired) return;\n      state.fired = true;\n      if (observer) { try { observer.disconnect(); } catch (e) {} }\n      if (pollTimer) clearInterval(pollTimer);\n      if (killTimer) clearTimeout(killTimer);\n      formEl.__ctDetectWatch = null;\n    }\n    state.teardown = teardown;\n\n    function check() {\n      if (state.fired) return;\n      if (isVisible(doneEl)) {\n        teardown();\n        fireConversion(formName); // confirmed Webflow success\n      } else if (isVisible(failEl)) {\n        teardown(); // confirmed Webflow failure \u2014 no conversion\n      }\n    }\n\n    if (typeof MutationObserver === 'function') {\n      observer = new MutationObserver(check);\n      observer.observe(wrap, {\n        attributes: true,\n        attributeFilter: ['style', 'class'],\n        subtree: true,\n        childList: true\n      });\n    }\n    pollTimer = setInterval(check, 300); // belt-and-braces alongside the observer\n    killTimer = setTimeout(teardown, WATCH_TIMEOUT_MS);\n\n    formEl.__ctDetectWatch = state;\n  }\n\n  // Attached at the document level in CAPTURE phase so it runs before the\n  // handler Webflow attaches in bubble phase \u2014 the same technique the\n  // production module uses to see the submit reliably. The submit itself\n  // never fires the conversion; it only snapshots the form name and arms\n  // the success watcher above.\n  function handleSubmit(event) {\n    try {\n      var formEl = event.target;\n      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n      if (!isWebflowForm(formEl)) return;\n\n      // The form's own name/id \u2014 set by the site builder in the Webflow\n      // Designer, not user-submitted data. Snapshotted at submit time.\n      var formName = formEl.getAttribute('data-name') || formEl.id || '';\n\n      armWatcher(formEl, formName);\n    } catch (e) {\n      // Never throw back into Webflow's own form handling.\n    }\n  }\n\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('submit', handleSubmit, true);\n  }\n})();\n</script>"
+            "value": "<script>\n(function () {\n  if (window.__ctWebflowForms) return;\n  window.__ctWebflowForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var listeners = [], timeout = 30000;\n  window.__ctWebflowSubscribe = function (listener) {\n    if (listener && typeof listener === 'object') listeners.push(listener);\n  };\n  function isForm(form) {\n    try { return !!(form && String(form.tagName || '').toLowerCase() === 'form' && form.closest && form.closest('.w-form')); }\n    catch (e) { return false; }\n  }\n  function notify(phase, form, candidate) {\n    var handled = false;\n    for (var i=0;i<listeners.length;i++) {\n      try { var fn=listeners[i] && listeners[i][phase]; if (typeof fn==='function' && fn(form,candidate)===true) handled=true; } catch(e) {}\n    }\n    return handled;\n  }\n  function visible(el) { try { return !!el && window.getComputedStyle(el).display !== 'none'; } catch(e) { return false; } }\n  function emit(form) {\n    var name=''; try { name=form.getAttribute('data-name') || form.id || ''; } catch(e) {}\n    if (!notify('onCandidate', form, true)) window.dataLayer.push({event:'webflow_form_submitted',form_name:name});\n  }\n  function submit(event) {\n    try {\n      var form=event.target; if (!isForm(form)) return;\n      notify('beforeAttempt', form, false);\n      var wrap=form.closest('.w-form'), done=wrap.querySelector('.w-form-done'), fail=wrap.querySelector('.w-form-fail');\n      if (!done) return;\n      var old=form.__ctWebflowWatch;\n      if (old) { notify('onOverlap', form, false); old.cancel(false); form.__ctWebflowWatch=null; }\n      var staleFail=visible(fail), settled=false, observer=null, poll=null, kill=null, jq=window.jQuery;\n      function stop(rejected) { if(settled)return; settled=true; if(observer)try{observer.disconnect();}catch(e){} if(jq)jq(document).off('ajaxComplete',check); if(poll)clearInterval(poll); if(kill)clearTimeout(kill); if(form.__ctWebflowWatch===state)form.__ctWebflowWatch=null; if(rejected)notify('onRejected',form,false); }\n      var state={cancel:function(){stop(false);}};\n      function check() {\n        if(settled)return;\n        // Webflow sets success only after its server accepts the form. A redirect\n        // skips the success box, so check that state after its AJAX callback.\n        var wf=jq && jq(form).data('.w-form');\n        if(wf && wf.form && wf.form[0]===form && wf.redirect && wf.success===true){ stop(); emit(form); return; }\n        if(visible(done)){ stop(); emit(form); return; }\n        if(!visible(fail)){staleFail=false;return;}\n        if(!staleFail)stop(true);\n      }\n      if(typeof MutationObserver==='function'){observer=new MutationObserver(check);observer.observe(wrap,{attributes:true,attributeFilter:['style','class'],subtree:true,childList:true});}\n      if(jq)jq(document).on('ajaxComplete',check);\n      poll=setInterval(check,300); kill=setTimeout(function(){stop(true);},timeout); form.__ctWebflowWatch=state;\n    } catch(e) {}\n  }\n  if(typeof document!=='undefined'&&document.addEventListener)document.addEventListener('submit',submit,true);\n})();\n</script>"
           },
           {
             "type": "BOOLEAN",
@@ -55,18 +55,18 @@
         "containerId": "0",
         "triggerId": "2",
         "name": "CE - Webflow Form Submitted",
-        "type": "customEvent",
+        "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
-            "type": "equals",
+            "type": "EQUALS",
             "parameter": [
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg0",
                 "value": "{{_event}}"
               },
               {
-                "type": "template",
+                "type": "TEMPLATE",
                 "key": "arg1",
                 "value": "webflow_form_submitted"
               }
@@ -85,12 +85,12 @@
         "type": "v",
         "parameter": [
           {
-            "type": "template",
+            "type": "TEMPLATE",
             "key": "name",
             "value": "form_name"
           },
           {
-            "type": "integer",
+            "type": "INTEGER",
             "key": "dataLayerVersion",
             "value": "2"
           }

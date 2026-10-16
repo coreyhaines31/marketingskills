@@ -101,7 +101,7 @@ Set expectations before diagnosing. Reasons a perfect setup still diverges:
 - Vendor claims [ALL VENDOR]: Meta's own oft-quoted CAPI figure: 19% additional attributed purchases, 13% lower cost per result. Stape cases: 46% more reported Google Ads conversions (Square), 38% attribution recovery. Treat as upper bounds.
 - Mechanisms of real recovery: HTTP first-party cookies with full TTL (vs 7d/24h ITP); first-party subdomain serving evades SOME blocklists (default sGTM loaders still blocked); server-to-server delivery immune to browser blocking.
 - Practitioner figure, not a benchmark: client-side-only undercount around 30% vs form DB/CRM has been reported for non-EU lead gen, worse for EU and technical audiences. Measure the account's own gap (CRM vs platform) instead of quoting this.
-- Why DIY sGTM is hard: GCP production ≈ $90+/mo or managed $20-200/mo (Stape, billed monthly); custom subdomain + DNS; rebuilding every tag server-side; 50-120 dev hours setup [VENDOR, high-end]; silent breakage ("conversions go dark 72h before anyone notices"); consent still applies server-side (firing for opted-out users = violation).
+- Why DIY sGTM is hard: GCP production ≈ $90+/mo or hosted from $17/mo billed yearly (Stape Pro), $83/mo billed yearly for Business; custom subdomain + DNS; rebuilding every tag server-side; 50-120 dev hours setup [VENDOR, high-end]; silent breakage ("conversions go dark 72h before anyone notices"); consent still applies server-side (firing for opted-out users = violation).
 
 ## 6. Magnitude table
 
@@ -129,7 +129,7 @@ Platforms disagree about whether a refunded purchase ever stops being a conversi
 
 - **Google Ads** supports conversion adjustments. Restate changes the value (partial refund), retract removes the conversion entirely. Adjustments work with gclid and gbraid, not wbraid, generally need an order_id, must happen within 54 days (within 7 days for bidding to use them), and are one-shot: a retracted conversion can never be adjusted again.
 - **GA4** has a standard `refund` event keyed on transaction_id.
-- **Meta** has no refund mechanism at all. A sent Purchase stays counted forever.
+- **Meta** documents no refund mechanism, so a sent Purchase stays counted.
 
 Two practical consequences. First, a store that dutifully adjusts Google and sends GA4 refunds will show structurally higher Meta ROAS than Google ROAS, and that is a platform asymmetry, not a tracking bug. Second, almost nobody wires up adjustments at all, so on any high-return store, every platform's ROAS is overstated by roughly the refund rate, and "are refunds adjusted anywhere?" is an audit question whose usual answer is no.
 

@@ -2,7 +2,7 @@
 
 Load this to establish or diagnose the conversion moment. Section 1 is the lead-gen problem (success must be inferred from a browser signal, and every tool signals differently); it carries literal, grep-able strings for working from (A) form mechanics, (B) static page source, (C) a headless browser, and (D) a codebase. Section 2 covers the moments this repo ships tested detectors for. Section 3 is the long tail. Section 4 is ecommerce, where the problem mostly does not exist.
 
-**Fix assets.** When a finding here names a missing or wrong detection hook, the fix usually already exists in this skill. Tested listeners for 18 tools live in `../assets/snippets/` (paste-in JS) and `../assets/gtm-recipes/detect/` (importable GTM containers), both pushing the canonical dataLayer event names listed in `../assets/gtm-recipes/event-map.json` (for example `gravity_form_submitted`, `typeform_form_submitted`, `calendly_event_scheduled`). Diagnose against those exact names, fix by installing those exact assets.
+**Fix assets.** When a finding here names a missing or wrong detection hook, the fix usually already exists in this skill. Tested listeners for 22 tools live in `../assets/snippets/` (paste-in JS) and `../assets/gtm-recipes/detect/` (importable GTM containers), both pushing the canonical dataLayer event names listed in `../assets/gtm-recipes/event-map.json` (for example `gravity_form_submitted`, `typeform_form_submitted`, `calendly_event_scheduled`). Diagnose against those exact names, fix by installing those exact assets.
 
 ## 1. Lead gen
 
@@ -25,12 +25,17 @@ Stacking complications: multi-step forms (only final step converts; step events 
 
 **Calendly** - iframe. Script `assets.calendly.com/assets/external/widget.js`; `<div class="calendly-inline-widget" data-url=...>`. Parent messages where `e.data.event` starts with `"calendly."`: profile_page_viewed, event_type_viewed, date_and_time_selected, **event_scheduled** (the conversion). Payload has event.uri + invitee.uri only - NO email (enhanced conversions need invitee API or prefill capture). Beware: date_and_time_selected ≠ booked.
 
+**Cal.com** - iframe. Cal.com's embed code (inline, popup, floating button) renders from `https://app.cal.com`, and a booking page pasted in as a plain iframe loads from `https://cal.com`. A new booking posts `{originator: 'CAL', type: 'bookingSuccessfulV2', data: {uid, eventTypeId, status, ...}}` to the parent from the frame's own origin. `cal-com.js` fires once per booking on `bookingSuccessfulV2`, accepted only from a Cal.com iframe on the page, and trusts each frame only for the origin its address starts with, so both setups work. Reschedules never count, and the deprecated `bookingSuccessful` (which carries the attendee's name and email) is never used. Bookings the host must confirm fire straight away with `booking_status` `PENDING`; add a trigger condition on `ACCEPTED` to count only confirmed ones. It doesn't cover self-hosted Cal.com. It was live-checked 15 Oct 2026 with real bookings through all four setups (inline, popup, floating button and plain iframe).
+
+**Acuity Scheduling** - iframe, and Acuity tells the page nothing (its embed script only posts resize messages). Its Custom Conversion Tracking field (Integrations, then Custom Conversion Tracking) runs HTML after each booking in a sandbox frame on `conversion-tracking-sandbox.acuityinnovation.com`, two frames below the page, with `%id%`, `%type%`, `%appointmentType%` and `%price%` filled in. This is the shipped example of Shape 3 below, where half the code goes inside the vendor's tool. `acuity-scheduling-field.html` goes in that field and posts those four values to the site's own address (put that address in `SITES`, or nothing counts), and `acuity-scheduling.js` on the site accepts only HTTPS `acuityinnovation.com` frames inside the page, once per appointment ID. Acuity keeps about 2 KB in the field, and the snippet is about 1 KB. Reschedules never count. Package and gift certificate purchases fire too, so filter on `acuity_type` equals `appointment`. Public snippets that read `%email%` and post to `"*"` send the visitor's email to the top window whatever site it is showing. This one never reads the name, email or phone. It was live-checked 15 Oct 2026 with two real bookings made by hand, because of reCAPTCHA, and a refused email counted nothing.
+
 **HubSpot Forms** - TWO variants, check BOTH:
 - Legacy v2: `js.hsforms.net/forms/embed/v2.js` + `hbspt.forms.create({portalId, formId})`; renders INLINE mostly. Window message events: `event.data.type === 'hsFormCallback'`, `event.data.eventName` ∈ onFormReady | onFormSubmit | **onFormSubmitted** (use this, post-success) | onFormFailedValidation; `event.data.id` = form GUID.
 - New v4: `js.hsforms.net/forms/embed/<portalId>.js` + `<div class="hs-form-frame" data-form-id=...>`; renders in IFRAME. Real DOM events on window: `hs-form-event:on-ready`, **`hs-form-event:on-submission:success`**, `:failed`, `:on-interaction:navigate`; `event.detail.formId`; helper `window.HubSpotFormsV4` (has getConversionId()).
 - Note: `js.hs-scripts.com/<portalId>.js` is the general HubSpot tracking script - presence ≠ ad conversion tracking.
+- `hubspot-forms.js` covers both and pushes `hubspot_form_submitted` with `form_id` only, never the lead's details. On a current-editor form with the current embed code it counts `hs-form-event:on-submission:success` only when `HubSpotFormsV4.getFormFromEvent` confirms the form and instance, once per conversion ID. On a legacy-editor form with the v2.js embed it counts only an `onFormSubmitted` message posted from the page's own window, never `onFormSubmit`, which also fires for submissions that then fail. Legacy forms in a cross-origin iframe aren't counted, because their message can't be tied to a form. A current-editor form placed with the older `hbspt.forms.create()` code sent the same success event in an earlier probe but wasn't in the 15 Oct checks, and multi-step forms, several forms on one page, redirect after submit and pop-up forms weren't tested. Submissions HubSpot's bot filter files under Spam still count, because HubSpot fires its success event for them too. It was live-checked 15 Oct 2026 on a current-editor form and a legacy-editor form, and again on 16 Oct after a retry fix, and HubSpot's Submissions matched the events one for one.
 
-**Jotform** - iframe (`form.jotform.com/<id>` or script `form.jotform.com/jsform/<id>`). Posts message to parent on submit; the Thank You → redirect setting breaks out of the iframe, navigates TOP window to your URL, and can append field values + unique {id} param - redirect is the most robust method. Tags pasted inside the Jotform builder fire on jotform.com's domain (wrong context).
+**Jotform** - iframe (`form.jotform.com/<id>` or script `form.jotform.com/jsform/<id>`). After a successful submission, Jotform's iframe and script embeds send the parent page a `{action: 'submission-completed', formID}` message (live-checked on both, Oct 2026; Jotform support describes it but doesn't formally document it), which `jotform.js` listens for. The full source-code embed sends none. The Thank You → redirect setting breaks out of the iframe, navigates TOP window to your URL, and can append field values + unique {id} param - redirect is the most robust method. Tags pasted inside the Jotform builder fire on jotform.com's domain (wrong context).
 
 **Contact Form 7 (WP)** - always AJAX. Bubbling DOM events on document (plain addEventListener works): **`wpcf7mailsent`** (success - use this), wpcf7submit, wpcf7invalid, wpcf7spam, wpcf7mailfailed. `event.detail` includes contactFormId, inputs (name/value array - usable for enhanced conversions).
 
@@ -44,7 +49,7 @@ Stacking complications: multi-step forms (only final step converts; step events 
 
 **Framer** - React forms, inline success swap, no navigation, no built-in GTM event. Track via custom listener/element observation or redirect. Framer can auto-capture UTM/GCLID into form fields (built-in feature).
 
-**Squarespace** - AJAX + inline message default; options: redirect URL, or "Post-Submit HTML" field that injects and executes code only after successful submit (a de facto conversion hook; Squarespace gates JavaScript and code injection to Core plans and above, and its form docs state no separate gate for this field).
+**Squarespace** - AJAX + inline message default. A 7.1 Form block renders in the page (no iframe) and saves through `/api/form/SaveFormSubmission`, and Squarespace's server decides (204 saved, 400 field error, 401 failed reCAPTCHA), so a submit alone is never a conversion. `squarespace-forms.js` fires only once Squarespace confirms the entry was saved, once per form per page view, and also works for forms set to redirect. It doesn't cover lightbox forms, 7.0 forms, or commerce or member forms. It was live-checked 15 Oct 2026 on inline, redirect and shared-page forms in Chromium, WebKit and Firefox. The other options are a redirect URL, or the "Post-Submit HTML" field that injects and executes code only after successful submit (a de facto conversion hook; Squarespace gates JavaScript and code injection to Core plans and above, and its form docs state no separate gate for this field).
 
 **Wix** - AJAX + inline success; tracking via Wix's own dashboard integrations (auto-fires form-submit conversion) or Velo `wixWindow.trackEvent`; raw GTM DOM listeners unreliable in Wix's framework. "Wix + manually pasted pixel" = high risk of no submit event.
 
@@ -110,7 +115,7 @@ The container is a public JS file: fetch `https://www.googletagmanager.com/gtm.j
 - Grep whole file for `AW-`, `conversionLabel`, pixel IDs. Nothing matching = container has NO conversion tags regardless of what the page promises.
 
 #### B.3 How existing detectors work
-Wappalyzer/BuiltWith: regex DB over script srcs, HTML, JS globals, cookies. Tag Assistant: instruments live page, shows fired tags + hit params. Meta Pixel Helper: checks fbq state + observed /tr requests. Headless equivalent: watch network + evaluate `fbq.getState()`.
+Wappalyzer/BuiltWith: regex DB over script srcs, HTML, JS globals, cookies. Tag Assistant: instruments live page, shows fired tags + hit params. Meta Ads Data Advisor (formerly Pixel Helper): checks fbq state + observed /tr requests. Headless equivalent: watch network + evaluate `fbq.getState()`.
 
 ### C. Dynamic checks (headless browser / Playwright)
 
@@ -173,6 +178,8 @@ python3 ../scripts/build_recipe.py --tool <slug> --send <google-ads|ga4|meta|lin
 
 | Slug | Tool | Moment | dataLayer event |
 |---|---|---|---|
+| `acuity-scheduling` | Acuity Scheduling | meeting booked | `acuity_appointment_scheduled` |
+| `cal-com` | Cal.com | meeting booked | `calcom_booking_successful` |
 | `calendly` | Calendly | meeting booked | `calendly_event_scheduled` |
 | `contact-form-7` | Contact Form 7 | form submission | `contact_form_7_submitted` |
 | `divi-forms` | Divi Forms | form submission | `divi_form_submitted` |
@@ -182,8 +189,10 @@ python3 ../scripts/build_recipe.py --tool <slug> --send <google-ads|ga4|meta|lin
 | `forminator` | Forminator | form submission | `forminator_form_submitted` |
 | `framer-forms` | Framer Forms | form submission | `framer_form_submitted` |
 | `gravity-forms` | Gravity Forms | form submission | `gravity_form_submitted` |
+| `hubspot-forms` | HubSpot Forms | form submission | `hubspot_form_submitted` |
 | `jotform` | Jotform | form submission | `jotform_form_submitted` |
 | `ninja-forms` | Ninja Forms | form submission | `ninja_forms_submitted` |
+| `squarespace-forms` | Squarespace Forms | form submission | `squarespace_form_submitted` |
 | `tally` | Tally | form submission | `tally_form_submitted` |
 | `typeform` | Typeform | form submission | `typeform_form_submitted` |
 | `webflow-forms` | Webflow Forms | form submission | `webflow_form_submitted` |
@@ -193,10 +202,18 @@ python3 ../scripts/build_recipe.py --tool <slug> --send <google-ads|ga4|meta|lin
 | `ws-form` | WS Form | form submission | `ws_form_submitted` |
 
 **Detection confidence.** Most of these fire on the tool's own success event or on a
-confirmed success state, which is exact. Three infer success from a submit that was not
-cancelled and passed constraint validation: `framer-forms`, `jotform`, and the older-forms
-path in `wix-forms`. They cannot know the server accepted the submission, so a server
-error or a spam rejection would still count. Say so if precision matters to the user.
+confirmed success state, which is exact. `acuity-scheduling` fires only when the snippet
+Acuity runs after a booking reports it, so it needs that snippet in Acuity too, and it
+counts package and gift certificate purchases unless the trigger filters `acuity_type` to
+`appointment`. `cal-com` also counts bookings still waiting for
+the host to confirm, marked `booking_status` `PENDING`. `hubspot-forms` also counts
+submissions HubSpot's bot filter files under Spam. `framer-forms` fires when Framer's own form
+endpoint answers its request with success. `squarespace-forms` fires only once Squarespace
+confirms the save, through its own success markers or its save request, never on the
+submit alone. `wix-forms` fires when Wix's own thank-you
+message appears inside the form, which Wix shows only after the entry is saved. It covers
+Wix's current forms with an inline thank-you message, not older Wix contact forms or forms
+set to go to another page after submitting.
 
 ## Universal patterns
 
@@ -218,10 +235,10 @@ Some of these tools also have native server-side integrations from their own pla
 managed tools listed there may cover them as built-in triggers; both live in `server-side.md`. What
 "no snippet" means is only that this skill's free browser-side detector does not exist yet.
 
-**Shape 1, page listener** (32): ActiveCampaign, Kit, AWeber, Mailchimp, Klaviyo, HubSpot
-Forms, Marketo, Pipedrive, Squarespace, Duda, Avada, Beaver Builder, GoHighLevel, Unbounce,
+**Shape 1, page listener** (28): ActiveCampaign, Kit, AWeber, Mailchimp, Klaviyo,
+Marketo, Pipedrive, Duda, Avada, Beaver Builder, GoHighLevel, Unbounce,
 Instapage, Leadpages, Paperform, Fillout, Formstack, Zoho Forms, HelloBar, OptinMonster,
-ConvertBox, Thrive Leads, Cal.com, Acuity, HubSpot Meetings, Chili Piper, Intercom, Crisp,
+ConvertBox, Thrive Leads, HubSpot Meetings, Chili Piper, Intercom, Crisp,
 Tawk.to, Drift.
 
 **Shape 2, WordPress but not a form submit** (6): LearnDash, LearnPress, Tutor LMS, Paid
@@ -248,7 +265,9 @@ signup, a course completion. There is usually no submit event to hook. Use
 **Shape 3. Half the code has to go inside the vendor's own tool.** Classic Pardot forms
 are iframes served from a Salesforce domain, so nothing on the parent page can see inside
 them. The fix is code pasted into the vendor's own thank-you or completion field that
-messages out to the parent page, plus a listener that catches it. Walk the user through
+messages out to the parent page, plus a listener that catches it. `acuity-scheduling` is
+the shipped example (`acuity-scheduling-field.html` goes in Acuity's Custom Conversion
+Tracking field, `acuity-scheduling.js` catches its message). Walk the user through
 the vendor screen; there is no snippet-only answer.
 
 **Shape 3b. The moment only the backend knows.** A SaaS signup, an account created, a
