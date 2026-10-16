@@ -116,6 +116,9 @@ async function main() {
             } catch {
               payload.include_aliases = { external_id: args.aliases.split(',') }
             }
+            if (!payload.include_aliases || typeof payload.include_aliases !== 'object' || Array.isArray(payload.include_aliases)) {
+              payload.include_aliases = { external_id: args.aliases.split(',') }
+            }
           } else {
             payload.included_segments = ['Subscribed Users']
           }
@@ -156,6 +159,10 @@ async function main() {
           if (!name) { result = { error: '--name required' }; break }
           let filters
           try { filters = args.filters ? JSON.parse(args.filters) : [{ field: 'session_count', relation: '>', value: '0' }] } catch { result = { error: 'Invalid JSON in --filters' }; break }
+          if (!Array.isArray(filters) || filters.length < 1 || filters.length > 200 ||
+              filters.some(filter => !filter || typeof filter !== 'object' || Array.isArray(filter))) {
+            throw new Error('--filters must be an array of 1–200 filter or operator objects')
+          }
           result = await api('POST', `/api/v1/apps/${APP_ID}/segments`, { name, filters })
           break
         }
