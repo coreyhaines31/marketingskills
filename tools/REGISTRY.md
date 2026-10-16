@@ -54,6 +54,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
+| omnia | AEO | ✓ | ✓ | - | - | [omnia.md](integrations/omnia.md) |
 | clearbit | Data Enrichment (legacy) | ✓ | - | [✓](clis/clearbit.js) | ✓ | [clearbit.md](integrations/clearbit.md) |
 | apollo | Data Enrichment | ✓ | ✓ | [✓](clis/apollo.js) | - | [apollo.md](integrations/apollo.md) |
 | zoominfo | Data Enrichment | ✓ | ✓ | [✓](clis/zoominfo.js) | - | [zoominfo.md](integrations/zoominfo.md) |
@@ -501,6 +502,16 @@ Sales conversation analytics, call recording, and deal intelligence.
 
 **Agent recommendation**: Gong for mining sales call transcripts for customer research, competitive intelligence, and coaching insights. Essential for revenue attribution and win/loss analysis.
 
+### AEO (Answer Engine Optimization)
+
+Answer engine optimization tools for AI visibility monitoring, competitor benchmarking, citation analysis, and content optimization.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **[omnia](integrations/omnia.md)** | AI visibility monitoring, prompt discovery, competitor benchmarking, citation analysis, and agent-assisted content optimization and outreach | REST API + OAuth MCP for data access; built-in agent for execution |
+
+**Agent recommendation**: Omnia for investigating AI visibility gaps and turning findings into content and outreach work. Use MCP for interactive analysis or the API for recurring reports; use the built-in Omnia Agent for content updates, publishing, and outreach with user approval. Pairs with the ai-seo and content-strategy skills. Manual checks and other monitoring options are covered in the ai-seo skill.
+
 ### AI Content
 
 AI-powered content generation and optimization platforms.
@@ -602,6 +613,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **outreach** - Sales engagement sequences
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
+- **omnia** - AI visibility, competitor mentions, and citation data (OAuth)
 - **exa** - AI-powered web search for LLMs and agents
 - **apollo** - B2B prospecting, enrichment, and sequences
 - **hubspot** - CRM read and write
