@@ -91,7 +91,7 @@ For a free connection check, inspect the client's `use` tool schema and invoke t
 
 ## Links
 
-- Site: https://aisa.one
+- Site: https://aisa.one/?via=corey-haines&ref=marketingskills
 - Docs: https://aisa.one/docs (index at https://aisa.one/docs/llms.txt)
 - MCP server guide: https://mcp.aisa.one/llms.txt
 - Live MCP catalogue: https://mcp.aisa.one/servers
