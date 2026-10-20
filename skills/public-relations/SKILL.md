@@ -2,7 +2,7 @@
 name: public-relations
 description: "When the user wants help with public relations, earned media, press coverage, journalist outreach, or media strategy (not pull requests). Also use when the user mentions 'PR,' 'press,' 'press release,' 'media outreach,' 'pitch a journalist,' 'get featured,' 'media list,' 'media kit,' 'press kit,' 'newsjacking,' 'news hijack,' 'HARO,' 'Qwoted,' 'Featured,' 'reporter request,' 'tech press,' 'TechCrunch,' 'thought leadership placement,' 'op-ed,' 'guest article,' 'press contacts,' 'podcast prep,' 'podcast guest,' 'prep me for this podcast,' 'how do I get press,' 'PR crisis,' 'crisis communications,' 'respond to backlash,' 'we got hacked,' 'data breach statement,' or 'holding statement.' Also covers crisis response when something goes wrong. For startup/SaaS/AI directory submissions, see directory-submissions. For product launches, see launch. For social-media engagement, see social. For cold-email outreach to prospects, see cold-email."
 metadata:
-  version: 1.2.1
+  version: 1.3.0
 ---
 
 # Public Relations & Earned Media
@@ -58,6 +58,8 @@ Four modes. Most teams over-index on one. Run at least three.
 **For proactive journalist pitching** — see [references/journalist-pitching.md](references/journalist-pitching.md)
 
 **For inbound press-request platforms (HARO, Qwoted, etc.)** — see [references/press-platforms.md](references/press-platforms.md)
+
+**For writing a press release and choosing where to distribute it** (own newsroom, free sites, paid wires, an agent-callable API), see [references/press-releases.md](references/press-releases.md). A release is a record, not a pitch. It rarely earns coverage by itself.
 
 **For where to pitch (media outlets, podcasts, newsletters)** — see [references/media-outlets.md](references/media-outlets.md). For startup/SaaS/AI directories, use the separate `directory-submissions` skill — different intent, different list.
 
@@ -143,6 +145,9 @@ Combine: recent product milestones + active news cycles + any data you've collec
 
 ### "What's my story angle?" / "How do I get press with no news?"
 Go to [story-angles.md](references/story-angles.md). Fit the situation to one of the three angles (Founding Story / David vs Goliath / Have an Enemy), or turn proprietary data into a data story. Remember: a milestone alone isn't a story — milestone *with narrative* is.
+
+### "Write a press release for our launch"
+Go to [press-releases.md](references/press-releases.md). Check the release is worth it, draft it in the standard structure, post it on the newsroom page, then pick distribution by goal and budget. Pitch journalists separately.
 
 ### "Respond to this HARO query"
 Go to [press-platforms.md](references/press-platforms.md), use the response template, keep it under 200 words.

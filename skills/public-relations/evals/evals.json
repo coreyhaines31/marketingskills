@@ -31,6 +31,21 @@
         "Addresses channel order: affected customers and staff before or alongside public posts"
       ],
       "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We're launching v2 of our project management app next Tuesday. Write a press release and tell me where to send it. Budget is a few hundred dollars.",
+      "expected_output": "Should route to references/press-releases.md. Should draft a release in the standard structure (headline naming the company and event, dateline, a lead that stands alone, specific numbers, a quote that gives a reason, About paragraph, named media contact) under 600 words, with no banned words. Should tell the user to post it on their own newsroom page first. Should present distribution as options that fit the budget (free newsroom or PRLog, a low-cost wire such as EIN Presswire, an API option) with tradeoffs, without calling any one option the best. Should say plainly that wire distribution produces syndicated copies rather than reporter-written articles, and suggest pitching journalists alongside the release.",
+      "assertions": [
+        "Drafts a release with a headline that names the company and the event",
+        "Release has a named media contact and an About paragraph",
+        "Recommends posting on the user's own newsroom page first",
+        "Lists more than one distribution option within budget, including a free one",
+        "Does not call any single distribution service the best",
+        "States that wire distribution yields syndicated copies, not coverage",
+        "Suggests pitching journalists in addition to the release"
+      ],
+      "files": []
     }
   ]
 }
