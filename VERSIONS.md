@@ -45,7 +45,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | product-marketing | 2.2.0 | 2026-10-15 |
 | programmatic-seo | 2.1.0 | 2026-10-06 |
 | prospecting | 1.3.0 | 2026-10-08 |
-| public-relations | 1.2.1 | 2026-10-15 |
+| public-relations | 1.3.0 | 2026-10-20 |
 | referrals | 2.2.1 | 2026-10-12 |
 | revops | 2.2.1 | 2026-10-12 |
 | sales-enablement | 2.4.0 | 2026-10-07 |
@@ -58,6 +58,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.13.1 (2026-10-20)
+
+- **public-relations** (1.2.1 → 1.3.0): new `references/press-releases.md`. When a release is worth it, a structure template, writing rules, a distribution options table (own newsroom, PRLog, EIN Presswire, PR Newswire, Business Wire, Agent Press Wire) with prices checked 2026-10-20, picking by goal, what wire distribution actually gets you, timing, and a checklist. SKILL.md links it from The PR Mix and adds a common workflow. New eval.
+- **Agent Press Wire integration guide** (`tools/integrations/agent-press-wire.md`) and a Press Release Distribution category in the registry. Contributed by the tool's maker, disclosed in the guide and the reference.
 
 ### 2.13.0 (2026-10-19)
 

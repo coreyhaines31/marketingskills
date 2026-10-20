@@ -135,6 +135,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | onesignal | Push | ✓ | - | [✓](clis/onesignal.js) | ✓ | [onesignal.md](integrations/onesignal.md) |
 | demio | Webinar | ✓ | - | [✓](clis/demio.js) | - | [demio.md](integrations/demio.md) |
 | livestorm | Webinar | ✓ | - | [✓](clis/livestorm.js) | - | [livestorm.md](integrations/livestorm.md) |
+| agent-press-wire | Press Release Distribution | ✓ | ✓ | - | - | [agent-press-wire.md](integrations/agent-press-wire.md) |
 | shopify | Commerce | ✓ | - | ✓ | ✓ | [shopify.md](integrations/shopify.md) |
 | wordpress | CMS | ✓ | - | ✓ | ✓ | [wordpress.md](integrations/wordpress.md) |
 | webflow | CMS | ✓ | - | ✓ | ✓ | [webflow.md](integrations/webflow.md) |
@@ -533,6 +534,20 @@ AI-powered web search APIs built for LLMs and agents. Return structured results 
 
 **Agent recommendation**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
 
+### Press Release Distribution
+
+Publishing a press release and sending it to news sites. Only Agent Press Wire has an integration guide here; the rest are listed so an agent can compare.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **Own newsroom page** | The canonical, dated copy | Free; post here first regardless of distribution |
+| **PRLog** | A free hosted release page | Free; low journalist readership |
+| **EIN Presswire** | Low-cost syndication with card checkout | $149 per release, packs from $499 for 5 |
+| **PR Newswire** / **Business Wire** | Public company disclosure, widest newsroom reach | No public rate card; estimates start around $475 local and $760+ national for 400 words |
+| **[agent-press-wire](integrations/agent-press-wire.md)** | Agent-run launches with no human checkout | API + MCP, x402 USDC on Base; $1 hosted release, $99 or $299 wire. Added by its maker |
+
+**Agent note**: Pick by goal and budget, and set expectations: wire distribution produces syndicated copies, not articles. See the [press releases reference](../skills/public-relations/references/press-releases.md) for structure, the full options table, and when a release is worth it.
+
 ### Partner Ecosystem
 
 Partner data sharing, co-sell, and ecosystem management.
@@ -633,6 +648,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
+- **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
