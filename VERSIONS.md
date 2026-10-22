@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.2 | 2026-10-12 |
 | ad-creative | 2.12.1 | 2026-10-15 |
-| ai-seo | 2.10.1 | 2026-10-19 |
+| ai-seo | 2.10.2 | 2026-10-22 |
 | analytics | 2.2.1 | 2026-10-19 |
 | aso | 2.0.2 | 2026-10-08 |
 | attribution | 1.1.6 | 2026-10-19 |
@@ -58,6 +58,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.2.1 | 2026-10-02 |
 
 ## Recent Changes
+
+### 2.13.1 (2026-10-22)
+
+- **ai-seo** (2.10.1 → 2.10.2): agent-readiness reference adds the AgentReady open standard (agentready.org, Ora with Vercel, Stripe, Auth0, Mintlify, Tavily, Google, Elementor): find → read → act ordering, MUST/SHOULD/MAY practice IDs to cite in audits, and Ora's study figures (3.7× more fact-free answers when agents can't read the site, 1.9× recommendation rate, 60% vs 37% pricing accuracy) labeled as vendor research. Adds WAF-as-separate-gate, 429 + Retry-After over challenge pages, linking discovery files, the AI Catalog, visible-text facts over JSON-LD-only, and the act tier (MCP server or CLI, finishable auth, OpenAPI). Markdown mirrors downgraded to MAY since format didn't change task success. robots.txt guidance (reference and SKILL.md) now defaults to a wildcard allow with named groups only for deliberate exceptions.
 
 ### 2.13.0 (2026-10-19)
 
