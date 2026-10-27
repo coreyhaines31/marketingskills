@@ -141,6 +141,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | sanity | Headless CMS | ✓ | - | ✓ | ✓ | [sanity.md](integrations/sanity.md) |
 | contentful | Headless CMS | ✓ | - | ✓ | ✓ | [contentful.md](integrations/contentful.md) |
 | strapi | Headless CMS | ✓ | - | ✓ | ✓ | [strapi.md](integrations/strapi.md) |
+| deed-page | Static Hosting | ✓ | ✓ | - | - | [deed-page.md](integrations/deed-page.md) |
 | composio | Integration Layer | ✓ | ✓ | ✓ | ✓ | [composio.md](integrations/composio.md) |
 | cogny | Integration Layer | - | ✓ | - | - | [cogny.md](integrations/cogny.md) |
 | glasser | Integration Layer | ✓ | ✓ | ✓ | - | [glasser.md](integrations/glasser.md) |
@@ -633,6 +634,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
+- **deed-page** - Publish static pages and folders to a shareable URL (no account needed)
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
