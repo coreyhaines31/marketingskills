@@ -12,7 +12,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | attribution | 1.1.6 | 2026-10-19 |
 | churn-prevention | 2.0.3 | 2026-10-12 |
 | co-marketing | 2.0.3 | 2026-10-12 |
-| cold-email | 2.2.1 | 2026-10-27 |
+| cold-email | 2.2.2 | 2026-10-28 |
 | community-marketing | 2.0.2 | 2026-10-27 |
 | competitor-profiling | 2.1.4 | 2026-10-15 |
 | competitors | 2.3.0 | 2026-10-01 |
@@ -58,6 +58,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.3.0 | 2026-10-26 |
 
 ## Recent Changes
+
+### 2.13.10 (2026-10-28)
+
+- **cold-email** (2.2.1 → 2.2.2): the framework examples in `references/frameworks.md` no longer carry invented proof. Named customers with results (Datadog, HubSpot, Pfizer, Acme), the "Sarah" story and unsourced figures (5+ hours a week, 3x more meetings, 30% of leads, the top 5%) are now bracketed slots, and a rule above the examples says to fill a slot only with a result you can document and a customer you may name, or cut the proof line. An agent that follows an example may copy its pattern, and a named customer with a precise result reads as something to reproduce.
 
 ### 2.13.9 (2026-10-27)
 
