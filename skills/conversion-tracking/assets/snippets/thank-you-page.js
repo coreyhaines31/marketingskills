@@ -24,6 +24,25 @@
 
   var fired = {};
 
+  // The browser already knows whether this page load is a refresh or a
+  // back/forward return rather than a fresh arrival. Navigation Timing
+  // reports it; older WebKit only has the Level 1 field.
+  function isRepeatPageLoad() {
+    try {
+      var perf = window.performance;
+      if (!perf) return false;
+      var entries = typeof perf.getEntriesByType === 'function' ?
+        perf.getEntriesByType('navigation') : null;
+      if (entries && entries.length && entries[0].type) {
+        return entries[0].type === 'reload' || entries[0].type === 'back_forward';
+      }
+      if (perf.navigation) {
+        return perf.navigation.type === 1 || perf.navigation.type === 2;
+      }
+    } catch (e) { /* fall through */ }
+    return false;
+  }
+
   function matches(path) {
     var p = String(path || '').toLowerCase();
     for (var i = 0; i < THANK_YOU_PATHS.length; i++) {
@@ -33,17 +52,21 @@
     return null;
   }
 
-  function check() {
+  function check(pageLoad) {
     try {
       var path = window.location.pathname;
       var matched = matches(path);
       if (!matched) return;
 
-      // A refresh or a back-button return to the confirmation page would
-      // otherwise count a second conversion for the same lead. Keyed on the
-      // full path so two different confirmations still both count.
+      // Keyed on the full path so two different confirmations still both
+      // count. Within one page lifetime (a single-page app changing routes)
+      // this object is the guard. It starts over on every page load, so a
+      // refresh or a back-button return to the confirmation page would count
+      // a second conversion for the same lead; the browser's navigation type
+      // tells those apart from a new arrival.
       if (!COUNT_EVERY_VIEW && fired[path]) return;
       fired[path] = true;
+      if (!COUNT_EVERY_VIEW && pageLoad === true && isRepeatPageLoad()) return;
 
       window.dataLayer.push({
         event: 'thank_you_page_view',
@@ -78,8 +101,8 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', check);
+    document.addEventListener('DOMContentLoaded', function () { check(true); });
   } else {
-    check();
+    check(true);
   }
 })();
