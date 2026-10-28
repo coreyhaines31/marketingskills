@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.3 | 2026-10-27 |
-| ad-creative | 2.12.2 | 2026-10-26 |
+| ad-creative | 2.12.3 | 2026-10-28 |
 | ai-seo | 2.11.0 | 2026-10-26 |
 | analytics | 2.2.2 | 2026-10-27 |
 | aso | 2.0.3 | 2026-10-27 |
@@ -55,9 +55,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
 | social | 2.4.0 | 2026-10-14 |
-| video | 2.3.0 | 2026-10-26 |
+| video | 2.3.1 | 2026-10-28 |
 
 ## Recent Changes
+
+### 2.13.10 (2026-10-28)
+
+- **video** (2.3.0 → 2.3.1): Batch Social Clips adds one layout per aspect ratio and a frame check for cropped products, logos and text. Common Mistakes adds cropping the product. The Hyperframes guide explains that `render --resolution` only scales a composition of the same ratio, and adds product-photo framing: contain inside a margin, a starting zoom cap near 4%, and a check of the peak-zoom frame in every size.
+- **ad-creative** (2.12.2 → 2.12.3): code-based video's social ad batch production renders one layout per aspect ratio instead of the same content across all ratios, and checks frames in every size, linking the Hyperframes product-photos guidance.
 
 ### 2.13.9 (2026-10-27)
 

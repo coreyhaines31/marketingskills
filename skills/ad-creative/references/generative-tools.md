@@ -507,18 +507,20 @@ const variations = [
 Generate videos addressing prospects by name for cold outreach or sales.
 
 **4. Social ad batch production**
-Render the same content across different aspect ratios:
+Render the same content in each aspect ratio, with one composition (layout) per ratio:
 - 1:1 for feed
 - 9:16 for Stories/Reels
 - 16:9 for YouTube
 
+Each ratio needs its own layout: a Hyperframes file renders only at its own ratio, and a product photo framed for 9:16 crops in 16:9. Check the peak-zoom frame of every size for a cut-off product, logo, or text (see the [Hyperframes guide](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/hyperframes.md#product-photos)).
+
 ### Code-Based Workflow for Ad Creative
 
 ```
-1. Design the template (or have an AI agent write it)
+1. Design the template, one layout per aspect ratio (or have an AI agent write it)
 2. Define data schema (products, headlines, CTAs, images)
 3. Feed data array into template
-4. Batch render all variations
+4. Batch render all variations and check frames in every size
 5. Upload to ad platform
 ```
 

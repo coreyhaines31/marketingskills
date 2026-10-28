@@ -2,7 +2,7 @@
 name: video
 description: "When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks. Also use when the user mentions 'video production,' 'AI video,' 'Remotion,' 'Hyperframes,' 'HeyGen,' 'Synthesia,' 'Veo,' 'Sora,' 'Runway,' 'Kling,' 'Seedance,' 'Hailuo,' 'MiniMax,' 'Pika,' 'Hunyuan,' 'Wan,' 'video generation,' 'AI avatar,' 'talking head video,' 'programmatic video,' 'video template,' 'explainer video,' 'product demo video,' 'record a product demo,' 'feature demo video,' 'in-app demo,' 'video pipeline,' 'copy this edit,' 'match this video style,' 'reverse-engineer this video,' 'edit like this reference,' or 'make me a video.' Use this for video creation, generation, and production workflows. For video content strategy and what to post, see social. For paid video ad creative, see ad-creative."
 metadata:
-  version: 2.3.0
+  version: 2.3.1
 ---
 
 # Video
@@ -258,11 +258,12 @@ To replicate the *style* of a video edit you admire — the cut rhythm, caption 
 
 ### Batch Social Clips
 
-1. **Create master template** in Hyperframes/Remotion
+1. **Create master template** in Hyperframes/Remotion, one layout per aspect ratio
 2. **Feed data** — product features, testimonials, stats
-3. **Render batch** — one template, many variations
-4. **Add platform-specific captions** via CapCut or Captions.ai
-5. **Schedule** across platforms
+3. **Render batch** — the same data rows through each layout
+4. **Check frames** — look at the peak-zoom frame of each size for a cropped product, logo, or text
+5. **Add platform-specific captions** via CapCut or Captions.ai
+6. **Schedule** across platforms
 
 ### Personalized Video per Account
 
@@ -316,6 +317,7 @@ Output: Ready-to-publish video
 4. **No captions** — 85% of social video is watched without sound
 5. **Wrong aspect ratio** — 9:16 for social, 16:9 for YouTube/website, 1:1 for feeds
 6. **Over-producing** — authentic often outperforms polished, especially on TikTok
+7. **Cropping the product** — a full-canvas photo plus a push-in cuts off product edges and logos; fit the photo inside a margin and keep zoom small (see the [Hyperframes guide](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/hyperframes.md#product-photos))
 
 ---
 

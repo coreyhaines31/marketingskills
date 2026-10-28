@@ -78,8 +78,8 @@ await executeRenderJob(job, "./my-video", "./output.mp4");
 
 For batch or personalized videos, generate one composition per row (a changelog entry, a customer, a metric), then render each:
 
-1. Keep one hand-built composition as the template.
-2. For each row, write a copy with the row's text, numbers, and images filled in, and the clip timings adjusted if the content length changes.
+1. Keep one hand-built composition per aspect ratio as the template.
+2. For each row, write a copy of each template with the row's text, numbers, and images filled in, and the clip timings adjusted if the content length changes.
 3. Lint, then render each file with `npx hyperframes render -c <file> -o <name>.mp4` or `executeRenderJob` in a loop.
 
 Product announcements, changelog videos, testimonial cards, and stat reveals all fit this pattern: a short sequence of clips with text, an image or two, and one or two GSAP moves each.
@@ -92,6 +92,18 @@ Product announcements, changelog videos, testimonial cards, and stat reveals all
 | YouTube | 1920 | 1080 | 16:9 |
 | Instagram Feed | 1080 | 1080 | 1:1 |
 | Instagram Feed | 1080 | 1350 | 4:5 |
+
+Build one composition per ratio. `render --resolution` (v0.8.214) renders the same composition at a whole-number multiple of its size, and the aspect ratio must match, so a 9:16 file cannot output a 1:1 or 16:9 video. For a batch in several sizes, keep one layout file per ratio and render the same data rows through each.
+
+### Product photos
+
+Product shots crop easily: a fixed frame plus a slow push-in cuts off the product edge, and with it a logo or brand mark printed near the edge.
+
+Starting points that worked in one product-video run (not Hyperframes limits):
+
+- Fit the photo with `object-fit: contain` inside a padded box (about 6-8% of the short side), not `cover` on the full canvas. `cover` crops tall products in landscape and wide ones in portrait.
+- Cap zoom at about 4% (`scale` 1 → 1.04) over the clip, and anchor it on the product's center. A larger push-in usually needs a photo with more margin around the product.
+- Check the frame where the zoom peaks in every size. The product and every mark on it must sit fully inside the frame and clear of text overlays.
 
 ## Hyperframes vs. Remotion
 
