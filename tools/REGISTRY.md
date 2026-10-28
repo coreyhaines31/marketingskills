@@ -115,6 +115,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | intercom | Messaging | ✓ | - | [✓](clis/intercom.js) | ✓ | [intercom.md](integrations/intercom.md) |
 | outreach | Sales Engagement | ✓ | ✓ | [✓](clis/outreach.js) | - | [outreach.md](integrations/outreach.md) |
 | heyreach | LinkedIn Outreach | ✓ | ✓ | ✓ | - | [heyreach.md](integrations/heyreach.md) |
+| heyreagent | LinkedIn Outreach | ✓ | ✓ | - | - | [heyreagent.md](integrations/heyreagent.md) |
 | crossbeam | Partner Ecosystem | ✓ | ✓ | [✓](clis/crossbeam.js) | - | [crossbeam.md](integrations/crossbeam.md) |
 | introw | Partner Ecosystem | - | ✓ | - | - | [introw.md](integrations/introw.md) |
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
@@ -439,6 +440,7 @@ LinkedIn connection requests, messages, and inbox across sender accounts. All th
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **heyreach** | Multi-sender LinkedIn campaigns, email + LinkedIn with Instantly/Smartlead | API + official per-workspace MCP; LinkedIn removed its company page in March 2026 |
+| **heyreagent** | One owned LinkedIn account driven action by action from an AI app or n8n: inbox, messages, invitations, people and post search | Hosted MCP (OAuth sign-in or key) + REST API with an OpenAPI file; built-in daily limits per account; free plan disconnects LinkedIn after an hour idle |
 
 **Agent recommendation**: Use real, owned profiles only, keep each sender well under weekly connection limits, and stop LinkedIn steps when a prospect replies on any channel. Alternatives: lemlist and La Growth Machine (email + LinkedIn in one sequence), Expandi, Waalaxy, Unipile (API for builders).
 
@@ -623,6 +625,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **instantly** - Cold email campaigns, leads, replies, and warmup
 - **lemlist** - Email + LinkedIn sequences
 - **heyreach** - LinkedIn outreach (per-workspace MCP key)
+- **heyreagent** - LinkedIn actions on your own account (OAuth sign-in or key)
 - **hunter** - Email finding and verification
 - **truelist** - Email verification and batches
 - **fullenrich** - Waterfall email and mobile enrichment
@@ -701,7 +704,7 @@ Strategy, copy, cadence, and compliance live in the `prospecting` and `cold-emai
 | 3 | Find contacts and emails | [apollo](integrations/apollo.md), [fullenrich](integrations/fullenrich.md) (waterfall), [leadmagic](integrations/leadmagic.md), [hunter](integrations/hunter.md), [clay](integrations/clay.md) | ✓ | ✓ |
 | 4 | Verify before sending | [truelist](integrations/truelist.md) (catch-all resolution) | ✓ | ✓ |
 | 5 | Send email sequences | [instantly](integrations/instantly.md), [lemlist](integrations/lemlist.md), [outreach](integrations/outreach.md) (enterprise) | ✓ | ✓ |
-| 6 | LinkedIn steps | [heyreach](integrations/heyreach.md), [lemlist](integrations/lemlist.md) (email + LinkedIn) | API | ✓ |
+| 6 | LinkedIn steps | [heyreach](integrations/heyreach.md), [lemlist](integrations/lemlist.md) (email + LinkedIn), [heyreagent](integrations/heyreagent.md) (one owned account) | API | ✓ |
 | 7 | Book meetings | [calendly](integrations/calendly.md), [savvycal](integrations/savvycal.md) | ✓ | ✓ (calendly) |
 | 8 | Log in the CRM | [hubspot](integrations/hubspot.md), [attio](integrations/attio.md), [close](integrations/close.md), [salesforce](integrations/salesforce.md) | ✓ | ✓ (salesforce via [composio](integrations/composio.md)) |
 | 9 | Retarget target accounts | [linkedin-ads](integrations/linkedin-ads.md) (Matched Audiences) | ✓ | via composio |
