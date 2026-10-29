@@ -2,7 +2,7 @@
 name: social
 description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, or Facebook, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social content, repurposing, scheduling, video scripts, and listening. Posts avoid AI tells like 'it's not X, it's Y' reveals and broetry. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
-  version: 2.4.0
+  version: 2.5.0
 ---
 
 # Social Content
@@ -55,6 +55,8 @@ Gather this context (ask if not provided):
 **For hashtag limits and character counts**: See [references/platform-limits.md](references/platform-limits.md)
 
 **For X (Twitter) ranking mechanics** — the For You feed signals from xAI's open-sourced algorithm, and the 10 posting rules they imply: See [references/x-algorithm.md](references/x-algorithm.md). Use it whenever the task involves posting on X.
+
+**For Chinese platforms** (Xiaohongshu, Douyin, Weibo, Bilibili, WeChat) — how search works, what the engagement numbers mean, the platforms' own creator and ad marketplaces, ad-disclosure rules, and data limits: See [references/chinese-platforms.md](references/chinese-platforms.md). Use it whenever the audience, competitors, or creators are in China.
 
 ---
 
