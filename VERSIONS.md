@@ -54,10 +54,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.1 | 2026-10-08 |
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.0 | 2026-10-14 |
+| social | 2.5.0 | 2026-10-29 |
 | video | 2.3.0 | 2026-10-26 |
 
 ## Recent Changes
+
+### 2.13.10 (2026-10-29)
+
+- **social** (2.4.0 → 2.5.0): new `references/chinese-platforms.md` for research on Xiaohongshu (RedNote), Douyin, Weibo, Bilibili, and WeChat, with Kuaishou and Zhihu in brief: how each platform's search and filters work, which engagement numbers are public and what they signal (hidden views on Xiaohongshu and most of Douyin, Bilibili coins, WeChat's 10万+ cap and curated comments), intent words for tagging comments, the platforms' own creator and ad marketplaces (蒲公英, 巨量星图, 微任务, 花火, 互选, 磁力聚星), mainland ad-disclosure rules (Advertising Law; the 2023 Internet Advertising Measures' "广告" label for reviews with purchase links), and data limits including PIPL. Linked from the platform quick reference. Names no vendor. The description is unchanged, so the reviewed web description stays valid.
+- **Tools registry**: the Social Media category is split into **Social Media Scheduling** (Buffer, unchanged) and **Social Data & Listening** (AIsa, Apify, Glasser, SocialToAI), which points to the listening and Chinese-platforms references for the free paths. New integration guide `integrations/socialtoai.md` (contributed by the SocialToAI team, disclosed in the guide); added to the Tool Index and the MCP-enabled lists in the registry and AGENTS.md.
 
 ### 2.13.9 (2026-10-27)
 
