@@ -1437,6 +1437,115 @@ async function cmdReviews(name, opts) {
   return out;
 }
 
+// npm caps one range request at 18 months, so the window is split into chunks of at most 365 days.
+export function npmRanges(months, now = new Date()) {
+  const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - months, 1));
+  const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 1));
+  const out = [];
+  for (let from = start; from <= end;) {
+    const to = new Date(Math.min(end.getTime(), from.getTime() + 364 * 86400000));
+    out.push({ from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) });
+    from = new Date(to.getTime() + 86400000);
+  }
+  return out;
+}
+
+export function monthlyFromDaily(days) {
+  const byMonth = {};
+  for (const d of days) {
+    const m = d.day.slice(0, 7);
+    byMonth[m] ??= { month: m, downloads: 0, days: 0 };
+    byMonth[m].downloads += d.downloads;
+    byMonth[m].days++;
+  }
+  return Object.values(byMonth).sort((a, b) => a.month.localeCompare(b.month)).map(r => {
+    const [y, m] = r.month.split('-').map(Number);
+    return { ...r, partial: r.days < new Date(Date.UTC(y, m, 0)).getUTCDate() };
+  });
+}
+
+// samples: the date of the Nth star. Stars at each month end are interpolated between samples.
+export function starCurve(samples, months, now = new Date()) {
+  const pts = [...samples].sort((a, b) => a.index - b.index).map(s => ({ index: s.index, t: Date.parse(s.date), final: Boolean(s.final) }));
+  const out = [];
+  for (let i = months - 1; i >= 0; i--) {
+    const monthEnd = Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i + 1, 0, 23, 59, 59);
+    const t = Math.min(monthEnd, now.getTime());
+    const month = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1)).toISOString().slice(0, 7);
+    let stars;
+    if (!pts.length || t < pts[0].t) stars = pts.length ? 0 : null;
+    else if (t >= pts[pts.length - 1].t) stars = pts[pts.length - 1].final ? pts[pts.length - 1].index : null;
+    else {
+      const j = pts.findIndex(p => p.t > t);
+      const a = pts[j - 1];
+      const b = pts[j];
+      stars = Math.round(a.index + ((b.index - a.index) * (t - a.t)) / (b.t - a.t));
+    }
+    out.push({ month, stars });
+  }
+  return out;
+}
+
+async function githubStars(repo, months) {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+  const headers = token ? { authorization: `Bearer ${token}` } : {};
+  const info = await getJson(`https://api.github.com/repos/${repo}`, headers);
+  const out = { repo: info.full_name, stars: info.stargazers_count, forks: info.forks_count, created: String(info.created_at).slice(0, 10), last_push: String(info.pushed_at).slice(0, 10) };
+  if (!token) return { ...out, history: null, history_note: 'Star history needs GITHUB_TOKEN (GitHub requires sign-in to list stargazers).' };
+  const lastPage = Math.min(Math.ceil(info.stargazers_count / 100), 400);
+  const pages = [...new Set(Array.from({ length: Math.min(30, lastPage) }, (_, i) => 1 + Math.round((i * (lastPage - 1)) / Math.max(1, Math.min(30, lastPage) - 1))))];
+  const samples = [];
+  const starHeaders = { ...headers, accept: 'application/vnd.github.star+json' };
+  try {
+    for (const p of pages) {
+      const rows = await getJson(`https://api.github.com/repos/${repo}/stargazers?per_page=100&page=${p}`, starHeaders);
+      if (!rows.length) continue;
+      samples.push({ index: (p - 1) * 100 + 1, date: rows[0].starred_at });
+      if (p === lastPage) samples.push({ index: (p - 1) * 100 + rows.length, date: rows[rows.length - 1].starred_at });
+    }
+  } catch (err) {
+    return { ...out, history: null, history_note: `Could not list stargazers (${err.message.split(' ')[0]}). The token needs read access to public repositories.` };
+  }
+  const capped = info.stargazers_count > 40000;
+  if (!capped) samples.push({ index: info.stargazers_count, date: new Date().toISOString(), final: true });
+  return {
+    ...out,
+    history: starCurve(samples, months),
+    history_note: capped ? 'GitHub lists only the first 40,000 stargazers, so months after that point are null.' : 'Stars at each month end, interpolated between sampled stargazer pages. Unstarred repos drop out of the count.',
+  };
+}
+
+async function cmdAdoption(opts) {
+  if (!opts.npm && !opts.pypi && !opts.github) throw new Error('adoption needs at least one of --npm package, --pypi package, --github owner/repo');
+  const months = posInt(opts.months, 24, 'months');
+  const out = { pulled: new Date().toISOString().slice(0, 10), months };
+  if (opts.npm) {
+    const days = [];
+    for (const r of npmRanges(months)) {
+      const json = await getJson(`https://api.npmjs.org/downloads/range/${r.from}:${r.to}/${encodeURIComponent(opts.npm).replace('%40', '@')}`);
+      days.push(...(json.downloads || []));
+    }
+    // Days before the package's first download are zeros, not a real flat start.
+    const first = days.findIndex(d => d.downloads > 0);
+    out.npm = { package: opts.npm, monthly: first < 0 ? [] : monthlyFromDaily(days.slice(first)) };
+  }
+  if (opts.pypi) {
+    const json = await getJson(`https://pypistats.org/api/packages/${encodeURIComponent(opts.pypi.toLowerCase())}/overall?mirrors=false`);
+    const days = (json.data || []).filter(d => d.category === 'without_mirrors').map(d => ({ day: d.date, downloads: d.downloads }));
+    out.pypi = { package: opts.pypi, monthly: monthlyFromDaily(days), note: 'PyPI Stats keeps only the last 180 days. For longer history, query the public PyPI downloads dataset in BigQuery.' };
+  }
+  if (opts.github) out.github = await githubStars(opts.github, months);
+  if (opts.out) {
+    const rows = {};
+    for (const r of out.npm?.monthly || []) (rows[r.month] ??= { month: r.month }).npm_downloads = r.partial ? '' : r.downloads;
+    for (const r of out.pypi?.monthly || []) (rows[r.month] ??= { month: r.month }).pypi_downloads = r.partial ? '' : r.downloads;
+    for (const r of out.github?.history || []) (rows[r.month] ??= { month: r.month }).github_stars = r.stars ?? '';
+    writeFileSync(opts.out, toCsv(Object.values(rows).sort((a, b) => a.month.localeCompare(b.month)).map(r => ({ month: r.month, npm_downloads: r.npm_downloads ?? '', pypi_downloads: r.pypi_downloads ?? '', github_stars: r.github_stars ?? '' }))));
+  }
+  out.note = 'Downloads count installs, including CI and bots, so read the trend, not the level. Partial months are flagged and left blank in --out. Monthly downloads from one registry can stand in for visits in traffic.csv for developer tools: keep to one source for the whole series.';
+  return out;
+}
+
 function cmdMoves(opts) {
   if (!opts.moves || !opts.traffic) throw new Error('moves needs --moves moves.csv --traffic traffic.csv');
   const result = analyzeMoves(parseCsv(readFileSync(opts.moves, 'utf8')), parseCsv(readFileSync(opts.traffic, 'utf8')));
@@ -1490,6 +1599,9 @@ Commands:
   jobs <domain|name> [--ats greenhouse|lever|ashby --board slug] [--out jobs.csv]
                                                   Open roles from public job boards: functions, marketing
                                                   channels being hired for, tools named, languages, locations
+  adoption [--npm pkg] [--pypi pkg] [--github owner/repo] [--months 24] [--out adoption.csv]
+                                                  Monthly npm and PyPI downloads and GitHub stars over time
+                                                  (star history needs GITHUB_TOKEN)
   reviews <app name> [--domain example.com] [--app-id id] [--country us] [--out reviews.csv]
   reviews --from reviews.csv                      App Store reviews (or any date,rating,title,text CSV):
                                                   volume and rating by month, complaint terms, recent low ones
@@ -1535,6 +1647,7 @@ async function main() {
     case 'filings': result = await cmdFilings(pos[0], opts); break;
     case 'cfpb': result = await cmdCfpb(pos[0], opts); break;
     case 'fdic': result = await cmdFdic(pos[0], opts); break;
+    case 'adoption': result = await cmdAdoption(opts); break;
     case 'reviews': result = await cmdReviews(pos[0], opts); break;
     case 'jobs': result = await cmdJobs(pos[0].includes('.') ? domain : pos[0], opts); break;
     case 'moves': result = cmdMoves(opts); break;

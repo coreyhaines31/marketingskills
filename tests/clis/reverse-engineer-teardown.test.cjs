@@ -327,3 +327,38 @@ test('reviewStats finds terms that skew to low ratings', async () => {
   assert.deepEqual(s.complaint_terms, [{ term: 'ads', low_reviews: 3, low_share: 100, high_share: 33.3 }]);
   assert.equal(s.recent_low[0].date, '2026-10-01');
 });
+
+test('npmRanges splits the window into chunks npm accepts', async () => {
+  const { npmRanges } = await load();
+  const ranges = npmRanges(24, new Date('2026-10-30T12:00:00Z'));
+  assert.equal(ranges[0].from, '2024-10-01');
+  assert.equal(ranges[ranges.length - 1].to, '2026-10-29');
+  for (const r of ranges) assert.ok((Date.parse(r.to) - Date.parse(r.from)) / 86400000 <= 364);
+  for (let i = 1; i < ranges.length; i++) assert.equal(Date.parse(ranges[i].from) - Date.parse(ranges[i - 1].to), 86400000);
+});
+
+test('monthlyFromDaily sums by month and flags partial months', async () => {
+  const { monthlyFromDaily } = await load();
+  const days = [];
+  for (let d = 1; d <= 30; d++) days.push({ day: `2026-09-${String(d).padStart(2, '0')}`, downloads: 10 });
+  days.push({ day: '2026-10-01', downloads: 5 });
+  assert.deepEqual(monthlyFromDaily(days), [
+    { month: '2026-09', downloads: 300, days: 30, partial: false },
+    { month: '2026-10', downloads: 5, days: 1, partial: true },
+  ]);
+});
+
+test('starCurve interpolates stars at month ends and stops at the cap', async () => {
+  const { starCurve } = await load();
+  const now = new Date('2026-03-15T00:00:00Z');
+  const samples = [{ index: 1, date: '2026-01-01T00:00:00Z' }, { index: 101, date: '2026-02-28T23:59:59Z' }];
+  const open = starCurve([...samples, { index: 300, date: now.toISOString(), final: true }], 4, now);
+  assert.deepEqual(open.map(r => r.month), ['2025-12', '2026-01', '2026-02', '2026-03']);
+  assert.equal(open[0].stars, 0);
+  assert.equal(open[2].stars, 101);
+  assert.equal(open[3].stars, 300);
+  assert.ok(open[1].stars > 1 && open[1].stars < 101);
+  const capped = starCurve(samples, 4, now);
+  assert.equal(capped[3].stars, null);
+  assert.deepEqual(starCurve([], 2, now).map(r => r.stars), [null, null]);
+});
