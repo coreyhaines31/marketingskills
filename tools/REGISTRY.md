@@ -96,6 +96,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | hunter | Email Outreach | ✓ | ✓ | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
 | truelist | Email Verification | ✓ | ✓ | [✓](clis/truelist.js) | ✓ | [truelist.md](integrations/truelist.md) |
+| precleared | Email Compliance | ✓ | ✓ | - | - | [precleared.md](integrations/precleared.md) |
 | github | Developer Intent | ✓ | - | [✓](clis/github-prospects.js) | ✓ | [github.md](integrations/github.md) |
 | firecrawl | Site Scraping & AI Search | ✓ | ✓ | [✓](clis/firecrawl.js) | ✓ | [firecrawl.md](integrations/firecrawl.md) |
 | browserbase | Site Scraping | ✓ | ✓ | - | ✓ | [browserbase.md](integrations/browserbase.md) |
@@ -368,6 +369,16 @@ Pre-outreach email deliverability validation.
 
 **Agent recommendation**: Truelist for any prospect list before outreach — Apollo/ZoomInfo/Hunter data accuracy is typically 60–80%, validation is non-negotiable to keep sender reputation healthy.
 
+### Email Compliance
+
+Whether a cold or marketing email to a given recipient is allowed in their country (consent, sender identity and opt-out rules), as distinct from whether it will arrive.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **precleared** | Per-address permission check before the first cold email (UK, US, CA, DE, FR, AU, IE, NL) | Verdict, the rule quoted with its source, footer requirements, a signed receipt. Free daily allowance, API + MCP |
+
+**Agent recommendation**: Before the first cold email to anyone in the UK, Canada, Australia or Europe, settle whether consent is needed, either with a check like this or by hand against the official guidance linked in the guide. UK sole traders and German business addresses are the common traps. Deliverability verification (Truelist) answers a different question; do both.
+
 ### Developer Intent / GitHub
 
 Discovery channel for dev-tool SaaS prospecting via GitHub stargazers, forkers, and watchers.
@@ -625,6 +636,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **heyreach** - LinkedIn outreach (per-workspace MCP key)
 - **hunter** - Email finding and verification
 - **truelist** - Email verification and batches
+- **precleared** - Cold email permission check per address, with a signed receipt
 - **fullenrich** - Waterfall email and mobile enrichment
 - **leadmagic** - Enrichment, job changes, technographics
 - **rowbound** - Open-source Sheets enrichment with waterfalls (stdio MCP)
@@ -699,7 +711,7 @@ Strategy, copy, cadence, and compliance live in the `prospecting` and `cold-emai
 | 1 | Build the account list | [apollo](integrations/apollo.md), [zoominfo](integrations/zoominfo.md), [clay](integrations/clay.md), [exa](integrations/exa.md) (lookalikes), [leadmagic](integrations/leadmagic.md) (lookalikes), [apify](integrations/apify.md) (public directories) | ✓ | ✓ |
 | 2 | Add buying signals | [theirstack](integrations/theirstack.md) (hiring, tech), [leadmagic](integrations/leadmagic.md) (job changes), [rb2b](integrations/rb2b.md) (site visitors), [github](integrations/github.md) (dev intent) | ✓ | ✓ (rb2b via Zapier) |
 | 3 | Find contacts and emails | [apollo](integrations/apollo.md), [fullenrich](integrations/fullenrich.md) (waterfall), [leadmagic](integrations/leadmagic.md), [hunter](integrations/hunter.md), [clay](integrations/clay.md) | ✓ | ✓ |
-| 4 | Verify before sending | [truelist](integrations/truelist.md) (catch-all resolution) | ✓ | ✓ |
+| 4 | Verify before sending | [truelist](integrations/truelist.md) (catch-all resolution), [precleared](integrations/precleared.md) (whether the email is allowed in the recipient's country) | ✓ | ✓ |
 | 5 | Send email sequences | [instantly](integrations/instantly.md), [lemlist](integrations/lemlist.md), [outreach](integrations/outreach.md) (enterprise) | ✓ | ✓ |
 | 6 | LinkedIn steps | [heyreach](integrations/heyreach.md), [lemlist](integrations/lemlist.md) (email + LinkedIn) | API | ✓ |
 | 7 | Book meetings | [calendly](integrations/calendly.md), [savvycal](integrations/savvycal.md) | ✓ | ✓ |
