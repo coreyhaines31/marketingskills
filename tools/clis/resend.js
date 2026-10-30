@@ -186,9 +186,11 @@ async function main() {
 
     case 'audiences':
       switch (sub) {
-        case 'list':
-          result = await api('GET', '/audiences')
+        case 'list': {
+          const qs = listQuery()
+          result = await api('GET', `/audiences${qs ? '?' + qs : ''}`)
           break
+        }
         case 'get':
           result = await api('GET', `/audiences/${rest[0]}`)
           break
@@ -210,9 +212,8 @@ async function main() {
       const contactId = rest[1]
       switch (action) {
         case 'list': {
-          const params = new URLSearchParams()
-          if (args.limit) params.set('limit', args.limit)
-          result = await api('GET', `/audiences/${audienceId}/contacts?${params}`)
+          const qs = listQuery()
+          result = await api('GET', `/audiences/${audienceId}/contacts${qs ? '?' + qs : ''}`)
           break
         }
         case 'get':
@@ -248,9 +249,11 @@ async function main() {
 
     case 'webhooks':
       switch (sub) {
-        case 'list':
-          result = await api('GET', '/webhooks')
+        case 'list': {
+          const qs = listQuery()
+          result = await api('GET', `/webhooks${qs ? '?' + qs : ''}`)
           break
+        }
         case 'get':
           result = await api('GET', `/webhooks/${rest[0]}`)
           break
@@ -405,9 +408,9 @@ async function main() {
           emails: 'emails [list|get|cancel] [id] [--limit <1-100>] [--after <cursor> | --before <cursor>]',
           domains: 'domains [list|get|create|verify|delete] [id] [--name <name>]',
           'api-keys': 'api-keys [list|create|delete] [id] [--name <name>]',
-          audiences: 'audiences [list|get|create|delete] [id] [--name <name>]',
-          contacts: 'contacts <audience_id> [list|get|create|update|delete] [contact_id] [--email <email>] [--unsubscribed [true|false]]',
-          webhooks: 'webhooks [list|get|create|delete] [id] [--endpoint <url>]',
+          audiences: 'audiences [list|get|create|delete] [id] [--name <name>] [--limit <1-100>] [--after <cursor> | --before <cursor>]',
+          contacts: 'contacts <audience_id> [list|get|create|update|delete] [contact_id] [--email <email>] [--unsubscribed [true|false]] [--limit <1-100>] [--after <cursor> | --before <cursor>]',
+          webhooks: 'webhooks [list|get|create|delete] [id] [--endpoint <url>] [--limit <1-100>] [--after <cursor> | --before <cursor>]',
           batch: 'batch --emails <json_array> [--idempotency-key <stable_key>]',
           templates: 'templates [list|get|create|update|delete|publish|duplicate] [id] [--name <name>] [--html <html>] [--variables <json>]',
           broadcasts: 'broadcasts [list|get|create|send|delete] [id] [--segment-id <id>] [--from <email>] [--subject <subject>]',
