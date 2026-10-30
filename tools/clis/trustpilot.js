@@ -114,7 +114,12 @@ async function main() {
         case 'search': {
           const query = args.query
           if (!query) { result = { error: '--query required' }; break }
-          result = await api('GET', `/business-units/search?query=${encodeURIComponent(query)}&limit=${limit}`)
+          if (args.page !== undefined && !/^[1-9]\d*$/.test(String(args.page))) { result = { error: '--page must be a positive integer' }; break }
+          if (!Number.isSafeInteger(limit) || limit < 1) { result = { error: '--limit must be a positive integer' }; break }
+          const params = new URLSearchParams({ query, perpage: String(limit) })
+          if (args.page !== undefined) params.set('page', args.page)
+          if (args.country) params.set('country', args.country)
+          result = await api('GET', `/business-units/search?${params}`)
           break
         }
         case 'get': {
@@ -275,7 +280,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          business: 'business [search --query <q> | get | profile | categories | web-links]',
+          business: 'business [search --query <q> [--limit <n>] [--page <n>] [--country <cc>] | get | profile | categories | web-links]',
           reviews: 'reviews [list | get --id <id> | private | latest | reply --id <id> --message <msg> | delete-reply --id <id>]',
           invitations: 'invitations [create --email <e> --name <n> | link --email <e> --name <n> | templates]',
           tags: 'tags [get --id <id> | add --id <id> --group <g> --value <v> | remove --id <id> --group <g> --value <v>]',
