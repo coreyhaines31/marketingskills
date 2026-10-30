@@ -362,3 +362,21 @@ test('starCurve interpolates stars at month ends and stops at the cap', async ()
   assert.equal(capped[3].stars, null);
   assert.deepEqual(starCurve([], 2, now).map(r => r.stars), [null, null]);
 });
+
+test('compareMatrix sorts signals into table stakes, bets, and your gaps', async () => {
+  const { compareMatrix } = await load();
+  const profiles = [
+    { domain: 'a.com', signals: ['tool: Meta Pixel', 'pages: /templates', 'hiring: seo'] },
+    { domain: 'b.com', signals: ['tool: Meta Pixel', 'pages: /templates'] },
+    { domain: 'c.com', signals: ['tool: Meta Pixel', 'pages: /compare'] },
+    { domain: 'me.com', signals: ['pages: /templates', 'pages: /changelog'] },
+  ];
+  const m = compareMatrix(profiles, 'me.com');
+  assert.equal(m.competitors, 3);
+  assert.deepEqual(m.everyone, ['tool: Meta Pixel']);
+  assert.deepEqual(m.most, [{ signal: 'pages: /templates', domains: ['a.com', 'b.com'] }]);
+  assert.deepEqual(m.only_one, { 'c.com': ['pages: /compare'], 'a.com': ['hiring: seo'] });
+  assert.deepEqual(m.you_missing, [{ signal: 'tool: Meta Pixel', competitors: 3 }]);
+  assert.deepEqual(m.you_only, ['pages: /changelog']);
+  assert.equal(compareMatrix(profiles.slice(0, 3)).you_missing, undefined);
+});

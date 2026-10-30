@@ -1546,6 +1546,95 @@ async function cmdAdoption(opts) {
   return out;
 }
 
+// profiles: [{ domain, signals: [...] }]. you is the user's domain, compared against the rest.
+export function compareMatrix(profiles, you) {
+  const rivals = profiles.filter(p => p.domain !== you);
+  const mine = new Set(profiles.find(p => p.domain === you)?.signals || []);
+  const have = {};
+  for (const p of rivals) for (const s of new Set(p.signals)) (have[s] ??= []).push(p.domain);
+  const rows = Object.entries(have).map(([signal, domains]) => ({ signal, domains })).sort((a, b) => b.domains.length - a.domains.length || a.signal.localeCompare(b.signal));
+  const n = rivals.length;
+  const out = {
+    competitors: n,
+    everyone: rows.filter(r => r.domains.length === n && n > 1).map(r => r.signal),
+    most: rows.filter(r => r.domains.length < n && r.domains.length >= 2 && r.domains.length * 2 >= n),
+    only_one: {},
+  };
+  for (const r of rows.filter(r => r.domains.length === 1 && n > 1)) (out.only_one[r.domains[0]] ??= []).push(r.signal);
+  if (you) {
+    out.you_missing = rows.filter(r => r.domains.length * 2 >= n && !mine.has(r.signal)).map(r => ({ signal: r.signal, competitors: r.domains.length }));
+    out.you_only = [...mine].filter(s => !have[s]).sort();
+  }
+  return out;
+}
+
+// Office mailboxes, account verifications for internal tools, and legal or archive pages say little about marketing.
+const OFFICE_MAIL = new Set(['Google Workspace', 'Microsoft 365']);
+const MARKETING_VERIFICATIONS = /Meta|TikTok|Pinterest|LinkedIn|HubSpot|Marketo|Pardot/;
+const BOILERPLATE_FAMILY = /^\/(?:careers|jobs|legal|legals|privacy|terms|cookies?|tags?|authors?|category|categories|page)?$/;
+
+async function profileDomain(domain) {
+  const p = { domain, signals: [], errors: [] };
+  let html = '';
+  try {
+    const page = await getPageOrArchive(`https://${domain}/`);
+    html = page.html;
+    p.source = page.source;
+    const hero = extractHero(html);
+    p.headline = hero.title || hero.h1;
+  } catch (err) { p.errors.push(`homepage: ${err.message}`); }
+  const dnsInfo = await cmdDns(domain);
+  const tools = html ? detectTools(html) : [];
+  p.industry = html ? detectIndustry({ html, tools, linked: detectLinkedTools(html), cnames: dnsInfo.subdomains.map(s => s.cname) })[0]?.pack || null : null;
+  p.signals.push(...tools.map(t => `tool: ${t}`), ...dnsInfo.mail.filter(t => !OFFICE_MAIL.has(t)).map(t => `email: ${t}`),
+    ...dnsInfo.verifications.filter(t => MARKETING_VERIFICATIONS.test(t)).map(t => `verified: ${t}`),
+    ...dnsInfo.subdomains.filter(s => s.tool).map(s => `platform: ${s.tool}`));
+  try {
+    const urls = await sitemapUrls(domain, 5000);
+    p.sitemap_urls = urls.length;
+    if (urls.length >= 5000) p.sitemap_capped = 'Read the first 5,000 URLs only; run site for the full count.';
+    const families = {};
+    for (const u of urls) families[pathFamily(u)] = (families[pathFamily(u)] || 0) + 1;
+    p.page_families = Object.fromEntries(Object.entries(families).sort((a, b) => b[1] - a[1]).slice(0, 10));
+    p.signals.push(...Object.entries(families).filter(([f, c]) => c >= 10 && !BOILERPLATE_FAMILY.test(f) && !LOCALE.test(f.slice(1)) && f !== '/lang').map(([f]) => `pages: ${f}`));
+    p.locales = [...new Set(urls.map(localeOf).filter(Boolean))].length;
+    if (p.locales) p.signals.push('pages: localized');
+  } catch (err) { p.errors.push(`sitemap: ${err.message}`); }
+  try {
+    const jobs = await cmdJobs(domain, {});
+    if (jobs.board) {
+      p.open_roles = jobs.total;
+      p.roles_by_function = jobs.by_function;
+      p.signals.push(...Object.keys(jobs.marketing_channels).map(c => `hiring: ${c}`));
+    }
+  } catch (err) { p.errors.push(`jobs: ${err.message}`); }
+  if (!p.errors.length) delete p.errors;
+  return p;
+}
+
+async function cmdCompare(domains, opts) {
+  const you = opts.you ? opts.you.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : null;
+  const all = [...new Set([...domains, ...(you ? [you] : [])])];
+  if (all.filter(d => d !== you).length < 2) throw new Error('compare needs at least two competitor domains');
+  const profiles = [];
+  for (const d of all) {
+    process.stderr.write(`profiling ${d}...\n`);
+    profiles.push(await profileDomain(d));
+  }
+  const matrix = compareMatrix(profiles, you);
+  if (opts.out) {
+    const signals = [...new Set(profiles.flatMap(p => p.signals))].sort();
+    writeFileSync(opts.out, toCsv(signals.map(s => ({ signal: s, ...Object.fromEntries(profiles.map(p => [p.domain, p.signals.includes(s) ? 'yes' : ''])) }))));
+  }
+  return {
+    pulled: new Date().toISOString().slice(0, 10),
+    you,
+    ...matrix,
+    profiles: profiles.map(({ signals, ...rest }) => ({ ...rest, signal_count: signals.length })),
+    note: 'Signals are what each site shows from outside: scripts on the homepage, DNS records, sitemap page families with 10+ pages, and marketing roles open on a public job board. Everyone = table stakes. Only one = a bet worth checking in a full teardown. you_missing = what at least half of them do that you do not. A signal nobody has may be an open lane or a dead end: check it before calling it an opportunity.',
+  };
+}
+
 function cmdMoves(opts) {
   if (!opts.moves || !opts.traffic) throw new Error('moves needs --moves moves.csv --traffic traffic.csv');
   const result = analyzeMoves(parseCsv(readFileSync(opts.moves, 'utf8')), parseCsv(readFileSync(opts.traffic, 'utf8')));
@@ -1599,6 +1688,10 @@ Commands:
   jobs <domain|name> [--ats greenhouse|lever|ashby --board slug] [--out jobs.csv]
                                                   Open roles from public job boards: functions, marketing
                                                   channels being hired for, tools named, languages, locations
+  compare <domain> <domain> [...] [--you yours.com] [--out matrix.csv]
+                                                  Side by side: tools, email platforms, page families, and
+                                                  marketing hiring; what everyone does, what only one does,
+                                                  and what you are missing
   adoption [--npm pkg] [--pypi pkg] [--github owner/repo] [--months 24] [--out adoption.csv]
                                                   Monthly npm and PyPI downloads and GitHub stars over time
                                                   (star history needs GITHUB_TOKEN)
@@ -1647,6 +1740,7 @@ async function main() {
     case 'filings': result = await cmdFilings(pos[0], opts); break;
     case 'cfpb': result = await cmdCfpb(pos[0], opts); break;
     case 'fdic': result = await cmdFdic(pos[0], opts); break;
+    case 'compare': result = await cmdCompare(pos.map(d => d.replace(/^https?:\/\//, '').replace(/\/.*$/, '')), opts); break;
     case 'adoption': result = await cmdAdoption(opts); break;
     case 'reviews': result = await cmdReviews(pos[0], opts); break;
     case 'jobs': result = await cmdJobs(pos[0].includes('.') ? domain : pos[0], opts); break;
