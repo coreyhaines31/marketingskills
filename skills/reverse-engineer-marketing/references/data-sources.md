@@ -37,6 +37,10 @@ Where each stage's evidence comes from. The skill is tool-agnostic for search an
 | `filings <company>` | SEC filings for public companies and Form D fundraise filings (needs a contact in `--ua` or `SEC_USER_AGENT`) |
 | `cfpb <company>` | CFPB consumer complaints by month, with top products and issues |
 | `fdic <bank>` | FDIC quarterly assets, deposits, and employee counts |
+| `jobs <domain>` | Open roles from a public Greenhouse, Lever, or Ashby board: functions, marketing channels hired for, tools named, languages |
+| `reviews <app> --domain <domain>` | App Store reviews: volume and rating by month, terms that skew to 1-2 star reviews, recent low reviews (`--from file.csv` for any other source) |
+| `adoption --npm <pkg> --pypi <pkg> --github <owner/repo>` | Monthly npm and PyPI downloads and GitHub star history (stars need `GITHUB_TOKEN`) |
+| `compare <domain> <domain> ... --you <domain>` | Several competitors side by side: what everyone does, what only one does, what the user lacks (Landscape mode) |
 | `moves` | Lift per cluster of moves and leading channels (stage 7) |
 | `diff` | Moves in a new log that weren't in the old one (Watch mode) |
 
@@ -56,7 +60,8 @@ Limits to state in the method notes:
 | Google Trends | Relative brand interest by month, when no brand search volume is available |
 | AI assistants | The stage 2 AI answer checks, run by hand |
 | Search operators | `"made with target"`, `site:reddit.com "target"`, `site:target.com/compare` |
-| Careers page | Open roles for the hiring check |
+| Careers page and public job boards | Open roles for the hiring check (`jobs`) |
+| App Store, npm, PyPI, and GitHub APIs | Reviews (`reviews`), downloads and stars (`adoption`) |
 
 ## Search, Traffic, and Backlinks
 
