@@ -2,7 +2,7 @@
 name: seo-audit
 description: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," "SEO health check," "my traffic dropped," "lost rankings," "not showing up in Google," "site isn't ranking," "Google update hit me," "page speed," "core web vitals," "crawl errors," "indexing issues," "stuck on page 2," "striking distance keywords," "title tag rewrite," "low CTR," "local SEO," "Google Business Profile," or "map pack." Use this even if the user just says something vague like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema. For AI search optimization, see ai-seo.
 metadata:
-  version: 2.2.2
+  version: 2.2.3
 ---
 
 # SEO Audit
@@ -466,10 +466,11 @@ Same format as above
 - Mobile-Friendly Test
 - Schema Validator
 
-> **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, or Screaming Frog instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
+> **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, Screaming Frog, or Firecrawl instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
 
 **Paid Tools** (if available)
 - Screaming Frog
+- [Firecrawl](../../tools/integrations/firecrawl.md) (scrape with the `rawHtml` format to see JS-injected JSON-LD; the keyless hosted MCP covers scrape and search within daily limits, while crawl and map need an API key or account sign-in)
 - Ahrefs / Semrush
 - Sitebulb
 - ContentKing
