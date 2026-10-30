@@ -33,7 +33,7 @@ node tools/clis/truelist.js verify --email jane@acme.com
 node tools/clis/truelist.js verify --email "jane@acme.com,bo@beta.io" --strategy enhanced
 ```
 
-Underlying call: `POST /api/v1/verify_inline?email=<space-separated addresses>&validation_strategy=<strategy>`.
+Underlying call: `POST /api/v1/verify_inline?email=<space-separated addresses>&validation_strategy=<strategy>`. Inline verification accepts up to 3 addresses per request; use `batch create` for more.
 
 | Strategy | Use when |
 |----------|----------|
