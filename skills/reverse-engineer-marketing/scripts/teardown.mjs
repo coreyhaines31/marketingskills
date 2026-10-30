@@ -1117,6 +1117,217 @@ async function cmdFdic(name, opts) {
   return out;
 }
 
+export const ATS_PATTERNS = [
+  { ats: 'greenhouse', pattern: /(?:job-)?boards(?:\.eu)?\.greenhouse\.io\/(?:embed\/job_board(?:\/js)?\?for=)?([a-z0-9_-]+)/gi },
+  { ats: 'greenhouse', pattern: /boards-api\.greenhouse\.io\/v1\/boards\/([a-z0-9_-]+)/gi },
+  { ats: 'lever', pattern: /jobs\.(?:eu\.)?lever\.co\/([a-z0-9_.-]+)/gi },
+  { ats: 'ashby', pattern: /jobs\.ashbyhq\.com\/([a-z0-9_.-]+)/gi },
+];
+
+export function atsFromHtml(html) {
+  const found = new Map();
+  for (const { ats, pattern } of ATS_PATTERNS) {
+    for (const m of html.matchAll(pattern)) {
+      const slug = m[1].toLowerCase();
+      if (['embed', 'api', 'v0', 'v1'].includes(slug)) continue;
+      found.set(`${ats}:${slug}`, { ats, slug });
+    }
+  }
+  return [...found.values()];
+}
+
+export function atsUrl(ats, slug) {
+  if (ats === 'greenhouse') return `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`;
+  if (ats === 'lever') return `https://api.lever.co/v0/postings/${slug}?mode=json`;
+  if (ats === 'ashby') return `https://api.ashbyhq.com/posting-api/job-board/${slug}?includeCompensation=true`;
+  throw new Error(`Unknown ATS ${ats}; use greenhouse, lever, or ashby`);
+}
+
+export function normalizeJobs(ats, json) {
+  if (ats === 'greenhouse') {
+    return (json.jobs || []).map(j => ({
+      id: String(j.id),
+      title: j.title || '',
+      department: j.departments?.[0]?.name || '',
+      location: j.location?.name || '',
+      posted: String(j.first_published || j.updated_at || '').slice(0, 10),
+      url: j.absolute_url || '',
+      text: stripTags(decodeEntities(j.content || '')),
+    }));
+  }
+  if (ats === 'lever') {
+    return (Array.isArray(json) ? json : []).map(j => ({
+      id: j.id,
+      title: j.text || '',
+      department: j.categories?.department || j.categories?.team || '',
+      location: j.categories?.location || '',
+      posted: j.createdAt ? new Date(Number(j.createdAt)).toISOString().slice(0, 10) : '',
+      url: j.hostedUrl || '',
+      text: [j.descriptionPlain, ...(j.lists || []).map(l => `${l.text} ${stripTags(l.content || '')}`), j.additionalPlain].filter(Boolean).join(' '),
+    }));
+  }
+  return (json.jobs || []).filter(j => j.isListed !== false).map(j => ({
+    id: j.id,
+    title: j.title || '',
+    department: j.department || j.team || '',
+    location: j.location || '',
+    posted: String(j.publishedAt || '').slice(0, 10),
+    url: j.jobUrl || '',
+    text: j.descriptionPlain || stripTags(j.descriptionHtml || ''),
+  }));
+}
+
+// Checked in order against the title, then the department, so "Sales Engineer" is sales and "Developer Advocate" is marketing.
+const FUNCTIONS = [
+  ['marketing', /marketing|marketer|growth|campaign|\bseo\b|content (?:market|strateg|writ|lead|manag|creat|design)|copywrit|brand|demand gen|lifecycle|community|social media|communications|\bpr\b|devrel|developer relations|developer advocate|creator|influencer/i],
+  ['sales', /sales|account executive|\bae\b|\bsdr\b|\bbdr\b|business development|account manager|partnerships|alliances|revenue operations|revops/i],
+  ['customer', /support|customer success|professional services|customer experience|implementation|onboarding|technical account/i],
+  ['product', /product manager|product lead|head of product|product owner|\bpm\b/i],
+  ['design', /design/i],
+  ['data', /\bdata\b|analytics|machine learning|\bml\b|research scientist/i],
+  ['engineering', /engineer|developer|\bsre\b|infrastructure|security|devops|architect/i],
+  ['operations', /recruit|talent|people|\bhr\b|finance|accountant|accounting|controller|deal desk|strategy|planning|legal|counsel|operations|office|assistant|admin/i],
+];
+
+export function jobFunction(title, department = '') {
+  for (const source of [title, department]) {
+    const hit = FUNCTIONS.find(([, re]) => re.test(source));
+    if (hit) return hit[0];
+  }
+  return 'other';
+}
+
+export const CHANNEL_TERMS = [
+  ['seo', /\bseo\b|search engine optim|organic search/i],
+  ['ai-search', /\baeo\b|\bgeo\b|ai search|answer engine|llm visibility/i],
+  ['paid', /paid (?:social|search|media|acquisition)|performance marketing|\bppc\b|media buy|user acquisition/i],
+  ['lifecycle', /lifecycle|retention|email marketing|\bcrm\b/i],
+  ['content', /content|editorial|copywrit|writer/i],
+  ['community', /community/i],
+  ['devrel', /developer relations|devrel|developer advocate|developer experience|developer marketing/i],
+  ['partnerships', /partner|alliances|affiliate|channel/i],
+  ['creators', /influencer|creator|\bugc\b/i],
+  ['events', /field marketing|experiential|\bevents?\b/i],
+  ['campaigns', /campaign/i],
+  ['abm', /\babm\b|account[- ]based/i],
+  ['product-marketing', /product marketing|\bpmm\b/i],
+  ['brand-pr', /\bbrand\b|public relations|\bpr\b|communications/i],
+  ['video', /video|youtube/i],
+  ['growth', /growth|activation|experimentation|product[- ]led|\bplg\b/i],
+  ['social', /social media|\bsocial\b/i],
+];
+
+export const JOB_TOOLS = ['HubSpot', 'Salesforce', 'Marketo', 'Pardot', 'Braze', 'Iterable', 'Customer.io', 'Klaviyo', 'Attentive',
+  'Segment', 'Amplitude', 'Mixpanel', 'Heap', 'PostHog', 'Looker', 'Tableau', 'dbt', 'Snowflake', 'BigQuery', 'Hightouch', 'Census',
+  'Clay', 'Apollo', 'Outreach', 'Salesloft', 'Gong', '6sense', 'Demandbase', 'ZoomInfo', 'Webflow', 'WordPress', 'Contentful', 'Sanity',
+  'Figma', 'Canva', 'Semrush', 'Ahrefs', 'Google Ads', 'Meta Ads', 'LinkedIn Ads', 'TikTok Ads', 'Optimizely', 'VWO', 'LaunchDarkly',
+  'Statsig', 'Intercom', 'Zendesk', 'Gainsight', 'PartnerStack', 'Rewardful', 'Shopify', 'Postscript', 'AppsFlyer', 'Adjust', 'Branch'];
+
+const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// Names that are also common words only count within 60 characters of an unambiguous tool name, as in "Salesforce, Outreach, and Gong".
+const AMBIGUOUS_TOOLS = new Set(['Segment', 'Outreach', 'Adjust', 'Branch', 'Apollo', 'Clay', 'Census', 'Heap', 'Sanity', 'Gong', 'Looker', 'Canva']);
+const JOB_TOOL_RES = JOB_TOOLS.map(t => [t, new RegExp(`(?<![\\w.])${escapeRe(t)}(?![\\w])`, AMBIGUOUS_TOOLS.has(t) || t.length <= 4 ? 'g' : 'gi')]);
+const CLEAR_TOOL_RES = JOB_TOOL_RES.filter(([t]) => !AMBIGUOUS_TOOLS.has(t)).map(([, re]) => new RegExp(re.source, re.flags.replace('g', '')));
+
+export function toolsInText(text) {
+  const found = [];
+  for (const [tool, re] of JOB_TOOL_RES) {
+    for (const m of text.matchAll(re)) {
+      if (!AMBIGUOUS_TOOLS.has(tool)) { found.push(tool); break; }
+      const window = text.slice(Math.max(0, m.index - 60), m.index + tool.length + 60).replace(tool, '');
+      if (CLEAR_TOOL_RES.some(r => r.test(window))) { found.push(tool); break; }
+    }
+  }
+  return found;
+}
+const LANGS = 'german|french|spanish|portuguese|italian|dutch|japanese|korean|mandarin|chinese|cantonese|arabic|hindi|polish|swedish|danish|norwegian|finnish|turkish|hebrew|indonesian|vietnamese|thai';
+const LANG_RES = [
+  new RegExp(`\\b(?:fluent|fluency|native|proficient|proficiency)\\b[^.]{0,40}?\\b(${LANGS})\\b`, 'gi'),
+  new RegExp(`\\b(${LANGS})[- ](?:speaking|speaker)`, 'gi'),
+];
+const FIRST_HIRE = /\b(?:first|founding)\b[^.]{0,30}\b(?:marketer|marketing|growth|demand gen|content|seo|brand|devrel|community)\b/i;
+
+export function summarizeJobs(jobs, now = new Date()) {
+  const count = (obj, key) => { obj[key] = (obj[key] || 0) + 1; };
+  const sortDesc = obj => Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
+  const byFunction = {};
+  const channels = {};
+  const tools = {};
+  const locations = {};
+  const languages = {};
+  const postedByMonth = {};
+  const marketing = [];
+  const firstHire = [];
+  const cutoff = new Date(now.getTime() - 30 * 86400000).toISOString().slice(0, 10);
+  for (const j of jobs) {
+    const fn = jobFunction(j.title, j.department);
+    count(byFunction, fn);
+    if (j.location) count(locations, j.location);
+    if (j.posted) count(postedByMonth, j.posted.slice(0, 7));
+    for (const tool of toolsInText(j.text)) count(tools, tool);
+    const langs = new Set();
+    for (const re of LANG_RES) for (const m of j.text.matchAll(re)) langs.add(m[1].toLowerCase());
+    for (const l of langs) count(languages, l);
+    if (fn === 'marketing') {
+      const ch = CHANNEL_TERMS.filter(([, re]) => re.test(j.title)).map(([c]) => c);
+      for (const c of ch) count(channels, c);
+      marketing.push({ title: j.title, channels: ch, location: j.location, posted: j.posted, url: j.url });
+      if (FIRST_HIRE.test(j.text) || FIRST_HIRE.test(j.title)) firstHire.push(j.title);
+    }
+  }
+  return {
+    total: jobs.length,
+    new_last_30_days: jobs.filter(j => j.posted && j.posted >= cutoff).length,
+    by_function: sortDesc(byFunction),
+    marketing_channels: sortDesc(channels),
+    marketing_roles: marketing.sort((a, b) => String(b.posted).localeCompare(String(a.posted))),
+    first_hire_signals: firstHire,
+    tools_mentioned: Object.entries(tools).sort((a, b) => b[1] - a[1]).map(([tool, n]) => ({ tool, jobs: n })),
+    languages: sortDesc(languages),
+    top_locations: Object.fromEntries(Object.entries(locations).sort((a, b) => b[1] - a[1]).slice(0, 15)),
+    posted_by_month: Object.fromEntries(Object.entries(postedByMonth).sort()),
+  };
+}
+
+async function findJobBoard(target, opts) {
+  if (opts.ats || opts.board) {
+    if (!opts.ats || !opts.board) throw new Error('Pass --ats and --board together, for example --ats greenhouse --board vercel');
+    return [{ ats: opts.ats, slug: opts.board, found: 'given' }];
+  }
+  const isDomain = target.includes('.');
+  const candidates = [];
+  if (isDomain) {
+    for (const path of ['/careers', '/jobs', '/company/careers', '/about/careers', '/']) {
+      try { candidates.push(...atsFromHtml(await get(`https://${target}${path}`)).map(c => ({ ...c, found: `linked from ${path}` }))); } catch {}
+      if (candidates.length) break;
+    }
+  }
+  const guess = (isDomain ? target.replace(/^www\./, '').split('.')[0] : target).toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const ats of ['greenhouse', 'lever', 'ashby']) candidates.push({ ats, slug: guess, found: 'guessed from the name' });
+  return candidates;
+}
+
+async function cmdJobs(target, opts) {
+  const tried = [];
+  for (const c of await findJobBoard(target, opts)) {
+    let json;
+    try { json = await getJson(atsUrl(c.ats, c.slug)); } catch (err) { tried.push(`${c.ats}/${c.slug}: ${err.message.split(' ')[0]}`); continue; }
+    const jobs = normalizeJobs(c.ats, json);
+    if (!jobs.length && c.found === 'guessed from the name') { tried.push(`${c.ats}/${c.slug}: no jobs`); continue; }
+    if (opts.out) {
+      writeFileSync(opts.out, toCsv(jobs.map(j => ({ id: j.id, title: j.title, function: jobFunction(j.title, j.department), department: j.department, location: j.location, posted: j.posted, url: j.url }))));
+    }
+    return {
+      query: target,
+      pulled: new Date().toISOString().slice(0, 10),
+      board: { ats: c.ats, slug: c.slug, found: c.found, company_name: json.jobs?.[0]?.company_name || null },
+      ...summarizeJobs(jobs),
+      note: 'Open roles show where the company is investing next, not what it has done. A guessed board can belong to another company with the same name, so check company_name and a few job URLs. posted is first published (Greenhouse), created (Lever), or published (Ashby); a reposted role gets a new date. Boards on Workday, SmartRecruiters, or a custom site are not covered: read them in a browser. For history, open Wayback captures of the careers page. Record job titles, never the names of recruiters or staff.',
+    };
+  }
+  return { query: target, board: null, tried, note: 'No public Greenhouse, Lever, or Ashby board found. Find the careers page link and rerun with --ats and --board, or read the board in a browser.' };
+}
+
 function cmdMoves(opts) {
   if (!opts.moves || !opts.traffic) throw new Error('moves needs --moves moves.csv --traffic traffic.csv');
   const result = analyzeMoves(parseCsv(readFileSync(opts.moves, 'utf8')), parseCsv(readFileSync(opts.traffic, 'utf8')));
@@ -1167,6 +1378,9 @@ Commands:
   filings <company> [--ua "Name email"] [--cik n] SEC filings for public companies and Form D raises
   cfpb <company> [--months 24] [--exact "Name"]   CFPB consumer complaints by month, top products and issues
   fdic <bank> [--cert n] [--quarters 12]          FDIC quarterly assets, deposits, and employees
+  jobs <domain|name> [--ats greenhouse|lever|ashby --board slug] [--out jobs.csv]
+                                                  Open roles from public job boards: functions, marketing
+                                                  channels being hired for, tools named, languages, locations
   ads <name> [--domain example.com]               Public ad library links for each network
   sc-ads <name> [--domain example.com] [--page-id id] [--country US] [--dry-run]
                                                   Active Meta, Google, and TikTok ads via ScrapeCreators
@@ -1186,7 +1400,7 @@ async function main() {
   const [cmd, ...rest] = process.argv.slice(2);
   const { pos, opts } = parseArgs(rest);
   const domain = (pos[0] || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-  if (['site', 'stack', 'history', 'hero', 'sitemap-growth', 'dns', 'subdomains', 'ads', 'sc-ads', 'detect', 'shopify', 'experiments', 'phones', 'filings', 'cfpb', 'fdic'].includes(cmd) && !pos[0]) {
+  if (['site', 'stack', 'history', 'hero', 'sitemap-growth', 'dns', 'subdomains', 'ads', 'sc-ads', 'detect', 'shopify', 'experiments', 'phones', 'filings', 'cfpb', 'fdic', 'jobs'].includes(cmd) && !pos[0]) {
     console.log(USAGE);
     process.exitCode = 1;
     return;
@@ -1209,6 +1423,7 @@ async function main() {
     case 'filings': result = await cmdFilings(pos[0], opts); break;
     case 'cfpb': result = await cmdCfpb(pos[0], opts); break;
     case 'fdic': result = await cmdFdic(pos[0], opts); break;
+    case 'jobs': result = await cmdJobs(pos[0].includes('.') ? domain : pos[0], opts); break;
     case 'moves': result = cmdMoves(opts); break;
     case 'diff': result = cmdDiff(opts); break;
     default:

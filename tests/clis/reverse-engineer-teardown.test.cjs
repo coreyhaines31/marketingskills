@@ -243,3 +243,59 @@ test('extractHero keeps apostrophes, extractPhones survives bad escapes, posInt 
   assert.equal(posInt('6', 24, 'months'), 6);
   for (const bad of ['0', '-1', 'abc', true]) assert.throws(() => posInt(bad, 24, 'months'), /whole number/);
 });
+
+test('atsFromHtml finds Greenhouse, Lever, and Ashby boards', async () => {
+  const { atsFromHtml } = await load();
+  const html = `
+    <a href="https://boards.greenhouse.io/acme">Jobs</a>
+    <script src="https://boards.greenhouse.io/embed/job_board/js?for=acmeco"></script>
+    <a href="https://jobs.lever.co/acme-inc/123">Role</a>
+    <a href="https://jobs.ashbyhq.com/acme">Careers</a>
+  `;
+  assert.deepEqual(atsFromHtml(html).map(b => `${b.ats}/${b.slug}`).sort(), ['ashby/acme', 'greenhouse/acme', 'greenhouse/acmeco', 'lever/acme-inc']);
+});
+
+test('normalizeJobs reads each ATS shape', async () => {
+  const { normalizeJobs } = await load();
+  const gh = normalizeJobs('greenhouse', { jobs: [{ id: 1, title: 'SEO Lead', departments: [{ name: 'Marketing' }], location: { name: 'Remote' }, first_published: '2026-10-01T10:00:00-04:00', absolute_url: 'u', content: '&lt;p&gt;Own &amp;amp; grow&lt;/p&gt;' }] });
+  assert.equal(gh[0].posted, '2026-10-01');
+  assert.equal(gh[0].text, 'Own & grow');
+  const lever = normalizeJobs('lever', [{ id: 'a', text: 'AE', categories: { team: 'Sales', location: 'NYC' }, createdAt: Date.UTC(2026, 8, 5), hostedUrl: 'u', descriptionPlain: 'Sell', lists: [{ text: 'You', content: '<li>Close</li>' }] }]);
+  assert.equal(lever[0].posted, '2026-09-05');
+  assert.equal(lever[0].department, 'Sales');
+  assert.match(lever[0].text, /Close/);
+  const ashby = normalizeJobs('ashby', { jobs: [{ id: 'x', title: 'Hidden', isListed: false }, { id: 'y', title: 'PMM', team: 'Marketing', publishedAt: '2026-07-01T00:00:00Z', descriptionPlain: 'Launch' }] });
+  assert.equal(ashby.length, 1);
+  assert.equal(ashby[0].department, 'Marketing');
+});
+
+test('jobFunction separates look-alike titles', async () => {
+  const { jobFunction } = await load();
+  assert.equal(jobFunction('Sales Engineer'), 'sales');
+  assert.equal(jobFunction('Developer Advocate'), 'marketing');
+  assert.equal(jobFunction('Product Designer, Marketplace'), 'design');
+  assert.equal(jobFunction('Software Engineer, CDN Content'), 'engineering');
+  assert.equal(jobFunction('Content Marketing Manager'), 'marketing');
+  assert.equal(jobFunction('Deal Desk Analyst'), 'operations');
+  assert.equal(jobFunction('Specialist', 'Customer Success'), 'customer');
+});
+
+test('summarizeJobs counts channels, tools in context, languages, and first hires', async () => {
+  const { summarizeJobs, toolsInText } = await load();
+  assert.deepEqual(toolsInText('Use Salesforce, Outreach, and Gong daily'), ['Salesforce', 'Outreach', 'Gong']);
+  assert.deepEqual(toolsInText('Outreach to customers and segment them. Adjust plans.'), []);
+  const jobs = [
+    { title: 'Head of SEO', department: 'Marketing', location: 'Remote', posted: '2026-10-20', url: 'a', text: 'Our first marketing hire for search. Fluent in German. Semrush and Ahrefs.' },
+    { title: 'Lifecycle Marketing Manager', department: 'Marketing', location: 'Berlin', posted: '2026-08-01', url: 'b', text: 'Braze and Segment, HubSpot.' },
+    { title: 'Backend Engineer', department: 'Engineering', location: 'Remote', posted: '2026-10-25', url: 'c', text: 'Go and Postgres' },
+  ];
+  const s = summarizeJobs(jobs, new Date('2026-10-30T00:00:00Z'));
+  assert.equal(s.total, 3);
+  assert.equal(s.new_last_30_days, 2);
+  assert.deepEqual(s.by_function, { marketing: 2, engineering: 1 });
+  assert.deepEqual(s.marketing_channels, { seo: 1, lifecycle: 1 });
+  assert.deepEqual(s.first_hire_signals, ['Head of SEO']);
+  assert.deepEqual(s.languages, { german: 1 });
+  assert.deepEqual(s.tools_mentioned.map(t => t.tool).sort(), ['Ahrefs', 'Braze', 'HubSpot', 'Segment', 'Semrush']);
+  assert.deepEqual(s.posted_by_month, { '2026-08': 1, '2026-10': 2 });
+});
