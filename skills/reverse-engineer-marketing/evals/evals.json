@@ -188,6 +188,55 @@
         "Does not pose as a prospective franchisee"
       ],
       "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "We sell project management software at plane.so. What are ClickUp, Asana, and Monday all doing for marketing, and where should we start?",
+      "expected_output": "Should run Landscape mode: teardown.mjs compare clickup.com asana.com monday.com --you plane.so, then read everyone (table stakes), only_one (single-company bets), you_missing, and you_only. Should label signals as Observed and any strategy read from them as Inferred, add same-vendor traffic estimates before ranking growth, check that a gap nobody fills isn't a dropped experiment before calling it an opportunity, and end by recommending one competitor for a full teardown and one gap to close, with the skill that runs it.",
+      "assertions": [
+        "Runs compare with --you for the user's domain",
+        "Separates table stakes, single-company bets, and the user's gaps",
+        "Does not call a signal nobody has an opportunity without checking demand or Wayback",
+        "Recommends one competitor to tear down next and one gap to close, routed to a skill"
+      ],
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "Where is Duolingo weak? We're building a language app and want to win their unhappy users.",
+      "expected_output": "Should follow references/weak-spots.md: run teardown.mjs reviews Duolingo --domain duolingo.com, note that the App Store feed stops at 500 reviews so feed_capped means a short window, add a second source (Google Play or Trustpilot exported to CSV and run through reviews --from), and read the recent low reviews in full. Should group complaints into themes with counts, share of low reviews, and dates, require five or more low reviews across more than one month per theme, and check whether a complaint spike lines up with a dated move such as a course update or price change. Should turn solvable themes into plays (alternative page via competitors, switching offer via offers, positioning via product-marketing), quote reviews without reviewer names, and keep comparative claims true, current, and sourced.",
+      "assertions": [
+        "Runs reviews and notes the 500-review cap",
+        "Groups complaints into themes with counts and a minimum threshold",
+        "Links complaint spikes to dated moves where possible",
+        "Routes plays to competitors, offers, or product-marketing",
+        "Drops reviewer names and keeps comparative claims provable"
+      ],
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "What is Ramp hiring for in marketing right now, and what does it tell us about their next moves?",
+      "expected_output": "Should run teardown.mjs jobs ramp.com --out teardowns/ramp/jobs.csv, check that the board found belongs to Ramp, and report open roles by function, the marketing channels being hired for, tools named in posts, languages required, and any first-hire wording. Should read the full text of the marketing posts for mandates and numbers, compare with an archived careers page for what changed, add each mandate to moves.csv as kind hire with its posting date, and present hiring as where Ramp is investing next (Inferred), not as proof of results. Should not collect recruiter or employee names.",
+      "assertions": [
+        "Runs the jobs command and checks the board belongs to the company",
+        "Reports marketing channels, tools, and functions from the summary",
+        "Reads full posts for mandates and logs them as dated hire moves",
+        "Labels hiring-based conclusions as Inferred and collects no staff names"
+      ],
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "Supabase grew really fast. Can you show me their growth curve and what drove it?",
+      "expected_output": "Should load the SaaS pack and, because it is a developer tool, run teardown.mjs adoption --npm @supabase/supabase-js --github supabase/supabase, using monthly npm downloads as a one-source growth curve (partial months left blank) alongside a traffic vendor estimate, never stitched together. Should note that star history needs GITHUB_TOKEN and that GitHub lists only the first 40,000 stargazers, so later months are null. Then follows the normal stages to date moves and run moves against the chosen curve.",
+      "assertions": [
+        "Runs adoption for npm and GitHub",
+        "Uses one source per curve and does not stitch downloads with traffic",
+        "Notes the GITHUB_TOKEN requirement and the 40,000 stargazer cap",
+        "Runs the moves analysis against the chosen curve"
+      ],
+      "files": []
     }
   ]
 }

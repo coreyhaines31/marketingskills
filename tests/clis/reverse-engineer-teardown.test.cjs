@@ -243,3 +243,140 @@ test('extractHero keeps apostrophes, extractPhones survives bad escapes, posInt 
   assert.equal(posInt('6', 24, 'months'), 6);
   for (const bad of ['0', '-1', 'abc', true]) assert.throws(() => posInt(bad, 24, 'months'), /whole number/);
 });
+
+test('atsFromHtml finds Greenhouse, Lever, and Ashby boards', async () => {
+  const { atsFromHtml } = await load();
+  const html = `
+    <a href="https://boards.greenhouse.io/acme">Jobs</a>
+    <script src="https://boards.greenhouse.io/embed/job_board/js?for=acmeco"></script>
+    <a href="https://jobs.lever.co/acme-inc/123">Role</a>
+    <a href="https://jobs.ashbyhq.com/acme">Careers</a>
+  `;
+  assert.deepEqual(atsFromHtml(html).map(b => `${b.ats}/${b.slug}`).sort(), ['ashby/acme', 'greenhouse/acme', 'greenhouse/acmeco', 'lever/acme-inc']);
+});
+
+test('normalizeJobs reads each ATS shape', async () => {
+  const { normalizeJobs } = await load();
+  const gh = normalizeJobs('greenhouse', { jobs: [{ id: 1, title: 'SEO Lead', departments: [{ name: 'Marketing' }], location: { name: 'Remote' }, first_published: '2026-10-01T10:00:00-04:00', absolute_url: 'u', content: '&lt;p&gt;Own &amp;amp; grow&lt;/p&gt;' }] });
+  assert.equal(gh[0].posted, '2026-10-01');
+  assert.equal(gh[0].text, 'Own & grow');
+  const lever = normalizeJobs('lever', [{ id: 'a', text: 'AE', categories: { team: 'Sales', location: 'NYC' }, createdAt: Date.UTC(2026, 8, 5), hostedUrl: 'u', descriptionPlain: 'Sell', lists: [{ text: 'You', content: '<li>Close</li>' }] }]);
+  assert.equal(lever[0].posted, '2026-09-05');
+  assert.equal(lever[0].department, 'Sales');
+  assert.match(lever[0].text, /Close/);
+  const ashby = normalizeJobs('ashby', { jobs: [{ id: 'x', title: 'Hidden', isListed: false }, { id: 'y', title: 'PMM', team: 'Marketing', publishedAt: '2026-07-01T00:00:00Z', descriptionPlain: 'Launch' }] });
+  assert.equal(ashby.length, 1);
+  assert.equal(ashby[0].department, 'Marketing');
+});
+
+test('jobFunction separates look-alike titles', async () => {
+  const { jobFunction } = await load();
+  assert.equal(jobFunction('Sales Engineer'), 'sales');
+  assert.equal(jobFunction('Developer Advocate'), 'marketing');
+  assert.equal(jobFunction('Product Designer, Marketplace'), 'design');
+  assert.equal(jobFunction('Software Engineer, CDN Content'), 'engineering');
+  assert.equal(jobFunction('Content Marketing Manager'), 'marketing');
+  assert.equal(jobFunction('Deal Desk Analyst'), 'operations');
+  assert.equal(jobFunction('Specialist', 'Customer Success'), 'customer');
+});
+
+test('summarizeJobs counts channels, tools in context, languages, and first hires', async () => {
+  const { summarizeJobs, toolsInText } = await load();
+  assert.deepEqual(toolsInText('Use Salesforce, Outreach, and Gong daily'), ['Salesforce', 'Outreach', 'Gong']);
+  assert.deepEqual(toolsInText('Outreach to customers and segment them. Adjust plans.'), []);
+  const jobs = [
+    { title: 'Head of SEO', department: 'Marketing', location: 'Remote', posted: '2026-10-20', url: 'a', text: 'Our first marketing hire for search. Fluent in German. Semrush and Ahrefs.' },
+    { title: 'Lifecycle Marketing Manager', department: 'Marketing', location: 'Berlin', posted: '2026-08-01', url: 'b', text: 'Braze and Segment, HubSpot.' },
+    { title: 'Backend Engineer', department: 'Engineering', location: 'Remote', posted: '2026-10-25', url: 'c', text: 'Go and Postgres' },
+  ];
+  const s = summarizeJobs(jobs, new Date('2026-10-30T00:00:00Z'));
+  assert.equal(s.total, 3);
+  assert.equal(s.new_last_30_days, 2);
+  assert.deepEqual(s.by_function, { marketing: 2, engineering: 1 });
+  assert.deepEqual(s.marketing_channels, { seo: 1, lifecycle: 1 });
+  assert.deepEqual(s.first_hire_signals, ['Head of SEO']);
+  assert.deepEqual(s.languages, { german: 1 });
+  assert.deepEqual(s.tools_mentioned.map(t => t.tool).sort(), ['Ahrefs', 'Braze', 'HubSpot', 'Segment', 'Semrush']);
+  assert.deepEqual(s.posted_by_month, { '2026-08': 1, '2026-10': 2 });
+});
+
+test('parseAppleReviews keeps rated entries and drops reviewer names', async () => {
+  const { parseAppleReviews } = await load();
+  const json = { feed: { entry: [
+    { 'im:name': { label: 'App info, not a review' } },
+    { author: { name: { label: 'someone' } }, updated: { label: '2026-10-29T11:42:04-07:00' }, 'im:rating': { label: '2' }, 'im:version': { label: '7.1' }, id: { label: '9' }, title: { label: 'Too many ads' }, content: { label: 'Ads after every lesson' } },
+  ] } };
+  const rows = parseAppleReviews(json);
+  assert.equal(rows.length, 1);
+  assert.deepEqual(rows[0], { id: '9', date: '2026-10-29', rating: 2, version: '7.1', title: 'Too many ads', text: 'Ads after every lesson' });
+  assert.ok(!JSON.stringify(rows).includes('someone'));
+  assert.deepEqual(parseAppleReviews({ feed: {} }), []);
+});
+
+test('reviewStats finds terms that skew to low ratings', async () => {
+  const { reviewStats } = await load();
+  const r = (date, rating, text) => ({ date, rating, title: '', text });
+  const reviews = [
+    r('2026-09-02', 1, 'Too many ads and the paywall'), r('2026-09-10', 1, 'The ads ruin it'), r('2026-10-01', 2, 'ads ads ads'),
+    r('2026-10-03', 5, 'Great lessons'), r('2026-10-04', 5, 'Great lessons, few ads'), r('2026-10-05', 4, 'Great streaks'),
+  ];
+  const s = reviewStats(reviews);
+  assert.equal(s.reviews, 6);
+  assert.deepEqual(s.distribution, { 1: 2, 2: 1, 3: 0, 4: 1, 5: 2 });
+  assert.deepEqual(s.by_month, [{ month: '2026-09', reviews: 2, average: 1, low_share: 100 }, { month: '2026-10', reviews: 4, average: 4, low_share: 25 }]);
+  assert.deepEqual(s.complaint_terms, [{ term: 'ads', low_reviews: 3, low_share: 100, high_share: 33.3 }]);
+  assert.equal(s.recent_low[0].date, '2026-10-01');
+});
+
+test('npmRanges splits the window into chunks npm accepts', async () => {
+  const { npmRanges } = await load();
+  const ranges = npmRanges(24, new Date('2026-10-30T12:00:00Z'));
+  assert.equal(ranges[0].from, '2024-10-01');
+  assert.equal(ranges[ranges.length - 1].to, '2026-10-29');
+  for (const r of ranges) assert.ok((Date.parse(r.to) - Date.parse(r.from)) / 86400000 <= 364);
+  for (let i = 1; i < ranges.length; i++) assert.equal(Date.parse(ranges[i].from) - Date.parse(ranges[i - 1].to), 86400000);
+});
+
+test('monthlyFromDaily sums by month and flags partial months', async () => {
+  const { monthlyFromDaily } = await load();
+  const days = [];
+  for (let d = 1; d <= 30; d++) days.push({ day: `2026-09-${String(d).padStart(2, '0')}`, downloads: 10 });
+  days.push({ day: '2026-10-01', downloads: 5 });
+  assert.deepEqual(monthlyFromDaily(days), [
+    { month: '2026-09', downloads: 300, days: 30, partial: false },
+    { month: '2026-10', downloads: 5, days: 1, partial: true },
+  ]);
+});
+
+test('starCurve interpolates stars at month ends and stops at the cap', async () => {
+  const { starCurve } = await load();
+  const now = new Date('2026-03-15T00:00:00Z');
+  const samples = [{ index: 1, date: '2026-01-01T00:00:00Z' }, { index: 101, date: '2026-02-28T23:59:59Z' }];
+  const open = starCurve([...samples, { index: 300, date: now.toISOString(), final: true }], 4, now);
+  assert.deepEqual(open.map(r => r.month), ['2025-12', '2026-01', '2026-02', '2026-03']);
+  assert.equal(open[0].stars, 0);
+  assert.equal(open[2].stars, 101);
+  assert.equal(open[3].stars, 300);
+  assert.ok(open[1].stars > 1 && open[1].stars < 101);
+  const capped = starCurve(samples, 4, now);
+  assert.equal(capped[3].stars, null);
+  assert.deepEqual(starCurve([], 2, now).map(r => r.stars), [null, null]);
+});
+
+test('compareMatrix sorts signals into table stakes, bets, and your gaps', async () => {
+  const { compareMatrix } = await load();
+  const profiles = [
+    { domain: 'a.com', signals: ['tool: Meta Pixel', 'pages: /templates', 'hiring: seo'] },
+    { domain: 'b.com', signals: ['tool: Meta Pixel', 'pages: /templates'] },
+    { domain: 'c.com', signals: ['tool: Meta Pixel', 'pages: /compare'] },
+    { domain: 'me.com', signals: ['pages: /templates', 'pages: /changelog'] },
+  ];
+  const m = compareMatrix(profiles, 'me.com');
+  assert.equal(m.competitors, 3);
+  assert.deepEqual(m.everyone, ['tool: Meta Pixel']);
+  assert.deepEqual(m.most, [{ signal: 'pages: /templates', domains: ['a.com', 'b.com'] }]);
+  assert.deepEqual(m.only_one, { 'c.com': ['pages: /compare'], 'a.com': ['hiring: seo'] });
+  assert.deepEqual(m.you_missing, [{ signal: 'tool: Meta Pixel', competitors: 3 }]);
+  assert.deepEqual(m.you_only, ['pages: /changelog']);
+  assert.equal(compareMatrix(profiles.slice(0, 3)).you_missing, undefined);
+});

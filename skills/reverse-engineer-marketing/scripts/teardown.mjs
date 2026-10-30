@@ -1117,6 +1117,524 @@ async function cmdFdic(name, opts) {
   return out;
 }
 
+export const ATS_PATTERNS = [
+  { ats: 'greenhouse', pattern: /(?:job-)?boards(?:\.eu)?\.greenhouse\.io\/(?:embed\/job_board(?:\/js)?\?for=)?([a-z0-9_-]+)/gi },
+  { ats: 'greenhouse', pattern: /boards-api\.greenhouse\.io\/v1\/boards\/([a-z0-9_-]+)/gi },
+  { ats: 'lever', pattern: /jobs\.(?:eu\.)?lever\.co\/([a-z0-9_.-]+)/gi },
+  { ats: 'ashby', pattern: /jobs\.ashbyhq\.com\/([a-z0-9_.-]+)/gi },
+];
+
+export function atsFromHtml(html) {
+  const found = new Map();
+  for (const { ats, pattern } of ATS_PATTERNS) {
+    for (const m of html.matchAll(pattern)) {
+      const slug = m[1].toLowerCase();
+      if (['embed', 'api', 'v0', 'v1'].includes(slug)) continue;
+      found.set(`${ats}:${slug}`, { ats, slug });
+    }
+  }
+  return [...found.values()];
+}
+
+export function atsUrl(ats, slug) {
+  if (ats === 'greenhouse') return `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`;
+  if (ats === 'lever') return `https://api.lever.co/v0/postings/${slug}?mode=json`;
+  if (ats === 'ashby') return `https://api.ashbyhq.com/posting-api/job-board/${slug}?includeCompensation=true`;
+  throw new Error(`Unknown ATS ${ats}; use greenhouse, lever, or ashby`);
+}
+
+export function normalizeJobs(ats, json) {
+  if (ats === 'greenhouse') {
+    return (json.jobs || []).map(j => ({
+      id: String(j.id),
+      title: j.title || '',
+      department: j.departments?.[0]?.name || '',
+      location: j.location?.name || '',
+      posted: String(j.first_published || j.updated_at || '').slice(0, 10),
+      url: j.absolute_url || '',
+      text: stripTags(decodeEntities(j.content || '')),
+    }));
+  }
+  if (ats === 'lever') {
+    return (Array.isArray(json) ? json : []).map(j => ({
+      id: j.id,
+      title: j.text || '',
+      department: j.categories?.department || j.categories?.team || '',
+      location: j.categories?.location || '',
+      posted: j.createdAt ? new Date(Number(j.createdAt)).toISOString().slice(0, 10) : '',
+      url: j.hostedUrl || '',
+      text: [j.descriptionPlain, ...(j.lists || []).map(l => `${l.text} ${stripTags(l.content || '')}`), j.additionalPlain].filter(Boolean).join(' '),
+    }));
+  }
+  return (json.jobs || []).filter(j => j.isListed !== false).map(j => ({
+    id: j.id,
+    title: j.title || '',
+    department: j.department || j.team || '',
+    location: j.location || '',
+    posted: String(j.publishedAt || '').slice(0, 10),
+    url: j.jobUrl || '',
+    text: j.descriptionPlain || stripTags(j.descriptionHtml || ''),
+  }));
+}
+
+// Checked in order against the title, then the department, so "Sales Engineer" is sales and "Developer Advocate" is marketing.
+const FUNCTIONS = [
+  ['marketing', /marketing|marketer|growth|campaign|\bseo\b|content (?:market|strateg|writ|lead|manag|creat|design)|copywrit|brand|demand gen|lifecycle|community|social media|communications|\bpr\b|devrel|developer relations|developer advocate|creator|influencer/i],
+  ['sales', /sales|account executive|\bae\b|\bsdr\b|\bbdr\b|business development|account manager|partnerships|alliances|revenue operations|revops/i],
+  ['customer', /support|customer success|professional services|customer experience|implementation|onboarding|technical account/i],
+  ['product', /product manager|product lead|head of product|product owner|\bpm\b/i],
+  ['design', /design/i],
+  ['data', /\bdata\b|analytics|machine learning|\bml\b|research scientist/i],
+  ['engineering', /engineer|developer|\bsre\b|infrastructure|security|devops|architect/i],
+  ['operations', /recruit|talent|people|\bhr\b|finance|accountant|accounting|controller|deal desk|strategy|planning|legal|counsel|operations|office|assistant|admin/i],
+];
+
+export function jobFunction(title, department = '') {
+  for (const source of [title, department]) {
+    const hit = FUNCTIONS.find(([, re]) => re.test(source));
+    if (hit) return hit[0];
+  }
+  return 'other';
+}
+
+export const CHANNEL_TERMS = [
+  ['seo', /\bseo\b|search engine optim|organic search/i],
+  ['ai-search', /\baeo\b|\bgeo\b|ai search|answer engine|llm visibility/i],
+  ['paid', /paid (?:social|search|media|acquisition)|performance marketing|\bppc\b|media buy|user acquisition/i],
+  ['lifecycle', /lifecycle|retention|email marketing|\bcrm\b/i],
+  ['content', /content|editorial|copywrit|writer/i],
+  ['community', /community/i],
+  ['devrel', /developer relations|devrel|developer advocate|developer experience|developer marketing/i],
+  ['partnerships', /partner|alliances|affiliate|channel/i],
+  ['creators', /influencer|creator|\bugc\b/i],
+  ['events', /field marketing|experiential|\bevents?\b/i],
+  ['campaigns', /campaign/i],
+  ['abm', /\babm\b|account[- ]based/i],
+  ['product-marketing', /product marketing|\bpmm\b/i],
+  ['brand-pr', /\bbrand\b|public relations|\bpr\b|communications/i],
+  ['video', /video|youtube/i],
+  ['growth', /growth|activation|experimentation|product[- ]led|\bplg\b/i],
+  ['social', /social media|\bsocial\b/i],
+];
+
+export const JOB_TOOLS = ['HubSpot', 'Salesforce', 'Marketo', 'Pardot', 'Braze', 'Iterable', 'Customer.io', 'Klaviyo', 'Attentive',
+  'Segment', 'Amplitude', 'Mixpanel', 'Heap', 'PostHog', 'Looker', 'Tableau', 'dbt', 'Snowflake', 'BigQuery', 'Hightouch', 'Census',
+  'Clay', 'Apollo', 'Outreach', 'Salesloft', 'Gong', '6sense', 'Demandbase', 'ZoomInfo', 'Webflow', 'WordPress', 'Contentful', 'Sanity',
+  'Figma', 'Canva', 'Semrush', 'Ahrefs', 'Google Ads', 'Meta Ads', 'LinkedIn Ads', 'TikTok Ads', 'Optimizely', 'VWO', 'LaunchDarkly',
+  'Statsig', 'Intercom', 'Zendesk', 'Gainsight', 'PartnerStack', 'Rewardful', 'Shopify', 'Postscript', 'AppsFlyer', 'Adjust', 'Branch'];
+
+const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// Names that are also common words only count within 60 characters of an unambiguous tool name, as in "Salesforce, Outreach, and Gong".
+const AMBIGUOUS_TOOLS = new Set(['Segment', 'Outreach', 'Adjust', 'Branch', 'Apollo', 'Clay', 'Census', 'Heap', 'Sanity', 'Gong', 'Looker', 'Canva']);
+const JOB_TOOL_RES = JOB_TOOLS.map(t => [t, new RegExp(`(?<![\\w.])${escapeRe(t)}(?![\\w])`, AMBIGUOUS_TOOLS.has(t) || t.length <= 4 ? 'g' : 'gi')]);
+const CLEAR_TOOL_RES = JOB_TOOL_RES.filter(([t]) => !AMBIGUOUS_TOOLS.has(t)).map(([, re]) => new RegExp(re.source, re.flags.replace('g', '')));
+
+export function toolsInText(text) {
+  const found = [];
+  for (const [tool, re] of JOB_TOOL_RES) {
+    for (const m of text.matchAll(re)) {
+      if (!AMBIGUOUS_TOOLS.has(tool)) { found.push(tool); break; }
+      const window = text.slice(Math.max(0, m.index - 60), m.index + tool.length + 60).replace(tool, '');
+      if (CLEAR_TOOL_RES.some(r => r.test(window))) { found.push(tool); break; }
+    }
+  }
+  return found;
+}
+const LANGS = 'german|french|spanish|portuguese|italian|dutch|japanese|korean|mandarin|chinese|cantonese|arabic|hindi|polish|swedish|danish|norwegian|finnish|turkish|hebrew|indonesian|vietnamese|thai';
+const LANG_RES = [
+  new RegExp(`\\b(?:fluent|fluency|native|proficient|proficiency)\\b[^.]{0,40}?\\b(${LANGS})\\b`, 'gi'),
+  new RegExp(`\\b(${LANGS})[- ](?:speaking|speaker)`, 'gi'),
+];
+const FIRST_HIRE = /\b(?:first|founding)\b[^.]{0,30}\b(?:marketer|marketing|growth|demand gen|content|seo|brand|devrel|community)\b/i;
+
+export function summarizeJobs(jobs, now = new Date()) {
+  const count = (obj, key) => { obj[key] = (obj[key] || 0) + 1; };
+  const sortDesc = obj => Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
+  const byFunction = {};
+  const channels = {};
+  const tools = {};
+  const locations = {};
+  const languages = {};
+  const postedByMonth = {};
+  const marketing = [];
+  const firstHire = [];
+  const cutoff = new Date(now.getTime() - 30 * 86400000).toISOString().slice(0, 10);
+  for (const j of jobs) {
+    const fn = jobFunction(j.title, j.department);
+    count(byFunction, fn);
+    if (j.location) count(locations, j.location);
+    if (j.posted) count(postedByMonth, j.posted.slice(0, 7));
+    for (const tool of toolsInText(j.text)) count(tools, tool);
+    const langs = new Set();
+    for (const re of LANG_RES) for (const m of j.text.matchAll(re)) langs.add(m[1].toLowerCase());
+    for (const l of langs) count(languages, l);
+    if (fn === 'marketing') {
+      const ch = CHANNEL_TERMS.filter(([, re]) => re.test(j.title)).map(([c]) => c);
+      for (const c of ch) count(channels, c);
+      marketing.push({ title: j.title, channels: ch, location: j.location, posted: j.posted, url: j.url });
+      if (FIRST_HIRE.test(j.text) || FIRST_HIRE.test(j.title)) firstHire.push(j.title);
+    }
+  }
+  return {
+    total: jobs.length,
+    new_last_30_days: jobs.filter(j => j.posted && j.posted >= cutoff).length,
+    by_function: sortDesc(byFunction),
+    marketing_channels: sortDesc(channels),
+    marketing_roles: marketing.sort((a, b) => String(b.posted).localeCompare(String(a.posted))),
+    first_hire_signals: firstHire,
+    tools_mentioned: Object.entries(tools).sort((a, b) => b[1] - a[1]).map(([tool, n]) => ({ tool, jobs: n })),
+    languages: sortDesc(languages),
+    top_locations: Object.fromEntries(Object.entries(locations).sort((a, b) => b[1] - a[1]).slice(0, 15)),
+    posted_by_month: Object.fromEntries(Object.entries(postedByMonth).sort()),
+  };
+}
+
+async function findJobBoard(target, opts) {
+  if (opts.ats || opts.board) {
+    if (!opts.ats || !opts.board) throw new Error('Pass --ats and --board together, for example --ats greenhouse --board vercel');
+    return [{ ats: opts.ats, slug: opts.board, found: 'given' }];
+  }
+  const isDomain = target.includes('.');
+  const candidates = [];
+  if (isDomain) {
+    for (const path of ['/careers', '/jobs', '/company/careers', '/about/careers', '/']) {
+      try { candidates.push(...atsFromHtml(await get(`https://${target}${path}`)).map(c => ({ ...c, found: `linked from ${path}` }))); } catch {}
+      if (candidates.length) break;
+    }
+  }
+  const guess = (isDomain ? target.replace(/^www\./, '').split('.')[0] : target).toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const ats of ['greenhouse', 'lever', 'ashby']) candidates.push({ ats, slug: guess, found: 'guessed from the name' });
+  return candidates;
+}
+
+async function cmdJobs(target, opts) {
+  const tried = [];
+  for (const c of await findJobBoard(target, opts)) {
+    let json;
+    try { json = await getJson(atsUrl(c.ats, c.slug)); } catch (err) { tried.push(`${c.ats}/${c.slug}: ${err.message.split(' ')[0]}`); continue; }
+    const jobs = normalizeJobs(c.ats, json);
+    if (!jobs.length && c.found === 'guessed from the name') { tried.push(`${c.ats}/${c.slug}: no jobs`); continue; }
+    if (opts.out) {
+      writeFileSync(opts.out, toCsv(jobs.map(j => ({ id: j.id, title: j.title, function: jobFunction(j.title, j.department), department: j.department, location: j.location, posted: j.posted, url: j.url }))));
+    }
+    return {
+      query: target,
+      pulled: new Date().toISOString().slice(0, 10),
+      board: { ats: c.ats, slug: c.slug, found: c.found, company_name: json.jobs?.[0]?.company_name || null },
+      ...summarizeJobs(jobs),
+      note: 'Open roles show where the company is investing next, not what it has done. A guessed board can belong to another company with the same name, so check company_name and a few job URLs. posted is first published (Greenhouse), created (Lever), or published (Ashby); a reposted role gets a new date. Boards on Workday, SmartRecruiters, or a custom site are not covered: read them in a browser. For history, open Wayback captures of the careers page. Record job titles, never the names of recruiters or staff.',
+    };
+  }
+  return { query: target, board: null, tried, note: 'No public Greenhouse, Lever, or Ashby board found. Find the careers page link and rerun with --ats and --board, or read the board in a browser.' };
+}
+
+// Apple's review feed: entries with a rating are reviews. Reviewer names are dropped.
+export function parseAppleReviews(json) {
+  const entries = json.feed?.entry ? [].concat(json.feed.entry) : [];
+  return entries.filter(e => e['im:rating']).map(e => ({
+    id: e.id?.label || '',
+    date: String(e.updated?.label || '').slice(0, 10),
+    rating: Number(e['im:rating'].label),
+    version: e['im:version']?.label || '',
+    title: e.title?.label || '',
+    text: e.content?.label || '',
+  }));
+}
+
+const STOPWORDS = new Set(('a about after again all also am an and any app are as at be because been before being but by can cant could did do does dont even every for from get got had has have how i if im in into is it its ive just like make me more most my no not now of on once one only or other our out over really so some still than that the their them then there they this to too up use used using very was we were what when which while will with would you your yours its id youre thats doesnt didnt isnt wont ever much many way thing things time app apps').split(' '));
+
+function reviewTerms(text) {
+  const words = text.toLowerCase().replace(/[’']/g, '').match(/[a-z][a-z0-9]+/g) || [];
+  const terms = new Set();
+  for (let i = 0; i < words.length; i++) {
+    if (STOPWORDS.has(words[i]) || words[i].length < 3) continue;
+    terms.add(words[i]);
+    if (words[i + 1] && !STOPWORDS.has(words[i + 1]) && words[i + 1].length >= 3) terms.add(`${words[i]} ${words[i + 1]}`);
+  }
+  return terms;
+}
+
+// Terms counted once per review. low_share and high_share compare 1-2 star reviews with 4-5 star ones.
+export function reviewStats(reviews, { minLow = 3 } = {}) {
+  const byMonth = {};
+  const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  const low = reviews.filter(r => r.rating <= 2);
+  const high = reviews.filter(r => r.rating >= 4);
+  for (const r of reviews) {
+    if (distribution[r.rating] != null) distribution[r.rating]++;
+    if (!r.date) continue;
+    const m = r.date.slice(0, 7);
+    byMonth[m] ??= { month: m, reviews: 0, sum: 0, low: 0 };
+    byMonth[m].reviews++;
+    byMonth[m].sum += r.rating;
+    if (r.rating <= 2) byMonth[m].low++;
+  }
+  const docFreq = list => {
+    const counts = {};
+    for (const r of list) for (const t of reviewTerms(`${r.title} ${r.text}`)) counts[t] = (counts[t] || 0) + 1;
+    return counts;
+  };
+  const lowCounts = docFreq(low);
+  const highCounts = docFreq(high);
+  const share = (n, d) => (d ? round1((100 * n) / d) : null);
+  const complaints = Object.entries(lowCounts).filter(([, n]) => n >= minLow)
+    .map(([term, n]) => ({ term, low_reviews: n, low_share: share(n, low.length), high_share: share(highCounts[term] || 0, high.length) }))
+    .filter(t => t.high_share == null || t.low_share > t.high_share)
+    .sort((a, b) => b.low_reviews - a.low_reviews || a.term.localeCompare(b.term));
+  // A two-word term usually says more than its single words, so drop words that only appear inside a listed pair.
+  const pairs = complaints.filter(t => t.term.includes(' '));
+  const terms = complaints.filter(t => t.term.includes(' ') || !pairs.some(p => p.term.split(' ').includes(t.term) && p.low_reviews === t.low_reviews));
+  return {
+    reviews: reviews.length,
+    average: reviews.length ? round1(reviews.reduce((a, r) => a + r.rating, 0) / reviews.length) : null,
+    distribution,
+    by_month: Object.values(byMonth).sort((a, b) => a.month.localeCompare(b.month))
+      .map(({ month, reviews: n, sum, low: l }) => ({ month, reviews: n, average: round1(sum / n), low_share: share(l, n) })),
+    complaint_terms: terms.slice(0, 25),
+    recent_low: low.sort((a, b) => b.date.localeCompare(a.date)).slice(0, 15)
+      .map(r => ({ date: r.date, rating: r.rating, title: r.title, text: r.text.length > 300 ? `${r.text.slice(0, 300)}...` : r.text })),
+  };
+}
+
+async function cmdReviews(name, opts) {
+  if (!name && !opts.from) throw new Error('reviews needs an app name, --app-id, or --from reviews.csv');
+  if (opts.from) {
+    const rows = parseCsv(readFileSync(opts.from, 'utf8')).map(r => ({ date: String(r.date || '').slice(0, 10), rating: Number(r.rating), title: r.title || '', text: r.text || '' }))
+      .filter(r => r.rating >= 1 && r.rating <= 5);
+    return { source: opts.from, pulled: new Date().toISOString().slice(0, 10), ...reviewStats(rows), note: 'Stats from your CSV (date,rating,title,text). Say where it came from and when in the write-up.' };
+  }
+  const country = String(opts.country || 'us').toLowerCase();
+  const out = { query: name, country, pulled: new Date().toISOString().slice(0, 10) };
+  const fields = a => ({ app_id: a.trackId, name: a.trackName, seller: a.sellerName, seller_url: a.sellerUrl || null, rating: a.averageUserRating, ratings: a.userRatingCount, released: String(a.releaseDate || '').slice(0, 10), last_update: String(a.currentVersionReleaseDate || '').slice(0, 10) });
+  let app;
+  if (opts['app-id']) {
+    app = (await getJson(`https://itunes.apple.com/lookup?id=${encodeURIComponent(opts['app-id'])}&country=${country}`)).results?.[0];
+    if (!app) throw new Error(`No App Store app with id ${opts['app-id']} in ${country}`);
+  } else {
+    const results = (await getJson(`https://itunes.apple.com/search?${new URLSearchParams({ term: name, entity: 'software', country, limit: '5' })}`)).results || [];
+    out.candidates = results.map(fields);
+    const host = u => String(u || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '');
+    app = opts.domain ? results.find(r => host(r.sellerUrl) === host(opts.domain)) : results[0];
+    if (!app) return { ...out, note: opts.domain ? `No result's seller site matches ${opts.domain}. Pick an app_id from candidates and rerun with --app-id.` : 'No App Store app found. Try another name or --app-id.' };
+  }
+  out.app = fields(app);
+  const reviews = [];
+  let pages = 0;
+  for (let page = 1; page <= 10; page++) {
+    let json;
+    try { json = await getJson(`https://itunes.apple.com/${country}/rss/customerreviews/page=${page}/id=${app.trackId}/sortby=mostrecent/json`); } catch { break; }
+    const batch = parseAppleReviews(json);
+    if (!batch.length) break;
+    reviews.push(...batch);
+    pages = page;
+    await sleep(300);
+  }
+  if (opts.out) writeFileSync(opts.out, toCsv(reviews.map(({ date, rating, version, title, text }) => ({ date, rating, version, title, text }))));
+  Object.assign(out, reviewStats(reviews));
+  out.feed_capped = pages === 10;
+  out.note = 'App Store reviews with text, newest first, for one country. The feed stops at 500, so when feed_capped is true the oldest month is partial and a busy app may cover only days. ratings in app is the lifetime count for this country, including ratings without text. If no seller domain was given, the first search result was used: check app.seller. For Google Play, Trustpilot, or G2, export reviews with a scraping tool or the platform\'s API to date,rating,title,text and run reviews --from file.csv.';
+  if (!opts['app-id'] && !opts.domain) out.check = 'Matched by name only. Confirm app.seller is the target, or rerun with --domain target.com.';
+  return out;
+}
+
+// npm caps one range request at 18 months, so the window is split into chunks of at most 365 days.
+export function npmRanges(months, now = new Date()) {
+  const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - months, 1));
+  const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 1));
+  const out = [];
+  for (let from = start; from <= end;) {
+    const to = new Date(Math.min(end.getTime(), from.getTime() + 364 * 86400000));
+    out.push({ from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) });
+    from = new Date(to.getTime() + 86400000);
+  }
+  return out;
+}
+
+export function monthlyFromDaily(days) {
+  const byMonth = {};
+  for (const d of days) {
+    const m = d.day.slice(0, 7);
+    byMonth[m] ??= { month: m, downloads: 0, days: 0 };
+    byMonth[m].downloads += d.downloads;
+    byMonth[m].days++;
+  }
+  return Object.values(byMonth).sort((a, b) => a.month.localeCompare(b.month)).map(r => {
+    const [y, m] = r.month.split('-').map(Number);
+    return { ...r, partial: r.days < new Date(Date.UTC(y, m, 0)).getUTCDate() };
+  });
+}
+
+// samples: the date of the Nth star. Stars at each month end are interpolated between samples.
+export function starCurve(samples, months, now = new Date()) {
+  const pts = [...samples].sort((a, b) => a.index - b.index).map(s => ({ index: s.index, t: Date.parse(s.date), final: Boolean(s.final) }));
+  const out = [];
+  for (let i = months - 1; i >= 0; i--) {
+    const monthEnd = Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i + 1, 0, 23, 59, 59);
+    const t = Math.min(monthEnd, now.getTime());
+    const month = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1)).toISOString().slice(0, 7);
+    let stars;
+    if (!pts.length || t < pts[0].t) stars = pts.length ? 0 : null;
+    else if (t >= pts[pts.length - 1].t) stars = pts[pts.length - 1].final ? pts[pts.length - 1].index : null;
+    else {
+      const j = pts.findIndex(p => p.t > t);
+      const a = pts[j - 1];
+      const b = pts[j];
+      stars = Math.round(a.index + ((b.index - a.index) * (t - a.t)) / (b.t - a.t));
+    }
+    out.push({ month, stars });
+  }
+  return out;
+}
+
+async function githubStars(repo, months) {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+  const headers = token ? { authorization: `Bearer ${token}` } : {};
+  const info = await getJson(`https://api.github.com/repos/${repo}`, headers);
+  const out = { repo: info.full_name, stars: info.stargazers_count, forks: info.forks_count, created: String(info.created_at).slice(0, 10), last_push: String(info.pushed_at).slice(0, 10) };
+  if (!token) return { ...out, history: null, history_note: 'Star history needs GITHUB_TOKEN (GitHub requires sign-in to list stargazers).' };
+  const lastPage = Math.min(Math.ceil(info.stargazers_count / 100), 400);
+  const pages = [...new Set(Array.from({ length: Math.min(30, lastPage) }, (_, i) => 1 + Math.round((i * (lastPage - 1)) / Math.max(1, Math.min(30, lastPage) - 1))))];
+  const samples = [];
+  const starHeaders = { ...headers, accept: 'application/vnd.github.star+json' };
+  try {
+    for (const p of pages) {
+      const rows = await getJson(`https://api.github.com/repos/${repo}/stargazers?per_page=100&page=${p}`, starHeaders);
+      if (!rows.length) continue;
+      samples.push({ index: (p - 1) * 100 + 1, date: rows[0].starred_at });
+      if (p === lastPage) samples.push({ index: (p - 1) * 100 + rows.length, date: rows[rows.length - 1].starred_at });
+    }
+  } catch (err) {
+    return { ...out, history: null, history_note: `Could not list stargazers (${err.message.split(' ')[0]}). The token needs read access to public repositories.` };
+  }
+  const capped = info.stargazers_count > 40000;
+  if (!capped) samples.push({ index: info.stargazers_count, date: new Date().toISOString(), final: true });
+  return {
+    ...out,
+    history: starCurve(samples, months),
+    history_note: capped ? 'GitHub lists only the first 40,000 stargazers, so months after that point are null.' : 'Stars at each month end, interpolated between sampled stargazer pages. Unstarred repos drop out of the count.',
+  };
+}
+
+async function cmdAdoption(opts) {
+  if (!opts.npm && !opts.pypi && !opts.github) throw new Error('adoption needs at least one of --npm package, --pypi package, --github owner/repo');
+  const months = posInt(opts.months, 24, 'months');
+  const out = { pulled: new Date().toISOString().slice(0, 10), months };
+  if (opts.npm) {
+    const days = [];
+    for (const r of npmRanges(months)) {
+      const json = await getJson(`https://api.npmjs.org/downloads/range/${r.from}:${r.to}/${encodeURIComponent(opts.npm).replace('%40', '@')}`);
+      days.push(...(json.downloads || []));
+    }
+    // Days before the package's first download are zeros, not a real flat start.
+    const first = days.findIndex(d => d.downloads > 0);
+    out.npm = { package: opts.npm, monthly: first < 0 ? [] : monthlyFromDaily(days.slice(first)) };
+  }
+  if (opts.pypi) {
+    const json = await getJson(`https://pypistats.org/api/packages/${encodeURIComponent(opts.pypi.toLowerCase())}/overall?mirrors=false`);
+    const days = (json.data || []).filter(d => d.category === 'without_mirrors').map(d => ({ day: d.date, downloads: d.downloads }));
+    out.pypi = { package: opts.pypi, monthly: monthlyFromDaily(days), note: 'PyPI Stats keeps only the last 180 days. For longer history, query the public PyPI downloads dataset in BigQuery.' };
+  }
+  if (opts.github) out.github = await githubStars(opts.github, months);
+  if (opts.out) {
+    const rows = {};
+    for (const r of out.npm?.monthly || []) (rows[r.month] ??= { month: r.month }).npm_downloads = r.partial ? '' : r.downloads;
+    for (const r of out.pypi?.monthly || []) (rows[r.month] ??= { month: r.month }).pypi_downloads = r.partial ? '' : r.downloads;
+    for (const r of out.github?.history || []) (rows[r.month] ??= { month: r.month }).github_stars = r.stars ?? '';
+    writeFileSync(opts.out, toCsv(Object.values(rows).sort((a, b) => a.month.localeCompare(b.month)).map(r => ({ month: r.month, npm_downloads: r.npm_downloads ?? '', pypi_downloads: r.pypi_downloads ?? '', github_stars: r.github_stars ?? '' }))));
+  }
+  out.note = 'Downloads count installs, including CI and bots, so read the trend, not the level. Partial months are flagged and left blank in --out. Monthly downloads from one registry can stand in for visits in traffic.csv for developer tools: keep to one source for the whole series.';
+  return out;
+}
+
+// profiles: [{ domain, signals: [...] }]. you is the user's domain, compared against the rest.
+export function compareMatrix(profiles, you) {
+  const rivals = profiles.filter(p => p.domain !== you);
+  const mine = new Set(profiles.find(p => p.domain === you)?.signals || []);
+  const have = {};
+  for (const p of rivals) for (const s of new Set(p.signals)) (have[s] ??= []).push(p.domain);
+  const rows = Object.entries(have).map(([signal, domains]) => ({ signal, domains })).sort((a, b) => b.domains.length - a.domains.length || a.signal.localeCompare(b.signal));
+  const n = rivals.length;
+  const out = {
+    competitors: n,
+    everyone: rows.filter(r => r.domains.length === n && n > 1).map(r => r.signal),
+    most: rows.filter(r => r.domains.length < n && r.domains.length >= 2 && r.domains.length * 2 >= n),
+    only_one: {},
+  };
+  for (const r of rows.filter(r => r.domains.length === 1 && n > 1)) (out.only_one[r.domains[0]] ??= []).push(r.signal);
+  if (you) {
+    out.you_missing = rows.filter(r => r.domains.length * 2 >= n && !mine.has(r.signal)).map(r => ({ signal: r.signal, competitors: r.domains.length }));
+    out.you_only = [...mine].filter(s => !have[s]).sort();
+  }
+  return out;
+}
+
+// Office mailboxes, account verifications for internal tools, and legal or archive pages say little about marketing.
+const OFFICE_MAIL = new Set(['Google Workspace', 'Microsoft 365']);
+const MARKETING_VERIFICATIONS = /Meta|TikTok|Pinterest|LinkedIn|HubSpot|Marketo|Pardot/;
+const BOILERPLATE_FAMILY = /^\/(?:careers|jobs|legal|legals|privacy|terms|cookies?|tags?|authors?|category|categories|page)?$/;
+
+async function profileDomain(domain) {
+  const p = { domain, signals: [], errors: [] };
+  let html = '';
+  try {
+    const page = await getPageOrArchive(`https://${domain}/`);
+    html = page.html;
+    p.source = page.source;
+    const hero = extractHero(html);
+    p.headline = hero.title || hero.h1;
+  } catch (err) { p.errors.push(`homepage: ${err.message}`); }
+  const dnsInfo = await cmdDns(domain);
+  const tools = html ? detectTools(html) : [];
+  p.industry = html ? detectIndustry({ html, tools, linked: detectLinkedTools(html), cnames: dnsInfo.subdomains.map(s => s.cname) })[0]?.pack || null : null;
+  p.signals.push(...tools.map(t => `tool: ${t}`), ...dnsInfo.mail.filter(t => !OFFICE_MAIL.has(t)).map(t => `email: ${t}`),
+    ...dnsInfo.verifications.filter(t => MARKETING_VERIFICATIONS.test(t)).map(t => `verified: ${t}`),
+    ...dnsInfo.subdomains.filter(s => s.tool).map(s => `platform: ${s.tool}`));
+  try {
+    const urls = await sitemapUrls(domain, 5000);
+    p.sitemap_urls = urls.length;
+    if (urls.length >= 5000) p.sitemap_capped = 'Read the first 5,000 URLs only; run site for the full count.';
+    const families = {};
+    for (const u of urls) families[pathFamily(u)] = (families[pathFamily(u)] || 0) + 1;
+    p.page_families = Object.fromEntries(Object.entries(families).sort((a, b) => b[1] - a[1]).slice(0, 10));
+    p.signals.push(...Object.entries(families).filter(([f, c]) => c >= 10 && !BOILERPLATE_FAMILY.test(f) && !LOCALE.test(f.slice(1)) && f !== '/lang').map(([f]) => `pages: ${f}`));
+    p.locales = [...new Set(urls.map(localeOf).filter(Boolean))].length;
+    if (p.locales) p.signals.push('pages: localized');
+  } catch (err) { p.errors.push(`sitemap: ${err.message}`); }
+  try {
+    const jobs = await cmdJobs(domain, {});
+    if (jobs.board) {
+      p.open_roles = jobs.total;
+      p.roles_by_function = jobs.by_function;
+      p.signals.push(...Object.keys(jobs.marketing_channels).map(c => `hiring: ${c}`));
+    }
+  } catch (err) { p.errors.push(`jobs: ${err.message}`); }
+  if (!p.errors.length) delete p.errors;
+  return p;
+}
+
+async function cmdCompare(domains, opts) {
+  const you = opts.you ? opts.you.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : null;
+  const all = [...new Set([...domains, ...(you ? [you] : [])])];
+  if (all.filter(d => d !== you).length < 2) throw new Error('compare needs at least two competitor domains');
+  const profiles = [];
+  for (const d of all) {
+    process.stderr.write(`profiling ${d}...\n`);
+    profiles.push(await profileDomain(d));
+  }
+  const matrix = compareMatrix(profiles, you);
+  if (opts.out) {
+    const signals = [...new Set(profiles.flatMap(p => p.signals))].sort();
+    writeFileSync(opts.out, toCsv(signals.map(s => ({ signal: s, ...Object.fromEntries(profiles.map(p => [p.domain, p.signals.includes(s) ? 'yes' : ''])) }))));
+  }
+  return {
+    pulled: new Date().toISOString().slice(0, 10),
+    you,
+    ...matrix,
+    profiles: profiles.map(({ signals, ...rest }) => ({ ...rest, signal_count: signals.length })),
+    note: 'Signals are what each site shows from outside: scripts on the homepage, DNS records, sitemap page families with 10+ pages, and marketing roles open on a public job board. Everyone = table stakes. Only one = a bet worth checking in a full teardown. you_missing = what at least half of them do that you do not. A signal nobody has may be an open lane or a dead end: check it before calling it an opportunity.',
+  };
+}
+
 function cmdMoves(opts) {
   if (!opts.moves || !opts.traffic) throw new Error('moves needs --moves moves.csv --traffic traffic.csv');
   const result = analyzeMoves(parseCsv(readFileSync(opts.moves, 'utf8')), parseCsv(readFileSync(opts.traffic, 'utf8')));
@@ -1167,6 +1685,19 @@ Commands:
   filings <company> [--ua "Name email"] [--cik n] SEC filings for public companies and Form D raises
   cfpb <company> [--months 24] [--exact "Name"]   CFPB consumer complaints by month, top products and issues
   fdic <bank> [--cert n] [--quarters 12]          FDIC quarterly assets, deposits, and employees
+  jobs <domain|name> [--ats greenhouse|lever|ashby --board slug] [--out jobs.csv]
+                                                  Open roles from public job boards: functions, marketing
+                                                  channels being hired for, tools named, languages, locations
+  compare <domain> <domain> [...] [--you yours.com] [--out matrix.csv]
+                                                  Side by side: tools, email platforms, page families, and
+                                                  marketing hiring; what everyone does, what only one does,
+                                                  and what you are missing
+  adoption [--npm pkg] [--pypi pkg] [--github owner/repo] [--months 24] [--out adoption.csv]
+                                                  Monthly npm and PyPI downloads and GitHub stars over time
+                                                  (star history needs GITHUB_TOKEN)
+  reviews <app name> [--domain example.com] [--app-id id] [--country us] [--out reviews.csv]
+  reviews --from reviews.csv                      App Store reviews (or any date,rating,title,text CSV):
+                                                  volume and rating by month, complaint terms, recent low ones
   ads <name> [--domain example.com]               Public ad library links for each network
   sc-ads <name> [--domain example.com] [--page-id id] [--country US] [--dry-run]
                                                   Active Meta, Google, and TikTok ads via ScrapeCreators
@@ -1186,7 +1717,7 @@ async function main() {
   const [cmd, ...rest] = process.argv.slice(2);
   const { pos, opts } = parseArgs(rest);
   const domain = (pos[0] || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-  if (['site', 'stack', 'history', 'hero', 'sitemap-growth', 'dns', 'subdomains', 'ads', 'sc-ads', 'detect', 'shopify', 'experiments', 'phones', 'filings', 'cfpb', 'fdic'].includes(cmd) && !pos[0]) {
+  if (['site', 'stack', 'history', 'hero', 'sitemap-growth', 'dns', 'subdomains', 'ads', 'sc-ads', 'detect', 'shopify', 'experiments', 'phones', 'filings', 'cfpb', 'fdic', 'jobs'].includes(cmd) && !pos[0]) {
     console.log(USAGE);
     process.exitCode = 1;
     return;
@@ -1209,6 +1740,10 @@ async function main() {
     case 'filings': result = await cmdFilings(pos[0], opts); break;
     case 'cfpb': result = await cmdCfpb(pos[0], opts); break;
     case 'fdic': result = await cmdFdic(pos[0], opts); break;
+    case 'compare': result = await cmdCompare(pos.map(d => d.replace(/^https?:\/\//, '').replace(/\/.*$/, '')), opts); break;
+    case 'adoption': result = await cmdAdoption(opts); break;
+    case 'reviews': result = await cmdReviews(pos[0], opts); break;
+    case 'jobs': result = await cmdJobs(pos[0].includes('.') ? domain : pos[0], opts); break;
     case 'moves': result = cmdMoves(opts); break;
     case 'diff': result = cmdDiff(opts); break;
     default:

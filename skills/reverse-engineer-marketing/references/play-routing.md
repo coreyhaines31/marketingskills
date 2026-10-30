@@ -38,6 +38,9 @@ Every play in a teardown names the skill that runs it and, for repeat work, the 
 | Outbound to a defined account list | **prospecting**, **cold-email** | The signal-sweep loop |
 | An onboarding email sequence that converts (stage 3) | **emails** | The lifecycle-email-refresh loop |
 | Save offers in the cancel flow (stage 3) | **churn-prevention** | The churn-signal loop |
+| A complaint theme in their reviews that the user solves | **competitors** (alternative page), **product-marketing** (positioning) | The keyword-gap loop |
+| Price pain after their price rise | **offers** (switching offer), **pricing** | (none; one-off offer) |
+| Objections their customers raise in reviews and switching posts | **sales-enablement** (battle card), **customer-research** | (none; refresh with Watch mode) |
 | A fast, well-run sales process (stage 3) | **sales-enablement**, **revops** | (none; one-off build) |
 | A positioning shift that came before growth (stage 5) | **product-marketing** for positioning, **copywriting** for the homepage | The claim-drift loop |
 | Newsletter, podcast, or YouTube sponsorships (stage 5) | **influencer-marketing** | The creator-scouting loop |
