@@ -33,7 +33,8 @@ node tools/clis/lemlist.js campaigns list --offset 0 --limit 20
 node tools/clis/lemlist.js campaigns get --id cam_abc123
 
 # Get campaign stats
-node tools/clis/lemlist.js campaigns stats --id cam_abc123
+node tools/clis/lemlist.js campaigns stats --id cam_abc123 \
+  --start-date 2026-01-01T00:00:00.000Z --end-date 2026-01-31T23:59:59.999Z
 
 # Export campaign data
 node tools/clis/lemlist.js campaigns export --id cam_abc123
