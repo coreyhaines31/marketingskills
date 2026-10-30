@@ -299,3 +299,31 @@ test('summarizeJobs counts channels, tools in context, languages, and first hire
   assert.deepEqual(s.tools_mentioned.map(t => t.tool).sort(), ['Ahrefs', 'Braze', 'HubSpot', 'Segment', 'Semrush']);
   assert.deepEqual(s.posted_by_month, { '2026-08': 1, '2026-10': 2 });
 });
+
+test('parseAppleReviews keeps rated entries and drops reviewer names', async () => {
+  const { parseAppleReviews } = await load();
+  const json = { feed: { entry: [
+    { 'im:name': { label: 'App info, not a review' } },
+    { author: { name: { label: 'someone' } }, updated: { label: '2026-10-29T11:42:04-07:00' }, 'im:rating': { label: '2' }, 'im:version': { label: '7.1' }, id: { label: '9' }, title: { label: 'Too many ads' }, content: { label: 'Ads after every lesson' } },
+  ] } };
+  const rows = parseAppleReviews(json);
+  assert.equal(rows.length, 1);
+  assert.deepEqual(rows[0], { id: '9', date: '2026-10-29', rating: 2, version: '7.1', title: 'Too many ads', text: 'Ads after every lesson' });
+  assert.ok(!JSON.stringify(rows).includes('someone'));
+  assert.deepEqual(parseAppleReviews({ feed: {} }), []);
+});
+
+test('reviewStats finds terms that skew to low ratings', async () => {
+  const { reviewStats } = await load();
+  const r = (date, rating, text) => ({ date, rating, title: '', text });
+  const reviews = [
+    r('2026-09-02', 1, 'Too many ads and the paywall'), r('2026-09-10', 1, 'The ads ruin it'), r('2026-10-01', 2, 'ads ads ads'),
+    r('2026-10-03', 5, 'Great lessons'), r('2026-10-04', 5, 'Great lessons, few ads'), r('2026-10-05', 4, 'Great streaks'),
+  ];
+  const s = reviewStats(reviews);
+  assert.equal(s.reviews, 6);
+  assert.deepEqual(s.distribution, { 1: 2, 2: 1, 3: 0, 4: 1, 5: 2 });
+  assert.deepEqual(s.by_month, [{ month: '2026-09', reviews: 2, average: 1, low_share: 100 }, { month: '2026-10', reviews: 4, average: 4, low_share: 25 }]);
+  assert.deepEqual(s.complaint_terms, [{ term: 'ads', low_reviews: 3, low_share: 100, high_share: 33.3 }]);
+  assert.equal(s.recent_low[0].date, '2026-10-01');
+});
