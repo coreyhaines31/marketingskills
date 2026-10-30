@@ -71,6 +71,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | attio | CRM | ✓ | ✓ | - | ✓ | [attio.md](integrations/attio.md) |
 | stripe | Payments | ✓ | ✓ | ✓ | ✓ | [stripe.md](integrations/stripe.md) |
 | paddle | Payments | ✓ | - | [✓](clis/paddle.js) | ✓ | [paddle.md](integrations/paddle.md) |
+| agentaos | Payments | ✓ | ✓ | ✓ | ✓ | [agentaos.md](integrations/agentaos.md) |
 | rewardful | Referral | ✓ | - | [✓](clis/rewardful.js) | - | [rewardful.md](integrations/rewardful.md) |
 | tolt | Referral | ✓ | ✓ | [✓](clis/tolt.js) | - | [tolt.md](integrations/tolt.md) |
 | dub-co | Links | ✓ | - | [✓](clis/dub.js) | ✓ | [dub-co.md](integrations/dub-co.md) |
@@ -201,6 +202,7 @@ Payment processing and subscription management.
 |------|----------|:-------------:|
 | **stripe** | SaaS subscriptions, developer-friendly | ✓ |
 | **paddle** | SaaS billing with tax handling | - |
+| **agentaos** | Merchant of record with payouts in countries Stripe does not serve | ✓ |
 
 **Agent recommendation**: Stripe for developer-first SaaS billing. Paddle for built-in tax compliance (merchant of record).
 
