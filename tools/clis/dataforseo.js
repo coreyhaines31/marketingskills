@@ -73,6 +73,14 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+// Per-task keyword caps from the DataForSEO endpoint references
+function keywordList(max) {
+  const list = typeof args.keywords === 'string' ? args.keywords.split(',').map(k => k.trim()).filter(Boolean) : []
+  if (list.length === 0) return { error: '--keywords required (comma-separated)' }
+  if (list.length > max) return { error: `--keywords accepts at most ${max} keywords for this endpoint` }
+  return { list }
+}
+
 async function main() {
   let result
   const location = args.location || 'United States'
@@ -121,10 +129,10 @@ async function main() {
     case 'keywords':
       switch (sub) {
         case 'volume': {
-          const keywords = args.keywords?.split(',')
-          if (!keywords) { result = { error: '--keywords required (comma-separated)' }; break }
+          const keywords = keywordList(1000)
+          if (keywords.error) { result = keywords; break }
           result = await api('POST', '/keywords_data/google_ads/search_volume/live', [{
-            keywords,
+            keywords: keywords.list,
             location_code: locationCode,
             language_code: languageCode,
           }])
@@ -141,20 +149,20 @@ async function main() {
           break
         }
         case 'for-keywords': {
-          const keywords = args.keywords?.split(',')
-          if (!keywords) { result = { error: '--keywords required (comma-separated)' }; break }
+          const keywords = keywordList(20)
+          if (keywords.error) { result = keywords; break }
           result = await api('POST', '/keywords_data/google_ads/keywords_for_keywords/live', [{
-            keywords,
+            keywords: keywords.list,
             location_code: locationCode,
             language_code: languageCode,
           }])
           break
         }
         case 'trends': {
-          const keywords = args.keywords?.split(',')
-          if (!keywords) { result = { error: '--keywords required (comma-separated)' }; break }
+          const keywords = keywordList(5)
+          if (keywords.error) { result = keywords; break }
           result = await api('POST', '/keywords_data/google_trends/explore/live', [{
-            keywords,
+            keywords: keywords.list,
             location_code: locationCode,
             language_code: languageCode,
           }])
