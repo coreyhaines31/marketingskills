@@ -86,7 +86,10 @@ async function main() {
           const name = args.name
           if (!name) { result = { error: '--name required' }; break }
           const body = { name }
-          if (args.public) body.public = true
+          if (args.public !== undefined) {
+            if (![true, 'true', 'false'].includes(args.public)) { result = { error: '--public must be true or false' }; break }
+            body.public = args.public !== 'false'
+          }
           result = await api('POST', '/projects.json', body)
           break
         }
@@ -249,7 +252,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          projects: 'projects [list | get --id <id> | create --name <name> | update --id <id> --name <name> | delete --id <id>]',
+          projects: 'projects [list | get --id <id> | create --name <name> [--public true|false] | update --id <id> --name <name> | delete --id <id>]',
           medias: 'medias [list [--project <id>] | get --id <id> | update --id <id> --name <name> | delete --id <id> | copy --id <id> [--target-project <id>] | stats --id <id>]',
           stats: 'stats [account | project --id <id> | media --id <id> | media-by-date --id <id> [--start <date> --end <date>] | engagement --id <id> | visitors | visitor --key <key> | events [--media-id <id>]]',
           account: 'account',
