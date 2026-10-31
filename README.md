@@ -52,8 +52,8 @@ Skills reference each other and build on shared context. The `product-marketing`
 │ai-seo    │ │signup    │ │copy-edit │ │ad-creative │ │free-tools│ │sales-enable │ │mktg-psych │
 │site-arch │ │onboarding│ │cold-email│ │ab-testing  │ │churn-    │ │launch       │ │customer-  │
 │programm  │ │popups    │ │emails    │ │analytics   │ │ prevent  │ │pricing      │ │ research  │
-│schema    │ │paywalls  │ │social    │ │            │ │community │ │competitors  │ │           │
-│content   │ │          │ │video     │ │            │ │lead-magnt│ │comp-profile │ │           │
+│schema    │ │paywalls  │ │social    │ │            │ │community │ │competitors  │ │reverse-   │
+│content   │ │          │ │video     │ │            │ │lead-magnt│ │comp-profile │ │ eng-mktg  │
 │aso       │ │          │ │image     │ │            │ │co-mktg   │ │directory    │ │           │
 │link-build│ │          │ │sms       │ │            │ │          │ │prospecting  │ │           │
 └────┬─────┘ └────┬─────┘ └────┬─────┘ └─────┬──────┘ └────┬─────┘ └──────┬──────┘ └─────┬─────┘
@@ -117,6 +117,7 @@ See each skill's **Related Skills** section for the full dependency map.
 | [prospecting](skills/prospecting/) | When the user wants to find, qualify, and build a list of prospects to reach out to, across B2B SaaS, general B2B, or... |
 | [public-relations](skills/public-relations/) | When the user wants help with public relations, earned media, press coverage, journalist outreach, or media strategy... |
 | [referrals](skills/referrals/) | When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy.... |
+| [reverse-engineer-marketing](skills/reverse-engineer-marketing/) | When the user wants to reverse engineer how another company grew and copy what worked. Also use when the user mentions... |
 | [revops](skills/revops/) | When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes.... |
 | [sales-enablement](skills/sales-enablement/) | When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts. Also... |
 | [schema](skills/schema/) | When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user... |
@@ -367,6 +368,7 @@ You can also invoke skills directly:
 - `marketing-psychology` - Mental models and psychology
 - `launch` - Product launches and announcements
 - `pricing` - Pricing, packaging, and monetization
+- `reverse-engineer-marketing` - Growth teardowns of any company, with plays to copy
 
 ### Sales & RevOps
 - `revops` - Lead lifecycle, scoring, routing, pipeline management

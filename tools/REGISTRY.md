@@ -119,6 +119,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | introw | Partner Ecosystem | - | ✓ | - | - | [introw.md](integrations/introw.md) |
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | ✓ | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
+| scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
@@ -459,8 +460,11 @@ Traffic analytics, competitor benchmarking, and market research.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **similarweb** | Website traffic, competitor analysis | Traffic sources, keywords |
+| **scrapecreators** | Public social posts and ad libraries (TikTok, Instagram, YouTube, X, Reddit; Meta, Google, TikTok ads) | API + MCP; credit-based; not for LinkedIn or people data |
 
 **Agent recommendation**: Similarweb for competitor traffic analysis and market benchmarking.
+
+**Social and ad data**: ScrapeCreators and Apify social actors both cover what a competitor publishes and advertises; the reverse-engineer-marketing skill works with either.
 
 ### Audience Research
 
@@ -630,6 +634,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **rowbound** - Open-source Sheets enrichment with waterfalls (stdio MCP)
 - **theirstack** - Hiring and technographic signals
 - **apify** - Ready-made scrapers (Actors)
+- **scrapecreators** - Public social posts and ad libraries
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links

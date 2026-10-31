@@ -14,7 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.3 | 2026-10-12 |
 | cold-email | 2.2.1 | 2026-10-27 |
 | community-marketing | 2.0.2 | 2026-10-27 |
-| competitor-profiling | 2.1.4 | 2026-10-15 |
+| competitor-profiling | 2.1.5 | 2026-10-30 |
 | competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.5 | 2026-10-27 |
 | conversion-tracking | 1.0.1 | 2026-10-19 |
@@ -32,8 +32,8 @@ Current versions of all skills. Agents can compare against local versions to che
 | lead-magnets | 2.1.1 | 2026-10-27 |
 | link-building | 1.0.1 | 2026-10-19 |
 | marketing-council | 1.0.0 | 2026-07-06 |
-| marketing-ideas | 2.0.1 | 2026-08-23 |
-| marketing-loops | 1.6.2 | 2026-10-27 |
+| marketing-ideas | 2.0.2 | 2026-10-30 |
+| marketing-loops | 1.7.0 | 2026-10-30 |
 | marketing-plan | 1.2.2 | 2026-10-12 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.3 | 2026-10-27 |
@@ -47,6 +47,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | prospecting | 1.5.0 | 2026-10-27 |
 | public-relations | 1.2.1 | 2026-10-15 |
 | referrals | 2.2.1 | 2026-10-12 |
+| reverse-engineer-marketing | 1.0.0 | 2026-10-30 |
 | revops | 2.2.2 | 2026-10-27 |
 | sales-enablement | 2.4.0 | 2026-10-07 |
 | schema | 2.0.2 | 2026-10-08 |
@@ -54,14 +55,23 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.1 | 2026-10-08 |
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.0 | 2026-10-14 |
+| social | 2.4.1 | 2026-10-30 |
 | video | 2.4.0 | 2026-10-29 |
 
 ## Recent Changes
 
-### 2.13.11 (2026-10-30)
+### 2.14.1 (2026-10-30)
 
 - **seo-audit** (2.2.2 → 2.2.3): the schema detection note lists Firecrawl next to the options already there, and Tools Referenced links its integration guide (contributed by Juan Pablo Hernandez of Firecrawl).
+
+### 2.14.0 (2026-10-30)
+
+New skill: **reverse-engineer-marketing**, for growth teardowns of any company from public evidence.
+
+- **reverse-engineer-marketing** (new, 1.0.0): nine stages. (1) A spine of one-vendor monthly traffic and a dated move log. (2) The funnel read from outside: search, AI answers from a connected prompt tracker, paid, social and creators, PR, activation, pricing history, referral loops, hiring. (3) Going inside with the user's approval and real identity: sign-up and onboarding screenshots, a 30-60 day email log, the upgrade wall, the cancel flow, the sales process, and a chat-bot probe. (4) Team voices: founders' and leaders' podcasts, talks, and threads, transcribed into dated "reported" claims, plus full job posts read as plans. (5) Hidden signals: DNS (email senders, tool verifications, marketing subdomain platforms), certificate logs for dated subdomain launches, homepage headline history, sitemap growth, paid promotion beyond ad libraries (newsletter, podcast, and YouTube sponsorships, affiliates, coupons, events), and growth counters. (6) Content patterns per channel. (7) Which clusters of moves lined up with growth. (8) The gap with the user's own data. (9) Plays routed to the skill and loop that run each one, with paste-ready prompts. Thirty-one industry packs (SaaS, ecommerce and DTC, consumer hardware, CPG, retail, franchising, local services, residential solar, healthcare, care services, fitness, legal and professional services, real estate, finance, insurance, crypto, gambling, regulated goods, manufacturing, logistics, automotive, govtech, agencies, nonprofit, marketplaces, mobile apps, PC and console games, education, hospitality and travel, events, media and creators), fact-checked against current rules, each with detection signals, growth drivers, signals to collect, first-hand checks, copying limits, plays, and metrics. Teardown, Content, Quick, Funnel Hack (approved-budget purchases, the full money path, upsells, abandoned-cart flows, live tests, paid search conquesting, staged-urgency checks, swipe file), and Watch modes. Bundles `scripts/teardown.mjs` (zero dependencies): `site`, `stack` (98 page-script signatures, matched only in scripts and resource URLs), `dns` (70+ mail, verification, and platform signatures), `history`, `hero`, `sitemap-growth`, `dns`, `subdomains`, `detect`, `shopify`, `experiments`, `phones`, `filings` (SEC and Form D), `cfpb`, `fdic`, `ads`, `sc-ads` (ScrapeCreators), `moves`, and `diff`, with contract tests. Fourteen evals.
+- **marketing-loops** (1.6.2 → 1.7.0): new growth-move watch loop, a monthly rerun of a teardown that reports only new moves. The catalog now has 59 loops.
+- **Routing** (patch bumps): competitor-profiling, marketing-ideas, and social point growth teardowns to reverse-engineer-marketing.
+- **Tools**: new ScrapeCreators integration guide for public social posts and ad libraries (TikTok, Instagram, YouTube, X, Reddit; Meta, Google, TikTok ads), registered as MCP-enabled. Not used for LinkedIn or people data.
 
 ### 2.13.10 (2026-10-29)
 

@@ -1,8 +1,8 @@
 ---
 name: competitor-profiling
-description: "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific battle cards, see sales-enablement. For researching accounts you're selling to, see prospecting."
+description: "When the user wants to research, profile, or analyze competitors from their URLs. Also use when the user mentions 'competitor profile,' 'competitor research,' 'competitor analysis,' 'profile this competitor,' 'analyze competitor,' 'competitive intelligence,' 'competitor deep dive,' 'who are my competitors,' 'competitor landscape,' 'competitor dossier,' 'competitive audit,' or 'research these competitors.' Input is a list of competitor URLs. Output is structured competitor profile markdown files. For creating comparison/alternative pages from profiles, see competitors. For sales-specific battle cards, see sales-enablement. For researching accounts you're selling to, see prospecting. For how a competitor grew over time and what to copy, see reverse-engineer-marketing."
 metadata:
-  version: 2.1.4
+  version: 2.1.5
 ---
 
 # Competitor Profiling
@@ -430,6 +430,7 @@ Only ask if not answered by context or input:
 ## Related Skills
 
 - **competitors**: For creating comparison/alternative pages from these profiles
+- **reverse-engineer-marketing**: For a dated teardown of how a competitor grew, which moves lined up with growth, and plays to copy
 - **prospecting**: For broader list-building qualification (this skill does deep research on specific accounts; prospecting builds the initial list)
 - **customer-research**: For mining reviews and community sentiment in depth
 - **content-strategy**: For using competitor content gaps to plan your own content
