@@ -200,13 +200,48 @@ Best for: Relatable content, humor, niche communities
 | Reels | 9 AM, 12 PM, 7-9 PM |
 | Shorts | 12-3 PM, 7-9 PM |
 
-### Frequency Recommendations
+### Frequency: Earn Volume with Views
 
-| Goal | Minimum | Optimal |
-|------|---------|---------|
-| Growing | 1/day | 2-4/day |
-| Maintaining | 3/week | 1/day |
-| Testing | 2/week | 5/week |
+More posts only help once each post is good enough to get distributed. Scale in stages, per account:
+
+| Stage | Cadence | Move on when |
+|-------|---------|--------------|
+| **Warm-up** (new account) | No posts for 3-7 days | The feed mostly shows your niche |
+| **Find the format** | 1 thoughtful post per day | Most posts clear a view floor (for example 1,000 views on TikTok or Reels) |
+| **Scale the account** | Up to 3 per day, 3-4 hours apart | The format keeps clearing the floor at 3 per day |
+| **Add accounts** | Another warmed account, not more posts per account | Each account holds its floor |
+| **Maintaining** | 3 per week to 1 per day | - |
+
+If an account can't break a few hundred views for a week, pause it for 2-3 days and change the format before posting more. Posting more of a format that isn't working teaches the platform that your account isn't worth showing.
+
+These stages come from founders who grew apps on organic short-form. They're a practical default, not documented platform rules: test them against your own numbers.
+
+### Warming Up a New Account
+
+A new account starts with no audience signal. Teach the platform who it's for before the first post:
+
+1. Create the account under the brand or a clearly brand-affiliated name, with the affiliation in the bio.
+2. For 3-7 days, spend 15 minutes a day scrolling the niche by hand: watch, like, follow a few relevant accounts, and leave real comments. Don't post.
+3. Save every video you could remake for your product. That's your swipe file for the first posts.
+4. Start posting when the feed mostly shows your niche.
+
+Warm up one new account at a time per device and platform. Don't buy aged accounts, don't automate the engagement, and keep every account inside the platform's rules on fake engagement and coordinated accounts. Paid creators posting for you disclose it (see **influencer-marketing** for creator account programs).
+
+### Finding a Winning Format
+
+A **format** is the repeatable shape of a video: the hook style, the structure, the visual pattern, and how the product shows up. Finding the one that works for your product can take dozens to hundreds of posts, and it's different for every product.
+
+1. **Start from proof.** Remake formats from the swipe file that already work in your niche, with your own idea, footage, and words. Never reuse their footage or script (see [reverse-engineering.md](reverse-engineering.md)).
+2. **Tie every post to the product.** The hook, caption, or end card should make the product the natural next step. Views that don't lead anywhere don't count.
+3. **Log each test** in one sheet: date, account, format, hook, views at 48 hours, watch time, comments, link clicks, and signups or installs that day.
+4. **Call a winner on outcomes, not views.** A winning format clears the view floor repeatedly and moves signups or installs. A format that goes viral and moves nothing is a top-of-funnel format, not your winner.
+5. **Double down.** Once a format wins, make it the bulk of your posts, and keep about one in five posts testing new formats so you have the next winner before this one fades.
+
+Measure what the views produce: a tracked link in bio (UTM tags), App Store campaign links or Google Play referrer links for apps, signups by day next to posts by day, and a "how did you hear about us" question at signup.
+
+### Post Once, Publish Everywhere
+
+Make each video once and send it to TikTok, Reels, Shorts, and the other short-form feeds. A scheduler that posts to several accounts and platforms through one API or MCP (Buffer, Post Bridge, and others in `tools/REGISTRY.md`) keeps the routine to about an hour a day.
 
 ### Batch Creation Workflow
 
