@@ -73,7 +73,7 @@ Access-Token: {access_token}
 {
   "advertiser_id": "{advertiser_id}",
   "campaign_ids": ["{campaign_id}"],
-  "opt_status": "ENABLE"
+  "operation_status": "ENABLE"
 }
 ```
 
