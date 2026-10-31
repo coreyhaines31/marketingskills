@@ -223,8 +223,8 @@ Headers:
   "data": {
     "type": "webhooks",
     "attributes": {
-      "target_url": "https://example.com/webhook",
-      "event_name": "attendance"
+      "url": "https://example.com/webhook",
+      "event": "people.attended"
     }
   }
 }
@@ -287,9 +287,10 @@ Livestorm follows the JSON:API specification:
 - `last_name` - Last name
 
 ### Webhook Events
-- `attendance` - Triggered on session attendance
-- `registration` - Triggered on new registration
-- `unregistration` - Triggered on unregistration
+- `event.created`, `event.published` - Event lifecycle
+- `session.created`, `session.started`, `session.ended` - Session lifecycle
+- `people.registered`, `people.attended`, `people.not_attended`, `people.watched_replay` - Registrant activity
+- `job.ended`
 
 ## When to Use
 
