@@ -245,7 +245,8 @@ async function main() {
           const params = new URLSearchParams()
           params.set('limit', String(limit))
           params.set('offset', String(offset))
-          if (args.search) params.set('search', args.search)
+          if (args.search) params.set('filters[search]', args.search)
+          if (args['search-field']) params.set('filters[search_field]', args['search-field'])
           if (args.stage) params.set('filters[stage]', args.stage)
           if (args.owner) params.set('filters[owner]', args.owner)
           result = await api('GET', `/deals?${params.toString()}`)
@@ -453,7 +454,7 @@ async function main() {
           fields: 'fields list [--search <title>] [--limit <n>] [--offset <n>]',
           lists: 'lists [list | get --id <id> | create --name <name> | delete --id <id> | subscribe --list-id <lid> --contact-id <cid> | unsubscribe --list-id <lid> --contact-id <cid>]',
           campaigns: 'campaigns [list | get --id <id>]',
-          deals: 'deals [list | get --id <id> | create --title <title> | update --id <id> | delete --id <id>]',
+          deals: 'deals [list [--search <text>] [--search-field <field>] | get --id <id> | create --title <title> | update --id <id> | delete --id <id>]',
           automations: 'automations [list | get --id <id> | add-contact --id <aid> --email <email>]',
           tags: 'tags [list | get --id <id> | create --name <name> | delete --id <id> | add-to-contact --tag-id <tid> --contact-id <cid>]',
           pipelines: 'pipelines [list | get --id <id>]',
