@@ -107,6 +107,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | linkedin-ads | Ads | ✓ | - | [✓](clis/linkedin-ads.js) | - | [linkedin-ads.md](integrations/linkedin-ads.md) |
 | tiktok-ads | Ads | ✓ | - | [✓](clis/tiktok-ads.js) | ✓ | [tiktok-ads.md](integrations/tiktok-ads.md) |
 | zapier | Automation | ✓ | ✓ | [✓](clis/zapier.js) | ✓ | [zapier.md](integrations/zapier.md) |
+| lazymind | Workflow Status | ✓ | stdio | [read-only](clis/lazymind.js) | Python | [lazymind.md](integrations/lazymind.md) |
 | hotjar | CRO | ✓ | - | [✓](clis/hotjar.js) | - | [hotjar.md](integrations/hotjar.md) |
 | optimizely | A/B Testing | ✓ | ✓ | [✓](clis/optimizely.js) | ✓ | [optimizely.md](integrations/optimizely.md) |
 | calendly | Scheduling | ✓ | ✓ | [✓](clis/calendly.js) | - | [calendly.md](integrations/calendly.md) |
@@ -276,6 +277,7 @@ Workflow automation and integration platforms.
 | Tool | Best For | MCP Available |
 |------|----------|:-------------:|
 | **zapier** | No-code integrations + SDK for 8,000+ apps | ✓ |
+| **lazymind** | Read status and outputs of an existing LazyMind task | stdio (host setup required) |
 
 **Agent recommendation**: Zapier SDK for agents that need to interact with any app directly. Zaps for always-on automations.
 
