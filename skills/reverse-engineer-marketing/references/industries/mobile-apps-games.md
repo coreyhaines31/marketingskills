@@ -51,6 +51,7 @@ PC and console games should load [games-pc-console.md](games-pc-console.md) inst
 | Featuring | App Store "Today" stories, Google Play editorial lists, and their press about being featured | Organic spikes tied to featuring; dated features become moves |
 | Attribution and deep links | Link domains in their buttons and ads (`onelink.me`, `adj.st`, `app.link`) and `teardown.mjs dns <domain>` for link subdomains | Which mobile measurement partner they use and how they run web-to-app links |
 | Influencer and creator content | ScrapeCreators pulls on TikTok and YouTube for the app name | Creator-driven install waves |
+| ★ Account networks | Search TikTok and Instagram for the app's name, its link-in-bio domain, and its App Store link; check which accounts share the same bio link or post the same formats. ScrapeCreators or Apify pull each account's posts with dates | Many apps grow through several niche accounts that don't carry the brand name. Record each account's first post date, posts per day, and the format that carries its top posts. A new account or a jump in cadence is a move, and the format repeated across accounts is usually their winning one |
 | Web-to-app funnels | Landing pages with quizzes or web checkout before the install | Whether they sell subscriptions on the web, outside the store |
 
 ## Going Inside
@@ -78,6 +79,7 @@ PC and console games should load [games-pc-console.md](games-pc-console.md) inst
 | A paywall placed after the first personalized result | **paywalls** |
 | Onboarding that personalizes before asking for money | **onboarding** |
 | Creator-led launch on TikTok and YouTube | **influencer-marketing**, **social** |
+| Their winning short-form format, remade on your own warmed accounts with staged cadence | **social** (short-form guide), **video** |
 | High-volume paid creative with fast refresh | **ad-creative**, **ads** |
 | A web-to-app funnel with a quiz on the web | **cro**, **paywalls** |
 | Custom product pages matched to each ad audience | **aso**, **ad-creative** |

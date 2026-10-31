@@ -33,7 +33,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | link-building | 1.0.1 | 2026-10-19 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.2 | 2026-10-30 |
-| marketing-loops | 1.7.0 | 2026-10-30 |
+| marketing-loops | 1.7.1 | 2026-10-30 |
 | marketing-plan | 1.2.2 | 2026-10-12 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.3 | 2026-10-27 |
@@ -47,7 +47,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | prospecting | 1.5.0 | 2026-10-27 |
 | public-relations | 1.2.1 | 2026-10-15 |
 | referrals | 2.2.1 | 2026-10-12 |
-| reverse-engineer-marketing | 1.0.0 | 2026-10-30 |
+| reverse-engineer-marketing | 1.0.1 | 2026-10-30 |
 | revops | 2.2.2 | 2026-10-27 |
 | sales-enablement | 2.4.0 | 2026-10-07 |
 | schema | 2.0.2 | 2026-10-08 |
@@ -55,10 +55,19 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.1 | 2026-10-08 |
 | site-architecture | 2.1.0 | 2026-10-06 |
 | sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.1 | 2026-10-30 |
+| social | 2.4.2 | 2026-10-30 |
 | video | 2.4.0 | 2026-10-29 |
 
 ## Recent Changes
+
+### 2.14.2 (2026-10-30)
+
+Organic short-form growth for apps and products: earn posting volume with views, and pick formats by what they produce.
+
+- **social** (2.4.1 → 2.4.2): the short-form guide replaces the flat "2-4 posts a day to grow" table with a staged cadence (warm up, 1 thoughtful post a day until posts clear a view floor, up to 3 a day spaced 3-4 hours apart, then another warmed account rather than more posts per account, and a pause rule for stalled accounts). Adds a new-account warm-up checklist with compliance guardrails (brand-affiliated accounts, no bought or automated accounts, disclosed paid creators), a winning-format search that logs tests and calls winners on signups or installs rather than views, how to measure what views produce, and post-once-publish-everywhere.
+- **reverse-engineer-marketing** (1.0.0 → 1.0.1): the mobile apps pack adds account networks as a signal (unbranded niche accounts that share the app's link, with first post dates, cadence, and the format repeated across them) and a play for remaking their winning format.
+- **marketing-loops** (1.7.0 → 1.7.1): new format-finding loop that reads posts at 48 hours, applies the staged cadence per account, names the winning format by signups, and sends cadence increases and new accounts to a human.
+- **Tools**: new [Post Bridge](tools/integrations/post-bridge.md) integration guide (REST API, official MCP and CLI, multi-account posting, per-post daily view analytics), listed alongside Buffer; the Social Media recommendation in the registry is now neutral.
 
 ### 2.14.0 (2026-10-30)
 
