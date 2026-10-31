@@ -58,6 +58,7 @@ Domains verified live on 2026-10-02. Re-check before submitting (see the safety 
 | **Launch Streak** | launchstreak.dev | ~51 | — | Free account, dofollow claimed. **Never `launchstreak.com` (for sale)** |
 | **ConfettiSaaS** | confettisaas.com | ~47 | — | Appears free; email approval |
 | **IndieTool** | indietool.io | ~46 | — | Submit flow unverified |
+| **DiscoverLaunches** | discoverlaunches.com | ~27 | — | Free weekly launch after upvoting 3 launches and one comment; dofollow while their badge stays up, or $9 one-time |
 
 ---
 
