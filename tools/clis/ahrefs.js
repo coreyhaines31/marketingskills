@@ -161,8 +161,8 @@ async function main() {
     case 'keyword-overview':
       switch (sub) {
         case 'get': {
-          const params = new URLSearchParams({ keywords: args.keywords })
-          if (args.country) params.set('country', args.country)
+          if (typeof args.keywords !== 'string' || typeof args.country !== 'string') { result = { error: '--keywords and --country required' }; break }
+          const params = new URLSearchParams({ keywords: args.keywords, country: args.country, select: reportSelect('keyword,volume,difficulty,cpc') })
           result = await api('GET', `/keywords-explorer/overview?${params}`)
           break
         }
@@ -174,8 +174,8 @@ async function main() {
     case 'keyword-suggestions':
       switch (sub) {
         case 'get': {
-          const params = new URLSearchParams({ keyword: args.keyword })
-          if (args.country) params.set('country', args.country)
+          if (typeof args.keyword !== 'string' || typeof args.country !== 'string') { result = { error: '--keyword and --country required' }; break }
+          const params = new URLSearchParams({ keywords: args.keyword, country: args.country, select: reportSelect('keyword,volume,difficulty') })
           if (args.limit) params.set('limit', args.limit)
           result = await api('GET', `/keywords-explorer/matching-terms?${params}`)
           break
@@ -188,9 +188,9 @@ async function main() {
     case 'serp':
       switch (sub) {
         case 'get': {
-          const params = new URLSearchParams({ keyword: args.keyword })
-          if (args.country) params.set('country', args.country)
-          result = await api('GET', `/keywords-explorer/serp-overview?${params}`)
+          if (typeof args.keyword !== 'string' || typeof args.country !== 'string') { result = { error: '--keyword and --country required' }; break }
+          const params = new URLSearchParams({ keyword: args.keyword, country: args.country, select: reportSelect('position,url,title,type') })
+          result = await api('GET', `/serp-overview/serp-overview?${params}`)
           break
         }
         default:
@@ -207,9 +207,9 @@ async function main() {
           'refdomains': 'refdomains list --target <domain> [--mode <mode>] [--select <columns>] [--limit <n>]',
           'keywords': 'keywords organic --target <domain> [--date <YYYY-MM-DD>] [--select <columns>] [--country <cc>] [--limit <n>]',
           'top-pages': 'top-pages list --target <domain> [--date <YYYY-MM-DD>] [--select <columns>] [--country <cc>] [--limit <n>]',
-          'keyword-overview': 'keyword-overview get --keywords <kw1,kw2> [--country <cc>]',
-          'keyword-suggestions': 'keyword-suggestions get --keyword <keyword> [--country <cc>] [--limit <n>]',
-          'serp': 'serp get --keyword <keyword> [--country <cc>]',
+          'keyword-overview': 'keyword-overview get --keywords <kw1,kw2> --country <cc> [--select <columns>]',
+          'keyword-suggestions': 'keyword-suggestions get --keyword <keyword> --country <cc> [--select <columns>] [--limit <n>]',
+          'serp': 'serp get --keyword <keyword> --country <cc> [--select <columns>]',
           'modes': 'domain (default), subdomains, prefix, exact',
         }
       }
