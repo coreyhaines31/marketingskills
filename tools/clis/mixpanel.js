@@ -216,10 +216,11 @@ async function main() {
       switch (sub) {
         case 'get': {
           if (!args['funnel-id']) { result = { error: '--funnel-id required' }; break }
+          if (!args['from-date'] || !args['to-date']) { result = { error: '--from-date and --to-date required (YYYY-MM-DD)' }; break }
           const params = new URLSearchParams()
           params.set('funnel_id', args['funnel-id'])
-          if (args['from-date']) params.set('from_date', args['from-date'])
-          if (args['to-date']) params.set('to_date', args['to-date'])
+          params.set('from_date', args['from-date'])
+          params.set('to_date', args['to-date'])
           result = await queryApi('GET', QUERY_URL, '/funnels', params)
           break
         }
@@ -269,7 +270,7 @@ async function main() {
           track: 'track event --distinct-id <id> --event <name> [--properties <json>]',
           profiles: 'profiles set --distinct-id <id> [--properties <json>]',
           query: 'query events --project-id <id> [--event <name>] [--from-date <date>] [--to-date <date>]',
-          funnels: 'funnels get --funnel-id <id> [--project-id <id>] [--from-date <date>] [--to-date <date>]',
+          funnels: 'funnels get --funnel-id <id> --from-date <YYYY-MM-DD> --to-date <YYYY-MM-DD> [--project-id <id>]',
           retention: 'retention get [--project-id <id>] [--from-date <date>] [--to-date <date>] [--born-event <event>]',
           export: 'export events --from-date <date> --to-date <date> [--project-id <id>]',
         }
