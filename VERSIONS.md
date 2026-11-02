@@ -17,7 +17,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | competitor-profiling | 2.1.5 | 2026-10-30 |
 | competitors | 2.3.0 | 2026-10-01 |
 | content-strategy | 2.1.5 | 2026-10-27 |
-| conversion-tracking | 1.0.1 | 2026-10-19 |
+| conversion-tracking | 1.0.2 | 2026-11-02 |
 | copy-editing | 2.2.1 | 2026-10-27 |
 | copywriting | 2.3.2 | 2026-10-27 |
 | cro | 2.0.3 | 2026-10-08 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.0 | 2026-10-29 |
 
 ## Recent Changes
+
+### 2.14.1 (2026-11-02)
+
+- **conversion-tracking** (1.0.1 → 1.0.2): the Formidable Forms detector no longer records a conversion after a failed AJAX submit when the visitor later navigates to another same-origin page. A submit whose default was prevented never navigated natively, so its `pagehide` hand-off is skipped, and the sessionStorage marker's TTL now runs from the submit instead of the page exit. Snippet and GTM recipe kept in sync; contract tests added under `tests/assets/`. Reported in #924.
 
 ### 2.14.0 (2026-10-30)
 
