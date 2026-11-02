@@ -2,7 +2,7 @@
 name: directory-submissions
 description: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories," "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing," "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "publish my MCP server," "awesome list," "llms.txt directory," "Claude plugin directory," "agent directory," "dofollow backlinks," "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
 metadata:
-  version: 2.1.4
+  version: 2.1.5
 ---
 
 # Directory Submissions
@@ -133,11 +133,19 @@ Set up the tracker spreadsheet (`references/submission-tracker-template.csv`). W
 
 Per submission:
 1. Copy the tier-appropriate positioning variant.
-2. Fill in the form.
-3. Upload assets.
-4. Submit.
+2. Choose the directory's documented form or official submission API. Do not infer an endpoint from the site's other APIs.
+3. Prepare the required fields and any assets for that route.
+4. Submit with the human approval required above, then read the documented application status as well as the HTTP status.
 5. Log: date, URL, status, moderator notes.
 6. Once live, inspect the actual link to your product using the procedure below; an empty HTTP-header search does not verify a backlink.
+
+### Directories with a submission API
+
+Read the official submission documentation before sending a request. A `/llms.txt` file alone does not establish that a submission API exists. Confirm prerequisites, required fields, authentication and retry handling. Obtain approval for any homepage change, deployment or private contact data before proceeding.
+
+For example, [RoboDebut's instructions](https://robodebut.com/llms.txt) document an account-free submission API requiring a visible badge in the raw homepage HTML and a private contact address. Its `pending_review` status means the proposal awaits review, with no public listing URL. `already_listed` returns an existing public listing. Both use HTTP 200.
+
+Report pending review as pending, and do not keep resubmitting a pending proposal. Record publication only after a public listing is observed. Use the documented form when no official submission API is available.
 
 ### Verify the Actual Backlink
 

@@ -22,7 +22,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | copywriting | 2.3.2 | 2026-10-27 |
 | cro | 2.0.3 | 2026-10-08 |
 | customer-research | 2.0.5 | 2026-10-27 |
-| directory-submissions | 2.1.4 | 2026-10-27 |
+| directory-submissions | 2.1.5 | 2026-11-02 |
 | emails | 2.1.4 | 2026-10-15 |
 | events | 1.0.0 | 2026-08-23 |
 | free-tools | 2.0.3 | 2026-10-15 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.0 | 2026-10-29 |
 
 ## Recent Changes
+
+### 2.14.1 (2026-11-02)
+
+- **directory-submissions** (2.1.4 → 2.1.5): handle documented API routes and pending review.
 
 ### 2.14.0 (2026-10-30)
 
