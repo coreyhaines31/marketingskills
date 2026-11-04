@@ -56,6 +56,20 @@
       "integration": "tools/integrations/omnia.md",
       "active": true,
       "noRef": true
+    },
+    {
+      "id": "livestorm",
+      "name": "Livestorm",
+      "url": "https://livestorm.co",
+      "category": "Webinars & virtual events",
+      "categoryShort": "Webinars & virtual events",
+      "tier": "skill-partner",
+      "tagline": "Webinars and virtual events with built-in engagement",
+      "blurb": "Browser-based platform for webinars, virtual events, and online meetings, with registration pages, live engagement, recordings, and analytics. A REST API, webhooks, and an official MCP server let agents create events, manage registrants, and pull attendance data.",
+      "logoUrl": "https://www.datocms-assets.com/1127/1633449106-logo-livestorm.png",
+      "integration": "tools/integrations/livestorm.md",
+      "active": true,
+      "noRef": true
     }
   ]
 }
