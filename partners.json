@@ -38,7 +38,7 @@
       "tier": "skill-partner",
       "tagline": "One API key for SEO and marketing data",
       "blurb": "One AIsa key, pay as you go, instead of a subscription to every data platform. Agents get SEO, search, social, and market data from Similarweb, Semrush, Ahrefs, DataForSEO, Tavily, Reddit, X, and more through REST or MCP, and pay only for the calls they make.",
-      "logoUrl": "https://aisa.one/sales-api-intro/AIsa_LOGO.svg",
+      "logoUrl": "https://aisa.one/favicon.svg",
       "integration": "tools/integrations/aisa.md",
       "active": true,
       "noRef": true
