@@ -6,7 +6,7 @@ Context layer for go-to-market teams: positioning, brand voice, and product fact
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | - | No public REST API; use MCP |
+| API | ✓ | Read-only: context search and Brand Foundation. Docs: https://marcora.ai/docs/api |
 | MCP | ✓ | Hosted at `https://mcp.marcora.ai` (Streamable HTTP) |
 | CLI | - | Not available |
 | SDK | - | Not available |
