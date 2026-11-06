@@ -41,6 +41,7 @@ It returns:
 | `most` | Signals at least half of them show |
 | `only_one` | Signals one company shows and the rest don't. Each is a bet, worth checking in a full teardown |
 | `you_missing` | Signals at least half of them show and the user doesn't (needs `--you`) |
+| `you_unchecked` | Gaps in a source that couldn't be read for the user's site (homepage, sitemap, or job board). Unknown, not missing: check by hand |
 | `you_only` | Signals the user shows and no competitor does |
 | `profiles` | Per company: headline, likely industry, sitemap size, top page families, open roles by function |
 

@@ -1120,25 +1120,27 @@ async function cmdFdic(name, opts) {
 export const ATS_PATTERNS = [
   { ats: 'greenhouse', pattern: /(?:job-)?boards(?:\.eu)?\.greenhouse\.io\/(?:embed\/job_board(?:\/js)?\?for=)?([a-z0-9_-]+)/gi },
   { ats: 'greenhouse', pattern: /boards-api\.greenhouse\.io\/v1\/boards\/([a-z0-9_-]+)/gi },
-  { ats: 'lever', pattern: /jobs\.(?:eu\.)?lever\.co\/([a-z0-9_.-]+)/gi },
+  { ats: 'lever', pattern: /jobs\.lever\.co\/([a-z0-9_.-]+)/gi },
+  { ats: 'lever', region: 'eu', pattern: /jobs\.eu\.lever\.co\/([a-z0-9_.-]+)/gi },
   { ats: 'ashby', pattern: /jobs\.ashbyhq\.com\/([a-z0-9_.-]+)/gi },
 ];
 
 export function atsFromHtml(html) {
   const found = new Map();
-  for (const { ats, pattern } of ATS_PATTERNS) {
+  for (const { ats, region, pattern } of ATS_PATTERNS) {
     for (const m of html.matchAll(pattern)) {
       const slug = m[1].toLowerCase();
       if (['embed', 'api', 'v0', 'v1'].includes(slug)) continue;
-      found.set(`${ats}:${slug}`, { ats, slug });
+      found.set(`${ats}:${region || ''}:${slug}`, region ? { ats, slug, region } : { ats, slug });
     }
   }
   return [...found.values()];
 }
 
-export function atsUrl(ats, slug) {
+// Lever hosts EU boards on a separate API: jobs.eu.lever.co boards are served from api.eu.lever.co.
+export function atsUrl(ats, slug, region) {
   if (ats === 'greenhouse') return `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`;
-  if (ats === 'lever') return `https://api.lever.co/v0/postings/${slug}?mode=json`;
+  if (ats === 'lever') return `https://api${region === 'eu' ? '.eu' : ''}.lever.co/v0/postings/${slug}?mode=json`;
   if (ats === 'ashby') return `https://api.ashbyhq.com/posting-api/job-board/${slug}?includeCompensation=true`;
   throw new Error(`Unknown ATS ${ats}; use greenhouse, lever, or ashby`);
 }
@@ -1292,7 +1294,7 @@ export function summarizeJobs(jobs, now = new Date()) {
 async function findJobBoard(target, opts) {
   if (opts.ats || opts.board) {
     if (!opts.ats || !opts.board) throw new Error('Pass --ats and --board together, for example --ats greenhouse --board vercel');
-    return [{ ats: opts.ats, slug: opts.board, found: 'given' }];
+    return [{ ats: opts.ats, slug: opts.board, region: opts.region, found: 'given' }];
   }
   const isDomain = target.includes('.');
   const candidates = [];
@@ -1311,7 +1313,7 @@ async function cmdJobs(target, opts) {
   const tried = [];
   for (const c of await findJobBoard(target, opts)) {
     let json;
-    try { json = await getJson(atsUrl(c.ats, c.slug)); } catch (err) { tried.push(`${c.ats}/${c.slug}: ${err.message.split(' ')[0]}`); continue; }
+    try { json = await getJson(atsUrl(c.ats, c.slug, c.region)); } catch (err) { tried.push(`${c.ats}/${c.slug}: ${err.message.split(' ')[0]}`); continue; }
     const jobs = normalizeJobs(c.ats, json);
     if (!jobs.length && c.found === 'guessed from the name') { tried.push(`${c.ats}/${c.slug}: no jobs`); continue; }
     if (opts.out) {
@@ -1320,7 +1322,7 @@ async function cmdJobs(target, opts) {
     return {
       query: target,
       pulled: new Date().toISOString().slice(0, 10),
-      board: { ats: c.ats, slug: c.slug, found: c.found, company_name: json.jobs?.[0]?.company_name || null },
+      board: { ats: c.ats, slug: c.slug, ...(c.region ? { region: c.region } : {}), found: c.found, company_name: json.jobs?.[0]?.company_name || null },
       ...summarizeJobs(jobs),
       note: 'Open roles show where the company is investing next, not what it has done. A guessed board can belong to another company with the same name, so check company_name and a few job URLs. posted is first published (Greenhouse), created (Lever), or published (Ashby); a reposted role gets a new date. Boards on Workday, SmartRecruiters, or a custom site are not covered: read them in a browser. For history, open Wayback captures of the careers page. Record job titles, never the names of recruiters or staff.',
     };
@@ -1397,7 +1399,7 @@ export function reviewStats(reviews, { minLow = 3 } = {}) {
 }
 
 async function cmdReviews(name, opts) {
-  if (!name && !opts.from) throw new Error('reviews needs an app name, --app-id, or --from reviews.csv');
+  if (!name && !opts.from && !opts['app-id']) throw new Error('reviews needs an app name, --app-id, or --from reviews.csv');
   if (opts.from) {
     const rows = parseCsv(readFileSync(opts.from, 'utf8')).map(r => ({ date: String(r.date || '').slice(0, 10), rating: Number(r.rating), title: r.title || '', text: r.text || '' }))
       .filter(r => r.rating >= 1 && r.rating <= 5);
@@ -1420,9 +1422,10 @@ async function cmdReviews(name, opts) {
   out.app = fields(app);
   const reviews = [];
   let pages = 0;
+  let feedError = null;
   for (let page = 1; page <= 10; page++) {
     let json;
-    try { json = await getJson(`https://itunes.apple.com/${country}/rss/customerreviews/page=${page}/id=${app.trackId}/sortby=mostrecent/json`); } catch { break; }
+    try { json = await getJson(`https://itunes.apple.com/${country}/rss/customerreviews/page=${page}/id=${app.trackId}/sortby=mostrecent/json`); } catch (err) { feedError = `page ${page}: ${err.message}`; break; }
     const batch = parseAppleReviews(json);
     if (!batch.length) break;
     reviews.push(...batch);
@@ -1432,6 +1435,11 @@ async function cmdReviews(name, opts) {
   if (opts.out) writeFileSync(opts.out, toCsv(reviews.map(({ date, rating, version, title, text }) => ({ date, rating, version, title, text }))));
   Object.assign(out, reviewStats(reviews));
   out.feed_capped = pages === 10;
+  if (feedError) {
+    out.feed_error = feedError;
+    out.partial = true;
+    out.warning = pages ? `The review feed failed after ${pages} page(s), so these stats cover only the newest ${reviews.length} reviews. Rerun later before using them.` : 'The review feed failed before any reviews loaded. These are not real stats: rerun later.';
+  }
   out.note = 'App Store reviews with text, newest first, for one country. The feed stops at 500, so when feed_capped is true the oldest month is partial and a busy app may cover only days. ratings in app is the lifetime count for this country, including ratings without text. If no seller domain was given, the first search result was used: check app.seller. For Google Play, Trustpilot, or G2, export reviews with a scraping tool or the platform\'s API to date,rating,title,text and run reviews --from file.csv.';
   if (!opts['app-id'] && !opts.domain) out.check = 'Matched by name only. Confirm app.seller is the target, or rerun with --domain target.com.';
   return out;
@@ -1549,7 +1557,10 @@ async function cmdAdoption(opts) {
 // profiles: [{ domain, signals: [...] }]. you is the user's domain, compared against the rest.
 export function compareMatrix(profiles, you) {
   const rivals = profiles.filter(p => p.domain !== you);
-  const mine = new Set(profiles.find(p => p.domain === you)?.signals || []);
+  const me = profiles.find(p => p.domain === you);
+  const mine = new Set(me?.signals || []);
+  const unknown = new Set(me?.unknown || []);
+  const kind = s => s.split(':')[0];
   const have = {};
   for (const p of rivals) for (const s of new Set(p.signals)) (have[s] ??= []).push(p.domain);
   const rows = Object.entries(have).map(([signal, domains]) => ({ signal, domains })).sort((a, b) => b.domains.length - a.domains.length || a.signal.localeCompare(b.signal));
@@ -1562,7 +1573,10 @@ export function compareMatrix(profiles, you) {
   };
   for (const r of rows.filter(r => r.domains.length === 1 && n > 1)) (out.only_one[r.domains[0]] ??= []).push(r.signal);
   if (you) {
-    out.you_missing = rows.filter(r => r.domains.length * 2 >= n && !mine.has(r.signal)).map(r => ({ signal: r.signal, competitors: r.domains.length }));
+    const gaps = rows.filter(r => r.domains.length * 2 >= n && !mine.has(r.signal));
+    out.you_missing = gaps.filter(r => !unknown.has(kind(r.signal))).map(r => ({ signal: r.signal, competitors: r.domains.length }));
+    const unchecked = gaps.filter(r => unknown.has(kind(r.signal))).map(r => r.signal);
+    if (unchecked.length) out.you_unchecked = unchecked;
     out.you_only = [...mine].filter(s => !have[s]).sort();
   }
   return out;
@@ -1574,7 +1588,7 @@ const MARKETING_VERIFICATIONS = /Meta|TikTok|Pinterest|LinkedIn|HubSpot|Marketo|
 const BOILERPLATE_FAMILY = /^\/(?:careers|jobs|legal|legals|privacy|terms|cookies?|tags?|authors?|category|categories|page)?$/;
 
 async function profileDomain(domain) {
-  const p = { domain, signals: [], errors: [] };
+  const p = { domain, signals: [], errors: [], unknown: [] };
   let html = '';
   try {
     const page = await getPageOrArchive(`https://${domain}/`);
@@ -1582,7 +1596,7 @@ async function profileDomain(domain) {
     p.source = page.source;
     const hero = extractHero(html);
     p.headline = hero.title || hero.h1;
-  } catch (err) { p.errors.push(`homepage: ${err.message}`); }
+  } catch (err) { p.errors.push(`homepage: ${err.message}`); p.unknown.push('tool'); }
   const dnsInfo = await cmdDns(domain);
   const tools = html ? detectTools(html) : [];
   p.industry = html ? detectIndustry({ html, tools, linked: detectLinkedTools(html), cnames: dnsInfo.subdomains.map(s => s.cname) })[0]?.pack || null : null;
@@ -1599,16 +1613,17 @@ async function profileDomain(domain) {
     p.signals.push(...Object.entries(families).filter(([f, c]) => c >= 10 && !BOILERPLATE_FAMILY.test(f) && !LOCALE.test(f.slice(1)) && f !== '/lang').map(([f]) => `pages: ${f}`));
     p.locales = [...new Set(urls.map(localeOf).filter(Boolean))].length;
     if (p.locales) p.signals.push('pages: localized');
-  } catch (err) { p.errors.push(`sitemap: ${err.message}`); }
+  } catch (err) { p.errors.push(`sitemap: ${err.message}`); p.unknown.push('pages'); }
   try {
     const jobs = await cmdJobs(domain, {});
     if (jobs.board) {
       p.open_roles = jobs.total;
       p.roles_by_function = jobs.by_function;
       p.signals.push(...Object.keys(jobs.marketing_channels).map(c => `hiring: ${c}`));
-    }
-  } catch (err) { p.errors.push(`jobs: ${err.message}`); }
+    } else p.unknown.push('hiring');
+  } catch (err) { p.errors.push(`jobs: ${err.message}`); p.unknown.push('hiring'); }
   if (!p.errors.length) delete p.errors;
+  if (!p.unknown.length) delete p.unknown;
   return p;
 }
 
@@ -1631,7 +1646,7 @@ async function cmdCompare(domains, opts) {
     you,
     ...matrix,
     profiles: profiles.map(({ signals, ...rest }) => ({ ...rest, signal_count: signals.length })),
-    note: 'Signals are what each site shows from outside: scripts on the homepage, DNS records, sitemap page families with 10+ pages, and marketing roles open on a public job board. Everyone = table stakes. Only one = a bet worth checking in a full teardown. you_missing = what at least half of them do that you do not. A signal nobody has may be an open lane or a dead end: check it before calling it an opportunity.',
+    note: 'Signals are what each site shows from outside: scripts on the homepage, DNS records, sitemap page families with 10+ pages, and marketing roles open on a public job board. Everyone = table stakes. Only one = a bet worth checking in a full teardown. you_missing = what at least half of them do that you do not. you_unchecked = gaps in a source that could not be read for your site (homepage, sitemap, or job board), so they are unknown, not missing. A signal nobody has may be an open lane or a dead end: check it before calling it an opportunity.',
   };
 }
 
@@ -1685,7 +1700,7 @@ Commands:
   filings <company> [--ua "Name email"] [--cik n] SEC filings for public companies and Form D raises
   cfpb <company> [--months 24] [--exact "Name"]   CFPB consumer complaints by month, top products and issues
   fdic <bank> [--cert n] [--quarters 12]          FDIC quarterly assets, deposits, and employees
-  jobs <domain|name> [--ats greenhouse|lever|ashby --board slug] [--out jobs.csv]
+  jobs <domain|name> [--ats greenhouse|lever|ashby --board slug [--region eu]] [--out jobs.csv]
                                                   Open roles from public job boards: functions, marketing
                                                   channels being hired for, tools named, languages, locations
   compare <domain> <domain> [...] [--you yours.com] [--out matrix.csv]
@@ -1695,7 +1710,7 @@ Commands:
   adoption [--npm pkg] [--pypi pkg] [--github owner/repo] [--months 24] [--out adoption.csv]
                                                   Monthly npm and PyPI downloads and GitHub stars over time
                                                   (star history needs GITHUB_TOKEN)
-  reviews <app name> [--domain example.com] [--app-id id] [--country us] [--out reviews.csv]
+  reviews <app name> | --app-id id [--domain example.com] [--country us] [--out reviews.csv]
   reviews --from reviews.csv                      App Store reviews (or any date,rating,title,text CSV):
                                                   volume and rating by month, complaint terms, recent low ones
   ads <name> [--domain example.com]               Public ad library links for each network

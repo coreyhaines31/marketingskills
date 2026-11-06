@@ -380,3 +380,23 @@ test('compareMatrix sorts signals into table stakes, bets, and your gaps', async
   assert.deepEqual(m.you_only, ['pages: /changelog']);
   assert.equal(compareMatrix(profiles.slice(0, 3)).you_missing, undefined);
 });
+
+test('EU Lever boards keep their region and use the EU API', async () => {
+  const { atsFromHtml, atsUrl } = await load();
+  const [board] = atsFromHtml('<a href="https://jobs.eu.lever.co/acme/1">Role</a>');
+  assert.deepEqual(board, { ats: 'lever', slug: 'acme', region: 'eu' });
+  assert.equal(atsUrl(board.ats, board.slug, board.region), 'https://api.eu.lever.co/v0/postings/acme?mode=json');
+  assert.equal(atsUrl('lever', 'acme'), 'https://api.lever.co/v0/postings/acme?mode=json');
+});
+
+test('compareMatrix does not call a gap in a source it could not read for you', async () => {
+  const { compareMatrix } = await load();
+  const profiles = [
+    { domain: 'a.com', signals: ['tool: Meta Pixel', 'pages: /templates'] },
+    { domain: 'b.com', signals: ['tool: Meta Pixel', 'pages: /templates'] },
+    { domain: 'me.com', signals: [], unknown: ['tool'] },
+  ];
+  const m = compareMatrix(profiles, 'me.com');
+  assert.deepEqual(m.you_missing, [{ signal: 'pages: /templates', competitors: 2 }]);
+  assert.deepEqual(m.you_unchecked, ['tool: Meta Pixel']);
+});
