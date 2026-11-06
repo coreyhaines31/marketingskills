@@ -34,7 +34,7 @@ export PATH="$PATH:/path/to/marketingskills/tools/clis"
 
 For step-by-step account setup and private credential loading, see [guided tool connections](../SETUP.md).
 
-Every CLI reads credentials from environment variables:
+CLIs read credentials from environment variables. Parallel also supports anonymous access when its key is unset:
 
 | CLI | Environment Variable |
 |-----|---------------------|
@@ -78,6 +78,7 @@ Every CLI reads credentials from environment variables:
 | `onesignal` | `ONESIGNAL_REST_API_KEY`, `ONESIGNAL_APP_ID` |
 | `optimizely` | `OPTIMIZELY_API_KEY` |
 | `outreach` | `OUTREACH_ACCESS_TOKEN` |
+| `parallel` | `PARALLEL_API_KEY` (optional); `PARALLEL_DISABLED=1` blocks network |
 | `paddle` | `PADDLE_API_KEY`, `PADDLE_SANDBOX` (optional) |
 | `partnerstack` | `PARTNERSTACK_PUBLIC_KEY`, `PARTNERSTACK_SECRET_KEY` |
 | `pendo` | `PENDO_INTEGRATION_KEY` |
@@ -194,6 +195,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `onesignal.js` | Push | [OneSignal](https://onesignal.com) |
 | `optimizely.js` | A/B Testing | [Optimizely](https://optimizely.com) |
 | `outreach.js` | Sales Engagement | [Outreach](https://outreach.io) |
+| `parallel.js` | AI Search | [Parallel](../integrations/parallel.md) |
 | `paddle.js` | Payments | [Paddle](https://paddle.com) |
 | `partnerstack.js` | Affiliate | [PartnerStack](https://partnerstack.com) |
 | `pendo.js` | Product Analytics | [Pendo](https://pendo.io) |
@@ -229,3 +231,5 @@ node tools/clis/exa.js search --query 'Recent market research' --timeout-ms 3000
 The deadline covers obtaining headers and consuming the response body, including OAuth requests. Each subsequent HTTP call gets its own deadline; this is not a total command deadline or a bound on external credential commands. An aborted call exits as a failure. Aborting a local request does not cancel work already accepted by a provider: check provider status before manually retrying a mutation. The CLI does not add automatic retries. Dry runs issue no HTTP request.
 
 Implemented using [Node's AbortSignal.timeout](https://nodejs.org/api/globals.html#static-method-abortsignaltimeoutdelay), available on the supported Node 18+ runtime, preserving zero-dependency standalone scripts. Native loopback tests cover stalled headers, stalled bodies, OAuth, successful responses and malformed timeout values without live accounts.
+
+The optional [Parallel CLI](../integrations/parallel.md) uses a total command deadline across its MCP requests, rather than a fresh deadline per request. Try `node tools/clis/parallel.js search --query 'B2B SaaS onboarding examples'`. Help and `--dry-run` use no network; `--offline` or `PARALLEL_DISABLED=1` blocks live calls.
