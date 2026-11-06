@@ -47,7 +47,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | prospecting | 1.5.0 | 2026-10-27 |
 | public-relations | 1.2.1 | 2026-10-15 |
 | referrals | 2.2.1 | 2026-10-12 |
-| reverse-engineer-marketing | 1.0.0 | 2026-10-30 |
+| reverse-engineer-marketing | 1.1.0 | 2026-10-30 |
 | revops | 2.2.2 | 2026-10-27 |
 | sales-enablement | 2.4.0 | 2026-10-07 |
 | schema | 2.0.2 | 2026-10-08 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.0 | 2026-10-29 |
 
 ## Recent Changes
+
+### 2.14.1 (2026-10-30)
+
+- **reverse-engineer-marketing** (1.0.0 → 1.1.0): competitive intelligence additions. **Landscape mode** (`references/landscape.md`): `compare` profiles three to five competitors from outside (homepage scripts, marketing email platforms and ad-account verifications from DNS, sitemap page families, marketing roles on public job boards) and sorts the signals into table stakes, single-company bets, and the user's gaps (`--you`), with a CSV matrix. **Where they're weak** (`references/weak-spots.md`, a new section in stage 8): complaint themes from 1-2 star reviews, switching posts, price rises, abandoned search families, and markets left, each routed to a play (alternative pages, switching offers, positioning, battle cards), with rules for truthful comparative claims and trademarks. New script commands: `jobs` (Greenhouse, Lever, and Ashby boards: roles by function, marketing channels being hired for, tools named in posts, languages, first-marketing-hire wording), `reviews` (App Store reviews by month and the terms that skew to low ratings, or any exported review CSV with `--from`, reviewer names dropped), and `adoption` (monthly npm and PyPI downloads and GitHub star history as a free growth curve for developer tools). Watch mode adds a launch radar for clustered signals. Contract tests for every new parser and calculation; four new evals.
 
 ### 2.14.0 (2026-10-30)
 
