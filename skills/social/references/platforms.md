@@ -130,7 +130,7 @@ One thing holds on every platform below: storytelling and connecting with your a
 
 **Best for:** Brand awareness, younger audiences, viral potential
 **Audience:** 16-34, entertainment-focused
-**Posting frequency:** 1-4x per day
+**Posting frequency:** 1x per day per account, up to 3x once posts clear a view floor (see the staged cadence in [short-form-video.md](short-form-video.md))
 **Best times:** 7-9am, 12-3pm, 7-11pm
 
 **What works:**
