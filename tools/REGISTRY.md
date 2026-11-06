@@ -120,6 +120,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | ✓ | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
+| parallel | AI Search | ✓ | ✓ | [✓](clis/parallel.js) | ✓ | [parallel.md](integrations/parallel.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
@@ -533,6 +534,7 @@ AI-powered web search APIs built for LLMs and agents. Return structured results 
 
 | Tool | Best For | Notes |
 |------|----------|-------|
+| **parallel** | Web search with source passages and URL extraction | Anonymous Unified MCP access; optional account key; native CLI |
 | **exa** | Neural/semantic web search, content research, competitor discovery | Search + findSimilar + Contents; MCP and SDKs available |
 
 **Agent recommendation**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.

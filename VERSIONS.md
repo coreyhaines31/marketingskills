@@ -60,6 +60,10 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.14.1 (2026-11-06)
+
+Add an optional standalone Parallel CLI for anonymous web search and URL extraction, with tool discovery, a total request deadline and CLI contract tests. Existing skills and providers are unchanged.
+
 ### 2.14.0 (2026-10-30)
 
 New skill: **reverse-engineer-marketing**, for growth teardowns of any company from public evidence.
