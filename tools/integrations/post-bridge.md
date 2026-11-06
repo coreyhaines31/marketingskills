@@ -86,7 +86,7 @@ Analytics cover TikTok, YouTube, and Instagram: views, likes, comments, and shar
 
 ## Notes for Agents
 
-- Publishing is outward-facing: create drafts or scheduled posts for the user to approve unless they've said to post directly.
+- Publishing is outward-facing: scheduled posts publish on their own at `scheduled_at`, so create drafts (`"is_draft": true`) while a post waits for approval, and schedule only what the user has approved or said to post directly.
 - Several accounts per platform are supported. Keep each account brand-affiliated and within the platform's rules on coordinated accounts and fake engagement (see the short-form guide in the **social** skill).
 - Post Bridge counts views, not outcomes. Join its analytics with signups or installs from the user's analytics before calling a format a winner.
 

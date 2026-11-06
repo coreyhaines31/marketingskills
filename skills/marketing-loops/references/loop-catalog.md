@@ -186,7 +186,7 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
   4. Name the current winning format (clears the floor repeatedly and moves signups), and keep about one in five drafts testing new formats from the niche-outlier loop.
 - **Self-check**: Is the winner chosen on signups or installs, not views alone? Is any account posting faster than its views support?
 - **State / idempotency**: The format sheet, keyed by post ID; each account's current stage and last stage change.
-- **Stop / bail-out**: An account under the floor for 7 days → pause it 2-3 days and flag a format change. Cadence increases and new accounts go to a human for approval.
+- **Stop / bail-out**: An account that can't break a few hundred views for 7 days → pause it 2-3 days and flag a format change. An account between that and the floor stays at 1 a day and keeps testing formats. Cadence increases and new accounts go to a human for approval.
 - **Output**: Today's numbers per format, any stage change per account, and tomorrow's drafts split between the winner and tests.
 
 ### The content-calendar refill loop
