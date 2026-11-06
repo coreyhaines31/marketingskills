@@ -146,6 +146,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | composio | Integration Layer | ✓ | ✓ | ✓ | ✓ | [composio.md](integrations/composio.md) |
 | cogny | Integration Layer | - | ✓ | - | - | [cogny.md](integrations/cogny.md) |
 | glasser | Integration Layer | ✓ | ✓ | ✓ | - | [glasser.md](integrations/glasser.md) |
+| ahel | Integration Layer | ✓ | ✓ | - | - | [ahel.md](integrations/ahel.md) |
 
 ---
 
@@ -670,6 +671,17 @@ Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP se
 - **Pricing**: Solo plan starts at $9/mo (7-day trial)
 
 Use Cogny when you only need marketing channels and want to avoid running your own OAuth proxy. Prefer native APIs when you need deep, custom control of a single tool.
+
+### Ahel Integration
+
+[Ahel](integrations/ahel.md) is pay-per-call data over MCP and HTTP: official EU company registers, EU public tenders, sanctions lists, SEO and social data under one prepaid balance. Disclosure: contributed by the Ahel team.
+
+- **Setup**: MCP at `https://mcp.ahel.ai` with OAuth, or `GET /api/v1/call/{id}` with a team key
+- **Pricing**: per call, quoted before each run; no subscription
+
+Fits EU company and tender checks from an agent when no accounts are set up. The registers, TED and the sanctions lists also publish free official sources, and a vendor's own API fits when you already hold its key.
+
+---
 
 ### Glasser Integration
 
