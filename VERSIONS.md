@@ -33,12 +33,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | link-building | 1.0.1 | 2026-10-19 |
 | marketing-council | 1.0.0 | 2026-07-06 |
 | marketing-ideas | 2.0.2 | 2026-10-30 |
-| marketing-loops | 1.8.0 | 2026-10-30 |
+| marketing-loops | 1.8.1 | 2026-11-06 |
 | marketing-plan | 1.2.2 | 2026-10-12 |
 | marketing-psychology | 2.0.0 | 2026-05-05 |
 | offers | 1.0.3 | 2026-10-27 |
 | onboarding | 2.0.2 | 2026-10-12 |
-| ads | 2.7.0 | 2026-10-26 |
+| ads | 2.7.1 | 2026-11-06 |
 | paywalls | 2.1.1 | 2026-10-27 |
 | popups | 2.0.1 | 2026-10-27 |
 | pricing | 2.1.4 | 2026-10-12 |
@@ -59,6 +59,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.0 | 2026-10-29 |
 
 ## Recent Changes
+
+### 2.14.3 (2026-11-06)
+
+The ads operating check now defines "normal variance" as the trailing 6-8 period range, so a single period-over-period swing no longer triggers a change.
+
+- **ads** (2.7.0 → 2.7.1): the operating check pulls the trailing 6-8 periods, calls HOLD when a metric sits inside that range, and treats three or more periods moving the same way as a real movement. Spend, tracking, and broken-page problems, and target-based stop thresholds such as cost per qualified lead above 1.5× TCPL, skip the range gate.
+- **marketing-loops** (1.8.0 → 1.8.1): the loop catalog applies the same trailing-range baseline to its performance loops.
 
 ### 2.14.2 (2026-10-30)
 

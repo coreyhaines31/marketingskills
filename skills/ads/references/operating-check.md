@@ -35,7 +35,7 @@ Check the change history against every movement. A metric that moved the day aft
 
 Recent days undercount conversions on any account with conversion lag. Read the last few days as incomplete, and never call a trend from them alone.
 
-**One period against one period is not a trend.** A week that looks bad against last week is often just last week having been unusually good. Before calling anything other than HOLD on a performance metric, check where this period sits against the trailing 6–8 periods: inside that range is normal variance; outside it, or three or more periods moving the same way, is a movement worth a FIX, TEST or INVESTIGATE. Spend, tracking, and broken-page problems are exceptions: those are facts, not trends, and don't need a baseline.
+**One period against one period is not a trend.** A week that looks bad against last week is often just last week having been unusually good. Before calling anything other than HOLD on a performance metric, check where this period sits against the trailing 6–8 periods: inside that range is normal variance; outside it, or three or more periods moving the same way, is a movement worth a FIX, TEST or INVESTIGATE. Spend, tracking, and broken-page problems are exceptions: those are facts, not trends, and don't need a baseline. So are explicit stop thresholds measured against a target, such as cost per qualified lead above 1.5× TCPL in the [Meta decision system](meta-decision-system.md): they fire against the target even when the metric sits inside its own 6–8 period range, because a persistently bad ad is normal for itself.
 
 ## The decision
 
