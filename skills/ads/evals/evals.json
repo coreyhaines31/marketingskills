@@ -240,6 +240,18 @@
         "Lists URL exclusions, weekly search-term and landing-page review, and a comparison campaign as test conditions"
       ],
       "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "Weekly check on our Google Search account. CPA went from 140 last week to 185 this week, conversions from 48 to 37. Spend and tracking look normal, no changes were made. Over the last 8 weeks CPA ranged 135 to 190. Should we cut bids?",
+      "expected_output": "Should load references/operating-check.md. Should compare this week against the trailing 6-8 week range, not only against last week. This week's CPA sits inside the 8-week range, so the movement is normal variance and the call is HOLD with a reason and what would change it (e.g. a second week above range, or a third consecutive rise). Should not recommend cutting bids or budget from a single week-over-week move. Should end with facts, hypotheses, and missing data.",
+      "assertions": [
+        "Compares against the trailing 6-8 week range, not only the prior week",
+        "Identifies the move as within normal variance",
+        "Makes the HOLD call and says what would change it",
+        "Does not recommend a bid or budget cut from one week's change"
+      ],
+      "files": []
     }
   ]
 }
