@@ -167,7 +167,7 @@ POST https://api.close.com/api/v1/task/
 
 ### Activities
 - `lead_id` - Filter by lead
-- `_type__type` - Filter by type (Email, Call, Note, SMS, Meeting)
+- `_type` - Filter by activity type (Email, Call, Note, SMS, Meeting; comma-separated); requires `lead_id`
 - `date_created__gt` - After date
 - `date_created__lt` - Before date
 
