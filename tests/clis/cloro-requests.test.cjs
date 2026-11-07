@@ -21,7 +21,7 @@ function output(result, status = 0) {
 }
 
 test('ask sends the prompt and country to each AI engine with a bearer key', () => {
-  for (const [engine, route] of [['chatgpt', 'chatgpt'], ['aimode', 'aimode'], ['gemini', 'gemini']]) {
+  for (const [engine, route] of [['chatgpt', 'chatgpt'], ['aimode', 'aimode'], ['bing_aimode', 'bing/aimode'], ['gemini', 'gemini']]) {
     const result = output(run(['ask', engine, '--prompt', 'best crm', '--country', 'de']))
     assert.equal(result.url, `https://api.cloro.dev/v1/monitor/${route}`)
     assert.equal(result.method, 'POST')
@@ -42,6 +42,7 @@ test('countries and credits use GET routes', () => {
   const countries = output(run(['countries', '--model', 'gemini']))
   assert.equal(countries.url, 'https://api.cloro.dev/v1/countries?model=gemini')
   assert.equal(countries.method, 'GET')
+  assert.equal(output(run(['countries', '--model', 'bing_aimode'])).url, 'https://api.cloro.dev/v1/countries?model=bing_aimode')
   assert.equal(output(run(['credits'])).url, 'https://api.cloro.dev/v1/credits')
 })
 

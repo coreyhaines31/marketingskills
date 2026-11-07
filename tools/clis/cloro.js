@@ -3,8 +3,8 @@
 const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.CLORO_API_KEY
 const BASE_URL = 'https://api.cloro.dev'
-const ENGINES = { chatgpt: '/v1/monitor/chatgpt', aimode: '/v1/monitor/aimode', gemini: '/v1/monitor/gemini' }
-const COUNTRY_MODELS = ['chatgpt', 'aimode', 'gemini', 'google', 'aioverview']
+const ENGINES = { chatgpt: '/v1/monitor/chatgpt', aimode: '/v1/monitor/aimode', bing_aimode: '/v1/monitor/bing/aimode', gemini: '/v1/monitor/gemini' }
+const COUNTRY_MODELS = ['chatgpt', 'aimode', 'bing_aimode', 'gemini', 'google', 'aioverview']
 
 function parseArgs(args) {
   const result = { _: [] }
@@ -80,7 +80,7 @@ async function main() {
   switch (cmd) {
     case 'ask': {
       const path = ENGINES[sub]
-      if (!path) { result = { error: 'Unknown ask engine. Use: chatgpt, aimode, gemini' }; break }
+      if (!path) { result = { error: 'Unknown ask engine. Use: chatgpt, aimode, bing_aimode, gemini' }; break }
       const prompt = args.prompt
       if (typeof prompt !== 'string' || !prompt.trim()) { result = { error: '--prompt required' }; break }
       const country = countryCode()
@@ -125,9 +125,9 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          ask: 'ask [chatgpt | aimode | gemini] --prompt <text> [--country <CC>] [--markdown]',
+          ask: 'ask [chatgpt | aimode | bing_aimode | gemini] --prompt <text> [--country <CC>] [--markdown]',
           serp: 'serp google --query <text> [--country <CC>] [--aio]',
-          countries: 'countries [--model chatgpt|aimode|gemini|google|aioverview]',
+          countries: 'countries [--model chatgpt|aimode|bing_aimode|gemini|google|aioverview]',
           credits: 'credits',
           options: '--country <ISO 3166-1 alpha-2, default US> --dry-run --timeout-ms <1-600000>',
         }

@@ -517,7 +517,7 @@ Answer engine optimization tools for AI visibility monitoring, competitor benchm
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **[omnia](integrations/omnia.md)** | AI visibility monitoring, prompt discovery, competitor benchmarking, citation analysis, and agent-assisted content optimization and outreach | REST API + OAuth MCP for data access; built-in agent for execution |
-| **[cloro](integrations/cloro.md)** | Raw answers and cited sources from ChatGPT, Google AI Mode, and Gemini, and Google results with the AI Overview, per country | API (sync and async batch), hosted MCP, CLI; credit-based; no dashboard |
+| **[cloro](integrations/cloro.md)** | Raw answers and cited sources from ChatGPT, Google AI Mode, Bing AI Mode, and Gemini, and Google results with the AI Overview, per country | API (sync and async batch), hosted MCP, CLI; credit-based; no dashboard |
 
 **Agent note**: Omnia and cloro have integration guides here. Omnia is a monitoring platform with history and reports; cloro returns the raw answers and sources, and the agent does the counting. The ai-seo skill's monitoring tools table lists the alternatives (Otterly AI, Peec AI, ZipTie, LLMrefs, Profound, Ahrefs Brand Radar, Semrush) and a DIY method; choose on coverage and fit. With Omnia, use MCP for interactive analysis or the API for recurring reports; the built-in Omnia Agent handles content updates, publishing, and outreach with user approval.
 
