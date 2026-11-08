@@ -53,6 +53,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | semrush | SEO | ✓ | ✓ | [✓](clis/semrush.js) | - | [semrush.md](integrations/semrush.md) |
 | ahrefs | SEO | ✓ | ✓ | [✓](clis/ahrefs.js) | - | [ahrefs.md](integrations/ahrefs.md) |
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
+| goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
 | omnia | AEO | ✓ | ✓ | - | - | [omnia.md](integrations/omnia.md) |
@@ -177,10 +178,11 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **semrush** | Competitive analysis, keyword research | MCP available |
 | **ahrefs** | Backlink analysis, content research | MCP available |
 | **dataforseo** | SERP tracking, backlinks, on-page audits | Comprehensive API |
+| **goanyapi** | SERP + keyword + backlink + Google Ads transparency from one key | Credit-based, MCP available |
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
 
-**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups. RankParse for agent workflows where per-call cost matters — backlinks, domain authority, and tech stack at a fraction of enterprise pricing.
+**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups. RankParse for agent workflows where per-call cost matters — backlinks, domain authority, and tech stack at a fraction of enterprise pricing. GoAnyAPI when the same job also needs Google Ads transparency or Reverse AdSense data beside the SERP and keyword pulls, without adding a second vendor.
 
 ### CRM
 
