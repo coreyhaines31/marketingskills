@@ -2,7 +2,7 @@
 name: social
 description: "When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, or Facebook, or wants to do social listening and engagement triage. Also use when the user mentions 'LinkedIn post,' 'Twitter thread,' 'social media,' 'content calendar,' 'social scheduling,' 'engagement,' 'viral content,' 'what should I post,' 'repurpose this content,' 'tweet ideas,' 'LinkedIn carousel,' 'social media strategy,' 'grow my following,' 'TikTok video,' 'Reels,' 'Shorts,' 'video script,' 'video hook,' 'short-form video,' 'create a reel,' 'social listening,' 'brand mentions,' 'competitor monitoring,' 'top posts to comment on,' 'find people asking for,' 'carousel,' 'slide-by-slide,' or 'document post.' Use this for social content, repurposing, scheduling, video scripts, and listening. Posts avoid AI tells like 'it's not X, it's Y' reveals and broetry. For broader content strategy, see content-strategy. For paid ads, see ad-creative. For earned media, see public-relations."
 metadata:
-  version: 2.4.1
+  version: 2.4.2
 ---
 
 # Social Content
@@ -47,7 +47,7 @@ Gather this context (ask if not provided):
 | LinkedIn | B2B, thought leadership | 3-5x/week | Carousels, stories |
 | Twitter/X | Tech, real-time, community | 3-10x/day | Threads, hot takes |
 | Instagram | Visual brands, lifestyle | 1-2 posts + Stories daily | Reels, carousels |
-| TikTok | Brand awareness, younger audiences | 1-4x/day | Short-form video |
+| TikTok | Brand awareness, younger audiences | 1x/day, up to 3x once posts clear a view floor | Short-form video |
 | Facebook | Communities, local businesses | 1-2x/day | Groups, native video |
 
 **For detailed platform strategies** (LinkedIn, X, Instagram, TikTok, Facebook, Telegram): See [references/platforms.md](references/platforms.md)
@@ -433,7 +433,7 @@ Tools: CapCut (free), Descript, Captions.ai, Premiere Pro
 5. **No CTA** — tell viewers what to do
 6. **Ignoring comments** — engagement in first hour matters
 
-**For video hook formulas and scripting templates**: See [references/short-form-video.md](references/short-form-video.md)
+**For video hook formulas, scripting templates, warming up a new account, staged posting cadence, and finding a winning format**: See [references/short-form-video.md](references/short-form-video.md)
 
 ---
 
