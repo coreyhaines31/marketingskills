@@ -1,6 +1,6 @@
 ---
 name: emails
-description: "When the user wants to create or improve automated email sequences and lifecycle programs: welcome series, trial and onboarding emails, nurture, re-engagement, and win-back flows. No AI tells like 'it's not X, it's Y' or fake 'Re:' subject lines. For cold outreach, see cold-email. For in-app onboarding, see onboarding. For texts, see sms."
+description: "When the user wants to create or improve automated email sequences and lifecycle programs: welcome series, trial and onboarding emails, nurture, re-engagement, and win-back flows. No AI tells like 'it's not X, it's Y', 'no X, no Y, no Z' lists, or fake 'Re:' subject lines. For cold outreach, see cold-email. For in-app onboarding, see onboarding. For texts, see sms."
 metadata:
   version: 2.1.5
 ---

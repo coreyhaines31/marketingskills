@@ -1,6 +1,6 @@
 ---
 name: cold-email
-description: "When the user wants to write and run B2B cold outbound that gets replies: cold emails and follow-ups, sending domains and warm-up, deliverability, LinkedIn outreach, multichannel cadences, and reply handling. Send from secondary domains, verify lists first, turn off open tracking, and stop every channel when a prospect replies. No AI tells like 'it's not X, it's Y'. For building the list, see prospecting. For lifecycle email, see emails."
+description: "When the user wants to write and run B2B cold outbound that gets replies: cold emails and follow-ups, sending domains and warm-up, deliverability, LinkedIn outreach, multichannel cadences, and reply handling. Send from secondary domains, verify lists first, turn off open tracking, and stop every channel when a prospect replies. No AI tells like 'it's not X, it's Y'. For building the list, see prospecting. For lifecycle email, see emails. For call scripts, see sales-enablement."
 metadata:
   version: 2.2.2
 ---

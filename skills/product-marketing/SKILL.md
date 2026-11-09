@@ -1,6 +1,6 @@
 ---
 name: product-marketing
-description: "When the user wants to create or update the product marketing context document (.agents/product-marketing.md): product, ICP, positioning, competitors, and brand voice, so every other marketing skill uses the same foundation. Use at the start of a new project or when the audience or positioning changes, and to log learnings."
+description: "When the user wants to create or update the product marketing context document (.agents/product-marketing.md): product, ICP, positioning, competitors, and brand voice, so every other marketing skill uses the same foundation. Use it before other marketing skills on a new project, when the audience or positioning changes, and to log learnings."
 metadata:
   version: 2.2.1
 ---

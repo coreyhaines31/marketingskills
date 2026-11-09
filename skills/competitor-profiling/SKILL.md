@@ -1,6 +1,6 @@
 ---
 name: competitor-profiling
-description: "When the user wants to research competitors from their URLs into structured, dated profile files: positioning, pricing, features, customers, reviews, and SEO strength, with observed facts kept apart from inference. For comparison and alternative pages, see competitors. For sales battle cards, see sales-enablement. For how a competitor grew over time, see reverse-engineer-marketing."
+description: "When the user wants to research competitors from their URLs into structured, dated profile files: positioning, pricing, features, customers, reviews, and SEO strength, with observed facts kept apart from inference. For comparison and alternative pages, see competitors. For sales battle cards, see sales-enablement. For accounts you sell to, see prospecting. For how a competitor grew over time, see reverse-engineer-marketing."
 metadata:
   version: 2.1.6
 ---

@@ -1,6 +1,6 @@
 ---
 name: sales-enablement
-description: "When the user wants to create sales collateral: decks, one-pagers, objection handling, demo scripts, talk tracks, battle cards, proposals, call scripts, and win-loss analysis, so reps pitch consistently and close. For public comparison pages, see competitors. For buyer research, see customer-research. For cold emails, see cold-email."
+description: "When the user wants to create sales collateral: decks, one-pagers, objection handling, demo scripts, talk tracks, battle cards, proposals, call scripts, and win-loss analysis, so reps pitch consistently and close. For public comparison pages, see competitors. For buyer research, see customer-research. For website copy, see copywriting. For cold emails, see cold-email. For the offer being sold, see offers."
 metadata:
   version: 2.4.1
 ---

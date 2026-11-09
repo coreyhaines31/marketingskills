@@ -1,6 +1,6 @@
 ---
 name: prospecting
-description: "When the user wants to find, qualify, and build prospect lists for outbound across B2B and local businesses: ICP-fit accounts, buying signals and hiring signals, enrichment, email verification, and account research before outreach. Always verify emails before a sequence, and never scrape LinkedIn. For the outreach itself, see cold-email. For competitor research, see competitor-profiling."
+description: "When the user wants to find, qualify, and build prospect lists for outbound across B2B and local businesses: ICP-fit accounts, buying and hiring signals, enrichment, email verification, and account research before outreach. Verify emails before a sequence, never scrape LinkedIn: define audiences in Sales Navigator and pull contacts from licensed data. For the outreach itself, see cold-email. For competitor research, see competitor-profiling."
 metadata:
   version: 1.5.1
 ---

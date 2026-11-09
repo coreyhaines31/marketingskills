@@ -1,6 +1,6 @@
 ---
 name: copy-editing
-description: "When the user wants to edit, tighten, proofread, or refresh existing marketing copy and outdated content without rewriting it from scratch. Every edit removes AI tells like 'it's not X, it's Y' reveals and 'no X, no Y, no Z' lists. A request to fix one line gets a point edit to that line only. For writing new copy, see copywriting."
+description: "When the user wants to edit, tighten, proofread, or refresh existing marketing copy and outdated content without rewriting it from scratch. Every edit removes AI tells: 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and sentences that trail into extra comma clauses. A request to fix one line gets a point edit to that line only. For writing new copy, see copywriting."
 metadata:
   version: 2.2.2
 ---

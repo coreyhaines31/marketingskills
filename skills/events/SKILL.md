@@ -1,6 +1,6 @@
 ---
 name: events
-description: "When the user wants to plan, run, sponsor, or speak at events and turn them into pipeline: webinars, conferences, trade show booths, meetups, dinners, workshops, and user conferences, including show-up rates and follow-up. For launches, see launch. For joint-webinar partnerships, see co-marketing. For podcasts, see public-relations."
+description: "When the user wants to plan, run, sponsor, or speak at events and turn them into pipeline: webinars, conferences, trade show booths, meetups, dinners, workshops, and user conferences, including show-up rates and follow-up. For launches, see launch. For joint-webinar partnerships, see co-marketing. For ongoing community programs, see community-marketing. For podcasts, see public-relations. For event email sequences, see emails."
 metadata:
   version: 1.0.1
 ---

@@ -1,6 +1,6 @@
 ---
 name: analytics
-description: "When the user wants to set up, improve, or audit analytics tracking: tracking plans, event taxonomies, GA4, GTM, Mixpanel, PostHog, Segment, and UTMs, or when events aren't firing or numbers look wrong. Rate metrics divide matching closed windows, never full-period spend by partial-period results. For getting conversions into ad platforms, see conversion-tracking. For attribution models, see attribution. For test measurement, see ab-testing."
+description: "When the user wants to set up, improve, or audit analytics tracking: tracking plans, event taxonomies, GA4, GTM, Mixpanel, PostHog, Segment, and UTMs, or when events aren't firing. Rate metrics divide matching closed windows, never full-period spend by partial-period results. For getting conversions into ad platforms, see conversion-tracking. For attribution models or reconciling numbers that disagree across tools, see attribution. For test measurement, see ab-testing."
 metadata:
   version: 2.2.3
 ---
