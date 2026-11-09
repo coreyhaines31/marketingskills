@@ -1,8 +1,8 @@
 ---
 name: influencer-marketing
-description: "When the user wants to run influencer, creator, and ambassador partnerships: finding and vetting creators, rates and contracts, briefs, UGC programs, newsletter and podcast sponsorships, FTC disclosure, and measuring ROI. For affiliate payouts, see referrals. For community advocacy, see community-marketing. For turning creator content into ads, see ad-creative."
+description: "When the user wants to run creator, influencer, or ambassador partnerships, or asks which creators fit, what to pay, or whether a sponsorship worked: vetting, contracts, briefs, UGC, newsletter and podcast sponsorships, FTC disclosure, ROI. For affiliate payouts, see referrals. For community advocacy, see community-marketing. For creator content as ads, see ad-creative."
 metadata:
-  version: 1.4.1
+  version: 1.4.2
 ---
 
 # Influencer & Creator Marketing

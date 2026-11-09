@@ -1,8 +1,8 @@
 ---
 name: image
-description: "When the user wants to create, generate, edit, or optimize marketing images: blog heroes, social graphics, product mockups, profile banners and headers, listing visuals, OG images, and brand assets, with AI image tools or design tools. For ad images and ad specs, see ad-creative. For video, see video."
+description: "When the user wants to create, generate, edit, or optimize marketing images, or asks how to make one look right: blog heroes, social graphics, product mockups, banners, listing visuals, OG images, and brand assets, with AI or design tools. For ad images, see ad-creative. For video, see video."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 # Image

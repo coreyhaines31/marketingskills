@@ -1,8 +1,8 @@
 ---
 name: seo-audit
-description: "When the user wants to audit and diagnose SEO: technical SEO, indexing and crawl issues, traffic drops after Google updates, lost rankings, on-page and title tags, Core Web Vitals, striking-distance keywords, and local SEO. Start here when someone just says their SEO is bad. For pages at scale, see programmatic-seo. For structured data, see schema. For AI search, see ai-seo."
+description: "When the user wants to audit or diagnose SEO, or asks why traffic dropped or a page won't rank: technical SEO, indexing and crawl issues, Google updates, on-page and title tags, Core Web Vitals, striking-distance keywords, local SEO. Start here when someone just says their SEO is bad. For pages at scale, see programmatic-seo. For structured data, see schema. For AI search, see ai-seo."
 metadata:
-  version: 2.2.3
+  version: 2.2.4
 ---
 
 # SEO Audit

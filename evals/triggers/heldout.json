@@ -160,7 +160,7 @@
       "expect": [
         "cold-email"
       ],
-      "prompt": "Rewrite this outbound email to a CFO so it sounds like a founder wrote it, not a sequence tool. Keep the ask small and use the hiring announcement as a relevant reason to reach out."
+      "prompt": "Rewrite this outbound email to a CFO so it sounds like a founder wrote it, not a sequence tool. Keep the ask small and use their hiring announcement (they just hired a VP of FP&A) as a relevant reason to reach out.\n\nSubject: Quick question\nHi {first_name}, I hope this email finds you well! I wanted to reach out because our cutting-edge AP automation platform helps finance leaders like you save time and money. Would you have 30 minutes this week for a demo?"
     },
     {
       "id": "community-marketing-h1",
@@ -184,7 +184,7 @@
       "expect": [
         "competitor-profiling"
       ],
-      "prompt": "Before our offsite, I need a factual dossier on each of these three vendors: who buys from them, what they promise, what they charge, and where their claims are backed up. Keep sources attached to each finding."
+      "prompt": "Before our offsite, I need a factual dossier on each of these three vendors: gusto.com, rippling.com, and justworks.com. Who buys from them, what they promise, what they charge, and where their claims are backed up. Keep sources attached to each finding."
     },
     {
       "id": "competitor-profiling-h2",
@@ -192,7 +192,7 @@
       "expect": [
         "competitor-profiling"
       ],
-      "prompt": "Make competitor profiles for the two URLs below using their current websites and available search data. Separate verified capabilities from your guesses; this is internal research, not website copy."
+      "prompt": "Make competitor profiles for loom.com and tella.tv using their current websites and available search data. Separate verified capabilities from your guesses; this is internal research, not website copy."
     },
     {
       "id": "competitors-h1",
@@ -256,7 +256,7 @@
       "expect": [
         "copy-editing"
       ],
-      "prompt": "Do a focused editing pass on the homepage draft below. Flag vague benefits, unsupported numbers and inconsistent tone, then show the revised text with the same section order."
+      "prompt": "Do a focused editing pass on this homepage draft. Flag vague benefits, unsupported numbers and inconsistent tone, then show the revised text with the same section order.\n\nHero: The smartest way to manage your inventory. Trusted by thousands.\nSection 1: Save 10 hours a week with powerful automation that just works!\nSection 2: Our cutting-edge platform empowers teams to unlock efficiency.\nCTA: Get started today"
     },
     {
       "id": "copywriting-h1",
@@ -296,7 +296,7 @@
       "expect": [
         "customer-research"
       ],
-      "prompt": "I've pasted notes from 14 calls with people who almost bought. Can you pull out what made them start looking, what scared them off and the exact phrases they used? Don't turn two loud opinions into a universal truth."
+      "prompt": "Here are notes from 14 calls with people who almost bought. Can you pull out what made them start looking, what scared them off and the exact phrases they used? Don't turn two loud opinions into a universal truth.\n\nCall 1: switched from spreadsheets after a stockout; worried about setup time, 'we don't have an IT person'.\nCall 2: boss asked for reports; pricing page confused them, 'per location or per user?'.\nCall 3: saw a competitor demo; scared off by the annual contract.\nCalls 4-14: similar mix; six mention setup time, four mention the annual contract, two mention price."
     },
     {
       "id": "customer-research-h2",
@@ -696,7 +696,7 @@
       "expect": [
         "reverse-engineer-marketing"
       ],
-      "prompt": "How did this company go from nobody talking about it to being everywhere over the last two years? Build a dated timeline from public evidence and distinguish what they actually did from guesses about what caused the growth."
+      "prompt": "How did Granola go from nobody talking about it to being everywhere over the last two years? Build a dated timeline from public evidence and distinguish what they actually did from guesses about what caused the growth."
     },
     {
       "id": "reverse-engineer-marketing-h2",
@@ -728,7 +728,7 @@
       "expect": [
         "sales-enablement"
       ],
-      "prompt": "Our champion loves us but has to convince her CFO without us in the room. Make her a one-page document that explains the business case, likely objections and why waiting has a cost. Use only the numbers from our pilot."
+      "prompt": "Our champion loves us but has to convince her CFO without us in the room. Make her a one-page document that explains the business case, likely objections and why waiting has a cost. Use only the numbers from our pilot: invoice processing time fell from 9 days to 3, 2 FTEs were reassigned, and late-payment fees dropped $4,200 a month."
     },
     {
       "id": "sales-enablement-h2",

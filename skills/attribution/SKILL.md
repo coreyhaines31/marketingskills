@@ -1,8 +1,8 @@
 ---
 name: attribution
-description: "When the user wants to work out which marketing actually drives conversions and revenue: choosing and reading attribution models, reconciling ad platforms that over-claim, MMM, incrementality and holdout tests, self-reported attribution, and channels with no clicks like podcasts or dark social. For event tracking and UTMs, see analytics. For pixels and CAPI, see conversion-tracking. For CRM revenue reporting, see revops. For AI search blind spots, see ai-seo."
+description: "When the user wants to work out which marketing drives revenue, or asks whether a channel is working, which numbers to trust, or how to measure podcasts and dark social: attribution models, ad platforms that over-claim, MMM, incrementality and holdout tests, self-reported attribution. For tracking and UTMs, see analytics. For pixels and CAPI, see conversion-tracking. For CRM revenue, see revops. For AI search blind spots, see ai-seo."
 metadata:
-  version: 1.1.7
+  version: 1.1.8
 ---
 
 # Attribution

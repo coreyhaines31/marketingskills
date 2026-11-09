@@ -41,12 +41,14 @@ export function skillsInvoked(streamText) {
   const out = [];
   let cost = 0;
   let finished = false;
+  let text = '';
   for (const line of streamText.split('\n')) {
     let event;
     try { event = JSON.parse(line); } catch { continue; }
     if (event.type === 'assistant') {
       for (const part of event.message?.content || []) {
         if (part.type === 'tool_use' && part.name === 'Skill' && part.input?.skill) out.push(part.input.skill);
+        if (part.type === 'text' && !text) text = part.text.slice(0, 300);
       }
     }
     if (event.type === 'result') {
@@ -54,7 +56,7 @@ export function skillsInvoked(streamText) {
       cost = event.total_cost_usd || 0;
     }
   }
-  return { skills: out, cost, finished };
+  return { skills: out, cost, finished, text };
 }
 
 // Scores the first skill invoked. A skill from outside this pack (built in or another plugin) is "other-skill".
@@ -158,11 +160,11 @@ function runOne(item, opts, cwd) {
     const timer = setTimeout(() => child.kill('SIGKILL'), 120000);
     child.on('close', (code, signal) => {
       clearTimeout(timer);
-      const { skills, cost, finished } = skillsInvoked(stdout);
+      const { skills, cost, finished, text } = skillsInvoked(stdout);
       let error = null;
       if (signal) error = `killed by ${signal} (timeout)`;
       else if (!finished) error = stderr.trim().split('\n').pop() || `exit ${code} with no result`;
-      resolve({ skills, cost, error });
+      resolve({ skills, cost, error, text });
     });
   });
 }
@@ -186,7 +188,7 @@ async function main() {
       const res = await runOne(item, opts, cwd);
       const s = score(item, res.skills, 'marketing-skills', Boolean(res.error));
       cost += res.cost;
-      rows.push({ id: item.id, run, kind: item.kind, expect: item.expect, invoked: res.skills, ...s, error: res.error });
+      rows.push({ id: item.id, run, kind: item.kind, expect: item.expect, invoked: res.skills, ...s, error: res.error, ...(s.outcome === 'pass' ? {} : { reply: res.text }) });
       process.stderr.write(`[${rows.length}/${jobs.length}] ${s.outcome.padEnd(13)} ${item.id}${s.pick && s.outcome !== 'pass' ? ` -> ${s.pick}` : ''}${res.error ? ` (${res.error})` : ''}\n`);
     }
   };

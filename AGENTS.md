@@ -145,7 +145,7 @@ skills/skill-name/
 
 The `description` is critical for skill discovery. Include:
 1. What the skill does
-2. When to use it: the distinct situations it covers, not a list of synonyms
+2. When to use it: the distinct situations it covers and the questions it answers ("or asks whether a result is real"), not a list of synonyms. Descriptions that only say what a skill makes lose advice questions the model thinks it can answer alone
 3. Any operative rule that must shape behavior before the body is read
 4. Related skills for scope boundaries
 

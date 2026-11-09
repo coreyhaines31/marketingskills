@@ -1,0 +1,909 @@
+{
+  "about": "Second held-out set: advice-style, self-contained prompts written from skill bodies only, without reading descriptions.",
+  "prompts": [
+    {
+      "id": "ab-testing-a1",
+      "kind": "advice",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "We split new visitors evenly between two checkout buttons. After three days, 66 of 1,100 people bought with the new button and 50 of 1,050 with the old one. We planned to run for two weeks, but the dashboard says 92% confidence. Is that enough to pick a winner?"
+    },
+    {
+      "id": "ab-testing-a2",
+      "kind": "advice",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "Our booking page gets 900 visitors a month and 3% book a call. I want to compare two versions and detect a 10% relative improvement in four weeks. Is that realistic, and what would you do with traffic this low?"
+    },
+    {
+      "id": "ad-creative-a1",
+      "kind": "advice",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "I sell LedgerNest, a receipt organizer for freelancers. For a sponsored Instagram placement, can you give me five different opening lines built around finding receipts before tax time? It imports receipts from Gmail; we have no evidence for time-saving claims yet."
+    },
+    {
+      "id": "ad-creative-a2",
+      "kind": "advice",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "Our sponsored Facebook message 'Find the receipt before your accountant asks' gets 2.1% clicks, while 'Take control of your finances' gets 0.7%, with 20,000 impressions each. The product is LedgerNest, which organizes receipts from Gmail. What three new message angles would you try, and what shouldn't we infer from those numbers?"
+    },
+    {
+      "id": "ads-a1",
+      "kind": "advice",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "We're spending $150 a day on Meta to sell a $90 desk lamp. Over the last seven days we spent $1,050 and got 30 paid orders; our target acquisition cost is $25. Would you reduce spend now or give it longer, and what else would you check first?"
+    },
+    {
+      "id": "ads-a2",
+      "kind": "advice",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "I have $3,000 a month to get demo bookings for a $400/month scheduling product for dental practices. Would you start with Google search placements or sponsored LinkedIn placements? We have no previous account history and one person to manage it."
+    },
+    {
+      "id": "ai-seo-a1",
+      "kind": "advice",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "When I ask ChatGPT for invoice software for freelancers, it cites our LedgerNest guide but recommends three other products. Is getting cited actually enough, or would you change what we measure? LedgerNest is our invoice product and the guide explains how freelancers choose invoice software."
+    },
+    {
+      "id": "ai-seo-a2",
+      "kind": "advice",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "Perplexity keeps saying our product TaskHarbor has no free tier, but we added one six months ago. Our own plan page says 'Free: 3 projects' and an old review says 'Starts at $19/month.' What would you do first to correct the answer?"
+    },
+    {
+      "id": "analytics-a1",
+      "kind": "advice",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "We log every click in our proposal app PitchDock, but I still can't answer how many new accounts send a first proposal within seven days. What are the smallest set of events and properties you'd keep so we can answer that reliably?"
+    },
+    {
+      "id": "analytics-a2",
+      "kind": "advice",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "Our weekly report has visits, account creations, and paid accounts, but mobile users often finish on a laptop. What should a short measurement brief include so the team stops treating the same person as two people? We use GA4 for the website and PostHog inside the app."
+    },
+    {
+      "id": "aso-a1",
+      "kind": "advice",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "My iPhone habit app TinySteps has the title 'TinySteps' and subtitle 'A better you starts today.' We have almost no brand recognition. Would you keep that wording or use the limited space to explain what it does? It supports daily habit reminders and streaks."
+    },
+    {
+      "id": "aso-a2",
+      "kind": "advice",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "For TinySteps on Google Play, our first three listing screenshots show the settings menu, theme colors, and a streak calendar, in that order. Most visitors haven't heard of us. Is that a sensible order, and what would you put first?"
+    },
+    {
+      "id": "attribution-a1",
+      "kind": "advice",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Stripe shows 80 new paying customers last month, Meta claims 65, and Google claims 50. Our CEO wants one number per channel that adds to 80. Is dividing the credit in proportion to the platform totals defensible, or what would you do?"
+    },
+    {
+      "id": "attribution-a2",
+      "kind": "advice",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "We sell $30,000 annual contracts with a four-month buying cycle. Buyers often hear our founder on a podcast, read several articles, then search our brand before booking. Should the final search get all the credit when we decide next quarter's budget?"
+    },
+    {
+      "id": "churn-prevention-a1",
+      "kind": "advice",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "We sell a $49/month scheduling app. Of 40 people who ended their subscriptions last month, 18 said they were between projects and 12 said it cost too much. Would you show everyone 20% off, or give those groups different choices before they leave?"
+    },
+    {
+      "id": "churn-prevention-a2",
+      "kind": "advice",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "Our Stripe subscriptions stop working immediately after the first failed card charge. We lost 17 accounts that way last month, and several were still using the product daily. What would a sensible retry and access-grace policy look like?"
+    },
+    {
+      "id": "co-marketing-a1",
+      "kind": "advice",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "We sell proposal software to small agencies. A bookkeeping app with 8,000 agency subscribers wants to swap newsletter mentions; we have 2,000 subscribers in the same audience. Is the size mismatch a dealbreaker, and how could we make the exchange fair?"
+    },
+    {
+      "id": "co-marketing-a2",
+      "kind": "advice",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "Our project tracker TaskHarbor and a time-tracking vendor called HourNest both serve freelance designers. Give me five things we could make together that would help both businesses, without building an integration. We each have one person and a $1,000 budget."
+    },
+    {
+      "id": "cold-email-a1",
+      "kind": "advice",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "Is this too much to ask in a first message to someone who doesn't know me: 'Hi Maya, I saw Acorn Studio is hiring three account managers. PitchDock helps agencies stop chasing proposal approvals. Can you do a 30-minute demo Tuesday?' I'd like a reply from Maya, Acorn Studio's founder, and we don't have a case study yet."
+    },
+    {
+      "id": "cold-email-a2",
+      "kind": "advice",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "I sell inventory alerts to independent bike shops. Can you draft a short first inbox message to Ben, owner of Westwheel Bikes, whose website says they're opening a second location in June? The product flags low stock across locations, and I want to learn whether stock coordination is already a headache."
+    },
+    {
+      "id": "community-marketing-a1",
+      "kind": "advice",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "We invited 140 freelance designers into our Slack group for TaskHarbor users. Almost every conversation starts with someone on our team, and members rarely answer each other. What five changes would you try before inviting another 500 people?"
+    },
+    {
+      "id": "community-marketing-a2",
+      "kind": "advice",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "Our founder wants a Discord server because competitors have one. We sell payroll software to busy restaurant owners, and nobody has asked for a place to talk. Is there enough reason to create a member space, and what would you validate first?"
+    },
+    {
+      "id": "competitor-profiling-a1",
+      "kind": "advice",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "I run a simple task app for small agencies. Could you give me a short factual briefing on Asana at https://asana.com: who it serves, what it charges, and what evidence supports its main strengths? I need a present-day snapshot for an internal discussion, with guesses kept separate."
+    },
+    {
+      "id": "competitor-profiling-a2",
+      "kind": "advice",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "Before we position our new meeting scheduler, what would you put in a one-page fact sheet about Calendly at https://calendly.com and SavvyCal at https://savvycal.com? Please fill in the main buyer, package structure, and product differences from public sources, and mark anything you can't verify."
+    },
+    {
+      "id": "competitors-a1",
+      "kind": "advice",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "We're drafting a public 'PitchDock vs PaperTrail' page. PitchDock has reusable proposals and costs $29/month; PaperTrail has reusable proposals plus contract signing and costs $49/month. We don't support signing. Is a green-check table enough, or what else would help a buyer choose honestly?"
+    },
+    {
+      "id": "competitors-a2",
+      "kind": "advice",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "For a public page aimed at people leaving PaperTrail, should we say 'PaperTrail lacks SSO' if its plan page doesn't mention it? Our product PitchDock supports SSO on its $99/month team tier, but we haven't tried PaperTrail or checked its documentation."
+    },
+    {
+      "id": "content-strategy-a1",
+      "kind": "advice",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "We sell job-costing software to remodelers and can publish two articles a month. Buyers keep asking how to estimate labor, handle change orders, and spot unprofitable jobs. Which topics would you start with, and how would you connect them into a useful reading path?"
+    },
+    {
+      "id": "content-strategy-a2",
+      "kind": "advice",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "Our blog gets most visits from broad pieces about productivity, but we sell compliance software to dental offices and those readers never book demos. Would you keep chasing big traffic topics or shift the next six articles? Give me a sensible mix and explain the tradeoff."
+    },
+    {
+      "id": "conversion-tracking-a1",
+      "kind": "advice",
+      "expect": [
+        "conversion-tracking",
+        "analytics"
+      ],
+      "prompt": "Google Tag Manager says our Google Ads lead tag fired when I clicked Submit on our demo form, even though I left a required field empty. Is that enough to explain why the platform reports more leads than HubSpot, and what should actually trigger the tag?"
+    },
+    {
+      "id": "conversion-tracking-a2",
+      "kind": "advice",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "Our Shopify store already sends purchases to Meta through its native channel. An agency wants to add another server sender because it will be 'more accurate.' Is that a good idea, and what would you need to establish before enabling it?"
+    },
+    {
+      "id": "copy-editing-a1",
+      "kind": "advice",
+      "expect": [
+        "copy-editing",
+        "copywriting"
+      ],
+      "prompt": "Can you tighten this paragraph without losing the slightly grumpy founder voice? 'You didn't start an agency to spend Friday chasing approvals. We built PitchDock because we were sick of that too. It puts client comments beside the proposal so you can stop hunting through six inbox threads.' Keep the argument and don't add claims."
+    },
+    {
+      "id": "copy-editing-a2",
+      "kind": "advice",
+      "expect": [
+        "copy-editing",
+        "copywriting"
+      ],
+      "prompt": "Does this sentence sound overblown? 'LedgerNest is the world's most powerful receipt platform, trusted by every ambitious freelancer.' We have 83 paying accounts and automatically organize receipts from Gmail. Please suggest the smallest wording change that makes it believable."
+    },
+    {
+      "id": "copywriting-a1",
+      "kind": "advice",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "Can you draft the opening section for a page selling RosterNest to cafe owners? It lets managers reuse a weekly rota, collect shift-swap requests, and share the schedule by text. The next step is a 14-day trial with no card. We have no customer quotes yet; keep the wording plain."
+    },
+    {
+      "id": "copywriting-a2",
+      "kind": "advice",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "What would you say at the top of a website for PitchDock, a proposal tool for two-to-ten-person agencies? Clients comment directly beside proposal sections, and the agency sees which sections were viewed. Give me a heading, two supporting sentences, and button wording for starting a trial."
+    },
+    {
+      "id": "cro-a1",
+      "kind": "advice",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Our demo page gets 2,000 visits a month from Google search placements and 20 completed requests. It starts with 'The future of workforce intelligence,' has three equal buttons for a demo, a PDF, and careers, and asks for 11 fields. We sell shift planning to cafe owners. What would you change first?"
+    },
+    {
+      "id": "cro-a2",
+      "kind": "advice",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "We sell $180 standing-desk converters. The product page shows the dimensions only in a downloadable PDF, reviews at the very bottom, and shipping cost after people enter their address. Lots of visitors add to cart and then leave. Give me five practical page changes you'd prioritize."
+    },
+    {
+      "id": "customer-research-a1",
+      "kind": "advice",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "I'm talking to five recent buyers of our proposal tool next week. Is asking 'Would automatic follow-ups be useful?' a good way to decide what to build? What five questions would get me closer to why they bought and what they tried before us?"
+    },
+    {
+      "id": "customer-research-a2",
+      "kind": "advice",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "Three users of our rota app said: 'I bought it after two people missed the Saturday shift'; 'The spreadsheet was fine until we opened a second cafe'; 'I still send screenshots because staff won't install another app.' What themes can we safely take from those comments, and what would you ask next?"
+    },
+    {
+      "id": "directory-submissions-a1",
+      "kind": "advice",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "A vendor will put our new invoicing app on 200 software listing sites for $99. We have a homepage but no published plan page or privacy policy yet. Would you buy that package now, and what would make those placements worthwhile?"
+    },
+    {
+      "id": "directory-submissions-a2",
+      "kind": "advice",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "We have six hours this month to create product profiles for our agency scheduling app. Would you prioritize G2, Capterra, or a batch of 40 small AI tool catalogs? Our app has no AI features, costs $49/month, and already has a working demo and customer reviews."
+    },
+    {
+      "id": "emails-a1",
+      "kind": "advice",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "People download our cafe staffing checklist and then hear nothing from us. We sell rota software for $49/month. What should the first three inbox messages do, when should they arrive, and when is it reasonable to invite someone to a demo?"
+    },
+    {
+      "id": "emails-a2",
+      "kind": "advice",
+      "expect": [
+        "emails",
+        "onboarding"
+      ],
+      "prompt": "Our 14-day trial sends the same seven inbox messages to everyone, including people who already paid on day two. We sell a proposal app where the key step is sending a first proposal. What branching and stop rules would you put in a short brief for the person rebuilding that flow?"
+    },
+    {
+      "id": "events-a1",
+      "kind": "advice",
+      "expect": [
+        "events"
+      ],
+      "prompt": "A dental software conference wants $12,000 for a booth. There will be 600 attendees, about 100 of whom match our buyer, and our annual contract is $8,000. We can send two people. Is it worth considering, and what would you need to know before saying yes?"
+    },
+    {
+      "id": "events-a2",
+      "kind": "advice",
+      "expect": [
+        "events"
+      ],
+      "prompt": "We're hosting a 45-minute online workshop on job costing for remodelers. We have 90 registrations, a $200/month product, and one host. Is a reminder the day before plus a recording afterward enough, or what would you add to turn attendance into useful sales conversations?"
+    },
+    {
+      "id": "free-tools-a1",
+      "kind": "advice",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "We sell job-costing software to contractors. Would a browser calculator that estimates labor margin be worth two weeks of engineering time as a way to attract buyers? It would take hourly labor cost, hours, and quoted job revenue; we have one developer and no maintenance budget beyond a few hours a month."
+    },
+    {
+      "id": "free-tools-a2",
+      "kind": "advice",
+      "expect": [
+        "free-tools",
+        "lead-magnets"
+      ],
+      "prompt": "We're considering a no-cost invoice generator to bring freelancers into our bookkeeping product. Should people have to create an account before downloading the invoice, or should we let them finish first? The generator would create a PDF from line items and tax rates without saving their data."
+    },
+    {
+      "id": "image-a1",
+      "kind": "advice",
+      "expect": [
+        "image"
+      ],
+      "prompt": "For a blog hero about messy receipt management, would you use a generated desk scene or a designed graphic? Our brand uses navy and cream, the placement is 1200 by 630 pixels, and the exact title 'Find every receipt' needs to stay readable. What production approach would you choose?"
+    },
+    {
+      "id": "image-a2",
+      "kind": "advice",
+      "expect": [
+        "image"
+      ],
+      "prompt": "Our homepage needs a realistic-looking product mockup showing an invoice with the exact total '$2,450.00' and our real interface. Is asking a generator to invent the whole scene sensible, or how would you combine a screenshot and a background? Give me a short production brief, not the finished asset."
+    },
+    {
+      "id": "influencer-marketing-a1",
+      "kind": "advice",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "A YouTube host with 18,000 subscribers wants $1,500 to feature our $120 desk lamp. Their recent uploads get about 4,000 views and their audience is mostly home-office workers. What would you check before agreeing, and which usage rights need to be in writing?"
+    },
+    {
+      "id": "influencer-marketing-a2",
+      "kind": "advice",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "We're sending our $60 coffee grinder to ten TikTok reviewers with no obligation to post. Our founder wants to count ten guaranteed placements in the forecast. Is that reasonable, and how would you define success for this small seeding trial?"
+    },
+    {
+      "id": "launch-a1",
+      "kind": "advice",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "Our scheduling app leaves beta in three weeks. We have 120 testers, 600 people on the waitlist, and two founders. Is one big announcement on release day enough, or how would you spread the work before and after people can buy it?"
+    },
+    {
+      "id": "launch-a2",
+      "kind": "advice",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "We just added client approval links to a proposal tool that already has 400 paying teams. Is that big enough to make noise about separately, and what would you do so existing users and new buyers each hear the right story?"
+    },
+    {
+      "id": "lead-magnets-a1",
+      "kind": "advice",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "We sell bookkeeping software to freelance designers. Which would be more likely to bring in future buyers: a 40-page guide to running a freelance business or a one-page month-end money checklist? We want visitors to exchange their address for it, and have one day to make it."
+    },
+    {
+      "id": "lead-magnets-a2",
+      "kind": "advice",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "Our downloadable '100 ways to be more productive' PDF brought 900 subscribers but only one demo for our dental compliance app. What five replacement downloads would attract practice managers with a real compliance problem? We can make templates and checklists but have no developer time."
+    },
+    {
+      "id": "link-building-a1",
+      "kind": "advice",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "Our cafe scheduling guide is useful and technically sound but stuck on page two of Google. We have original survey data from 180 cafe managers and three hours a week for outreach. What five ways would you try to get relevant industry sites to cite the guide?"
+    },
+    {
+      "id": "link-building-a2",
+      "kind": "advice",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "An agency promises 50 dofollow placements a month for our bookkeeping site, all with the phrase 'best accounting software' pointing to our homepage. Is that a sensible approach, or what criteria would you use to judge the placements before paying?"
+    },
+    {
+      "id": "marketing-council-a1",
+      "kind": "advice",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "How would April Dunford and Rory Sutherland disagree about pitching our proposal app as 'faster documents' versus 'less client anxiety'? We serve small agencies, clients can comment beside each section, and we have no proof of time saved. Use their published ideas to give me two distinct takes and your recommendation."
+    },
+    {
+      "id": "marketing-council-a2",
+      "kind": "advice",
+      "expect": [
+        "marketing-council",
+        "copywriting"
+      ],
+      "prompt": "What would David Ogilvy say about the heading 'Work, reimagined' for our cafe rota software? The product reuses weekly schedules and lets staff request swaps. Give me a brief imagined critique grounded in his writing, then one stronger direction."
+    },
+    {
+      "id": "marketing-ideas-a1",
+      "kind": "advice",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "I built a $19/month tool that turns meeting notes into client action lists for small agencies. I have 12 customers, $300 to spend, and five hours a week outside development. Give me five realistic ways to find the next 20 customers."
+    },
+    {
+      "id": "marketing-ideas-a2",
+      "kind": "advice",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "Our password-sharing product for design agencies has grown only through friends so far. We have 30 paying teams and one founder who likes writing but hates being on camera. What are a few overlooked ways to get in front of more agency owners without buying traffic?"
+    },
+    {
+      "id": "marketing-loops-a1",
+      "kind": "advice",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "I want an assistant to check our acquisition numbers every Monday and draft next steps, but never change spend or publish anything. We use Stripe, GA4, and Meta, and I can review for 20 minutes a week. What should the recurring job's instructions, checks, and stopping conditions be?"
+    },
+    {
+      "id": "marketing-loops-a2",
+      "kind": "advice",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "We run an automated weekly job that suggests new articles from Search Console, but it keeps proposing topics we already rejected. What information should persist between runs, and when should the job stop and ask me instead of producing another list?"
+    },
+    {
+      "id": "marketing-plan-a1",
+      "kind": "advice",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "We sell $99/month scheduling software to salons, have $20,000 MRR, and want to reach $40,000 in a year. We can spend $4,000/month and have one full-time marketer plus a founder for five hours a week. What would a realistic year of acquisition, first-use improvements, and keeping customers look like by quarter?"
+    },
+    {
+      "id": "marketing-plan-a2",
+      "kind": "advice",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "I've inherited growth at a $1m ARR proposal software business with two marketers and $12,000/month. We have lots of blog traffic, few trials, weak first-use completion, and no systematic follow-up with former users. How would you turn that into a company-wide twelve-month roadmap with a focused first 90 days?"
+    },
+    {
+      "id": "marketing-psychology-a1",
+      "kind": "advice",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Why might agency owners stick with a messy spreadsheet even when our tool would remove manual proposal follow-ups? I'm trying to understand the hesitation rather than write a new page. Explain a few decision-making principles and how we'd reduce perceived switching risk honestly."
+    },
+    {
+      "id": "marketing-psychology-a2",
+      "kind": "advice",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Our team wants to put a countdown timer on an evergreen course checkout even though enrollment never closes. Is there a more honest way to help people stop putting off the decision? The course teaches freelancers to manage client scope, and we run live office hours on the first Monday of each month."
+    },
+    {
+      "id": "offers-a1",
+      "kind": "advice",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "I sell a $3,000 website messaging workshop for small SaaS teams, but people say they're worried they'll leave with slides and no usable result. Would you change what's included, add implementation help, or guarantee something? Help me make the package easier to say yes to without inventing outcomes."
+    },
+    {
+      "id": "offers-a2",
+      "kind": "advice",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "Our six-week course teaches freelance designers to run client projects. It costs $800 and includes recordings and a weekly call. Prospects say they don't have time to apply it. What five changes to the package itself could address that concern without discounting?"
+    },
+    {
+      "id": "onboarding-a1",
+      "kind": "advice",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "After creating an account in our proposal app, users see an empty dashboard and a seven-minute tour. Only 18% send a proposal in their first week. Would you replace the tour with a sample proposal or something else? The goal is for them to send a real client proposal."
+    },
+    {
+      "id": "onboarding-a2",
+      "kind": "advice",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "Our new cafe scheduling users have to add all staff, configure payroll rules, upload a logo, and set notification preferences before they can draft a rota. Which steps would you move out of the first session, and what would a useful first success look like?"
+    },
+    {
+      "id": "paywalls-a1",
+      "kind": "advice",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Users of our free proposal app can send three proposals a month. When they try to send a fourth, we show 'Access denied' and a button saying 'Buy now.' What should that screen say and let them do instead? The paid tier costs $19/month for unlimited proposals."
+    },
+    {
+      "id": "paywalls-a2",
+      "kind": "advice",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Our note-taking app asks people to move to Pro on every login, including before they've created a note. Pro adds shared notebooks for $8/month. Would you keep that prompt or wait for a different moment, and how often is reasonable after someone dismisses it?"
+    },
+    {
+      "id": "popups-a1",
+      "kind": "advice",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Our blog blocks the page with a full-screen newsletter invitation two seconds after arrival. We get 4% opt-ins but a lot of complaints from mobile readers. Would you change the timing, format, or audience rules first? The newsletter sends weekly bookkeeping tips for freelancers."
+    },
+    {
+      "id": "popups-a2",
+      "kind": "advice",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "A visitor closes our 10%-off overlay on the coffee grinder product page and sees it again on every other page. What would sensible dismissal and repeat-display rules be? We want first-time buyers to notice it without irritating people who are comparing grinders."
+    },
+    {
+      "id": "pricing-a1",
+      "kind": "advice",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "Our proposal app charges $10 per seat, but agencies keep sharing logins because only one person sends proposals while everyone comments. Would you charge per workspace, per proposal, or keep seats? Most customers have five people and send 20 proposals a month."
+    },
+    {
+      "id": "pricing-a2",
+      "kind": "advice",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "We have 200 customers paying $29/month for scheduling software and plan to charge new customers $49/month. Existing customers have been with us for about a year. Should they keep the old rate forever, move after notice, or get a temporary discount? How would you reason about that choice?"
+    },
+    {
+      "id": "product-marketing-a1",
+      "kind": "advice",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Can you draft a short shared background doc so I stop re-explaining our business to every writing assistant? PitchDock helps two-to-ten-person agencies send proposals and collect comments beside each section. It costs $29/month, replaces Word files plus inbox threads, and should sound plainspoken. Mark missing facts instead of guessing."
+    },
+    {
+      "id": "product-marketing-a2",
+      "kind": "advice",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Is 'we help teams work smarter' enough background to give an assistant writing for our business? We sell RosterNest to cafe owners, reuse weekly rotas, and handle shift-swap requests for $49/month. What should go into a reusable source-of-truth brief about our buyers, differences, voice, and proof?"
+    },
+    {
+      "id": "programmatic-seo-a1",
+      "kind": "advice",
+      "expect": [
+        "programmatic-seo",
+        "seo-audit"
+      ],
+      "prompt": "We have a dataset of hourly contractor rates for 300 cities and want a useful page for each city. Is changing the city name and average rate in one template enough, or what would make those pages deserve to appear in Google? Each city has at least 40 recent observations."
+    },
+    {
+      "id": "programmatic-seo-a2",
+      "kind": "advice",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "Our time-zone app could generate 20,000 pages for city pairs, but some pairs have no meaningful demand. Would you publish them all at once? What would you require from the data and page template before expanding beyond the first 100?"
+    },
+    {
+      "id": "prospecting-a1",
+      "kind": "advice",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "We sell missed-call follow-up software to independent plumbers in Austin. Before buying a list of 2,000 contacts, what signals would you use to narrow it to 50 businesses likely to need it, and which fields should our spreadsheet contain?"
+    },
+    {
+      "id": "prospecting-a2",
+      "kind": "advice",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "I built a tool for agencies that lose client feedback in inbox threads. I don't know which firms to contact yet. Where would you look for public signs that someone is dealing with that problem right now, and how would you distinguish a useful signal from a generic complaint?"
+    },
+    {
+      "id": "public-relations-a1",
+      "kind": "advice",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "We analyzed 8,000 anonymized invoices and found that small design agencies wait a median of 43 days to get paid. Would that be interesting enough for a journalist covering small businesses, or does it need a stronger angle? What should a short pitch include without overselling the finding?"
+    },
+    {
+      "id": "public-relations-a2",
+      "kind": "advice",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "Our founder wants to announce that we hired our fifth engineer to every tech reporter. We make payroll software for cafes and have no funding or major product news. Is that a story someone would cover, and what kind of evidence would make an approach more worthwhile?"
+    },
+    {
+      "id": "referrals-a1",
+      "kind": "advice",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Customers already tell other freelance designers about our $20/month invoicing app. Should we give the person inviting a friend a free month, give both people credit, or use cash? Gross margin is 85%, average lifetime is 14 months, and we want a simple reward that doesn't invite abuse."
+    },
+    {
+      "id": "referrals-a2",
+      "kind": "advice",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "An agency consultant wants 30% of subscription revenue forever for each client they bring to our $100/month tool. Our gross margin is 80% and typical accounts stay 18 months. Is that sensible, and what payout timing and rules would you put in writing?"
+    },
+    {
+      "id": "reverse-engineer-marketing-a1",
+      "kind": "advice",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "How did Tally at https://tally.so get from an early form builder to a widely known product? I run a bootstrapped form tool with 40 paying accounts and can invest in writing or product sharing, but not paid placements. Give me a quick evidence-based history of the last two years and a few moves that fit my stage."
+    },
+    {
+      "id": "reverse-engineer-marketing-a2",
+      "kind": "advice",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "People keep telling me to copy Canva's template approach. Before I do, can you work out when templates became part of Canva's growth at https://www.canva.com and what other changes happened around that time? We make presentation software with two engineers, so I need to know which lessons travel to a tiny team."
+    },
+    {
+      "id": "revops-a1",
+      "kind": "advice",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Our demo requests sit in HubSpot until someone notices them. We have three reps covering US East, US West, and Europe, and about 40 requests a week. What would a simple ownership, response-time, and fallback policy look like so nobody falls through the cracks?"
+    },
+    {
+      "id": "revops-a2",
+      "kind": "advice",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Someone downloads two guides and visits our plan page, so the automation sends them straight to a rep. Reps say most aren't ready to talk. We sell $15,000 annual contracts to finance teams. Is activity alone enough, or what fit and intent rules would you use before handing people over?"
+    },
+    {
+      "id": "sales-enablement-a1",
+      "kind": "advice",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Our champion at a 40-person agency likes PitchDock but has to get the finance director's approval. Can you draft a one-page leave-behind they can forward? It costs $199/month, puts client comments beside proposal sections, and includes reusable templates. We don't have measured savings, so don't invent ROI."
+    },
+    {
+      "id": "sales-enablement-a2",
+      "kind": "advice",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Our reps keep hearing 'we already have spreadsheets' when demonstrating our job-costing app to remodelers. What should a short response guide say? The app compares estimated and actual labor by job, while their spreadsheets currently require weekly manual updates; we have no proof that every buyer will save money."
+    },
+    {
+      "id": "schema-a1",
+      "kind": "advice",
+      "expect": [
+        "schema",
+        "seo-audit"
+      ],
+      "prompt": "Our product page has a JSON-LD block with five-star reviews that aren't visible anywhere on the page. A freelancer says that will help Google show stars. Is it enough that the reviews are real, or what needs to change before we ship it?"
+    },
+    {
+      "id": "schema-a2",
+      "kind": "advice",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "For an article titled 'How to estimate a cafe staffing budget' at https://rosternest.example/guides/staffing-budget, should the machine-readable block describe an Article, a Product, or both? The page contains the article, its author Maya Chen, and a small footer mention of our software, but no product reviews or purchase options."
+    },
+    {
+      "id": "seo-audit-a1",
+      "kind": "advice",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Since we moved our blog from /blog/ to /resources/, visits from Google have fallen by half. The old URLs return 404s, the new pages work, and the text is unchanged. What would you check first, and would publishing more articles fix the likely problem?"
+    },
+    {
+      "id": "seo-audit-a2",
+      "kind": "advice",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Our 80 product pages all use the browser title 'Shop | BrightLamp' and have nearly identical opening paragraphs. Google finds the pages but sends almost no non-brand visitors. Is that enough to explain the issue, or what else would you inspect before making changes?"
+    },
+    {
+      "id": "signup-a1",
+      "kind": "advice",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "Before anyone can try our invoicing app, we require name, work address, phone number, team size, password, and a card. Only 28% of people who start finish creating an account. Which fields would you challenge first if the product can create a first invoice with just an address and password?"
+    },
+    {
+      "id": "signup-a2",
+      "kind": "advice",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "People creating accounts in our cafe rota app have to verify their inbox before they can see anything, and 35% never return from that step. Should we let them draft a schedule first? They wouldn't be allowed to invite staff or send notifications until they verify."
+    },
+    {
+      "id": "site-architecture-a1",
+      "kind": "advice",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "We're rebuilding the website for a proposal app used by freelancers, agencies, and consultants. Should the main menu lead with audiences or features? We need a homepage, plans, templates, help docs, and pages for each audience, but I want a structure people can understand quickly."
+    },
+    {
+      "id": "site-architecture-a2",
+      "kind": "advice",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "Our scheduling product is adding a template library to an existing Webflow website. Would you put it at templates.rosternest.example or rosternest.example/templates, and how should people move between templates, product pages, and help docs? We have 60 templates and one person maintaining the site."
+    },
+    {
+      "id": "sms-a1",
+      "kind": "advice",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Customers give us their mobile number for delivery updates when buying coffee beans. Can we also send them a weekend discount through that number, or does that need a separate opt-in? We sell only to US buyers and currently ask permission only for order updates."
+    },
+    {
+      "id": "sms-a2",
+      "kind": "advice",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "We have 1,200 US shoppers who explicitly opted into promotional phone messages from our coffee brand. Is three messages a week too much for a product people reorder monthly? What cadence and suppression rules would you start with, especially for people who just bought?"
+    },
+    {
+      "id": "social-a1",
+      "kind": "advice",
+      "expect": [
+        "social"
+      ],
+      "prompt": "I'm a bootstrapped founder selling scheduling software to cafe owners. On LinkedIn, should I write from my own account or the company account if I only have two hours a week? Give me five things to talk about that aren't just product announcements."
+    },
+    {
+      "id": "social-a2",
+      "kind": "advice",
+      "expect": [
+        "social"
+      ],
+      "prompt": "Could you turn this experience into a short LinkedIn post in a plain founder voice: I watched a cafe manager spend Sunday night rebuilding a rota after two staff swaps, so we added reusable weekly schedules to RosterNest. I want other cafe owners to share how they handle swaps, not book a demo."
+    },
+    {
+      "id": "video-a1",
+      "kind": "advice",
+      "expect": [
+        "video"
+      ],
+      "prompt": "We need a 45-second homepage explainer for our invoice app, but nobody wants to appear on camera. We have real interface screenshots and a logo. Would you use a synthetic presenter, a screen recording with narration, or generated scenes? Give me a simple production approach for a $500 budget."
+    },
+    {
+      "id": "video-a2",
+      "kind": "advice",
+      "expect": [
+        "video"
+      ],
+      "prompt": "I want to produce a 20-second animated product update every Friday, always with the same layout but a new feature title, three screenshots, and one closing sentence. Our team knows React. Would you make these by hand or build a reusable rendering setup, and what assets should we standardize?"
+    },
+    {
+      "id": "none-a1",
+      "kind": "none",
+      "expect": [],
+      "prompt": "I have rice, two eggs, frozen peas, and soy sauce. What's a quick dinner I can make in one pan?"
+    },
+    {
+      "id": "none-a2",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Why does the Moon look larger near the horizon even though it hasn't actually moved closer to me? Explain it for a curious twelve-year-old."
+    },
+    {
+      "id": "none-a3",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Can you help me write a kind note to my upstairs neighbor asking them to lower the music after 10 p.m.? I don't know their name and don't want to sound hostile."
+    },
+    {
+      "id": "none-a4",
+      "kind": "none",
+      "expect": [],
+      "prompt": "In Python, why does changing a nested list inside a shallow copy also change the original? Show a tiny example and a safe way to make an independent copy."
+    },
+    {
+      "id": "none-a5",
+      "kind": "none",
+      "expect": [],
+      "prompt": "My basil plant is on an east-facing windowsill, gets watered every day, and has yellow lower leaves. What should I check before watering it more?"
+    },
+    {
+      "id": "none-a6",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Explain the difference between a major and a minor chord on a piano using C major and C minor as examples."
+    },
+    {
+      "id": "none-a7",
+      "kind": "none",
+      "expect": [],
+      "prompt": "I can practice chess for 20 minutes a day and keep hanging pieces in one move. What would a sensible beginner practice routine look like?"
+    },
+    {
+      "id": "none-a8",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Can you draft a simple household chore rota for Alex and Sam? They need to alternate dishes daily, vacuum once a week, and take the bins out every Thursday night."
+    }
+  ]
+}

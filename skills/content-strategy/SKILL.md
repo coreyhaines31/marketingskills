@@ -1,8 +1,8 @@
 ---
 name: content-strategy
-description: "When the user wants to plan a content strategy: what to write, topic clusters and pillars, editorial calendars, and content roadmaps tied to customers and search, especially when posts aren't bringing in customers. For writing individual pieces, see copywriting. For SEO audits, see seo-audit. For social content, see social."
+description: "When the user wants to plan content, or asks what to write about, which topics matter, or why posts bring no customers: topic clusters, pillars, editorial calendars, content roadmaps tied to customers and search. For writing pieces, see copywriting. For SEO audits, see seo-audit. For social content, see social."
 metadata:
-  version: 2.1.6
+  version: 2.1.7
 ---
 
 # Content Strategy
