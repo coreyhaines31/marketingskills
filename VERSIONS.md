@@ -60,6 +60,14 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.14.3 (2026-11-09)
+
+Shorter skill descriptions, so Claude Code shows all of them.
+
+- **Every skill** (patch bump each): descriptions rewritten to 482 characters or fewer, 18,526 in total (down from 42,105). Claude Code caps the skill listing it sends the model at about 30,000 characters, and past the cap a skill appears as a bare name: before this release, 26 of 53 skills had no description in the listing even with the pack installed alone. Each description now says what the skill does, the distinct situations it covers, its operative rule, and the neighbouring skill to use instead, starting with "When the user wants to". On the new trigger eval (Sonnet), the right skill was picked for 99.4% of prompts (from 96.2%) with the pack alone, 98.7% (from 94.3%) with 90 other skills installed, and 87.7% (from 79.2%) on held-out prompts written without the descriptions, with other skills installed.
+- **Trigger eval** (`scripts/trigger-eval.mjs`, `evals/triggers/`): runs prompts through headless Claude Code with the pack as a plugin and scores the first skill invoked. Includes 171 prompts across all skills, a 114-prompt held-out set, an option to install other skills alongside, and contract tests.
+- **Description budget**: `scripts/check-versions.mjs` now fails a PR if a description passes 500 characters or the pack passes 24,000. AGENTS.md and CONTRIBUTING.md explain the limit and how to test description changes.
+
 ### 2.14.2 (2026-10-30)
 
 Organic short-form growth for apps and products: earn posting volume with views, and pick formats by what they produce.
