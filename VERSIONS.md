@@ -33,12 +33,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | link-building | 1.0.2 | 2026-11-09 |
 | marketing-council | 1.0.1 | 2026-11-09 |
 | marketing-ideas | 2.0.3 | 2026-11-09 |
-| marketing-loops | 1.8.1 | 2026-11-09 |
+| marketing-loops | 1.8.2 | 2026-11-09 |
 | marketing-plan | 1.2.3 | 2026-11-09 |
 | marketing-psychology | 2.0.1 | 2026-11-09 |
 | offers | 1.0.4 | 2026-11-09 |
 | onboarding | 2.0.3 | 2026-11-09 |
-| ads | 2.7.1 | 2026-11-09 |
+| ads | 2.7.2 | 2026-11-09 |
 | paywalls | 2.1.2 | 2026-11-09 |
 | popups | 2.0.2 | 2026-11-09 |
 | pricing | 2.1.5 | 2026-11-09 |
@@ -63,6 +63,13 @@ Current versions of all skills. Agents can compare against local versions to che
 ### 2.14.7 (2026-11-09)
 
 - **social** (2.4.3 → 2.5.0): new `references/ship-post.md` for build-in-public posts that start from the commit log (closes #833, by @thiguillaumat-art). It reads the git log and diff since a ref, asks the developer one question (what was annoying or impossible before, and what's different now), picks the one user-visible change, leads with the user's pain rather than the implementation, and drafts one X post and one subreddit post. Hard rules: no number that isn't in the commits, the diff or the developer's answer; no claims about user behaviour nobody reported; flag a user sentence the code doesn't support; drafts only; say so when the week was only chores. SKILL.md links it next to the No AI Tells section, and the description gains a build-in-public trigger. New evals (ids 11–14).
+
+### 2.14.6 (2026-11-09)
+
+The ads operating check now defines "normal variance" as the trailing 6-8 period range, so a single period-over-period swing no longer triggers a change.
+
+- **ads** (2.7.1 → 2.7.2): the operating check pulls the trailing 6-8 periods, calls HOLD when a metric sits inside that range, and treats three or more periods moving the same way as a real movement. Spend, tracking, and broken-page problems, and target-based stop thresholds such as cost per qualified lead above 1.5× TCPL, skip the range gate.
+- **marketing-loops** (1.8.1 → 1.8.2): the loop catalog applies the same trailing-range baseline to its performance loops.
 
 ### 2.14.5 (2026-11-09)
 
