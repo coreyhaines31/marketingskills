@@ -13,7 +13,7 @@ test('skillsInvoked reads Skill tool calls and cost from stream-json', async () 
     'not json',
     JSON.stringify({ type: 'result', total_cost_usd: 0.05 }),
   ].join('\n');
-  assert.deepEqual(skillsInvoked(stream), { skills: ['marketing-skills:cro'], cost: 0.05, finished: true });
+  assert.deepEqual(skillsInvoked(stream), { skills: ['marketing-skills:cro'], cost: 0.05, finished: true, text: 'hi' });
   assert.equal(skillsInvoked('').finished, false);
 });
 
