@@ -35,7 +35,7 @@ Claude Code caps the skill listing it sends the model at about 30,000 characters
 |---|---|---|---|
 | Before 2.14.3 | 42,105 | 26 of 53 | 29 of 53 |
 | 2.14.3 | 19,259 | 0 of 53 | 2 of 53 (the cap is shared) |
-| 2.14.8 | 18,595 | 0 of 53 | 0 of 53 |
+| 2.14.8 | 18,676 | 0 of 53 | 0 of 53 |
 
 Keep each description at 500 characters or fewer: what the skill does, the questions it answers, the distinct situations it covers, any operative rule, and which neighbouring skill to use instead.
 

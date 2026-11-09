@@ -56,7 +56,7 @@
     "description": "Plan content topics, pillars, clusters, editorial calendars, blog strategy, and content roadmaps before writing individual pieces."
   },
   "conversion-tracking": {
-    "source_description_sha256": "394dec5de967367bb0584b487b1c44020305af98483942e3bc5b393f90f4185e",
+    "source_description_sha256": "177bc6b4235867e070d2817950b654310b8595c6d56c578488bf372b34231c68",
     "description": "Set up, audit, and fix conversion tracking from forms, bookings, and checkouts to Google Ads, Meta, GA4, LinkedIn, TikTok, and Microsoft Ads."
   },
   "copy-editing": {
@@ -140,7 +140,7 @@
     "description": "Optimize post-signup activation, setup, first-run experience, empty states, aha moments, and time to value."
   },
   "paywalls": {
-    "source_description_sha256": "3b6a7cb60713dd05d5585d21ebfdeeda516314c9615071512aeeac2cbf95c028",
+    "source_description_sha256": "4962d3ffdcc7d0eea3acbb772c46464031be4b950d01969e00c988de4c724878",
     "description": "Improve in-app paywalls, upgrade prompts, feature gates, trial screens, and mobile subscription-app paywalls."
   },
   "popups": {
@@ -152,11 +152,11 @@
     "description": "Choose pricing, tiers, value metrics, freemium, trials, and packaging; audit pricing pages for buyers and AI readability."
   },
   "product-marketing": {
-    "source_description_sha256": "5e556702765bab71f501ca8d15a4e7a69ff8220ba822ae22fee12c2f5a7c5044",
+    "source_description_sha256": "a17ec16581c0e27a8ccbddc140b27ac352e1019521926f725e4cbdb46f2e05f7",
     "description": "Create or update the shared product marketing context: positioning, ICP, brand voice, paid ads targets, and the learnings ledger other marketing skills read."
   },
   "programmatic-seo": {
-    "source_description_sha256": "8f8c5b75880cf0925b95a6d872aab3fcdf215e0a1cc2b7d5bb8425837da61146",
+    "source_description_sha256": "779bbc64f1d18ee65f9653bfa2ec106450c5754992c98501e8cbe00b3e2a7faf",
     "description": "Plan or build SEO pages at scale: templates, directories, locations, comparisons, integrations, and choosing a CMS or platform that can publish them."
   },
   "prospecting": {
