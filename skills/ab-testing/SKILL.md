@@ -1,8 +1,8 @@
 ---
 name: ab-testing
-description: When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program. Also use when the user mentions "A/B test," "split test," "experiment," "test this change," "variant copy," "multivariate test," "hypothesis," "should I test this," "which version is better," "test two versions," "statistical significance," "how long should I run this test," "growth experiments," "experiment velocity," "experiment backlog," "ICE score," "experimentation program," or "experiment playbook." Use this whenever someone is comparing two approaches and wants to measure which performs better, or when they want to build a systematic experimentation practice. For tracking implementation, see analytics. For page-level conversion optimization, see cro.
+description: "When the user wants to plan, design, and read A/B tests and experiments, or build a growth experimentation program. Use for split tests, sample size and test duration, statistical significance, 'which version is better', hypotheses, and experiment backlogs or ICE scoring. For tracking setup, see analytics. For page-level conversion fixes, see cro."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 # A/B Test Setup

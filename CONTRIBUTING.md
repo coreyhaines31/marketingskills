@@ -35,7 +35,7 @@ Optional frontmatter fields: `license` (default: MIT), `metadata` (author, versi
 
 - **Directory name**: lowercase, hyphens only (e.g., `emails`)
 - **Name field**: must match directory name exactly
-- **Description**: 1-1024 characters, include trigger phrases
+- **Description**: 1-500 characters: what the skill does, when to use it, and which related skill to use instead
 
 ### 4. Structure your skill
 

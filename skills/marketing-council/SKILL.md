@@ -1,8 +1,8 @@
 ---
 name: marketing-council
-description: "When the user wants multiple expert perspectives on a marketing question — a simulated board of advisors staffed by legendary marketers (Seth Godin, David Ogilvy, Eugene Schwartz, April Dunford, Rory Sutherland, Alex Hormozi, Byron Sharp, and more). Also use when the user mentions 'marketing council,' 'board of advisors,' 'advisory board,' 'what would Seth Godin say,' 'what would Ogilvy think,' 'channel Hormozi,' 'get multiple perspectives,' 'debate this,' 'have the council review,' 'marketing mentors,' or asks how a famous marketer would approach their problem. The council gives each advisor's take through their documented frameworks, surfaces where they disagree, and synthesizes a recommendation. For executing the winning direction, hand off to positioning, offers, copywriting, ads, or the relevant skill."
+description: "When the user wants several expert perspectives on a marketing decision from a simulated board of legendary marketers (Seth Godin, David Ogilvy, April Dunford, Rory Sutherland, Alex Hormozi, Byron Sharp, and more): each advisor's take grounded in their documented frameworks, where they disagree, and a recommendation. For executing the direction, hand off to the relevant skill."
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Marketing Council

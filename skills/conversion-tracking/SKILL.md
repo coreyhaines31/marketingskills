@@ -1,8 +1,8 @@
 ---
 name: conversion-tracking
-description: Set up, audit, verify, or fix website conversion tracking. Use when the conversion is a form submission, booked meeting, chat, phone call, signup, or purchase; when conversions must reach Google Ads, Meta, GA4, LinkedIn, TikTok, or Microsoft Ads; when the work involves GTM tags and dataLayer events, pixels, the Conversions API (CAPI), Enhanced Conversions, server-side tagging, or gclid and fbclid capture; or when the user reports conversion problems like "conversions stopped", "double counting", "spend but no conversions", "GA4 and Google Ads don't match", or an Unverified or Inactive status. Covers lead gen and ecommerce. Always fire on confirmed success, never the submit click; verify a test conversion arrives; diagnose before changing anything; offer free and native paths alongside paid ones and disclose partner tools. For tracking plans and UTMs, see analytics. For attribution models, see attribution. For campaigns and bidding, see ads. For CRM lead-stage design, see revops.
+description: "When the user wants to set up, audit, or fix conversion tracking so form fills, bookings, calls, signups, and purchases reach Google Ads, Meta, GA4, LinkedIn, and TikTok: GTM, pixels, CAPI, Enhanced Conversions, offline imports, double counting. Fire on confirmed success, not the submit click; verify a test conversion arrives; diagnose before changing; offer free paths and disclose partner tools. For tracking plans, see analytics. For attribution, see attribution. For bidding, see ads."
 metadata:
-  version: 1.0.1
+  version: 1.0.4
 ---
 
 # Conversion Tracking
