@@ -9,6 +9,8 @@
 //   - plugin.json, marketplace.json, and .codex-plugin/plugin.json share one repo version, matching the newest `### x.y.z` block in VERSIONS.md
 //   - every file in skills/<name>/references/ is linked from that skill's SKILL.md
 //     or from another of its reference files (no orphans)
+//   - every description is at most 500 characters, and all of them together at most 24,000
+//     (Claude Code drops descriptions past a ~30,000-character skill listing; see evals/triggers/README.md)
 // With --base:
 //   - a skill whose files changed must bump metadata.version (evals/ is exempt: it doesn't ship behavior)
 //   - if any skill changed, was added, or was removed, the repo version must bump
@@ -56,6 +58,23 @@ for (const name of skills) {
 for (const name of Object.keys(table)) {
   if (!skills.includes(name)) errors.push(`VERSIONS.md: row for ${name}, but skills/${name}/SKILL.md doesn't exist`);
 }
+
+// Description budget
+const DESC_MAX = 500;
+const DESC_TOTAL_MAX = 24000;
+const descriptionOf = (text) => {
+  const raw = frontmatter(text).match(/^description:[ \t]*(.*)$/m)?.[1]?.trim() ?? "";
+  if (raw.startsWith('"')) return JSON.parse(raw);
+  if (raw.startsWith("'")) return raw.slice(1, -1).replace(/''/g, "'");
+  return raw;
+};
+let descTotal = 0;
+for (const name of skills) {
+  const len = descriptionOf(read(`skills/${name}/SKILL.md`)).length;
+  descTotal += len;
+  if (len > DESC_MAX) errors.push(`skills/${name}/SKILL.md: description is ${len} chars; keep it at ${DESC_MAX} or fewer`);
+}
+if (descTotal > DESC_TOTAL_MAX) errors.push(`descriptions total ${descTotal} chars across ${skills.length} skills; keep the pack at ${DESC_TOTAL_MAX} or fewer`);
 
 // Repo version
 const plugin = repoVersion(read(".claude-plugin/plugin.json"));
@@ -125,4 +144,4 @@ if (errors.length) {
   console.error(errors.map((e) => `✗ ${e}`).join("\n"));
   process.exit(1);
 }
-console.log(`✓ versions consistent across ${skills.length} skills (repo ${plugin})${base ? `, bumps checked against ${base}` : ""}`);
+console.log(`✓ versions consistent across ${skills.length} skills (repo ${plugin})${base ? `, bumps checked against ${base}` : ""}; descriptions ${descTotal} chars`);
