@@ -17,7 +17,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | competitor-profiling | 2.1.6 | 2026-11-09 |
 | competitors | 2.3.1 | 2026-11-09 |
 | content-strategy | 2.1.6 | 2026-11-09 |
-| conversion-tracking | 1.0.2 | 2026-11-09 |
+| conversion-tracking | 1.0.3 | 2026-11-09 |
 | copy-editing | 2.2.2 | 2026-11-09 |
 | copywriting | 2.3.3 | 2026-11-09 |
 | cro | 2.0.4 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.1 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.4 (2026-11-09)
+
+- **conversion-tracking** (1.0.2 → 1.0.3): two detector fixes. `generic-ajax-form.js` no longer skips a form whose own handler called `preventDefault()`, which every AJAX form does to send its request with fetch or XHR, so an inline success message after the submit now pushes `form_submitted` (#912). `thank-you-page.js` no longer counts a refresh or a back/forward return to the confirmation page as another conversion when `COUNT_EVERY_VIEW` is false; it reads the browser's navigation type, so a new arrival on the path still counts and single-page-app route changes keep the in-memory guard (#913). Both GTM detect recipes regenerated, and `tests/assets/` gains a regression test per snippet.
 
 ### 2.14.3 (2026-11-09)
 

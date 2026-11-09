@@ -143,8 +143,10 @@
       var formEl = event.target;
       if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;
 
-      // Another handler already cancelled this submission.
-      if (event.defaultPrevented) return;
+      // An AJAX handler has normally called preventDefault() by now, to stop
+      // the browser navigating. That cancels the native submit, not the
+      // submission, so it is no reason to skip the form: the validity gate
+      // below and the success and error checks decide what happened.
 
       // Constraint validation gate: an invalid form cannot have submitted.
       try {
