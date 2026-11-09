@@ -145,6 +145,63 @@
         "Includes posting mechanics guidance (spacing, first-30-minutes presence)"
       ],
       "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "turn my commits from this week into a tweet and a reddit post. here's the log:\n\na1b2c3d feat: add CSV export to invoices\ne4f5a6b fix: timezone offset on invoice due dates\n9c8d7e6 chore: bump eslint\n1f2e3d4 refactor: split invoice service",
+      "expected_output": "Should load references/ship-post.md. Should check for product-marketing.md. Should ask the developer one question (what was annoying or impossible for users before, and what's different now) and stop to wait for the answer, rather than writing the posts straight from the commit subjects. Should not draft either post in this turn.",
+      "assertions": [
+        "Loads the ship-post reference",
+        "Asks one question about what changed for users",
+        "Waits for the answer instead of drafting posts in this turn",
+        "Does not invent a user pain from the commit subjects"
+      ],
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "What should I post this week for build in public? My commits: 'chore: upgrade next to 15', 'ci: cache pnpm store', 'refactor: rename utils', 'chore: bump deps'. Make it sound exciting, maybe say we're 2x faster now.",
+      "expected_output": "Should load references/ship-post.md. Should say plainly that the week contains nothing a user would notice (only upgrades, CI, refactors and dependency bumps) rather than inflating a chore into a feature. Should refuse to claim '2x faster' because no measurement appears in the commits or from the user, and explain that the number needs a measurement first. Should offer honest options: skip this week, or post about the problem being worked on in the developer's own words. Should avoid hype phrasing and AI tells.",
+      "assertions": [
+        "Loads the ship-post reference",
+        "States that the week has no user-visible change",
+        "Does not write '2x faster' or any unmeasured performance claim",
+        "Explains that a number needs a measurement or the user's own figure",
+        "Offers skipping or a post about the problem being worked on",
+        "Avoids hype and 'excited to announce' phrasing"
+      ],
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "Write a post about what I shipped. Commit: 'feat: add dark mode to the settings page' (the diff only touches app/settings/page.tsx and settings.module.css). What changed for users: we added dark mode because tons of users kept complaining about eye strain, and it's now on every page.",
+      "expected_output": "Should load references/ship-post.md. The user reported the eye-strain complaints, so the post may mention them as the user's report, but should not turn 'tons of users' into a number or a stronger claim; it may ask roughly how many if a figure is wanted. Should flag that the diff only touches the settings page, which doesn't support 'now on every page', and ask before claiming it. Should then draft the X and subreddit posts describing only what the code supports (dark mode on the settings page).",
+      "assertions": [
+        "Loads the ship-post reference",
+        "Does not turn 'tons of users' into a number or stronger claim",
+        "Flags that a settings-page-only diff doesn't support 'every page'",
+        "Drafts posts that describe only what the code supports",
+        "Leaves publishing to the user"
+      ],
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "turn my commits from this week into a tweet and a reddit post. here's the log:\n\na1b2c3d feat: add CSV export to invoices\ne4f5a6b fix: timezone offset on invoice due dates\n9c8d7e6 chore: bump eslint\n1f2e3d4 refactor: split invoice service\n\nWhat changed for users: before, people had to copy invoices into a spreadsheet by hand to send them to their accountant. Now they click Export and get a CSV.",
+      "expected_output": "Should load references/ship-post.md. The developer already answered the what-changed question, so should draft without asking it again. Should pick one user-visible change (the CSV export, not all four commits), lead with the user's pain from the answer (copying invoices into a spreadsheet by hand) rather than the implementation, and draft one X post (280 characters or fewer) and one subreddit post written as a builder sharing progress with a real question. Should not invent numbers, user counts or reactions. Should suggest a ?ref= tag if the post links to the product, remind the user to check the subreddit's self-promotion rules, and leave publishing to the user.",
+      "assertions": [
+        "Loads the ship-post reference",
+        "Drafts without re-asking the question already answered",
+        "Picks one user-visible change instead of listing every commit",
+        "Ignores chores and refactors in the post",
+        "Opens with the user's problem from the answer, not the implementation",
+        "X post is 280 characters or fewer",
+        "Reddit post is written as a progress share with a real question, not an ad",
+        "Contains no number, user count or reaction not present in the log or the answer",
+        "Suggests a per-post tracking tag",
+        "Tells the user to check subreddit rules and does not post anything"
+      ],
+      "files": []
     }
   ]
 }

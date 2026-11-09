@@ -204,7 +204,7 @@
     "description": "Plan SMS, MMS, and WhatsApp campaigns, lifecycle texts, transactional messages, opt-ins, templates, and messaging compliance."
   },
   "social": {
-    "source_description_sha256": "ddbac665d9fe069eccb20bce12fe6ca77499df20a79b40e2ec076da873a8c21d",
+    "source_description_sha256": "8e33633d2352780fe52e23704e4875d16577baae423e75e48ccceebf5575d2d1",
     "description": "Create, repurpose, or schedule social posts, carousels, and short-video scripts; plan social strategy, listening, and engagement triage."
   },
   "video": {

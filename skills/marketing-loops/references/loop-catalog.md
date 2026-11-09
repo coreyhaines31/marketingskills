@@ -209,7 +209,7 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 
 ### The weekly ads-check loop
 - **Check cadence**: Weekly (Monday), or daily on accounts spending enough to move in a day
-- **Acts when**: Spend, traffic, conversion, creative, landing page, or tracking metrics move past the account's thresholds versus the prior 7 days or the targets in the context doc.
+- **Acts when**: Spend, traffic, conversion, creative, landing page, or tracking metrics move past the account's thresholds outside the account's trailing 6–8 period range (weeks on a weekly run, the same weekday on a daily run, not just the prior 7 days), move the same way for three or more periods, or cross the targets in the context doc. Spend, tracking, and broken-page problems, target-based stop thresholds, and the `ads` skill's Meta fatigue bands and reach guardrail act right away, without the range check.
 - **Purpose**: Make the weekly account review end in one decision per account.
 - **Skills used**: `ads`, `analytics`, `ad-creative`, `cro`
 - **Loop body**:
