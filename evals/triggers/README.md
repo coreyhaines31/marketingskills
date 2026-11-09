@@ -5,21 +5,27 @@ Checks whether Claude Code picks the right skill for a prompt when the whole pac
 ## Files
 
 - `prompts.json`: 3 prompts per skill (direct, indirect, near-miss) plus 12 non-marketing prompts. Written from each skill's scope.
-- `heldout.json`: 2 prompts per skill plus 8 non-marketing prompts, written from the skill bodies only, without reading descriptions. Use it to check that a description change helps on prompts nobody tuned it against.
-- `results/`: run output (git-ignored).
+- `heldout.json`: 2 prompts per skill plus 8 non-marketing prompts, written from the skill bodies only, without reading descriptions.
+- `heldout2.json`: 2 advice-style prompts per skill ("give me 5 ways", "is this enough"), written the same way.
+- `heldout3.json`: 2 judgement-style prompts per skill ("should we", "which of these", "how do I know if"), written the same way. Keep one set unread while tuning descriptions, and judge the change on it.
+- `results/`: run output (git-ignored). Missed rows include the model's reply, so you can tell a skipped skill from a fair clarifying question.
+
+Every prompt must include the material it refers to. A prompt that mentions "the URLs below" without them makes the model ask for them, which scores as a miss.
 
 ## Run
 
 ```bash
 node scripts/trigger-eval.mjs --label current                      # pack alone, prompts.json
-node scripts/trigger-eval.mjs --prompts evals/triggers/heldout.json --label current-heldout
+node scripts/trigger-eval.mjs --prompts evals/triggers/heldout3.json --label current-judgement
 node scripts/trigger-eval.mjs --plugin-dir ../variant --label variant   # a copy with edited descriptions
-node scripts/trigger-eval.mjs --extra-plugin-dir ../other-skills --label crowded
+node scripts/trigger-eval.mjs --extra-plugin-dir ../other-skills --repeat 2 --label crowded
 ```
 
 `--extra-plugin-dir` loads more skills next to the pack (a plugin folder with `.claude-plugin/plugin.json` and `skills/`), which is closer to a real install where the pack competes with other skills. Each prompt is one request on your logged-in Claude Code, about $0.05 on Sonnet.
 
-Outcomes: `pass`, `wrong-skill` (another skill from this pack), `other-skill` (a skill from outside the pack), `no-trigger` (no skill invoked), and `false-trigger` (a pack skill fired on a non-marketing prompt).
+Outcomes: `pass`, `wrong-skill` (another skill from this pack), `other-skill` (a skill from outside the pack), `no-trigger` (no skill invoked), `false-trigger` (a pack skill fired on a non-marketing prompt), and `error` (the run failed; left out of the scores).
+
+**Noise:** identical crowded runs of one 106-prompt set scored 80.2%, 84.0%, and 87.7%. Use `--repeat 2` or more for crowded runs, and don't read a change of a few points from one run.
 
 ## Why description length matters
 
@@ -27,20 +33,27 @@ Claude Code caps the skill listing it sends the model at about 30,000 characters
 
 | Pack | Description chars | Our skills shown name-only (pack alone) | With 90 other skills installed |
 |---|---|---|---|
-| Descriptions before 2.14.3 | 42,105 | 26 of 53 | 29 of 53 |
-| Descriptions from 2.14.3 | 19,259 | 0 of 53 | 2 of 53 (the cap is shared, and the other skills fill it) |
+| Before 2.14.3 | 42,105 | 26 of 53 | 29 of 53 |
+| 2.14.3 | 19,259 | 0 of 53 | 2 of 53 (the cap is shared) |
+| 2.14.8 | 18,595 | 0 of 53 | 0 of 53 |
 
-Keep each description at 500 characters or fewer: what the skill does, the distinct situations it covers, any operative rule, and which neighbouring skill to use instead.
+Keep each description at 500 characters or fewer: what the skill does, the questions it answers, the distinct situations it covers, any operative rule, and which neighbouring skill to use instead.
 
-## Results (Sonnet, one run each, 2026-11-09)
+## Why descriptions name the questions they answer
 
-| Prompt set | Condition | Before 2.14.3 | From 2.14.3 |
-|---|---|---|---|
-| prompts.json (159 marketing) | pack alone | 96.2% | 98.7% |
-| prompts.json | +90 other skills | 94.3% | 96.9% |
-| heldout.json (106 marketing) | pack alone | 87.7% | 90.6% |
-| heldout.json | +90 other skills | 81.1% | 89.6% |
+Descriptions that only say what a skill makes ("write", "plan", "create") lose advice and judgement questions: asked "should we say PaperTrail lacks SSO?" or "where would you look for buyers?", the model answers from general knowledge without loading the skill, most of all when many other skills are installed. From 2.14.8 each description opens with what the user wants to do, then the questions it answers ("or asks whether a result is real, when to stop a test, or which version won").
 
-Scored on the first skill invoked, with failed runs left out. No false triggers on non-marketing prompts and no failed runs in any cell. One run per cell, so a point or two is noise; the crowded held-out gain (+8.5) and the listing change are not.
+## Results (Sonnet, 2026-11-09)
 
-Most remaining held-out misses are `no-trigger`: the model answers directly without loading a skill, mostly on research-style prompts (competitor-profiling, customer-research, marketing-council, reverse-engineer-marketing). That's the next thing to work on. The one wrong pick in the 2.14.3 runs (analytics-2 going to attribution) was fixed after the run and rechecked on the analytics, attribution, and conversion-tracking prompts (28 of 28, alone and crowded).
+| Prompt set | Condition | Before 2.14.3 | 2.14.3 | 2.14.8 |
+|---|---|---|---|---|
+| prompts.json (159) | pack alone | 96.2% | 98.7% | 100% |
+| prompts.json | +90 other skills | 94.3% | 96.9% | 98.7% |
+| heldout.json (106) | +90 other skills | 81.1% (old prompts) | 94.3% | 97.2% |
+| heldout2.json, advice (106) | +90 other skills | | 80.2 / 84.0 / 87.7% | 93.4 / 94.3% |
+| heldout3.json, judgement (106) | pack alone | | 73.6% | 87.7% |
+| heldout3.json, judgement | +90 other skills | | 58.5 / 62.3% | 73.6 / 73.6% |
+
+heldout.json scores from 2.14.3 on use the corrected prompts (seven no longer point at missing material). The 2.14.8 wording was written after reading the heldout2 misses, so heldout3, which nobody read before the run, is the fair test of it. No false triggers on non-marketing prompts in any run.
+
+Judgement-style prompts with many other skills installed are still the weakest case (about 74%): the model answers short judgement calls itself. That's the next thing to work on.
