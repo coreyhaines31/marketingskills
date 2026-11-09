@@ -61,7 +61,7 @@ test('every trigger prompt expects real skills', async () => {
   const fs = require('node:fs');
   const root = path.join(__dirname, '..', '..');
   const skills = new Set(fs.readdirSync(path.join(root, 'skills')));
-  for (const file of ['prompts.json', 'heldout.json']) {
+  for (const file of ['prompts.json', 'heldout.json', 'heldout2.json']) {
     const { prompts } = JSON.parse(fs.readFileSync(path.join(root, 'evals', 'triggers', file), 'utf8'));
     const ids = new Set();
     for (const p of prompts) {
