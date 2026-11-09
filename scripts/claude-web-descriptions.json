@@ -16,7 +16,7 @@
     "description": "Improve AI search visibility, LLM citations, AEO/GEO, AI Overviews, and agent-readable site content; audit why AI answers overlook your brand."
   },
   "analytics": {
-    "source_description_sha256": "e2a2687065309ef1acae6f16fd56ba299b3830e2b2a6f3fd8a85d26af89fba08",
+    "source_description_sha256": "4c0555741d0c6e10dbefd4bb7384c9b4ced7cfa55aeeffb0367f601d185b06dd",
     "description": "Set up or audit GA4, conversion events, UTMs, partner link patterns, and tracking plans. Computes metrics from row-level data and compares rates only over matching closed windows."
   },
   "aso": {
