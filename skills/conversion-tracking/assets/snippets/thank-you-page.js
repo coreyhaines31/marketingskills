@@ -92,6 +92,17 @@
     };
   }
 
+  // A refresh or back/forward return to the confirmation page is suppressed
+  // up front, before the history wrappers exist. Otherwise a router calling
+  // replaceState on the same path before DOMContentLoaded would run check()
+  // without pageLoad and count the repeat visit.
+  try {
+    var initialPath = window.location.pathname;
+    if (!COUNT_EVERY_VIEW && matches(initialPath) && isRepeatPageLoad()) {
+      fired[initialPath] = true;
+    }
+  } catch (e) { /* ignore */ }
+
   try {
     wrapHistory('pushState');
     wrapHistory('replaceState');

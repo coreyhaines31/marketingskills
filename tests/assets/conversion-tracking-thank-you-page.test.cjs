@@ -14,7 +14,7 @@ const shipped = fs.readFileSync(snippetPath, 'utf8');
 
 function openTab() {
   return {
-    load(pathname, navigationType, code = shipped) {
+    load(pathname, navigationType, code = shipped, readyState = 'complete') {
       const timers = [], listeners = {};
       const location = { pathname, search: '', href: 'https://example.com' + pathname };
       const window = {
@@ -26,7 +26,8 @@ function openTab() {
         performance: { getEntriesByType: (t) => (t === 'navigation' ? [{ type: navigationType }] : []) },
         addEventListener(type, fn) { (listeners[type] = listeners[type] || []).push(fn); },
       };
-      const document = { readyState: 'complete', addEventListener() {} };
+      const docListeners = {};
+      const document = { readyState, addEventListener(type, fn) { (docListeners[type] = docListeners[type] || []).push(fn); } };
       vm.runInContext(code, vm.createContext({ window, document,
         setTimeout(fn) { timers.push(fn); return timers.length; }, clearTimeout() {} }), { filename: snippetPath });
       const flush = () => { for (const fn of timers.splice(0)) fn(); };
@@ -34,6 +35,8 @@ function openTab() {
       return {
         count: () => window.dataLayer.filter((e) => e.event === 'thank_you_page_view').length,
         pushState(url) { window.history.pushState({}, '', url); flush(); },
+        replaceState(url) { window.history.replaceState({}, '', url); flush(); },
+        domReady() { for (const fn of docListeners.DOMContentLoaded || []) fn(); flush(); },
         popstateTo(url) { location.pathname = url; for (const fn of listeners.popstate || []) fn({}); flush(); },
       };
     },
@@ -84,4 +87,20 @@ test('COUNT_EVERY_VIEW = true counts a refresh again', () => {
   const tab = openTab();
   tab.load('/thank-you', 'navigate', every);
   assert.equal(tab.load('/thank-you', 'reload', every).count(), 1);
+});
+test('a refresh still does not fire when a router replaces the URL before DOMContentLoaded', () => {
+  const tab = openTab();
+  tab.load('/thank-you', 'navigate');
+  for (const type of ['reload', 'back_forward']) {
+    const page = tab.load('/thank-you', type, shipped, 'loading');
+    page.replaceState('/thank-you');
+    page.domReady();
+    assert.equal(page.count(), 0, type);
+  }
+});
+test('a new arrival still fires once when the page is loading and a router replaces the URL', () => {
+  const page = openTab().load('/thank-you', 'navigate', shipped, 'loading');
+  page.replaceState('/thank-you');
+  page.domReady();
+  assert.equal(page.count(), 1);
 });
