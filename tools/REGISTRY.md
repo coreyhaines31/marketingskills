@@ -29,6 +29,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | ◆ Ploy | AI website & growth platform | [ploy.md](integrations/ploy.md) |
 | ◆ AIsa | SEO, search & social data | [aisa.md](integrations/aisa.md) |
 | ◆ Omnia | AI search visibility (AEO) | [omnia.md](integrations/omnia.md) |
+| ◆ Livestorm | Webinars & virtual events | [livestorm.md](integrations/livestorm.md) |
 <!-- PARTNERS:END -->
 
 <!-- The table above is generated from partners.json — run `node scripts/sync-partners.mjs`. -->
@@ -128,6 +129,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
+| post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -135,7 +137,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | g2 | Reviews | ✓ | - | [✓](clis/g2.js) | - | [g2.md](integrations/g2.md) |
 | onesignal | Push | ✓ | - | [✓](clis/onesignal.js) | ✓ | [onesignal.md](integrations/onesignal.md) |
 | demio | Webinar | ✓ | - | [✓](clis/demio.js) | - | [demio.md](integrations/demio.md) |
-| livestorm | Webinar | ✓ | ✓ | [✓](clis/livestorm.js) | - | [livestorm.md](integrations/livestorm.md) |
+| ◆ livestorm | Webinar | ✓ | ✓ | [✓](clis/livestorm.js) | - | [livestorm.md](integrations/livestorm.md) |
 | shopify | Commerce | ✓ | - | ✓ | ✓ | [shopify.md](integrations/shopify.md) |
 | wordpress | CMS | ✓ | - | ✓ | ✓ | [wordpress.md](integrations/wordpress.md) |
 | webflow | CMS | ✓ | ✓ | ✓ | ✓ | [webflow.md](integrations/webflow.md) |
@@ -328,8 +330,9 @@ Social media scheduling, management, and analytics.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
+| **post-bridge** | Scheduling one video to many accounts and platforms, per-post analytics | Short-form video focus; daily view snapshots |
 
-**Agent recommendation**: Buffer for scheduling and analytics across social platforms.
+**Agent recommendation**: Use the scheduler the user already has. Both schedule across platforms through an API and MCP.
 
 ### Video
 

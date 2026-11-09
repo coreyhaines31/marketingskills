@@ -1,8 +1,8 @@
 ---
 name: events
-description: "When the user wants to plan, run, sponsor, speak at, or get pipeline from events — webinars, conferences, trade shows, meetups, dinners, workshops, virtual summits, or user conferences. Also use when the user mentions 'event marketing,' 'field marketing,' 'run a webinar,' 'webinar funnel,' 'show-up rate,' 'should we sponsor,' 'sponsor a conference,' 'trade show booth,' 'booth strategy,' 'event ROI,' 'badge scans,' 'event follow-up,' 'speaking slot,' 'CFP,' 'conference talk,' 'host a dinner,' 'user conference,' or 'virtual summit.' Covers all four roles: hosting, sponsoring/exhibiting, speaking, and attending. For product launch moments, see launch. For the partnership side of joint webinars, see co-marketing. For ongoing community programs, see community-marketing. For podcast appearances, see public-relations. For the email sequences themselves, see emails."
+description: "When the user wants to plan, run, sponsor, or speak at events and turn them into pipeline: webinars, conferences, trade show booths, meetups, dinners, workshops, and user conferences, including show-up rates and follow-up. For launches, see launch. For joint-webinar partnerships, see co-marketing. For ongoing community programs, see community-marketing. For podcasts, see public-relations. For event email sequences, see emails."
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Event Marketing

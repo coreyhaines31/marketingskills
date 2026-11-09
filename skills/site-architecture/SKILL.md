@@ -1,8 +1,8 @@
 ---
 name: site-architecture
-description: When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking. Also use when the user mentions "sitemap," "site map," "visual sitemap," "site structure," "page hierarchy," "information architecture," "IA," "navigation design," "URL structure," "breadcrumbs," "internal linking strategy," "website planning," "what pages do I need," "how should I organize my site," "site navigation," "which website builder should I use," "migrate my website," or "add a blog to my existing site." Use this whenever someone is planning what pages a website should have, how they connect, and where to build them. NOT for XML sitemaps (that's technical SEO — see seo-audit). For SEO audits, see seo-audit. For structured data, see schema.
+description: "When the user wants to plan or restructure a website: page hierarchy, navigation, URL structure, visual sitemaps, internal linking, which pages you need, and which website builder to use or how to migrate. Not XML sitemaps (see seo-audit). For structured data, see schema."
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Site Architecture

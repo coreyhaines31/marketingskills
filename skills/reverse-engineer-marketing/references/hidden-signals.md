@@ -56,9 +56,9 @@ Public numbers that move with growth and are dated:
 
 | Counter | Where |
 |---|---|
-| Review count and velocity | G2, Capterra, Trustpilot, app stores. Sudden spikes usually mean a review campaign, which is a move |
+| Review count and velocity | `teardown.mjs reviews` for the App Store; G2, Capterra, Trustpilot, and Google Play exports through `reviews --from`. Sudden spikes usually mean a review campaign, which is a move |
 | App store rank and ratings | App Store and Google Play history (see **aso**) |
-| Developer adoption | GitHub stars and contributors over time, npm or PyPI downloads, Docker pulls |
+| Developer adoption | `teardown.mjs adoption --npm <pkg> --pypi <pkg> --github <owner/repo>`: monthly downloads and star history (stars need `GITHUB_TOKEN`). Docker pulls and contributors by hand |
 | Browser extensions | Chrome Web Store user counts (Wayback has old counts) |
 | Community size | Discord and Slack member counts on invite pages, subreddit subscribers, forum member counts |
 | Marketplace listings | Zapier, Slack, HubSpot, Shopify, Salesforce, Atlassian, and Chrome marketplaces: when each listing appeared, and install counts where shown |
@@ -66,7 +66,7 @@ Public numbers that move with growth and are dated:
 | AI referral traffic | Similarweb referrals from chatgpt.com and perplexity.ai |
 | AI visibility over time | The prompt tracker from stage 2, as share of voice by month |
 
-Add a counter to the timeline when it has dates. A review spike, a marketplace launch, or a jump in GitHub stars is a move.
+Add a counter to the timeline when it has dates. A review spike, a marketplace launch, or a jump in GitHub stars is a move. The complaints inside those reviews feed the weak-spots read in stage 8 ([weak-spots.md](weak-spots.md)).
 
 ## How They See the Market
 

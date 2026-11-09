@@ -4,65 +4,90 @@ Current versions of all skills. Agents can compare against local versions to che
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
-| ab-testing | 2.0.4 | 2026-10-29 |
-| ad-creative | 2.12.2 | 2026-10-26 |
-| ai-seo | 2.12.0 | 2026-10-29 |
-| analytics | 2.2.2 | 2026-10-27 |
-| aso | 2.0.3 | 2026-10-27 |
-| attribution | 1.1.6 | 2026-10-19 |
-| churn-prevention | 2.0.3 | 2026-10-12 |
-| co-marketing | 2.0.3 | 2026-10-12 |
-| cold-email | 2.2.1 | 2026-10-27 |
-| community-marketing | 2.0.2 | 2026-10-27 |
-| competitor-profiling | 2.1.5 | 2026-10-30 |
-| competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.5 | 2026-10-27 |
-| conversion-tracking | 1.0.2 | 2026-11-02 |
-| copy-editing | 2.2.1 | 2026-10-27 |
-| copywriting | 2.3.2 | 2026-10-27 |
-| cro | 2.0.3 | 2026-10-08 |
-| customer-research | 2.0.5 | 2026-10-27 |
-| directory-submissions | 2.1.4 | 2026-10-27 |
-| emails | 2.1.4 | 2026-10-15 |
-| events | 1.0.0 | 2026-08-23 |
-| free-tools | 2.0.3 | 2026-10-15 |
-| image | 2.0.3 | 2026-10-27 |
-| influencer-marketing | 1.4.0 | 2026-10-15 |
-| launch | 2.2.0 | 2026-10-07 |
-| lead-magnets | 2.1.1 | 2026-10-27 |
-| link-building | 1.0.1 | 2026-10-19 |
-| marketing-council | 1.0.0 | 2026-07-06 |
-| marketing-ideas | 2.0.2 | 2026-10-30 |
-| marketing-loops | 1.7.0 | 2026-10-30 |
-| marketing-plan | 1.2.2 | 2026-10-12 |
-| marketing-psychology | 2.0.0 | 2026-05-05 |
-| offers | 1.0.3 | 2026-10-27 |
-| onboarding | 2.0.2 | 2026-10-12 |
-| ads | 2.7.0 | 2026-10-26 |
-| paywalls | 2.1.1 | 2026-10-27 |
-| popups | 2.0.1 | 2026-10-27 |
-| pricing | 2.1.4 | 2026-10-12 |
-| product-marketing | 2.2.0 | 2026-10-15 |
-| programmatic-seo | 2.1.1 | 2026-10-27 |
-| prospecting | 1.5.0 | 2026-10-27 |
-| public-relations | 1.2.1 | 2026-10-15 |
-| referrals | 2.2.1 | 2026-10-12 |
-| reverse-engineer-marketing | 1.0.0 | 2026-10-30 |
-| revops | 2.2.2 | 2026-10-27 |
-| sales-enablement | 2.4.0 | 2026-10-07 |
-| schema | 2.0.2 | 2026-10-08 |
-| seo-audit | 2.2.2 | 2026-10-15 |
-| signup | 2.0.1 | 2026-10-08 |
-| site-architecture | 2.1.0 | 2026-10-06 |
-| sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.1 | 2026-10-30 |
-| video | 2.4.0 | 2026-10-29 |
+| ab-testing | 2.0.5 | 2026-11-09 |
+| ad-creative | 2.12.3 | 2026-11-09 |
+| ai-seo | 2.12.1 | 2026-11-09 |
+| analytics | 2.2.3 | 2026-11-09 |
+| aso | 2.0.4 | 2026-11-09 |
+| attribution | 1.1.7 | 2026-11-09 |
+| churn-prevention | 2.0.4 | 2026-11-09 |
+| co-marketing | 2.0.4 | 2026-11-09 |
+| cold-email | 2.2.2 | 2026-11-09 |
+| community-marketing | 2.0.3 | 2026-11-09 |
+| competitor-profiling | 2.1.6 | 2026-11-09 |
+| competitors | 2.3.1 | 2026-11-09 |
+| content-strategy | 2.1.6 | 2026-11-09 |
+| conversion-tracking | 1.0.4 | 2026-11-09 |
+| copy-editing | 2.2.2 | 2026-11-09 |
+| copywriting | 2.3.3 | 2026-11-09 |
+| cro | 2.0.4 | 2026-11-09 |
+| customer-research | 2.0.6 | 2026-11-09 |
+| directory-submissions | 2.1.5 | 2026-11-09 |
+| emails | 2.1.5 | 2026-11-09 |
+| events | 1.0.1 | 2026-11-09 |
+| free-tools | 2.0.4 | 2026-11-09 |
+| image | 2.0.4 | 2026-11-09 |
+| influencer-marketing | 1.4.1 | 2026-11-09 |
+| launch | 2.2.1 | 2026-11-09 |
+| lead-magnets | 2.1.2 | 2026-11-09 |
+| link-building | 1.0.2 | 2026-11-09 |
+| marketing-council | 1.0.1 | 2026-11-09 |
+| marketing-ideas | 2.0.3 | 2026-11-09 |
+| marketing-loops | 1.8.1 | 2026-11-09 |
+| marketing-plan | 1.2.3 | 2026-11-09 |
+| marketing-psychology | 2.0.1 | 2026-11-09 |
+| offers | 1.0.4 | 2026-11-09 |
+| onboarding | 2.0.3 | 2026-11-09 |
+| ads | 2.7.1 | 2026-11-09 |
+| paywalls | 2.1.2 | 2026-11-09 |
+| popups | 2.0.2 | 2026-11-09 |
+| pricing | 2.1.5 | 2026-11-09 |
+| product-marketing | 2.2.1 | 2026-11-09 |
+| programmatic-seo | 2.1.2 | 2026-11-09 |
+| prospecting | 1.5.1 | 2026-11-09 |
+| public-relations | 1.2.2 | 2026-11-09 |
+| referrals | 2.2.2 | 2026-11-09 |
+| reverse-engineer-marketing | 1.1.2 | 2026-11-09 |
+| revops | 2.2.3 | 2026-11-09 |
+| sales-enablement | 2.4.1 | 2026-11-09 |
+| schema | 2.0.3 | 2026-11-09 |
+| seo-audit | 2.2.3 | 2026-11-09 |
+| signup | 2.0.2 | 2026-11-09 |
+| site-architecture | 2.1.1 | 2026-11-09 |
+| sms | 1.1.1 | 2026-11-09 |
+| social | 2.4.3 | 2026-11-09 |
+| video | 2.4.1 | 2026-11-09 |
 
 ## Recent Changes
 
-### 2.14.1 (2026-11-02)
+### 2.14.5 (2026-11-09)
 
-- **conversion-tracking** (1.0.1 → 1.0.2): the Formidable Forms detector no longer records a conversion after a failed AJAX submit when the visitor later navigates to another same-origin page. A submit whose default was prevented never navigated natively, so its `pagehide` hand-off is skipped, and the sessionStorage marker's TTL now runs from the submit instead of the page exit. Snippet and GTM recipe kept in sync; contract tests added under `tests/assets/`. Reported in #924.
+- **conversion-tracking** (1.0.3 → 1.0.4): the Formidable Forms detector no longer records a conversion after a failed AJAX submit when the visitor later navigates to another same-origin page. A submit whose default was prevented never navigated natively, so its `pagehide` hand-off is skipped, and the sessionStorage marker's TTL now runs from the submit instead of the page exit. Snippet and GTM recipe kept in sync; contract tests added under `tests/assets/`. Reported in #924.
+
+### 2.14.4 (2026-11-09)
+
+- **conversion-tracking** (1.0.2 → 1.0.3): two detector fixes. `generic-ajax-form.js` no longer skips a form whose own handler called `preventDefault()`, which every AJAX form does to send its request with fetch or XHR, so an inline success message after the submit now pushes `form_submitted` (#912). `thank-you-page.js` no longer counts a refresh or a back/forward return to the confirmation page as another conversion when `COUNT_EVERY_VIEW` is false; it reads the browser's navigation type, so a new arrival on the path still counts and single-page-app route changes keep the in-memory guard (#913). Both GTM detect recipes regenerated, and `tests/assets/` gains a regression test per snippet.
+
+### 2.14.3 (2026-11-09)
+
+Shorter skill descriptions, so Claude Code shows all of them.
+
+- **Every skill** (patch bump each): descriptions rewritten to 491 characters or fewer, 19,259 in total (down from 42,105). Claude Code caps the skill listing it sends the model at about 30,000 characters, and past the cap a skill appears as a bare name: before this release, 26 of 53 skills had no description in the listing even with the pack installed alone; now none do. Each description says what the skill does, the distinct situations it covers, its operative rule, and the neighbouring skill to use instead, starting with "When the user wants to". On the new trigger eval (Sonnet), the right skill was picked for 98.7% of prompts (from 96.2%) with the pack alone, 96.9% (from 94.3%) with 90 other skills installed, and 89.6% (from 81.1%) on held-out prompts written without reading the descriptions, with other skills installed.
+- **Trigger eval** (`scripts/trigger-eval.mjs`, `evals/triggers/`): runs prompts through headless Claude Code with the pack as a plugin and scores the first skill invoked. Includes 171 prompts across all skills, a 114-prompt held-out set, an option to install other skills alongside, and contract tests.
+- **Description budget**: `scripts/check-versions.mjs` now fails a PR if a description passes 500 characters or the pack passes 24,000. AGENTS.md and CONTRIBUTING.md explain the limit and how to test description changes.
+
+### 2.14.2 (2026-10-30)
+
+Organic short-form growth for apps and products: earn posting volume with views, and pick formats by what they produce.
+
+- **social** (2.4.1 → 2.4.2): the short-form guide replaces the flat "2-4 posts a day to grow" table with a staged cadence (warm up, 1 thoughtful post a day until posts clear a view floor, up to 3 a day spaced 3-4 hours apart, then another warmed account rather than more posts per account, and a pause rule for stalled accounts). Adds a new-account warm-up checklist with compliance guardrails (brand-affiliated accounts, no bought or automated accounts, disclosed paid creators), a winning-format search that logs tests and calls winners on signups or installs rather than views, how to measure what views produce, and post-once-publish-everywhere.
+- **reverse-engineer-marketing** (1.1.0 → 1.1.1): the mobile apps pack adds account networks as a signal (unbranded niche accounts that share the app's link, with first post dates, cadence, and the format repeated across them) and a play for remaking their winning format.
+- **marketing-loops** (1.7.0 → 1.8.0): new format-finding loop that reads posts at 48 hours, applies the staged cadence per account, names the winning format by signups, and sends cadence increases and new accounts to a human. The catalog now has 60 loops.
+- **Tools**: new [Post Bridge](tools/integrations/post-bridge.md) integration guide (REST API, official MCP and CLI, multi-account posting, per-post daily view analytics), listed alongside Buffer; the Social Media recommendation in the registry is now neutral.
+
+### 2.14.1 (2026-10-30)
+
+- **reverse-engineer-marketing** (1.0.0 → 1.1.0): competitive intelligence additions. **Landscape mode** (`references/landscape.md`): `compare` profiles three to five competitors from outside (homepage scripts, marketing email platforms and ad-account verifications from DNS, sitemap page families, marketing roles on public job boards) and sorts the signals into table stakes, single-company bets, and the user's gaps (`--you`), with a CSV matrix. **Where they're weak** (`references/weak-spots.md`, a new section in stage 8): complaint themes from 1-2 star reviews, switching posts, price rises, abandoned search families, and markets left, each routed to a play (alternative pages, switching offers, positioning, battle cards), with rules for truthful comparative claims and trademarks. New script commands: `jobs` (Greenhouse, Lever, and Ashby boards: roles by function, marketing channels being hired for, tools named in posts, languages, first-marketing-hire wording), `reviews` (App Store reviews by month and the terms that skew to low ratings, or any exported review CSV with `--from`, reviewer names dropped), and `adoption` (monthly npm and PyPI downloads and GitHub star history as a free growth curve for developer tools). Watch mode adds a launch radar for clustered signals. Contract tests for every new parser and calculation; four new evals.
 
 ### 2.14.0 (2026-10-30)
 
