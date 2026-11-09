@@ -2,7 +2,7 @@
 name: ads
 description: "When the user wants to plan, run, and fix paid ad campaigns on Google Ads, Meta, LinkedIn, X, and other platforms: structure, targeting, budgets, bidding, retargeting, ABM, and diagnosing rising CPA or wasted spend. End recommendations with facts, hypotheses, and missing data, and label unavailable inputs MISSING instead of estimating. For ad copy and creative, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
 metadata:
-  version: 2.7.1
+  version: 2.7.2
 ---
 
 # Paid Ads
