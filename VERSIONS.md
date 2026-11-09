@@ -60,6 +60,13 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.14.9 (2026-11-09)
+
+Skills load for judgement calls too, even with many other skills installed.
+
+- **50 skills** (patch bump each): the "or asks" part of each description now covers the usual judgement calls in its area: choosing between two options ("which promise to lead with", "screen recording or AI avatar"), whether something is okay or fair ("is it fair to say a rival lacks offline mode", "is this markup allowed"), and whether it's enough ("are six directory listings enough"). Lower-value list items were cut to pay for it, so the pack stays at 18,685 characters and all 53 skills keep their descriptions with 90 other skills installed. On judgement-style prompts nobody read while writing the change, the right skill was picked for 92.5% (from 66.5%) with 90 other skills installed and 95.3% (from 85.8%) with the pack alone, with no false triggers. programmatic-seo, revops, and signup are unchanged.
+- **Trigger eval**: a fourth held-out set (`heldout4.json`, judgement-style), used unread to judge this change.
+
 ### 2.14.8 (2026-11-09)
 
 Skills now load for advice and judgement questions, not just requests to make something.
