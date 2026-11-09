@@ -1,8 +1,8 @@
 ---
 name: onboarding
-description: When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value. Also use when the user mentions "onboarding flow," "activation rate," "user activation," "first-run experience," "empty states," "onboarding checklist," "aha moment," "new user experience," "users aren't activating," "nobody completes setup," "low activation rate," "users sign up but don't use the product," "time to value," or "first session experience." Use this whenever users are signing up but not sticking around. For signup/registration optimization, see signup. For ongoing email sequences, see emails.
+description: "When the user wants to improve post-signup onboarding and activation: first-run experience, aha moments, checklists, empty states, and time to value, when users sign up but don't stick around. For the signup flow itself, see signup. For onboarding emails, see emails."
 metadata:
-  version: 2.0.2
+  version: 2.0.3
 ---
 
 # Onboarding CRO
