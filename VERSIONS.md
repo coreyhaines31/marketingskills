@@ -55,10 +55,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | signup | 2.0.2 | 2026-11-09 |
 | site-architecture | 2.1.1 | 2026-11-09 |
 | sms | 1.1.1 | 2026-11-09 |
-| social | 2.4.3 | 2026-11-09 |
+| social | 2.5.0 | 2026-11-09 |
 | video | 2.4.1 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.7 (2026-11-09)
+
+- **social** (2.4.3 → 2.5.0): new `references/ship-post.md` for build-in-public posts that start from the commit log (closes #833, by @thiguillaumat-art). It reads the git log and diff since a ref, asks the developer one question (what was annoying or impossible before, and what's different now), picks the one user-visible change, leads with the user's pain rather than the implementation, and drafts one X post and one subreddit post. Hard rules: no number that isn't in the commits, the diff or the developer's answer; no claims about user behaviour nobody reported; flag a user sentence the code doesn't support; drafts only; say so when the week was only chores. SKILL.md links it next to the No AI Tells section, and the description gains a build-in-public trigger. New evals (ids 11–14).
 
 ### 2.14.6 (2026-11-09)
 

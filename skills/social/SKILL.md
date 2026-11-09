@@ -1,8 +1,8 @@
 ---
 name: social
-description: "When the user wants to create and optimize organic social content for LinkedIn, X, Instagram, TikTok, and Facebook: posts, threads, carousels, short-form video scripts and hooks, repurposing, content calendars, growing a following, and social listening. No AI tells like 'it's not X, it's Y' or broetry. For content strategy, see content-strategy. For paid ads, see ad-creative. For press, see public-relations."
+description: "When the user wants to create and optimize organic social content for LinkedIn, X, Instagram, TikTok, and Facebook: posts, threads, carousels, short-form video scripts and hooks, repurposing, content calendars, growing a following, build-in-public posts from your commits, and social listening. No AI tells like 'it's not X, it's Y' or broetry. For content strategy, see content-strategy. For paid ads, see ad-creative. For press, see public-relations."
 metadata:
-  version: 2.4.3
+  version: 2.5.0
 ---
 
 # Social Content
@@ -128,6 +128,8 @@ Social-specific tells:
 - **Emoji as bullets**: 🚀 ✅ 💡 leading every line.
 
 Keep fragments and lists of three to one per post. For the full blacklist, use the **copywriting** skill's AI-tells reference.
+
+**For build-in-public posts from the commit log** (after a release, a merged PR or a deploy): See [references/ship-post.md](references/ship-post.md). It reads the git log and diff, asks the developer what changed for users, and drafts one X post and one subreddit post with hard rules: no number that isn't in the commits or the developer's answer, no claims about user behaviour nobody reported, drafts only.
 
 **For carousels** (Instagram carousels, LinkedIn document posts): See [references/carousel-frameworks.md](references/carousel-frameworks.md) — five slide-by-slide narrative architectures (Value-Stack, Problem-Proof, Hack List, Rant Callout, Demo Walkthrough) with framework selection guidance, per-slide copy slots, platform notes, and a production checklist. Pick the framework before writing slides.
 
