@@ -81,6 +81,21 @@ Practical today: make sure your highest-intent actions (signup, pricing, demo bo
 
 Whichever path, test that each tool rejects bad input, that submissions land where the normal form's do (CRM, inbox, conversion tracking), and that nothing bypasses consent or rate limits.
 
+### Ship a skill file for your product
+
+A lighter act surface than MCP or WebMCP: a public `SKILL.md` (linked from llms.txt and your docs) that a user loads into their own Claude Code or Cursor session. `llms.txt` tells an agent what you are; a skill file tells it how to buy or set up your product for this user, and it runs where the user's context already is.
+
+**Case: LinkDR (October 2026).** The backlink marketplace's `linkdr.com/SKILL.md` has the agent inspect the user's site, propose the target page and anchor text, price the order from a published table, and return one checkout link. The founder described it as a sales funnel running inside the buyer's agent. The pattern is the point; the numbers are theirs.
+
+What to put in it:
+- **Use the context the agent already has.** Onboarding stalls where the buyer must make a decision they can't make yet (which URL, which plan, which integration). Tell the agent to read the user's repo or site and propose an answer with its reasoning, then let the user confirm.
+- **Pricing as text in the file** — the full table and any volume or annual rules, so the agent quotes exact numbers instead of guessing.
+- **A prefilled checkout or signup URL.** Once the user agrees, the agent packs the choices into query parameters (`/agent/checkout?plan=pro&seats=5&billing=annual`) and hands back one link. No auth, API keys, or MCP install. Recompute the price on the server and never trust an amount in the URL; validate every parameter; add a source parameter so agent-built orders show up in conversion tracking.
+- **An offer for ordering through an agent is fine when it's stated as information** ("code AGENT50 takes $50 off"). The agent shows it; the user decides.
+- **Test with the agents your buyers use.** Run the file in a few fresh sessions and check that the agent proposes sensible defaults, quotes the right prices, and builds a valid URL.
+
+**Don't make it coercive.** Instructions that force an upsell on every user, or that are tuned until the agent always pushes your offer regardless of the user's goal, are the manipulation [agent-defaults.md](agent-defaults.md) warns about: agent platforms treat them as prompt injection, and users who notice stop trusting the tool. Recommend the option that fits the user's stated goal and budget, mention one larger option only when it serves that goal, and let the user say no.
+
 For products an agent installs mid-task (developer tools, APIs, infrastructure), the next step past acting on your site is being the vendor the agent picks in the first place. See [agent-defaults.md](agent-defaults.md).
 
 ## Citation-source volatility (why you diversify)

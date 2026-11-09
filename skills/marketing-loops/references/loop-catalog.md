@@ -174,6 +174,21 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 - **Stop / bail-out**: No outlier clears the bar → skip. Drafts go to the queue for approval.
 - **Output**: A short list of outliers, why each worked, and drafted adaptations.
 
+### The format-finding loop
+- **Check cadence**: Daily, reading posts that are at least 48 hours old
+- **Acts when**: A format clears the view floor and moves signups or installs, or an account stalls below the floor.
+- **Purpose**: Find the short-form format that drives signups for your product, then scale volume only once posts earn it.
+- **Skills used**: `social` (see its `references/short-form-video.md`), `video`, `analytics`
+- **Loop body**:
+  1. Pull views, watch time, comments, and link clicks for each post at 48 hours from the scheduler's or platform's analytics, and signups or installs by day from analytics.
+  2. Log each post against its format in the format sheet.
+  3. Per account, apply the staged cadence: stay at 1 a day until most posts clear the floor, go to up to 3 a day spaced 3-4 hours apart once they do, and propose a new warmed account rather than more posts per account after that.
+  4. Name the current winning format (clears the floor repeatedly and moves signups), and keep about one in five drafts testing new formats from the niche-outlier loop.
+- **Self-check**: Is the winner chosen on signups or installs, not views alone? Is any account posting faster than its views support?
+- **State / idempotency**: The format sheet, keyed by post ID; each account's current stage and last stage change.
+- **Stop / bail-out**: An account that can't break a few hundred views for 7 days → pause it 2-3 days and flag a format change. An account between that and the floor stays at 1 a day and keeps testing formats. Cadence increases and new accounts go to a human for approval.
+- **Output**: Today's numbers per format, any stage change per account, and tomorrow's drafts split between the winner and tests.
+
 ### The content-calendar refill loop
 - **Check cadence**: Weekly
 - **Acts when**: The editorial pipeline has fewer than N weeks of planned content queued.
@@ -356,6 +371,21 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 - **State / idempotency**: Store per-competitor snapshots; diff against the last, and don't re-flag a known change.
 - **Stop / bail-out**: No meaningful diffs → log "no change."
 - **Output**: A change digest + recommended responses.
+
+### The growth-move watch loop
+- **Check cadence**: Monthly
+- **Acts when**: A company already torn down with `reverse-engineer-marketing` makes a new growth move: a new ad network, page family, product loop, pricing change, content format, or hiring burst in one channel.
+- **Purpose**: Keep a teardown current, so the user's plays track what the company is doing now, not what it did a year ago.
+- **Skills used**: `reverse-engineer-marketing`, plus whichever skill a new move routes to
+- **Loop body**:
+  1. Rerun the teardown script's `stack`, `history`, `hero`, `site`, `dns`, and `subdomains` commands plus the industry pack's commands, check the ad libraries and paid promotion, and pull the last month's posts and new interviews.
+  2. Append new dated moves to a fresh move log.
+  3. Run the script's `diff` against the previous month's log.
+  4. For each new move, decide whether it changes a play, and name the skill to hand it to.
+- **Self-check**: Is the move real and dated, with a link? A pixel alone is inferred, so confirm it in the ad library before calling it a new paid channel.
+- **State / idempotency**: One dated move log per month in `teardowns/<target>/`; the diff only reports moves missing from the previous log, so nothing is flagged twice.
+- **Stop / bail-out**: No new moves → log "no new moves" and exit. Three straight quiet months → suggest dropping to quarterly.
+- **Output**: A short watch report: new moves with links, which plays they change, and where to hand them.
 
 ### The backlink-prospecting loop
 - **Check cadence**: Weekly
