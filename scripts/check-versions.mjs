@@ -19,7 +19,6 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
-import { descriptionOf } from "./trigger-eval.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
@@ -61,6 +60,26 @@ for (const name of Object.keys(table)) {
 }
 
 // Description budget
+// Same parser as descriptionOf in trigger-eval.mjs; this script stays standalone so tests can copy it alone.
+const descriptionOf = (text) => {
+  const lines = frontmatter(text).split("\n");
+  const i = lines.findIndex((l) => /^description:/.test(l));
+  if (i < 0) return "";
+  const raw = lines[i].replace(/^description:[ \t]*/, "");
+  if (/^[>|]/.test(raw)) {
+    const body = [];
+    for (const l of lines.slice(i + 1)) {
+      if (l.trim() && !/^[ \t]/.test(l)) break;
+      body.push(l.trim());
+    }
+    return raw.startsWith("|") ? body.join("\n").trim() : body.filter(Boolean).join(" ");
+  }
+  const dq = raw.match(/^"((?:[^"\\]|\\.)*)"/);
+  if (dq) return JSON.parse(`"${dq[1]}"`);
+  const sq = raw.match(/^'((?:[^']|'')*)'/);
+  if (sq) return sq[1].replace(/''/g, "'");
+  return raw.replace(/\s+#.*$/, "").trim();
+};
 const DESC_MAX = 500;
 const DESC_TOTAL_MAX = 24000;
 let descTotal = 0;
