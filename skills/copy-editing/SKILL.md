@@ -1,8 +1,8 @@
 ---
 name: copy-editing
-description: "When the user wants to edit, tighten, proofread, or refresh existing copy, or asks what's wrong with a draft, without rewriting it from scratch. Every edit removes AI tells: 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and sentences that trail into extra comma clauses. A request to fix one line gets a point edit to that line only. For new copy, see copywriting."
+description: "When the user wants to edit, tighten, proofread, or refresh existing copy, or asks whether to keep, cut, or change a line in it, without rewriting from scratch. Every edit removes AI tells: 'it's not X, it's Y' reveals, 'no X, no Y, no Z' lists, and sentences that trail into extra comma clauses. A request to fix one line gets a point edit to that line only. For new copy, see copywriting."
 metadata:
-  version: 2.2.3
+  version: 2.2.4
 ---
 
 # Copy Editing

@@ -1,8 +1,8 @@
 ---
 name: ad-creative
-description: "When the user wants to write or judge ad creative: headlines, primary text, hooks, and variations for Google, Meta, LinkedIn, and TikTok, fresh angles when creative fatigues, UGC and video formats, and which ads to test or kill. Test hypotheses name the metric, comparison, and expected direction. No AI tells like 'it's not X, it's Y'. For campaign strategy, see ads. For landing pages, see copywriting."
+description: "When the user wants to write or judge ad creative, or asks which ad, hook, or angle to run or kill: headlines, primary text, and variations for Google, Meta, LinkedIn, and TikTok, fresh angles when creative fatigues. Test hypotheses name the metric, comparison, and expected direction. No AI tells like 'it's not X, it's Y'. For campaign strategy, see ads. For landing pages, see copywriting."
 metadata:
-  version: 2.12.4
+  version: 2.12.5
 ---
 
 # Ad Creative

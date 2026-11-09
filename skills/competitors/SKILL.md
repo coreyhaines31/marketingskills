@@ -1,8 +1,8 @@
 ---
 name: competitors
-description: "When the user wants to create or audit comparison and alternative pages ('X vs Y', 'X alternative', 'best X alternatives'), or asks what claims about a competitor are safe to publish: page formats, fair claims, and outdated pages. For researching competitors, see competitor-profiling. For internal battle cards, see sales-enablement."
+description: "When the user wants to create or audit comparison and alternative pages ('X vs Y', 'X alternative', 'best X alternatives'), or asks what a public page may say about a competitor: page formats, fair claims, and outdated pages. For researching competitors, see competitor-profiling. For internal battle cards, see sales-enablement."
 metadata:
-  version: 2.3.2
+  version: 2.3.3
 ---
 
 # Competitor & Alternative Pages

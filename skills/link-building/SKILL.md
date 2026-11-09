@@ -1,8 +1,8 @@
 ---
 name: link-building
-description: "When the user wants to earn backlinks and mentions that lift rankings and AI citations, or asks how to get sites to link: link gaps, unlinked mentions, broken links, resource pages, guest posts, best-of outreach. Never buy links that pass ranking credit: paid or exchanged placements get rel=sponsored or nofollow. For press, see public-relations. For directories, see directory-submissions. For reviews, see referrals. For communities, see community-marketing."
+description: "When the user wants backlinks and mentions that lift rankings and AI citations, or asks how to get sites to link or whether a link tactic is safe: link gaps, unlinked mentions, broken links, guest posts, best-of outreach. Never buy links that pass ranking credit: paid or exchanged placements get rel=sponsored or nofollow. For press, see public-relations. For directories, see directory-submissions. For reviews, see referrals. For communities, see community-marketing."
 metadata:
-  version: 1.0.3
+  version: 1.0.4
 ---
 
 # Link Building

@@ -1,8 +1,8 @@
 ---
 name: sms
-description: "When the user wants SMS, MMS, or WhatsApp marketing, or asks whether texting customers is worth it: welcome, abandoned cart, post-purchase, win-back, and promo texts, TCPA and A2P 10DLC compliance, SMS vs email. For email, see emails. For phone capture popups, see popups."
+description: "When the user wants SMS, MMS, or WhatsApp marketing, or asks whether texting is worth it or a message is allowed: abandoned cart, win-back, and promo texts, WhatsApp templates and windows, TCPA and A2P 10DLC compliance, SMS vs email. For email, see emails. For phone capture popups, see popups."
 metadata:
-  version: 1.1.2
+  version: 1.1.3
 ---
 
 # SMS Marketing

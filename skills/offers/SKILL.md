@@ -1,8 +1,8 @@
 ---
 name: offers
-description: "When the user wants to design or improve the offer itself, or asks why it isn't selling or how to add urgency honestly: value stacking, bonuses, guarantees, scarcity, naming, payment plans, upsells. Best for services, courses, coaching, and high-ticket B2B; for self-serve SaaS, read pricing first. For price and tiers, see pricing. For the page, see copywriting. For the launch, see launch. For sales collateral, see sales-enablement."
+description: "When the user wants to design or improve the offer itself, or asks why it isn't selling or how to add urgency honestly: value stacking, bonuses, guarantees, scarcity, payment plans, upsells. Best for services, courses, coaching, and high-ticket B2B; for self-serve SaaS, read pricing first. For price and tiers, see pricing. For the page, see copywriting. For the launch, see launch. For sales collateral, see sales-enablement."
 metadata:
-  version: 1.0.5
+  version: 1.0.6
 ---
 
 # Offer Design

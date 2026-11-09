@@ -1,8 +1,8 @@
 ---
 name: public-relations
-description: "When the user wants press and media coverage, or asks whether a story is newsworthy or how to handle a crisis: journalist pitches, press releases, media lists, reporter requests like HARO, op-eds, podcast guest prep, newsjacking (public relations, not pull requests). For directories, see directory-submissions. For launches, see launch. For cold outreach to prospects, see cold-email."
+description: "When the user wants press and media coverage, or asks what to say to a reporter, whether a story is newsworthy, or how to handle a crisis: pitches, press releases, media lists, HARO, op-eds, podcast guest prep, newsjacking (public relations, not pull requests). For directories, see directory-submissions. For launches, see launch. For cold outreach to prospects, see cold-email."
 metadata:
-  version: 1.2.3
+  version: 1.2.4
 ---
 
 # Public Relations & Earned Media

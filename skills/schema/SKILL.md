@@ -1,8 +1,8 @@
 ---
 name: schema
-description: "When the user wants to add, fix, or validate schema markup (JSON-LD), or asks which schema type fits a page: product, review, recipe, breadcrumb, organization, FAQ, rich result eligibility (FAQ no longer earns Google rich results), and Search Console errors. For broader SEO, see seo-audit. For AI search, see ai-seo."
+description: "When the user wants to add, fix, or validate schema markup (JSON-LD), or asks which type fits a page or whether some markup is allowed: product, review, recipe, FAQ, rich result eligibility (FAQ no longer earns Google rich results), Search Console errors. For broader SEO, see seo-audit. For AI search, see ai-seo."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 # Schema Markup

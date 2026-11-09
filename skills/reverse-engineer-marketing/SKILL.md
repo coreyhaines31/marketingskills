@@ -1,8 +1,8 @@
 ---
 name: reverse-engineer-marketing
-description: "When the user wants to know how another company grew and what to copy, or asks what a competitor did and when: a dated log of their moves against their traffic from public data, archives, DNS, job posts, reviews, interviews, and their funnel, compared with the user's data, ending in plays routed to other skills. Also compares competitors and finds where they're weak. For a snapshot profile, see competitor-profiling. For comparison pages, see competitors."
+description: "When the user wants to know how another company grew and what to copy, or asks what a competitor did and when: a dated log of their moves against their traffic from public data, archives, job posts, reviews, and their funnel, compared with the user's data, ending in plays routed to other skills. Also finds where competitors are weak. For a snapshot profile, see competitor-profiling. For comparison pages, see competitors."
 metadata:
-  version: 1.1.3
+  version: 1.1.4
 ---
 
 # Reverse Engineer Marketing

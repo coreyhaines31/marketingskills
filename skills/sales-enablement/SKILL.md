@@ -1,8 +1,8 @@
 ---
 name: sales-enablement
-description: "When the user wants sales collateral, or asks how a rep or champion should answer an objection or make the case: decks, one-pagers, objection handling, demo scripts, talk tracks, battle cards, proposals, call scripts, win-loss. For public comparison pages, see competitors. For buyer research, see customer-research. For website copy, see copywriting. For cold emails, see cold-email. For the offer, see offers."
+description: "When the user wants sales collateral, or asks what to give a champion or rep, or how to answer an objection or make the case: decks, one-pagers, objection handling, demo scripts, talk tracks, battle cards, proposals, win-loss. For public comparison pages, see competitors. For buyer research, see customer-research. For website copy, see copywriting. For cold emails, see cold-email. For the offer, see offers."
 metadata:
-  version: 2.4.2
+  version: 2.4.3
 ---
 
 # Sales Enablement
