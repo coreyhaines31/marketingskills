@@ -60,6 +60,13 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.14.8 (2026-11-09)
+
+Skills now load for advice and judgement questions, not just requests to make something.
+
+- **Every skill** (patch bump each): each description now names the questions the skill answers ("or asks whether a result is real, when to stop a test, or which version won") next to what it makes. Descriptions that only said "write", "plan", or "create" lost questions like "should we say they lack SSO?" or "where would you look for buyers?": the model answered from general knowledge instead of loading the skill. Total 18,595 characters (from 19,259), so all 53 skills keep their descriptions even with 90 other skills installed (2 dropped before). On a judgement-style test set nobody read while writing the change, the right skill was picked for 87.7% of prompts (from 73.6%) with the pack alone and 73.6% (from about 60%) with 90 other skills installed. Advice-style prompts with other skills installed went from about 84% to 94%, and the original set reaches 100% alone.
+- **Trigger eval**: two more held-out sets (`heldout2.json` advice-style, `heldout3.json` judgement-style), seven `heldout.json` prompts now include the material they mention, and missed rows record the model's reply. The README covers run-to-run noise (about plus or minus 4 points on crowded runs) and when to use `--repeat`.
+
 ### 2.14.7 (2026-11-09)
 
 - **social** (2.4.3 → 2.5.0): new `references/ship-post.md` for build-in-public posts that start from the commit log (closes #833, by @thiguillaumat-art). It reads the git log and diff since a ref, asks the developer one question (what was annoying or impossible before, and what's different now), picks the one user-visible change, leads with the user's pain rather than the implementation, and drafts one X post and one subreddit post. Hard rules: no number that isn't in the commits, the diff or the developer's answer; no claims about user behaviour nobody reported; flag a user sentence the code doesn't support; drafts only; say so when the week was only chores. SKILL.md links it next to the No AI Tells section, and the description gains a build-in-public trigger. New evals (ids 11–14).
