@@ -28,7 +28,7 @@ Claude Code caps the skill listing it sends the model at about 30,000 characters
 | Pack | Description chars | Our skills shown name-only (pack alone) | With 90 other skills installed |
 |---|---|---|---|
 | Descriptions before 2.14.3 | 42,105 | 26 of 53 | 29 of 53 |
-| Descriptions from 2.14.3 | 18,526 | 0 of 53 | 0 of 53 |
+| Descriptions from 2.14.3 | 19,259 | 0 of 53 | 2 of 53 (the cap is shared, and the other skills fill it) |
 
 Keep each description at 500 characters or fewer: what the skill does, the distinct situations it covers, any operative rule, and which neighbouring skill to use instead.
 
@@ -36,9 +36,11 @@ Keep each description at 500 characters or fewer: what the skill does, the disti
 
 | Prompt set | Condition | Before 2.14.3 | From 2.14.3 |
 |---|---|---|---|
-| prompts.json (159 marketing) | pack alone | 96.2% | 99.4% |
-| prompts.json | +90 other skills | 94.3% | 98.7% |
-| heldout.json (106 marketing) | pack alone | 87.7% | 92.5% |
-| heldout.json | +90 other skills | 79.2% | 87.7% |
+| prompts.json (159 marketing) | pack alone | 96.2% | 98.7% |
+| prompts.json | +90 other skills | 94.3% | 96.9% |
+| heldout.json (106 marketing) | pack alone | 87.7% | 90.6% |
+| heldout.json | +90 other skills | 81.1% | 89.6% |
 
-No false triggers on non-marketing prompts in any run. Most remaining held-out misses are `no-trigger`: the model answers directly without loading a skill (competitor-profiling, customer-research, marketing-council, and reverse-engineer-marketing prompts). One run per cell, so differences of a point or two are noise; the crowded held-out gain (+8.5) and the listing change are not.
+Scored on the first skill invoked, with failed runs left out. No false triggers on non-marketing prompts and no failed runs in any cell. One run per cell, so a point or two is noise; the crowded held-out gain (+8.5) and the listing change are not.
+
+Most remaining held-out misses are `no-trigger`: the model answers directly without loading a skill, mostly on research-style prompts (competitor-profiling, customer-research, marketing-council, reverse-engineer-marketing). That's the next thing to work on. The one wrong pick in the 2.14.3 runs (analytics-2 going to attribution) was fixed after the run and rechecked on the analytics, attribution, and conversion-tracking prompts (28 of 28, alone and crowded).

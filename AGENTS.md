@@ -149,7 +149,7 @@ The `description` is critical for skill discovery. Include:
 3. Any operative rule that must shape behavior before the body is read
 4. Related skills for scope boundaries
 
-**Keep it to 500 characters or fewer, and the whole pack to 24,000.** Claude Code caps the skill listing it sends the model at about 30,000 characters, and skills past the cap appear as a bare name with no description. At 42,000 characters, half the pack lost its descriptions; at 18,500, none did, and the right skill was picked more often (see [evals/triggers/README.md](evals/triggers/README.md)). `scripts/check-versions.mjs` enforces both limits. Models match on meaning, so near-synonym trigger phrases cost space without adding much.
+**Keep it to 500 characters or fewer, and the whole pack to 24,000.** Claude Code caps the skill listing it sends the model at about 30,000 characters, and skills past the cap appear as a bare name with no description. At 42,000 characters, half the pack lost its descriptions; at 19,300, none did (with the pack alone), and the right skill was picked more often (see [evals/triggers/README.md](evals/triggers/README.md)). `scripts/check-versions.mjs` enforces both limits. Models match on meaning, so near-synonym trigger phrases cost space without adding much.
 
 Test description changes with the trigger eval before shipping:
 
