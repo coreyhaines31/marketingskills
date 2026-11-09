@@ -1,8 +1,8 @@
 ---
 name: prospecting
-description: When the user wants to find, qualify, and build a list of prospects to reach out to, across B2B SaaS, general B2B, or local small businesses. Also use when the user mentions "prospecting," "build a prospect list," "find leads," "lead list," "outbound list," "target account list," "ICP-fit accounts," "find local businesses," "find my first customers," "design partners," "signal-based outbound," "gap plays," "buying signals," "intent data," "job change alerts," "waterfall enrichment," "Clay table," "lookalike accounts," "catch-all emails," "account tiering," or "research this account before I reach out." Always verify emails before they reach a sequence, and never scrape LinkedIn. Define audiences in Sales Navigator and pull contacts from licensed data. Covers list building, signals, enrichment, verification, and account research. For the outreach itself (copy, sending setup, LinkedIn, cadences, replies), see cold-email. For researching competitors, see competitor-profiling.
+description: "When the user wants to find, qualify, and build prospect lists for outbound across B2B and local businesses: ICP-fit accounts, buying and hiring signals, enrichment, email verification, and account research before outreach. Verify emails before a sequence, never scrape LinkedIn: define audiences in Sales Navigator and pull contacts from licensed data. For the outreach itself, see cold-email. For competitor research, see competitor-profiling."
 metadata:
-  version: 1.5.0
+  version: 1.5.1
 ---
 
 # Prospecting

@@ -4,61 +4,69 @@ Current versions of all skills. Agents can compare against local versions to che
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
-| ab-testing | 2.0.4 | 2026-10-29 |
-| ad-creative | 2.12.2 | 2026-10-26 |
-| ai-seo | 2.12.0 | 2026-10-29 |
-| analytics | 2.2.2 | 2026-10-27 |
-| aso | 2.0.3 | 2026-10-27 |
-| attribution | 1.1.6 | 2026-10-19 |
-| churn-prevention | 2.0.3 | 2026-10-12 |
-| co-marketing | 2.0.3 | 2026-10-12 |
-| cold-email | 2.2.1 | 2026-10-27 |
-| community-marketing | 2.0.2 | 2026-10-27 |
-| competitor-profiling | 2.1.5 | 2026-10-30 |
-| competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.5 | 2026-10-27 |
-| conversion-tracking | 1.0.1 | 2026-10-19 |
-| copy-editing | 2.2.1 | 2026-10-27 |
-| copywriting | 2.3.2 | 2026-10-27 |
-| cro | 2.0.3 | 2026-10-08 |
-| customer-research | 2.0.5 | 2026-10-27 |
-| directory-submissions | 2.1.4 | 2026-10-27 |
-| emails | 2.1.4 | 2026-10-15 |
-| events | 1.0.0 | 2026-08-23 |
-| free-tools | 2.0.3 | 2026-10-15 |
-| image | 2.0.3 | 2026-10-27 |
-| influencer-marketing | 1.4.0 | 2026-10-15 |
-| launch | 2.2.0 | 2026-10-07 |
-| lead-magnets | 2.1.1 | 2026-10-27 |
-| link-building | 1.0.1 | 2026-10-19 |
-| marketing-council | 1.0.0 | 2026-07-06 |
-| marketing-ideas | 2.0.2 | 2026-10-30 |
-| marketing-loops | 1.8.0 | 2026-10-30 |
-| marketing-plan | 1.2.2 | 2026-10-12 |
-| marketing-psychology | 2.0.0 | 2026-05-05 |
-| offers | 1.0.3 | 2026-10-27 |
-| onboarding | 2.0.2 | 2026-10-12 |
-| ads | 2.7.0 | 2026-10-26 |
-| paywalls | 2.1.1 | 2026-10-27 |
-| popups | 2.0.1 | 2026-10-27 |
-| pricing | 2.1.4 | 2026-10-12 |
-| product-marketing | 2.2.0 | 2026-10-15 |
-| programmatic-seo | 2.1.1 | 2026-10-27 |
-| prospecting | 1.5.0 | 2026-10-27 |
-| public-relations | 1.2.1 | 2026-10-15 |
-| referrals | 2.2.1 | 2026-10-12 |
-| reverse-engineer-marketing | 1.1.1 | 2026-10-30 |
-| revops | 2.2.2 | 2026-10-27 |
-| sales-enablement | 2.4.0 | 2026-10-07 |
-| schema | 2.0.2 | 2026-10-08 |
-| seo-audit | 2.2.2 | 2026-10-15 |
-| signup | 2.0.1 | 2026-10-08 |
-| site-architecture | 2.1.0 | 2026-10-06 |
-| sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.2 | 2026-10-30 |
-| video | 2.4.0 | 2026-10-29 |
+| ab-testing | 2.0.5 | 2026-11-09 |
+| ad-creative | 2.12.3 | 2026-11-09 |
+| ai-seo | 2.12.1 | 2026-11-09 |
+| analytics | 2.2.3 | 2026-11-09 |
+| aso | 2.0.4 | 2026-11-09 |
+| attribution | 1.1.7 | 2026-11-09 |
+| churn-prevention | 2.0.4 | 2026-11-09 |
+| co-marketing | 2.0.4 | 2026-11-09 |
+| cold-email | 2.2.2 | 2026-11-09 |
+| community-marketing | 2.0.3 | 2026-11-09 |
+| competitor-profiling | 2.1.6 | 2026-11-09 |
+| competitors | 2.3.1 | 2026-11-09 |
+| content-strategy | 2.1.6 | 2026-11-09 |
+| conversion-tracking | 1.0.2 | 2026-11-09 |
+| copy-editing | 2.2.2 | 2026-11-09 |
+| copywriting | 2.3.3 | 2026-11-09 |
+| cro | 2.0.4 | 2026-11-09 |
+| customer-research | 2.0.6 | 2026-11-09 |
+| directory-submissions | 2.1.5 | 2026-11-09 |
+| emails | 2.1.5 | 2026-11-09 |
+| events | 1.0.1 | 2026-11-09 |
+| free-tools | 2.0.4 | 2026-11-09 |
+| image | 2.0.4 | 2026-11-09 |
+| influencer-marketing | 1.4.1 | 2026-11-09 |
+| launch | 2.2.1 | 2026-11-09 |
+| lead-magnets | 2.1.2 | 2026-11-09 |
+| link-building | 1.0.2 | 2026-11-09 |
+| marketing-council | 1.0.1 | 2026-11-09 |
+| marketing-ideas | 2.0.3 | 2026-11-09 |
+| marketing-loops | 1.8.1 | 2026-11-09 |
+| marketing-plan | 1.2.3 | 2026-11-09 |
+| marketing-psychology | 2.0.1 | 2026-11-09 |
+| offers | 1.0.4 | 2026-11-09 |
+| onboarding | 2.0.3 | 2026-11-09 |
+| ads | 2.7.1 | 2026-11-09 |
+| paywalls | 2.1.2 | 2026-11-09 |
+| popups | 2.0.2 | 2026-11-09 |
+| pricing | 2.1.5 | 2026-11-09 |
+| product-marketing | 2.2.1 | 2026-11-09 |
+| programmatic-seo | 2.1.2 | 2026-11-09 |
+| prospecting | 1.5.1 | 2026-11-09 |
+| public-relations | 1.2.2 | 2026-11-09 |
+| referrals | 2.2.2 | 2026-11-09 |
+| reverse-engineer-marketing | 1.1.2 | 2026-11-09 |
+| revops | 2.2.3 | 2026-11-09 |
+| sales-enablement | 2.4.1 | 2026-11-09 |
+| schema | 2.0.3 | 2026-11-09 |
+| seo-audit | 2.2.3 | 2026-11-09 |
+| signup | 2.0.2 | 2026-11-09 |
+| site-architecture | 2.1.1 | 2026-11-09 |
+| sms | 1.1.1 | 2026-11-09 |
+| social | 2.4.3 | 2026-11-09 |
+| video | 2.4.1 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.3 (2026-11-09)
+
+Shorter skill descriptions, so Claude Code shows all of them.
+
+- **Every skill** (patch bump each): descriptions rewritten to 491 characters or fewer, 19,259 in total (down from 42,105). Claude Code caps the skill listing it sends the model at about 30,000 characters, and past the cap a skill appears as a bare name: before this release, 26 of 53 skills had no description in the listing even with the pack installed alone; now none do. Each description says what the skill does, the distinct situations it covers, its operative rule, and the neighbouring skill to use instead, starting with "When the user wants to". On the new trigger eval (Sonnet), the right skill was picked for 98.7% of prompts (from 96.2%) with the pack alone, 96.9% (from 94.3%) with 90 other skills installed, and 89.6% (from 81.1%) on held-out prompts written without reading the descriptions, with other skills installed.
+- **Trigger eval** (`scripts/trigger-eval.mjs`, `evals/triggers/`): runs prompts through headless Claude Code with the pack as a plugin and scores the first skill invoked. Includes 171 prompts across all skills, a 114-prompt held-out set, an option to install other skills alongside, and contract tests.
+- **Description budget**: `scripts/check-versions.mjs` now fails a PR if a description passes 500 characters or the pack passes 24,000. AGENTS.md and CONTRIBUTING.md explain the limit and how to test description changes.
 
 ### 2.14.2 (2026-10-30)
 
