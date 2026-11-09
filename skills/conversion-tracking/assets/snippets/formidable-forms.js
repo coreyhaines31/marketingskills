@@ -167,15 +167,24 @@
     var hadSuccessAtSubmit = hasNode(wrapper, '.frm_message');
     var prior = getAttempt(form);
     if (prior) disarmAttempt(form);
-    var attempt = { form: form, id: id, hadSuccessAtSubmit: hadSuccessAtSubmit, onPageHide: null };
+    var attempt = { form: form, id: id, hadSuccessAtSubmit: hadSuccessAtSubmit, event: event, armedAt: Date.now(), onPageHide: null };
     attempt.onPageHide = function () {
       disarmAttempt(form);
       // Old server errors remain visible while a corrected native POST leaves.
       // Decide acceptance from the response page, not the departing page.
       if (attempt.hadSuccessAtSubmit) return;
+      // A submit whose default was prevented never navigated natively: its
+      // result arrives through frmFormComplete / frmBeforeFormRedirect, which
+      // disarm this attempt on success. An AJAX submit that failed validation
+      // must not leave this listener armed, or any later same-origin
+      // navigation would be mistaken for the redirect of a native POST.
+      if (attempt.event && attempt.event.defaultPrevented === true) return;
       try {
         window.sessionStorage.setItem(MARKER_KEY, JSON.stringify({
-          t: Date.now(),
+          // The TTL runs from the submit, not from this pagehide: a native
+          // POST leaves the page within seconds of the submit, so a marker
+          // stamped minutes later must read as expired on the next page.
+          t: attempt.armedAt,
           id: attempt.id,
           hadSuccessAtSubmit: false,
           origin: window.location.origin,

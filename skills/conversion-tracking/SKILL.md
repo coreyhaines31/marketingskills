@@ -2,7 +2,7 @@
 name: conversion-tracking
 description: "When the user wants to set up, audit, or fix conversion tracking so form fills, bookings, calls, signups, and purchases reach Google Ads, Meta, GA4, LinkedIn, and TikTok: GTM, pixels, CAPI, Enhanced Conversions, offline imports, double counting. Fire on confirmed success, not the submit click; verify a test conversion arrives; diagnose before changing; offer free paths and disclose partner tools. For tracking plans, see analytics. For attribution, see attribution. For bidding, see ads."
 metadata:
-  version: 1.0.3
+  version: 1.0.4
 ---
 
 # Conversion Tracking
