@@ -7,7 +7,7 @@ Product analytics platform for user behavior, retention, and experimentation.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | HTTP API for events, User Profile API, Export API |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://amplitude.com/docs/amplitude-ai/amplitude-mcp)), checked 2026-10-27 |
 | CLI | - | Not available |
 | SDK | ✓ | JavaScript, iOS, Android, Python, etc. |
 

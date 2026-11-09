@@ -7,7 +7,7 @@ Full-service SMS marketing platform for mid-market and enterprise direct-to-cons
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API |
-| MCP | - | Not available |
+| MCP | ✓ | Official server, beta ([docs](https://docs.attentive.com/docs/mcp)), checked 2026-10-27 |
 | CLI | - | None |
 | SDK | - | Use API directly |
 

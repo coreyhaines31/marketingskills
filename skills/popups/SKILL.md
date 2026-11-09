@@ -1,8 +1,8 @@
 ---
 name: popups
-description: When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes. Also use when the user mentions "exit intent," "popup conversions," "modal optimization," "lead capture popup," "email popup," "announcement banner," "overlay," "collect emails with a popup," "exit popup," "scroll trigger," "sticky bar," or "notification bar." Use this for any overlay or interrupt-style conversion element. For forms outside of popups, see cro. For general page conversion optimization, see cro.
+description: "When the user wants to create and optimize popups, modals, slide-ins, sticky bars, and banners that convert: exit intent, email capture popups, scroll and time triggers, and announcement bars. For forms and pages outside popups, see cro."
 metadata:
-  version: 2.0.0
+  version: 2.0.2
 ---
 
 # Popup CRO
@@ -448,7 +448,6 @@ Ideas to A/B test with expected outcomes
 ## Related Skills
 
 - **lead-magnets**: For planning lead magnets to promote via popups
-- **cro**: For optimizing the form inside the popup
-- **cro**: For the page context around popups
+- **cro**: For optimizing the form inside the popup and the page around it
 - **emails**: For what happens after popup conversion
 - **ab-testing**: For testing popup variations

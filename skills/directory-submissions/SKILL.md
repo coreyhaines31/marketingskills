@@ -1,8 +1,8 @@
 ---
 name: directory-submissions
-description: When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery. Also use when the user mentions "directory submissions," "submit to directories," "backlinks from directories," "list my product," "submit to Product Hunt," "BetaList," "TAAFT," "Futurepedia," "G2 listing," "Capterra listing," "AlternativeTo," "SaaSHub," "AI directories," "MCP registry," "publish my MCP server," "awesome list," "llms.txt directory," "Claude plugin directory," "agent directory," "dofollow backlinks," "launch directories," or "directory tracker." Use this whenever someone is planning the directory layer of a product launch or an ongoing backlink campaign. For the broader launch moment, see launch. For programmatic SEO pages that should live behind these backlinks, see programmatic-seo. For AI citation optimization, see ai-seo.
+description: "When the user wants to submit a product to startup, SaaS, AI, agent, MCP, and review directories for backlinks, discovery, and listings: Product Hunt, G2, Capterra, AlternativeTo, SaaSHub, MCP registries, and awesome lists, with a submission tracker. For the broader launch, see launch. For other link building, see link-building."
 metadata:
-  version: 2.1.2
+  version: 2.1.5
 ---
 
 # Directory Submissions
@@ -51,7 +51,7 @@ Directories are the *source* of link equity. You need *destinations* that can co
 - 1 "best of" blog post you wrote yourself about your own category, including honest coverage of competitors.
 
 ### Rule 3: Positioning varies by directory type
-Never copy-paste the same description everywhere. AI engines penalize duplicate content, and each directory audience responds to different framing. See `references/positioning-variations.md` for the full variant library. Short version:
+Never copy-paste the same description everywhere. Identical copy gives AI engines and readers no new signal across sources, and each directory audience responds to different framing. See `references/positioning-variations.md` for the full variant library. Short version:
 
 | Surface | Lead with | Why |
 |---|---|---|
@@ -183,7 +183,7 @@ Product Hunt is the single highest-leverage submission but also the most easily 
 
 ## Reviews Playbook (G2 / Capterra / TrustRadius)
 
-G2 and Capterra (now owned by G2 as of Feb 2026) listings are **worthless without reviews**. 10 reviews is the magic threshold for Grid appearance. Run the 10-in-30 protocol during launch month.
+G2 and Capterra (G2 agreed to buy Capterra, GetApp, and Software Advice from Gartner; announced Jan 2026) listings are **worthless without reviews**. 10 reviews is the magic threshold for Grid appearance. Run the 10-in-30 protocol during launch month.
 
 ### The 10-in-30 protocol
 
@@ -202,13 +202,13 @@ G2 and Capterra (now owned by G2 as of Feb 2026) listings are **worthless withou
 ### Badges and paid plans
 
 - **"Users Love Us" badge** is still free: requires 20 reviews at 4.0+ average.
-- **Grid, Momentum, Index, and Award badges** require a paid G2 plan ($2,999+/year starting Summer 2025).
+- **Grid, Momentum, Index, and Award badges** require a paid G2 plan (check G2's current pricing).
 - **Do not spend on paid G2 in year one.** The free listing + Users Love Us badge is sufficient.
 
 ### Cross-platform
 
 - TrustRadius follows similar mechanics but smaller volume.
-- Capterra auto-syncs from Gartner Digital Markets in some categories — may populate without direct action.
+- Capterra, GetApp, and Software Advice sync listings with each other in some categories, so one may populate without direct action.
 
 ---
 
@@ -350,7 +350,7 @@ One self-reported 2026 case for calibration: an MCP server plus a micro SaaS, su
 6. **Don't ask for upvotes on Product Hunt.** The 2026 algorithm penalizes it. Ask for **feedback**.
 7. **Don't amend old directory listings every week.** Submit once, check quarterly.
 8. **Don't submit before the destination page exists.** Link equity needs a destination.
-9. **Don't duplicate descriptions across directories.** AI engines penalize duplicate content.
+9. **Don't duplicate descriptions across directories.** Identical copy adds no new signal across sources.
 10. **Don't lie on comparison pages.** AI engines cross-reference and de-rank lies.
 11. **Don't over-index on launch-day spike.** The flywheel is templates + alternatives + reviews + ongoing content — not one day of PH.
 12. **Don't forget Crunchbase, LinkedIn company page, and Wikidata.** These feed AI training corpora and matter for GEO.

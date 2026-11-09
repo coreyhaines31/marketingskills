@@ -59,7 +59,7 @@ Once volume is healthy, tune revenue per user — judged on revenue quality, not
 `referral-nudge`, `review-and-UGC-harvest`, `review-site-management`, `case-study-sourcing`, `partner-pipeline`, `brand-mention/reputation`, `experiment-backlog`, `campaign-postmortem`.
 The flywheel: happy customers and earned media that feed back into acquisition, plus the learning loops that make everything compound.
 
-The remaining catalog loops (content-decay, striking-distance push, AI-answer check, AI-answer accuracy audit, claim-drift, signal-sweep, reply-triage, cold-domain health, sequence-retro, internal-linking, programmatic-SEO quality, content-calendar refill, weekly ads-check, paid-search query-mining, retargeting-hygiene, landing-page regression, community-engagement, competitor-watch, backlink-prospecting, directory-submission, feature-adoption, lead-capture-asset, email-deliverability, voice-of-customer, agent-default check, niche-outlier, creator-scouting, launch-reaction) slot into the stage that matches their function as each channel becomes a priority.
+The remaining catalog loops (content-decay, striking-distance push, AI-answer check, AI-answer accuracy audit, claim-drift, signal-sweep, reply-triage, cold-domain health, sequence-retro, internal-linking, programmatic-SEO quality, content-calendar refill, weekly ads-check, paid-search query-mining, retargeting-hygiene, landing-page regression, community-engagement, competitor-watch, backlink-prospecting, directory-submission, feature-adoption, lead-capture-asset, email-deliverability, voice-of-customer, agent-default check, niche-outlier, format-finding, creator-scouting, launch-reaction) slot into the stage that matches their function as each channel becomes a priority.
 
 ## Rollout rules
 

@@ -7,7 +7,7 @@ Competitive traffic intelligence platform providing website analytics, traffic s
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Traffic, Search, Referrals, Competitors, Geography |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://www.similarweb.com/corp/ai/mcp/)), checked 2026-10-27 |
 | CLI | ✓ | [similarweb.js](../clis/similarweb.js) |
 | SDK | - | REST API only |
 

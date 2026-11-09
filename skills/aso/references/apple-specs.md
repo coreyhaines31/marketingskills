@@ -53,7 +53,7 @@ keyword count significantly.
 - **Keywords:** Each keyword combo must be unique to a single CPP
 - **Review:** Submitted to App Review independently of app updates
 - **Organic search:** CPPs appear in organic search results since July 2025
-- **Performance:** +2.5 percentage points higher conversion on average vs default
+- **Performance:** +2.5 percentage points for organic-search referrals vs the default page; across all CPP traffic the average lift is +5.9% for apps (see [benchmarks.md](benchmarks.md))
 
 ## Product Page Optimization (A/B Testing)
 

@@ -7,7 +7,7 @@ Programmable communications platform: SMS, MMS, WhatsApp, voice, email (via Send
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API, well-documented, mature |
-| MCP | - | Not available natively (community wrappers exist) |
+| MCP | ✓ | Official server, public beta ([docs](https://www.twilio.com/docs/ai/mcp)), checked 2026-10-27 |
 | CLI | ✓ | Official `twilio` CLI |
 | SDK | ✓ | Node, Python, Ruby, PHP, Java, Go, C#, .NET |
 

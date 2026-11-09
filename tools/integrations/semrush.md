@@ -7,7 +7,7 @@ SEO and competitive analysis platform for keyword research and site audits.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Analytics API, Projects API |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `https://mcp.semrush.com/v2/mcp`: OAuth 2.1, or an API key in the Authorization header ([docs](https://developer.semrush.com/api/basics/semrush-mcp/)), checked 2026-10-27 |
 | CLI | - | Not available |
 | SDK | - | API-only |
 

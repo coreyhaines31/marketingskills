@@ -200,6 +200,46 @@
         "Ends with separate facts, hypotheses, and missing data lists"
       ],
       "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "We sell a $49/month meal-planning app. I want to run a Meta ad sequence on our Sales campaign: hook ad, then a problem ad, then a testimonial, then the offer. How do I set that up?",
+      "expected_output": "Should load references/meta-andromeda-playbook.md and explain that explicit ad sequencing isn't available on Sales (or Leads) objectives: it requires Awareness (Maximize reach) or Engagement (ThruPlay), Target frequency rather than a cap, a lifetime budget at the ad set level of at least 7 days with Advantage campaign budget off, and at least two ads. Should offer two routes: a sequencing campaign on an eligible objective for the top of the path, or approximating the path on the Sales campaign with engagement retargeting (hook-ad video viewers get the proof ad, then the offer). Should size the sequence to the flight (campaign length and frequency window cap how many ads fit) and suggest trimming four ads to two or three. Should note target frequency usually costs more per impression, so judge on downstream conversions, ideally against a holdout, and tell the user to confirm the current setup in Meta's help docs.",
+      "assertions": [
+        "States that sequencing isn't available on the Sales objective",
+        "Lists the setup requirements: Awareness or Engagement objective, target frequency, lifetime budget of 7+ days, 2+ ads",
+        "Offers engagement retargeting as the way to approximate the path on a conversion campaign",
+        "Explains that flight length and frequency cap how many ads fit, and suggests 2-3 ads",
+        "Flags the higher cost per impression and says to judge on downstream conversions",
+        "Does not cite an unverified conversion multiplier for sequencing"
+      ],
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "We pay $200/month for an ad spy tool and mostly use it to see what our 6 competitors are running. Can we build our own that updates every week?",
+      "expected_output": "Should load references/creative-research-automation.md (Workflow 4) and lay out the pipeline: widen the competitor list, pull active ads on a schedule from the Meta Ad Library, Google Ads Transparency Center and LinkedIn Ad Library, store the creative, tag each ad with a vision-capable model (hook, angle, offer, format, length, first and last seen), write to a database, diff weekly, and ask gap questions. Should note that Meta's official Ad Library API only returns all ads for EU delivery and political or issue ads elsewhere, and the other libraries have no official API, so most builds use a scraping API or actor, subject to each source's terms. Should treat long-running ads as a proxy for what's working, not proof. Should frame build vs. buy neutrally (subscription vs. maintenance) without declaring a winner, and say to adapt angles, never copy ads.",
+      "assertions": [
+        "Describes a scheduled pull, store, tag, database, weekly-diff pipeline",
+        "States the Meta Ad Library API limitation (all ads only for EU delivery, otherwise political or issue ads)",
+        "Mentions checking each source's terms when scraping",
+        "Treats ad longevity as a proxy, not proof that an ad wins",
+        "Frames build vs. buy as a trade-off without recommending one as best",
+        "Says to adapt competitors' angles, not copy their ads"
+      ],
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "B2B SaaS, Google Search spend around $6k/month, about 12 conversions a month across all campaigns, manual CPC on phrase and exact. Our Google rep says we should turn on AI Max. Should we?",
+      "expected_output": "Should load references/google-search-playbook.md and apply the broad-match gate to AI Max: 30+ conversions per month in the campaign, smart bidding live, and a tight negative list. At ~12 conversions a month across the account on manual CPC, the account fails the gate, so the answer is not yet. Should explain what AI Max does (matches beyond the keyword list, rewrites ad text, can send clicks to other pages via final URL expansion) and the B2B risk of landing buyers on careers or blog pages. Should give the conditions for a later test: URL exclusions, reviewing search terms and chosen landing pages weekly, and comparing against a campaign without it.",
+      "assertions": [
+        "Applies the same gate as broad match (30+ conversions/month, smart bidding, negatives)",
+        "Concludes the account isn't ready for AI Max yet",
+        "Explains final URL expansion and the risk of sending B2B clicks to the wrong pages",
+        "Lists URL exclusions, weekly search-term and landing-page review, and a comparison campaign as test conditions"
+      ],
+      "files": []
     }
   ]
 }

@@ -1,8 +1,8 @@
 ---
 name: marketing-loops
-description: "When the user wants to set up a recurring, self-running marketing workflow — a repeatable loop an AI agent runs on a cadence (weekly, daily, on a trigger) rather than a one-off task. Also use when the user mentions 'marketing loop,' 'recurring marketing workflow,' 'automate my marketing,' 'marketing on autopilot,' 'weekly marketing review,' 'ad fatigue check,' 'weekly ads check,' 'content refresh loop,' 'churn watch,' 'ranking drop alert,' 'run my SEO,' 'SEO operator,' 'daily SEO agent,' 'run my outbound,' 'AI SDR,' 'reply triage,' 'always-on marketing,' 'marketing automation workflow,' or 'run this every week.' Use this to pick, adapt, and schedule an ongoing marketing loop that orchestrates the other marketing skills. For one-off marketing ideas, see marketing-ideas. For the experimentation loop specifically, see ab-testing."
+description: "When the user wants to set up recurring marketing workflows an AI agent runs on its own on a cadence or trigger: weekly SEO or ads checks, daily churn watches, content refresh, outbound and reply triage, and always-on operators that chain the other marketing skills. Not a one-off task. For one-off ideas, see marketing-ideas. For the experimentation loop, see ab-testing."
 metadata:
-  version: 1.6.1
+  version: 1.8.1
 ---
 
 # Marketing Loops
@@ -81,7 +81,7 @@ Default to time-of-day cron for review-style loops (weekly review, ranking watch
 
 ## The Catalog
 
-`references/loop-catalog.md` holds the full library — 58 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Outbound, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
+`references/loop-catalog.md` holds the full library — 60 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Outbound, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
 
 ## Running a whole channel: the SEO operator
 
@@ -112,4 +112,5 @@ Avoid: "set it and forget it," "fully autonomous marketing," "AI does everything
 - **marketing-ideas** — one-off tactics and inspiration (what to try). Loops operationalize the ones worth repeating.
 - **ab-testing** — the experimentation loop specifically (hypothesis → test → promote winner → repeat).
 - **analytics** — most loops read from analytics to decide whether to act.
+- **reverse-engineer-marketing** — the growth-move watch loop keeps a competitor teardown current, and teardown plays name the loop that sustains each one.
 - Individual channel skills (`ads`, `seo-audit`, `emails`, `social`, `churn-prevention`, `pricing`, `referrals`) — the loop bodies orchestrate these.

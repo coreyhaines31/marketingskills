@@ -1,6 +1,6 @@
 # Follow-Up Sequences
 
-55% of replies come from follow-ups, not the initial email. Yet 48% of salespeople never follow up even once.
+The first email draws most replies (about 58% in Instantly's 2026 benchmark), but the remaining ~42% arrive on follow-ups. A sequence that stops after one send gives up nearly half its replies.
 
 ## How Many: 3–5 Total Emails
 

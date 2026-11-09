@@ -7,7 +7,7 @@ Open-source product analytics with session replay and feature flags.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Capture API, Query API, Feature Flags API |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://posthog.com/docs/model-context-protocol)), checked 2026-10-27 |
 | CLI | ✓ | `posthog` CLI for local development |
 | SDK | ✓ | JavaScript, Python, Ruby, Go, etc. |
 

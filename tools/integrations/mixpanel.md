@@ -7,7 +7,7 @@ Product analytics platform for tracking user behavior and retention.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Ingestion API, Query API, Data Export |
-| MCP | - | Not available |
+| MCP | ✓ | Official hosted server at `https://mcp.mixpanel.com/mcp` (EU and IN regions have their own hosts); OAuth, or a service account for headless use; an org admin must enable it ([docs](https://docs.mixpanel.com/docs/mcp)), checked 2026-10-27 |
 | CLI | ✓ | [mixpanel.js](../clis/mixpanel.js) |
 | SDK | ✓ | JavaScript, iOS, Android, Python, etc. |
 

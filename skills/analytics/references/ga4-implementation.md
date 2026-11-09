@@ -65,8 +65,8 @@ Reference: https://support.google.com/analytics/answer/9267735
 ### gtag.js Implementation
 
 ```javascript
-// Basic event
-gtag('event', 'signup_completed', {
+// Recommended event (your plan's signup_completed maps to GA4's sign_up)
+gtag('event', 'sign_up', {
   'method': 'email',
   'plan': 'free'
 });
@@ -98,7 +98,7 @@ gtag('config', 'GA_MEASUREMENT_ID', {
 ### Google Tag Manager (dataLayer)
 
 ```javascript
-// Custom event
+// Internal event name; a GTM GA4 Event tag sends it to GA4 as sign_up
 dataLayer.push({
   'event': 'signup_completed',
   'method': 'email',

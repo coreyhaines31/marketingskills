@@ -420,7 +420,7 @@ The lesson: message-market fit beats feature lists. The winning line named a rea
 
 ### Clarity Beats Cleverness (the metrics)
 
-When teams measure it, clarity is what moves the numbers. Clearer positioning and copy is associated with:
+When teams measure it, clarity is what moves the numbers. Figures cited in Corey Haines's *Founding Marketing* (Ch. 3) associate clearer positioning and copy with:
 
 - **+81% conversions**
 - **−38% sales cycle** (shorter time to close)

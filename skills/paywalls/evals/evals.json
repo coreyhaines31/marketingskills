@@ -88,6 +88,21 @@
         "Does not attempt public pricing page optimization"
       ],
       "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "We're launching an AI calorie-tracking iOS and Android app. Where should the paywall go, how should we price it, and how much can we afford to pay per install?",
+      "expected_output": "Should load references/mobile-subscription-paywalls.md. Should place the paywall after onboarding produces a personalized result, not on first launch; lead with a yearly plan shown with a per-week equivalent while keeping the billed amount clear, with at most one shorter option; offer a trial with a reminder before it ends and treat trial length as a test; allow one abandon offer shown once. Should explain store fees as dated and to be checked (Apple Small Business Program 15%; Google Play's 10% service fee plus 5% billing in the US, UK and EEA, with the 10% still applying on web links; US iOS link-out commission still being set in court). Should compute revenue per download as trial start × trial-to-paid × yearly price × (1 − fee) and say to replace any starting estimate with the app's own numbers before setting install bids. Should name paywall testing tools as options, not pick one as best.",
+      "assertions": [
+        "Places the paywall after a personalized result in onboarding",
+        "Leads with a yearly plan and keeps the billed amount clear",
+        "Includes a trial with a pre-renewal reminder and treats trial length as a test",
+        "Limits the abandon offer to one showing",
+        "Presents store fees as dated and to be verified, including Google's 10% applying to web-link purchases",
+        "Gives a revenue-per-download formula net of store fees and says to use the app's own rates",
+        "Does not recommend one paywall tool as the best"
+      ],
+      "files": []
     }
   ]
 }

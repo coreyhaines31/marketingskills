@@ -1,8 +1,8 @@
 ---
 name: image
-description: "When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets. Also use when the user mentions 'AI image generation,' 'generate an image,' 'create a graphic,' 'product mockup,' 'hero image,' 'social media graphic,' 'banner image,' 'cover photo,' 'profile banner,' 'listing screenshot,' 'Flux,' 'Flux Kontext,' 'Midjourney,' 'DALL-E,' 'GPT Image,' 'ChatGPT Images,' 'Ideogram,' 'Gemini image,' 'Nano Banana,' 'Recraft,' 'Stable Diffusion,' 'Canva,' 'Figma,' 'image optimization,' 'compress images,' 'WebP,' or 'OG image.' Use this for general-purpose marketing image creation and optimization. For paid ad image creative and platform-specific ad specs, see ad-creative. For video production, see video."
+description: "When the user wants to create, generate, edit, or optimize marketing images: blog heroes, social graphics, product mockups, profile banners and headers, listing visuals, OG images, and brand assets, with AI image tools or design tools. For ad images and ad specs, see ad-creative. For video, see video."
 metadata:
-  version: 2.0.2
+  version: 2.0.4
 ---
 
 # Image
@@ -40,7 +40,7 @@ Pick the right tool for the job:
 | Approach | Best For | Tools | When to Use |
 |----------|----------|-------|-------------|
 | **AI Generation** | Original images from text prompts | Gemini/Nano Banana, Flux, Ideogram | Blog heroes, social graphics, lifestyle scenes |
-| **AI Editing** | Modify existing images | Gemini, Flux Flex | Background removal, style changes, variations |
+| **AI Editing** | Modify existing images | Gemini, FLUX.2 [flex] | Background removal, style changes, variations |
 | **Design Tools** | Templated, brand-consistent assets | Canva, Figma | Profile banners, social templates, presentations |
 | **Screenshot + Overlay** | Product UI showcases | Browser screenshot + code overlay | Product mockups, feature announcements |
 | **Stock Photography** | Generic business/lifestyle scenes | Unsplash, Pexels | When speed matters more than uniqueness |
@@ -56,7 +56,7 @@ Generate original images from text prompts. The fastest way to create unique mar
 | Model | Best For | Text in Images | API | Cost |
 |-------|----------|:-:|-----|------|
 | **Gemini Image** (Google, "Nano Banana" / Nano Banana Pro) | All-around, editing, multi-image reference, text rendering | Good | [Gemini API](https://ai.google.dev/gemini-api/docs/image-generation) | Check [pricing](https://ai.google.dev/gemini-api/docs/pricing) |
-| **Flux** (Black Forest Labs — Pro 1.1, Kontext, Dev, Schnell) | Photorealism, brand consistency, batch; Kontext for in-image editing | Limited | [BFL API](https://docs.bfl.ai/), Replicate, fal.ai | Check [pricing](https://docs.bfl.ai/quick_start/pricing) |
+| **Flux** (Black Forest Labs — FLUX 3 Image; FLUX.2 [pro], [flex], [dev], [klein]; FLUX.1 Kontext is the previous generation) | Photorealism, brand consistency, batch; multi-reference editing | Limited | [BFL API](https://docs.bfl.ai/), Replicate, fal.ai | Check [pricing](https://docs.bfl.ai/quick_start/pricing) |
 | **Ideogram 3.0** | Typography, branded graphics, accurate text rendering | Best | [Ideogram API](https://developer.ideogram.ai/) | Check [pricing](https://about.ideogram.ai/api-pricing) |
 | **ChatGPT Images 2.0 / GPT Image** (OpenAI) | General purpose, ChatGPT integration, native editing | Good | [OpenAI API](https://platform.openai.com/docs/guides/image-generation) | Check [pricing](https://platform.openai.com/docs/pricing) |
 | **Midjourney v7** | Artistic, high-aesthetic, art-directed visuals | Improved | No official API; Discord + Web | Subscription-based |
@@ -77,7 +77,7 @@ Need product/brand consistency across many images?
 └── No ↓
 
 Need to edit an existing image (in-place)?
-├── Yes → Gemini (native editing), Flux Kontext, ChatGPT Images
+├── Yes → Gemini (native editing), FLUX.2 [flex], ChatGPT Images
 └── No ↓
 
 Need vector / illustrative brand assets?
@@ -85,11 +85,11 @@ Need vector / illustrative brand assets?
 └── No ↓
 
 Need highest visual quality / art direction?
-├── Yes → Flux Pro 1.1, Midjourney v7
+├── Yes → FLUX 3 Image or FLUX.2 [pro], Midjourney v7
 └── No ↓
 
 Need volume at low cost?
-└── Flux Schnell, Gemini Flash, Stable Diffusion (self-hosted)
+└── FLUX.2 [klein], Gemini Flash, Stable Diffusion (self-hosted)
 ```
 
 ### Prompting Basics
@@ -308,7 +308,7 @@ Generate OG images programmatically for pages with dynamic content (blog posts, 
 ## Common Mistakes
 
 1. **Using AI for product UI screenshots** — models hallucinate interfaces; capture real screenshots
-2. **Skipping image optimization** — unoptimized images are the #1 page speed killer
+2. **Skipping image optimization** — unoptimized images are a common cause of slow pages, and the hero image is often the LCP element
 3. **No OG image** — shared links look broken without a preview image
 4. **Wrong aspect ratio** — always check platform specs before generating
 5. **Text-heavy images without Ideogram** — most AI models butcher text; use Ideogram or add text in post

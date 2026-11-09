@@ -1,8 +1,8 @@
 ---
 name: content-strategy
-description: When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover. Also use when the user mentions "content strategy," "what should I write about," "content ideas," "blog strategy," "topic clusters," "content planning," "editorial calendar," "content marketing," "content roadmap," "what content should I create," "blog topics," "content pillars," or "I don't know what to write." Use this whenever someone needs help deciding what content to produce, not just writing it. For writing individual pieces, see copywriting. For SEO-specific audits, see seo-audit. For social media content specifically, see social.
+description: "When the user wants to plan a content strategy: what to write, topic clusters and pillars, editorial calendars, and content roadmaps tied to customers and search, especially when posts aren't bringing in customers. For writing individual pieces, see copywriting. For SEO audits, see seo-audit. For social content, see social."
 metadata:
-  version: 2.1.4
+  version: 2.1.6
 ---
 
 # Content Strategy
@@ -338,7 +338,7 @@ Score each idea on four factors:
 
 | Idea | Customer Impact (40%) | Content-Market Fit (30%) | Search Potential (20%) | Resources (10%) | Total |
 |------|----------------------|-------------------------|----------------------|-----------------|-------|
-| Topic A | 8 | 9 | 7 | 6 | 8.0 |
+| Topic A | 8 | 9 | 7 | 6 | 7.9 |
 | Topic B | 6 | 7 | 9 | 8 | 7.1 |
 
 Score 1-10 per factor, multiply by the weight, sum for the total. Rank the list; make the top-scoring pieces first.

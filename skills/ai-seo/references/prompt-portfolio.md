@@ -59,6 +59,20 @@ Profound sells AI visibility tracking, so treat these figures as vendor research
 - Never compare two periods that used materially different portfolios. Recalculate on the prompts both periods share.
 - Freeze the core during an experiment.
 
+## Read results by topic, then fix before you create
+
+Score the portfolio by buying topic, not prompt by prompt. "Best auth API," "SSO provider for SaaS," and "SAML authentication tools" are one topic. For each topic, count how often you and each competitor appear across its prompts and runs: a competitor in 18 of 25 runs while you're in 4 is where to start, not a single prompt where both of you showed up once.
+
+For the topics you're losing:
+
+1. **Open the sources the engine cited when competitors won.** Record the page, the domain, the page type, and which competitor it mentions. After 20–30 prompts the same pages and domains repeat.
+2. **Check whether you already have a page that should win.** If it exists, find out why it isn't surfacing (wrong intent, outdated, the answer buried, missing the proof or comparison the winning page has) before writing a new one. Two weak pages on one topic is worse than one fixed page.
+3. **Rule out the technical layer** (indexing, crawler access, internal links) before rewriting anything.
+4. **Decide the fix:** a new page, a better existing page, updated facts, or third-party sources (comparison pages and discussions you're absent from).
+5. **Rerun the identical portfolio** once changes are crawled, with the same prompts and engines, and compare per topic.
+
+*Topic-gap method adapted from Jam's AI search audit (October 2026).*
+
 ## Multi-turn buying journeys
 
 Buyers don't stop at one prompt. Commercial conversations in ChatGPT were less likely to end after one turn than informational ones, and commercial intent rose from 13.9% to 19.2% of sampled conversations in a year (Profound, August 2026; sampled and modeled estimates). Earlier Profound research found web citations concentrate in the opening turns of a research conversation (Profound, Q4 2025 data). So the opening prompt decides which sources get pulled, and later turns decide who stays on the shortlist.

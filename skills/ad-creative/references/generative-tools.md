@@ -16,8 +16,8 @@ Reference for using AI image generators, video generators, and code-based video 
 | Multi-language ad versions | Voice generation | ElevenLabs, PlayHT |
 | Brand voice cloning | Voice generation | ElevenLabs, Resemble AI |
 | Product mockups and variations | Image generation + references | Flux (multi-image reference) |
-| Templated video ads at scale | Code-based video | Remotion |
-| Personalized video (name, data) | Code-based video | Remotion |
+| Templated video ads at scale | Code-based video | Remotion, Hyperframes |
+| Personalized video (name, data) | Code-based video | Remotion, Hyperframes |
 | Brand-consistent variations | Image gen + style refs | Flux, Ideogram, Nano Banana Pro |
 
 ---
@@ -258,13 +258,13 @@ Full-stack video creation platform with cinematic camera controls.
 
 ## Voice & Audio Generation
 
-For layering realistic voiceovers onto video ads, adding narration to product demos, or generating audio for Remotion-rendered videos. These tools turn ad scripts into natural-sounding voice tracks.
+For layering realistic voiceovers onto video ads, adding narration to product demos, or generating audio for code-rendered videos. These tools turn ad scripts into natural-sounding voice tracks.
 
 ### When to Use Voice Tools
 
 Many video generators (Veo, Kling, Seedance) now include native audio. Use standalone voice tools when you need:
 
-- **Voiceover on silent video** — Runway Gen-4 and Remotion produce silent output
+- **Voiceover on silent video** — add a voice track to silent AI-generated clips or code-rendered templates
 - **Brand voice consistency** — Clone a specific voice for all ads
 - **Multi-language versions** — Same ad script in 20+ languages
 - **Script iteration** — Re-record voiceover without reshooting video
@@ -274,7 +274,7 @@ Many video generators (Veo, Kling, Seedance) now include native audio. Use stand
 
 ### ElevenLabs
 
-The market leader in realistic voice generation and voice cloning.
+Voice generation and voice cloning platform.
 
 **Best for:** Most natural-sounding voiceovers, brand voice cloning, multilingual
 **API:** REST API with streaming support
@@ -423,25 +423,18 @@ cd voicebox && make setup && make dev
 | **WellSaid** | Very good | No (actor voices) | English | ~300ms | Custom pricing |
 | **Voicebox** | Good | Yes (local) | 2+ | Local | Free (open source) |
 
-### Choosing a Voice Tool
+### Voice Tool Options by Need
+
+These are options to evaluate, not rankings. Test a short script in two or three tools and judge by ear; check each vendor's current pricing and language list.
 
 ```
 Need voiceover for ads?
-├── Need to clone a specific brand voice?
-│   ├── Best quality → ElevenLabs
-│   ├── Enterprise/on-premise → Resemble AI
-│   └── Budget-friendly → Fish Audio, PlayHT
-├── Need multilingual (same ad, many languages)?
-│   ├── Most languages → PlayHT (140+)
-│   └── Best quality → ElevenLabs (29+)
-├── Need free / open source / local?
-│   └── Voicebox (MIT, runs on your machine)
-├── Need cheap, fast, good-enough?
-│   └── OpenAI TTS ($0.015/min)
-├── Need commercially-safe licensing?
-│   └── WellSaid Labs (actor-compensated voices)
-└── Need real-time/interactive?
-    └── Cartesia Sonic (40ms TTFA)
+├── Clone a specific brand voice → options include ElevenLabs, Resemble AI (enterprise/on-premise), Fish Audio, PlayHT
+├── Multilingual (same ad, many languages) → options include PlayHT, ElevenLabs
+├── Free / open source / local → options include Voicebox
+├── Cheap and fast → options include OpenAI TTS
+├── Actor-compensated voice licensing → options include WellSaid Labs
+└── Real-time / interactive → options include Cartesia Sonic
 ```
 
 ### Workflow: Voice + Video
@@ -450,7 +443,7 @@ Need voiceover for ads?
 1. Write ad script (use ad-creative skill for copy)
 2. Generate voiceover with ElevenLabs/OpenAI TTS
 3. Generate or render video:
-   a. Silent video from Runway/Remotion → layer voice track
+   a. Silent video (AI-generated or code-rendered) → layer voice track
    b. Or use Veo/Seedance with native audio (skip separate VO)
 4. Combine with ffmpeg if layering separately:
    ffmpeg -i video.mp4 -i voiceover.mp3 -c:v copy -c:a aac output.mp4
@@ -459,18 +452,15 @@ Need voiceover for ads?
 
 ---
 
-## Code-Based Video: Remotion
+## Code-Based Video
 
-For templated, data-driven video ads at scale, Remotion is the best option. Unlike AI video generators that produce unique video from prompts, Remotion uses React code to render deterministic, brand-perfect video from templates and data.
+For templated, data-driven video ads, render video from code instead of prompts. Unlike AI video generators that produce unique video each time, code-based frameworks render deterministic, brand-exact video from templates and data. Two common options are **Remotion** (React components) and **Hyperframes** (HTML files). For how they differ and how to pick, see the `video` skill; for licensing and current features, check each project's docs ([remotion.dev](https://www.remotion.dev/docs), [hyperframes.heygen.com](https://hyperframes.heygen.com/introduction)).
 
 **Best for:** Templated ad variations, personalized video, brand-consistent production
-**Stack:** React + TypeScript
-**Pricing:** Free for individuals/small teams; commercial license required for 4+ employees
-**Docs:** [remotion.dev](https://www.remotion.dev/)
 
-### Why Remotion for Ads
+### Why Code-Based Video for Ads
 
-| AI Video Generators | Remotion |
+| AI Video Generators | Code-based video |
 |---------------------|----------|
 | Unique output each time | Deterministic, pixel-perfect |
 | Prompt-based, less control | Full code control over every frame |
@@ -481,7 +471,7 @@ For templated, data-driven video ads at scale, Remotion is the best option. Unli
 ### Ad Creative Use Cases
 
 **1. Dynamic product ads**
-Feed a JSON array of products and render a unique video ad for each:
+Feed a JSON array of products and render a unique video ad for each. Example in Remotion (the same template works as an HTML composition in Hyperframes):
 ```tsx
 // Simplified Remotion component for product ads
 export const ProductAd: React.FC<{
@@ -522,10 +512,10 @@ Render the same content across different aspect ratios:
 - 9:16 for Stories/Reels
 - 16:9 for YouTube
 
-### Remotion Workflow for Ad Creative
+### Code-Based Workflow for Ad Creative
 
 ```
-1. Design template in React (or use AI to generate the component)
+1. Design the template (or have an AI agent write it)
 2. Define data schema (products, headlines, CTAs, images)
 3. Feed data array into template
 4. Batch render all variations
@@ -533,6 +523,8 @@ Render the same content across different aspect ratios:
 ```
 
 ### Getting Started
+
+Remotion commands below; for Hyperframes setup, see the `video` skill.
 
 ```bash
 # Create a new Remotion project
@@ -549,29 +541,33 @@ npx remotion render src/index.ts MyComposition --props='{"data": [...]}'
 
 ## Choosing the Right Tool
 
-### Decision Tree
+### Options by Need
+
+Start from the approach (code-based vs AI generation), then pick a tool. The tools listed are options to evaluate, not rankings: models change quickly, so run the same brief through two or three and compare the output, and check current versions and pricing on each vendor's site.
 
 ```
 Need video ads?
 ├── Templated, data-driven (same structure, different data)
-│   └── Use Remotion
+│   └── Code-based video (Remotion, Hyperframes; see the video skill)
 ├── Unique creative from prompts (exploratory)
-│   ├── Need dialogue/voiceover? → Veo 3.1, Kling 2.6, Seedance 2.0
-│   ├── Need consistency across scenes? → Runway Gen-4
-│   ├── Need vertical social video? → Veo 3.1 (native 9:16)
-│   ├── Need high volume at low cost? → Seedance 2.0
-│   └── Need cinematic camera work? → Higgsfield, Kling
-└── Both → Use AI gen for hero creative, Remotion for variations
+│   ├── Dialogue/voiceover in the clip → options include Veo, Kling, Seedance
+│   ├── Consistency across scenes → options include Runway
+│   ├── Native vertical (9:16) output → options include Veo
+│   ├── High volume at low cost → options include Seedance
+│   └── Cinematic camera work → options include Higgsfield, Kling
+└── Both → AI generation for hero creative, code-based video for variations
 
 Need image ads?
-├── Need text/headlines in image? → Ideogram
-├── Need product consistency across variations? → Flux (multi-ref)
-├── Need quick iterations on existing images? → Nano Banana Pro
-├── Need highest visual quality? → Flux Pro, Midjourney
-└── Need high volume at low cost? → Flux Klein, Nano Banana
+├── Text/headlines in the image → options include Ideogram, Nano Banana Pro
+├── Product consistency across variations → options include Flux (multi-reference)
+├── Quick iterations on existing images → options include Nano Banana Pro
+├── Polished final assets → options include Flux Pro, Midjourney
+└── High volume at low cost → options include Flux Klein, Nano Banana
 ```
 
 ### Cost Comparison for 100 Ad Variations
+
+Rough order-of-magnitude estimates to compare approaches, not quotes. Prices change often; verify on each vendor's pricing page before budgeting.
 
 | Approach | Tool | Approximate Cost |
 |----------|------|-----------------|
@@ -579,15 +575,15 @@ Need image ads?
 | 100 static images | Flux Dev | ~$1-2 |
 | 100 static images | Ideogram API | ~$6 |
 | 100 × 15-sec videos | Veo 3.1 Fast | ~$225 |
-| 100 × 15-sec videos | Remotion (templated) | ~$0 (self-hosted render) |
-| 10 hero videos + 90 templated | Veo + Remotion | ~$22 + render time |
+| 100 × 15-sec videos | Code-based video (templated) | Render compute only (self-hosted); check license terms |
+| 10 hero videos + 90 templated | Veo + code-based video | ~$22 + render time |
 
-### Recommended Workflow for Scaled Ad Production
+### Workflow for Scaled Ad Production
 
 1. **Generate hero creative** with AI (Nano Banana, Flux, Veo) — high-quality, exploratory
-2. **Build templates** in Remotion based on winning creative patterns
-3. **Batch produce variations** with Remotion using data (products, headlines, CTAs)
-4. **Iterate** — use AI tools for new angles, Remotion for scale
+2. **Build templates** in code (Remotion or Hyperframes) based on winning creative patterns
+3. **Batch produce variations** from data (products, headlines, CTAs)
+4. **Iterate** — use AI tools for new angles, code-based templates for scale
 
 This hybrid approach gives you the creative exploration of AI generators and the consistency and scale of code-based rendering.
 

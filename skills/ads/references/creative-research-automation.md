@@ -11,6 +11,7 @@ The core reframe: don't ask the agent to *replace* the strategist. Offload the *
 - Workflow 1: Ad Library analysis
 - Workflow 2: Review → persona mapping
 - Workflow 3: Competitor / brand teardown (organic)
+- Workflow 4: Persistent competitor ad tracker
 - Running it well (practical notes)
 - Where the outputs go
 
@@ -85,6 +86,24 @@ A monthly organic teardown of a competitor's (or an admired brand's) owned socia
 - **Strengths & gaps** — where they're strong, and the openings you can capitalize on.
 
 Run it against your competitors, your *clients'* competitors, or brands you admire for inspiration. Ask follow-up questions against the generated report in the same chat. For a full structured competitor dossier (pricing, positioning, SEO), hand the shortlist to [competitor-profiling](../../competitor-profiling/SKILL.md).
+
+## Workflow 4: Persistent competitor ad tracker
+
+Workflow 1 is a one-off teardown. When you want the same view every week, build a small tracker that keeps history, so you can see what launched, what's still running, and what got cut.
+
+1. **List competitors**, then have an agent widen the list with web search ("who else runs ads for [category]?").
+2. **Pull active ads on a schedule** from the Meta Ad Library, Google Ads Transparency Center, and LinkedIn Ad Library. Meta's official Ad Library API returns all ads only for EU delivery and political or issue ads elsewhere, and the other two libraries have no official API, so most builds use a scraping API or actor (ScrapeCreators, Apify, or similar). Check each source's terms.
+3. **Store the creative** (images and video files) so it survives the ad being turned off.
+4. **Tag every ad** with a vision-capable model: hook, angle, offer, format, length, first-seen date, last-seen date.
+5. **Write it to a database** (Postgres, a spreadsheet, whatever the team queries).
+6. **Run it weekly** and diff: new ads, ads that stopped, ads still live.
+7. **Ask gap questions** against the data: *"what angles are three competitors running that we aren't?"* Feed the answers into the brief, adapting the angle, never copying the ad.
+
+**Read longevity carefully.** An ad that has run 30–60+ days is probably working, since few teams keep paying for a loser, but it's a proxy, not proof: big brands leave evergreen ads up, and some run ads for reach rather than conversions. Weight it with how many variants of the same angle the advertiser keeps adding.
+
+**Build vs. buy:** paid ad-intelligence tools sell search, history, alerts, and tagging on top of the same public libraries. Building trades the subscription for maintenance (scrapers break when libraries change). Pick based on how often the team will actually query it.
+
+*Pipeline adapted from Cody Schneider (October 2026).*
 
 ## Running it well (practical notes)
 

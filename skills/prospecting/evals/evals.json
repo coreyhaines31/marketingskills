@@ -158,6 +158,34 @@
         "Preserves stronger verified CRM fields and separate contact verification"
       ],
       "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "I'm a founder selling payroll software to 20-200 person companies. Cold email reply rates have cratered. I have about 4,000 LinkedIn connections and a busy calendar. Can I turn my own network into pipeline without spamming people?",
+      "expected_output": "Should load references/signal-plays.md (warm paths) and lay out: export LinkedIn connections, calendar attendees and inbox contacts (noting LinkedIn's export only includes emails for connections who allow it); enrich and score against the ICP; match against a target account list to find first- and second-degree paths; start with recent calendar meetings to find buying moments; recruit a connector per vertical and pay them per qualified meeting with the arrangement disclosed; use double opt-in intros only, with a human approving every intro and no contact asked to take intros for two vendors in the same week.",
+      "assertions": [
+        "Starts by exporting the network (LinkedIn, calendar, inbox)",
+        "Notes LinkedIn's export lacks emails for most connections",
+        "Matches contacts against target accounts for first- and second-degree paths",
+        "Suggests starting with recent calendar meetings",
+        "Recommends connectors with disclosed compensation",
+        "Requires double opt-in intros with a human approving each one"
+      ],
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "I run a landing page and tracking agency. Build me a list of B2B SaaS companies that are running Meta ads but have no pixel installed or are sending ad traffic to their homepage, and draft the opener.",
+      "expected_output": "Should load references/signal-plays.md (gap plays) and pair the ad-activity signal with gaps verified from outside: ad destinations from the Meta Ad Library, tags from page source, the network tab, or a tag checker. Should require evidence (date, URL or screenshot) for every gap and treat 'no gap found' as a valid result. Should caveat that server-side tracking (Conversions API, server-side GTM) is invisible from outside, so a missing browser pixel isn't proof, and that homepage destinations can be deliberate. Should re-verify the gap within 7 days of sending. The opener should state the observation and ask a question rather than accuse, and offer the teardown only after a yes.",
+      "assertions": [
+        "Uses the Meta Ad Library to confirm active ads and their destinations",
+        "Checks tags from outside (page source, network tab, or tag checker)",
+        "Requires dated evidence for each gap and allows 'no gap found'",
+        "Warns that server-side tracking can't be seen from outside",
+        "Re-verifies gaps within 7 days of sending",
+        "Opener is an observation plus a question, not an accusation"
+      ],
+      "files": []
     }
   ]
 }

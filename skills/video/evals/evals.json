@@ -113,6 +113,33 @@
         "Asks for or confirms scenes and auth state before scripting"
       ],
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Our sales team wants a tailored 60-second product demo video for each of our top 200 target accounts. We have Claude Code. How do we do this without spending 20 minutes per video going back and forth?",
+      "expected_output": "Should use the Personalized Video per Account workflow: build the foundation before producing films. Should include a reusable product component library, motion primitives, a menu of company-agnostic demo flows, per-account scripts drafted from call notes, CRM and account research with a fictional company on screen, voiceover from a narrator voice cloned with consent, a render engine that turns a beat list into a film, automated QA via contact sheets (clipped text, small type, stray pointers), and one tracker with a row per film. Should suggest storyboarding the first film, running parallel lanes for tool limits, and should stay tool-neutral (Hyperframes, Remotion, or a design tool with agent access) rather than prescribing one.",
+      "assertions": [
+        "Says to build the reusable foundation before producing per-account films",
+        "Includes a product component library and reusable motion parts",
+        "Builds per-account scripts from account data with a fictional company on screen",
+        "Requires the narrator's consent for a cloned voice",
+        "Includes automated QA before human review",
+        "Includes a tracker with one row per film",
+        "Presents rendering tools as options rather than recommending one as best"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Hyperframes or Remotion for our product videos? Which one is more powerful?",
+      "expected_output": "Should not declare either framework more powerful. Should explain that the main difference is the authoring model: Hyperframes compositions are HTML/CSS/JS with timing declared in markup and a paused timeline the renderer seeks, while Remotion compositions are React components that compute each frame from the frame number. Should recommend choosing by what the team and source material already are (existing HTML or browser animations vs an existing React codebase), and point to each project's docs for current rendering options, licensing and features rather than stating them as fixed facts.",
+      "assertions": [
+        "Does not claim either tool is more powerful or better overall",
+        "Explains the difference as HTML vs React authoring",
+        "Recommends choosing based on the team's existing stack and source material",
+        "Points to each project's docs for licensing, rendering options and features"
+      ],
+      "files": []
     }
   ]
 }

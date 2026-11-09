@@ -13,9 +13,10 @@ The ZIP has the single-folder structure in [Claude's custom skill guide](https:/
 
 Installing one archive does not install other skills, local CLI tools, MCP servers, credentials, or marketing context. Related-skill and tool instructions remain dependencies. Use the existing [terminal installation options](../README.md#installation) when you need the complete library and local tooling. API skills have a separate execution environment and cannot make live external API calls; do not assume these archives grant that capability.
 
-## Two explicit targets
+## Three explicit targets
 
 - **`source`**: `<name>-source.zip` preserves the original `SKILL.md` and resource bytes. Its long source description may exceed Claude web's documented metadata limit; this target is not presented as a web-ready upload.
+- **`perplexity`**: `<name>-perplexity.zip` keeps the original `SKILL.md` and resources but places them at the archive root, as Perplexity Computer requires for **Plugins → Add custom → Skill → Upload skill**. The build fails if a skill exceeds Perplexity's documented limits (100 files, 20 MB unzipped, 1,024-character description; [help center](https://www.perplexity.ai/help-center/en/articles/13914413-how-to-use-computer-skills), checked 2026-10-27).
 - **`claude-web`**: `<name>-claude-web.zip` changes only the YAML `description` line, using the reviewed entry in `scripts/claude-web-descriptions.json`. The markdown body, other metadata, and all packaged resources remain unchanged. The short description changes discovery wording; review it rather than assuming the original trigger list survives verbatim.
 
 The current web guide documents a 200-character description limit, while the [Agent Skills specification](https://agentskills.io/specification) and [API guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide) allow 1024. Overrides are explicit, not automatic truncation. Each override records a hash of the original description; changed triggers require renewed review.
