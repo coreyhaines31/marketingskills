@@ -1,8 +1,8 @@
 ---
 name: ai-seo
-description: "When the user wants to get content cited and recommended in AI answers: ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews. Use for AEO and GEO, AI visibility and citations, llms.txt, agent-readable sites, and when AI tools cite a competitor instead of you. For technical and on-page SEO audits, see seo-audit. For structured data, see schema."
+description: "When the user wants to get cited and recommended in AI answers (ChatGPT, Perplexity, Claude, Gemini, AI Overviews), or asks why AI tools cite a competitor, what content gets cited, or whether llms.txt matters: AEO, GEO, AI visibility, and agent-readable sites. For technical and on-page SEO, see seo-audit. For structured data, see schema."
 metadata:
-  version: 2.12.1
+  version: 2.12.2
 ---
 
 # AI SEO

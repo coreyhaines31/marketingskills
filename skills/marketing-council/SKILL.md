@@ -1,8 +1,8 @@
 ---
 name: marketing-council
-description: "When the user wants several expert perspectives on a marketing decision from a simulated board of legendary marketers (Seth Godin, David Ogilvy, April Dunford, Rory Sutherland, Alex Hormozi, Byron Sharp, and more): each advisor's take grounded in their documented frameworks, where they disagree, and a recommendation. For executing the direction, hand off to the relevant skill."
+description: "When the user wants several expert takes on a marketing decision, or asks what a famous marketer would say about it: a simulated board (Seth Godin, David Ogilvy, April Dunford, Rory Sutherland, Alex Hormozi, Byron Sharp, and more), each grounded in their documented frameworks, where they disagree, and a recommendation. To execute, hand off to the relevant skill."
 metadata:
-  version: 1.0.1
+  version: 1.0.2
 ---
 
 # Marketing Council

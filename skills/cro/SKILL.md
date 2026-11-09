@@ -1,8 +1,8 @@
 ---
 name: cro
-description: "When the user wants to increase conversions on marketing pages and forms: homepages, landing pages, pricing pages, demo and lead forms. Use when a page isn't converting, people visit but don't click, or someone shares a URL for feedback. For signup flows, see signup. For post-signup activation, see onboarding. For popups, see popups. For running the test, see ab-testing."
+description: "When the user wants more conversions from a page or form, or asks why a page isn't converting or what to change first: homepages, landing and pricing pages, demo and lead forms, or a URL shared for feedback. For signup flows, see signup. For activation, see onboarding. For popups, see popups. For running the test, see ab-testing."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 # Conversion Rate Optimization (CRO)

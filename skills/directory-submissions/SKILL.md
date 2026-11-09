@@ -1,8 +1,8 @@
 ---
 name: directory-submissions
-description: "When the user wants to submit a product to startup, SaaS, AI, agent, MCP, and review directories for backlinks, discovery, and listings: Product Hunt, G2, Capterra, AlternativeTo, SaaSHub, MCP registries, and awesome lists, with a submission tracker. For the broader launch, see launch. For other link building, see link-building."
+description: "When the user wants to list a product in startup, SaaS, AI, MCP, and review directories, or asks which directories are worth it: Product Hunt, G2, Capterra, AlternativeTo, SaaSHub, MCP registries, awesome lists, and a submission tracker. For the broader launch, see launch. For other link building, see link-building."
 metadata:
-  version: 2.1.5
+  version: 2.1.6
 ---
 
 # Directory Submissions

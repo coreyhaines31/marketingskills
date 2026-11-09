@@ -1,8 +1,8 @@
 ---
 name: signup
-description: "When the user wants to optimize signup, registration, and trial start flows: form fields, steps, SSO, credit card requirements, and drop-off before an account exists. For what happens after signup, see onboarding. For lead capture forms that don't create an account, see cro."
+description: "When the user wants better signup, registration, and trial start flows, or asks which fields or steps to cut or whether to require a card: SSO and drop-off before an account exists. For what happens after signup, see onboarding. For lead forms that don't create an account, see cro."
 metadata:
-  version: 2.0.2
+  version: 2.0.3
 ---
 
 # Signup Flow CRO

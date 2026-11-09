@@ -1,8 +1,8 @@
 ---
 name: free-tools
-description: "When the user wants to plan, evaluate, or build free tools as marketing (engineering as marketing): calculators, graders, generators, and other interactive tools for leads, SEO, and links, including whether a tool idea is worth building. For downloadable lead magnets like ebooks and templates, see lead-magnets."
+description: "When the user wants to plan or build a free tool as marketing, or asks whether a tool idea is worth building: calculators, graders, generators, and other interactive tools for leads, SEO, and links. For downloadable lead magnets, see lead-magnets."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 # Free Tool Strategy (Engineering as Marketing)

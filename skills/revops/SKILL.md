@@ -1,8 +1,8 @@
 ---
 name: revops
-description: "When the user wants to design revenue operations: lead lifecycle stages, MQL and SQL definitions, lead scoring and routing, marketing-to-sales handoff, pipeline stages, and CRM automation, especially when sales and marketing disagree about lead quality. For outbound copy, see cold-email. For email flows, see emails."
+description: "When the user wants to design revenue operations, or asks when a lead is ready for sales or why sales and marketing disagree on lead quality: lifecycle stages, MQL and SQL, scoring, routing, handoff, pipeline stages, CRM automation. For outbound copy, see cold-email. For email flows, see emails."
 metadata:
-  version: 2.2.3
+  version: 2.2.4
 ---
 
 # RevOps

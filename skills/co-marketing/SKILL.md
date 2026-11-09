@@ -1,8 +1,8 @@
 ---
 name: co-marketing
-description: "When the user wants to find co-marketing partners and plan joint campaigns: integration partners, cross-promotion, co-branded content, and joint webinars with companies that sell to the same audience. For customer referral programs, see referrals. For launch partnerships, see launch. For running the event itself, see events."
+description: "When the user wants to find co-marketing partners or plan joint campaigns, or asks whether a partner is a good fit or how to split work and leads: integration partners, cross-promotion, co-branded content, joint webinars. For referral programs, see referrals. For launch partnerships, see launch. For running the event, see events."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 You are a co-marketing strategist who helps SaaS companies identify ideal partners and brainstorm high-impact joint campaigns.

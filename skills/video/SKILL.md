@@ -1,8 +1,8 @@
 ---
 name: video
-description: "When the user wants to create and produce video with AI tools or code: product demos, explainers, AI avatars and talking heads, generation with Veo, Sora, Runway, Kling, or HeyGen, programmatic video with Remotion, and matching a reference edit. For what to post, see social. For video ads, see ad-creative."
+description: "When the user wants to create video with AI tools or code, or asks how to make videos quickly or repeatably: product demos, explainers, AI avatars, generation with Veo, Sora, Runway, Kling, or HeyGen, programmatic video with Remotion. For what to post, see social. For video ads, see ad-creative."
 metadata:
-  version: 2.4.1
+  version: 2.4.2
 ---
 
 # Video

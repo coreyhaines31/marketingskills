@@ -1,8 +1,8 @@
 ---
 name: ab-testing
-description: "When the user wants to plan, design, and read A/B tests and experiments, or build a growth experimentation program. Use for split tests, sample size and test duration, statistical significance, 'which version is better', hypotheses, and experiment backlogs or ICE scoring. For tracking setup, see analytics. For page-level conversion fixes, see cro."
+description: "When the user wants to plan, run, or read A/B tests and experiments, or asks whether a result is real, when to stop a test, or which version won: sample size, duration, significance, hypotheses, and experiment backlogs. For tracking setup, see analytics. For page-level conversion fixes, see cro."
 metadata:
-  version: 2.0.5
+  version: 2.0.6
 ---
 
 # A/B Test Setup

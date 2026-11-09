@@ -1,8 +1,8 @@
 ---
 name: onboarding
-description: "When the user wants to improve post-signup onboarding and activation: first-run experience, aha moments, checklists, empty states, and time to value, when users sign up but don't stick around. For the signup flow itself, see signup. For onboarding emails, see emails."
+description: "When the user wants better onboarding and activation, or asks why new users don't stick: first-run experience, aha moments, checklists, empty states, time to value. For the signup flow itself, see signup. For onboarding emails, see emails."
 metadata:
-  version: 2.0.3
+  version: 2.0.4
 ---
 
 # Onboarding CRO
