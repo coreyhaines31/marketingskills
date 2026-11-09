@@ -1,8 +1,8 @@
 ---
 name: paywalls
-description: When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions "paywall," "upgrade screen," "upgrade modal," "upsell," "feature gate," "convert free to paid," "freemium conversion," "trial expiration screen," "limit reached screen," "plan upgrade prompt," "in-app pricing," "free users won't upgrade," "trial to paid conversion," or "how do I get users to pay," "mobile app paywall," "subscription app paywall," or "App Store subscription pricing." Use this for any in-product moment where you're asking users to upgrade. Distinct from public pricing pages (see cro) — this focuses on in-product upgrade moments where the user has already experienced value. For pricing decisions, see pricing.
+description: "When the user wants to create and optimize in-app paywalls, upgrade screens, upsell modals, feature gates, and limit-reached or trial-expired screens, including mobile subscription paywalls. For in-product upgrade moments after the user has seen value. For public pricing pages, see cro. For pricing decisions, see pricing."
 metadata:
-  version: 2.1.1
+  version: 2.1.2
 ---
 
 # Paywall and Upgrade Screen CRO
