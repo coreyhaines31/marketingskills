@@ -1,6 +1,6 @@
 ---
 name: marketing-plan
-description: "When the user wants a full marketing or go-to-market plan for a client, an advised company, or their own product, or asks how to sequence or prioritize several initiatives with a fixed team and budget: channels, budget, team, quarterly goals across AARRR, market sizing. For positioning first, see product-marketing. For ideas only, see marketing-ideas."
+description: "When the user wants a full marketing or go-to-market plan for a client, an advised company, or their own product, or asks how to sequence or prioritize several initiatives with a fixed team and budget: channels, budget, team, goals across AARRR, market sizing. For positioning first, see product-marketing. For ideas only, see marketing-ideas."
 metadata:
   version: 1.2.5
 ---

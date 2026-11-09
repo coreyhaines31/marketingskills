@@ -1,6 +1,6 @@
 ---
 name: marketing-loops
-description: "When the user wants a recurring marketing job an AI agent runs on a cadence or trigger, or asks what a weekly or daily automated check should do, remember, and when it should stop: SEO and ads checks, churn watches, outbound triage. Not a one-off task. For one-off ideas, see marketing-ideas. For the test loop, see ab-testing."
+description: "When the user wants a recurring marketing job an AI agent runs on a cadence or trigger, or asks what a weekly or daily automated check should do, remember, and when it should stop: SEO and ads checks, churn watches, outbound triage. For one-off ideas, see marketing-ideas. For the test loop, see ab-testing."
 metadata:
   version: 1.8.4
 ---
