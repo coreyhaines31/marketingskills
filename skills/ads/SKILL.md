@@ -1,8 +1,8 @@
 ---
 name: ads
-description: "When the user wants to plan, run, or fix paid ads on Google, Meta, LinkedIn, X, and other platforms, or asks whether ads are worth it, where budget should go, or why CPA rose: structure, targeting, bidding, retargeting, ABM, wasted spend. End with facts, hypotheses, and missing data; label unavailable inputs MISSING instead of estimating. For ad copy, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
+description: "When the user wants to plan, run, or fix paid ads on Google, Meta, LinkedIn, and others, or asks a judgement call on them: are ads worth it, which channel or budget split, why CPA rose, kill or keep a campaign. End with facts, hypotheses, and missing data; label unavailable inputs MISSING instead of estimating. For ad copy, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
 metadata:
-  version: 2.7.3
+  version: 2.7.4
 ---
 
 # Paid Ads

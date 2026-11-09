@@ -1,8 +1,8 @@
 ---
 name: prospecting
-description: "When the user wants to find and qualify prospects for outbound, or asks who to contact or where to spot buyers with the problem right now: ICP-fit accounts, buying and hiring signals, enrichment, email verification, account research. Verify emails before a sequence, never scrape LinkedIn: define audiences in Sales Navigator and pull contacts from licensed data. For outreach, see cold-email. For competitor research, see competitor-profiling."
+description: "When the user wants to find and qualify prospects for outbound, or asks who to target first, which signal to prioritize, or where to spot buyers with the problem: buying signals, enrichment, verification, account research. Verify emails before a sequence, never scrape LinkedIn: define audiences in Sales Navigator and pull contacts from licensed data. For outreach, see cold-email. For competitor research, see competitor-profiling."
 metadata:
-  version: 1.5.2
+  version: 1.5.3
 ---
 
 # Prospecting

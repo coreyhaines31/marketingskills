@@ -1,8 +1,8 @@
 ---
 name: ab-testing
-description: "When the user wants to plan, run, or read A/B tests and experiments, or asks whether a result is real, when to stop a test, or which version won: sample size, duration, significance, hypotheses, and experiment backlogs. For tracking setup, see analytics. For page-level conversion fixes, see cro."
+description: "When the user wants to plan, run, or read A/B tests, or asks a judgement call on one: is the result real, can we stop, which version won, is this worth testing at all: sample size, duration, significance, hypotheses, and experiment backlogs. For tracking setup, see analytics. For page-level conversion fixes, see cro."
 metadata:
-  version: 2.0.6
+  version: 2.0.7
 ---
 
 # A/B Test Setup

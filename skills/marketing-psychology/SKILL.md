@@ -1,8 +1,8 @@
 ---
 name: marketing-psychology
-description: "When the user wants to apply psychology to marketing, or asks why people decide as they do or whether a persuasion tactic is fair: biases, mental models, anchoring, social proof, scarcity, loss aversion, framing. For a page, see cro. For pricing tactics, see pricing. For copy, see copywriting."
+description: "When the user wants to apply psychology to marketing, or asks why buyers behave or value things as they do, or whether a persuasion tactic is honest: biases, mental models, anchoring, social proof, scarcity, loss aversion, framing. For a page, see cro. For pricing tactics, see pricing. For copy, see copywriting."
 metadata:
-  version: 2.0.2
+  version: 2.0.3
 ---
 
 # Marketing Psychology & Mental Models

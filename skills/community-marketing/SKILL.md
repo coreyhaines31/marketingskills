@@ -1,8 +1,8 @@
 ---
 name: community-marketing
-description: "When the user wants to build or grow an online community, or asks whether a community is worth it or why members stay quiet: Discord, Slack, forums, subreddits, participation, community-led growth, advocates. For referral programs, see referrals. For creator partnerships, see influencer-marketing."
+description: "When the user wants to build or grow an online community, or asks whether a community is worth it, where to host it, or why members stay quiet: Discord, Slack, forums, participation, community-led growth, advocates. For referral programs, see referrals. For creator partnerships, see influencer-marketing."
 metadata:
-  version: 2.0.4
+  version: 2.0.5
 ---
 
 # Community Marketing

@@ -1,8 +1,8 @@
 ---
 name: site-architecture
-description: "When the user wants to plan or restructure a website, or asks which pages they need or where something belongs: hierarchy, navigation, URL structure, visual sitemaps, internal linking, website builders and migrations. Not XML sitemaps (see seo-audit). For structured data, see schema."
+description: "When the user wants to plan or restructure a website, or asks which pages they need or where something belongs: hierarchy, navigation, URL structure, internal linking, website builders and migrations. Not XML sitemaps (see seo-audit). For structured data, see schema."
 metadata:
-  version: 2.1.2
+  version: 2.1.3
 ---
 
 # Site Architecture

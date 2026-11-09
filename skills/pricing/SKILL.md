@@ -1,8 +1,8 @@
 ---
 name: pricing
-description: "When the user wants to set pricing and packaging, or asks what to charge, whether to raise prices, or how to move existing customers: tiers, value metrics, per-seat vs usage, freemium and trials, willingness to pay, and pricing page audits. For in-app upgrade screens, see paywalls. For offers on services, courses, and high-ticket B2B, see offers."
+description: "When the user wants to set pricing and packaging, or asks what to charge, whether to raise prices, or how to move existing customers: tiers, value metrics, per-seat vs usage, freemium and trials, willingness to pay, pricing pages. For in-app upgrade screens, see paywalls. For offers on services, courses, and high-ticket B2B, see offers."
 metadata:
-  version: 2.1.6
+  version: 2.1.7
 ---
 
 # Pricing Strategy

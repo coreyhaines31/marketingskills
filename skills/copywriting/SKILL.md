@@ -1,8 +1,8 @@
 ---
 name: copywriting
-description: "When the user wants to write or rewrite page copy (homepage, landing, pricing, feature, about), or asks what a headline, value proposition, or CTA should say. Diagnoses the input first (blank brief, real voice, or point edit) and changes only what it calls for. Claims must be supportable; a declined claim names the evidence that would unlock it. No AI tells like 'it's not X, it's Y' or 'no X, no Y, no Z'. For editing, see copy-editing. For emails, see emails. For the offer, see offers."
+description: "When the user wants to write or rewrite page copy (homepage, landing, pricing, feature), or asks which headline, promise, or message to lead with. Diagnoses the input first (blank brief, real voice, or point edit) and changes only what it calls for. Claims must be supportable; a declined claim names the evidence that would unlock it. No AI tells like 'it's not X, it's Y' or 'no X, no Y, no Z'. For editing, see copy-editing. For emails, see emails. For the offer, see offers."
 metadata:
-  version: 2.3.4
+  version: 2.3.5
 ---
 
 # Copywriting

@@ -1,8 +1,8 @@
 ---
 name: product-marketing
-description: "When the user wants to create or update the product marketing context doc (.agents/product-marketing.md), or asks whether their positioning or ICP is clear enough: product, ICP, positioning, competitors, brand voice. Use it before other marketing skills on a new project, when the audience or positioning changes, and to log learnings."
+description: "When the user wants to create or update the product marketing context doc (.agents/product-marketing.md), or asks what belongs in it or whether positioning or ICP is clear enough: product, ICP, positioning, competitors, customer language, brand voice. Use it before other marketing skills on a new project, when the audience or positioning changes, and to log learnings."
 metadata:
-  version: 2.2.2
+  version: 2.2.3
 ---
 
 # Product Marketing Context

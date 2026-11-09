@@ -1,8 +1,8 @@
 ---
 name: churn-prevention
-description: "When the user wants to reduce churn, or asks why customers cancel or what would keep them: cancellation flows, exit surveys, save offers, pause options, dunning and failed-payment recovery. For win-back emails, see emails. For in-app upgrade screens, see paywalls."
+description: "When the user wants to reduce churn, or asks why customers cancel, whether to offer a discount or pause, or what would keep them: cancellation flows, exit surveys, save offers, dunning and failed-payment recovery. For win-back emails, see emails. For in-app upgrade screens, see paywalls."
 metadata:
-  version: 2.0.5
+  version: 2.0.6
 ---
 
 # Churn Prevention

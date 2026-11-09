@@ -1,8 +1,8 @@
 ---
 name: customer-research
-description: "When the user wants to run or synthesize customer research, or asks what customer quotes, reviews, or feedback really mean and what to ask next: interviews, surveys, transcripts, support tickets, voice of customer, personas, JTBD, mining Reddit and reviews. For copy from research, see copywriting. For acting on it in pages, see cro."
+description: "When the user wants to run or synthesize customer research, or asks what customer quotes, reviews, or feedback really mean, what is safe to conclude, and what to ask next: interviews, surveys, voice of customer, personas, JTBD, mining Reddit and reviews. For copy from research, see copywriting. For acting on it in pages, see cro."
 metadata:
-  version: 2.0.7
+  version: 2.0.8
 ---
 
 # Customer Research
