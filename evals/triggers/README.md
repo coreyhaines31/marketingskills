@@ -27,8 +27,8 @@ Claude Code caps the skill listing it sends the model at about 30,000 characters
 
 | Pack | Description chars | Our skills shown name-only (pack alone) | With 90 other skills installed |
 |---|---|---|---|
-| Descriptions before 2.14.3 | 42,734 | 26 of 53 | 29 of 53 |
-| Descriptions from 2.14.3 | 17,912 | 0 of 53 | 0 of 53 |
+| Descriptions before 2.14.3 | 42,105 | 26 of 53 | 29 of 53 |
+| Descriptions from 2.14.3 | 18,526 | 0 of 53 | 0 of 53 |
 
 Keep each description at 500 characters or fewer: what the skill does, the distinct situations it covers, any operative rule, and which neighbouring skill to use instead.
 
@@ -37,8 +37,8 @@ Keep each description at 500 characters or fewer: what the skill does, the disti
 | Prompt set | Condition | Before 2.14.3 | From 2.14.3 |
 |---|---|---|---|
 | prompts.json (159 marketing) | pack alone | 96.2% | 99.4% |
-| prompts.json | +90 other skills | 94.3% | 98.1% |
-| heldout.json (106 marketing) | pack alone | 87.7% | 91.5% |
-| heldout.json | +90 other skills | 79.2% | 88.7% |
+| prompts.json | +90 other skills | 94.3% | 98.7% |
+| heldout.json (106 marketing) | pack alone | 87.7% | 92.5% |
+| heldout.json | +90 other skills | 79.2% | 87.7% |
 
-No false triggers on non-marketing prompts in any run. Most remaining held-out misses are `no-trigger`: the model answers directly without loading a skill (competitor-profiling, co-marketing, customer-research, and reverse-engineer-marketing prompts).
+No false triggers on non-marketing prompts in any run. Most remaining held-out misses are `no-trigger`: the model answers directly without loading a skill (competitor-profiling, customer-research, marketing-council, and reverse-engineer-marketing prompts). One run per cell, so differences of a point or two are noise; the crowded held-out gain (+8.5) and the listing change are not.
