@@ -90,7 +90,17 @@ Plus a ◆ marker in [REGISTRY.md](REGISTRY.md) and an entry in [`../partners.js
 
 ## `tools/integrations/` spec (any tool, partner or not)
 
-**What qualifies:** a real marketing tool with a programmatic surface an agent can use — an API, MCP server, and/or CLI. Neutral integrations are welcome from anyone via PR.
+**What qualifies:** a real marketing tool with a programmatic surface an agent can use — an API, MCP server, and/or CLI. Neutral integrations are welcome from anyone via PR, including the tool's own makers.
+
+**The usefulness bar.** A guide earns its place by letting an agent *do the work*: real endpoints, MCP setup, CLI commands, auth steps, and the operations a marketer would actually run. Feature tours, pricing pitches, comparison claims, and "why choose us" copy are cut. A guide that's mostly marketing gets one request to trim, then is closed. A tool that duplicates what an existing guide already covers needs to say what an agent can do with it that it couldn't before.
+
+**Makers disclose in the PR.** If you build or work for the tool, say so in the pull request description. The guide itself stays neutral and carries no disclosure header — that header is reserved for Verified Partners.
+
+**Review cadence.** Neutral integration PRs are reviewed in a monthly batch. Verified Partner guides follow the partner lifecycle above and are reviewed as part of onboarding.
+
+**Upkeep.** Guides are checked quarterly. A non-partner guide whose API, docs, or tool has gone away gets an issue and 30 days to fix, then is removed. Partner guides are kept current as part of the agreement.
+
+**Listed vs featured.** A merged neutral guide is *listed*: it lives in `tools/integrations/` and the registry, and agents find it when the job calls for it. *Featured* placement — the ◆ badge, README and site listing, launch announcement, and faster review — comes with the [partner program](https://marketing-skills.com/sponsorship). Makers whose guide is merged are welcome to apply.
 
 **Format** (match the existing guides, e.g. [`integrations/resend.md`](integrations/resend.md)):
 - `# Tool Name` + a one-line description
