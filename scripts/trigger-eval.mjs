@@ -29,6 +29,8 @@ export function parseArgs(argv) {
     else opts[key] = val;
     i++;
   }
+  opts['plugin-dir'] = path.resolve(opts['plugin-dir']);
+  opts['extra-plugin-dir'] = opts['extra-plugin-dir'].map(d => path.resolve(d));
   opts.concurrency = Number(opts.concurrency);
   opts.repeat = Number(opts.repeat);
   return opts;
@@ -38,6 +40,7 @@ export function parseArgs(argv) {
 export function skillsInvoked(streamText) {
   const out = [];
   let cost = 0;
+  let finished = false;
   for (const line of streamText.split('\n')) {
     let event;
     try { event = JSON.parse(line); } catch { continue; }
@@ -46,24 +49,30 @@ export function skillsInvoked(streamText) {
         if (part.type === 'tool_use' && part.name === 'Skill' && part.input?.skill) out.push(part.input.skill);
       }
     }
-    if (event.type === 'result') cost = event.total_cost_usd || 0;
+    if (event.type === 'result') {
+      finished = true;
+      cost = event.total_cost_usd || 0;
+    }
   }
-  return { skills: out, cost };
+  return { skills: out, cost, finished };
 }
 
-// A pick is the first skill from this pack. Built-in or other plugins' skills count as "other".
-export function score(item, invoked, packName = 'marketing-skills') {
-  const ours = invoked.filter(s => s.startsWith(`${packName}:`)).map(s => s.slice(packName.length + 1));
+// Scores the first skill invoked. A skill from outside this pack (built in or another plugin) is "other-skill".
+// A run that failed (no result event, timeout, auth error) is "error" and left out of the routing metrics.
+export function score(item, invoked, packName = 'marketing-skills', failed = false) {
   const first = invoked[0] || null;
-  const pick = ours[0] || null;
+  const pick = first && first.startsWith(`${packName}:`) ? first.slice(packName.length + 1) : null;
   let outcome;
-  if (!item.expect.length) outcome = pick ? 'false-trigger' : 'pass';
+  if (failed) outcome = 'error';
+  else if (!item.expect.length) outcome = invoked.some(s => s.startsWith(`${packName}:`)) ? 'false-trigger' : 'pass';
   else if (!pick) outcome = first ? 'other-skill' : 'no-trigger';
   else outcome = item.expect.includes(pick) ? 'pass' : 'wrong-skill';
   return { outcome, pick, first };
 }
 
 export function summarize(rows) {
+  const errors = rows.filter(r => r.outcome === 'error').length;
+  rows = rows.filter(r => r.outcome !== 'error');
   const count = (list, o) => list.filter(r => r.outcome === o).length;
   const pct = (n, d) => (d ? Math.round((1000 * n) / d) / 10 : 0);
   const kinds = [...new Set(rows.map(r => r.kind))];
@@ -94,11 +103,34 @@ export function summarize(rows) {
       other_skill: count(positives, 'other-skill'),
     },
     false_triggers: count(rows, 'false-trigger'),
+    errors,
     by_kind: byKind,
     confusions: Object.entries(confusions).sort((a, b) => b[1] - a[1]).map(([pair, n]) => ({ pair, n })),
     weakest: Object.entries(perSkill).filter(([, s]) => s.pass < s.n).sort((a, b) => a[1].pass / a[1].n - b[1].pass / b[1].n)
       .map(([skill, s]) => ({ skill, pass: `${s.pass}/${s.n}` })),
   };
+}
+
+// Reads the description from SKILL.md frontmatter: plain, single- or double-quoted, or a block scalar (> or |).
+export function descriptionOf(text) {
+  const fm = text.replace(/\r\n/g, '\n').match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+  const lines = fm.split('\n');
+  const i = lines.findIndex(l => /^description:/.test(l));
+  if (i < 0) return '';
+  const raw = lines[i].replace(/^description:[ \t]*/, '');
+  if (/^[>|]/.test(raw)) {
+    const body = [];
+    for (const l of lines.slice(i + 1)) {
+      if (l.trim() && !/^[ \t]/.test(l)) break;
+      body.push(l.trim());
+    }
+    return raw.startsWith('|') ? body.join('\n').trim() : body.filter(Boolean).join(' ');
+  }
+  const dq = raw.match(/^"((?:[^"\\]|\\.)*)"/);
+  if (dq) return JSON.parse(`"${dq[1]}"`);
+  const sq = raw.match(/^'((?:[^']|'')*)'/);
+  if (sq) return sq[1].replace(/''/g, "'");
+  return raw.replace(/\s+#.*$/, '').trim();
 }
 
 // Description text that sits in the skill listing on every message.
@@ -108,9 +140,7 @@ export function residentChars(pluginDir) {
   for (const name of readdirSync(dir)) {
     let text;
     try { text = readFileSync(path.join(dir, name, 'SKILL.md'), 'utf8'); } catch { continue; }
-    const fm = text.split('---')[1] || '';
-    const m = fm.match(/^description:\s*(.*)$/m);
-    if (m) chars += m[1].replace(/^["']|["']$/g, '').length + name.length;
+    chars += descriptionOf(text).length + name.length;
   }
   return chars;
 }
@@ -126,10 +156,13 @@ function runOne(item, opts, cwd) {
     child.stdout.on('data', d => { stdout += d; });
     child.stderr.on('data', d => { stderr += d; });
     const timer = setTimeout(() => child.kill('SIGKILL'), 120000);
-    child.on('close', code => {
+    child.on('close', (code, signal) => {
       clearTimeout(timer);
-      const { skills, cost } = skillsInvoked(stdout);
-      resolve({ skills, cost, error: code && !skills.length ? (stderr.trim().split('\n').pop() || `exit ${code}`) : null });
+      const { skills, cost, finished } = skillsInvoked(stdout);
+      let error = null;
+      if (signal) error = `killed by ${signal} (timeout)`;
+      else if (!finished) error = stderr.trim().split('\n').pop() || `exit ${code} with no result`;
+      resolve({ skills, cost, error });
     });
   });
 }
@@ -151,7 +184,7 @@ async function main() {
     while (next < jobs.length) {
       const { item, run } = jobs[next++];
       const res = await runOne(item, opts, cwd);
-      const s = score(item, res.skills);
+      const s = score(item, res.skills, 'marketing-skills', Boolean(res.error));
       cost += res.cost;
       rows.push({ id: item.id, run, kind: item.kind, expect: item.expect, invoked: res.skills, ...s, error: res.error });
       process.stderr.write(`[${rows.length}/${jobs.length}] ${s.outcome.padEnd(13)} ${item.id}${s.pick && s.outcome !== 'pass' ? ` -> ${s.pick}` : ''}${res.error ? ` (${res.error})` : ''}\n`);

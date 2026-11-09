@@ -19,6 +19,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
+import { descriptionOf } from "./trigger-eval.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
@@ -62,12 +63,6 @@ for (const name of Object.keys(table)) {
 // Description budget
 const DESC_MAX = 500;
 const DESC_TOTAL_MAX = 24000;
-const descriptionOf = (text) => {
-  const raw = frontmatter(text).match(/^description:[ \t]*(.*)$/m)?.[1]?.trim() ?? "";
-  if (raw.startsWith('"')) return JSON.parse(raw);
-  if (raw.startsWith("'")) return raw.slice(1, -1).replace(/''/g, "'");
-  return raw;
-};
 let descTotal = 0;
 for (const name of skills) {
   const len = descriptionOf(read(`skills/${name}/SKILL.md`)).length;
