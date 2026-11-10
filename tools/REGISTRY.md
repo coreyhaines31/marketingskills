@@ -128,6 +128,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | theirstack | Hiring & Tech Signals | ✓ | ✓ | - | - | [theirstack.md](integrations/theirstack.md) |
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
+| admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
@@ -527,6 +528,7 @@ AI-powered content generation and optimization platforms.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **airops** | AI content workflows, SEO content | Flow-based automation |
+| **admakeai** | Meta and TikTok ad images, UGC-style video ads, Meta Ad Library lookups | API + MCP; credit-based; publishes to Meta as paused drafts |
 
 **Agent recommendation**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
@@ -641,6 +643,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
+- **admakeai** - Ad images, UGC video ads and Meta Ad Library lookups
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
