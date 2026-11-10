@@ -289,7 +289,7 @@ Beyond mixing and matching data point permutations, these are the proven playboo
 
 | If you have... | Consider... |
 |----------------|-------------|
-| Proprietary data | Stats, Directories, Profiles |
+| Proprietary data | Directory, Profiles, Curation |
 | Product with integrations | Integrations |
 | Design/creative product | Templates, Examples |
 | Multi-segment audience | Personas |

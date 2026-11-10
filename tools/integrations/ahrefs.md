@@ -7,7 +7,7 @@ SEO toolset for backlink analysis, keyword research, and competitive research.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for Site Explorer, Keywords Explorer |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `https://api.ahrefs.com/mcp` ([docs](https://docs.ahrefs.com/docs/mcp/introduction)); the older local npm server is archived, checked 2026-10-27 |
 | CLI | - | Not available |
 | SDK | - | API-only |
 

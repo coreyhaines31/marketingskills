@@ -141,14 +141,14 @@ modern SaaS product presentation style,
 
 - **Multi-image reference** is the killer feature — upload product screenshots, brand assets, or style references
 - Best for **brand consistency** across a set of images
-- Use Flux Pro for final assets, Flux Dev for rapid iteration
-- Flux Klein for high-volume batch generation (cheapest)
+- Use FLUX 3 Image or FLUX.2 [pro] for final assets, FLUX.2 [dev] for rapid iteration
+- FLUX.2 [klein] for high-volume batch generation (the lowest-cost tier; check [BFL pricing](https://docs.bfl.ai/quick_start/pricing))
 - Style transfer via reference images > style keywords in prompt
 - Prompts can be shorter than other models — the references do heavy lifting
 
 ### Ideogram
 
-- **Best text rendering** of any model (industry-leading accuracy)
+- **Strong text rendering**, its main differentiator
 - Use when you need headlines, taglines, or brand names in the image
 - Style reference system (up to 3 images) for brand consistency
 - Supports "Magic Prompt" auto-enhancement
@@ -172,7 +172,7 @@ modern SaaS product presentation style,
 - **Not agent-friendly** — use for manual creative exploration only
 - Style flags: `--style raw` for less stylized, `--ar 16:9` for aspect ratio
 - Best for hero images where pure visual quality matters most
-- V6+ has improved text rendering but still unreliable
+- V7 renders text better than earlier versions but still unreliably
 
 ---
 
@@ -222,7 +222,7 @@ When you need multiple images with consistent style (e.g., a blog series or soci
 
 ## Cost Optimization
 
-- **Iterate at low quality first** — use Flux Dev or Gemini Flash for drafts, upgrade for finals
+- **Iterate at low quality first** — use FLUX.2 [dev] or Gemini Flash for drafts, upgrade for finals
 - **Use references over long prompts** — Flux multi-reference produces more consistent results with fewer retries
 - **Batch similar requests** — generate all blog headers in one session with the same style
 - **Cache and reuse** — abstract backgrounds, patterns, and textures can be reused across multiple images

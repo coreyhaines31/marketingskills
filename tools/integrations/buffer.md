@@ -7,7 +7,7 @@ Social media scheduling, publishing, and analytics platform for managing multipl
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API v1 for profiles, updates, scheduling |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://developers.buffer.com/guides/integrations.html)), checked 2026-10-27 |
 | CLI | ✓ | [buffer.js](../clis/buffer.js) |
 | SDK | - | No official SDK; legacy API still supported |
 

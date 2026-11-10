@@ -7,7 +7,7 @@ E-commerce email and SMS marketing platform with profiles, flows, campaigns, seg
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API with JSON:API spec, revision-versioned |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `mcp.klaviyo.com` ([docs](https://developers.klaviyo.com/en/docs/klaviyo_mcp_server)), checked 2026-10-27 |
 | CLI | ✓ | [klaviyo.js](../clis/klaviyo.js) |
 | SDK | ✓ | Python, Node.js, Ruby, PHP, Java, C# |
 

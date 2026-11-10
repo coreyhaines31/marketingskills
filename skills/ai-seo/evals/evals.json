@@ -158,6 +158,33 @@
         "Labels figures as dated and vendor/platform-reported"
       ],
       "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "We ran 40 buying prompts through ChatGPT, Claude, Gemini and Google AI Mode, three runs each. We show up sometimes but competitors show up way more. My plan is to write a new blog post for every prompt where we're missing. Good plan?",
+      "expected_output": "Should load references/prompt-portfolio.md and push back on writing one post per missing prompt. Should group the prompts into buying topics and count appearances per topic for the user and each competitor across runs, then start with the biggest consistent gaps (e.g. a competitor in 18 of 25 runs vs the user in 4) rather than one-off misses. For losing topics: open the sources cited when competitors won and record page, domain, page type and competitor; check whether an existing page should already win and fix it first; rule out indexing, crawler access and internal links; then choose the fix (new page, better existing page, updated facts, or third-party sources). Should track mentions, recommendations and citations separately and rerun the identical portfolio after changes are crawled.",
+      "assertions": [
+        "Recommends grouping prompts into buying topics instead of fixing prompt by prompt",
+        "Prioritizes topics by the size of the gap with competitors across runs",
+        "Says to inspect the sources cited when competitors won",
+        "Says to check and fix an existing page before creating a new one",
+        "Includes a technical check (indexing, crawler access, internal links) before rewriting",
+        "Says to rerun the identical prompt set after changes are crawled"
+      ],
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "Claude never cites us when people ask about our category, and I have no idea what Copilot is searching for when it does or doesn't cite us. Where do I even look?",
+      "expected_output": "Should load references/platform-ranking-factors.md. For Claude: explain that Claude's web search uses Brave Search, so check whether the site appears at search.brave.com for brand and key terms; if missing, request a crawl at search.brave.com/submit-url, noting it only alerts Brave's crawler, with no webmaster console or sitemap submission, so verify by watching referrals from search.brave.com; and check the Claude crawlers (Claude-SearchBot, Claude-User) aren't blocked. For Copilot: point to Bing Webmaster Tools' AI Performance report (beta), which shows how often pages are cited in Copilot and Bing AI answers and the grounding queries Bing used, which are Bing's interpretation of the request rather than what the user typed, with no click data and no mapping from a query to a specific citation.",
+      "assertions": [
+        "Connects Claude's citations to Brave Search's index",
+        "Mentions the Brave submit-url page and that it only requests a crawl (no console or sitemap submission)",
+        "Says to check Claude-SearchBot and Claude-User access",
+        "Points to Bing Webmaster Tools' AI Performance report for Copilot",
+        "Explains grounding queries are Bing's interpretation, not the user's exact words, and lists the report's limits"
+      ],
+      "files": []
     }
   ]
 }

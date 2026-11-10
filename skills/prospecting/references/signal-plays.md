@@ -21,6 +21,19 @@ The closer the signal is to your product and your past customers, the better it 
 
 Stack signals before acting on the weaker ones. Hiring a lifecycle marketer **plus** an ESP in the stack **plus** a fit score above your threshold is worth a sequence. Any one of those alone usually isn't.
 
+## Warm paths: your network is a signal too
+
+Before buying a list, mine the relationships you already have. A warm introduction gets read when the twentieth cold email of the day doesn't, and AI-written outreach makes that gap wider.
+
+1. **Export your network.** LinkedIn connections (Settings → Data privacy → Get a copy of your data), calendar attendees, and inbox contacts. LinkedIn's export includes emails only for connections who allow it.
+2. **Enrich and rank** every contact: company, role, industry, headcount. Score them against your ICP like any other list.
+3. **Match against target accounts** to find first- and second-degree paths into the companies you want.
+4. **Start with your calendar.** Recent meetings show who is in a buying moment right now.
+5. **Find one connector per vertical**: someone trusted by buyers who ignore cold outreach (an agency owner who knows every other agency owner). Pay them the way you'd pay for a qualified meeting, and disclose the arrangement.
+6. **Double opt-in intros only.** Ask the connector, then the target, before anyone is introduced. Keep a human approving every intro, and never ask one contact to take intros for two vendors in the same week. Trust is the asset; spend it slowly.
+
+*Adapted from Cody Schneider's podcast with Chris of Super Connector (October 2026).*
+
 ## Freshness windows
 
 A signal decays. Act inside these windows or downgrade it:
@@ -52,11 +65,38 @@ Every signal you track should map to a specific play, so nobody improvises the a
 
 Write the angle as the problem the signal implies. "Saw you raised a Series A" is a fact everyone else sent. "Most teams that just raised are told to double pipeline in two quarters, and the site usually becomes the bottleneck" is a reason to reply.
 
+## Gap plays: a signal plus a gap you can see
+
+The strongest services and tooling plays pair two things: a signal that the company is spending or growing, and a gap you can verify from outside that your offer fixes. The signal says they have budget and a reason to act. The gap gives you a specific, checkable opener instead of a guess.
+
+| Signal | Gap to verify | How to check it from outside | Fits an offer like |
+|--------|---------------|------------------------------|--------------------|
+| Recent funding or a new marketing leader | The site hasn't changed in a long time, or doesn't match the new story | Wayback Machine snapshots, the copyright year, positioning that doesn't match the funding announcement | Website, CRO, positioning |
+| Hiring several SDRs or BDRs | The outbound stack doesn't match the plan | The tools named in the job post, sending-domain DNS (SPF, DKIM, DMARC), the tech stack | Email infrastructure, enrichment, deliverability |
+| Hiring for repetitive work (data entry, reporting, lead research, CRM admin) | The job post describes tasks that can be automated | The responsibilities list in the post itself | Automation, RevOps, AI agents |
+| Running paid ads | No visible ad or analytics tags | Page source, browser network tab, or a tag-checker extension (Meta Pixel Helper, Google Tag Assistant) | Tracking and attribution setup |
+| Running paid ads | Paid traffic lands on the homepage | The destination link on each ad in the Meta Ad Library or LinkedIn Ad Library | Landing pages, CRO |
+| Running the same ads for months | Creative fatigue | Start dates in the Meta Ad Library; the Google Ads Transparency Center for search and YouTube | Ad creative |
+| Many locations | Missing or thin location pages | Store locator count vs. pages found with `site:domain.com/locations`; Google Business Profiles per location | Local SEO |
+| Many integrations or use cases | Few pages about them | The integrations directory vs. a `site:` search for integration or use-case pages | Programmatic SEO, content |
+| A lead magnet (ebook, calculator, webinar) | No follow-up after opt-in | Opt in with an address you control and log every email for 14 days, then unsubscribe | Email nurture, lifecycle |
+| Expanding into a new country | The site isn't localized for it | Language switcher, `hreflang` tags, local currency and payment methods on pricing | Localization, international SEO |
+
+**Rules for gap plays:**
+
+1. **Verify the gap; never assume it.** Record what you checked, the date, and a screenshot or URL. An agent asked to find gaps will invent them unless every gap needs evidence. "No gap found" is a valid result, the same as "no hook found" in [account-research.md](account-research.md).
+2. **Know what can't be seen from outside.** Server-side tracking (Meta's Conversions API, server-side Google Tag Manager) doesn't show in page source, so a missing browser tag isn't proof of missing tracking. Ask, don't accuse. A homepage is also a normal destination for brand-name search ads, and an ad running for months may be the winner rather than tired. Ad longevity is a proxy, not proof.
+3. **Re-check before sending.** Gaps get fixed. Re-verify within 7 days of the first touch, or drop the gap from the message.
+4. **The gap must map to your offer.** Spotting a problem you can't fix is research, not a play.
+5. **Lead with the observation and a question, not a verdict.** "Your Meta ads for the spring launch point to the homepage. Is that on purpose?" gets replies. "Your landing pages are wasting your ad spend" gets deleted. Offer the evidence, and the teardown, only after they say yes (see the cold-email skill's outbound plays reference).
+
+Searching for these by hand is slow, which is why the plays used to be rare. Agents with web, ad-library, and X search access (Grok, for example, searches X directly) can build the list. A human still reviews the evidence for Tier 1 and a sample for Tier 2. Once a play gets replies, run it on a schedule with the signal-sweep loop in the marketing-loops skill.
+
 ## Two worked examples
 
 **A services agency selling to B2B SaaS (for example, a CRO and landing page agency)**
 - **Signals:** funding in the last 60 days; a new VP Marketing or head of growth; open roles for growth or performance marketers; a redesigned site or new pricing page; paid search or paid social campaigns launching.
-- **Play:** value first. Offer a short teardown of their actual page. Send it only after they say yes. See the cold-email skill's outbound plays reference.
+- **Play:** value first, built on a verified gap from the gap plays table. Offer a short teardown of their actual page. Send it only after they say yes. See the cold-email skill's outbound plays reference.
 - **Volume:** about 50 well-researched accounts a week beats 5,000 generic sends. Agencies rely on depth.
 
 **A self-serve SaaS tool (for example, an email verification product)**
@@ -85,6 +125,8 @@ Keep campaigns small. Several vendor and agency datasets show reply rates fallin
 | Website visitors | RB2B (US, person-level), Warmly, Vector, Koala | Mostly webhooks into your CRM or a Zap |
 | Social and community engagement | Trigify, Common Room | Both have APIs and MCPs |
 | Funding and news | Crunchbase, news search, Exa | Exa MCP; Crunchbase API on paid plans |
+| Public posts and announcements | X search (Grok searches X directly), LinkedIn posts (manual), news search | Grok via the xAI API; Exa MCP |
+| Ad activity | Meta Ad Library, Google Ads Transparency Center, LinkedIn Ad Library | Meta Ad Library API (political and EU ads only; check its current scope); otherwise browser research |
 | Tech stack | BuiltWith, Wappalyzer, tech mentions in job posts | APIs |
 | Product usage | Your own analytics and billing events | Webhooks into your CRM |
 

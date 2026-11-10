@@ -140,6 +140,8 @@ Complete templates for lead lifecycle stages, MQL criteria by business type, SLA
 
 ## MQL Criteria Templates by Business Type
 
+Each threshold below fits only its own point table. [scoring-models.md](scoring-models.md) has fuller example models with different weights and thresholds, and the holdout method for setting a threshold from your own closed-won data, which beats either set of example numbers.
+
 ### PLG (Product-Led Growth)
 
 **Fit score (40% weight):**

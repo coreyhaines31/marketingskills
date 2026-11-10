@@ -7,7 +7,7 @@ Newsletter platform with subscriber management, post publishing, automations, an
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API v2 for publications, subscriptions, posts, segments |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([help article](https://www.beehiiv.com/support/article/39255979546263)), checked 2026-10-27 |
 | CLI | ✓ | [beehiiv.js](../clis/beehiiv.js) |
 | SDK | - | No official SDK; OpenAPI spec available for codegen |
 

@@ -1,8 +1,8 @@
 ---
 name: ab-testing
-description: When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program. Also use when the user mentions "A/B test," "split test," "experiment," "test this change," "variant copy," "multivariate test," "hypothesis," "should I test this," "which version is better," "test two versions," "statistical significance," "how long should I run this test," "growth experiments," "experiment velocity," "experiment backlog," "ICE score," "experimentation program," or "experiment playbook." Use this whenever someone is comparing two approaches and wants to measure which performs better, or when they want to build a systematic experimentation practice. For tracking implementation, see analytics. For page-level conversion optimization, see cro.
+description: "When the user wants to plan, run, or read A/B tests, or asks a judgement call on one: is the result real, can we stop, which version won, is this worth testing at all: sample size, duration, significance, hypotheses, and experiment backlogs. For tracking setup, see analytics. For page-level conversion fixes, see cro."
 metadata:
-  version: 2.0.2
+  version: 2.0.7
 ---
 
 # A/B Test Setup
@@ -82,10 +82,12 @@ We'll know this is true when [metrics].
 
 | Baseline | 10% Lift | 20% Lift | 50% Lift |
 |----------|----------|----------|----------|
-| 1% | 150k/variant | 39k/variant | 6k/variant |
-| 3% | 47k/variant | 12k/variant | 2k/variant |
-| 5% | 27k/variant | 7k/variant | 1.2k/variant |
-| 10% | 12k/variant | 3k/variant | 550/variant |
+| 1% | 160k/variant | 43k/variant | 7.7k/variant |
+| 3% | 53k/variant | 14k/variant | 2.5k/variant |
+| 5% | 31k/variant | 8.2k/variant | 1.5k/variant |
+| 10% | 15k/variant | 3.8k/variant | 690/variant |
+
+Per variant, for 95% confidence (two-sided) and 80% power. Lift is relative (3% → 3.6% is a 20% lift).
 
 **Calculators:**
 - [Evan Miller's](https://www.evanmiller.org/ab-testing/sample-size.html)
@@ -114,6 +116,9 @@ We'll know this is true when [metrics].
 - **Primary**: Plan selection rate
 - **Secondary**: Time on page, plan distribution
 - **Guardrail**: Support tickets, refund rate
+
+### Opt-In Elements: Measure the Exposed Group
+When a change only reaches visitors who interact with it (a hero video, a calculator, a chat widget), a test on overall conversion is underpowered: if 10% of visitors click play, the other 90% add noise and no signal. Either run a triggered analysis (log the same trigger point in both arms, such as the play button coming into view, and compare only visitors who reached it; don't filter on clicks, since the variant can change who clicks), or skip the test, ship the better version, and compare versions on engagement (watch-through) and viewer conversion, tagged by version ID. The second is a directional comparison, not a controlled test.
 
 ---
 

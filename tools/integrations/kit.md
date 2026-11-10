@@ -7,7 +7,7 @@ Email marketing platform for creators and newsletter businesses.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for subscribers, forms, sequences |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `https://app.kit.com/mcp` (OAuth, scoped to one creator, 120 requests/min) on Creator and Creator Pro plans ([docs](https://developers.kit.com/mcp/kit-mcp)), checked 2026-10-27 |
 | CLI | - | Not available |
 | SDK | ✓ | JavaScript, Ruby gems available |
 

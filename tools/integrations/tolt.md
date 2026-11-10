@@ -7,7 +7,7 @@ Affiliate program management for SaaS, with Stripe and Paddle integration.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for partners, customers, commissions |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([announcement](https://tolt.com/blog/tolt-mcp)), checked 2026-10-27 |
 | CLI | ✓ | [tolt.js](../clis/tolt.js) |
 | SDK | - | JavaScript snippet for tracking |
 

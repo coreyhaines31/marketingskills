@@ -71,11 +71,15 @@ Comprehensive list of A/B tests and experiments for paywall optimization.
 - Include one-time purchase option alongside subscription
 
 ### Discounts & Offers
-- First month/year discount for conversion
-- Limited-time upgrade offer with countdown
+
+Test discounts where they reward commitment or a real moment, not as a standing price cut for new buyers (see the `offers` skill on why acquisition discounts backfire). Any countdown must reflect a real deadline.
+
+- Annual-plan pricing presentation (the commitment discount, shown per month vs. billed amount)
+- Time-bound offer tied to a real window (seasonal sale, trial end) vs. no offer
 - Loyalty discount based on free usage duration
-- Bundle discount for annual commitment
+- Upgrade discount for existing paid users moving up a tier
 - Referral discount for social proof
+- Risk reversal (guarantee, extended trial) vs. discount
 
 ---
 

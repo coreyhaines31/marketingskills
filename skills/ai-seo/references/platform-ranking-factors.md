@@ -91,6 +91,7 @@ Copilot is embedded across Microsoft's ecosystem — Edge, Windows, Microsoft 36
 
 **What to focus on:**
 - Submit your site to Bing Webmaster Tools (many sites only submit to Google Search Console)
+- Read its **AI Performance** report (beta since February 2026): how often your pages are cited in Copilot and Bing's AI answers, plus the **grounding queries** Bing used to retrieve them. Grounding queries are Bing's interpretation of the request, not what the user typed, so they show what the engine is actually searching for. No click data, and no mapping from a query to a specific citation.
 - Use IndexNow protocol for faster indexing of new and updated content
 - Optimize page speed to under 2 seconds
 - Write clear entity definitions — when your content defines a term or concept, make the definition explicit and extractable
@@ -107,6 +108,7 @@ Claude uses Brave Search as its search backend when web search is enabled — no
 
 **What to focus on:**
 - Verify your content appears in Brave Search results (search for your brand and key terms at search.brave.com)
+- If it's missing, request a crawl at search.brave.com/submit-url. It only alerts Brave's crawler: there's no webmaster console or sitemap submission, so check referrals from search.brave.com in your analytics to see whether it worked
 - Decide separately whether to allow `Claude-SearchBot` for search discovery, `Claude-User` for user-directed retrieval, and `ClaudeBot` for potential model training
 - Maximize factual density — specific numbers, named sources, dated statistics
 - Use clear, extractable structure with descriptive headings

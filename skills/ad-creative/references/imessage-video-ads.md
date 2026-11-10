@@ -91,9 +91,9 @@ The architecture that produces a convincing result: render the chat as HTML/CSS 
 6. **Layer audio with ffmpeg.** SFX cues computed deterministically from the same timeline that drove the recording, so sounds land exactly on bubble pops.
 7. **Stitch: chat → 300ms crossfade → static end card.** ffmpeg's `xfade` requires both inputs to match in resolution, pixel format, and frame rate — render the end card to a fixed-frame MP4 at the same specs as the chat recording before fading. Export the 9:16 master plus a 1:1 center crop.
 
-### Route 2: Remotion (templated scale)
+### Route 2: Code-based video (templated scale)
 
-Once a winning script structure emerges, rebuild it as a Remotion composition (see [generative-tools.md](generative-tools.md)) with the thread JSON as props. Then variations — new hooks, new codes, new personas — are data changes, not re-productions. Right move at the "we're testing 10 script variants a week" stage, not for the first ad.
+Once a winning script structure emerges, rebuild it as a Remotion or Hyperframes composition (see [generative-tools.md](generative-tools.md)) with the thread JSON as props. Then variations — new hooks, new codes, new personas — are data changes, not re-productions. Right move at the "we're testing 10 script variants a week" stage, not for the first ad.
 
 ---
 

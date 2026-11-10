@@ -6,7 +6,7 @@ Run this check weekly on every account, and daily on accounts with active tests,
 
 ## Inputs
 
-Pull the same inputs every time, for the same comparison window (this period vs the prior comparable period, or today vs the trailing 7 days on a daily check):
+Pull the same inputs every time, for the same comparison window (this period vs the prior comparable period, or today vs the trailing 7 days on a daily check). Also pull the same metrics for the **trailing 6–8 periods** (weeks on a weekly check, days-of-week on a daily check). That range is the account's normal variance, and the HOLD call below depends on it:
 
 - Spend, budget, and pacing by campaign
 - Impressions, clicks, CPC, CTR, CPM, and impression share lost to budget and to rank
@@ -35,13 +35,15 @@ Check the change history against every movement. A metric that moved the day aft
 
 Recent days undercount conversions on any account with conversion lag. Read the last few days as incomplete, and never call a trend from them alone.
 
+**One period against one period is not a trend.** A week that looks bad against last week is often just last week having been unusually good. Before calling anything other than HOLD on a performance metric, check where this period sits against the trailing 6–8 periods: inside that range is normal variance; outside it, or three or more periods moving the same way, is a movement worth a FIX, TEST or INVESTIGATE. Spend, tracking, and broken-page problems are exceptions: those are facts, not trends, and don't need a baseline. So are explicit stop thresholds measured against a target, such as cost per qualified lead above 1.5× TCPL in the [Meta decision system](meta-decision-system.md): they fire against the target even when the metric sits inside its own 6–8 period range, because a persistently bad ad is normal for itself. The Meta decision system's creative-fatigue bands (frequency, cost, and CTR against their own windows) and its rolling-reach guardrail are exempt for the same reason: they already measure over weeks, not one period.
+
 ## The decision
 
 Every check ends in **exactly one** call for the account (and optionally one per campaign that moved):
 
 | Call | Meaning | When to use it |
 |---|---|---|
-| **HOLD** | Change nothing; check again in 24 hours or at the next scheduled check | Movement is within normal variance, the sample is too small, the campaign is in learning, or the cause is lag |
+| **HOLD** | Change nothing; check again in 24 hours or at the next scheduled check | Movement is inside the trailing 6–8 period range (normal variance) and not a three-period run or an exempt threshold, the sample is too small, the campaign is in learning, or the cause is lag |
 | **FIX** | A known, named problem with a known fix | A broken form, a capped budget on a winning campaign, a disapproved ad, a tracking tag that stopped firing |
 | **TEST** | A hypothesis worth spending money to answer | Creative fatigue with a new concept to try, a bid strategy change with enough volume, a landing page variant |
 | **INVESTIGATE** | The data can't be trusted yet, so no decision on performance is possible | Conversions disagree across platform, analytics, and CRM; counts jumped with no business explanation; a source is MISSING |

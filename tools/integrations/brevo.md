@@ -7,7 +7,7 @@ All-in-one marketing platform (formerly Sendinblue) for email, SMS, and WhatsApp
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API v3 for contacts, campaigns, transactional email/SMS |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://developers.brevo.com/docs/mcp-protocol)), checked 2026-10-27 |
 | CLI | ✓ | [brevo.js](../clis/brevo.js) |
 | SDK | ✓ | Node.js, Python, PHP, Ruby, Java, C#, Go |
 

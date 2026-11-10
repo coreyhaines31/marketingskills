@@ -1,0 +1,1351 @@
+{
+  "about": "Skill trigger prompts. Each prompt is written the way a user would ask, not copied from a description. expect lists the skills that count as a correct first pick; an empty list means no marketing skill should fire. kind: direct (names the task), indirect (describes the problem without the usual keywords), near-miss (sits close to a neighbouring skill), none (not a marketing task).",
+  "prompts": [
+    {
+      "id": "ab-testing-1",
+      "kind": "direct",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "I want to A/B test two versions of our pricing page headline. How many visitors do I need and how long should it run?"
+    },
+    {
+      "id": "ab-testing-2",
+      "kind": "indirect",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "We changed our signup button from green to orange last week and conversions went up 4%. My cofounder says it's noise. How do we actually know?"
+    },
+    {
+      "id": "ab-testing-3",
+      "kind": "near-miss",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "Set up a proper experimentation program for our growth team: hypothesis backlog, prioritization, and how we decide a test is done."
+    },
+    {
+      "id": "ad-creative-1",
+      "kind": "direct",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "Write 15 Google responsive search ad headlines and 4 descriptions for our invoicing app."
+    },
+    {
+      "id": "ad-creative-2",
+      "kind": "indirect",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "Our Meta ads have been running the same three images for two months and CTR keeps dropping. Give me a batch of fresh angles and hooks to test."
+    },
+    {
+      "id": "ad-creative-3",
+      "kind": "near-miss",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "I need primary text and headline variations for a LinkedIn sponsored content campaign aimed at HR directors."
+    },
+    {
+      "id": "ads-1",
+      "kind": "direct",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "Help me set up our first Google Ads search campaign with a $3,000 monthly budget. What structure and bidding should I use?"
+    },
+    {
+      "id": "ads-2",
+      "kind": "indirect",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "We're spending $20k a month on Facebook and our cost per lead doubled since August. Where do I start looking?"
+    },
+    {
+      "id": "ads-3",
+      "kind": "near-miss",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "Should we run retargeting on LinkedIn or Meta for a B2B product with a 60-day sales cycle, and how should the audiences be set up?"
+    },
+    {
+      "id": "ai-seo-1",
+      "kind": "direct",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "How do we get our product mentioned when people ask ChatGPT for the best tools in our category?"
+    },
+    {
+      "id": "ai-seo-2",
+      "kind": "indirect",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "Perplexity keeps citing a competitor's blog post instead of ours when people ask about our exact use case. What should we change?"
+    },
+    {
+      "id": "ai-seo-3",
+      "kind": "near-miss",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "Google AI Overviews now show up for most of our keywords and our clicks fell. How do we get included in those answers?"
+    },
+    {
+      "id": "analytics-1",
+      "kind": "direct",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "Set up a GA4 tracking plan for our SaaS: which events, parameters, and naming conventions should we use?"
+    },
+    {
+      "id": "analytics-2",
+      "kind": "indirect",
+      "expect": [
+        "analytics",
+        "conversion-tracking"
+      ],
+      "prompt": "Our dashboard says 1,200 signups last month but the database has 900. Which number is right and how do we fix the tracking?"
+    },
+    {
+      "id": "analytics-3",
+      "kind": "near-miss",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "We're moving from Google Analytics to PostHog. What should our event taxonomy look like so product and marketing can both use it?"
+    },
+    {
+      "id": "aso-1",
+      "kind": "direct",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "Audit our App Store listing: title, subtitle, keywords field, and screenshots."
+    },
+    {
+      "id": "aso-2",
+      "kind": "indirect",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "Our meditation app barely shows up when people search 'sleep sounds' on the iPhone app store. How do we rank?"
+    },
+    {
+      "id": "aso-3",
+      "kind": "near-miss",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "Rewrite our Google Play short and long description so more people who land on the listing install."
+    },
+    {
+      "id": "attribution-1",
+      "kind": "direct",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Should we use first-touch, last-touch, or a data-driven attribution model for a B2B SaaS with long sales cycles?"
+    },
+    {
+      "id": "attribution-2",
+      "kind": "indirect",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Google Ads says it drove 300 conversions, Meta says 250, and we only got 400 total. How do I figure out what's actually working?"
+    },
+    {
+      "id": "attribution-3",
+      "kind": "near-miss",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Our CEO wants to know if the podcast sponsorships are worth it, but nobody clicks a link from a podcast. How do we measure it?"
+    },
+    {
+      "id": "churn-prevention-1",
+      "kind": "direct",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "Design a cancellation flow with an exit survey and save offers for our subscription app."
+    },
+    {
+      "id": "churn-prevention-2",
+      "kind": "indirect",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "About 8% of our customers leave every month, a lot of them right after the first renewal. What can we do?"
+    },
+    {
+      "id": "churn-prevention-3",
+      "kind": "near-miss",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "We're losing revenue to expired cards and failed payments. Set up dunning that recovers more of it."
+    },
+    {
+      "id": "co-marketing-1",
+      "kind": "direct",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "Find co-marketing partners for our scheduling tool and plan a joint campaign with one of them."
+    },
+    {
+      "id": "co-marketing-2",
+      "kind": "indirect",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "We integrate with Notion and Slack. How can we team up with tools like that to reach their users?"
+    },
+    {
+      "id": "co-marketing-3",
+      "kind": "near-miss",
+      "expect": [
+        "co-marketing",
+        "events"
+      ],
+      "prompt": "Plan a joint webinar with a non-competing company that sells to the same audience, including how we split the leads."
+    },
+    {
+      "id": "cold-email-1",
+      "kind": "direct",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "Write a 4-step cold email sequence to VPs of Engineering at Series B startups."
+    },
+    {
+      "id": "cold-email-2",
+      "kind": "indirect",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "I've sent 500 outreach emails to agency owners and got 3 replies. What am I doing wrong?"
+    },
+    {
+      "id": "cold-email-3",
+      "kind": "near-miss",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "Set up a new sending domain and warm-up for outbound so we don't hurt our main domain's deliverability."
+    },
+    {
+      "id": "community-marketing-1",
+      "kind": "direct",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "We want to start a Discord community for our users. How do we launch it and keep it active?"
+    },
+    {
+      "id": "community-marketing-2",
+      "kind": "indirect",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "Our Slack group has 2,000 members but only the same 10 people ever post. How do we get more people talking?"
+    },
+    {
+      "id": "community-marketing-3",
+      "kind": "near-miss",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "Should we build our own forum or show up in existing subreddits and groups where our users already hang out?"
+    },
+    {
+      "id": "competitor-profiling-1",
+      "kind": "direct",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "Profile these three competitors for me: linear.app, height.app, shortcut.com. Pricing, positioning, features, and SEO strength."
+    },
+    {
+      "id": "competitor-profiling-2",
+      "kind": "indirect",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "I keep losing deals to a company called Acme. Put together everything you can find about them from their website."
+    },
+    {
+      "id": "competitor-profiling-3",
+      "kind": "near-miss",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "Make a structured dossier on each company in our space so the team has one reference doc per competitor."
+    },
+    {
+      "id": "competitors-1",
+      "kind": "direct",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "Write a '[Our Product] vs HubSpot' comparison page for our CRM."
+    },
+    {
+      "id": "competitors-2",
+      "kind": "indirect",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "People search for 'Mailchimp alternative' a lot. I want a page that ranks for that and convinces them to try us."
+    },
+    {
+      "id": "competitors-3",
+      "kind": "near-miss",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "Create a 'best Calendly alternatives' listicle page that includes us and four other tools."
+    },
+    {
+      "id": "content-strategy-1",
+      "kind": "direct",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "Build a content strategy for our B2B fintech blog for the next two quarters."
+    },
+    {
+      "id": "content-strategy-2",
+      "kind": "indirect",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "I don't know what to write about. We publish random posts and none of them bring in customers."
+    },
+    {
+      "id": "content-strategy-3",
+      "kind": "near-miss",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "Map out topic clusters and pillar pages around 'employee onboarding' for our HR software."
+    },
+    {
+      "id": "conversion-tracking-1",
+      "kind": "direct",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "Our Meta Pixel and Conversions API are double counting purchases. Help me fix the deduplication."
+    },
+    {
+      "id": "conversion-tracking-2",
+      "kind": "indirect",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "Google Ads shows zero conversions since we redesigned the site, but we're definitely still getting demo requests."
+    },
+    {
+      "id": "conversion-tracking-3",
+      "kind": "near-miss",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "Set up enhanced conversions and offline conversion imports from our CRM back into Google Ads."
+    },
+    {
+      "id": "copy-editing-1",
+      "kind": "direct",
+      "expect": [
+        "copy-editing"
+      ],
+      "prompt": "Edit this homepage copy. It's too wordy and the message gets lost: 'We are a leading provider of innovative solutions that empower teams to unlock their full potential and achieve more.'"
+    },
+    {
+      "id": "copy-editing-2",
+      "kind": "indirect",
+      "expect": [
+        "copy-editing"
+      ],
+      "prompt": "Here's our about page. Can you tighten it up without changing what it says?\n\nWe are a passionate team of innovators who are dedicated to the mission of helping small businesses all around the world to be able to manage their finances in a way that is simpler, easier, and more stress-free than ever before."
+    },
+    {
+      "id": "copy-editing-3",
+      "kind": "near-miss",
+      "expect": [
+        "copy-editing"
+      ],
+      "prompt": "This blog post from 2023 is out of date. Refresh it with current info and keep the URL and structure."
+    },
+    {
+      "id": "copywriting-1",
+      "kind": "direct",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "Write the homepage copy for our AI meeting notes app: hero, subhead, features, and CTA."
+    },
+    {
+      "id": "copywriting-2",
+      "kind": "indirect",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "Nobody understands what we do from our landing page. Rewrite it from scratch."
+    },
+    {
+      "id": "copywriting-3",
+      "kind": "near-miss",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "Give me 10 headline options for our pricing page."
+    },
+    {
+      "id": "cro-1",
+      "kind": "direct",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Our landing page converts at 1.2%. Audit it and tell me what to change to get more conversions."
+    },
+    {
+      "id": "cro-2",
+      "kind": "indirect",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Lots of people visit our pricing page but almost nobody clicks 'Start trial'. Why?"
+    },
+    {
+      "id": "cro-3",
+      "kind": "near-miss",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Our demo request form has 11 fields and a 9% completion rate. How do we get more people to submit it?"
+    },
+    {
+      "id": "customer-research-1",
+      "kind": "direct",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "Write an interview script for talking to 10 customers about why they bought our product."
+    },
+    {
+      "id": "customer-research-2",
+      "kind": "indirect",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "I have 300 open-ended survey responses. Pull out the main themes and the exact words customers use."
+    },
+    {
+      "id": "customer-research-3",
+      "kind": "near-miss",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "Mine G2 and Reddit reviews in our category for pain points and voice-of-customer language."
+    },
+    {
+      "id": "directory-submissions-1",
+      "kind": "direct",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "Which startup and AI directories should we submit our product to, and in what order?"
+    },
+    {
+      "id": "directory-submissions-2",
+      "kind": "indirect",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "We're a new MCP server. Where can we get listed so developers and agents find us?"
+    },
+    {
+      "id": "directory-submissions-3",
+      "kind": "near-miss",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "Set up a tracker for getting listed on G2, Capterra, AlternativeTo, and SaaSHub."
+    },
+    {
+      "id": "emails-1",
+      "kind": "direct",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "Write a 5-email welcome sequence for people who start our free trial."
+    },
+    {
+      "id": "emails-2",
+      "kind": "indirect",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "People sign up for our newsletter and then never hear from us until the weekly issue. What should they get in between?"
+    },
+    {
+      "id": "emails-3",
+      "kind": "near-miss",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "Plan our lifecycle email program: welcome, nurture, re-engagement, and win-back flows."
+    },
+    {
+      "id": "events-1",
+      "kind": "direct",
+      "expect": [
+        "events"
+      ],
+      "prompt": "We're sponsoring a booth at SaaStr. How do we make sure it actually produces pipeline?"
+    },
+    {
+      "id": "events-2",
+      "kind": "indirect",
+      "expect": [
+        "events"
+      ],
+      "prompt": "I want to host small dinners for CMOs in New York and Austin. How do I run them and follow up?"
+    },
+    {
+      "id": "events-3",
+      "kind": "near-miss",
+      "expect": [
+        "events"
+      ],
+      "prompt": "Plan a monthly webinar series: topics, promotion, and what to do with registrants who don't show."
+    },
+    {
+      "id": "free-tools-1",
+      "kind": "direct",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "We want to build a free calculator to bring in leads. What should we build and is it worth it?"
+    },
+    {
+      "id": "free-tools-2",
+      "kind": "indirect",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "Should we make a free headline analyzer like CoSchedule has, to get traffic and backlinks?"
+    },
+    {
+      "id": "free-tools-3",
+      "kind": "near-miss",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "Evaluate these three free tool ideas for SEO value and lead capture: a grader, a template generator, and an ROI calculator."
+    },
+    {
+      "id": "image-1",
+      "kind": "direct",
+      "expect": [
+        "image"
+      ],
+      "prompt": "Generate a blog hero image for our post about remote team rituals."
+    },
+    {
+      "id": "image-2",
+      "kind": "indirect",
+      "expect": [
+        "image"
+      ],
+      "prompt": "Make me a new LinkedIn banner and an X header for our company page."
+    },
+    {
+      "id": "image-3",
+      "kind": "near-miss",
+      "expect": [
+        "image"
+      ],
+      "prompt": "Create product mockups of our app on a laptop and a phone for the website."
+    },
+    {
+      "id": "influencer-marketing-1",
+      "kind": "direct",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "Find and vet YouTube creators in the personal finance niche to promote our budgeting app."
+    },
+    {
+      "id": "influencer-marketing-2",
+      "kind": "indirect",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "How much should I pay a TikToker with 80k followers for a sponsored video, and what goes in the contract?"
+    },
+    {
+      "id": "influencer-marketing-3",
+      "kind": "near-miss",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "Set up an ambassador program where creators get free product plus a monthly fee to post about us."
+    },
+    {
+      "id": "launch-1",
+      "kind": "direct",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "Plan our Product Hunt launch for next month."
+    },
+    {
+      "id": "launch-2",
+      "kind": "indirect",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "We're shipping a big new feature in three weeks. How do we make sure people actually hear about it?"
+    },
+    {
+      "id": "launch-3",
+      "kind": "near-miss",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "We have a waitlist of 4,000 people. How do we roll out early access and turn it into a public launch?"
+    },
+    {
+      "id": "lead-magnets-1",
+      "kind": "direct",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "What lead magnet should we create to grow our email list of ecommerce founders?"
+    },
+    {
+      "id": "lead-magnets-2",
+      "kind": "indirect",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "Our blog gets 50k visitors a month but only 40 email signups. What could we offer to get people to subscribe?"
+    },
+    {
+      "id": "lead-magnets-3",
+      "kind": "near-miss",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "Turn our best guide into a gated checklist and template pack. What should be in it?"
+    },
+    {
+      "id": "link-building-1",
+      "kind": "direct",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "How do we get more backlinks to our site? We have almost none."
+    },
+    {
+      "id": "link-building-2",
+      "kind": "indirect",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "Our content is better than the pages ranking above us, but they have way more sites linking to them. How do we close that gap?"
+    },
+    {
+      "id": "link-building-3",
+      "kind": "near-miss",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "Find broken links on other sites that we could offer our content as a replacement for, and write the outreach."
+    },
+    {
+      "id": "marketing-council-1",
+      "kind": "direct",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "Give me a panel of famous marketers debating whether we should rebrand."
+    },
+    {
+      "id": "marketing-council-2",
+      "kind": "indirect",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "What would David Ogilvy, Seth Godin, and April Dunford each say about our positioning?"
+    },
+    {
+      "id": "marketing-council-3",
+      "kind": "near-miss",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "I want several expert perspectives that disagree with each other before I decide on our go-to-market."
+    },
+    {
+      "id": "marketing-ideas-1",
+      "kind": "direct",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "Give me marketing ideas for a bootstrapped project management SaaS."
+    },
+    {
+      "id": "marketing-ideas-2",
+      "kind": "indirect",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "I've tried SEO and paid ads. What else could I try to get customers for my dev tool?"
+    },
+    {
+      "id": "marketing-ideas-3",
+      "kind": "near-miss",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "We're stuck. Brainstorm 20 growth tactics we haven't thought of."
+    },
+    {
+      "id": "marketing-loops-1",
+      "kind": "direct",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "Set up a weekly loop where an agent checks our Search Console and flags pages that are slipping."
+    },
+    {
+      "id": "marketing-loops-2",
+      "kind": "indirect",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "I want an agent to check our ad accounts every Monday and tell me what to pause, without me asking each time."
+    },
+    {
+      "id": "marketing-loops-3",
+      "kind": "near-miss",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "Design a recurring workflow that watches for churn signals every day and drafts a save email when one fires."
+    },
+    {
+      "id": "marketing-plan-1",
+      "kind": "direct",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "Write a full marketing plan for our client, a regional HVAC company."
+    },
+    {
+      "id": "marketing-plan-2",
+      "kind": "indirect",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "I just joined as the first marketer at a 20-person startup. What should the next 12 months look like?"
+    },
+    {
+      "id": "marketing-plan-3",
+      "kind": "near-miss",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "Put together a go-to-market plan with channels, budget, and quarterly goals for our new product."
+    },
+    {
+      "id": "marketing-psychology-1",
+      "kind": "direct",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "What psychological principles could make our pricing page more persuasive?"
+    },
+    {
+      "id": "marketing-psychology-2",
+      "kind": "indirect",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Explain anchoring, loss aversion, and social proof and how I could use each one in our checkout."
+    },
+    {
+      "id": "marketing-psychology-3",
+      "kind": "near-miss",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Which cognitive biases explain why people pick the middle plan, and how do we design around that?"
+    },
+    {
+      "id": "offers-1",
+      "kind": "direct",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "Help me build an irresistible offer for our coaching program: bonuses, guarantee, and urgency."
+    },
+    {
+      "id": "offers-2",
+      "kind": "indirect",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "People like our course but say it's too expensive at $997. How do we make it feel worth more without dropping the price?"
+    },
+    {
+      "id": "offers-3",
+      "kind": "near-miss",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "Design a Black Friday deal for our software that doesn't train people to wait for discounts."
+    },
+    {
+      "id": "onboarding-1",
+      "kind": "direct",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "Improve our onboarding so more new users reach their first finished report."
+    },
+    {
+      "id": "onboarding-2",
+      "kind": "indirect",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "Half of our new users log in once and never come back. What should happen in their first session?"
+    },
+    {
+      "id": "onboarding-3",
+      "kind": "near-miss",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "Design an in-app checklist and empty states for a new workspace in our product."
+    },
+    {
+      "id": "paywalls-1",
+      "kind": "direct",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Design the paywall screen for our iOS photo editing app."
+    },
+    {
+      "id": "paywalls-2",
+      "kind": "indirect",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Free users hit the 3-project limit and just leave. What should they see at that moment?"
+    },
+    {
+      "id": "paywalls-3",
+      "kind": "near-miss",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Write the upgrade modal that appears when a free user clicks a Pro-only feature."
+    },
+    {
+      "id": "popups-1",
+      "kind": "direct",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Create an exit-intent popup for our ecommerce store that offers 10% off."
+    },
+    {
+      "id": "popups-2",
+      "kind": "indirect",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Our blog has no way to capture emails except a footer form. Something that appears while people read might work. What should it look like and when should it show?"
+    },
+    {
+      "id": "popups-3",
+      "kind": "near-miss",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Should we use a slide-in, a sticky bar, or a full-screen modal to promote our webinar on the site?"
+    },
+    {
+      "id": "pricing-1",
+      "kind": "direct",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "Help me set pricing tiers for our API product. Should we charge per seat or by usage?"
+    },
+    {
+      "id": "pricing-2",
+      "kind": "indirect",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "We charge $29 a month and I suspect it's way too low for what we do. How do I figure out what to charge?"
+    },
+    {
+      "id": "pricing-3",
+      "kind": "near-miss",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "We're raising prices for existing customers next quarter. How do we package it and communicate it?"
+    },
+    {
+      "id": "product-marketing-1",
+      "kind": "direct",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Create our product marketing context doc so every future marketing task uses the same positioning and ICP."
+    },
+    {
+      "id": "product-marketing-2",
+      "kind": "indirect",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Before we do anything else, write down who our customer is, what we sell, our positioning, and our voice so you remember it."
+    },
+    {
+      "id": "product-marketing-3",
+      "kind": "near-miss",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Our ICP changed from SMBs to mid-market. Update our marketing context file."
+    },
+    {
+      "id": "programmatic-seo-1",
+      "kind": "direct",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "Build programmatic SEO pages for '[integration] + our product' for all 200 of our integrations."
+    },
+    {
+      "id": "programmatic-seo-2",
+      "kind": "indirect",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "We have data on 3,000 cities. Can we make a page for each one that actually ranks and isn't thin?"
+    },
+    {
+      "id": "programmatic-seo-3",
+      "kind": "near-miss",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "Design a template for 500 'best [tool] for [industry]' pages using our database."
+    },
+    {
+      "id": "prospecting-1",
+      "kind": "direct",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Build me a list of 200 Series A fintech companies with a head of marketing to reach out to."
+    },
+    {
+      "id": "prospecting-2",
+      "kind": "indirect",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Find dentists in Phoenix with bad websites that might want our booking software."
+    },
+    {
+      "id": "prospecting-3",
+      "kind": "near-miss",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Which companies are hiring for RevOps roles right now? I want to sell to them."
+    },
+    {
+      "id": "public-relations-1",
+      "kind": "direct",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "Write a press pitch to TechCrunch about our seed round."
+    },
+    {
+      "id": "public-relations-2",
+      "kind": "indirect",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "How do we get journalists to quote our CEO in articles about AI and hiring?"
+    },
+    {
+      "id": "public-relations-3",
+      "kind": "near-miss",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "Plan a media strategy for when we publish our annual industry survey."
+    },
+    {
+      "id": "referrals-1",
+      "kind": "direct",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Design a referral program for our meal kit service."
+    },
+    {
+      "id": "referrals-2",
+      "kind": "indirect",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Our happiest customers keep telling their friends about us. How do we reward that and get more of it?"
+    },
+    {
+      "id": "referrals-3",
+      "kind": "near-miss",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Should we launch an affiliate program for bloggers, and what commission should we pay?"
+    },
+    {
+      "id": "reverse-engineer-marketing-1",
+      "kind": "direct",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "How did Granola grow so fast? Reverse engineer their marketing so we can copy what worked."
+    },
+    {
+      "id": "reverse-engineer-marketing-2",
+      "kind": "indirect",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "Our competitor's traffic tripled last year. What did they do, and when?"
+    },
+    {
+      "id": "reverse-engineer-marketing-3",
+      "kind": "near-miss",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "Map out a competitor's whole funnel, from their ads to their upsells and emails, by going through it ourselves."
+    },
+    {
+      "id": "revops-1",
+      "kind": "direct",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Define our lead lifecycle stages and the handoff from marketing to sales in HubSpot."
+    },
+    {
+      "id": "revops-2",
+      "kind": "indirect",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Sales says marketing's leads are junk and marketing says sales never follows up. How do we fix this?"
+    },
+    {
+      "id": "revops-3",
+      "kind": "near-miss",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Set up lead scoring and routing rules so the right rep gets each inbound demo request within five minutes."
+    },
+    {
+      "id": "sales-enablement-1",
+      "kind": "direct",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Create a one-pager and an objection handling doc for our sales team."
+    },
+    {
+      "id": "sales-enablement-2",
+      "kind": "indirect",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Our reps all pitch the product differently and keep fumbling the 'you're too expensive' question. Help."
+    },
+    {
+      "id": "sales-enablement-3",
+      "kind": "near-miss",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Write a demo script and a battle card our reps can use against Salesforce."
+    },
+    {
+      "id": "schema-1",
+      "kind": "direct",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Add FAQ and Product schema markup to our pricing page."
+    },
+    {
+      "id": "schema-2",
+      "kind": "indirect",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Our recipes don't show star ratings or cook times in Google like other sites do. What are we missing?"
+    },
+    {
+      "id": "schema-3",
+      "kind": "near-miss",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Validate the JSON-LD on our product pages. Search Console says there are errors."
+    },
+    {
+      "id": "seo-audit-1",
+      "kind": "direct",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Do a technical SEO audit of our site."
+    },
+    {
+      "id": "seo-audit-2",
+      "kind": "indirect",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Our organic traffic dropped 40% after the last Google update. What happened?"
+    },
+    {
+      "id": "seo-audit-3",
+      "kind": "near-miss",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Half our pages say 'Crawled, currently not indexed' in Search Console. How do we fix it?"
+    },
+    {
+      "id": "signup-1",
+      "kind": "direct",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "Optimize our signup flow. We ask for name, company, role, team size, and phone before the trial starts."
+    },
+    {
+      "id": "signup-2",
+      "kind": "indirect",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "60% of people who click 'Get started' never finish creating an account. Where are we losing them?"
+    },
+    {
+      "id": "signup-3",
+      "kind": "near-miss",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "Should we require a credit card to start the free trial, or ask for it at the end?"
+    },
+    {
+      "id": "site-architecture-1",
+      "kind": "direct",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "Plan the page hierarchy and navigation for our new marketing site."
+    },
+    {
+      "id": "site-architecture-2",
+      "kind": "indirect",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "Our site has grown to 300 pages and nobody can find anything. How should it be organized?"
+    },
+    {
+      "id": "site-architecture-3",
+      "kind": "near-miss",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "Design our URL structure and internal linking for solutions, industries, and use-case pages."
+    },
+    {
+      "id": "sms-1",
+      "kind": "direct",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Set up an SMS welcome flow and abandoned cart texts for our Shopify store."
+    },
+    {
+      "id": "sms-2",
+      "kind": "indirect",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Should we text our customers? We're a DTC skincare brand and email open rates keep falling."
+    },
+    {
+      "id": "sms-3",
+      "kind": "near-miss",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Plan WhatsApp marketing messages for our customers in Brazil and Mexico."
+    },
+    {
+      "id": "social-1",
+      "kind": "direct",
+      "expect": [
+        "social"
+      ],
+      "prompt": "Write a week of LinkedIn posts for me as a founder building in public."
+    },
+    {
+      "id": "social-2",
+      "kind": "indirect",
+      "expect": [
+        "social"
+      ],
+      "prompt": "I want to grow on X. I have 400 followers and my tweets get no engagement."
+    },
+    {
+      "id": "social-3",
+      "kind": "near-miss",
+      "expect": [
+        "social"
+      ],
+      "prompt": "Turn this blog post into a carousel, a thread, and three short posts for different platforms."
+    },
+    {
+      "id": "video-1",
+      "kind": "direct",
+      "expect": [
+        "video"
+      ],
+      "prompt": "Make a 30-second product demo video for our app using AI tools."
+    },
+    {
+      "id": "video-2",
+      "kind": "indirect",
+      "expect": [
+        "video"
+      ],
+      "prompt": "We need an explainer video for the homepage but have no budget for a studio. How can we make one ourselves?"
+    },
+    {
+      "id": "video-3",
+      "kind": "near-miss",
+      "expect": [
+        "video"
+      ],
+      "prompt": "Render a product launch video in code with Remotion from our screenshots."
+    },
+    {
+      "id": "none-1",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Fix this TypeError: Cannot read properties of undefined (reading 'map') in my React component."
+    },
+    {
+      "id": "none-2",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Write a SQL query that returns the top 10 customers by total order value."
+    },
+    {
+      "id": "none-3",
+      "kind": "none",
+      "expect": [],
+      "prompt": "What's the difference between a mutex and a semaphore?"
+    },
+    {
+      "id": "none-4",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Help me write a bash script that renames every .jpeg file in a folder to .jpg."
+    },
+    {
+      "id": "none-5",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Summarize the main causes of the French Revolution."
+    },
+    {
+      "id": "none-6",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Convert this JSON config to YAML: {\"port\": 3000, \"debug\": true}"
+    },
+    {
+      "id": "none-7",
+      "kind": "none",
+      "expect": [],
+      "prompt": "My Postgres query is slow on a 50 million row table. How do I find the right index?"
+    },
+    {
+      "id": "none-8",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Write unit tests for a function that validates email addresses."
+    },
+    {
+      "id": "none-9",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Give me a 3-day workout plan for a beginner."
+    },
+    {
+      "id": "none-10",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Explain how OAuth 2.0 authorization code flow works."
+    },
+    {
+      "id": "none-11",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Plan a 5-day trip to Lisbon with a mix of food and history."
+    },
+    {
+      "id": "none-12",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Refactor this Python function to use a dictionary instead of a long if/elif chain."
+    }
+  ]
+}

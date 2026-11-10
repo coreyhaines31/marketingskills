@@ -32,3 +32,6 @@ skills-lock.json
 .partners-pending/
 
 __pycache__/
+
+# Trigger eval run output
+evals/triggers/results/

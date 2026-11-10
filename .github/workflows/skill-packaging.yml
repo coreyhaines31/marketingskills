@@ -29,3 +29,4 @@ jobs:
         run: |
           python3 scripts/package_skills.py --target source --output "$RUNNER_TEMP/skill-zips"
           python3 scripts/package_skills.py --target claude-web --mapped-only --output "$RUNNER_TEMP/skill-zips"
+          python3 scripts/package_skills.py --target perplexity --output "$RUNNER_TEMP/skill-zips"

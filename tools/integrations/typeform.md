@@ -7,7 +7,7 @@ Forms and surveys platform API for creating typeforms, retrieving responses, man
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Create, Responses, Webhooks APIs |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://www.typeform.com/developers/mcp/)), checked 2026-10-27 |
 | CLI | ✓ | [typeform.js](../clis/typeform.js) |
 | SDK | ✓ | JavaScript (@typeform/js-api-client), Embed SDK |
 
