@@ -1,0 +1,905 @@
+{
+  "about": "Third held-out set: judgement-style, self-contained prompts written from skill bodies only, without reading descriptions.",
+  "prompts": [
+    {
+      "id": "ab-testing-j1",
+      "kind": "judgement",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "Should we roll out the new reservation button at MooringDesk? We randomly split visitors 50/50, planned 4,000 per version, and after 600 each the old version has 24 bookings and the new one has 33. My cofounder wants to stop today because the dashboard turned green."
+    },
+    {
+      "id": "ab-testing-j2",
+      "kind": "judgement",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "At KilnPass, our pottery-class booking site, only 8% of visitors open the instructor preview. We're comparing two preview layouts with random assignment before the page loads. Is it okay to judge bookings only among people who clicked the preview, or would that give us a misleading winner?"
+    },
+    {
+      "id": "ad-creative-j1",
+      "kind": "judgement",
+      "expect": [
+        "ad-creative",
+        "ads"
+      ],
+      "prompt": "For MossMail's paid Instagram placements selling mushroom grow kits, 'Your first oyster harvest' gets 1.8% clicks and 'A tiny farm on your shelf' gets 0.9%, with about 40,000 impressions each. Should our next six concepts stay with the harvest angle or explore different reasons to buy? I'm deciding what to brief the designer on."
+    },
+    {
+      "id": "ad-creative-j2",
+      "kind": "judgement",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "We're promoting SlateLift, a stair-climbing delivery trolley, in sponsored feeds. Our only customer quote is 'I can finish the upstairs deliveries without asking Ben for help.' Is it okay to turn that into 'Cut delivery time in half,' or should the next headline stick to working alone? We haven't measured delivery times."
+    },
+    {
+      "id": "ads-j1",
+      "kind": "judgement",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "Should we move more of Boreal Rope's $9,000 monthly media budget into searches for our own brand? Those clicks bring purchases at $6 each, while searches for climbing rope bring purchases at $31 each. Our target is new buyers, and our blended acquisition ceiling is $38."
+    },
+    {
+      "id": "ads-j2",
+      "kind": "judgement",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "What would you do about the LinkedIn campaign for ForgeLedger, our foundry scheduling software? We spent $840 over three days, got two demo bookings, and normally wait 18 days for buyers to book after clicking. The target is $300 per booked demo and my agency wants to pause it now."
+    },
+    {
+      "id": "ai-seo-j1",
+      "kind": "judgement",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "When I ask Perplexity 'which software handles orchestra seating charts,' it quotes our SeatReed guide but recommends three other products. Should we count that as a win, or are we measuring the wrong thing? SeatReed is our own paid seating-chart product, and we care about getting onto buyers' shortlists."
+    },
+    {
+      "id": "ai-seo-j2",
+      "kind": "judgement",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "ChatGPT keeps saying our ceramic inventory product GlazeCabinet costs $49 a month. It has cost $79 since July, and an old reseller page still says $49 while our own site says $79. Where would you look first to stop buyers arriving with the wrong expectation?"
+    },
+    {
+      "id": "analytics-j1",
+      "kind": "judgement",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "At RinkRoster we added 180 club managers to a 21-day trial in October; 70 started during the last week and 22 of the earlier starters paid. Is it okay to show 22 divided by 180 as October's trial success rate, or should the newer people be handled differently?"
+    },
+    {
+      "id": "analytics-j2",
+      "kind": "judgement",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "Should we record every button press in our beekeeping logbook HiveShelf, or just actions tied to a decision? We want to know whether people who save a hive inspection return the next week, and we have two days of developer time for the first measurement pass."
+    },
+    {
+      "id": "aso-j1",
+      "kind": "judgement",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "Our iPhone tide journal ShoalNote has a 4.8 rating from 63 people, but only 11% of visitors to its Apple listing download it. The first three screenshots show settings, account details, and export options. Should we change those before spending time on the long description?"
+    },
+    {
+      "id": "aso-j2",
+      "kind": "judgement",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "We're choosing the title for our Android repair log: 'SpannerTrail' or 'SpannerTrail: Repair Log'. Nobody knows the brand yet and we have 240 installs. Which would you pick for the Google Play listing if being found by people looking for a maintenance diary is the priority?"
+    },
+    {
+      "id": "attribution-j1",
+      "kind": "judgement",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Our saddle shop FernBridle shipped 76 orders last week, but Meta claims 51 purchases and Google claims 44. Should I tell the team paid channels brought 95 orders, or how would you decide what each platform deserves credit for when their windows overlap?"
+    },
+    {
+      "id": "attribution-j2",
+      "kind": "judgement",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "At VaultSpan, which sells museum climate sensors, 14 of our last 20 buyers said they first heard us on a conservator podcast, but the reports credit 16 deals to searches for our name. Which evidence would you trust when deciding whether to renew the podcast sponsorship? Deals take four months to close."
+    },
+    {
+      "id": "churn-prevention-j1",
+      "kind": "judgement",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "At SnowRoster, 38 ski schools want to end their monthly subscription after winter even though most say they'll return in November. Should we give everyone 30% off, let them freeze billing for six months, or just let them leave? Their main reason is that classes stop in summer."
+    },
+    {
+      "id": "churn-prevention-j2",
+      "kind": "judgement",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "Our quilting membership ThreadHarbor lost 29 paying members last month: 19 had declined cards and 10 deliberately left. What would you tackle first if we have one developer day and currently remove access immediately after the first failed charge?"
+    },
+    {
+      "id": "co-marketing-j1",
+      "kind": "judgement",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "Should HatchMap, our hatchery stock software, team up with PondPay, a supplier payment service, on a shared buyer guide? We each reach about 1,200 hatchery operators, solve different problems, and can each contribute one writer. I'm unsure whether the overlap makes the arrangement valuable or redundant."
+    },
+    {
+      "id": "co-marketing-j2",
+      "kind": "judgement",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "Which company would you work with for a joint educational campaign for StagePermit, our theater licensing service: CueBoard, whose 900 subscribers run small theaters, or BroadBiz, whose 45,000 subscribers run all kinds of businesses? Both want equal promotion from our 1,100-person theater-manager list."
+    },
+    {
+      "id": "cold-email-j1",
+      "kind": "judgement",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "I'm contacting 60 quarry managers who have never heard of our weighbridge software LoadLark. Should the first note ask for 20 minutes next Tuesday or ask whether reconciling truck tickets is still a headache? We have one customer who cut that work from six hours to two per week."
+    },
+    {
+      "id": "cold-email-j2",
+      "kind": "judgement",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "Is it okay to open an unsolicited note to Dana Ortiz, operations director at Polar Crate, with 'Congrats on your marathon'? We sell cold-storage staffing software and also know Polar Crate just opened a second depot. Which detail would you use to make the approach feel relevant rather than creepy?"
+    },
+    {
+      "id": "community-marketing-j1",
+      "kind": "judgement",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "We run a Slack group for 140 independent planetarium operators through our booking product DomeDesk. Almost every conversation is started by our staff. Should we open membership to everyone now, or focus on getting the existing members helping one another first? We can spend four hours a week on it."
+    },
+    {
+      "id": "community-marketing-j2",
+      "kind": "judgement",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "What would you do about the Discord space for our miniature-painting brand BristleForge? It has 800 members, but three volunteers answer nearly all questions and are getting tired. Would you give them status and a regular showcase, pay for moderation, or reduce the number of channels?"
+    },
+    {
+      "id": "competitor-profiling-j1",
+      "kind": "judgement",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "We're assessing a rival, SiloCurrent at https://silocurrent.example, for our grain-storage software BinHarbor. Its public pages don't mention offline mode. Is it fair to mark offline mode as absent in our internal assessment, or what evidence would you need before calling it a real gap?"
+    },
+    {
+      "id": "competitor-profiling-j2",
+      "kind": "judgement",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "Our team thinks a rival kennel-management vendor, KennelOrbit at https://kennelorbit.example, is abandoning small operators because it removed public rates and added an enterprise contact button. How much confidence would you put in that conclusion from one visit, and what would you check before making a strategic decision?"
+    },
+    {
+      "id": "competitors-j1",
+      "kind": "judgement",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "Should the 'CabinQuill vs LodgePad' page on our cabin-maintenance site admit that LodgePad has a better offline app? CabinQuill handles contractor approvals better, but needs a connection. We want lodge owners evaluating both products to book a demo, and the team worries an honest weakness will send them away."
+    },
+    {
+      "id": "competitors-j2",
+      "kind": "judgement",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "For our dance-school billing product PirouettePay, should a page targeting people switching from ClassPouch cover only our product, or include several other choices? The visitors are searching 'tools like ClassPouch' and often haven't decided what they need yet."
+    },
+    {
+      "id": "content-strategy-j1",
+      "kind": "judgement",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "We have one writer for TrawlTrace, our seafood traceability platform. Should the next month go toward broad articles about sustainable fishing or detailed answers to buyers' questions about batch recalls and supplier records? Broad topics get more searches, but the buyer questions come up in nearly every demo."
+    },
+    {
+      "id": "content-strategy-j2",
+      "kind": "judgement",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "Our arborist scheduling company BranchPort can publish one substantial article a month. Which would you prioritize: another guide to tree-care business software, or our original figures from 460 storm-response jobs showing where scheduling breaks down? Ten similar software guides already appear on Google's first page."
+    },
+    {
+      "id": "conversion-tracking-j1",
+      "kind": "judgement",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "We sell commercial composters through Rotunda Works. Google records a lead whenever someone clicks 'Request a site visit', even if the form then rejects their postcode. Is that okay for automated bidding, or should we use a different moment to send the success signal?"
+    },
+    {
+      "id": "conversion-tracking-j2",
+      "kind": "judgement",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "At FeltFerry, our wool supplier, Shopify already sends purchases to Meta through its native connection. An agency wants to add a separate server sender because the browser tag misses some orders. What would you check before saying yes so that one sale doesn't get counted twice?"
+    },
+    {
+      "id": "copy-editing-j1",
+      "kind": "judgement",
+      "expect": [
+        "copy-editing",
+        "copywriting"
+      ],
+      "prompt": "Should I keep the line 'Mud happens. We pick up your boots.' in this existing paragraph for our boot-cleaning service TrailTub: 'Mud happens. We pick up your boots. Our innovative solution facilitates superior footwear hygiene.' The founder sounds like the first two sentences in person; the agency wants to make the whole paragraph more formal. Would you preserve that contrast or smooth it out?"
+    },
+    {
+      "id": "copy-editing-j2",
+      "kind": "judgement",
+      "expect": [
+        "copy-editing",
+        "copywriting"
+      ],
+      "prompt": "Is 'every' the problem in this sentence for our pattern-printing shop FoldFinch: 'Every pattern arrives perfectly aligned, every time'? We checked 120 deliveries and found two alignment mistakes. I'm deciding whether a small wording change is enough or the claim should go altogether."
+    },
+    {
+      "id": "copywriting-j1",
+      "kind": "judgement",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "For the top of our freight-damage reporting website CrateWitness, which promise would you lead with: 'Evidence before the truck leaves' or 'The future of shipment intelligence'? Buyers photograph damage at unloading, and the product timestamps those photos for claims. We're choosing the central message before writing the page."
+    },
+    {
+      "id": "copywriting-j2",
+      "kind": "judgement",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "Should the first section of our museum audio-guide website EchoWing explain our Bluetooth technology or the benefit of visitors hearing the right story in each room? We sell to curators who don't manage technology, and the page's goal is to get them to request a demonstration."
+    },
+    {
+      "id": "cro-j1",
+      "kind": "judgement",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Our commercial awning business ShadeFoundry gets 2,400 monthly visitors to its quote page but only 18 requests. The form requires exact wall dimensions, a site photo, installation date, phone, and company revenue. Where would you look first to get more serious buyers through it without overwhelming the estimating team?"
+    },
+    {
+      "id": "cro-j2",
+      "kind": "judgement",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Should we put a single 'Book a fitting' button at the top of our adaptive-clothing page at https://hemharbor.example/fittings? Right now the first screen gives equal space to 'Read our story', 'Browse fabrics', and 'Book a fitting', while testimonials sit below six screens of fabric photos. Most visitors arrive looking for fitting appointments."
+    },
+    {
+      "id": "customer-research-j1",
+      "kind": "judgement",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "How do I know whether 'too hard to train staff' is really the main reason laundromats reject our sorting software LinenLatch? Five lost buyers said it on calls, but our 18 happy customers mostly praise speed. Should I speak to more lost buyers, current users, or people who never tried us?"
+    },
+    {
+      "id": "customer-research-j2",
+      "kind": "judgement",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "We're considering building software for mobile farriers, called HoofRoute. Before asking anyone whether they'd buy it, where would you look for evidence of their scheduling frustrations? I want to hear how they describe missed appointments and travel time without putting words in their mouths."
+    },
+    {
+      "id": "directory-submissions-j1",
+      "kind": "judgement",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "Should we pay $290 to get our aquarium-maintenance software ReefClerk listed on 80 startup catalog sites? Our homepage works, but we don't yet have a rates page or any pages for specific buyer groups. I'm trying to decide whether the listings should come before finishing those pages."
+    },
+    {
+      "id": "directory-submissions-j2",
+      "kind": "judgement",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "We got accepted onto six software-discovery sites for our cemetery records product PlotKeeper. Is that enough to call the work successful, or should we verify the actual destination and whether people reach it? Two listings show our logo but no clickable product address."
+    },
+    {
+      "id": "emails-j1",
+      "kind": "judgement",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "Someone downloads our guide to opening a ceramics studio from KilnNest, then books a consultation on day two. Should they still receive the remaining four automated inbox messages asking them to book? We send on days one, three, five, seven, and ten and currently don't stop anything after a booking."
+    },
+    {
+      "id": "emails-j2",
+      "kind": "judgement",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "Our seed subscription brand SprigParcel has 6,000 newsletter subscribers who haven't clicked in eight months. Should we put them straight back into the weekly product announcements or try a separate short re-engagement run first? They originally joined for planting advice, and we haven't contacted them since February."
+    },
+    {
+      "id": "events-j1",
+      "kind": "judgement",
+      "expect": [
+        "events"
+      ],
+      "prompt": "Should our rail-inspection software TrackMason spend $18,000 on a booth at a 6,000-person transport expo or $4,000 hosting dinner for 12 maintenance directors nearby? Our deals average $70,000 and take nine months; only about 80 expo attendees match our buyer profile."
+    },
+    {
+      "id": "events-j2",
+      "kind": "judgement",
+      "expect": [
+        "events"
+      ],
+      "prompt": "We ran a live online workshop on festival sanitation for our rental company LooFleet: 220 registered, 71 attended, and nine asked about quotes. Would you judge it a success from attendance, or what would you look at before paying for another one? We spent $1,600 and want new rental contracts."
+    },
+    {
+      "id": "free-tools-j1",
+      "kind": "judgement",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "Should our acoustic-panel company QuietRafter spend two developer weeks on a no-cost room echo estimator anyone can use in their browser? We sell $2,500 installations, get frequent questions about panel quantity, and could maintain the estimator for two hours a month. I'm unsure whether it would bring buyers or just curious visitors."
+    },
+    {
+      "id": "free-tools-j2",
+      "kind": "judgement",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "For our apiary inspection software CombAtlas, which no-cost browser utility would you build as a way to attract buyers: a hive treatment date calculator or a generic bee-name generator? Both take three days, but commercial beekeepers are the customers we need."
+    },
+    {
+      "id": "image-j1",
+      "kind": "judgement",
+      "expect": [
+        "image"
+      ],
+      "prompt": "For our birdhouse brand PerchOak, should we generate a fresh woodland scene for each of 30 product banners or reuse one designed layout with actual product cutouts? The wood grain and entrance-hole shape have to match what ships, and each banner needs the exact model name."
+    },
+    {
+      "id": "image-j2",
+      "kind": "judgement",
+      "expect": [
+        "image"
+      ],
+      "prompt": "We need a 1200 by 630 sharing-card graphic for our geology field notebook PebbleLog. Should the headline 'Remember every outcrop' be rendered by a generative model or added as a separate typography layer? We'll reuse the layout for 80 articles and need consistent lettering."
+    },
+    {
+      "id": "influencer-marketing-j1",
+      "kind": "judgement",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "Which paid partner would you choose for our tactile puzzle brand KnotNest: Mira, who has 14,000 followers mostly discussing accessible toys, or Leo, who has 380,000 general lifestyle followers? Mira wants $650 and Leo wants $4,000; our goal is purchases by parents of blind children."
+    },
+    {
+      "id": "influencer-marketing-j2",
+      "kind": "judgement",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "A woodworking YouTuber will demonstrate our dust extractor ChipHaven for $1,800. Should we negotiate permission to reuse the footage in paid placements for three months now, or wait until we see whether the audience responds? His proposal only includes one upload on his own channel."
+    },
+    {
+      "id": "launch-j1",
+      "kind": "judgement",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "Should we publicly announce MoorPilot, our marina berth-allocation app, next week or keep it with the 24 pilot customers another month? Seven still need us to fix their first import manually, and we only have one support person. There are 600 people waiting for access."
+    },
+    {
+      "id": "launch-j2",
+      "kind": "judgement",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "Our archival scanner software FolioBeam has been available for two years, and we just added handwriting recognition requested by 90 customers. Is that worth a separate public announcement cycle, or would you treat it as a quiet release note? We want to reconnect with libraries that previously passed because it was missing."
+    },
+    {
+      "id": "lead-magnets-j1",
+      "kind": "judgement",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "Which download would attract better potential buyers for our fire-door inspection service LatchProof: a 40-page building safety handbook or a one-page monthly fire-door check sheet? We want facilities managers to leave their contact details and eventually book an inspection, not just collect a large list."
+    },
+    {
+      "id": "lead-magnets-j2",
+      "kind": "judgement",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "Should we require a work address before someone can download the rehearsal-budget spreadsheet from our theater finance product CueCoffer? It's aimed at volunteer treasurers who often use personal accounts. We want useful follow-up conversations, but the current form rejects Gmail and Yahoo addresses."
+    },
+    {
+      "id": "link-building-j1",
+      "kind": "judgement",
+      "expect": [
+        "link-building",
+        "seo-audit"
+      ],
+      "prompt": "Our commercial greenhouse guide at https://glassroot.example/heating is indexed and answers the same questions as the top results, but only two external sites point to it while the top three pages have 25 to 40 each. Should we spend our next ten hours asking horticulture publications to reference it or keep expanding the article?"
+    },
+    {
+      "id": "link-building-j2",
+      "kind": "judgement",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "A vendor wants $600 to place references to our boat-cover shop SailSleeve on 30 unrelated blogs with the exact phrase 'best custom boat covers'. Is that a sensible way to improve our visibility in Google, or would you put the effort into getting existing sailing publications that mention us to point readers to our site?"
+    },
+    {
+      "id": "marketing-council-j1",
+      "kind": "judgement",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "For our $240 modular bird feeder NestArc, how would Seth Godin and Byron Sharp disagree about focusing on 500 serious birders versus trying to reach every suburban homeowner? I'd like to understand the trade-off through their published thinking before I pick a direction."
+    },
+    {
+      "id": "marketing-council-j2",
+      "kind": "judgement",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "What would April Dunford and Rory Sutherland each question about calling our odor-monitoring device Scentinel 'an air-quality sensor'? Restaurant owners buy it to avoid complaints near their waste area, while most products in that category talk about indoor health. Which lens would help us make the better decision?"
+    },
+    {
+      "id": "marketing-ideas-j1",
+      "kind": "judgement",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "We sell software for independent clock repairers, called EscapementDesk, and have 11 paying shops. With $300 and five founder hours a week, where would you look for our next few customers? We don't have an audience and I'm open to unconventional approaches."
+    },
+    {
+      "id": "marketing-ideas-j2",
+      "kind": "judgement",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "What would you try to get attention for our reusable specimen-label business VialVale? We have 40 university lab customers, a founder who loves explaining things, and no budget for paid distribution. I'm looking for a few possible directions before choosing one to commit to."
+    },
+    {
+      "id": "marketing-loops-j1",
+      "kind": "judgement",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "Should the agent helping our bamboo-flooring brand ReedRoom check search performance every morning and rewrite weak pages automatically? We only get 900 visits a month. I'm trying to decide the right review interval, what it should remember between runs, and when it should ask a human to intervene."
+    },
+    {
+      "id": "marketing-loops-j2",
+      "kind": "judgement",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "Our agent reviews paid campaign performance for an ice-machine distributor, FrostDock, every Monday. Last week a retry sent the same three recommendations to the team four times. What would you put in place so recurring runs know what's already been handled and stop cleanly when a source fails?"
+    },
+    {
+      "id": "marketing-plan-j1",
+      "kind": "judgement",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "Should we commit all of next year's $120,000 growth budget at LoomDispatch to bringing in new weaving mills, or reserve the first quarter for getting existing accounts using the product? Only 28% finish setup, we have one generalist and half an engineer, and the board wants a realistic sequence across the next four quarters."
+    },
+    {
+      "id": "marketing-plan-j2",
+      "kind": "judgement",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "I'm acting as fractional CMO for Solstice Racks, a solar mounting supplier. We have $18,000 a month, one salesperson, one writer, and a goal of doubling revenue in 12 months. Would you approve doing trade shows, paid search, a weekly podcast, and an installer program all at once, or sequence the work around team capacity?"
+    },
+    {
+      "id": "marketing-psychology-j1",
+      "kind": "judgement",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Why might buyers of our custom fishing rods at AlderCast value the rod more after choosing the grip and wrapping themselves, even when the materials and total cost stay the same? Should we preserve that small amount of effort instead of making every choice automatic?"
+    },
+    {
+      "id": "marketing-psychology-j2",
+      "kind": "judgement",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Is it okay to show 'Only 3 left' on our handwoven hammock shop CloudLoom when we actually have 40 ready to ship? My partner thinks people need urgency to make a decision. What would you do to encourage action without manufacturing a shortage?"
+    },
+    {
+      "id": "offers-j1",
+      "kind": "judgement",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "Should our $3,200 food-truck bookkeeping service CartBalance include the first month of receipt cleanup instead of adding a bonus training course? Owners tell us they dread collecting the backlog, and the core service is monthly books with a 14-day turnaround."
+    },
+    {
+      "id": "offers-j2",
+      "kind": "judgement",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "We sell a $1,900 weekend course that teaches jewelers laser welding. Would you promise a full refund if they can't complete three defined welds by the end, or add two follow-up coaching sessions? We can control the teaching and equipment but not whether they practice afterward."
+    },
+    {
+      "id": "onboarding-j1",
+      "kind": "judgement",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "New users of our trail-maintenance app CairnCrew see an empty dashboard after creating an account. Should their first task be inviting teammates, configuring 12 settings, or recording one damaged trail section with sample data? Only 19% currently save anything on their first visit."
+    },
+    {
+      "id": "onboarding-j2",
+      "kind": "judgement",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "At ScoreSprout, our music-teacher lesson journal, 68% of new account holders finish a six-screen tour but only 17% record a lesson. Is the tour completion number telling us anything useful, and what first-session behavior would you focus on instead?"
+    },
+    {
+      "id": "paywalls-j1",
+      "kind": "judgement",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Our knitting pattern app PurlPocket lets people save three patterns without paying. Should we show the paid-plan screen when they open the app for the first time or when they try saving pattern four? We want more subscriptions without stopping people from experiencing a useful saved collection."
+    },
+    {
+      "id": "paywalls-j2",
+      "kind": "judgement",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "At TideArchive, users can still read their diving logs after the trial ends, but exporting a PDF requires payment. Should the export prompt preview their actual logbook and let them go back, or block the whole app until they choose a plan? The logbook is already saved safely."
+    },
+    {
+      "id": "popups-j1",
+      "kind": "judgement",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Our tea shop MistKettle shows a full-screen newsletter invitation the instant a mobile visitor arrives, and shows it again on every page after dismissal. Is that too aggressive, or would you wait until they've read a brewing guide and remember their choice for a while?"
+    },
+    {
+      "id": "popups-j2",
+      "kind": "judgement",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Should our heritage-seed shop SeedReliquary interrupt visitors with a 10% discount box when their cursor heads toward closing the tab? The same box currently appears on planting guides and checkout, including for customers who already subscribed. Where would you allow it and where would you suppress it?"
+    },
+    {
+      "id": "pricing-j1",
+      "kind": "judgement",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "Should our dog-grooming appointment software TrimTally charge per employee or per location? A solo shop makes 120 appointments a month, a busy salon makes 1,400, and both say the value is keeping chairs full. We currently ask $39 a month regardless of size."
+    },
+    {
+      "id": "pricing-j2",
+      "kind": "judgement",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "We're taking our lab freezer inventory software CryoShelf from $89 to $129 a month. Should existing labs keep the old amount forever, get six months before the change, or move immediately? We have 140 customers, no increase in three years, and a much larger feature set now."
+    },
+    {
+      "id": "product-marketing-j1",
+      "kind": "judgement",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Should our shared background brief for HarborStencil, a boat-lettering service, include the exact phrase 'I just want the name to survive a winter' from customers, or only polished language like 'marine-grade durability'? We reuse the brief for every campaign and keep having to explain the buyer again."
+    },
+    {
+      "id": "product-marketing-j2",
+      "kind": "judgement",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Our reusable company brief for TunnelFern says we sell greenhouse sensors to hobbyists, but 75% of revenue now comes from commercial nurseries. How do I know which parts need updating so every assistant and contractor starts from the same facts? We also learned that cheap battery life claims attracted the wrong buyers."
+    },
+    {
+      "id": "programmatic-seo-j1",
+      "kind": "judgement",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "Should our accessible campsite finder RollMeadow publish 2,000 town pages from one layout if only 140 towns have verified ramp, toilet, and path details? The rest would just swap the town name and show the same general camping advice. We're hoping people find those pages through Google."
+    },
+    {
+      "id": "programmatic-seo-j2",
+      "kind": "judgement",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "We have original water-hardness readings for 620 districts for our laundry dosing product MineralMinder. Is that enough to justify a separate searchable page for every district, or would you start smaller? Each page could show the reading, sample date, and a dosage recommendation, but 180 readings are three years old."
+    },
+    {
+      "id": "prospecting-j1",
+      "kind": "judgement",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Where would you look for the first 20 likely buyers of our mobile upholstery repair service SeatSalvage in Leeds? We need hotels with at least 30 rooms and visible seating wear, not a giant list of every local business. How would you decide which ones are worth approaching?"
+    },
+    {
+      "id": "prospecting-j2",
+      "kind": "judgement",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Should we prioritize recently funded companies or people publicly complaining about broken instrument-calibration records for our new product GaugeNest? We need five design partners this month, have no customers yet, and can only investigate 30 organizations carefully."
+    },
+    {
+      "id": "public-relations-j1",
+      "kind": "judgement",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "Our water-leak sensor business DripWard found that 61% of 430 school buildings in our own dataset had an unnoticed overnight leak. Is that a strong enough story to approach education reporters, or should we wait until we have a funding announcement? We can explain the sampling limits and provide the underlying totals."
+    },
+    {
+      "id": "public-relations-j2",
+      "kind": "judgement",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "A regional newspaper wants a comment from our founder at GrainSignal about rising grain spoilage. Should she talk about our product features or explain what warehouse operators are seeing? The reporter's deadline is in three hours and we have verified observations from 36 facilities."
+    },
+    {
+      "id": "referrals-j1",
+      "kind": "judgement",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Our climbing-shoe repair service HeelHook wants existing customers to bring in friends. Should both people get a $15 credit after the friend's first paid repair, or should only the existing customer get $30? Repairs average $85 with $42 gross profit, and we want to avoid paying for people who never order."
+    },
+    {
+      "id": "referrals-j2",
+      "kind": "judgement",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Should our wedding seating software TableWren put a small 'Made with TableWren' badge on seating charts couples share with their venue, or start with cash rewards for introductions? The charts already reach planners who could use the product for other weddings, and couples only buy once."
+    },
+    {
+      "id": "reverse-engineer-marketing-j1",
+      "kind": "judgement",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "How do I know whether MeadowBench's downloadable orchard worksheets caused its growth or merely appeared at the same time? MeadowBench is at https://meadowbench.example; a single vendor's estimates rose from 8,000 visits in January to 31,000 in June, worksheets appeared in March, and funding was announced in April. We sell similar orchard software at https://pomeloledger.example and are deciding what to learn from that history."
+    },
+    {
+      "id": "reverse-engineer-marketing-j2",
+      "kind": "judgement",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "Should our seed-library software SeedCircuit copy the sequence of moves made by BorrowBloom at https://borrowbloom.example? BorrowBloom added public collection pages in February, a librarian podcast in May, and a paid tier in August. We have 12 customers and one developer. What evidence would you need to decide which move actually mattered rather than copying everything?"
+    },
+    {
+      "id": "revops-j1",
+      "kind": "judgement",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "At QuarryQuill, 45 demo requests arrived last month but 13 sat unassigned for more than two days because our two reps both thought the other owned them. Should we use territories, a rotating assignment, or a fallback owner with a response deadline? We sell $22,000 contracts to aggregate suppliers."
+    },
+    {
+      "id": "revops-j2",
+      "kind": "judgement",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Our industrial bakery software BatchBelfry gives a contact 10 points for every newsletter open and sends them to sales at 50. Students regularly qualify while bakery owners who request rates sometimes don't. What would you change about the qualification rules before automating any more handoffs?"
+    },
+    {
+      "id": "sales-enablement-j1",
+      "kind": "judgement",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Our champion for a $48,000 contract at IceLedger, our cold-store audit platform, needs approval from finance and operations. Should we give her the same 26-slide deck we used in the demo, or a short decision brief with savings, implementation effort, and risks? She has ten minutes in their budget meeting."
+    },
+    {
+      "id": "sales-enablement-j2",
+      "kind": "judgement",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "A buyer told our rep at PropellerPatch, an aircraft maintenance records vendor, 'Moving five years of logs feels too risky.' Should the rep respond with more feature slides or walk through a migration example with rollback steps? We have one documented customer move completed over a weekend."
+    },
+    {
+      "id": "schema-j1",
+      "kind": "judgement",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Is it okay for our instrument repair shop ReedRescue to put a 4.9 rating from 82 customer reviews into JSON-LD when none of those reviews or the rating are visible on the page? We want stars beside the Google result, but the designer left the review section out."
+    },
+    {
+      "id": "schema-j2",
+      "kind": "judgement",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Our paid stargazing app SkyLedger has a web page with screenshots, a $6 monthly subscription, and a download button. Should its JSON-LD describe a SoftwareApplication or an Article just because the page contains 900 words? I'm trying to help search engines understand what the page actually represents."
+    },
+    {
+      "id": "seo-audit-j1",
+      "kind": "judgement",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Where would you look first after our canoe outfitter PortageFox lost 60% of visits from Google during a website migration? We changed the trip-page addresses, some old addresses now return 404, and the new pages look fine to us. Should we focus on writing more articles or on what happened during the move?"
+    },
+    {
+      "id": "seo-audit-j2",
+      "kind": "judgement",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Our French and English pages for industrial scales at https://scalegrove.example/fr and https://scalegrove.example/en both declare the English version as canonical. French pages barely appear in Google even though they are fully translated. Is that setup sensible, or would you investigate it before changing the text?"
+    },
+    {
+      "id": "signup-j1",
+      "kind": "judgement",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "Should our cycling-club dues app SpokeTreasury ask for club address, member count, phone, role, and tax ID before someone can create an account? We only need an address and tax ID when a club starts collecting money, and 54% abandon the initial form."
+    },
+    {
+      "id": "signup-j2",
+      "kind": "judgement",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "At MarquetryMap, our woodworking pattern library, people must create a password with 14 characters and verify their address before seeing any saved pattern. Would you allow a Google login or a magic link instead, given that 70% of new visitors use phones and we don't store payment details at this stage?"
+    },
+    {
+      "id": "site-architecture-j1",
+      "kind": "judgement",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "Should the top menu for our conservation supplier MossArchive be organized by product type or by buyer role? We sell boxes, sleeves, and humidity meters to museums, libraries, and private collectors. There are 90 product pages, and buyers say they can't find the right starting point."
+    },
+    {
+      "id": "site-architecture-j2",
+      "kind": "judgement",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "We're adding 60 maintenance guides to our lift-service business RiseAnchor. Should they live together under https://riseanchor.example/guides or be scattered beneath individual service pages? The guides cover inspections, breakdowns, and modernization, and we want readers to reach the relevant service without getting lost."
+    },
+    {
+      "id": "sms-j1",
+      "kind": "judgement",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Should our sourdough delivery brand CrumbHarbor send a phone message about a two-hour surplus sale to all 3,200 numbers collected for delivery updates? Only 740 people separately agreed to promotional messages. I'm trying to decide who should receive it, not asking you to send anything."
+    },
+    {
+      "id": "sms-j2",
+      "kind": "judgement",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "We sell refillable art markers through InkFerry in Brazil, where most buyers contact us on WhatsApp. Is it okay to send a free-form cart reminder 40 hours after the buyer last messaged, or should we handle that differently from a reply during the conversation?"
+    },
+    {
+      "id": "social-j1",
+      "kind": "judgement",
+      "expect": [
+        "social"
+      ],
+      "prompt": "For my LinkedIn presence as the founder of brewery-cleaning service TankThistle, should I share a detailed story about one shutdown we helped avoid or publish polished company announcements three times a week? I have two hours a week and want brewery operators to recognize that I understand their work."
+    },
+    {
+      "id": "social-j2",
+      "kind": "judgement",
+      "expect": [
+        "social"
+      ],
+      "prompt": "Our terrarium brand GlassMoss gets lots of Instagram likes on pretty finished jars, but the messy step-by-step carousels get more saves and visits to our shop. Which format would you give more space next month if the goal is qualified shoppers rather than a bigger follower number?"
+    },
+    {
+      "id": "video-j1",
+      "kind": "judgement",
+      "expect": [
+        "video"
+      ],
+      "prompt": "Should our ferry booking product WakeWindow use a synthetic presenter or an actual screen recording for a 70-second walkthrough of changing a vehicle reservation? The interface is the main thing buyers need to understand, and we have $400 plus one afternoon to produce it."
+    },
+    {
+      "id": "video-j2",
+      "kind": "judgement",
+      "expect": [
+        "video"
+      ],
+      "prompt": "We need 120 personalized 20-second MP4s for commercial laundry buyers, each showing a different plant name and measured weekly water savings. For our product RinseAtlas, would you use a code-based composition with real figures or ask a generative model to create each clip separately? The numbers and typography must be exact."
+    },
+    {
+      "id": "none-j1",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Should I use a Dutch oven or a baking stone for a 900-gram sourdough loaf in an electric oven that reaches 250 C? I'm baking at home and want a crisp crust."
+    },
+    {
+      "id": "none-j2",
+      "kind": "none",
+      "expect": [],
+      "prompt": "My bathroom tap drips once every five seconds even when fully closed. It's a two-handle tap with a rubber washer. Where would you look first before replacing the whole thing?"
+    },
+    {
+      "id": "none-j3",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Which would you use for a personal photo backup: two external 2 TB drives kept in different houses, or one 4 TB drive beside my laptop? I have 700 GB of family photos and don't need to share them online."
+    },
+    {
+      "id": "none-j4",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Is it okay to move my pothos from an east-facing window to a shelf three meters away? The room is bright in the morning, and I water when the top two centimeters of soil feel dry."
+    },
+    {
+      "id": "none-j5",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Should I teach my seven-year-old niece fractions with paper circles or measuring cups? She understands halves but keeps saying one quarter is bigger than one third because four is bigger than three."
+    },
+    {
+      "id": "none-j6",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Our weekend board-game group has four people and 90 minutes. Would you choose a cooperative game or a competitive one if two players are beginners and one hates being eliminated early?"
+    },
+    {
+      "id": "none-j7",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Where would you look for a rattling noise on my bicycle that happens only when pedaling in the smallest rear cog? It disappears when I coast, and the wheel spins freely on the stand."
+    },
+    {
+      "id": "none-j8",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Should I knit a scarf with wool or cotton for a friend who lives in a cold, rainy climate? I already own 300 grams of each, and she wants something warm that doesn't stretch out quickly."
+    }
+  ]
+}
