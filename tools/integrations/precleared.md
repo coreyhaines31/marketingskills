@@ -1,8 +1,8 @@
 # Precleared
 
-Checks whether a cold or marketing email to one address is allowed in the recipient's country, before an agent sends it. One call returns a verdict (`ok_to_email`, `consent_needed`, `blocked` or `unknown`), the rule that decided it with its legal source, what the email's footer must include, a next step and a signed receipt. Covers the UK (PECR and UK GDPR), US (CAN-SPAM), Canada (CASL), Germany (UWG), France (CPCE), Australia (Spam Act 2003), Ireland (S.I. 336/2011) and the Netherlands (Telecommunicatiewet). For UK recipients it looks the company up on Companies House, because the rule turns on whether the recipient is a limited company or a sole trader.
+Checks whether a cold or marketing email to one address is allowed in the recipient's country, before an agent sends it. One call returns a verdict (`ok_to_email`, `consent_needed`, `blocked` or `unknown`), the rule that decided it with its legal source, what the email's footer must include, a next step and a signed receipt. Covers the UK (PECR and UK GDPR), US (CAN-SPAM), Canada (CASL), Germany (UWG), France (CPCE), Australia (Spam Act 2003), Ireland (S.I. 336/2011), the Netherlands (Telecommunicatiewet), Spain (LSSI), Italy (Privacy Code), Latvia (Information Society Services Law), the United Arab Emirates (PDPL), Egypt (Personal Data Protection Law) and Qatar (Personal Data Privacy Protection Law). For UK recipients it looks the company up on Companies House, because the rule turns on whether the recipient is a limited company or a sole trader.
 
-Facts below were checked against the live API, [precleared.dev/openapi.json](https://precleared.dev/openapi.json) and [precleared.dev/docs](https://precleared.dev/docs) on 2026-10-17. Verdicts are decision support with sources, not legal advice.
+Facts below were checked against the live API, [precleared.dev/openapi.json](https://precleared.dev/openapi.json) and [precleared.dev/docs](https://precleared.dev/docs) on 2026-11-10. Verdicts are decision support with sources, not legal advice.
 
 **Data sent:** each check sends the recipient's email address (and, for UK recipients, the company lookup) to Precleared's servers. Clear that with your privacy policy before running checks on a contact list.
 
@@ -11,14 +11,14 @@ Facts below were checked against the live API, [precleared.dev/openapi.json](htt
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST, `POST https://precleared.dev/api/v1/check`. Optional Bearer key. [OpenAPI spec](https://precleared.dev/openapi.json) |
-| MCP | ✓ | Remote, Streamable HTTP: `https://precleared.dev/mcp`. No sign-in needed; a key is optional. Tools: `contact_check`, `verify_receipt` |
-| CLI | - | None. The API is one JSON call, see below |
-| SDK | - | None published yet |
+| MCP | ✓ | Remote, Streamable HTTP: `https://precleared.dev/mcp`. No sign-in needed; a key is optional. Tools: `contact_check`, `verify_receipt`, and `suppress_contact` for a key's opt-out list |
+| CLI | ✓ | `npm install -g precleared`, then `precleared check jane@acme.co.uk`. Exit code `0` means every address is `ok_to_email`, so it can gate a script or a pre-send hook |
+| SDK | ✓ | `npm install precleared` (TypeScript, with Vercel AI SDK and LangChain tools) and `pip install precleared` (Python, `precleared[langchain]` for LangChain) |
 
 ## Authentication
 
 - **Without a key:** nothing to set up. The free allowance is 100 checks a day per network address over MCP and 10 a day over the REST API.
-- **With a key:** `Authorization: Bearer $PRECLEARED_API_KEY`. A free key from [precleared.dev/get-key](https://precleared.dev/get-key) gives 25 checks a day over the REST API (and its own 100 over MCP). Paid packs add credits that never expire. Keep the key in an env var or a secret manager, never in the repo.
+- **With a key:** `Authorization: Bearer $PRECLEARED_API_KEY`. A free key from [precleared.dev/get-key](https://precleared.dev/get-key) starts with 14 days at 100 checks a day, counted from its first check, then gives 25 checks a day over the REST API (and its own 100 over MCP). Paid options: packs that never expire (£9 for 300 checks as a first purchase, £39 for 2,000) or a monthly plan (£15 for 100 checks a day, £49 for 500). Keep the key in an env var or a secret manager, never in the repo.
 - **Rate limit:** 60 checks a minute per key. Over that, the API answers `429` with `retry_after` in seconds.
 - **Base URL:** `https://precleared.dev`
 
@@ -57,10 +57,11 @@ Request fields:
 |-------|----------|-------|
 | `recipient_email` or `recipient_domain` | one of them | The address, or just the domain when there is no address yet |
 | `address_source` | send it | `published`, `bought`, `scraped`, `given` or `unknown`. It changes the verdict (CASL, the Spam Act and the Dutch rules all turn on it). A missing value counts as `unknown` |
-| `sender_country` | no | `GB` (default) or `US` |
+| `sender_country` | no | Where the sending business is based: `GB` (default), `US`, `CA`, `DE`, `FR`, `AU`, `IE`, `NL`, `ES`, `IT`, `LV`, `AE`, `EG` or `QA`. Canadian senders must also meet CASL |
 | `pitch`, `pitch_relevant` | no | What the email offers and whether it relates to the recipient's role; used by the Canadian and French rules |
 | `recipient_country` | no | Two-letter code. Worth passing for `.com` domains, which carry no country |
 | `company_number` | no | UK company number, raises confidence |
+| `company_name`, `default_recipient_country` | no | The company name from your CRM helps find a UK company. The default country is used only when the recipient's country cannot be worked out any other way |
 | `existing_customer`, `suppressed` | no | Both default to false. Pass `suppressed: true` for anyone on your own do-not-contact list |
 
 Over MCP, `contact_check` takes the same fields.
@@ -120,14 +121,20 @@ The same questions can be answered by hand against the official guidance. A tool
 - Australia: [Spam Act 2003](https://www.legislation.gov.au/C2004A01214/latest/text) and [ACMA's consent expectations](https://www.acma.gov.au/publications/2024-06/guide/consumer-consent-expectations-businesses-conducting-telemarketing-and-e-marketing).
 - Ireland: [S.I. No. 336/2011, Regulation 13](https://www.irishstatutebook.ie/eli/2011/si/336/made/en/print).
 - Netherlands: [Telecommunicatiewet, artikel 11.7](https://wetten.overheid.nl/BWBR0009950/2026-08-15/#Hoofdstuk11_Paragraaf11.1_Artikel11.7).
+- Spain: [LSSI, article 21](https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758).
+- Italy: [Privacy Code, article 130](https://brocardi.it/codice-della-privacy/parte-ii/titolo-x/capo-i/art130.html).
+- Latvia: [Information Society Services Law, section 9](https://likumi.lv/ta/en/en/id/96619).
+- United Arab Emirates: [PDPL, Federal Decree-Law 45/2021](https://uaelegislation.gov.ae/en/legislations/1972/download).
+- Egypt: [Personal Data Protection Law, Law 151 of 2020, English translation](https://www.legal500.com/intelligence/egypt/privacy/egypts-personal-data-protection-law-(pdpl)-english-translation).
+- Qatar: [Personal Data Privacy Protection Law, Law 13 of 2016, English translation](https://www.dataguidance.com/sites/default/files/law_no._13_of_2016_on_protecting_personal_data_privacy_-_english.pdf).
 
 ## Tradeoffs
 
-- **Eight countries.** Recipients elsewhere in the EU get a cautious default (consent needed) rather than a country-specific rule, and the rest of the world is not covered.
+- **Fourteen countries.** Recipients elsewhere in the EU get a cautious default (consent needed) rather than a country-specific rule, and the rest of the world is not covered.
 - **`unknown` happens.** When a UK company cannot be matched, or a `.com` domain shows no country, the check says so rather than guessing. Passing `recipient_country` and `company_number` removes most of these.
-- **One more call per lead,** about a second each, and a small cost at volume (packs are priced per check).
+- **One more call per lead,** usually a few seconds each (UK checks that look a company up take longest), and a small cost at volume (£39 buys 2,000 checks, about 2p each).
 - **Not legal advice.** The rule and its source are quoted so a human can read them; the decision stays with you. For edge cases, a lawyer.
-- **No suppression list.** It does not store your opt-outs; keep your own and pass `suppressed: true`.
+- **Opt-outs need a key.** A key has its own opt-out list (`suppress_contact` over MCP, `POST /api/v1/suppressions` over REST), and later checks on a listed address answer `blocked`. Without a key nothing is stored, so keep your own list and pass `suppressed: true`.
 
 ## How it fits the skills
 
