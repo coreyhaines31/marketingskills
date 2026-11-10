@@ -102,6 +102,20 @@ Makers are welcome to add a neutral guide to [`tools/integrations/`](tools/integ
 - [ ] Follows existing skill patterns in the repo
 - [ ] Any tool mentions follow the [integrity rubric](#mentioning-tools-the-integrity-rubric) — options not one answer, disclosed, passes the swap test
 
+## Security
+
+This repo is mostly markdown (`skills/`, `tools/integrations/`) plus the zero-dependency Node.js CLIs in `tools/clis/` and the helper scripts in `scripts/`. An agent that installs a skill follows its text, so instructions hidden from a reviewer are the main risk, not only code.
+
+Pull requests to `main` that touch `skills/` or `tools/` run `node scripts/check-hidden-content.mjs`. It reports every HTML comment and `[//]: #` comment in markdown (`.md`, `.markdown`, `.mdx`) (GitHub hides them when it renders the file), runs of more than 20 blank lines, zero-width, bidi, filler and Unicode tag characters, downloaded scripts piped into a shell (`curl ... | sh`), webhook-catcher URLs, requests to send a secret such as `.env` or an API key to a URL or email address, NUL bytes and symlinks. It is a set of simple pattern checks, not a full review, and for now CI only warns. Run it locally before you open a PR:
+
+```bash
+node scripts/check-hidden-content.mjs
+```
+
+If a hit is legitimate, add an entry to `scripts/hidden-content-allowlist.json` with the `path`, the `rule`, the whole flagged `line` copied from the file (trimmed), and a `reason`, and say why in the PR. Blank runs, NUL bytes and symlinks can't be allowlisted; fix the file instead.
+
+To report a skill or file that looks malicious, open an issue that names the file and line. If you want to review changes before they reach your agent, install from a release tag (`v<x.y.z>`, see [Releases](https://github.com/coreyhaines31/marketingskills/releases)) instead of `main`.
+
 ## Questions?
 
 Open an issue if you have questions or need help with your contribution.

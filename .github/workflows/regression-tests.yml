@@ -7,6 +7,7 @@ on:
       - "validate-skills.sh"
       - "tests/**"
       - "tools/clis/**"
+      - "scripts/check-hidden-content.mjs"
       - "skills/ad-creative/assets/creative-review-template.html"
       - ".github/workflows/regression-tests.yml"
   pull_request:
@@ -15,6 +16,7 @@ on:
       - "validate-skills.sh"
       - "tests/**"
       - "tools/clis/**"
+      - "scripts/check-hidden-content.mjs"
       - "skills/ad-creative/assets/creative-review-template.html"
       - ".github/workflows/regression-tests.yml"
 
