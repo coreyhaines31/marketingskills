@@ -1,5 +1,7 @@
 # Livestorm
 
+> **◆ Verified Partner integration.** Livestorm sponsors Marketing Skills. This integration is disclosed and vetted for fit; it does **not** change what any skill recommends. It's listed here alongside the neutral options for the same job — use it when it's the right fit, not because it's a partner. See [Verified Partners](../REGISTRY.md#verified-partners).
+
 Video engagement platform for webinars, virtual events, and online meetings with built-in analytics and integrations.
 
 ## Capabilities
