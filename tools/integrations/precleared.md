@@ -2,7 +2,9 @@
 
 Checks whether a cold or marketing email to one address is allowed in the recipient's country, before an agent sends it. One call returns a verdict (`ok_to_email`, `consent_needed`, `blocked` or `unknown`), the rule that decided it with its legal source, what the email's footer must include, a next step and a signed receipt. Covers the UK (PECR and UK GDPR), US (CAN-SPAM), Canada (CASL), Germany (UWG), France (CPCE), Australia (Spam Act 2003), Ireland (S.I. 336/2011) and the Netherlands (Telecommunicatiewet). For UK recipients it looks the company up on Companies House, because the rule turns on whether the recipient is a limited company or a sole trader.
 
-Disclosure: this guide was contributed by Precleared's maker. It is a neutral integration under [PARTNERS.md](../PARTNERS.md), not a partner listing. Facts below were checked against the live API, [precleared.dev/openapi.json](https://precleared.dev/openapi.json) and [precleared.dev/docs](https://precleared.dev/docs) on 2026-10-17. Verdicts are decision support with sources, not legal advice.
+Facts below were checked against the live API, [precleared.dev/openapi.json](https://precleared.dev/openapi.json) and [precleared.dev/docs](https://precleared.dev/docs) on 2026-10-17. Verdicts are decision support with sources, not legal advice.
+
+**Data sent:** each check sends the recipient's email address (and, for UK recipients, the company lookup) to Precleared's servers. Clear that with your privacy policy before running checks on a contact list.
 
 ## Capabilities
 
