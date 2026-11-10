@@ -164,7 +164,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `calendly.js` | Scheduling | [Calendly](https://calendly.com) |
 | `clay.js` | Data Enrichment | [Clay](https://clay.com) |
 | `clearbit.js` | Data Enrichment | [Clearbit](https://clearbit.com) |
-| `cloro.js` | AEO | [cloro](https://cloro.dev?utm_source=marketingskills&utm_medium=byok) |
+| `cloro.js` | AEO | [cloro](https://cloro.dev) |
 | `close.js` | CRM | [Close](https://close.com) |
 | `coupler.js` | Data Aggregation | [Coupler](https://www.coupler.io) |
 | `crossbeam.js` | Partner Ecosystem | [Crossbeam](https://www.crossbeam.com) |

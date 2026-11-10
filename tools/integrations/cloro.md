@@ -2,7 +2,7 @@
 
 API that sends a prompt to ChatGPT, Google AI Mode, Bing AI Mode or Gemini, or a query to Google Search, from a chosen country, and returns the parsed answer: the text, the sources it cites, and for Google the organic results with the AI Overview. Billed in credits per request.
 
-Facts below were checked against the [API reference](https://cloro.dev/docs/api-reference/introduction?utm_source=marketingskills&utm_medium=byok) and live responses on 2026-11-05. Bing AI Mode facts come from the [API reference](https://cloro.dev/docs/api-reference/endpoint/monitor-bing-aimode?utm_source=marketingskills&utm_medium=byok).
+Facts below were checked against the [API reference](https://cloro.dev/docs/api-reference/introduction) and live responses on 2026-11-05. Bing AI Mode facts come from the [API reference](https://cloro.dev/docs/api-reference/endpoint/monitor-bing-aimode).
 
 ## Capabilities
 
@@ -18,7 +18,7 @@ Facts below were checked against the [API reference](https://cloro.dev/docs/api-
 - **Type**: Bearer token
 - **Header**: `Authorization: Bearer {CLORO_API_KEY}`
 - **Env var** (convention): `CLORO_API_KEY`
-- **Get key**: [dashboard.cloro.dev/api-keys](https://dashboard.cloro.dev/api-keys?utm_source=marketingskills&utm_medium=byok). The free plan includes 500 credits a month.
+- **Get key**: [dashboard.cloro.dev/api-keys](https://dashboard.cloro.dev/api-keys). The free plan includes 500 credits a month.
 
 ## Common Agent Operations
 
@@ -94,7 +94,7 @@ POST https://api.cloro.dev/v1/async/task/batch
 GET https://api.cloro.dev/v1/async/task/{id}
 ```
 
-`task.status` goes `QUEUED` → `PROCESSING` → `COMPLETED` or `FAILED`. When it is `COMPLETED`, the engine result is in `response` (same shape as the sync `result`). Webhooks are also available; see the [async guide](https://cloro.dev/docs/guides/making-requests/async?utm_source=marketingskills&utm_medium=byok).
+`task.status` goes `QUEUED` → `PROCESSING` → `COMPLETED` or `FAILED`. When it is `COMPLETED`, the engine result is in `response` (same shape as the sync `result`). Webhooks are also available; see the [async guide](https://cloro.dev/docs/guides/making-requests/async).
 
 ### Credit balance
 
