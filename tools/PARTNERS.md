@@ -96,6 +96,8 @@ Plus a ◆ marker in [REGISTRY.md](REGISTRY.md) and an entry in [`../partners.js
 
 **Makers disclose in the PR.** If you build or work for the tool, say so in the pull request description. The guide itself stays neutral and carries no disclosure header — that header is reserved for Verified Partners.
 
+**What a guide can't include.** No "contributed by the maker" or similar lines inside the guide. No tracking links (`utm_` parameters, ref or affiliate codes). No steps that install the tool's own skill, plugin, or agent package. No edits to files under `skills/` to mention the tool. Guides must also follow the sales-outbound rules in [`REGISTRY.md`](REGISTRY.md): no LinkedIn scraping with logged-in accounts, cookies, or fake profiles, and no Google Maps scrapers.
+
 **Review cadence.** Neutral integration PRs are reviewed in a monthly batch. Verified Partner guides follow the partner lifecycle above and are reviewed as part of onboarding.
 
 **Upkeep.** Guides are checked quarterly. A non-partner guide whose API, docs, or tool has gone away gets an issue and 30 days to fix, then is removed. Partner guides are kept current as part of the agreement.
