@@ -1,0 +1,104 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Fluent Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Fluent Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctFluentForms) return;\n  window.__ctFluentForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var listeners = [], lastEvent = null;\n  // Fluent Forms 6.2.5 reports one success response through three different\n  // event objects. Deduplicate by response-object identity and original form\n  // node; never inspect or retain a response's fields.\n  var seenResponses = typeof WeakMap === 'function' ? new WeakMap() : null;\n  window.__ctFluentSubscribe = function (listener) {\n    if (listener && typeof listener === 'object') listeners.push(listener);\n  };\n  function isForm(form) {\n    try {\n      if (!form || String(form.tagName || '').toLowerCase() !== 'form') return false;\n      if (String(form.className || '').indexOf('frm-fluent-form') !== -1) return true;\n      if (form.closest && form.closest('.fluentform')) return true;\n      return /^fluentform_\\d+$/.test(form.id || '');\n    } catch (e) { return false; }\n  }\n  function asForm(candidate) {\n    try {\n      var el = candidate;\n      if (el && el.jquery && el.length) el = el[0];\n      return isForm(el) ? el : null;\n    } catch (e) { return null; }\n  }\n  function notify(phase, form, candidate, event, arg2, arg3) {\n    var handled = false;\n    for (var i=0;i<listeners.length;i++) {\n      try { var fn=listeners[i] && listeners[i][phase]; if(typeof fn==='function' && fn(form,candidate,event,arg2,arg3)===true)handled=true; } catch(e) {}\n    }\n    return handled;\n  }\n  function submit(event) {\n    try { var form=event.target; if(isForm(form)) notify('beforeAttempt',form,false,event); } catch(e) {}\n  }\n  function resolve(event,arg2,arg3) {\n    try {\n      var form=asForm(arg2 && arg2.form) || asForm(arg3) || asForm(arg2);\n      if(form)return form;\n      var oe=event && event.originalEvent;\n      if(oe && oe.detail) return asForm(oe.detail.form);\n      return asForm(event && event.target);\n    } catch(e) { return null; }\n  }\n  function responseFor(event, arg2) {\n    try {\n      var descriptor = arg2 && Object.getOwnPropertyDescriptor(arg2, 'response');\n      var response = descriptor && Object.prototype.hasOwnProperty.call(descriptor, 'value') ? descriptor.value : null;\n      if (response && typeof response === 'object') return response;\n      var originalEvent = event && event.originalEvent;\n      var detail = originalEvent && originalEvent.detail;\n      descriptor = detail && Object.getOwnPropertyDescriptor(detail, 'response');\n      response = descriptor && Object.prototype.hasOwnProperty.call(descriptor, 'value') ? descriptor.value : null;\n      return response && typeof response === 'object' ? response : null;\n    } catch(e) { return null; }\n  }\n  function alreadySeen(response, form) {\n    try {\n      if (!seenResponses || !response || !form || typeof response !== 'object' || typeof form !== 'object') return true;\n      var forms = seenResponses.get(response);\n      if (!forms) {\n        forms = typeof WeakSet === 'function' ? new WeakSet() : null;\n        if (!forms) return true;\n        seenResponses.set(response, forms);\n      }\n      if (forms.has(form)) return true;\n      forms.add(form);\n      return false;\n    } catch(e) { return true; }\n  }\n  function success(event,arg2,arg3) {\n    try {\n      if (event && typeof event === 'object' && event === lastEvent) return;\n      lastEvent=event;\n      if (event && typeof event === 'object') setTimeout(function(){if(lastEvent===event)lastEvent=null;},0);\n      var form=resolve(event,arg2,arg3);\n      if(!form)return;\n      var response=responseFor(event,arg2);\n      if(!response || alreadySeen(response,form))return;\n      if(!notify('onCandidate',form,true,event,arg2,arg3)) window.dataLayer.push({event:'fluent_forms_submitted',form_id:form.id || ''});\n    } catch(e) {}\n  }\n  document.addEventListener('submit',submit,true);\n  function hook() {\n    try {\n      if (window.__ctFluentSuccessHooked || !window.jQuery) return false;\n      window.__ctFluentSuccessHooked=true;\n      window.jQuery(document).on('fluentform_submission_success',success);\n      return true;\n    } catch(e) { return false; }\n  }\n  if(!hook()) {\n    document.addEventListener('DOMContentLoaded',hook);\n    window.addEventListener('load',hook);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Fluent Forms Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "fluent_forms_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Fluent Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0",
+    "exportTime": "2026-07-05 00:00:00"
+  }
+}

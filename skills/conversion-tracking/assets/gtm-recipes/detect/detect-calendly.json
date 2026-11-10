@@ -1,0 +1,122 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Calendly",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Calendly Booking Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  'use strict';\n  if (window.__ctDetectCalendly) return;\n  window.__ctDetectCalendly = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // The CSS selector matches only Calendly's documented exact embed host.\n  // Do not read iframe.src or its `src` attribute: prefill parameters can\n  // contain invitee PII. The selector engine performs the prefix match without\n  // exposing the URL value to this listener.\n  var CALENDLY_FRAME_SELECTOR = 'iframe[src^=\\\"https://calendly.com/\\\"]';\n  var CALENDLY_ORIGIN = 'https://calendly.com';\n  var API_HOSTS = { 'api.calendly.com': true, 'calendly.com': true };\n  var trackedFrames = [];\n  var seenPairs = [];\n\n  function trackFrame(frame) {\n    if (!frame || !frame.contentWindow) return;\n    for (var i = 0; i < trackedFrames.length; i++) {\n      if (trackedFrames[i].frame === frame) {\n        trackedFrames[i].source = frame.contentWindow;\n        trackedFrames[i].origin = CALENDLY_ORIGIN;\n        return;\n      }\n    }\n    trackedFrames.push({ frame: frame, source: frame.contentWindow, origin: CALENDLY_ORIGIN });\n  }\n\n  function scan(root) {\n    if (!root || typeof root.querySelectorAll !== 'function') return;\n    var frames;\n    try { frames = root.querySelectorAll(CALENDLY_FRAME_SELECTOR); } catch (e) { return; }\n    for (var i = 0; i < frames.length; i++) trackFrame(frames[i]);\n  }\n\n  function sourceIsTracked(event) {\n    for (var i = 0; i < trackedFrames.length; i++) {\n      var item = trackedFrames[i];\n      try {\n        if (item.frame.isConnected === true && item.frame.contentWindow === event.source && item.source === event.source && item.origin === event.origin) return true;\n      } catch (e) { /* replaced or inaccessible frames fail closed */ }\n    }\n    return false;\n  }\n\n  function resourceIdentity(value, kind) {\n    if (typeof value !== 'string' || /[?#]/.test(value)) return null;\n    try {\n      var url = new URL(value);\n      if (url.protocol !== 'https:' || url.port || !API_HOSTS[url.hostname]) return null;\n      var eventMatch = /(?:^|\\/)scheduled_events\\/([A-Za-z0-9_-]{1,128})\\/?$/.exec(url.pathname);\n      var inviteeMatch = /(?:^|\\/)scheduled_events\\/([A-Za-z0-9_-]{1,128})\\/invitees\\/([A-Za-z0-9_-]{1,128})\\/?$/.exec(url.pathname);\n      if (kind === 'event' && eventMatch) return { eventId: eventMatch[1].toLowerCase() };\n      if (kind === 'invitee' && inviteeMatch) return { eventId: inviteeMatch[1].toLowerCase(), inviteeId: inviteeMatch[2].toLowerCase() };\n    } catch (e) { return null; }\n    return null;\n  }\n\n  function pairSeen(eventId, inviteeId) {\n    var key = eventId + ':' + inviteeId;\n    for (var i = 0; i < seenPairs.length; i++) if (seenPairs[i] === key) return true;\n    seenPairs.push(key);\n    return false;\n  }\n\n  function onMessage(message) {\n    if (!message || !message.source || message.source === window || !sourceIsTracked(message)) return;\n    var data = message.data;\n    if (typeof data === 'string') {\n      try { data = JSON.parse(data); } catch (e) { return; }\n    }\n    if (!data || typeof data !== 'object' || data.event !== 'calendly.event_scheduled') return;\n    var payload = data.payload || {};\n    var eventUri = payload.event && payload.event.uri;\n    var inviteeUri = payload.invitee && payload.invitee.uri;\n    var eventIdentity = resourceIdentity(eventUri, 'event');\n    var inviteeIdentity = resourceIdentity(inviteeUri, 'invitee');\n    if (!eventIdentity || !inviteeIdentity || eventIdentity.eventId !== inviteeIdentity.eventId) return;\n    if (pairSeen(eventIdentity.eventId, inviteeIdentity.inviteeId)) return;\n    window.dataLayer.push({ event: 'calendly_event_scheduled', event_uri: eventUri, invitee_uri: inviteeUri });\n  }\n\n  function start() {\n    if (typeof document === 'undefined') return;\n    scan(document);\n    if (typeof MutationObserver === 'undefined' || !document.documentElement) return;\n    try {\n      var observer = new MutationObserver(function (mutations) {\n        for (var i = 0; i < mutations.length; i++) {\n          var added = mutations[i].addedNodes || [];\n          for (var j = 0; j < added.length; j++) {\n            var node = added[j];\n            if (node && node.tagName === 'IFRAME') scan(document);\n            else scan(node);\n          }\n          if (mutations[i].type === 'attributes' && mutations[i].attributeName === 'src') scan(document);\n        }\n      });\n      observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });\n    } catch (e) {}\n  }\n\n  if (typeof document !== 'undefined') {\n    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, false);\n    else start();\n  }\n  window.addEventListener('message', onMessage, false);\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Calendly Event Scheduled",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "calendly_event_scheduled"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Calendly Event URI",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "event_uri"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "2",
+        "name": "DLV - Calendly Invitee URI",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "invitee_uri"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

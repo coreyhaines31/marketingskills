@@ -9,10 +9,11 @@
       "categoryShort": "Conversion tracking / attribution",
       "tier": "skill-partner",
       "tagline": "Server-side conversion tracking",
-      "blurb": "Server-side conversion tracking that fires when someone submits a form, books a meeting, or starts a chat — passing click IDs and identifiers for Enhanced Conversions (Google) and high EMQ match rates (Meta), across 100+ tools. CLI + MCP so your agent sets it up in minutes.",
+      "blurb": "Server-side conversion tracking that fires when someone submits a form, books a meeting, or starts a chat — passing click IDs and identifiers for Enhanced Conversions (Google) and stronger match quality (Meta), across about 100 tools. CLI + MCP so your agent sets it up in minutes.",
       "logoUrl": "/logos/converly.png",
       "integration": "tools/integrations/converly.md",
-      "active": true
+      "active": true,
+      "noRef": true
     },
     {
       "id": "ploy",
@@ -25,7 +26,8 @@
       "blurb": "AI marketing platform built around a hosted website builder — an in-app agent that builds and publishes pages, PloyDB for pages at scale, routing to add pages to an existing site, built-in analytics and visitor identification, and a CLI for coding agents.",
       "logoUrl": "/logos/ploy.png",
       "integration": "tools/integrations/ploy.md",
-      "active": true
+      "active": true,
+      "noRef": true
     },
     {
       "id": "aisa",
@@ -36,8 +38,36 @@
       "tier": "skill-partner",
       "tagline": "One API key for SEO and marketing data",
       "blurb": "One AIsa key, pay as you go, instead of a subscription to every data platform. Agents get SEO, search, social, and market data from Similarweb, Semrush, Ahrefs, DataForSEO, Tavily, Reddit, X, and more through REST or MCP, and pay only for the calls they make.",
-      "logoUrl": "https://aisa.one/sales-api-intro/AIsa_LOGO.svg",
+      "logoUrl": "https://aisa.one/favicon.svg",
       "integration": "tools/integrations/aisa.md",
+      "active": true,
+      "noRef": true
+    },
+    {
+      "id": "omnia",
+      "name": "Omnia",
+      "url": "https://www.useomnia.com",
+      "category": "AI search visibility (AEO)",
+      "categoryShort": "AI search visibility (AEO)",
+      "tier": "skill-partner",
+      "tagline": "Daily AI search data for your brand, inside your AI assistant",
+      "blurb": "Omnia tracks how AI engines answer your customers' questions every day: visibility, citations, Share of Voice and sentiment for your brand and competitors. Connect the Omnia MCP to Claude and these skills run on real AI answers data instead of guesses. Or let your Omnia Agent turn it into prioritized work that you review and approve.",
+      "logoUrl": "https://docs.useomnia.com/favicon-v3.svg",
+      "integration": "tools/integrations/omnia.md",
+      "active": true,
+      "noRef": true
+    },
+    {
+      "id": "livestorm",
+      "name": "Livestorm",
+      "url": "https://livestorm.co",
+      "category": "Webinars & virtual events",
+      "categoryShort": "Webinars & virtual events",
+      "tier": "skill-partner",
+      "tagline": "Webinars and virtual events with built-in engagement",
+      "blurb": "Browser-based platform for webinars, virtual events, and online meetings, with registration pages, live engagement, recordings, and analytics. A REST API, webhooks, and an official MCP server let agents create events, manage registrants, and pull attendance data.",
+      "logoUrl": "https://www.datocms-assets.com/1127/1633449106-logo-livestorm.png",
+      "integration": "tools/integrations/livestorm.md",
       "active": true,
       "noRef": true
     }

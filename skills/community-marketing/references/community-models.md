@@ -6,7 +6,7 @@ Source: Corey Haines, *Founding Marketing*, Ch. 12 — "Community connects custo
 
 ---
 
-## The 5 Community Models
+## The 4 Community Models
 
 Pick the model that matches the primary business goal. Most communities lean on one and borrow from others. Each has a "best when…" fit test and a real case.
 
@@ -34,7 +34,7 @@ Pick the model that matches the primary business goal. Most communities lean on 
 - The founder shows up personally — answering, hosting, setting culture — before systems can carry it.
 - **Cases — Bento** (Discord) and **Postaga:** founders led their communities directly.
 
-> The fifth "model" in practice is the blend: a community usually starts **Founder-Led**, then specializes toward Support-Driven, Product-Development, or Education as it scales.
+> In practice most communities blend them: a community usually starts **Founder-Led**, then specializes toward Support-Driven, Product-Development, or Education as it scales.
 
 ---
 

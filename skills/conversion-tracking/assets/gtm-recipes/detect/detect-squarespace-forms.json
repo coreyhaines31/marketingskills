@@ -1,0 +1,122 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-10-15 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Squarespace Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Squarespace Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  'use strict';\n  // Install once, even if GTM injects this tag more than once on the page.\n  if (window.__ctDetectSquarespaceForms) return;\n  window.__ctDetectSquarespaceForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Ported from a production module (cdn/v1/modules/\n  // squarespace-forms.js, measured against a live Squarespace 7.1 site in\n  // October 2026). Event only: it never reads what the visitor typed.\n  //\n  // What Squarespace does:\n  // - The Form block renders a React form in the page (no iframe):\n  //   .sqs-block-form ... form.react-form-contents[novalidate]. It mounts\n  //   after DOMContentLoaded, so submits are caught on document.\n  // - There is no check in the browser. Every submit posts\n  //   /api/form/FormSubmissionKey then /api/form/SaveFormSubmission, and the\n  //   server decides: 204 on success, 400 for a field error, 401 for a failed\n  //   reCAPTCHA. A submit is never a conversion on its own.\n  // - On success it marks the form (react-form-contents--submitted), shows a\n  //   .form-submission-text message and gives the button the class\n  //   \"success\". A form set to redirect leaves for its page about 1.3\n  //   seconds after the 204, before that message renders in Chromium.\n  // - The Newsletter block posts to the same SaveFormSubmission address, and\n  //   that request carries no form identity, so a save only counts for a\n  //   form that provably owns it.\n  //\n  // It fires once per form, on the first confirmed success for an attempt:\n  //   1. a success marker that was not there when the attempt started, or\n  //   2. the SaveFormSubmission request answering 2xx (read from the\n  //      browser's resource timing, where it exposes responseStatus), when\n  //      no other form's submit could own that save, or\n  //   3. as the page leaves (a redirect form), either of the above.\n  // It never fires on a 400 or 401, on a filled anti-spam field, or when it\n  // cannot tell which form a save belongs to.\n\n  var EVENT_NAME = 'squarespace_form_submitted';\n  var BLOCK_SELECTOR = '.sqs-block-form, [data-sqsp-block=\"form\"], [data-definition-name=\"website.components.form\"]';\n  var SAVE_PATH = '/api/form/SaveFormSubmission';\n  // Long enough for a visitor to solve a reCAPTCHA picture challenge.\n  var WATCH_MS = 180000;\n\n  function now() {\n    try {\n      if (window.performance && typeof window.performance.now === 'function') return window.performance.now();\n    } catch (e) {}\n    return 0;\n  }\n\n  function hasToken(el, token) {\n    if (!el || !el.getAttribute) return false;\n    var cls = el.getAttribute('class') || '';\n    return (' ' + cls + ' ').indexOf(' ' + token + ' ') !== -1;\n  }\n\n  function isConnected(el) {\n    try {\n      if (typeof el.isConnected === 'boolean') return el.isConnected;\n      return !!(el.ownerDocument && el.ownerDocument.documentElement.contains(el));\n    } catch (e) {\n      return false;\n    }\n  }\n\n  // ---- Which forms are Squarespace forms ----\n\n  function blockFor(formEl) {\n    try {\n      return (formEl && formEl.closest) ? formEl.closest(BLOCK_SELECTOR) : null;\n    } catch (e) {\n      return null;\n    }\n  }\n\n  function isSquarespaceForm(formEl) {\n    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return false;\n    return !!blockFor(formEl);\n  }\n\n  // The block's own form definition (the site owner's settings, not the\n  // visitor's answers): { formId, formName, ... }.\n  function formIdentity(block) {\n    var id = { formId: '', formName: '' };\n    try {\n      var script = block && block.querySelector('script.sqs-form-block-context');\n      if (!script) return id;\n      var parsed = JSON.parse(script.textContent || '{}');\n      if (parsed && typeof parsed.formId === 'string') id.formId = parsed.formId;\n      if (parsed && typeof parsed.formName === 'string') id.formName = parsed.formName;\n    } catch (e) {}\n    return id;\n  }\n\n  // The honeypot is a text input visitors cannot see or reach (measured id\n  // \"message-field\", inside an aria-hidden wrapper). Squarespace answers a\n  // filled one with a 204 and its thank-you message, so a filled honeypot\n  // means a bot. Only whether it is empty is checked.\n  function honeypotFilled(formEl) {\n    try {\n      var hp = formEl.querySelector('#message-field');\n      if (!hp) return false;\n      var wrap = hp.closest && hp.closest('[aria-hidden=\"true\"]');\n      if (!wrap || !formEl.contains(wrap)) return false;\n      return hp.value !== '';\n    } catch (e) {\n      return false;\n    }\n  }\n\n  function submitButtonOf(formEl) {\n    try { return formEl.querySelector('button[type=\"submit\"]'); } catch (e) { return null; }\n  }\n\n  // ---- Which form a save request belongs to ----\n\n  var seenSaves = [];   // SaveFormSubmission resource entries seen so far\n  var claimed = [];     // entries already credited to a form\n  var submitLog = [];   // every form submit on the page, with its time\n\n  function pageOrigin() {\n    try {\n      var l = window.location;\n      return l.origin || (l.protocol + '//' + l.host);\n    } catch (e) {\n      return '';\n    }\n  }\n\n  // The save request's address is checked for its origin and path only.\n  function isSaveEntry(e) {\n    var n = (e && e.name) || '';\n    var origin = pageOrigin();\n    if (!origin || n.indexOf(origin + '/') !== 0) return false;\n    return n.slice(origin.length).split(/[?#]/)[0] === SAVE_PATH;\n  }\n\n  function prune() {\n    // An attempt is watched for WATCH_MS, and submits up to WATCH_MS before\n    // it still count when deciding who owns a save.\n    var cutoff = now() - 2 * WATCH_MS;\n    var i;\n    for (i = submitLog.length - 1; i >= 0; i--) if (submitLog[i].at < cutoff) submitLog.splice(i, 1);\n    for (i = seenSaves.length - 1; i >= 0; i--) if (seenSaves[i].startTime < cutoff) seenSaves.splice(i, 1);\n    if (seenSaves.length > 100) seenSaves.splice(0, seenSaves.length - 100);\n    if (claimed.length > 100) claimed.splice(0, claimed.length - 100);\n  }\n\n  function allSaveEntries() {\n    var all = seenSaves.slice();\n    try {\n      if (window.performance && typeof window.performance.getEntriesByType === 'function') {\n        var buffered = window.performance.getEntriesByType('resource');\n        for (var b = 0; b < buffered.length; b++) if (all.indexOf(buffered[b]) === -1) all.push(buffered[b]);\n      }\n    } catch (err) {}\n    var out = [];\n    for (var i = 0; i < all.length; i++) if (isSaveEntry(all[i])) out.push(all[i]);\n    return out;\n  }\n\n  function saveEntriesSince(since) {\n    var all = allSaveEntries();\n    var out = [];\n    for (var i = 0; i < all.length; i++) {\n      if (all[i].startTime >= since && claimed.indexOf(all[i]) === -1) out.push(all[i]);\n    }\n    out.sort(function (x, y) { return x.startTime - y.startTime; });\n    return out;\n  }\n\n  // A save's owner is ambiguous when another form (a Newsletter block\n  // included) was submitted during this attempt. It is also ambiguous when\n  // another form was submitted earlier in the watch window and may still be\n  // waiting for its save, because a slow reCAPTCHA can hold that save back\n  // until after this attempt starts. Each submit gets at most one save, so\n  // fewer saves than submits before this attempt means one is outstanding.\n  function saveOwnershipAmbiguous(formEl, since, until) {\n    var other = false;\n    var first = null;\n    var submits = 0;\n    for (var i = 0; i < submitLog.length; i++) {\n      var s = submitLog[i];\n      if (s.at > until || s.at < since - WATCH_MS) continue;\n      if (s.at >= since) {\n        if (s.form !== formEl) return true;\n        continue;\n      }\n      if (s.form !== formEl) other = true;\n      submits++;\n      if (first === null || s.at < first) first = s.at;\n    }\n    if (!other) return false;\n    var saves = allSaveEntries();\n    var answered = 0;\n    for (var j = 0; j < saves.length; j++) {\n      if (saves[j].startTime >= first && saves[j].startTime < since) answered++;\n    }\n    return answered < submits;\n  }\n\n  function statusOf(entry) {\n    var s = entry && entry.responseStatus;\n    return (typeof s === 'number' && s > 0) ? s : null;\n  }\n\n  // ---- One watcher per form ----\n\n  var watchers = [];\n  var firedForms = [];\n\n  function findWatcher(formEl) {\n    for (var i = 0; i < watchers.length; i++) if (watchers[i].form === formEl) return watchers[i];\n    return null;\n  }\n\n  function removeWatcher(w) {\n    for (var i = 0; i < watchers.length; i++) if (watchers[i] === w) { watchers.splice(i, 1); return; }\n  }\n\n  function dropStaleWatchers(formEl, block) {\n    for (var i = watchers.length - 1; i >= 0; i--) {\n      var w = watchers[i];\n      if (w.form === formEl) continue;\n      if (!isConnected(w.form) || (block && w.block === block)) w.cleanup();\n    }\n  }\n\n  function createWatcher(formEl, block) {\n    var scope = (formEl.closest && formEl.closest('.form-wrapper')) || block;\n    function markers() {\n      var text = false;\n      try { text = !!(scope && scope.querySelector('.form-submission-text')); } catch (e) {}\n      return {\n        submitted: hasToken(formEl, 'react-form-contents--submitted'),\n        button: hasToken(submitButtonOf(formEl), 'success'),\n        text: text\n      };\n    }\n    var w = {\n      form: formEl,\n      block: block,\n      identity: formIdentity(block),\n      armed: false,\n      submitAt: 0,\n      answered: true,\n      done: false,\n      timer: null,\n      observer: null,\n      pagehideArmed: false,\n      staleError: false,\n      had: markers()\n    };\n\n    function redirectConfigured() {\n      try { return !!(formEl.getAttribute && formEl.getAttribute('data-success-redirect')); } catch (e) { return false; }\n    }\n\n    function cleanup() {\n      w.done = true;\n      if (w.timer) { try { clearTimeout(w.timer); } catch (e) {} w.timer = null; }\n      if (w.observer) { try { w.observer.disconnect(); } catch (e) {} w.observer = null; }\n      if (w.pagehideArmed) {\n        try { window.removeEventListener('pagehide', onPageHide, true); } catch (e) {}\n        w.pagehideArmed = false;\n      }\n      removeWatcher(w);\n    }\n\n    // The push comes first. The form is marked done only once the push went\n    // through, so a dataLayer that throws (a broken wrapper) loses nothing,\n    // and the next confirmation tries again.\n    function fire() {\n      if (w.done) return false;\n      var payload = { event: EVENT_NAME, form_id: w.identity.formId };\n      if (w.identity.formName) payload.form_name = w.identity.formName;\n      try {\n        window.dataLayer = window.dataLayer || [];\n        window.dataLayer.push(payload);\n      } catch (e) {\n        return false;\n      }\n      cleanup();\n      firedForms.push(formEl);\n      return true;\n    }\n\n    function domConfirmsSuccess() {\n      var m = markers();\n      return (m.submitted && !w.had.submitted) || (m.button && !w.had.button) || (m.text && !w.had.text);\n    }\n\n    function check() {\n      if (w.done || !w.armed) return;\n      if (!isConnected(formEl)) { cleanup(); return; }\n      if (domConfirmsSuccess()) { fire(); return; }\n      if (w.answered) return;\n      // A fresh error state on the button is Squarespace refusing this\n      // attempt; one left over from an earlier attempt is not.\n      var errorShowing = hasToken(submitButtonOf(formEl), 'error');\n      if (!errorShowing) w.staleError = false;\n      else if (!w.staleError) w.answered = true;\n    }\n\n    // A failure in any callback stays inside this listener and never\n    // reaches Squarespace's page.\n    function onPageHide() {\n      try { pageHideCheck(); } catch (e) {}\n    }\n\n    function pageHideCheck() {\n      if (w.done || !w.armed) return;\n      if (!isConnected(formEl)) { cleanup(); return; }\n      if (domConfirmsSuccess()) { fire(); return; }\n      if (saveOwnershipAmbiguous(formEl, w.submitAt, now())) { cleanup(); return; }\n      var entries = saveEntriesSince(w.submitAt);\n      var last = entries[entries.length - 1];\n      var status = statusOf(last);\n      if (status !== null && status >= 200 && status < 300) {\n        if (fire()) claimed.push(last);\n        else cleanup();\n        return;\n      }\n      cleanup();\n    }\n\n    w.refresh = function (submitAt) {\n      // A new attempt replaces the old one once the old one was answered\n      // (or its save has been seen); a double submit keeps the first.\n      if (!w.armed || w.answered || saveEntriesSince(w.submitAt).length > 0) {\n        w.submitAt = submitAt;\n        w.answered = false;\n        w.staleError = hasToken(submitButtonOf(formEl), 'error');\n      }\n      w.armed = true;\n      if (w.timer) { try { clearTimeout(w.timer); } catch (e) {} }\n      try { w.timer = setTimeout(cleanup, WATCH_MS); } catch (e) {}\n      if (!w.pagehideArmed && redirectConfigured()) {\n        try {\n          window.addEventListener('pagehide', onPageHide, true);\n          w.pagehideArmed = true;\n        } catch (e) {}\n      }\n    };\n    w.check = check;\n    w.fire = fire;\n    w.cleanup = cleanup;\n    w.alive = function () { return isConnected(formEl); };\n    w.markAnswered = function () { w.answered = true; };\n\n    try {\n      if (typeof MutationObserver !== 'undefined' && block) {\n        w.observer = new MutationObserver(function () {\n          try { check(); } catch (e) {}\n        });\n        w.observer.observe(block, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });\n      }\n    } catch (e) {}\n    watchers.push(w);\n    return w;\n  }\n\n  // ---- The save request's verdict, from resource timing ----\n\n  function onResourceEntries(list) {\n    var entries;\n    try { entries = list.getEntries(); } catch (e) { return; }\n    for (var i = 0; i < entries.length; i++) {\n      var e = entries[i];\n      if (!e || !isSaveEntry(e)) continue;\n      if (seenSaves.indexOf(e) === -1) { seenSaves.push(e); prune(); }\n      var status = statusOf(e);\n      if (status === null || claimed.indexOf(e) !== -1) continue;\n      var candidates = [];\n      for (var j = 0; j < watchers.length; j++) {\n        var w = watchers[j];\n        if (!w.done && w.armed && !w.answered && w.alive() && e.startTime >= w.submitAt) candidates.push(w);\n      }\n      if (candidates.length !== 1) continue;\n      var c = candidates[0];\n      if (saveOwnershipAmbiguous(c.form, c.submitAt, e.startTime)) continue;\n      if (status >= 200 && status < 300) {\n        if (c.fire()) claimed.push(e);\n      } else {\n        c.markAnswered();\n      }\n    }\n  }\n\n  // ---- Submits ----\n\n  function handleSubmit(event) {\n    try {\n      var formEl = event.target;\n      if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return;\n      submitLog.push({ form: formEl, at: now() });\n      prune();\n      if (!isSquarespaceForm(formEl)) return;\n      var block = blockFor(formEl);\n      dropStaleWatchers(formEl, block);\n      // Squarespace allows one success per page view.\n      if (firedForms.indexOf(formEl) !== -1) return;\n      if (hasToken(formEl, 'react-form-contents--submitted')) return;\n      if (honeypotFilled(formEl)) {\n        var old = findWatcher(formEl);\n        if (old) old.cleanup();\n        return;\n      }\n      var w = findWatcher(formEl) || createWatcher(formEl, block);\n      w.refresh(now());\n    } catch (e) {\n      // Never throw back into Squarespace's own form handling.\n    }\n  }\n\n  document.addEventListener('submit', handleSubmit, true);\n  try {\n    if (typeof PerformanceObserver !== 'undefined') {\n      new PerformanceObserver(function (list) {\n        try { onResourceEntries(list); } catch (e) {}\n      }).observe({ type: 'resource' });\n    }\n  } catch (e) {}\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Squarespace Form Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "squarespace_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Squarespace Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "2",
+        "name": "DLV - Squarespace Form Name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_name"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

@@ -1,0 +1,902 @@
+{
+  "about": "Held-out trigger prompts written from skill bodies only, without reading descriptions.",
+  "prompts": [
+    {
+      "id": "ab-testing-h1",
+      "kind": "heldout",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "My cofounder wants to ship the new checkout because 37 of 900 people bought versus 29 of 910 on the old one. We've only been running this since Tuesday. Is that enough to make the call?"
+    },
+    {
+      "id": "ab-testing-h2",
+      "kind": "heldout",
+      "expect": [
+        "ab-testing"
+      ],
+      "prompt": "Help me design an experiment for removing the credit-card requirement from our trial. We get 18,000 visitors a month, 4% start a trial, and I don't want a signup win that hurts paid revenue."
+    },
+    {
+      "id": "ad-creative-h1",
+      "kind": "heldout",
+      "expect": [
+        "ad-creative"
+      ],
+      "prompt": "The 'get your Sundays back' version is beating everything else in our sponsored Instagram placements. Can you give our designer 12 fresh ways to express that promise for our meal-prep subscription, using these customer comments?"
+    },
+    {
+      "id": "ad-creative-h2",
+      "kind": "heldout",
+      "expect": [
+        "ad-creative",
+        "ads"
+      ],
+      "prompt": "Write 15 Google RSA headlines and four descriptions for a bookkeeping service for dentists. Keep them within the character limits and don't claim we save money unless the attached case study supports it."
+    },
+    {
+      "id": "ads-h1",
+      "kind": "heldout",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "We're putting $8k a month into Google and LinkedIn. LinkedIn brings cheaper form fills but almost none become customers. Where should next month's money go, and what would make you stop a placement?"
+    },
+    {
+      "id": "ads-h2",
+      "kind": "heldout",
+      "expect": [
+        "ads"
+      ],
+      "prompt": "Set up a paid acquisition campaign structure for our $299/month inventory software, targeting independent retailers in the UK. Include audiences, exclusions, bidding and a sensible starting budget."
+    },
+    {
+      "id": "ai-seo-h1",
+      "kind": "heldout",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "When buyers ask those chat tools which scheduling app works for salons, we never come up. One even says we don't support deposits, which we added last year. How do we fix what they're learning about us?"
+    },
+    {
+      "id": "ai-seo-h2",
+      "kind": "heldout",
+      "expect": [
+        "ai-seo"
+      ],
+      "prompt": "Can you audit our help articles for citation potential in Perplexity and Google AI Overviews? I'd like a prioritized list of changes and a way to monitor whether we're being recommended, not just mentioned."
+    },
+    {
+      "id": "analytics-h1",
+      "kind": "heldout",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "We can't answer whether people who connect Slack ever come back. Our dashboard just shows page views. Tell our engineer what to record so we can answer that by next month."
+    },
+    {
+      "id": "analytics-h2",
+      "kind": "heldout",
+      "expect": [
+        "analytics"
+      ],
+      "prompt": "Create a GA4 event naming and properties plan for our product tour, template downloads and workspace activity. We have three developers naming the same actions differently."
+    },
+    {
+      "id": "aso-h1",
+      "kind": "heldout",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "People reach our iPhone app's download screen, swipe once, then leave. The first three panels are just raw interface captures. What should we change so a busy parent gets why they'd want it?"
+    },
+    {
+      "id": "aso-h2",
+      "kind": "heldout",
+      "expect": [
+        "aso"
+      ],
+      "prompt": "Audit the Google Play listing for our habit tracker, TinySteps. Focus on the title, short description, screenshots and recurring complaints in recent ratings; give me the five fixes to do first."
+    },
+    {
+      "id": "attribution-h1",
+      "kind": "heldout",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Meta says it brought 84 orders, Google claims 71, and Shopify only has 102 total. I need to explain this at our Monday meeting without pretending we sold 155 things."
+    },
+    {
+      "id": "attribution-h2",
+      "kind": "heldout",
+      "expect": [
+        "attribution"
+      ],
+      "prompt": "Our enterprise deals take six months and involve podcasts, webinars and branded search. Compare first-touch and last-touch attribution for our board report and explain what neither can tell us."
+    },
+    {
+      "id": "churn-prevention-h1",
+      "kind": "heldout",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "People hit 'close my account' when their busy season ends, then some come back four months later. Can we give them a sensible way to take a break without making it hard to leave?"
+    },
+    {
+      "id": "churn-prevention-h2",
+      "kind": "heldout",
+      "expect": [
+        "churn-prevention"
+      ],
+      "prompt": "We lost $6,200 in MRR to failed cards last month. Design a payment recovery process with retries, reminders and a clear point at which access ends."
+    },
+    {
+      "id": "co-marketing-h1",
+      "kind": "heldout",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "We make payroll software for restaurants. A shift-scheduling company serves the same owners and wants to do something together. Give me three useful things we could make together and how we'd split the work and resulting contacts."
+    },
+    {
+      "id": "co-marketing-h2",
+      "kind": "heldout",
+      "expect": [
+        "co-marketing"
+      ],
+      "prompt": "Build a shortlist framework for co-marketing partners for our security training SaaS, then outline a joint research report campaign with responsibilities and success measures."
+    },
+    {
+      "id": "cold-email-h1",
+      "kind": "heldout",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "I found 30 operations directors whose companies just opened a second warehouse. Write a short first note from me about our stock transfer software, plus two nudges if they don't answer. They've never heard of us."
+    },
+    {
+      "id": "cold-email-h2",
+      "kind": "heldout",
+      "expect": [
+        "cold-email"
+      ],
+      "prompt": "Rewrite this outbound email to a CFO so it sounds like a founder wrote it, not a sequence tool. Keep the ask small and use their hiring announcement (they just hired a VP of FP&A) as a relevant reason to reach out.\n\nSubject: Quick question\nHi {first_name}, I hope this email finds you well! I wanted to reach out because our cutting-edge AP automation platform helps finance leaders like you save time and money. Would you have 30 minutes this week for a demo?"
+    },
+    {
+      "id": "community-marketing-h1",
+      "kind": "heldout",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "Our Slack has 800 members but every conversation starts with me. How do I get people helping each other without turning the place into a stream of reminders from our team?"
+    },
+    {
+      "id": "community-marketing-h2",
+      "kind": "heldout",
+      "expect": [
+        "community-marketing"
+      ],
+      "prompt": "Help us design a customer community for independent bookkeepers: platform choice, first 30 members, recurring rituals, moderation and how we'll know it's helping the business."
+    },
+    {
+      "id": "competitor-profiling-h1",
+      "kind": "heldout",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "Before our offsite, I need a factual dossier on each of these three vendors: gusto.com, rippling.com, and justworks.com. Who buys from them, what they promise, what they charge, and where their claims are backed up. Keep sources attached to each finding."
+    },
+    {
+      "id": "competitor-profiling-h2",
+      "kind": "heldout",
+      "expect": [
+        "competitor-profiling"
+      ],
+      "prompt": "Make competitor profiles for loom.com and tella.tv using their current websites and available search data. Separate verified capabilities from your guesses; this is internal research, not website copy."
+    },
+    {
+      "id": "competitors-h1",
+      "kind": "heldout",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "People keep asking why they'd pick us over Calendly. We want a page they can read before a call that admits where Calendly is better and makes our team-routing advantage clear. Can you draft it?"
+    },
+    {
+      "id": "competitors-h2",
+      "kind": "heldout",
+      "expect": [
+        "competitors"
+      ],
+      "prompt": "Outline an alternatives-to-Asana page for our agency project manager. Include who each option fits, migration concerns and a useful comparison beyond a checkbox table."
+    },
+    {
+      "id": "content-strategy-h1",
+      "kind": "heldout",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "Our writer can do two pieces a week, but we've been choosing subjects based on whatever the CEO mentions. Help us decide what to cover over the next quarter to attract finance teams buying their first expense system."
+    },
+    {
+      "id": "content-strategy-h2",
+      "kind": "heldout",
+      "expect": [
+        "content-strategy"
+      ],
+      "prompt": "Build topic clusters and an editorial calendar for our warehouse software. Balance high-intent search articles with original research people might share, and explain the order of priority."
+    },
+    {
+      "id": "conversion-tracking-h1",
+      "kind": "heldout",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "Google reports a new enquiry every time someone clicks Send, even when the form shows 'please enter a valid address.' We're on Webflow with GTM. Can you fix the signal and prove only successful submissions arrive?"
+    },
+    {
+      "id": "conversion-tracking-h2",
+      "kind": "heldout",
+      "expect": [
+        "conversion-tracking"
+      ],
+      "prompt": "Audit our Shopify Meta pixel and CAPI setup. Purchases seem doubled since we enabled server events; verify deduplication, currency and order values with a test transaction."
+    },
+    {
+      "id": "copy-editing-h1",
+      "kind": "heldout",
+      "expect": [
+        "copy-editing"
+      ],
+      "prompt": "This paragraph is already approved by the founder, but it's wordy and hard to follow. Tighten it without changing the promise or adding claims: 'Our solution enables teams to facilitate the effective coordination of their work across multiple departments.'"
+    },
+    {
+      "id": "copy-editing-h2",
+      "kind": "heldout",
+      "expect": [
+        "copy-editing"
+      ],
+      "prompt": "Do a focused editing pass on this homepage draft. Flag vague benefits, unsupported numbers and inconsistent tone, then show the revised text with the same section order.\n\nHero: The smartest way to manage your inventory. Trusted by thousands.\nSection 1: Save 10 hours a week with powerful automation that just works!\nSection 2: Our cutting-edge platform empowers teams to unlock efficiency.\nCTA: Get started today"
+    },
+    {
+      "id": "copywriting-h1",
+      "kind": "heldout",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "We're selling scheduling software to mobile dog groomers. Can you write the words for our new homepage? They mostly care about less driving between appointments, not fancy calendar features."
+    },
+    {
+      "id": "copywriting-h2",
+      "kind": "heldout",
+      "expect": [
+        "copywriting"
+      ],
+      "prompt": "Draft a landing page for our done-for-you bookkeeping service for solo architects: hero, benefits, proof placeholders, objections and a consultation CTA. We don't have customer quotes yet."
+    },
+    {
+      "id": "cro-h1",
+      "kind": "heldout",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Our service page gets 3,000 visits a month but only nine people ask for a quote. Can you walk through it like a skeptical buyer and tell me what's getting in the way, in order of importance?"
+    },
+    {
+      "id": "cro-h2",
+      "kind": "heldout",
+      "expect": [
+        "cro"
+      ],
+      "prompt": "Review our demo landing page for conversion problems. The form works, but most visitors never reach it. Assess the offer clarity, proof, section order and calls to action."
+    },
+    {
+      "id": "customer-research-h1",
+      "kind": "heldout",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "Here are notes from 14 calls with people who almost bought. Can you pull out what made them start looking, what scared them off and the exact phrases they used? Don't turn two loud opinions into a universal truth.\n\nCall 1: switched from spreadsheets after a stockout; worried about setup time, 'we don't have an IT person'.\nCall 2: boss asked for reports; pricing page confused them, 'per location or per user?'.\nCall 3: saw a competitor demo; scared off by the annual contract.\nCalls 4-14: similar mix; six mention setup time, four mention the annual contract, two mention price."
+    },
+    {
+      "id": "customer-research-h2",
+      "kind": "heldout",
+      "expect": [
+        "customer-research"
+      ],
+      "prompt": "Help me plan eight customer interviews about why small agencies replace spreadsheets. I want questions about actual past behavior, a recruiting approach and a way to synthesize the answers."
+    },
+    {
+      "id": "directory-submissions-h1",
+      "kind": "heldout",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "We're missing from all the places people browse to find niche software. For a bootstrapped transcription app, where should we get listed first, what assets will we need, and how do we avoid paying for junk?"
+    },
+    {
+      "id": "directory-submissions-h2",
+      "kind": "heldout",
+      "expect": [
+        "directory-submissions"
+      ],
+      "prompt": "Put together a submission plan for G2, Capterra and relevant SaaS directories. Include consistent listing copy, destination URLs and a tracker for approvals and actual leads."
+    },
+    {
+      "id": "emails-h1",
+      "kind": "heldout",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "Someone downloads our restaurant staffing guide, gets the PDF, and then hears nothing from us. Write the next four messages over two weeks so interested owners can naturally move toward a demo."
+    },
+    {
+      "id": "emails-h2",
+      "kind": "heldout",
+      "expect": [
+        "emails"
+      ],
+      "prompt": "Create a re-engagement email sequence for newsletter subscribers who haven't clicked in 120 days, including timing, subject lines and rules for when to stop sending."
+    },
+    {
+      "id": "events-h1",
+      "kind": "heldout",
+      "expect": [
+        "events"
+      ],
+      "prompt": "I'm spending $4,000 to be in Austin with 200 agency owners, but we don't have a booth or a speaking slot. How do I make the trip worthwhile before I get there and after I get home?"
+    },
+    {
+      "id": "events-h2",
+      "kind": "heldout",
+      "expect": [
+        "events"
+      ],
+      "prompt": "Plan a 45-minute webinar for finance leaders, from invitations through follow-up. We care about qualified conversations, not just registrations; include owners and a measurement plan."
+    },
+    {
+      "id": "free-tools-h1",
+      "kind": "heldout",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "We sell shipping software and have one engineer free for a week. Would a public box-size calculator be a sensible way to get store owners finding us? Help scope something useful that leads naturally to our paid product."
+    },
+    {
+      "id": "free-tools-h2",
+      "kind": "heldout",
+      "expect": [
+        "free-tools"
+      ],
+      "prompt": "Evaluate three engineering-as-marketing ideas for our payroll SaaS: a salary converter, a hiring-cost calculator and a payslip checker. Rank their acquisition value, maintenance burden and product fit."
+    },
+    {
+      "id": "image-h1",
+      "kind": "heldout",
+      "expect": [
+        "image"
+      ],
+      "prompt": "When someone shares our article, the preview is a blurry crop of our logo. Can you make a clean 1200 by 630 cover with the title 'The Hidden Cost of Empty Desks' and room for our navy wordmark?"
+    },
+    {
+      "id": "image-h2",
+      "kind": "heldout",
+      "expect": [
+        "image"
+      ],
+      "prompt": "Create a blog hero illustration for an article on warehouse automation. Use our orange and charcoal palette, avoid fake readable text and export a lightweight web-ready image."
+    },
+    {
+      "id": "influencer-marketing-h1",
+      "kind": "heldout",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "A YouTuber with 18,000 subscribers wants $2,500 to feature our espresso grinder. What should I check before saying yes, and what rights and deliverables should be included in the deal?"
+    },
+    {
+      "id": "influencer-marketing-h2",
+      "kind": "heldout",
+      "expect": [
+        "influencer-marketing"
+      ],
+      "prompt": "Design a small creator partnership pilot for our hiking socks. We have $6k, want genuine trail users rather than celebrity reach, and need a brief, disclosure requirements and a way to judge sales impact."
+    },
+    {
+      "id": "launch-h1",
+      "kind": "heldout",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "We're opening our private beta to everyone in five weeks. There are 600 people waiting and two of us to do everything. Map what needs to happen before the doors open, that day, and the following fortnight."
+    },
+    {
+      "id": "launch-h2",
+      "kind": "heldout",
+      "expect": [
+        "launch"
+      ],
+      "prompt": "Plan a feature launch for our new team scheduling mode. Existing customers should adopt it, while prospects should see a reason to take another look. Include readiness checks and channel timing."
+    },
+    {
+      "id": "lead-magnets-h1",
+      "kind": "heldout",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "People aren't ready to book a call after reading our articles. What could we give operations managers that's useful enough for them to leave their work address, but also makes them a better fit for our product?"
+    },
+    {
+      "id": "lead-magnets-h2",
+      "kind": "heldout",
+      "expect": [
+        "lead-magnets"
+      ],
+      "prompt": "Outline a downloadable vendor-evaluation scorecard for HR teams as a lead magnet. Include the actual worksheet sections, what to gate and how delivery should connect to our product."
+    },
+    {
+      "id": "link-building-h1",
+      "kind": "heldout",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "Our original salary report is genuinely useful, but nobody outside our own site points readers to it. Find the kinds of publishers who'd want it and plan a realistic way to earn those references."
+    },
+    {
+      "id": "link-building-h2",
+      "kind": "heldout",
+      "expect": [
+        "link-building"
+      ],
+      "prompt": "Build a backlink acquisition plan for our invoice templates page. Prioritize relevant editorial placements and unlinked brand mentions; don't include paid link farms or bulk directory blasts."
+    },
+    {
+      "id": "marketing-council-h1",
+      "kind": "heldout",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "Can you have Seth Godin and Byron Sharp argue through whether our tiny coffee brand should focus on a devoted niche or try to reach everyone? Use their published thinking, make clear it's a simulation, and tell me what evidence would settle the disagreement."
+    },
+    {
+      "id": "marketing-council-h2",
+      "kind": "heldout",
+      "expect": [
+        "marketing-council"
+      ],
+      "prompt": "Run a simulated advisory session on our positioning with April Dunford, Rory Sutherland and Alex Hormozi. I want their strongest conflicting recommendations, then a practical synthesis for a two-person SaaS."
+    },
+    {
+      "id": "marketing-ideas-h1",
+      "kind": "heldout",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "We've got 40 paying customers, $700 to spare and a founder willing to do awkward manual work. What are five realistic ways to find the next 40? Please skip 'start a blog' unless you have a specific angle."
+    },
+    {
+      "id": "marketing-ideas-h2",
+      "kind": "heldout",
+      "expect": [
+        "marketing-ideas"
+      ],
+      "prompt": "Brainstorm acquisition tactics for a bootstrapped appointment app for tattoo studios. Rank the ideas by effort and likely fit, and give me a concrete first step for each."
+    },
+    {
+      "id": "marketing-loops-h1",
+      "kind": "heldout",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "Every Monday I redo the same growth checks and forget what I flagged last week. Can you turn this into something the agent runs for me, remembers what's already handled, and stops when the data looks broken?"
+    },
+    {
+      "id": "marketing-loops-h2",
+      "kind": "heldout",
+      "expect": [
+        "marketing-loops"
+      ],
+      "prompt": "Design a recurring marketing review workflow that stages recommendations for approval, records each run and avoids duplicate alerts. Specify the cadence, triggers, self-checks and shutdown conditions."
+    },
+    {
+      "id": "marketing-plan-h1",
+      "kind": "heldout",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "I have to show the board how we get from $1.2m to $2m ARR next year with two people and $180k. Turn that into a month-by-month operating document with owners, spending, assumptions and what we'll stop doing if it's off track."
+    },
+    {
+      "id": "marketing-plan-h2",
+      "kind": "heldout",
+      "expect": [
+        "marketing-plan"
+      ],
+      "prompt": "Build a 12-month marketing plan for our compliance SaaS across acquisition, activation, retention, referral and revenue. Start by auditing our current efforts, then align the roadmap to our team and budget."
+    },
+    {
+      "id": "marketing-psychology-h1",
+      "kind": "heldout",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Customers say they want more choices, but when we show all 14 bundles they freeze. Explain what's going on in their heads and how we could help them decide without manipulating them."
+    },
+    {
+      "id": "marketing-psychology-h2",
+      "kind": "heldout",
+      "expect": [
+        "marketing-psychology"
+      ],
+      "prompt": "Apply behavioral principles to our annual membership offer. Which effects around loss aversion, anchoring and perceived effort are relevant, and where would using them cross into misleading persuasion?"
+    },
+    {
+      "id": "offers-h1",
+      "kind": "heldout",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "Prospects like the idea of our $3k website service but worry they'll spend weeks chasing us and still hate the result. What should we actually include or promise to make this easier to say yes to? Keep our delivery costs realistic."
+    },
+    {
+      "id": "offers-h2",
+      "kind": "heldout",
+      "expect": [
+        "offers"
+      ],
+      "prompt": "Help redesign the offer for our six-week analytics implementation package: core outcome, scope, useful bonuses, risk reversal and honest constraints. I want to improve the deal itself before rewriting the sales page."
+    },
+    {
+      "id": "onboarding-h1",
+      "kind": "heldout",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "People create an account, stare at an empty workspace and disappear. Our best customers all upload a project in their first visit. Help us get more new people to that moment without a ten-step tour."
+    },
+    {
+      "id": "onboarding-h2",
+      "kind": "heldout",
+      "expect": [
+        "onboarding"
+      ],
+      "prompt": "Redesign the first-run onboarding for our team survey app. Include the empty state, checklist and stalled-user recovery, with activation defined as sending the first survey to five teammates."
+    },
+    {
+      "id": "paywalls-h1",
+      "kind": "heldout",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "A free user just finished their third report and now wants to export it. What should we show at that moment so paying feels like a sensible next step rather than having their work held hostage?"
+    },
+    {
+      "id": "paywalls-h2",
+      "kind": "heldout",
+      "expect": [
+        "paywalls"
+      ],
+      "prompt": "Audit our in-app upgrade screen that appears at the seat limit. Improve the explanation of paid value, the dismiss option and the route to checkout; we're keeping the existing plans and prices."
+    },
+    {
+      "id": "popups-h1",
+      "kind": "heldout",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "The box asking visitors for their address covers the article before they've read a sentence. Can we make it show up at a more sensible moment, stay away from existing subscribers and behave properly on phones?"
+    },
+    {
+      "id": "popups-h2",
+      "kind": "heldout",
+      "expect": [
+        "popups"
+      ],
+      "prompt": "Design an exit-intent popup for our coffee store's first-order incentive. Include copy, trigger timing, frequency caps, dismissal behavior and a way to measure whether it's worth the interruption."
+    },
+    {
+      "id": "pricing-h1",
+      "kind": "heldout",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "Our biggest customers pay the same $49 as solo users but run 100 times as many jobs. How should we charge so the bill grows with the value they get without making every click feel metered?"
+    },
+    {
+      "id": "pricing-h2",
+      "kind": "heldout",
+      "expect": [
+        "pricing"
+      ],
+      "prompt": "Help us move from one flat SaaS price to three tiers. We need a value metric, sensible feature boundaries and a research plan to learn willingness to pay before choosing the final numbers."
+    },
+    {
+      "id": "product-marketing-h1",
+      "kind": "heldout",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "I'm tired of explaining who we sell to and why we're different every time we start a new piece of work. Interview me once and save a shared brief that future tasks can use. We're a scheduling app for home-care agencies."
+    },
+    {
+      "id": "product-marketing-h2",
+      "kind": "heldout",
+      "expect": [
+        "product-marketing"
+      ],
+      "prompt": "Update our product marketing context document: we're now targeting multi-location dental groups, not solo practices. Capture the new buying committee, objections, differentiation and approved proof points."
+    },
+    {
+      "id": "programmatic-seo-h1",
+      "kind": "heldout",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "We have verified freight rates for 2,400 city pairs. Could we turn that database into useful pages people find when planning shipments, without making thousands of near-identical pages Google ignores?"
+    },
+    {
+      "id": "programmatic-seo-h2",
+      "kind": "heldout",
+      "expect": [
+        "programmatic-seo"
+      ],
+      "prompt": "Design a template and quality rules for programmatic SEO pages covering our software's 180 integrations. Include which records deserve their own page, unique content requirements and internal linking."
+    },
+    {
+      "id": "prospecting-h1",
+      "kind": "heldout",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Find 40 independent HVAC businesses around Phoenix with at least two trucks and no online booking. I need the owner or office manager, a verified way to contact them and evidence for why each company fits."
+    },
+    {
+      "id": "prospecting-h2",
+      "kind": "heldout",
+      "expect": [
+        "prospecting"
+      ],
+      "prompt": "Build a qualified prospect list of US SaaS companies hiring their first support operations role. Include buying signals, relevant contacts, source URLs and a confidence score; don't write outreach yet."
+    },
+    {
+      "id": "public-relations-h1",
+      "kind": "heldout",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "We've found a surprising trend in 20,000 anonymized expense reports. How do we turn it into something a business reporter would actually care about, and who should hear about it first?"
+    },
+    {
+      "id": "public-relations-h2",
+      "kind": "heldout",
+      "expect": [
+        "public-relations"
+      ],
+      "prompt": "Prepare a podcast guest pitch for our founder about bootstrapping a manufacturing software company. Include relevant show-selection criteria, two story angles and a concise media bio."
+    },
+    {
+      "id": "referrals-h1",
+      "kind": "heldout",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Customers already bring their friends to our meal subscription. I'd like to thank both people when that happens, but not pay out for fake accounts or orders that get refunded. How should this work?"
+    },
+    {
+      "id": "referrals-h2",
+      "kind": "heldout",
+      "expect": [
+        "referrals"
+      ],
+      "prompt": "Design an affiliate program for consultants who recommend our $199/month software. Work through commissions, qualification, payout timing and what would make the economics unsustainable."
+    },
+    {
+      "id": "reverse-engineer-marketing-h1",
+      "kind": "heldout",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "How did Granola go from nobody talking about it to being everywhere over the last two years? Build a dated timeline from public evidence and distinguish what they actually did from guesses about what caused the growth."
+    },
+    {
+      "id": "reverse-engineer-marketing-h2",
+      "kind": "heldout",
+      "expect": [
+        "reverse-engineer-marketing"
+      ],
+      "prompt": "Reverse-engineer Linear's growth history, including channel changes, team hires and recurring content patterns. Compare it to our stage and recommend only plays a four-person team could realistically adapt."
+    },
+    {
+      "id": "revops-h1",
+      "kind": "heldout",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Demo requests sit unassigned for two days, and sometimes two reps contact the same company. Help us define who owns each enquiry, how fast they must respond and what happens if they don't."
+    },
+    {
+      "id": "revops-h2",
+      "kind": "heldout",
+      "expect": [
+        "revops"
+      ],
+      "prompt": "Clean up our HubSpot lead lifecycle: define MQL and SQL criteria, scoring, routing and deal-stage exit requirements. Sales and marketing currently use the same labels to mean different things."
+    },
+    {
+      "id": "sales-enablement-h1",
+      "kind": "heldout",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Our champion loves us but has to convince her CFO without us in the room. Make her a one-page document that explains the business case, likely objections and why waiting has a cost. Use only the numbers from our pilot: invoice processing time fell from 9 days to 3, 2 FTEs were reassigned, and late-payment fees dropped $4,200 a month."
+    },
+    {
+      "id": "sales-enablement-h2",
+      "kind": "heldout",
+      "expect": [
+        "sales-enablement"
+      ],
+      "prompt": "Create a demo talk track and objection-handling sheet for reps selling our procurement platform to mid-market finance teams. Include discovery questions and a version for a 15-minute call."
+    },
+    {
+      "id": "schema-h1",
+      "kind": "heldout",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Google can't seem to understand the price and availability shown on our product pages. Can you give our developer the machine-readable block that matches what's visibly there, plus a way to check it?"
+    },
+    {
+      "id": "schema-h2",
+      "kind": "heldout",
+      "expect": [
+        "schema"
+      ],
+      "prompt": "Generate JSON-LD for our organization and article pages, connecting them with stable IDs. Explain which rich-result features are actually eligible rather than promising extra search decorations."
+    },
+    {
+      "id": "seo-audit-h1",
+      "kind": "heldout",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Since we moved the site in August, Google sends about half as many people. Can you investigate what broke? We've got the old URL list and Search Console access; I want evidence before we start rewriting everything."
+    },
+    {
+      "id": "seo-audit-h2",
+      "kind": "heldout",
+      "expect": [
+        "seo-audit"
+      ],
+      "prompt": "Run a technical and on-page SEO audit of our ecommerce site, prioritizing indexation, canonicals, mobile performance and category-page issues. Give me fixes ranked by impact."
+    },
+    {
+      "id": "signup-h1",
+      "kind": "heldout",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "Half the people who start creating an account leave when we ask for phone number, company size and job title. Sales says they need all three. Help us decide what to ask now versus later and redraw the steps."
+    },
+    {
+      "id": "signup-h2",
+      "kind": "heldout",
+      "expect": [
+        "signup"
+      ],
+      "prompt": "Audit our trial registration flow on mobile, including password rules, Google login and email verification. The goal is more completed accounts without collecting unnecessary information."
+    },
+    {
+      "id": "site-architecture-h1",
+      "kind": "heldout",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "We've added so many pages that 'Solutions' now opens a list of 27 things. Help us decide what belongs together and how a new visitor should get from the front door to the page for their industry."
+    },
+    {
+      "id": "site-architecture-h2",
+      "kind": "heldout",
+      "expect": [
+        "site-architecture"
+      ],
+      "prompt": "Plan the sitemap, navigation and URL hierarchy for our new SaaS site. We need features, industries, integrations, resources and documentation, with sensible internal links between them."
+    },
+    {
+      "id": "sms-h1",
+      "kind": "heldout",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Our customers asked to hear on their phones when the limited batch is back. We collected permission at checkout. Write a short message and tell me how to keep late-night sends and repeated nudges from annoying people."
+    },
+    {
+      "id": "sms-h2",
+      "kind": "heldout",
+      "expect": [
+        "sms"
+      ],
+      "prompt": "Plan an SMS cart-recovery flow for our US skincare store in Klaviyo, including consent checks, timing, copy, opt-out handling and how to measure revenue after messaging costs."
+    },
+    {
+      "id": "social-h1",
+      "kind": "heldout",
+      "expect": [
+        "social"
+      ],
+      "prompt": "I spent last week fixing a mistake that nearly cost us our biggest customer. Help me turn that story into something I'd actually say on LinkedIn, not a polished founder humblebrag."
+    },
+    {
+      "id": "social-h2",
+      "kind": "heldout",
+      "expect": [
+        "social"
+      ],
+      "prompt": "Create a two-week social posting calendar for our founder on LinkedIn and X using this customer interview and product update. Adapt each post to the platform instead of repeating the same text."
+    },
+    {
+      "id": "video-h1",
+      "kind": "heldout",
+      "expect": [
+        "video"
+      ],
+      "prompt": "We have six screenshots of our app and a written walkthrough. Turn them into a 40-second narrated MP4 for the homepage, with a visible pointer and readable captions. We need to regenerate it whenever the interface changes."
+    },
+    {
+      "id": "video-h2",
+      "kind": "heldout",
+      "expect": [
+        "video"
+      ],
+      "prompt": "Help produce a product demo video with Remotion using our actual UI captures. Start with a storyboard, then specify timing, transitions, voiceover and export settings for the website."
+    },
+    {
+      "id": "none-h1",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Fix this Python function so it sorts a list of dictionaries by date and puts missing dates last."
+    },
+    {
+      "id": "none-h2",
+      "kind": "none",
+      "expect": [],
+      "prompt": "My Rails migration deadlocks when two workers update the same row. Help me reproduce the locking order and fix it."
+    },
+    {
+      "id": "none-h3",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Write a shell script that renames my vacation photos by capture date without overwriting files."
+    },
+    {
+      "id": "none-h4",
+      "kind": "none",
+      "expect": [],
+      "prompt": "What can I cook tonight with chickpeas, spinach and half a can of coconut milk?"
+    },
+    {
+      "id": "none-h5",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Help me write a kind note declining my cousin's invitation to stay with us for a month."
+    },
+    {
+      "id": "none-h6",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Explain why the Moon shows the same face to Earth even though it rotates."
+    },
+    {
+      "id": "none-h7",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Make a packing checklist for a rainy three-day camping trip with two kids."
+    },
+    {
+      "id": "none-h8",
+      "kind": "none",
+      "expect": [],
+      "prompt": "Walk me through completing the square for x squared plus 6x plus 2 equals zero."
+    }
+  ]
+}

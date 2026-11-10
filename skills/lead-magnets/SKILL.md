@@ -1,8 +1,8 @@
 ---
 name: lead-magnets
-description: When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions "lead magnet," "gated content," "content upgrade," "downloadable," "ebook," "cheat sheet," "checklist," "template download," "opt-in," "freebie," "PDF download," "resource library," "content offer," "email capture content," "Notion template," "spreadsheet template," "what should I give away for emails," "course as a skill," or "package our content as an agent skill." Use this for planning what to create and how to distribute it. For interactive tools as lead magnets, see free-tools. For writing the actual content, see copywriting. For the email sequence after capture, see emails.
+description: "When the user wants to plan or improve a lead magnet, or asks what to give away for emails or how much to ask in return (gating, form fields): checklists, templates, ebooks, gated guides, content upgrades. For interactive tools, see free-tools. For the follow-up sequence, see emails. For popups that capture emails, see popups."
 metadata:
-  version: 2.1.0
+  version: 2.1.4
 ---
 
 # Lead Magnets
@@ -303,9 +303,8 @@ When creating a lead magnet strategy, provide:
 - **free-tools**: For interactive tools as lead magnets (calculators, graders, quizzes)
 - **copywriting**: For writing the lead magnet content itself
 - **emails**: For nurture sequences after lead capture
-- **cro**: For optimizing lead magnet landing pages
+- **cro**: For optimizing lead magnet landing pages and capture forms
 - **popups**: For popup-based lead capture
-- **cro**: For optimizing capture forms
 - **content-strategy**: For content planning and topic selection
 - **analytics**: For measuring lead magnet performance
 - **ads**: For paid promotion of lead magnets

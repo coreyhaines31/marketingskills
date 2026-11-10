@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-05 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Gravity Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Gravity Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n/* Gravity Forms Submission Listener.\n * Event-only adaptation of verified production detection helpers.\n * Source SHA256 3ed591d48dc449e94fd48f634bb07ae8285f5d661a4b48fc5db867ca3e659b69.\n * Reads no form field values. Sends only event and form_id to dataLayer.\n * Native handoff stores only form ID, source path and time in sessionStorage.\n */\n(function(){\n\"use strict\";\nif(window.__ctGalleryGravityForms)return;\nwindow.__ctGalleryGravityForms=true;\n// Preserve the original recipe guard for an old recipe loaded after this code.\n// Do not return on the legacy guard: an old-first listener is independently\n// active and remains an unsupported migration state, but must not suppress us.\nwindow.__ctDetectGravityForms=true;\nfunction isGravityForm(formEl) {\n    if (!formEl) return false;\n    // Check for gform_wrapper parent or gform_ ID prefix\n    try {\n      if (formEl.closest && formEl.closest('.gform_wrapper')) return true;\n    } catch (e) {\n      // .closest not available — fall back to ID check\n    }\n    // Fallback: GF forms have IDs like \"gform_1\", \"gform_5\"\n    var id = formEl.id || '';\n    return /^gform_\\d+$/.test(id);\n  }\n\nfunction getFormId(formEl) {\n    if (!formEl) return null;\n    var fid = (formEl.getAttribute && formEl.getAttribute('data-formid')) || '';\n    if (fid) return String(fid);\n    var id = formEl.id || '';\n    var m = /gform_(\\d+)/.exec(id);\n    return m ? m[1] : null;\n  }\n\nfunction isAjaxForm(formEl) {\n    if (!formEl) return false;\n    try {\n      var target = (formEl.getAttribute && formEl.getAttribute('target')) || '';\n      if (target.indexOf('gform_ajax_frame_') === 0) return true;\n      if (formEl.querySelector && formEl.querySelector('input[name=\"gform_ajax\"]')) {\n        return true;\n      }\n    } catch (e) {\n      // DOM access failed — treat as non-AJAX; the reload path is the\n      // safer default (it still only fires on confirmed success).\n    }\n    return false;\n  }\n\nfunction isNodeHidden(el) {\n    try {\n      if (el.hidden) return true;\n      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;\n      var view = el.ownerDocument && el.ownerDocument.defaultView;\n      if (view && view.getComputedStyle) {\n        var cs = view.getComputedStyle(el);\n        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\nfunction hasVisibleValidationErrors(rootEl) {\n    if (!rootEl || !rootEl.querySelectorAll) return false;\n    try {\n      if (rootEl.className &&\n          (' ' + rootEl.className + ' ').indexOf(' gform_validation_error ') !== -1) {\n        return true;\n      }\n      var nodes = rootEl.querySelectorAll(\n        '.gform_validation_errors, .validation_error, .gfield_error, .validation_message, [aria-invalid=\"true\"]'\n      );\n      for (var i = 0; i < nodes.length; i++) {\n        var node = nodes[i];\n        if (isNodeHidden(node)) continue;\n        if (node.getAttribute && node.getAttribute('aria-invalid') === 'true') return true;\n        // Error classes and ARIA state are structural signals. Never read\n        // rendered validation text: themes may include resolved field values.\n        var classes = typeof node.className === 'string' ? node.className : '';\n        if (/^(?:.*\\s)?(?:gform_validation_errors|validation_error|gfield_error)(?:\\s.*)?$/.test(classes)) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\nfunction safeFormId(formId) {\n    if (formId == null) return null;\n    var s = String(formId);\n    return /^\\d+$/.test(s) ? s : null;\n  }\n\nfunction hasServerRejectionMarkers(formId) {\n    var fid = safeFormId(formId);\n    try {\n      if (fid) {\n        var scope = document.querySelector('#gform_wrapper_' + fid) ||\n          document.querySelector('#gform_' + fid + ', form[data-formid=\"' + fid + '\"]');\n        if (scope && scope.closest) {\n          scope = scope.closest('.gform_wrapper') || scope;\n        }\n        // The submitted form isn't on this page at all → no rejection\n        // evidence FOR THIS FORM, whatever other forms are showing.\n        return scope ? hasVisibleValidationErrors(scope) : false;\n      }\n      var wrappers = document.querySelectorAll('.gform_wrapper');\n      for (var i = 0; i < wrappers.length; i++) {\n        if (hasVisibleValidationErrors(wrappers[i])) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\nfunction hasConfirmationMessage(formId) {\n    var fid = safeFormId(formId);\n    try {\n      var nodes = document.querySelectorAll(\n        '.gform_confirmation_message, [id^=\"gform_confirmation_message_\"], [id^=\"gform_confirmation_wrapper_\"]'\n      );\n      for (var i = 0; i < nodes.length; i++) {\n        var node = nodes[i];\n        if (isNodeHidden(node)) continue;\n        // Presence of a visible, form-attributed confirmation element is a\n        // structural legacy signal; its rendered contents are never inspected.\n        if (!fid) continue;\n        // Attribute the node to a form id if it carries one (own id or an\n        // ancestor confirmation-wrapper id).\n        var taggedId = null;\n        var m = /gform_confirmation_(?:message|wrapper)_(\\d+)/.exec(node.id || '');\n        if (m) {\n          taggedId = m[1];\n        } else if (node.closest) {\n          try {\n            var anc = node.closest('[id^=\"gform_confirmation_wrapper_\"], [id^=\"gform_confirmation_message_\"]');\n            var am = anc && /_(\\d+)$/.exec(anc.id || '');\n            if (am) taggedId = am[1];\n          } catch (e2) {\n            // .closest unavailable — treat as untagged\n          }\n        }\n        if (taggedId === fid) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\nvar pending={},complete={},TTL=120000,markerKey='__ct_gallery_gf_pending_v3';\nvar modernHookInstalled=false,seenEntries={};\nwindow.dataLayer=window.dataLayer||[];\nfunction forget(id){var entry=pending[id];if(entry&&entry.timer)clearTimeout(entry.timer);delete pending[id];}\nfunction discardNotice(id,reason,form){try{document.dispatchEvent(new CustomEvent('ct:gform-attempt-discarded',{detail:{formId:String(id||''),reason:reason||'discarded',form:form||null}}));}catch(e){}}\nfunction emitConfirmed(id,form,uniqueAccepted){id=safeFormId(id);if(!id||(!uniqueAccepted&&complete[id]))return;complete[id]=true;var handled=false;try{if(typeof window.__ctGravityMethod2Emit==='function')handled=window.__ctGravityMethod2Emit(id,form)===true;}catch(e){}if(!handled)window.dataLayer.push({event:'gravity_form_submitted',form_id:id});}\nfunction fireLegacy(id){id=safeFormId(id);if(modernHookInstalled||!id||!pending[id]||complete[id])return;var form=pending[id].form;forget(id);emitConfirmed(id,form);}\nfunction attempt(form,method,type){\n if(!isGravityForm(form))return;var id=safeFormId(getFormId(form));if(!id)return;\n if(modernHookInstalled){return;}\n if(type&&type!=='submit'){forget(id);discardNotice(id,'nonfinal');return;}\n forget(id);complete[id]=false;\n var entry={form:form,method:method||(isAjaxForm(form)?'iframe':'postback'),trusted:method==='postback',time:Date.now(),path:location.pathname,timer:null};\n entry.timer=setTimeout(function(){if(pending[id]===entry){forget(id);discardNotice(id,'timeout');}},TTL);pending[id]=entry;\n}\nfunction acceptedIframe(frame){\n if(modernHookInstalled||!frame||frame.tagName!=='IFRAME'||!/^gform_ajax_frame_\\d+$/.test(frame.id||''))return;\n var id=frame.id.replace('gform_ajax_frame_','');if(!pending[id])return;\n try{var doc=frame.contentDocument;if(!doc||!doc.querySelector('.GF_AJAX_POSTBACK'))return;if(doc.querySelector('.gform_validation_error, .gform_validation_errors, .gfield_error, [aria-invalid=\\\"true\\\"]')){forget(id);discardNotice(id,'rejected');return;}var confirmation=doc.querySelector('#gform_confirmation_wrapper_'+id+', #gform_confirmation_message_'+id);if(confirmation&&!isNodeHidden(confirmation))fireLegacy(id);}catch(e){}\n}\ndocument.addEventListener('load',function(event){acceptedIframe(event.target);},true);\nvar jqueryHooked=false;\nfunction hook(){\n if(!jqueryHooked&&typeof window.jQuery==='function'){jqueryHooked=true;window.jQuery(document).on('gform_confirmation_loaded.ctGallery',function(event,id){fireLegacy(id);});}\n if(modernHookInstalled||!window.gform||!gform.utils||!gform.utils.addAsyncFilter)return;\n modernHookInstalled=true;\n gform.utils.addAsyncFilter('gform/submission/pre_submission',function(data){\n  var form=data&&data.form;if(form&&!form.tagName&&form[0])form=form[0];var id=safeFormId(getFormId(form));\n  if(!id)return data;\n  if(data.submissionType!=='submit'){\n   discardNotice(id,'nonfinal',form);\n   return data;\n  }\n  if(data.abort===true)return data;\n  if(data.submissionMethod==='postback'||data.submissionMethod==='iframe')data.submissionMethod='ajax';\n  return data;\n });\n gform.utils.addAsyncFilter('gform/submission/submission_started',function(data){\n  var form=data&&data.form;if(form&&!form.tagName&&form[0])form=form[0];var id=safeFormId(getFormId(form));\n  if(id&&data.submissionType==='submit')complete[id]=false;\n  return data;\n });\n gform.utils.addAsyncFilter('gform/ajax/post_ajax_submission',function(data){\n  var form=data&&data.form;if(form&&!form.tagName&&form[0])form=form[0];var id=safeFormId(getFormId(form));if(!id)return data;\n  var result=data&&data.submissionResult,verdict=result&&result.data;\n  var rawEntryId=verdict&&verdict.entry_id,entryId=typeof rawEntryId==='number'?rawEntryId:(typeof rawEntryId==='string'&&/^\\d+$/.test(rawEntryId)?Number(rawEntryId):NaN);\n  var key=id+':'+entryId;\n  if(result&&result.success===true&&verdict&&verdict.is_valid===true&&verdict.submission_type==='submit'&&isFinite(entryId)&&Math.floor(entryId)===entryId&&entryId>0&&entryId<=9007199254740991&&verdict.is_spam===false){\n   if(seenEntries[key]){discardNotice(id,'duplicate-entry',form);return data;}\n   seenEntries[key]=true;emitConfirmed(id,form,true);\n  }else if(result&&result.success===true)discardNotice(id,'rejected',form);\n  return data;\n });\n gform.utils.addAsyncFilter('gform/ajax/pre_display_error',function(data){\n  if(data&&data.formId){var errorForm=null;try{errorForm=document.querySelector('#gform_'+safeFormId(data.formId));}catch(e){}discardNotice(data.formId,'ajax-error',errorForm);}\n  return data;\n });\n document.addEventListener('gform/submission/submission_aborted',function(event){\n  var form=event&&event.detail&&event.detail.form,id=safeFormId(getFormId(form));\n  if(id)discardNotice(id,'abort',form);\n });\n}\nhook();document.addEventListener('gform/theme/scripts_loaded',hook);document.addEventListener('DOMContentLoaded',hook);window.addEventListener('load',hook);\ndocument.addEventListener('submit',function(event){attempt(event.target,null,'submit');},true);\ndocument.addEventListener('click',function(event){var el=event.target;if(!el||!el.closest)return;var control=el.closest('[id^=\"gform_submit_button_\"]');if(control)attempt(control.closest('form'),null,'submit');},true);\nfunction confirmationNode(node){if(modernHookInstalled||!node||node.nodeType!==1)return;var nodes=[];if(node.matches&&node.matches('[id^=\"gform_confirmation_message_\"], [id^=\"gform_confirmation_wrapper_\"]'))nodes.push(node);if(node.querySelectorAll){var list=node.querySelectorAll('[id^=\"gform_confirmation_message_\"], [id^=\"gform_confirmation_wrapper_\"]');for(var i=0;i<list.length;i++)nodes.push(list[i]);}for(var j=0;j<nodes.length;j++){var match=/gform_confirmation_(?:message|wrapper)_(\\d+)/.exec(nodes[j].id||'');if(match&&!isNodeHidden(nodes[j]))fireLegacy(match[1]);}}\nif(typeof MutationObserver==='function')new MutationObserver(function(mutations){for(var i=0;i<mutations.length;i++)for(var j=0;j<mutations[i].addedNodes.length;j++)confirmationNode(mutations[i].addedNodes[j]);}).observe(document.body||document.documentElement,{childList:true,subtree:true});\nwindow.addEventListener('pagehide',function(){\n var markers=[];for(var id2 in pending)if(Object.prototype.hasOwnProperty.call(pending,id2)){var entry=pending[id2];if(entry.method!=='postback'||Date.now()-entry.time>10000||(!entry.trusted&&hasVisibleValidationErrors(entry.form)))continue;markers.push({id:id2,time:entry.time,path:entry.path});}\n if(markers.length)try{sessionStorage.setItem(markerKey,JSON.stringify(markers));}catch(e){}\n});\nfunction deferred(){if(modernHookInstalled)return;var markers;try{var raw=sessionStorage.getItem(markerKey);sessionStorage.removeItem(markerKey);markers=JSON.parse(raw||'[]');}catch(e){return;}if(!Array.isArray(markers))return;for(var i=0;i<markers.length;i++){var marker=markers[i],id=safeFormId(marker&&marker.id);if(!id||!marker.time||Date.now()-marker.time>60000)continue;if(hasServerRejectionMarkers(id))continue;if(hasConfirmationMessage(id)){pending[id]={};fireLegacy(id);}}}\nif(document.readyState==='loading')document.addEventListener('DOMContentLoaded',deferred);else deferred();\n\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Gravity Forms Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "gravity_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Gravity Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

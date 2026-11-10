@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Framer Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Framer Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctFramerForms) return;\n  window.__ctFramerForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var listeners = [];\n  var pending = [];\n  window.__ctFramerSubscribe = function (listener) {\n    if (listener && typeof listener === 'object') listeners.push(listener);\n  };\n  function isFramerForm(form) {\n    try {\n      if (!form || String(form.tagName || '').toLowerCase() !== 'form') return false;\n      if (form.hasAttribute && form.hasAttribute('data-framer-name')) return true;\n      if (typeof form.className === 'string' && /(^|\\s)framer-[A-Za-z0-9_-]+/.test(form.className)) return true;\n      return !!(form.closest && (form.closest('[data-framer-component-type]') || form.closest('[data-framer-name]')));\n    } catch (e) { return false; }\n  }\n  function notify(phase, form, candidate) {\n    var handled = false;\n    for (var i = 0; i < listeners.length; i++) {\n      try {\n        var fn = listeners[i] && listeners[i][phase];\n        if (typeof fn === 'function' && fn(form, candidate) === true) handled = true;\n      } catch (e) {}\n    }\n    return handled;\n  }\n  function remember(form) {\n    try {\n      if (!isFramerForm(form)) return;\n      for (var i = 0; i < pending.length; i++) {\n        if (pending[i].form === form) return;\n      }\n      pending.push({ form: form, time: Date.now(), claimed: false });\n      notify('beforeAttempt', form, false);\n    } catch (e) {}\n  }\n  function finish(attempts, accepted) {\n    for (var i = 0; i < attempts.length; i++) {\n      var index = pending.indexOf(attempts[i]);\n      if (index !== -1) pending.splice(index, 1);\n    }\n    if (!accepted) return;\n    // Concurrent forms cannot be attributed without inspecting answers.\n    // Keep those submissions event-only, with no guessed form name.\n    var form = attempts.length === 1 ? attempts[0].form : null;\n    var name = form ? form.getAttribute('data-framer-name') || form.id || '' : '';\n    if (!form || !notify('onCandidate', form, true)) {\n      window.dataLayer.push({ event: 'framer_form_submitted', form_name: name });\n    }\n  }\n  if (typeof window.fetch === 'function') {\n    var originalFetch = window.fetch;\n    window.fetch = function (input, options) {\n      var attempts = null;\n      try {\n        var url = typeof input === 'string' ? input : input && input.url;\n        var method = options && options.method || input && input.method || 'GET';\n        if (String(method).toUpperCase() === 'POST' && /^https:\\/\\/api\\.framer\\.com\\/forms\\/v1\\/forms\\/[a-f0-9-]+\\/submit(?:\\?.*)?$/.test(url || '')) {\n          attempts = [];\n          var now = Date.now();\n          pending = pending.filter(function (attempt) { return now - attempt.time < 60000; });\n          for (var i = 0; i < pending.length; i++) {\n            if (!pending[i].claimed) {\n              pending[i].claimed = true;\n              attempts.push(pending[i]);\n            }\n          }\n        }\n      } catch (e) {}\n      var result = originalFetch.apply(this, arguments);\n      if (attempts) result.then(function (response) {\n        try { finish(attempts, response.ok === true); } catch (e) {}\n      }, function () {\n        try { finish(attempts, false); } catch (e) {}\n      });\n      return result;\n    };\n  }\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('submit', function (event) { remember(event.target); }, true);\n    // Framer handles Enter directly instead of dispatching native submit.\n    document.addEventListener('keydown', function (event) {\n      var target = event.target;\n      if (event.key === 'Enter' && target && String(target.tagName).toLowerCase() !== 'textarea') {\n        var form = target.form;\n        if (isFramerForm(form) && form.matches(':valid')) remember(form);\n      }\n    }, true);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Framer Form Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "framer_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Framer Form Name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_name"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

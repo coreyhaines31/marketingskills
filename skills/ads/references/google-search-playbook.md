@@ -63,6 +63,8 @@ Source keywords from how **buyers describe the problem** (sales-call language, y
 2. Mine the search-terms report weekly (ritual below).
 3. Introduce **Broad only after**: 30+ conversions/month in the campaign, AND smart bidding live, AND a tight negative list. Broad without all three is a donation to Google.
 
+**AI Max for Search** applies the same gate. It matches searches beyond your keyword list, can rewrite ad text to fit the search, and can send clicks to a different page on your site (final URL expansion). It's built for the longer, more specific questions buyers now type, but in B2B it can also land a buyer on a careers page or a blog post. If you test it: exclude URLs that shouldn't receive ad traffic, review the search terms and landing pages it chose in the weekly ritual, and compare against a campaign without it.
+
 ## Negative keywords
 
 Starter lists to apply at build time:

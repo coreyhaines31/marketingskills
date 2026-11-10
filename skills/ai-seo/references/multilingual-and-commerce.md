@@ -20,7 +20,7 @@ The language of the query changes which sources get cited. Profound's analysis o
 
 ## AI shopping surfaces
 
-AI shopping features (ChatGPT Shopping, product results in Google AI Mode, and similar) are worth investing in only for categories they actually show. In Profound's tests, product category was a stronger trigger for ChatGPT Shopping than purchase-intent wording: physical consumer products activated it far more often than software, services, travel, or financial products (Profound, March 2026; observational, and OpenAI hasn't published the trigger rules). Verify current merchant and feed requirements in each platform's documentation.
+AI shopping features (ChatGPT Shopping, product results in Google AI Mode, Meta's Muse agent, and similar) are worth investing in only for categories they actually show. In Profound's tests, product category was a stronger trigger for ChatGPT Shopping than purchase-intent wording: physical consumer products activated it far more often than software, services, travel, or financial products (Profound, March 2026; observational, and OpenAI hasn't published the trigger rules). Verify current merchant and feed requirements in each platform's documentation.
 
 ### Fit check first
 
@@ -43,6 +43,8 @@ Then test with repeated representative prompts. Cards and offers vary between ru
 - Price, currency, sale status, and availability, with how fast changes propagate
 - Shipping, returns, and merchant policies
 - Reviews and ratings from real customers
+
+Agents that buy can also draw on commerce catalogs directly. Muse, for example, searches the Shopify product catalog, so a Shopify merchant's catalog data is part of the audit.
 
 Compare the feed, product page, structured data, merchant records, and marketplace listings for conflicts. Fix wrong data before any editorial work. Track three outcomes separately: whether the product is included, whether you are the headline merchant or offer, and whether you appear among all offers.
 

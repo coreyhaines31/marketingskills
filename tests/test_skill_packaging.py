@@ -232,6 +232,36 @@ class PackagingTests(unittest.TestCase):
         self.assertEqual(packager.metadata(updated)["description"], 'Quote: "hello" and café.')
         self.assertEqual(updated.split(b"\r\n---\r\n", 1)[1], original.split(b"\r\n---\r\n", 1)[1])
 
+    def test_perplexity_archive_puts_skill_at_root_with_original_metadata(self):
+        manifest, bundle, archive = self.archive("perplexity")
+        with archive:
+            self.assertEqual(sorted(archive.namelist()), ["LICENSE", "SKILL.md", "assets/example.json", "references/guide.md", "scripts/run.sh"])
+            self.assertEqual(archive.read("SKILL.md"), self.skill)
+            self.assertEqual(archive.getinfo("scripts/run.sh").external_attr >> 16, 0o100755)
+        self.assertEqual(bundle["archive"], "sample-perplexity.zip")
+        self.assertIsNone(bundle["description_override"])
+        self.assertEqual(manifest["target"], "perplexity")
+
+    def test_perplexity_rejects_more_than_100_files(self):
+        for i in range(100):
+            self.write(f"skills/sample/references/extra-{i:03}.md", b"# Extra\n")
+        self.commit()
+        with self.assertRaisesRegex(ValueError, "100-file limit"):
+            packager.build(self.repo, self.output, target="perplexity")
+        self.assertFalse(self.output.exists())
+
+    def test_perplexity_rejects_description_over_1024_characters(self):
+        long_skill = self.skill.replace(json.dumps(self.description).encode(), json.dumps("x" * 1025).encode())
+        self.write("skills/sample/SKILL.md", long_skill)
+        self.commit()
+        with self.assertRaisesRegex(ValueError, "1024-character limit"):
+            packager.build(self.repo, self.output, target="perplexity")
+
+    def test_perplexity_caps_size_at_its_upload_limit(self):
+        with patch.object(packager, "PERPLEXITY_MAX_BYTES", 10):
+            with self.assertRaisesRegex(ValueError, "size bound"):
+                packager.build(self.repo, self.output, target="perplexity")
+
 
 if __name__ == "__main__":
     unittest.main()

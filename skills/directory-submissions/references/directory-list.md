@@ -70,8 +70,8 @@ Submit during launch week and continue rolling submissions thereafter.
 | **AlternativeTo** | 79 | Nofollow | Free | Massive SEO value despite nofollow. Submit as alternative to your top 4 competitors. |
 | **SaaSHub** | 77 | Yes | Free | Ranks well for "[tool] alternatives" queries. High intent. |
 | **G2** | 92 | Yes | Free listing | 10 reviews required for Grid appearance. Paid badges start at $2,999/yr. |
-| **Capterra** | 93 | Yes | Free listing | Owned by G2 (acquired Feb 2026). Reviews drive everything. |
-| **GetApp** | 78 | Yes | Free | Auto-syncs from Capterra in some cases. Owned by G2. |
+| **Capterra** | 93 | Yes | Free listing | G2 agreed to buy it from Gartner (announced Jan 2026). Reviews drive everything. |
+| **GetApp** | 78 | Yes | Free | Auto-syncs from Capterra in some cases. Part of the same G2 deal. |
 | **SourceForge** | 92 | Yes | Free | Legacy but still high DR. Trivial to list. |
 | **Slashdot** | ~88 | Yes | Free | Legacy but high DR. Company profile submission. |
 | **Startup Stash** | ~50 | Yes | Free | Curated, organized by startup need. |
@@ -82,7 +82,7 @@ Submit during launch week and continue rolling submissions thereafter.
 | **Shipybara** | ~30 | Yes | Free | Shows which companies use your tool. |
 | **TrustRadius** | 72 | Yes | Free | Smaller but respected B2B review platform. |
 | **Crozdesk** | ~55 | Yes | Free | Feeds into Gartner ecosystem. |
-| **Software Advice** | 88 | Yes | Free | Gartner property. Auto-syncs with Capterra in some categories. |
+| **Software Advice** | 88 | Yes | Free | Part of the G2 deal for Gartner's review sites (announced Jan 2026). Auto-syncs with Capterra in some categories. |
 | **TheSaaSDirectory** | 88 | Yes | Free | SaaS-specific directory. Good categorization. |
 | **Tech.co** | 80 | Yes | Free | Startup/SaaS directory + media. |
 | **Taalk** | 80 | Yes | Free | Startup directory. |
@@ -288,7 +288,7 @@ Only relevant once the product has integrations. These are the highest-DR backli
 | **HubSpot App Marketplace** | 93 | Requires HubSpot app. |
 | **Slack App Directory** | 89 | Requires Slack integration. |
 | **Airtable Marketplace** | 82 | Requires Airtable integration. |
-| **Notion Integrations Gallery** | 88 | Requires Notion integration. |
+| **Notion Marketplace** | 88 | Requires a public Notion connection with the "Any workspace" installation scope, which is set at creation and can't be changed. Submit the listing for review (includes a security review); approved listings get a page at notion.com/connections/<name>. A simple use case, like sending your app's data into a Notion database, is enough. |
 | **Make (Integromat)** | ~70 | Requires Make module. |
 | **Pipedream** | ~70 | Requires Pipedream action. |
 

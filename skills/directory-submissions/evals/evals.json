@@ -20,11 +20,11 @@
     {
       "id": 2,
       "prompt": "Can I just copy-paste the same description into every directory?",
-      "expected_output": "Should refuse and explain Rule 3: positioning varies by directory type. Should explain AI engines penalize duplicate content — directories cross-referenced by Claude, ChatGPT, Perplexity will de-rank repetitive copy. Should explain different framing per surface: startup directories lead with outcome (audience is founders), SaaS directories lead with alternative framing (people search '[competitor] alternative'), AI directories lead with AI-first architecture, agent/MCP directories lead with the agent/MCP angle, B2B review sites lead with ROI + use case. Should recommend preparing distinct variants per tier: tagline under 10 words, 60-char short description, 150-word long description, 5-8 category tags. Should reference references/positioning-variations.md.",
+      "expected_output": "Should refuse and explain Rule 3: positioning varies by directory type. Should explain that identical copy across directories gives AI engines (Claude, ChatGPT, Perplexity) and readers no new signal, without claiming a documented duplicate-content penalty. Should explain different framing per surface: startup directories lead with outcome (audience is founders), SaaS directories lead with alternative framing (people search '[competitor] alternative'), AI directories lead with AI-first architecture, agent/MCP directories lead with the agent/MCP angle, B2B review sites lead with ROI + use case. Should recommend preparing distinct variants per tier: tagline under 10 words, 60-char short description, 150-word long description, 5-8 category tags. Should reference references/positioning-variations.md.",
       "assertions": [
         "Refuses the request",
         "Cites Rule 3 (positioning varies by directory type)",
-        "Notes AI engines penalize duplicate content",
+        "Explains identical copy adds no new signal, without claiming a penalty",
         "Lists different framing per surface type",
         "Specifies variant lengths (tagline, short, long)",
         "References positioning-variations.md"
@@ -114,6 +114,18 @@
         "Does not confuse canonical tags with backlinks",
         "Does not guarantee search-engine credit from an unqualified link",
         "Records evidence and access limitations"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "I want to get our SaaS listed on the Notion Marketplace for the backlink. We don't have a Notion integration yet. What's involved?",
+      "expected_output": "Should load references/directory-list.md (Tier 7, integration marketplaces) and explain that a listing requires a working public Notion connection. Should flag that the installation scope must be set to \"Any workspace\" when the connection is created, because it can't be changed later and other scopes aren't eligible. Should suggest a simple real use case (e.g. sending the app's data into a Notion database), then submitting the listing for Notion's review, which includes a security review, with the approved page at notion.com/connections/<name>. Should frame the integration as useful to customers, not only as a backlink.",
+      "assertions": [
+        "States a working public Notion connection is required",
+        "Warns the 'Any workspace' scope must be chosen at creation and can't be changed",
+        "Mentions Notion's review, including a security review",
+        "Suggests a simple genuine use case for the integration"
       ],
       "files": []
     }

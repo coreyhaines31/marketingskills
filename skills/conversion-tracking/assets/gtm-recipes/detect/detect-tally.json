@@ -1,0 +1,122 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Tally",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Tally Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n/* Tally Submission Listener. Reads only the envelope of Tally's\n * own submission message; it does not decode or read answer values and never\n * pushes answers. */\n(function () {\n  'use strict';\n  if (window.__ctDetectTally || window.__ctTallyMethod2Installed) return;\n  window.__ctDetectTally = true;\n  // Keep the historical Method 2 marker as a one-way compatibility alias.\n  // The separate Method 2 adapter has its own marker and can still register\n  // after this core is already installed.\n  window.__ctTallyMethod2Installed = true;\n  window.dataLayer = window.dataLayer || [];\n\n  function isWs(c) { return c === ' ' || c === '\\n' || c === '\\r' || c === '\\t'; }\n  function skipWs(s, p) { while (p.i < s.length && isWs(s.charAt(p.i))) p.i++; }\n  function stringEnd(s, p, decode) {\n    if (s.charAt(p.i) !== '\"') throw new Error('string');\n    var start = p.i++;\n    while (p.i < s.length) {\n      var c = s.charAt(p.i++);\n      if (c === '\"') {\n        if (!decode) return null;\n        // Decode only object keys and allowlisted envelope metadata strings.\n        return JSON.parse(s.slice(start, p.i));\n      }\n      if (c.charCodeAt(0) < 0x20) throw new Error('control');\n      if (c === '\\\\') {\n        if (p.i >= s.length) throw new Error('escape end');\n        var esc = s.charAt(p.i++);\n        if ('\"\\\\/bfnrt'.indexOf(esc) !== -1) continue;\n        if (esc !== 'u' || !/^[0-9a-fA-F]{4}$/.test(s.slice(p.i, p.i + 4))) throw new Error('escape');\n        p.i += 4;\n      }\n    }\n    throw new Error('unterminated');\n  }\n  function skipValue(s, p, depth) {\n    if (depth > 32) throw new Error('depth');\n    skipWs(s, p);\n    var c = s.charAt(p.i);\n    if (c === '\"') { stringEnd(s, p, false); return; }\n    if (c === '{') {\n      p.i++; skipWs(s, p); if (s.charAt(p.i) === '}') { p.i++; return; }\n      while (p.i < s.length) {\n        skipWs(s, p); stringEnd(s, p, false); skipWs(s, p);\n        if (s.charAt(p.i++) !== ':') throw new Error('colon');\n        skipValue(s, p, depth + 1); skipWs(s, p);\n        var sep = s.charAt(p.i++); if (sep === '}') return; if (sep !== ',') throw new Error('object');\n      }\n      throw new Error('object end');\n    }\n    if (c === '[') {\n      p.i++; skipWs(s, p); if (s.charAt(p.i) === ']') { p.i++; return; }\n      while (p.i < s.length) {\n        skipValue(s, p, depth + 1); skipWs(s, p);\n        var a = s.charAt(p.i++); if (a === ']') return; if (a !== ',') throw new Error('array');\n      }\n      throw new Error('array end');\n    }\n    var begin = p.i;\n    while (p.i < s.length && !isWs(s.charAt(p.i)) && ',}]'.indexOf(s.charAt(p.i)) === -1) p.i++;\n    if (p.i === begin) throw new Error('value');\n    var token = s.slice(begin, p.i);\n    if (token !== 'true' && token !== 'false' && token !== 'null' &&\n        !/^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?$/.test(token)) throw new Error('primitive');\n  }\n  function readStringValue(s, p) { skipWs(s, p); return stringEnd(s, p, true); }\n  function readMetadataObject(s, p, wanted, out) {\n    skipWs(s, p); if (s.charAt(p.i++) !== '{') throw new Error('metadata object');\n    skipWs(s, p); if (s.charAt(p.i) === '}') { p.i++; return; }\n    while (p.i < s.length) {\n      skipWs(s, p); var key = stringEnd(s, p, true); skipWs(s, p);\n      if (s.charAt(p.i++) !== ':') throw new Error('metadata colon');\n      if (wanted[key]) { out[key] = readStringValue(s, p); }\n      else if (key === 'fields') { skipWs(s, p); if (s.charAt(p.i) !== '[') throw new Error('fields shape'); skipValue(s, p, 0); out.fieldsArray = true; }\n      else skipValue(s, p, 0);\n      skipWs(s, p); var sep = s.charAt(p.i++); if (sep === '}') return; if (sep !== ',') throw new Error('metadata separator');\n    }\n    throw new Error('metadata end');\n  }\n  function readEnvelope(s) {\n    if (typeof s !== 'string' || s.length > 1048576) return null;\n    var p = { i: 0 }, out = {}, payload = {};\n    try {\n      skipWs(s, p); if (s.charAt(p.i++) !== '{') return null;\n      skipWs(s, p); if (s.charAt(p.i) === '}') return null;\n      while (p.i < s.length) {\n        skipWs(s, p); var key = stringEnd(s, p, true); skipWs(s, p);\n        if (s.charAt(p.i++) !== ':') return null;\n        if (key === 'event') out.event = readStringValue(s, p);\n        else if (key === 'payload') readMetadataObject(s, p, { id: true, formId: true }, payload);\n        else skipValue(s, p, 0);\n        skipWs(s, p); var sep = s.charAt(p.i++); if (sep === '}') break; if (sep !== ',') return null;\n      }\n      skipWs(s, p); if (p.i !== s.length) return null;\n      if (out.event !== 'Tally.FormSubmitted') return null;\n      if (!payload.id || !payload.formId || !payload.fieldsArray || !/^[-A-Za-z0-9_]{1,128}$/.test(payload.id) || !/^[-A-Za-z0-9_]{1,128}$/.test(payload.formId)) return null;\n      return { id: payload.id, formId: payload.formId };\n    } catch (e) { return null; }\n  }\n  function isTallyOrigin(origin) {\n    return typeof origin === 'string' && /^https:\\/\\/tally\\.so(?::443)?$/i.test(origin);\n  }\n  // Bind only fixed-host iframe paths using CSS attribute selectors. Do not\n  // retrieve src or data-tally-src: either may contain prefilled respondent\n  // data in its query. Only a materialized iframe src is supported here; a\n  // deferred attribute without a loaded src fails closed.\n  function frameFormId(frame, expectedFormId) {\n    if (!/^[-A-Za-z0-9_]{1,128}$/.test(expectedFormId || '') ||\n        !frame || typeof frame.matches !== 'function') return '';\n    var found = false;\n    var modes = ['embed', 'r', 'popup'];\n    for (var i = 0; i < modes.length; i++) {\n      var base = 'https://tally.so/' + modes[i] + '/' + expectedFormId;\n      var selectors = [\n        'iframe[src=\"' + base + '\"]',\n        'iframe[src^=\"' + base + '?\"]',\n        'iframe[src^=\"' + base + '#\"]'\n      ];\n      for (var j = 0; j < selectors.length; j++) {\n        try { if (frame.matches(selectors[j])) { found = true; break; } }\n        catch (e) { return ''; }\n      }\n      if (found) return expectedFormId;\n    }\n    return '';\n  }\n  function renderedFrameFormId(source, expectedFormId) {\n    if (!source || source === window) return '';\n    var frames;\n    try { frames = document.getElementsByTagName('iframe'); } catch (e) { return ''; }\n    for (var i = 0; frames && i < frames.length; i++) {\n      try {\n        if (frames[i].contentWindow === source) {\n          // The event carries only a bounded public form ID. The selector tests\n          // the fixed-host path and exact delimiter without exposing the URL.\n          return frameFormId(frames[i], expectedFormId);\n        }\n      } catch (e) {}\n    }\n    return '';\n  }\n  var seen = Object.create(null);\n  window.addEventListener('message', function (event) {\n    try {\n      if (!event || !isTallyOrigin(event.origin)) return;\n      var verdict = readEnvelope(event.data);\n      if (!verdict) return;\n      var configuredFormId = renderedFrameFormId(event.source, verdict.formId);\n      if (!configuredFormId || verdict.formId !== configuredFormId) return;\n      var key = verdict.formId + ':' + verdict.id;\n      if (seen[key]) return;\n      seen[key] = true;\n      var handled = false;\n      var adapter = window.__ctTallyMethod2Handler;\n      if (typeof adapter === 'function') {\n        try { handled = adapter(event, verdict) === true; } catch (e) { handled = false; }\n      }\n      if (!handled) window.dataLayer.push({ event: 'tally_form_submitted', form_id: verdict.formId, submission_id: verdict.id });\n    } catch (e) {}\n  }, false);\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Tally Form Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "tally_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Tally Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "3",
+        "name": "DLV - Tally Form Name",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_name"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

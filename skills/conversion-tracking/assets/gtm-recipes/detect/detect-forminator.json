@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Forminator",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Forminator Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctForminatorForms) return;\n  window.__ctForminatorForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var listeners=[],lastEvent=null;\n  window.__ctForminatorSubscribe=function(listener){if(listener&&typeof listener==='object')listeners.push(listener);};\n  function isForm(form){\n    try{return !!(form&&String(form.tagName||'').toLowerCase()==='form'&&form.classList&&form.classList.contains('forminator-custom-form'));}\n    catch(e){return false;}\n  }\n  function notify(phase,form,candidate,event){\n    var handled=false;\n    for(var i=0;i<listeners.length;i++)try{var fn=listeners[i]&&listeners[i][phase];if(typeof fn==='function'&&fn(form,candidate,event)===true)handled=true;}catch(e){}\n    return handled;\n  }\n  function submit(event){try{var form=event.target;if(isForm(form))notify('beforeAttempt',form,false,event);}catch(e){}}\n  function success(event){\n    try{\n      if(event&&typeof event==='object'&&event===lastEvent)return;\n      lastEvent=event;\n      if(event&&typeof event==='object')setTimeout(function(){if(lastEvent===event)lastEvent=null;},0);\n      var form=event&&event.target;if(!isForm(form))return;\n      if(!notify('onCandidate',form,true,event))window.dataLayer.push({event:'forminator_form_submitted',form_id:form.getAttribute('data-form-id')||''});\n    }catch(e){}\n  }\n  document.addEventListener('submit',submit,true);\n  // Page-reload forms render their verdict in the returned page instead of\n  // emitting the AJAX event. Read only the confirmation class and form ID.\n  var confirmedForms=[];\n  function nativeConfirmations(){\n    try{\n      var forms=document.querySelectorAll('form.forminator-custom-form:not(.forminator_ajax)');\n      for(var i=0;i<forms.length;i++){\n        var form=forms[i],message=form.querySelector('.forminator-response-message.forminator-success');\n        if(!message||!message.getClientRects().length||confirmedForms.indexOf(form)!==-1)continue;\n        confirmedForms.push(form);\n        success({target:form});\n      }\n    }catch(e){}\n  }\n  function watchNative(){\n    nativeConfirmations();\n    if(window.MutationObserver&&document.documentElement){\n      new MutationObserver(nativeConfirmations).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style']});\n    }\n  }\n  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watchNative);\n  else watchNative();\n  window.addEventListener('load',nativeConfirmations);\n  function hook(){\n    try{\n      if(window.__ctForminatorSuccessHooked)return true;\n      var jq=window.jQuery||(typeof jQuery!=='undefined'?jQuery:(typeof $!=='undefined'?$:null));\n      if(!jq)return false;\n      window.__ctForminatorSuccessHooked=true;\n      jq(document).on('forminator:form:submit:success',success);return true;\n    }catch(e){return false;}\n  }\n  if(!hook()){document.addEventListener('DOMContentLoaded',hook);window.addEventListener('load',hook);}\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Forminator Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "forminator_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Forminator Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

@@ -7,7 +7,7 @@ Visual web design and CMS platform for marketing sites.
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API for sites, CMS, forms |
-| MCP | - | Not available |
+| MCP | ✓ | Official server ([docs](https://developers.webflow.com/mcp)), checked 2026-10-27 |
 | CLI | ✓ | Webflow CLI for devlink and apps |
 | SDK | ✓ | Official SDK for Node.js |
 

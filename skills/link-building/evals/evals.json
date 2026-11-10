@@ -1,0 +1,71 @@
+{
+  "skill_name": "link-building",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our pricing page is stuck at position 9 for 'invoicing software for freelancers'. Help me build backlinks to it.",
+      "expected_output": "Should check for product-marketing.md first. Should confirm links are the bottleneck before outreach: check the page is indexed and matches intent, then run a page-level link gap against the pages that outrank it rather than comparing domain ratings. Should recommend internal links from strong pages to the pricing page. Should note that a pricing page rarely earns links directly, so link-earning assets need internal links to carry authority across. Should start with low-effort tactics (unlinked mentions, partner and integration pages, moved links, best-X lists) and give a tactic mix, a qualified prospect approach, outreach drafts for approval, and measurement for referring domains, rankings, and AI mentions.",
+      "assertions": [
+        "Checks for product-marketing.md",
+        "Runs a page-level link gap before recommending outreach",
+        "Checks the page itself (intent, indexing) before blaming links",
+        "Recommends internal links to the target page",
+        "Starts with low-effort tactics such as unlinked mention reclamation",
+        "Drafts outreach for approval rather than sending it",
+        "Measures referring domains to the target page and rankings"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "An agency offered us 20 do-follow guest post links on DR 60+ sites for $3,000. Good deal?",
+      "expected_output": "Should identify this as buying links that pass ranking credit, which Google's spam policies name as link spam, and advise declining. Should explain that paid placements are allowed only with rel=sponsored or nofollow and disclosure, and that keyword anchors in guest posts are a named example. Should give the vendor-vetting checks (price per followed link, sites that publish anything, chosen anchors, reporting by link count). Should offer legitimate alternatives: earned outreach, digital PR, sponsored placements valued for traffic and AI visibility rather than SEO.",
+      "assertions": [
+        "Advises declining the paid do-follow links",
+        "Cites Google's link spam policy and the sponsored or nofollow requirement",
+        "Does not treat domain rating as a reason to buy",
+        "Gives vendor-vetting signals",
+        "Offers legitimate alternatives"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "ChatGPT never mentions us when people ask for the best project management tool for agencies. How do we get mentioned on the sites it pulls from?",
+      "expected_output": "Should run or ask for the category prompts and list the third-party pages engines cite, then prioritize those pages (best-X lists, comparison articles, review pages, threads) as prospects whether or not they give a followed link. Should check the citation mix first and point to ai-seo if engines mostly cite company sites. Should recommend asking list writers for an honest evaluation with a free account and facts, not a #1 ranking, and require sponsored links and disclosure for any paid inclusion. Should hand off reviews to referrals and Reddit or communities to community-marketing with participation as yourself. Should measure mentions on cited pages and AI mention rate.",
+      "assertions": [
+        "Builds the prospect list from pages AI engines cite for the prompts",
+        "Counts mentions without links as wins for AI visibility",
+        "References the citation mix or ai-seo",
+        "Asks for honest evaluation rather than a #1 ranking",
+        "Requires sponsored link and disclosure for paid list inclusion",
+        "Does not recommend planted Reddit posts or sockpuppets"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Ahrefs says we have 340 toxic backlinks. Should I disavow them all?",
+      "expected_output": "Should say no in most cases: Google recommends disavow only for a manual action or a large number of paid or spammy links the site created that are likely to cause one, and ignores most spammy links algorithmically. Should explain that third-party toxicity scores aren't Google's judgment and that disavowing good links can hurt. Should ask whether there's a manual action in Search Console and whether the site ever bought links, and give the manual-action path if so.",
+      "assertions": [
+        "Does not recommend disavowing all flagged links",
+        "Explains when Google recommends the disavow tool",
+        "Asks about a manual action or a history of bought links",
+        "Notes toxicity scores are third-party estimates"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Write an outreach email asking a blogger to swap links with us. We'll link to them from our partners page if they link to our homepage.",
+      "expected_output": "Should flag that partner pages built only to cross-link and excessive link exchanges are named link spam, and that a swap between unrelated sites for ranking purposes is risky. Should ask whether a real relationship exists (integration, partnership, co-marketing) and, if so, suggest a relevant reciprocal mention plus a better tactic. Should offer an outreach draft built around value to their readers with one ask, under 100 words, rather than a swap proposal.",
+      "assertions": [
+        "Flags link exchanges for ranking as a spam risk",
+        "Asks whether a genuine partnership exists",
+        "Offers a compliant alternative outreach draft",
+        "Keeps the draft short with one ask"
+      ],
+      "files": []
+    }
+  ]
+}

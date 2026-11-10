@@ -1,0 +1,160 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-10-15 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Acuity Scheduling",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Acuity Scheduling Booking Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  'use strict';\n  if (window.__ctDetectAcuity) return;\n  window.__ctDetectAcuity = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Acuity's booking form gives the page no booking event of its own. This\n  // listener pairs with a short snippet the site owner pastes into Acuity's\n  // custom conversion tracking field (the field snippet that comes with this\n  // listener). Acuity runs that snippet after each booking inside its\n  // conversion tracking frame, on\n  // https://conversion-tracking-sandbox.acuityinnovation.com, two frames below\n  // this page, and it posts the booking's ID to this page only (it names the\n  // page's own address as the target). The frame is a grandchild, so it can't\n  // be matched to an iframe on the page; it must come from Acuity's origin and\n  // sit inside this page's own frame tree.\n  var ORIGIN_PATTERN = /^https:\\/\\/([a-z0-9-]+\\.)+acuityinnovation\\.com$/;\n  var ID_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;\n  var KIND_PATTERN = /^[A-Za-z_-]{1,32}$/;\n  var PRICE_PATTERN = /^[0-9]{1,9}(\\.[0-9]{1,4})?$/;\n  var seenIds = [];\n\n  function isPlainObject(value) {\n    return !!value && typeof value === 'object' && Object.prototype.toString.call(value) === '[object Object]';\n  }\n\n  // A frame inside this page has this page as its top window. A popup or a\n  // window this page opened does not.\n  function insideThisPage(source) {\n    try { return source.top === window; } catch (e) { return false; }\n  }\n\n  function idSeen(id) {\n    for (var i = 0; i < seenIds.length; i++) if (seenIds[i] === id) return true;\n    return false;\n  }\n\n  function cleanText(value, max) {\n    if (typeof value !== 'string') return '';\n    value = value.replace(/[\\u0000-\\u001f\\u007f]/g, ' ').replace(/^\\s+|\\s+$/g, '');\n    return value.length > max ? value.slice(0, max) : value;\n  }\n\n  function onMessage(message) {\n    if (!message || !message.source || message.source === window) return;\n    if (typeof message.origin !== 'string' || !ORIGIN_PATTERN.test(message.origin)) return;\n    if (!insideThisPage(message.source)) return;\n    var data = message.data;\n    if (!isPlainObject(data) || data.source !== 'gtm-acuity-booking' || data.version !== 1) return;\n    if (typeof data.appointment_id !== 'string' || !ID_PATTERN.test(data.appointment_id)) return;\n    if (idSeen(data.appointment_id)) return;\n    var push = { event: 'acuity_appointment_scheduled', appointment_id: data.appointment_id };\n    if (typeof data.kind === 'string' && KIND_PATTERN.test(data.kind)) push.acuity_type = data.kind;\n    var type = cleanText(data.appointment_type, 200);\n    if (type) push.appointment_type = type;\n    if (typeof data.price === 'string' && PRICE_PATTERN.test(data.price)) push.price = data.price;\n    // The ID is remembered only once the push went through, so a dataLayer\n    // that throws (a broken wrapper) never escapes into the page, and a\n    // repeat of the same message can still be counted.\n    try {\n      window.dataLayer = window.dataLayer || [];\n      window.dataLayer.push(push);\n    } catch (e) {\n      return;\n    }\n    seenIds.push(data.appointment_id);\n  }\n\n  window.addEventListener('message', onMessage, false);\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Acuity Appointment Scheduled",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "acuity_appointment_scheduled"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Acuity Appointment ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "appointment_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "2",
+        "name": "DLV - Acuity Type",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "acuity_type"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "3",
+        "name": "DLV - Acuity Appointment Type",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "appointment_type"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "4",
+        "name": "DLV - Acuity Price",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "price"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/versions/0"
+  }
+}

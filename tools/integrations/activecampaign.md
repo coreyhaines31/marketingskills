@@ -39,7 +39,7 @@ and [field discovery contract](https://developers.activecampaign.com/reference/r
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | REST API v3 for contacts, deals, automations, campaigns, tags |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server on all plans ([help article](https://help.activecampaign.com/hc/en-us/articles/22566179229596)), checked 2026-10-27 |
 | CLI | ✓ | [activecampaign.js](../clis/activecampaign.js) |
 | SDK | ✓ | Python, PHP, Node.js, Ruby |
 

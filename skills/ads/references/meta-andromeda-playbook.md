@@ -56,3 +56,22 @@ Wispr Flow went from about 100 to over 3,500 ads in its Meta account in nine mon
 - **Keep a lessons file that feeds the briefs.** Wispr Flow keeps a marketing repo that collects what each test taught (in ads, landing pages, newsletters, and creator partnerships) and drafts the next round of creator briefs from it. **marketing-loops** has the monthly-creative-retro loop for this.
 
 For recruiting, paying, and briefing the creators themselves, see the performance-paid creator program in the **influencer-marketing** skill.
+
+## Ad sequencing (build the path, not one winner)
+
+Meta's ranking model reads a person's activity as an ordered timeline: ad clicks, conversions, and organic engagement, each in sequence (Meta Engineering's posts on its GEM ads model, November 2025 and October 2026). The practical read: the second ad someone sees is judged against the first. Stop testing every ad in a vacuum and ask what ad 2 says to someone who already saw ad 1.
+
+**Explicit sequencing in auction campaigns** rolled out in early 2026, account by account. The setup is narrow, so check Meta's current help docs before planning around it:
+
+- Objective: Awareness (Maximize reach) or Engagement (ThruPlay). Not available on Sales or Leads.
+- Frequency control set to **Target frequency**, not the default cap.
+- **Lifetime budget** at the ad set level, at least 7 days, with Advantage campaign budget off.
+- At least two ads published in the ad set.
+
+**Size the sequence to the flight.** Campaign length and the frequency window cap how many ads fit: a 3-week flight showing one ad every 7 days fits three. Two or three ads is the usual range; longer paths lose people along the way.
+
+**A typical path:** hook → problem → proof (testimonial or case study) → offer. Each ad assumes the previous one was seen, so ad 3 doesn't re-explain the product.
+
+**The trade-off:** target frequency usually costs more per impression than standard delivery, so judge a sequence on downstream conversions (ideally against a holdout), not CPM. For conversion objectives, where sequencing isn't available, approximate the path with engagement retargeting: video viewers or engagers from the hook ad get the proof ad, then the offer.
+
+*Sequencing framing from Cody Schneider (October 2026); setup requirements from Jon Loomer's testing and Meta's documentation as of early 2026.*

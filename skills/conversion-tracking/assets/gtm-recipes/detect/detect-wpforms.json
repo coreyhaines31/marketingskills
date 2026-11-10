@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - WPForms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - WPForms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n/* WPForms listener. Records message and redirect confirmations.\n * Native redirects use a short-lived submission marker and changed pathname.\n * Does not read form values, labels, rendered text/HTML, response bodies,\n * redirect URLs, or URL query strings. */\n(function () {\n  'use strict';\n  if (window.__ctDetectWpforms) return;\n  window.__ctDetectWpforms = true;\n  if (!/^https?:$/.test(window.location.protocol)) return;\n  window.dataLayer = window.dataLayer || [];\n\n  var PENDING_KEY = '__ctWpformsNativePendingV1';\n  var PENDING_TTL_MS = 120000;\n\n  function formId(form) {\n    var match = /^wpforms-form-(\\d+)$/.exec((form && form.id) || '');\n    return match ? match[1] : null;\n  }\n  function confirmationNode(id) {\n    if (!id || !/^\\d+$/.test(id)) return null;\n    try { return document.querySelector('#wpforms-confirmation-' + id); } catch (e) { return null; }\n  }\n  // A delayed callback can run after another callback has already observed\n  // the same inserted node. Deduplicate by node identity, not by form ID, so\n  // a later accepted response with a distinct confirmation node still counts.\n  var supportsWeakSet = typeof WeakSet === 'function';\n  var handledConfirmationNodes = supportsWeakSet ? new WeakSet() : [];\n  function markConfirmationSeen(node) {\n    if (supportsWeakSet) {\n      if (handledConfirmationNodes.has(node)) return false;\n      handledConfirmationNodes.add(node);\n      return true;\n    }\n    if (handledConfirmationNodes.indexOf(node) !== -1) return false;\n    handledConfirmationNodes.push(node);\n    return true;\n  }\n  function push(id) {\n    if (!id || !/^\\d+$/.test(id)) return;\n    window.dataLayer.push({ event: 'wpforms_form_submitted', form_id: id });\n  }\n  // Method 2 owns and pushes its enriched payload. The detector sees only a\n  // literal handled marker; arbitrary objects or PII are never read/forwarded.\n  function emitConfirmed(id, form, mode) {\n    var adapter = window.__ctWpformsMethod2Emit;\n    try { if (typeof adapter === 'function' && adapter(id, form || null, mode) === true) return; } catch (e) {}\n    push(id);\n  }\n  function discardAdapterSnapshot(id, form, mode) {\n    var discard = window.__ctWpformsMethod2Discard;\n    try { if (typeof discard === 'function') discard(id, form || null, mode); } catch (e) {}\n  }\n  function storePending(id) {\n    if (!id) return;\n    try {\n      window.sessionStorage.setItem(PENDING_KEY, JSON.stringify({ id: id, time: Date.now(), path: window.location.pathname }));\n    } catch (e) {}\n  }\n  function takePending() {\n    try {\n      var raw = window.sessionStorage.getItem(PENDING_KEY);\n      if (!raw) return null;\n      window.sessionStorage.removeItem(PENDING_KEY);\n      var value = JSON.parse(raw);\n      if (!value || !/^\\d+$/.test(String(value.id || '')) ||\n          typeof value.time !== 'number' || Date.now() - value.time > PENDING_TTL_MS ||\n          Date.now() < value.time) return null;\n      return { id: String(value.id), path: typeof value.path === 'string' ? value.path : null };\n    } catch (e) { return null; }\n  }\n  function hasVisibleErrors(root) {\n    var errors = root.querySelectorAll('.wpforms-error, .wpforms-error-container, [aria-invalid=\"true\"]');\n    for (var i = 0; i < errors.length; i++) {\n      if (errors[i].getClientRects().length) return true;\n    }\n    return false;\n  }\n  function processNativeVerdict() {\n    var marker = takePending();\n    if (!marker) return;\n    if (hasVisibleErrors(document)) discardAdapterSnapshot(marker.id, null, 'native-no-confirmation');\n    else if (confirmationNode(marker.id)) emitConfirmed(marker.id, null, 'native-message');\n    else if (marker.path && marker.path !== window.location.pathname) {\n      // A clean submit followed by a new page is the redirect confirmation.\n      // An optional Method 2 adapter may attach what it saved on the form page.\n      emitConfirmed(marker.id, null, 'native-redirect');\n    }\n    else discardAdapterSnapshot(marker.id, null, 'native-no-confirmation');\n  }\n\n  // Keep one short-lived navigation watcher per form. Client validation can\n  // cancel submission, so a submit attempt alone must not leave a marker.\n  var nativeWatchers = new WeakMap();\n  document.addEventListener('submit', function (event) {\n    var form = event && event.target;\n    if (!form || (form.tagName || '').toLowerCase() !== 'form') return;\n    var id = formId(form);\n    if (!id) return;\n    var classes = typeof form.className === 'string' ? form.className : '';\n    if (/(^|\\s)wpforms-ajax-form(\\s|$)/.test(classes)) return;\n    var previous = nativeWatchers.get(form);\n    if (previous) previous();\n    var timer;\n    function cleanup() {\n      window.removeEventListener('pagehide', onPageHide, true);\n      clearTimeout(timer);\n      nativeWatchers.delete(form);\n    }\n    function onPageHide() {\n      cleanup();\n      // A corrected retry can still display the previous server error box.\n      // Use the current client-validation result, without reading answers.\n      var jq = window.jQuery;\n      var validator = typeof jq === 'function' ? jq(form).data('validator') : null;\n      if (validator && validator.errorList) {\n        if (validator.errorList.length) return;\n      } else if (hasVisibleErrors(form)) return;\n      storePending(id);\n    }\n    nativeWatchers.set(form, cleanup);\n    window.addEventListener('pagehide', onPageHide, true);\n    timer = setTimeout(cleanup, 10000);\n  }, true);\n\n  // AJAX message confirmation: the callback alone is ambiguous. Wait until\n  // WPForms has inserted a new, form-attributed confirmation node.\n  var jqueryHooked = false;\n  var redirectEpochByForm = typeof WeakMap === 'function' ? new WeakMap() : null;\n  var seenRedirectEvents = typeof WeakSet === 'function' ? new WeakSet() : [];\n  var seenSuccessEvents = typeof WeakSet === 'function' ? new WeakSet() : [];\n  function markEventSeen(set, event) {\n    if (!event || (typeof event !== 'object' && typeof event !== 'function')) return false;\n    if (typeof WeakSet === 'function' && set instanceof WeakSet) {\n      if (set.has(event)) return false;\n      set.add(event);\n      return true;\n    }\n    if (set.indexOf(event) !== -1) return false;\n    set.push(event);\n    return true;\n  }\n  function markRedirectEvent(event) {\n    return markEventSeen(seenRedirectEvents, event);\n  }\n  function hookWpformsEvents() {\n    if (jqueryHooked) return;\n    var jq = window.jQuery || window.$;\n    if (typeof jq !== 'function') return;\n    jqueryHooked = true;\n    jq(document).on('wpformsAjaxSubmitSuccess.ctWpforms', function (event) {\n      if (!markEventSeen(seenSuccessEvents, event)) return;\n      var form = event && event.target;\n      var id = formId(form);\n      if (!id) return;\n      var redirectEpoch = redirectEpochByForm ? (redirectEpochByForm.get(form) || 0) : 0;\n      var before = confirmationNode(id);\n      setTimeout(function () {\n        var after = confirmationNode(id);\n        if (after && after !== before && markConfirmationSeen(after)) {\n          emitConfirmed(id, form, 'ajax-message');\n        } else if (!redirectEpochByForm || (redirectEpochByForm.get(form) || 0) === redirectEpoch) {\n          discardAdapterSnapshot(id, form, 'ajax-no-confirmation');\n        }\n      }, 0);\n    });\n    jq(document).on('wpformsAjaxSubmitFailed.ctWpforms wpformsAjaxSubmitError.ctWpforms wpformsAjaxSubmitActionRequired.ctWpforms', function (event) {\n      var form = event && event.target;\n      var id = formId(form);\n      if (id) discardAdapterSnapshot(id, form, 'ajax-rejected');\n    });\n    // WPForms 1.6.7 triggers this only after ajax_process_redirect has\n    // produced a nonempty redirect_url from accepted processing. The URL and\n    // response object are intentionally not inspected.\n    jq(document).on('wpformsAjaxSubmitBeforeRedirect.ctWpforms', function (event) {\n      if (!markRedirectEvent(event)) return;\n      var form = event && event.target;\n      var id = formId(form);\n      if (!id) return;\n      if (redirectEpochByForm) redirectEpochByForm.set(form, (redirectEpochByForm.get(form) || 0) + 1);\n      emitConfirmed(id, form, 'ajax-redirect');\n    });\n  }\n  function ready() {\n    processNativeVerdict();\n    hookWpformsEvents();\n  }\n  // Let sibling Method 2 tags in the same page task install their enrichment\n  // delegate before a native confirmation verdict is dispatched.\n  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true });\n  else setTimeout(ready, 0);\n  document.addEventListener('DOMContentLoaded', hookWpformsEvents, { once: true });\n  window.addEventListener('load', hookWpformsEvents, { once: true });\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - WPForms Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "wpforms_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - WPForms Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

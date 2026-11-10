@@ -7,7 +7,7 @@ Partner and affiliate program management platform for SaaS companies with deal t
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Vendor API v2 for partnerships, deals, customers, transactions |
-| MCP | - | Not available |
+| MCP | ✓ | Official remote server at `mcp.partnerstack.com`, checked 2026-10-27 |
 | CLI | ✓ | [partnerstack.js](../clis/partnerstack.js) |
 | SDK | - | No official SDK; REST API with Basic Auth |
 

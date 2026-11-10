@@ -103,8 +103,8 @@ unused characters represent waste or intentional simplicity.
 
 | Score | Criteria                                                                                                                                                                      |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9-10  | 8-10 screenshots with clear messaging/captions, preview video present, screenshots tell a story in sequence, each communicates one benefit, icon is distinctive and memorable |
-| 7-8   | 6-7 screenshots with captions, good icon, no video OR good video but some screenshot messaging unclear                                                                        |
+| 9-10  | First three screenshots carry the core value story with captions, 5+ total each communicating one benefit, preview video present, icon is distinctive and memorable           |
+| 7-8   | 5+ captioned screenshots but the first three don't lead with the core value, good icon, no video OR good video but some screenshot messaging unclear                          |
 | 5-6   | 5+ screenshots but weak/no captions, basic icon, no video, screenshots are UI dumps                                                                                           |
 | 3-4   | 3-4 screenshots, no captions, generic icon, no storytelling                                                                                                                   |
 | 1-2   | Fewer than 3 screenshots, or screenshots are raw unedited UI, poor icon                                                                                                       |
@@ -112,7 +112,7 @@ unused characters represent waste or intentional simplicity.
 
 **Check for:**
 
-- Screenshot count (minimum 5, ideal 8-10)
+- Screenshot count (at least 5; past 6 returns diminish, and 90% of users stop by the third, so judge the first three most heavily)
 - Caption/overlay text on screenshots (one message per screen, 5-7 words max)
 - First 3 screenshots (highest conversion impact on Apple)
 - Preview video presence and quality

@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Jotform",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Jotform Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n/* Jotform iframe completion listener. Reads no form answers.\n * Counts once per embedded frame on this page. */\n(function () {\n  'use strict';\n  if (window.__ctDetectJotform || window.__ctJotformMethod2Installed) return;\n  window.__ctDetectJotform = true;\n  window.__ctJotformMethod2Installed = true;\n  var completed = [];\n  window.addEventListener('message', function (event) {\n    if (!event.source || event.source === window) return;\n    if (!/^https:\\/\\/(form|submit)\\.jotform\\.com$/.test(event.origin)) return;\n    var data = event.data;\n    if (!data || typeof data !== 'object' || Array.isArray(data) || data.action !== 'submission-completed') return;\n    var frames = document.querySelectorAll('iframe');\n    for (var i = 0; i < frames.length; i++) {\n      var frame = frames[i];\n      if (frame.contentWindow !== event.source) continue;\n      var match = /^https:\\/\\/form\\.jotform\\.com\\/(\\d+)(?:[/?#]|$)/.exec(frame.getAttribute('src') || '');\n      if (!match || (data.formID != null && String(data.formID) !== match[1])) return;\n      if (completed.indexOf(frame) !== -1) return;\n      completed.push(frame);\n      window.dataLayer = window.dataLayer || [];\n      window.dataLayer.push({ event: 'jotform_form_submitted', form_id: match[1] });\n      return;\n    }\n  });\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Jotform Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "jotform_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Jotform Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

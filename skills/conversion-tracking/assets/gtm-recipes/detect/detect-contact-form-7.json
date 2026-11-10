@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Contact Form 7",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Contact Form 7 Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  'use strict';\n\n  // One shared runtime owns eligibility, accepted event identity, and the ID-only fallback.\n  // A legacy recipe guard without this runtime is unknown code, so do not stack a new listener.\n  var runtime = window.__ctCf7Runtime;\n  if (runtime && runtime.installed) return;\n  if (!runtime && window.__ctDetectContactForm7) return;\n  runtime = runtime || { installed: false };\n  window.__ctCf7Runtime = runtime;\n  window.__ctDetectContactForm7 = true;\n  window.dataLayer = window.dataLayer || [];\n  var seenEvents = typeof WeakSet === 'function' ? new WeakSet() : null;\n  var seenEventFallback = [];\n\n  function isContactForm7Form(formEl) {\n    if (!formEl || (formEl.tagName || '').toLowerCase() !== 'form') return false;\n    try {\n      if (formEl.classList && formEl.classList.contains('wpcf7-form')) return true;\n      return !!(formEl.closest && formEl.closest('.wpcf7'));\n    } catch (e) {\n      return false;\n    }\n  }\n\n  function validFormId(value) {\n    if (typeof value === 'number' && Number.isFinite(value) && Math.floor(value) === value && value > 0 && value <= 9007199254740991) return String(value);\n    if (typeof value !== 'string' || !/^[1-9]\\d*$/.test(value)) return '';\n    var number = Number(value);\n    return Number.isFinite(number) && number <= 9007199254740991 && String(number) === value ? value : '';\n  }\n\n  function readFormId(formEl, event) {\n    // CF7 6.1.6's event detail has contactFormId; read no other detail keys.\n    var detailId = '';\n    try {\n      detailId = validFormId(event && event.detail && event.detail.contactFormId);\n    } catch (e) {}\n    if (detailId) return detailId;\n\n    // Compatibility fallback for markup where the event detail omits the ID.\n    try {\n      var directId = validFormId(formEl.getAttribute && formEl.getAttribute('data-wpcf7-id'));\n      if (directId) return directId;\n      var wrap = formEl.closest && formEl.closest('.wpcf7');\n      return validFormId(wrap && wrap.getAttribute && wrap.getAttribute('data-wpcf7-id'));\n    } catch (e) {\n      return '';\n    }\n  }\n\n  // CF7 can send both clicks while the first request is still pending.\n  // Group those requests without blocking or changing the form submission.\n  document.addEventListener('wpcf7beforesubmit', function (event) {\n    var formEl = event && event.target;\n    if (!isContactForm7Form(formEl)) return;\n    if (!formEl.__ctCf7Attempt || formEl.getAttribute('data-status') !== 'submitting') {\n      formEl.__ctCf7Attempt = { emitted: false };\n    }\n  }, false);\n\n  document.addEventListener('wpcf7mailsent', function (event) {\n    var formEl = event && event.target;\n    if (!isContactForm7Form(formEl)) return;\n    if (seenEvents) {\n      if (seenEvents.has(event)) return;\n      seenEvents.add(event);\n    } else {\n      if (seenEventFallback.indexOf(event) !== -1) return;\n      seenEventFallback.push(event);\n      if (seenEventFallback.length > 50) seenEventFallback.shift();\n    }\n\n    var formId = readFormId(formEl, event);\n    if (!formId) return;\n    var attempt = formEl.__ctCf7Attempt;\n    if (attempt && attempt.emitted) return;\n    if (attempt) attempt.emitted = true;\n\n    // The optional Method 2 adapter may enrich this accepted event. It must\n    // return literal true only after pushing; otherwise the shared core emits\n    // the same event with IDs only. Neither path inspects event.detail values.\n    var enriched = false;\n    try {\n      if (typeof window.__ctCf7Method2Emit === 'function') {\n        enriched = window.__ctCf7Method2Emit(formEl, event, formId) === true;\n      }\n    } catch (e) {\n      enriched = false;\n    }\n    if (!enriched) {\n      window.dataLayer.push({ event: 'contact_form_7_submitted', form_id: formId });\n    }\n  }, false);\n  runtime.installed = true;\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Contact Form 7 Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "contact_form_7_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Contact Form 7 ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

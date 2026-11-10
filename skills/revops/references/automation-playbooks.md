@@ -26,7 +26,7 @@ Platform-specific workflow recipes for HubSpot, Salesforce, scheduling tools, an
 **Actions:**
 1. Send internal email to contact owner: "SLA warning: [Contact Name] has not been contacted"
 2. If still no activity after 24 hours → send alert to sales manager
-3. If still no activity after 48 hours → reassign contact owner via rotation
+3. If still no activity after 48 hours → reassign contact owner via rotation, if the team has agreed a reassignment rule; otherwise alert the manager and keep the owner (see [inbound-routing.md](inbound-routing.md))
 4. Create task for new owner: "Urgent: Contact [Contact Name] — reassigned due to SLA breach"
 **Outcome:** No MQL goes unworked for more than 48 hours
 **Notes:** Exclude contacts where last activity type is "Call" or "Meeting" (already engaged)
@@ -143,7 +143,7 @@ Platform-specific workflow recipes for HubSpot, Salesforce, scheduling tools, an
 **Flow steps:**
 1. Get Records: Leads where Status = "MQL" AND LastActivityDate < TODAY - 1
 2. Decision: Is lead older than 48 hours with no activity?
-   - YES → Reassign to next rep, create urgent task, alert manager
+   - YES → Alert manager and create urgent task; reassign to the next rep only under an agreed reassignment rule
    - NO → Send reminder email to current owner
 **Notes:** Pair with Process Builder for real-time alerts on initial assignment
 
@@ -278,7 +278,7 @@ Booking form submitted
 1. Send Slack DM to rep
 2. Send email to rep
 3. If 2+ hours overdue → Slack DM to manager
-4. If 4+ hours overdue → reassign in CRM (via webhook back to CRM)
+4. If 4+ hours overdue → reassign in CRM (via webhook back to CRM), only under an agreed reassignment rule; otherwise escalate to the manager
 
 ### 6. Weekly Pipeline Digest
 

@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Wix Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Wix Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWixForms) return;\n  window.__ctDetectWixForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Wait for Wix's inline confirmation without reading form answers.\n  var SUCCESS_WINDOW_MS = 60000;\n\n  function fireConversion(formId) {\n    window.dataLayer.push({\n      event: 'wix_form_submitted',\n      form_id: formId || ''\n    });\n  }\n\n  // ---- Form detection ----\n\n  // New Wix Forms carry data-hook markers: the form itself is\n  // data-hook=\"form-<uuid>\", fields are wrapped in\n  // data-hook=\"form-field-...\", and the submit control is\n  // data-hook=\"submit-button\".\n  function isNewWixForm(root) {\n    if (!root) return false;\n    try {\n      var hook = root.getAttribute ? root.getAttribute('data-hook') : null;\n      if (hook && hook.indexOf('form-') === 0 && hook.indexOf('form-field-') !== 0) {\n        return true;\n      }\n      if (root.querySelector &&\n          (root.querySelector('[data-hook^=\"form-field-\"]') ||\n           root.querySelector('[data-hook=\"submit-button\"]'))) {\n        return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // Legacy Forms have no observed accepted-only browser verdict in this pack.\n  // Their native submit event is an attempt, so coverage is deliberately withheld.\n\n  // New Wix Forms arm on a click and confirm with Wix's success marker.\n\n  // Watchers currently in flight, keyed by form root, so duplicate click\n  // events Wix emits for a single Submit press don't arm two watchers. A\n  // re-click on a watched root REFRESHES the existing watcher instead of\n  // being dropped, so a visitor who fails validation, fixes a field, and\n  // clicks again inside the window gets a fresh verdict.\n  var activeWatchers = [];\n\n  function findWatcher(root) {\n    for (var w = 0; w < activeWatchers.length; w++) {\n      if (activeWatchers[w].root === root) return activeWatchers[w];\n    }\n    return null;\n  }\n\n  function findNewFormRoot(btn) {\n    var root = btn.closest ? btn.closest('form') : null;\n    if (root && isNewWixForm(root)) return root;\n    if (btn.closest) {\n      var alt = btn.closest('[data-hook=\"form-root\"]') || btn.closest('[data-hook^=\"form-\"]');\n      if (alt && isNewWixForm(alt)) return alt;\n    }\n    return null;\n  }\n\n  // Wix FormViewerWidget renders this hook after its submission action\n  // returns a submission. Generic classes and navigation are not acceptance.\n  function classifySuccessNode(node) {\n    if (!node || node.nodeType !== 1) return null;\n    return node.getAttribute &&\n      node.getAttribute('data-hook') === 'submit-form-success-message'\n      ? 'structural' : null;\n  }\n\n  function isNodeHidden(el) {\n    try {\n      if (el.hidden) return true;\n      if (el.getAttribute && el.getAttribute('aria-hidden') === 'true') return true;\n      var view = el.ownerDocument && el.ownerDocument.defaultView;\n      if (view && view.getComputedStyle) {\n        var cs = view.getComputedStyle(el);\n        if (cs && (cs.display === 'none' || cs.visibility === 'hidden')) return true;\n      }\n    } catch (e) {\n      // fall through\n    }\n    return false;\n  }\n\n  // Ancestor-aware hiding check, capped at the observed container.\n  function isConcealed(el, stopAt) {\n    var node = el;\n    var depth = 0;\n    while (node && node.nodeType === 1 && depth < 12) {\n      if (isNodeHidden(node)) return true;\n      if (node === stopAt) break;\n      node = node.parentNode;\n      depth++;\n    }\n    return false;\n  }\n\n  function watchForSuccess(root, formId) {\n    var entry = { root: root, refresh: refresh, cancel: cleanup };\n    activeWatchers.push(entry);\n\n    var fired = false;\n    var timer = null;\n    var observer = null;\n    function startTimer() {\n      if (timer) clearTimeout(timer);\n      timer = setTimeout(function() {\n        if (!fired) cleanup(); // No success signal within the window.\n      }, SUCCESS_WINDOW_MS);\n    }\n\n    // A later click on the same root can be a duplicate click event for one\n    // press, or a real re-submit after the visitor corrected a failed\n    // field. Everything reflects the LATEST attempt.\n    function refresh(nextFormId) {\n      if (fired) return;\n      formId = nextFormId;\n      startTimer();\n    }\n\n    function cleanup() {\n      if (timer) { clearTimeout(timer); timer = null; }\n      if (observer) { try { observer.disconnect(); } catch (e) {} observer = null; }\n      var idx = activeWatchers.indexOf(entry);\n      if (idx !== -1) activeWatchers.splice(idx, 1);\n      discardMethod2(formId, root);\n    }\n\n    function fire() {\n      if (fired) return;\n      fired = true;\n      var handled = false;\n      try {\n        if (typeof window.__ctWixMethod2Emit === 'function') {\n          handled = window.__ctWixMethod2Emit(formId, root) === true;\n        }\n      } catch (e) {}\n      if (!handled) fireConversion(formId);\n      cleanup();\n    }\n\n    function noteEvidence(node) {\n      if (!node || node === scope) return false;\n      if (classifySuccessNode(node) === 'structural' && !isConcealed(node, scope)) {\n        fire();\n        return true;\n      }\n      if (node.querySelectorAll) {\n        var markers = node.querySelectorAll('[data-hook=\"submit-form-success-message\"]');\n        for (var i = 0; i < markers.length; i++) {\n          if (noteEvidence(markers[i])) return true;\n        }\n      }\n      return false;\n    }\n\n    function onMutations(muts) {\n      if (fired) return;\n      for (var i = 0; i < muts.length; i++) {\n        var added = muts[i].addedNodes || [];\n        for (var j = 0; j < added.length; j++) {\n          var node = added[j];\n          if (noteEvidence(node)) return;\n        }\n      }\n    }\n\n    // The inline confirmation belongs to this form only.\n    var scope = root;\n    try {\n      observer = new MutationObserver(onMutations);\n      observer.observe(scope, {\n        childList: true,\n        subtree: true\n      });\n    } catch (e) {\n      // Without observation, no conversion is inferred.\n    }\n\n    startTimer();\n  }\n\n  function handleClick(event) {\n    try {\n      var target = event.target;\n      if (!target || !target.closest) return;\n\n      var btn = target.closest('[data-hook=\"submit-button\"]');\n      if (!btn) return;\n\n      var root = findNewFormRoot(btn);\n      if (!root) return;\n\n      var formId = root.getAttribute ? (root.getAttribute('data-hook') || root.id || '') : (root.id || '');\n\n      var existing = findWatcher(root);\n      if (existing) {\n        existing.refresh(formId);\n        return;\n      }\n\n      watchForSuccess(root, formId);\n    } catch (e) {\n      // Never throw back into Wix's own click handling.\n    }\n  }\n\n  if (typeof document !== 'undefined' && document.addEventListener) {\n    document.addEventListener('click', handleClick, true);     // NEW forms\n  }\n\n  function discardMethod2(formId, root) {\n    try {\n      if (typeof window.__ctWixMethod2Discard === 'function') {\n        window.__ctWixMethod2Discard(formId, root);\n      }\n    } catch (e) {}\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Wix Form Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "wix_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Wix Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

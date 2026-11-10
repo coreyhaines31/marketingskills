@@ -35,7 +35,7 @@ Optional frontmatter fields: `license` (default: MIT), `metadata` (author, versi
 
 - **Directory name**: lowercase, hyphens only (e.g., `emails`)
 - **Name field**: must match directory name exactly
-- **Description**: 1-1024 characters, include trigger phrases
+- **Description**: 1-500 characters: what the skill does, when to use it, and which related skill to use instead
 
 ### 4. Structure your skill
 
@@ -77,6 +77,10 @@ This library is open source and contributions are welcome from **anyone — incl
 - **The swap test.** If you swapped your tool for a competitor, the section should still read as fair. If removing it breaks the guidance, it was shilling — rework it.
 
 The maintainer holds final editorial control and may edit or cut anything for neutrality and accuracy. Core skills stay editorially independent: sponsorship and contributions add content, they never buy a recommendation. Full program rules and boundaries — the tool taxonomy, what sponsorship buys and never buys, disclosure, and the partner lifecycle — are in [`tools/PARTNERS.md`](tools/PARTNERS.md).
+
+### Adding an integration guide for your own tool
+
+Makers are welcome to add a neutral guide to [`tools/integrations/`](tools/integrations/). It has to clear the [usefulness bar](tools/PARTNERS.md#toolsintegrations-spec-any-tool-partner-or-not): it lets an agent do the work (endpoints, MCP setup, CLI commands, auth), not sell the tool. Say in your PR that you build or work for the tool. These PRs are reviewed in a monthly batch. A merged guide is listed in the registry; featured placement (the ◆ badge, README and site listing, a launch announcement) comes with the [partner program](https://marketing-skills.com/sponsorship).
 
 ## Submitting Your Contribution
 

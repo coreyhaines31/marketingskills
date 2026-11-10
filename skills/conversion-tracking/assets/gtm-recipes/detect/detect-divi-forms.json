@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Divi Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Divi Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectDiviForms) return;\n  window.__ctDetectDiviForms = true;\n  window.dataLayer = window.dataLayer || [];\n  var reported = typeof WeakSet === 'function' ? new WeakSet() : null;\n  function inspect(container) {\n    if (!container || !container.querySelector) return;\n    var notice;\n    try {\n      notice = container.querySelector('.et-pb-contact-message.et_pb_success_message');\n      if (!notice || container.querySelector('form.et_pb_contact_form') ||\n          container.querySelector('.et_pb_contact_error_meesage') ||\n          container.querySelector('.et_contact_error')) return;\n    } catch (e) { return; }\n    if (reported && reported.has(notice)) return;\n    if (reported) reported.add(notice);\n    var id = container.id || (container.getAttribute && container.getAttribute('data-id')) || '';\n    if (!id) return;\n    var adapter = window.__ctDiviMethod2Emit;\n    if (typeof adapter === 'function' && adapter(container, String(id)) === true) return;\n    window.dataLayer.push({ event: 'divi_form_submitted', form_id: String(id) });\n  }\n  function observe(container) {\n    if (!container || container.__ctDiviObserved || typeof MutationObserver === 'undefined') return;\n    container.__ctDiviObserved = true;\n    new MutationObserver(function () { inspect(container); }).observe(container,\n      { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });\n    inspect(container);\n  }\n  function start() {\n    var existing = document.querySelectorAll('.et_pb_contact_form_container');\n    for (var i = 0; i < existing.length; i++) observe(existing[i]);\n    if (typeof MutationObserver !== 'undefined' && document.documentElement) {\n      new MutationObserver(function (records) {\n        for (var r = 0; r < records.length; r++) {\n          for (var n = 0; n < records[r].addedNodes.length; n++) {\n            var node = records[r].addedNodes[n];\n            if (node.nodeType !== 1) continue;\n            if (node.matches && node.matches('.et_pb_contact_form_container')) observe(node);\n            var nested = node.querySelectorAll ? node.querySelectorAll('.et_pb_contact_form_container') : [];\n            for (var j = 0; j < nested.length; j++) observe(nested[j]);\n          }\n        }\n      }).observe(document.documentElement, { childList: true, subtree: true });\n    }\n  }\n  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });\n  else start();\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Divi Forms Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "divi_form_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Divi Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

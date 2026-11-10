@@ -59,19 +59,23 @@ jobs:
           print("Title:", title)
           PY
 
-      - name: Build complete source ZIPs and reviewed web ZIPs
+      - name: Build complete source ZIPs, reviewed web ZIPs, and Perplexity ZIPs
         run: |
           python3 scripts/package_skills.py --ref "${{ steps.ver.outputs.package_ref }}" --target source --output dist/skill-zips
           python3 scripts/package_skills.py --ref "${{ steps.ver.outputs.package_ref }}" --target claude-web --mapped-only --output dist/skill-zips
+          python3 scripts/package_skills.py --ref "${{ steps.ver.outputs.package_ref }}" --target perplexity --output dist/skill-zips
           python3 - <<'PY'
           import json, os
           from pathlib import Path
           root = Path("dist/skill-zips")
           source = json.loads((root / "source-manifest.json").read_text())
           web = json.loads((root / "claude-web-manifest.json").read_text())
+          perplexity = json.loads((root / "perplexity-manifest.json").read_text())
           lines = ["## Skill ZIP assets", "", f"Complete source catalog: {len(source['bundles'])} skills.",
-                   f"Claude web target: {len(web['bundles'])} skills with reviewed short descriptions.", "",
+                   f"Claude web target: {len(web['bundles'])} skills with reviewed short descriptions.",
+                   f"Perplexity Computer target: {len(perplexity['bundles'])} skills.", "",
                    "Choose `<name>-claude-web.zip` for the documented single-folder web upload format.",
+                   "Choose `<name>-perplexity.zip` for Perplexity Computer (SKILL.md at the archive root).",
                    "Source ZIPs retain original metadata; they are not substitutes for omitted web ZIPs.",
                    "Live client upload, account limits, and invocation behavior have not been verified.", "",
                    "Web omissions (also recorded in `claude-web-manifest.json`):"]

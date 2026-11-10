@@ -38,7 +38,7 @@ Attribution defaults differ sharply by business model. The same "which channel d
 5. **Incrementality on your biggest channels — especially the "always credited" ones.** Geo-holdouts and on/off tests earn their keep on retargeting, branded search, and Meta prospecting, which platform reporting flatters most. Incremental CPA (spend ÷ *incremental* orders) is the number that should move budget. (See `measurement-paradigms.md`.)
 6. **Post-purchase survey to catch the dark-social + brand demand.** A one-question "How did you hear about us?" on the order-confirmation page consistently reveals that podcasts, TikTok organic, and word-of-mouth drive far more than pixels credit — because those touches convert later as "direct" or branded search. Kickstarter-era DTC brands run this as standard for exactly this reason.
 
-**Tooling:** store/backend as truth; platform pixels + CAPI for optimization (setup → ads `conversion-tracking.md`); Supermetrics/Coupler to pull platform numbers into one place for de-duping; a post-purchase survey app; MMM tooling (Robyn/Meridian or a vendor) once spend justifies it.
+**Tooling:** store/backend as truth; platform pixels + CAPI for optimization (setup → conversion-tracking); Supermetrics/Coupler to pull platform numbers into one place for de-duping; a post-purchase survey app; MMM tooling (Robyn/Meridian or a vendor) once spend justifies it.
 
 **The DTC trap to name for the user:** summing platform-reported conversions. If Meta claims 100 and Google claims 80 but you had 120 orders, you do **not** have 180 conversions — you have 120 with overlapping claims. Anchor on the 120 and allocate the overlap with incrementality, not by trusting whichever platform shouts loudest.
 

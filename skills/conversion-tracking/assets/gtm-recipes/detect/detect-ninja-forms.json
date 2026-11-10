@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Ninja Forms",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Ninja Forms Submission Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  'use strict';\n  var runtime = window.__ctNinjaFormsRuntime;\n  if (runtime && runtime.installed) return;\n\n  // Preserve the recipe's public duplicate-install guard. If a superseded\n  // snippet already set it without this runtime, fail closed: don't layer a\n  // second listener over an unknown old detector.\n  if (!runtime && window.__ctDetectNinjaForms) return;\n\n  if (!runtime) {\n    runtime = { seenEntryIds: Object.create(null), installed: false };\n    window.__ctNinjaFormsRuntime = runtime;\n  }\n  window.__ctDetectNinjaForms = true;\n  window.dataLayer = window.dataLayer || [];\n\n  var MISSING = {};\n  var MAX_SAFE_INTEGER = 9007199254740991;\n\n  // Read only own data properties. Callback payloads are normally parsed JSON,\n  // but a filter or another page script can supply accessor-backed objects.\n  // Do not execute getters while deciding whether a response proves a save.\n  function ownDataValue(object, key) {\n    if (!object || typeof object !== 'object' || !Object.prototype.hasOwnProperty.call(object, key)) return MISSING;\n    if (typeof Object.getOwnPropertyDescriptor !== 'function') return MISSING;\n    var descriptor = Object.getOwnPropertyDescriptor(object, key);\n    if (!descriptor || !Object.prototype.hasOwnProperty.call(descriptor, 'value')) return MISSING;\n    return descriptor.value;\n  }\n\n  function emptyErrors(value) {\n    if (Object.prototype.toString.call(value) === '[object Array]') return value.length === 0;\n    if (!value || typeof value !== 'object') return false;\n    for (var key in value) {\n      if (Object.prototype.hasOwnProperty.call(value, key)) return false;\n    }\n    return true;\n  }\n\n  // Accept only primitive safe integers or canonical decimal strings. Never\n  // coerce booleans, arrays, objects, boxed numbers, or accessor-backed IDs.\n  function positiveIntegerId(value) {\n    if (typeof value === 'number') {\n      if (!isFinite(value) || value <= 0 || Math.floor(value) !== value || value > MAX_SAFE_INTEGER) return null;\n      return String(value);\n    }\n    if (typeof value !== 'string' || !/^[1-9]\\d*$/.test(value)) return null;\n    var number = Number(value);\n    if (!isFinite(number) || number > MAX_SAFE_INTEGER || String(number) !== value) return null;\n    return value;\n  }\n\n  function canonicalFormId(value) {\n    var formId;\n    if (typeof value === 'number') {\n      if (!isFinite(value) || value <= 0 || Math.floor(value) !== value || value > MAX_SAFE_INTEGER) return null;\n      formId = String(value);\n    } else if (typeof value === 'string') {\n      formId = value;\n    } else {\n      return null;\n    }\n    if (!/^[1-9]\\d*(?:_(?:0|[1-9]\\d*))*$/.test(formId)) return null;\n    var parts = formId.split('_');\n    for (var i = 0; i < parts.length; i++) {\n      var part = Number(parts[i]);\n      if (!isFinite(part) || part > MAX_SAFE_INTEGER || String(part) !== parts[i]) return null;\n    }\n    return formId;\n  }\n\n  function inspectResponse(response, callbackFormId) {\n    var errors = ownDataValue(response, 'errors');\n    if (errors === MISSING || !emptyErrors(errors)) return null;\n    var data = ownDataValue(response, 'data');\n    if (!data || typeof data !== 'object') return null;\n    var halt = ownDataValue(data, 'halt');\n    if (halt !== MISSING && halt) return null;\n    var nestedErrors = ownDataValue(data, 'errors');\n    if (nestedErrors !== MISSING && !emptyErrors(nestedErrors)) return null;\n    var formValue = ownDataValue(data, 'form_id');\n    var formId = formValue === MISSING ? null : canonicalFormId(formValue);\n    if (!formId || canonicalFormId(callbackFormId) !== formId) return null;\n    var actions = ownDataValue(data, 'actions');\n    if (!actions || typeof actions !== 'object') return null;\n    var save = ownDataValue(actions, 'save');\n    if (!save || typeof save !== 'object') return null;\n    var saveValue = ownDataValue(save, 'sub_id');\n    var entryId = saveValue === MISSING ? null : positiveIntegerId(saveValue);\n    if (!entryId) return null;\n    return { formId: formId, entryId: entryId };\n  }\n\n  runtime.inspectResponse = inspectResponse;\n\n  function handleSubmitResponse(response, textStatus, jqXHR, callbackFormId) {\n      var accepted = inspectResponse(response, callbackFormId);\n      if (!accepted) {\n        if (typeof window.__ctNinjaMethod2AfterResponse === 'function') {\n          window.__ctNinjaMethod2AfterResponse(callbackFormId, false, false);\n        }\n        return;\n      }\n\n      var key = '$' + accepted.entryId;\n      if (runtime.seenEntryIds[key]) {\n        if (typeof window.__ctNinjaMethod2AfterResponse === 'function') {\n          window.__ctNinjaMethod2AfterResponse(accepted.formId, false, true);\n        }\n        return;\n      }\n      runtime.seenEntryIds[key] = true;\n\n      var enriched = false;\n      if (typeof window.__ctNinjaMethod2Emit === 'function') {\n        try {\n          enriched = window.__ctNinjaMethod2Emit(accepted.formId, accepted.entryId) === true;\n        } catch (e) {\n          enriched = false;\n        }\n      }\n      if (!enriched) {\n        window.dataLayer.push({ event: 'ninja_forms_submitted', form_id: accepted.formId });\n      }\n      if (typeof window.__ctNinjaMethod2AfterResponse === 'function') {\n        window.__ctNinjaMethod2AfterResponse(accepted.formId, true, false);\n      }\n  }\n\n  function hookNfRadio() {\n    if (runtime.installed) return true;\n    var radio = typeof nfRadio !== 'undefined' && nfRadio.channel ? nfRadio :\n      (typeof Backbone !== 'undefined' && Backbone.Radio ? Backbone.Radio : null);\n    if (!radio) return false;\n    try {\n      radio.channel('forms').on('submit:response', handleSubmitResponse);\n      runtime.installed = true;\n      return true;\n    } catch (e) {\n      return false;\n    }\n  }\n\n  if (!hookNfRadio()) {\n    document.addEventListener('DOMContentLoaded', hookNfRadio);\n    window.addEventListener('load', hookNfRadio);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Ninja Forms Submitted",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "ninja_forms_submitted"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Ninja Forms Form ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "form_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

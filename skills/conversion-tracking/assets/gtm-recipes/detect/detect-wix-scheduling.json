@@ -1,0 +1,103 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-02 00:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Conversion Detection - Wix Scheduling",
+      "publicId": "GTM-XXXXXXX",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "0",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+    },
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "Conversion Detection - Wix Scheduling Booking Listener",
+        "type": "html",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "html",
+            "value": "<script>\n(function () {\n  if (window.__ctDetectWixScheduling) return;\n  window.__ctDetectWixScheduling = true;\n  window.dataLayer = window.dataLayer || [];\n\n  // Wix Bookings checks out through Wix eCommerce. Once the order exists,\n  // the shared Thank You page reports a Purchase through Wix's own site\n  // analytics stream (window.wixDevelopersAnalytics). Its line items name\n  // the Wix app that sold them, so a booking is an item from Wix Bookings\n  // and a Wix Stores order is not. Only the event name, the line items'\n  // app IDs and the order ID are read, never the buyer's details.\n  var BOOKINGS_APP_ID = '13d21c63-b5ec-5912-8397-c3a5ddb27a97';\n  var LISTENER_ID = 'ctRecipeWixScheduling';\n  var seen = {};\n  var registered = false;\n\n  function isBookingsItem(item) {\n    try {\n      return !!item && typeof item === 'object' && !!item.catalogReference &&\n        item.catalogReference.appId === BOOKINGS_APP_ID;\n    } catch (e) {\n      return false;\n    }\n  }\n\n  function orderIdOf(params) {\n    var id = params.orderId;\n    if (typeof id !== 'string' || !id) id = params.id;\n    return typeof id === 'string' && /^[A-Za-z0-9-]{1,64}$/.test(id) ? id : '';\n  }\n\n  function onWixEvent(name, params) {\n    try {\n      if (name !== 'Purchase' || !params || typeof params !== 'object') return;\n      var items = params.contents;\n      if (!items || typeof items.length !== 'number') return;\n      var booking = false;\n      for (var i = 0; i < items.length; i++) {\n        if (isBookingsItem(items[i])) { booking = true; break; }\n      }\n      if (!booking) return;\n      var orderId = orderIdOf(params);\n      if (!orderId || seen[orderId]) return;\n      seen[orderId] = true;\n      window.dataLayer.push({\n        event: 'wix_appointment_scheduled',\n        booking_id: orderId\n      });\n    } catch (e) {\n      // Never throw back into Wix's analytics.\n    }\n  }\n\n  // Wix doesn't replay earlier events to a late listener, so register as\n  // soon as the stream exists.\n  function register() {\n    if (registered) return true;\n    var wda = window.wixDevelopersAnalytics;\n    if (!wda || typeof wda.register !== 'function') return false;\n    try {\n      wda.register(LISTENER_ID, onWixEvent);\n      registered = true;\n    } catch (e) {}\n    return registered;\n  }\n\n  if (!register()) {\n    try { window.addEventListener('wixDevelopersAnalyticsReady', register); } catch (e) {}\n    var tries = 0;\n    var timer = setInterval(function () {\n      tries++;\n      if (register() || tries > 300) clearInterval(timer);\n    }, 100);\n  }\n})();\n</script>"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "supportDocumentWrite",
+            "value": "false"
+          }
+        ],
+        "firingTriggerId": [
+          "2147479553"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "2",
+        "name": "CE - Wix Appointment Scheduled",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "wix_appointment_scheduled"
+              }
+            ]
+          }
+        ],
+        "filter": []
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "1",
+        "name": "DLV - Wix Booking ID",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "booking_id"
+          },
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          }
+        ]
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/0/containers/0/workspaces/0"
+  }
+}

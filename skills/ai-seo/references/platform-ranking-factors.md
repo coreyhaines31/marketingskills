@@ -91,6 +91,7 @@ Copilot is embedded across Microsoft's ecosystem — Edge, Windows, Microsoft 36
 
 **What to focus on:**
 - Submit your site to Bing Webmaster Tools (many sites only submit to Google Search Console)
+- Read its **AI Performance** report (beta since February 2026): how often your pages are cited in Copilot and Bing's AI answers, plus the **grounding queries** Bing used to retrieve them. Grounding queries are Bing's interpretation of the request, not what the user typed, so they show what the engine is actually searching for. No click data, and no mapping from a query to a specific citation.
 - Use IndexNow protocol for faster indexing of new and updated content
 - Optimize page speed to under 2 seconds
 - Write clear entity definitions — when your content defines a term or concept, make the definition explicit and extractable
@@ -107,12 +108,27 @@ Claude uses Brave Search as its search backend when web search is enabled — no
 
 **What to focus on:**
 - Verify your content appears in Brave Search results (search for your brand and key terms at search.brave.com)
+- If it's missing, request a crawl at search.brave.com/submit-url. It only alerts Brave's crawler: there's no webmaster console or sitemap submission, so check referrals from search.brave.com in your analytics to see whether it worked
 - Decide separately whether to allow `Claude-SearchBot` for search discovery, `Claude-User` for user-directed retrieval, and `ClaudeBot` for potential model training
 - Maximize factual density — specific numbers, named sources, dated statistics
 - Use clear, extractable structure with descriptive headings
 - Cite authoritative sources within your content
 - Aim to be the most factually accurate source on your topic — Claude rewards precision
 - Don't rely on self-ranked "best X" lists. In a live test (Sep 2026), Claude noted that results for a "best [category]" query were dominated by vendors ranking themselves #1 and leaned on juried awards and practitioner reputation instead
+
+---
+
+## Meta AI and Muse
+
+Meta AI answers questions across Facebook, Instagram, WhatsApp, Messenger, and Meta's glasses. Muse, Meta's personal agent built on the Muse Spark model, launched in September 2026 and acts for the user: it connects to apps, recommends products, and buys them. Muse can search the full Shopify product catalog and check out with Link by Stripe, Shop Pay, and PayPal, plus retail connectors such as Walmart, Best Buy, Sephora, and Wayfair (TechCrunch, Sep 2026). Meta makes Muse free and expects to earn a fee on transactions, so shopping is the surface to watch.
+
+Meta hasn't documented which search index Meta AI uses or how it picks sources. Early hands-on tests found Muse unreliable at shopping tasks (Tom's Guide and CNN, Sep 2026). Treat practitioner claims about "ranking in Muse" as unverified.
+
+**What to focus on:**
+- Allow `meta-webindexer`. Meta says it crawls to improve Meta AI search results and so Meta can cite and link your content. Decide on `meta-externalagent` (training) separately
+- For physical products, make sure your Shopify catalog data is complete and current: titles, attributes, variants, price, and availability (see [multilingual-and-commerce.md](multilingual-and-commerce.md))
+- Apply the agent-readability basics in SKILL.md's Agentic Experiences section, since Muse reads and acts on pages for the user
+- Test with real prompts in the Meta AI app and log results with dates; there's no Meta citation report to rely on
 
 ---
 
@@ -127,11 +143,13 @@ User-agent: Googlebot
 User-agent: OAI-SearchBot
 User-agent: PerplexityBot
 User-agent: Claude-SearchBot
+User-agent: meta-webindexer
 Allow: /
 
 # Potential model training (publisher choice shown as disallow)
 User-agent: GPTBot
 User-agent: ClaudeBot
+User-agent: meta-externalagent
 Disallow: /
 
 # Gemini model training and grounding (publisher choice shown as disallow)
@@ -139,9 +157,9 @@ User-agent: Google-Extended
 Disallow: /
 ```
 
-User-triggered fetchers such as `ChatGPT-User`, `Claude-User`, and `Perplexity-User` are separate from automatic discovery. Vendor behavior can differ: OpenAI says `robots.txt` rules may not apply to `ChatGPT-User`, and Perplexity says `Perplexity-User` generally ignores them because these fetches are user-requested. Use `OAI-SearchBot`, not `ChatGPT-User`, to manage ChatGPT Search inclusion. `Google-Extended` is a standalone product token rather than a separate HTTP crawler; Google says it controls certain Gemini training and grounding uses and does not affect Google Search inclusion or ranking.
+User-triggered fetchers such as `ChatGPT-User`, `Claude-User`, and `Perplexity-User` are separate from automatic discovery. Vendor behavior can differ: OpenAI says `robots.txt` rules may not apply to `ChatGPT-User`, and Perplexity says `Perplexity-User` generally ignores them because these fetches are user-requested; Meta says `meta-externalfetcher` may bypass them. Meta also runs `facebookexternalhit` for link previews when a URL is shared on its apps; leave it allowed or shared links lose their title and image. Use `OAI-SearchBot`, not `ChatGPT-User`, to manage ChatGPT Search inclusion. `Google-Extended` is a standalone product token rather than a separate HTTP crawler; Google says it controls certain Gemini training and grounding uses and does not affect Google Search inclusion or ranking.
 
-Verify the current names and consequences in the vendors' maintained documentation: [OpenAI](https://developers.openai.com/api/docs/bots), [Perplexity](https://docs.perplexity.ai/docs/resources/perplexity-crawlers), [Anthropic](https://privacy.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), and [Google](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers).
+Verify the current names and consequences in the vendors' maintained documentation: [OpenAI](https://developers.openai.com/api/docs/bots), [Perplexity](https://docs.perplexity.ai/docs/resources/perplexity-crawlers), [Anthropic](https://privacy.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), [Meta](https://developers.facebook.com/docs/sharing/webmasters/web-crawlers), and [Google](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers).
 
 For implementation, inspect `/robots.txt` manually first. Optional helpers include each vendor's own crawler documentation and robots.txt testing tools.
 
@@ -157,7 +175,7 @@ If you're optimizing for AI search for the first time, focus your effort where y
 
 **Then expand to Perplexity** — Especially valuable if your audience includes researchers, early adopters, or tech professionals. Add FAQ schema, publish PDF resources, and write in clear, self-contained paragraphs.
 
-**Copilot and Claude are lower priority** unless your audience skews enterprise/Microsoft (Copilot) or developer/analyst (Claude). But the fundamentals — structured content, cited sources, schema markup — help across all platforms.
+**Copilot, Claude, and Meta AI are lower priority** unless your audience skews enterprise/Microsoft (Copilot), developer/analyst (Claude), or consumer shopping on Meta's apps (Meta AI and Muse). But the fundamentals — structured content, cited sources, schema markup — help across all platforms.
 
 **Actions that help everywhere:**
 1. Set an explicit, purpose-specific robots policy: allow relevant discovery crawlers while deciding training and user-triggered retrieval separately
