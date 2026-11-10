@@ -127,7 +127,6 @@ Anyone — including tool makers and partners — may contribute content that na
 | theirstack | Hiring & Tech Signals | ✓ | ✓ | - | - | [theirstack.md](integrations/theirstack.md) |
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
-| marcora | AI Content | ✓ | ✓ | - | - | [marcora.md](integrations/marcora.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
@@ -525,7 +524,6 @@ AI-powered content generation and optimization platforms.
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **airops** | AI content workflows, SEO content | Flow-based automation |
-| **marcora** | Shared positioning, brand voice, product facts | Hosted MCP server |
 
 **Agent recommendation**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
