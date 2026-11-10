@@ -206,7 +206,7 @@ Payment processing and subscription management.
 |------|----------|:-------------:|
 | **stripe** | SaaS subscriptions, developer-friendly | ✓ |
 | **paddle** | SaaS billing with tax handling | - |
-| **agentaos** | Merchant of record with payouts in countries Stripe does not serve | ✓ |
+| **agentaos** | Merchant of record for individuals and companies, local payouts in 85 countries | ✓ |
 
 **Agent recommendation**: Stripe for developer-first SaaS billing. Paddle for built-in tax compliance (merchant of record).
 

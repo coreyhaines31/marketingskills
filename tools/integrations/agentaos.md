@@ -1,6 +1,6 @@
 # AgentaOS
 
-Merchant of record for SaaS, digital products and services: card payments and subscriptions, VAT, sales tax and invoices handled, payouts to local bank accounts in 85 countries, including several Stripe does not serve. Individuals and companies can sell.
+Merchant of record for SaaS, digital products and services: card payments and subscriptions, VAT, sales tax and invoices handled, payouts to local bank accounts in 85 countries. Individuals and companies can sell.
 
 ## Capabilities
 
@@ -18,6 +18,38 @@ Merchant of record for SaaS, digital products and services: card payments and su
 - **Get key**: AgentaOS dashboard > Developers > API keys
 - **Base URL**: `https://api.agentaos.ai/api/v1`
 - **Test vs live**: the key prefix selects the mode. `sk_test_` keys use test data only; `sk_live_` keys move real money and need a verified business. Test and live data are separate.
+
+```bash
+curl https://api.agentaos.ai/api/v1/gateway/payment-links \
+  -H "x-api-key: $AGENTAOS_SECRET_KEY"
+```
+
+### MCP setup
+
+Hosted server (OAuth in the browser, no key):
+
+```json
+{
+  "mcpServers": {
+    "agentaos": { "type": "http", "url": "https://mcp.agentaos.ai/mcp" }
+  }
+}
+```
+
+Or run it locally with `npx -y agentaos`. Each CLI command below is also an MCP tool: `agenta products create` is `agenta_products_create` (the exception is `agenta status`, whose tool is `agenta_status_get`).
+
+### CLI
+
+```bash
+npm install -g agentaos            # installs `agenta` (Node.js 20+)
+agenta login                       # browser sign-in, session stored in ~/.agenta/
+agenta status                      # account and what's left before live payments
+agenta products create --name "Pro" -a 29 -c EUR --subscription --interval month
+agenta products list
+agenta pay checkout -a 29
+agenta subscriptions list
+agenta subscriptions cancel <id>   # end of period; --now to cancel immediately
+```
 
 ## Common Agent Operations
 
@@ -127,7 +159,7 @@ GET https://api.agentaos.ai/api/v1/gateway/subscriptions/{id}/invoices
 ## When to Use
 
 - Selling SaaS, digital products or services worldwide without registering for VAT and sales tax in each country
-- Founders based in countries where Stripe or PayPal is not available, or selling without a registered company
+- Selling as an individual without a registered company, or needing payouts to a local bank account in one of the 85 supported countries
 - Letting an AI agent create products and checkouts and read subscriptions over MCP
 - Compare with **stripe** (processor: you stay the seller and handle tax) and **paddle** (merchant of record) for the same jobs
 
