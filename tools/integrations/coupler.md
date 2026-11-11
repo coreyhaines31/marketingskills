@@ -51,11 +51,6 @@ Claude.ai, ChatGPT, Gemini CLI, Cursor and other clients are covered in the [MCP
 
 [coupler-io/skills](https://github.com/coupler-io/skills) is a set of analysis skills that run on Coupler.io data through the MCP server: marketing and PPC, sales, finance and e-commerce.
 
-```
-/plugin marketplace add coupler-io/skills
-/plugin install coupler-marketing-ads@coupler-io-skills
-```
-
 ## Common Agent Operations
 
 ### List Importers
