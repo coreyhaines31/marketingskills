@@ -182,7 +182,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
 
-**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups. RankParse for agent workflows where per-call cost matters — backlinks, domain authority, and tech stack at a fraction of enterprise pricing. GoAnyAPI when the same job also needs Google Ads transparency or Reverse AdSense data beside the SERP and keyword pulls, without adding a second vendor.
+**Agent recommendation**: Google Search Console is essential (free). Add Semrush or Ahrefs for competitive research. DataForSEO for programmatic SERP data. Keywords Everywhere for quick keyword lookups. RankParse for agent workflows where per-call cost matters — backlinks, domain authority, and tech stack at a fraction of enterprise pricing.
 
 ### CRM
 

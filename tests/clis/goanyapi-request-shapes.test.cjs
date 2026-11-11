@@ -5,15 +5,37 @@ const path = require('node:path')
 
 const cli = path.resolve(__dirname, '../../tools/clis/goanyapi.js')
 
-function run(args, dry = false, expectedStatus = 0) {
+function run(args, dry = false, expectedStatus = 0, apiKey = 'fixture-key') {
   const source = `global.fetch = async (url, options) => ({ ok: true, status: 200, text: async () => JSON.stringify({ code: 'ok', data: { url: url.toString(), headers: options.headers } }) }); process.argv = ['node', ${JSON.stringify(cli)}, ...${JSON.stringify(args)}, ...(${dry} ? ['--dry-run'] : [])]; require(${JSON.stringify(cli)});`
+  const env = { ...process.env }
+  if (apiKey === null) delete env.GOANYAPI_API_KEY
+  else env.GOANYAPI_API_KEY = apiKey
   const result = spawnSync(process.execPath, ['-e', source], {
     encoding: 'utf8',
-    env: { ...process.env, GOANYAPI_API_KEY: 'fixture-key' },
+    env,
   })
   assert.equal(result.status, expectedStatus, result.stderr)
   return JSON.parse(result.stdout)
 }
+
+test('--help prints the command surface with no API key set', () => {
+  for (const flag of ['--help', '-h', 'help']) {
+    const help = run([flag], false, 0, null)
+    assert.match(help.usage.serp, /serp google --query/)
+    assert.match(help.usage.ads, /ads transparency/)
+    assert.match(help.usage.options, /--dry-run/)
+  }
+})
+
+test('--dry-run prints the request with no API key set', () => {
+  const result = run(['domain', 'rating', '--domain', 'example.com'], true, 0, null)
+  assert.equal(new URL(result.url).pathname, '/api/v1/dr')
+  assert.equal(result.headers.Authorization, '***')
+})
+
+test('a real request without a key fails before the network', () => {
+  assert.match(run(['account', 'credits'], false, 1, null).error, /GOANYAPI_API_KEY/)
+})
 
 test('SERP edition selects both the endpoint and its keyword parameter', () => {
   const stable = new URL(run(['serp', 'google', '--query', 'ai image']).data.url)

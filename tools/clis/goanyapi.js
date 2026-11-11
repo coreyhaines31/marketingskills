@@ -4,9 +4,22 @@ const rawArgs = process.argv.slice(2)
 const API_KEY = process.env.GOANYAPI_API_KEY
 const BASE_URL = 'https://api.goanyapi.com/api/v1'
 
-if ((!API_KEY) && rawArgs.length > 0) {
-  console.error(JSON.stringify({ error: 'GOANYAPI_API_KEY environment variable required' }))
-  process.exit(1)
+const USAGE = {
+  serp: 'serp google --query <q> [--edition stable|standard|multi] [--gl us] [--hl en] [--start 0] [--device desktop] | serp bing --query <q> [--mkt en-US]',
+  keywords: 'keywords [suggestions|volume|difficulty|generate] --keyword <kw> | keywords autocomplete --engine <google|bing|duckduckgo|naver|coccoc|yandex|youtube|yahoo> --q <q> | keywords trends --q <kw1,kw2> [--geo US]',
+  domain: 'domain [traffic|rating|rating-history|backlinks] --domain <domain> | domain adsense --domain <d> | --pub-id <id>',
+  ads: 'ads transparency --keyword <kw> | --domain <d> | --creative-ids <id> ; ads statistics --action <action>',
+  page: 'page markdown --url <url> [--retain-images true] [--retain-links true] [--target-selector <css>]',
+  account: 'account [credits|activity]',
+  options: '--dry-run --timeout-ms <ms>',
+}
+
+// Help must work before any credential exists: an agent should be able to read
+// the command surface on a machine where GOANYAPI_API_KEY is not set yet.
+const HELP_FLAGS = new Set(['--help', '-h', 'help'])
+if (rawArgs.length === 0 || rawArgs.some(arg => HELP_FLAGS.has(arg))) {
+  console.log(JSON.stringify({ usage: USAGE }, null, 2))
+  process.exit(0)
 }
 
 
@@ -32,6 +45,9 @@ async function api(path, query) {
   if (args['dry-run']) {
     return { _dry_run: true, method: 'GET', url: url.toString(), headers: { ...headers, Authorization: '***' } }
   }
+  // The key is only needed once a real request is about to be sent, so help,
+  // flag validation and --dry-run all work without one.
+  if (!API_KEY) throw new Error('GOANYAPI_API_KEY environment variable required')
   const res = await fetch(url, { signal: requestSignal(), method: 'GET', headers })
   const text = await res.text()
   let payload
@@ -289,18 +305,7 @@ async function dispatch() {
       break
 
     default:
-      result = {
-        error: 'Unknown command',
-        usage: {
-          serp: 'serp google --query <q> [--edition stable|standard|multi] [--gl us] [--hl en] [--start 0] [--device desktop] | serp bing --query <q> [--mkt en-US]',
-          keywords: 'keywords [suggestions|volume|difficulty|generate] --keyword <kw> | keywords autocomplete --engine <google|bing|duckduckgo|naver|coccoc|yandex|youtube|yahoo> --q <q> | keywords trends --q <kw1,kw2> [--geo US]',
-          domain: 'domain [traffic|rating|rating-history|backlinks] --domain <domain> | domain adsense --domain <d> | --pub-id <id>',
-          ads: 'ads transparency --keyword <kw> | --domain <d> | --creative-ids <id> ; ads statistics --action <action>',
-          page: 'page markdown --url <url> [--retain-images true] [--retain-links true] [--target-selector <css>]',
-          account: 'account [credits|activity]',
-          options: '--dry-run --timeout-ms <ms>',
-        },
-      }
+      result = { error: 'Unknown command', usage: USAGE }
   }
 
   return result
