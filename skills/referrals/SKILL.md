@@ -2,7 +2,7 @@
 name: referrals
 description: "When the user wants referral and affiliate programs or word of mouth, or asks what to reward, how much to pay, or which loop to start with: refer-a-friend incentives, commissions and payouts, partner programs, 'made with' badges, review campaigns. For launch virality, see launch. For creator deals, see influencer-marketing."
 metadata:
-  version: 2.2.4
+  version: 2.2.5
 ---
 
 # Referral & Affiliate Programs
@@ -68,7 +68,7 @@ If the product is on the natural end, consider **product-embedded viral mechanis
 
 ### Affiliate Programs
 
-For partner recruitment/activation, cohort economics, executable terms, reconciliation, and measured incremental growth, load [the operating playbook](references/affiliate-operations.md). This expands the existing affiliate branch instead of creating an overlapping skill.
+For partner recruitment/activation, cohort economics, executable terms, reconciliation, and measured incremental growth, load [the operating playbook](references/affiliate-operations.md).
 
 **Best for:**
 - Reaching audiences you don't have access to

@@ -2,7 +2,7 @@
 name: launch
 description: "When the user wants to plan a product or feature launch, or asks whether it's ready, when to announce, or how to get noticed: Product Hunt, beta and early access, waitlists, release go-to-market, launch checklists, release notes. For marketing after launch, see marketing-ideas. For the offer, see offers."
 metadata:
-  version: 2.2.3
+  version: 2.2.4
 ---
 
 # Launch Strategy
@@ -117,7 +117,7 @@ The middle path is **SLC — Simple, Lovable, Complete** (Jason Cohen), the anti
 - **Lovable** — people *want* to use it, not just tolerate it. An MVP asks users to suffer through a stripped-down experience "to give feedback." SLC gives them something they'd choose. If nobody would be sad to lose it, it isn't lovable yet.
 - **Complete** — it's a *whole* experience for that one thing, not a stub with obvious holes. Complete at its chosen scope, not a teaser of a bigger promise.
 
-**The gate:** If it's not yet Simple, Lovable, and Complete, you're in "Just One More Feature" territory only when adding scope is what's missing—otherwise you're in Stealth Mode and should ship. Cut scope until one thing is lovable and complete, then launch that. SLC gives you a real launch now instead of a perfect launch never.
+**The gate:** If it's not yet Simple, Lovable, and Complete, cut scope until one thing is lovable and complete, then launch that. SLC gives you a real launch now instead of a perfect launch never.
 
 **Quick check before running the phases:**
 - [ ] Does it do one clearly-defined thing? (Simple)
@@ -377,7 +377,7 @@ If you can read the product repo, generate the week's changelog, announcement dr
 
 ## Related Skills
 
-- **marketing-ideas**: For additional launch tactics (#22 Product Hunt, #23 Early Access Referrals)
+- **marketing-ideas**: For additional launch tactics (#78 Product Hunt Launch, #79 Early-Access Referrals)
 - **emails**: For launch and onboarding email sequences
 - **cro**: For optimizing launch landing pages
 - **marketing-psychology**: For psychology behind waitlists and exclusivity

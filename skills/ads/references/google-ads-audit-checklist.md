@@ -78,7 +78,7 @@ These two checks find the most money on most accounts. When either fails, run th
 
 ### Conversion signal audit (item 1)
 
-Item 1 asks whether conversions are counted correctly. This asks whether the bidder is learning from the right actions. Smart Bidding optimizes toward whatever is included in the "Conversions" column, so a cheap action included there trains the account to buy more of it. Setup mechanics live in [conversion-tracking.md](conversion-tracking.md); this is the audit.
+Item 1 asks whether conversions are counted correctly. This asks whether the bidder is learning from the right actions. Smart Bidding optimizes toward whatever is included in the "Conversions" column, so a cheap action included there trains the account to buy more of it. Setup mechanics live in the [conversion-tracking skill](../../conversion-tracking/SKILL.md); this is the audit.
 
 Pull every active conversion action with its category, count setting (one or every), value (static or dynamic), primary or secondary status, and recent volume. Then check:
 

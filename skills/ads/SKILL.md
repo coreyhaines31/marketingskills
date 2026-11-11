@@ -2,7 +2,7 @@
 name: ads
 description: "When the user wants to plan, run, or fix paid ads on Google, Meta, and LinkedIn, or asks a judgement call on them: are ads worth it, which channel or budget split, why CPA rose, kill or keep a campaign. End with facts, hypotheses, and missing data; label unavailable inputs MISSING instead of estimating. For ad copy, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
 metadata:
-  version: 2.7.5
+  version: 2.7.6
 ---
 
 # Paid Ads
@@ -54,7 +54,7 @@ This skill's depth lives in references — load by intent. For **any operational
 | Google Search: what to spend on first, structure, match types, negatives, PMax | [google-search-playbook.md](references/google-search-playbook.md) | Intent ladder, account structure, match-type gates (incl. AI Max), negatives, bidding by volume, offline conversions, PMax guardrails |
 | Named-account targeting, pipeline acceleration, cross-channel retargeting | [abm-playbook.md](references/abm-playbook.md) | LinkedIn/Meta ABM, list mechanics, acceleration campaigns, UTM cross-channel remarketing, ABM measurement |
 | Generating Google RSAs | [rsa-output-spec.md](references/rsa-output-spec.md) | Mandatory output spec — limits, sidecars, template, self-check |
-| Weekly or daily account check, "what changed," stakeholder readout | [operating-check.md](references/operating-check.md) | Ordered six-step check, HOLD/FIX/TEST/INVESTIGATE calls, facts/hypotheses/missing data, Friday readout under 200 words |
+| Weekly or daily account check, "what changed," stakeholder readout | [operating-check.md](references/operating-check.md) | Ordered six-step check, HOLD/FIX/TEST/INVESTIGATE calls, facts/hypotheses/missing data, one-minute Friday readout |
 | Auditing a live account, grading account health, quoting benchmarks, recommending changes | [audit-guardrails.md](references/audit-guardrails.md) | Pass/fail/unknown scoring, evidence coverage, recommendation safety, hard stops, benchmark discipline |
 | Analyzing or reporting on Google Ads data, search-term waste, pause/keep/scale on low volume, client-facing findings | [reading-google-ads-data.md](references/reading-google-ads-data.md) | Withheld search terms (disclosed vs total clicks), conversions vs all_conversions, click-date attribution, experiment arms, 30-day change history, zero-in-N table, break-even CVR, verified/inferred/stale, "conclusions that sound right" |
 | Itemized Google Ads / ecommerce account audit (Search + Shopping + PMax + GMC + Demand Gen) | [google-ads-audit-checklist.md](references/google-ads-audit-checklist.md) | 32 checks across 11 categories — feed/GMC quality, Shopping segmentation, PMax signals/budget, DG format splits, lander funnels; each scored pass/fail/unknown/NA via audit-guardrails; deep dives for conversion signals and wasted-spend negatives |
@@ -156,7 +156,7 @@ These ratios are directional, not precise. Test in your actual account.
 
 Once you've gathered audience identifiers, here's how to put each kind into the creative:
 
-- **Demographic identifiers** (age, location, occupation) → embed as identity-trigger keywords in headlines (see [[#The one-keyword hack (identity-trigger keywords)]])
+- **Demographic identifiers** (age, location, occupation) → embed as identity-trigger keywords in headlines (see [the one-keyword hack](references/meta-andromeda-playbook.md#the-one-keyword-hack-identity-trigger-keywords))
 - **Pain points + fears** → headline + first line of body copy (Sabri Suby's framing: "the verbatim words your customers use about the problem")
 - **Hopes / desired outcomes** → transformation copy + CTAs
 - **Objections + "why they didn't buy last time"** → objection-handling retargeting ads (see [[#The 4-component retargeting framework]])
@@ -338,7 +338,7 @@ End every check in exactly one call:
 - **TEST**: a hypothesis worth money, with a metric and a stopping rule
 - **INVESTIGATE**: the data can't be trusted yet (this overrides the other three)
 
-Close the week with a stakeholder readout under 200 words: results vs target (green/amber/red), top movers with cause and confidence, and next week's calls. Full check, inputs, and readout format: [operating-check.md](references/operating-check.md).
+Close the week with a one-minute stakeholder readout: results vs target (green/amber/red), top movers with cause and confidence, and next week's calls. Full check, inputs, and readout format: [operating-check.md](references/operating-check.md).
 
 ### Attribution Considerations
 - Platform attribution is inflated
