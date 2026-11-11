@@ -124,6 +124,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | ✓ | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
+| signalshelf | Competitive Intelligence | ✓ | ✓ | - | - | [signalshelf.md](integrations/signalshelf.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
@@ -479,6 +480,7 @@ Traffic analytics, competitor benchmarking, and market research.
 |------|----------|-------|
 | **similarweb** | Website traffic, competitor analysis | Traffic sources, keywords |
 | **scrapecreators** | Public social posts and ad libraries (TikTok, Instagram, YouTube, X, Reddit; Meta, Google, TikTok ads) | API + MCP; credit-based; not for LinkedIn or people data |
+| **signalshelf** | Public reviews and news about a product or competitor (App Store, Google Play, Trustpilot, Amazon ratings, Google News) | API + MCP; credit-based; Trustpilot review text only for companies with review widgets; not for LinkedIn, Google Maps, or people data |
 
 **Agent recommendation**: Similarweb for competitor traffic analysis and market benchmarking.
 
@@ -657,6 +659,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **theirstack** - Hiring and technographic signals
 - **apify** - Ready-made scrapers (Actors)
 - **scrapecreators** - Public social posts and ad libraries
+- **signalshelf** - Public app store, Trustpilot, and news data
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
