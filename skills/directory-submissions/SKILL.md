@@ -2,7 +2,7 @@
 name: directory-submissions
 description: "When the user wants to list a product in startup, SaaS, AI, MCP, and review directories, or asks which directories are worth it or whether listings are working: Product Hunt, G2, Capterra, AlternativeTo, MCP registries, awesome lists, and a submission tracker. For the broader launch, see launch. For other link building, see link-building."
 metadata:
-  version: 2.1.7
+  version: 2.2.0
 ---
 
 # Directory Submissions
@@ -26,7 +26,7 @@ Directory submissions are the **foundation layer** of distribution — never the
 
 But directories alone will not generate meaningful leads. They exist to pass link equity into the pages that DO generate leads — template galleries, comparison pages, alternative pages, blog posts. **Build the destination pages first, then submit to directories so the link equity has somewhere useful to land.**
 
-The full directory catalog lives in `references/directory-list.md`. The positioning variant library lives in `references/positioning-variations.md`. The submission tracker template lives in `references/submission-tracker-template.csv`.
+The full directory catalog lives in `references/directory-list.md`. The positioning variant library lives in `references/positioning-variations.md`. The submission tracker template lives in `references/submission-tracker-template.csv`. The listing kit (every fact and length-limited copy, filled in once) lives in `references/listing-kit.md`, and the repo files that agent registries read live in `references/agent-registry-files.md`.
 
 ---
 
@@ -111,7 +111,7 @@ Full catalog in `references/directory-list.md`. Summary:
 
 ### Step 3: Prepare asset variations
 
-For each tier, prep a distinct description variant (pulled from `references/positioning-variations.md`):
+Fill in the listing kit first (`references/listing-kit.md`): one file with every fact directories ask for, the copy at each common length limit (40, 60, 100, 160, and ~500 characters), and the asset sizes. Gather from the repo and live site before asking the user. Then, for each tier, prep a distinct description variant (pulled from `references/positioning-variations.md`):
 - **Tagline** under 10 words
 - **Short description** at 60 chars
 - **Long description** at 150 words
@@ -138,6 +138,21 @@ Per submission:
 4. Submit.
 5. Log: date, URL, status, moderator notes.
 6. Once live, inspect the actual link to your product using the procedure below; an empty HTTP-header search does not verify a backlink.
+
+### When an Agent Does the Submitting
+
+The safety gate above still applies to every step. On top of it:
+
+- **Check the log first.** Look up the directory in the submission log before starting, and record every attempt, including skips, so nothing is submitted twice.
+- **Look for a direct route before the form.** Some directories document a submission API, an MCP endpoint, or instructions in `/llms.txt`. Use one only if the directory's own docs describe it.
+- **Open embedded forms on their own page.** If the submit page embeds a Tally, Typeform, Fillout, Airtable, or Paperform form, open the form's own URL in a full tab so fields and uploads work.
+- **Fill only the fields a person would see.** Leave hidden fields alone. Stop at any CAPTCHA, bot check, login, or terms agreement, mark the entry `needs_human`, and hand it to the user. Don't try to get past it.
+- **Contact hygiene.** Directories get scraped and resold. Use the brand name, a role email on the product domain, and the contact page URL. Leave phone and street address blank unless the directory requires them, and never use a home address or a personal phone number.
+- **No spending.** Use free tiers only. If the only path is paid, log `skipped_paid_only` and move on unless the user has approved that specific paid listing.
+- **Close verification loops.** Many listings stay unpublished until an email link or code is confirmed. Tell the user which inbox to check, or check it if you have access, the same day.
+- **Awesome-list PRs.** Before opening one, read the list's `CONTRIBUTING.md`, PR template, CI checks, and the last few merged PRs. Respect lists that don't accept AI-written PRs or commercial products. Edit the real source file (some lists generate the README from data files), match the ordering and punctuation, strip `?ref=` and UTM parameters, and submit one PR per list, with the user's approval.
+
+If the product ships an MCP server, plugin, or agent skill, add the registry files in `references/agent-registry-files.md` to the repo before Tier 4. The Gemini CLI gallery lists a tagged repo on its own; most others still need a claim or submit step, listed there.
 
 ### Verify the Actual Backlink
 
