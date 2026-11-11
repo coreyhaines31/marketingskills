@@ -320,14 +320,14 @@ Tells the reader to stop blaming themselves, then lists the specific experiences
 - **Tier**: B (provisional) — **Role**: supporting cast for problem-aware buyers who feel alone with the problem. Relief is the hook; the list proves you understand the experience.
 - **Structure**: Bold "Stop thinking..." headline, 3-4 bullets of specific experiences, one line naming the product
 - **Copy slot**: The experiences in the customer's exact words, each one specific enough to feel seen
-- **DTC example**: "Stop thinking your skin is broken. Breakouts after switching products are normal for 2 weeks..."
+- **DTC example**: "Stop thinking you're bad with money. Missing a bill when you have 14 due dates a month isn't a character flaw..."
 - **SaaS example**: "Stop thinking you're bad at email. Losing threads at 200 messages a day isn't a skills problem..."
 - **Compliance note**: In health, don't diagnose, don't tell people to ignore symptoms, and keep Meta's rule against implying negative self-perception in mind
 - **Source it from**: Reviews and forum posts where customers describe what they thought was wrong with them
 
 ### 26. Simple Guarantee
 
-The guarantee is the headline: "If your pain doesn't budge in 60 days, we'll buy your bottle back."
+The guarantee is the headline: "If you don't love it in 60 days, we'll buy your bottle back."
 
 - **Tier**: B (provisional) — **Role**: mid-funnel supporting cast for skeptical, risk-averse buyers; one of the longest-running formats observed. The risk reversal does the persuading.
 - **Structure**: Guarantee as the headline, one line on why it's safe to try, product shot, a trust marker
@@ -369,7 +369,7 @@ A 3-4 panel sequence showing how the buyer's situation progresses, ending with t
 - **Tier**: B — **Role**: mid-funnel supporting cast (Progression is B-tier in the format map). Each panel advances the story, so it holds attention longer than a single frame.
 - **Structure**: "The 4 stages of [problem]" headline, numbered panels with one line each, a final panel or banner with the product
 - **Copy slot**: Stages the buyer recognizes from their own experience, in their words
-- **DTC example**: "The 4 stages of back pain: ignore it, stretch it, ice it, fix it"
+- **DTC example**: "The 4 stages of meal prep: plan it, shop for it, cook it, give up by Wednesday"
 - **SaaS example**: "The 4 stages of reporting: spreadsheets, more spreadsheets, a BI tool nobody opens, [product]"
 - **Compliance note**: Don't promise medical outcomes in panel copy; panels are claims too
 - **Source it from**: The order customers describe trying things in reviews ("first I tried X, then Y...")
@@ -387,7 +387,7 @@ A simple character (stick figure or plain illustration) with a three-line story:
 
 ### 31. Signs Checklist
 
-"9 signs you're losing leg strength" or "Men over 35: notice these?" A self-diagnosis list the reader checks against themselves.
+"7 signs your running shoes are worn out" or "Homeowners: notice these?" A self-diagnosis list the reader checks against themselves.
 
 - **Tier**: C (provisional) — **Role**: situational supporting cast, a cousin of the decayed Numbered List. It holds up better because the reader checks themselves against the list rather than reading reasons to buy.
 - **Structure**: "[N] signs..." headline, 4-9 short items (checkboxes or bullets), a supporting image, product or CTA last
@@ -404,7 +404,7 @@ A striking, exaggerated image (a screaming knee, a giant product, a surreal scen
 - **Tier**: B (provisional) — **Role**: supporting cast with cold reach when the image is strange enough to stop the scroll. The image does the hook; the copy has to be plain so the ad doesn't feel like a trick.
 - **Structure**: One exaggerated image covering most of the frame, a 3-6 word headline, 1-2 proof lines, small product
 - **Copy slot**: The pain or result the image exaggerates, stated literally
-- **DTC example**: An illustrated knee screaming in pain: "Knees screaming with every step?"
+- **DTC example**: An illustrated sofa sinking into the floor: "Still sitting on your college couch?"
 - **SaaS example**: An inbox drawn as a collapsing tower: "500 unread by Tuesday?"
 - **Compliance note**: Bodies and body parts trigger Meta's personal-health rules: no shaming, and no before/after body images for weight loss
 - **Source it from**: The strongest pain metaphor customers use in reviews ("my knees scream," "my inbox is drowning me")
