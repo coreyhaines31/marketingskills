@@ -60,7 +60,7 @@ Every call ends with three short lists: **facts** (in the data), **hypotheses** 
 
 ## The Friday readout
 
-Close the week with a readout a stakeholder can read in a minute. Keep it under 200 words.
+Close the week with a readout a stakeholder can read in a minute.
 
 1. **Results vs target.** One line per account or program, marked green, amber, or red against the target CPA, ROAS, or pipeline goal.
 2. **What moved and why.** The top two or three movers, each with a likely cause and a confidence level (high, medium, low).

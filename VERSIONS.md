@@ -28,17 +28,17 @@ Current versions of all skills. Agents can compare against local versions to che
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.6 | 2026-11-09 |
 | influencer-marketing | 1.4.3 | 2026-11-09 |
-| launch | 2.2.3 | 2026-11-09 |
+| launch | 2.2.4 | 2026-11-12 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
 | link-building | 1.0.4 | 2026-11-09 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
 | marketing-loops | 1.8.4 | 2026-11-09 |
-| marketing-plan | 1.2.5 | 2026-11-09 |
+| marketing-plan | 1.2.6 | 2026-11-12 |
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
-| ads | 2.7.5 | 2026-11-11 |
+| ads | 2.7.6 | 2026-11-12 |
 | paywalls | 2.1.4 | 2026-11-09 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
@@ -46,7 +46,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | programmatic-seo | 2.1.3 | 2026-11-09 |
 | prospecting | 1.5.3 | 2026-11-09 |
 | public-relations | 1.2.4 | 2026-11-09 |
-| referrals | 2.2.4 | 2026-11-09 |
+| referrals | 2.2.5 | 2026-11-12 |
 | reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.3 | 2026-11-09 |
@@ -59,6 +59,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.13 (2026-11-12)
+
+- **ads** (2.7.5 → 2.7.6): repair cross-skill links, remove the stale forward-link note, and describe the Friday readout by its one-minute goal instead of a word cap.
+- **launch** (2.2.3 → 2.2.4): correct the marketing-ideas references and make the Simple, Lovable, Complete launch gate consistent with its failure-mode definitions.
+- **marketing-plan** (1.2.5 → 1.2.6): label the Quietude plan as one illustrative client example and state which qualities should transfer without prescribing its channel mix or numbers.
+- **referrals** (2.2.4 → 2.2.5): remove a repository-maintenance note from runtime guidance.
 
 ### 2.14.12 (2026-11-11)
 
