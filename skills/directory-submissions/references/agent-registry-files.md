@@ -24,9 +24,9 @@ The registry's docs say aggregators pull from its API, so publishing there first
 
 ## Checks Before Publishing
 
-- Every manifest uses the same name, description, and URL as the listing kit.
+- Every manifest uses the same display name, description, and URL as the listing kit. Registry identifiers are separate: `server.json` `name` must be a namespaced ID such as `io.github.yourname/your-server`, not the brand name.
 - Descriptions fit each limit exactly. Registries reject an over-length field at publish time.
-- The repo is public, has a license file, and a README that says what it does and how to install it.
+- For registries that index a GitHub repo (Glama, the Gemini gallery, MCP Market, plugin marketplaces), the repo is public and has a license file and a README that says what it does and how to install it. A closed-source remote MCP server can still publish to the Official MCP Registry with endpoint metadata only.
 - Versions match across manifests (`package.json`, `server.json`, plugin manifests) for the release you're publishing. Official MCP Registry versions can't be changed once published.
 
 ## Sources
