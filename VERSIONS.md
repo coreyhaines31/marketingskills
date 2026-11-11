@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.12.5 | 2026-11-09 |
+| ad-creative | 2.13.0 | 2026-11-10 |
 | ai-seo | 2.12.3 | 2026-11-09 |
 | analytics | 2.2.5 | 2026-11-09 |
 | aso | 2.0.6 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.10 (2026-11-10)
+
+- **ad-creative** (2.12.5 → 2.13.0): ten new static ad templates from a review of long-running ads in public ad libraries: Apology Letter ("We're so sorry"), Important Update, Reassurance List ("Stop thinking something is wrong with you"), Simple Guarantee, With / Without, Venn Diagram, Stages (progression comic), Character Story ("This is Mike"), Signs Checklist, and Exaggerated Visual. Their tiers are marked provisional. A new **visual styles** table (dark mode, retro screen, billboard, notice board, presentation slide, whiteboard, handwritten sign, mirror writing, news card, newspaper, vintage, illustration, meme, retro app frame) restyles any template, with rules for styles that borrow a real look: no copied mastheads, no fake system dialogs or "sensitive content" screens, no tabloid claims. Health templates note Meta's personal-attributes and personal-health rules. The format map clarifies that the F-tier fake-native rating covers ads posing as a real interface, not decorative retro frames.
 
 ### 2.14.9 (2026-11-09)
 
