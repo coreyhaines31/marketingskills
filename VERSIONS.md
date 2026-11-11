@@ -29,7 +29,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | image | 2.0.6 | 2026-11-09 |
 | influencer-marketing | 1.4.3 | 2026-11-09 |
 | launch | 2.2.3 | 2026-11-09 |
-| lead-magnets | 2.1.4 | 2026-11-09 |
+| lead-magnets | 2.1.5 | 2026-11-11 |
 | link-building | 1.0.4 | 2026-11-09 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
@@ -38,7 +38,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
-| ads | 2.7.4 | 2026-11-09 |
+| ads | 2.7.5 | 2026-11-11 |
 | paywalls | 2.1.4 | 2026-11-09 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
@@ -59,6 +59,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.12 (2026-11-11)
+
+Skills install cleanly under regex skill scanners that block on prompt-injection phrases.
+
+- **ads** (2.7.4 → 2.7.5): the untrusted-data rule in `references/audit-guardrails.md` describes an embedded "drop your earlier instructions" directive instead of quoting the literal injection phrase, which Hermes' Skills Guard flagged as a critical prompt injection and blocked on install. Same rule, same meaning.
+- **lead-magnets** (2.1.4 → 2.1.5): `references/content-to-skill-corpus-design.md` and eval 9 describe the injected transcript line instead of quoting it, for the same reason. The eval still tests that transcript text is treated as data.
+- **schema**: eval 8's expected output rewords "do not ... tell the user to delete" so it no longer reads as an instruction to hide information from the user. Evals only, no version bump.
 
 ### 2.14.11 (2026-11-11)
 
