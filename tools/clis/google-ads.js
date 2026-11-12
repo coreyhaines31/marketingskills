@@ -3,7 +3,7 @@
 const rawArgs = process.argv.slice(2)
 const TOKEN = process.env.GOOGLE_ADS_TOKEN
 const DEV_TOKEN = process.env.GOOGLE_ADS_DEVELOPER_TOKEN
-const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID
+const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID?.replace(/-/g, '')
 const LOGIN_CUSTOMER_ID = process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID?.replace(/-/g, '')
 const BASE_URL = 'https://googleads.googleapis.com/v24'
 
