@@ -159,10 +159,12 @@ async function main() {
           if (!from || !to || !subject) {
             result = { error: '--from, --to (comma-separated), and --subject required' }; break
           }
-          const recipients = to.split(',')
+          const recipients = to.split(',').map(recipient => recipient.trim()).filter(Boolean)
+          if (recipients.length === 0) { result = { error: '--to requires at least one recipient' }; break }
+          if (recipients.length > 500) { result = { error: '--to accepts at most 500 recipients per batch (Postmark batch limit)' }; break }
           const messages = recipients.map(recipient => ({
             From: from,
-            To: recipient.trim(),
+            To: recipient,
             Subject: subject,
             TextBody: args.text || '',
             HtmlBody: args.html || undefined,
@@ -362,18 +364,22 @@ async function main() {
         case 'create': {
           const email = args.email
           if (!email) { result = { error: '--email required' }; break }
+          const addresses = email.split(',').map(e => e.trim()).filter(Boolean)
+          if (addresses.length === 0 || addresses.length > 50) { result = { error: '--email accepts 1 to 50 addresses per call (Postmark suppression limit)' }; break }
           const stream = args.stream || 'outbound'
           result = await api('POST', `/message-streams/${stream}/suppressions`, {
-            Suppressions: email.split(',').map(e => ({ EmailAddress: e.trim() }))
+            Suppressions: addresses.map(address => ({ EmailAddress: address }))
           })
           break
         }
         case 'delete': {
           const email = args.email
           if (!email) { result = { error: '--email required' }; break }
+          const addresses = email.split(',').map(e => e.trim()).filter(Boolean)
+          if (addresses.length === 0 || addresses.length > 50) { result = { error: '--email accepts 1 to 50 addresses per call (Postmark suppression limit)' }; break }
           const stream = args.stream || 'outbound'
           result = await api('POST', `/message-streams/${stream}/suppressions/delete`, {
-            Suppressions: email.split(',').map(e => ({ EmailAddress: e.trim() }))
+            Suppressions: addresses.map(address => ({ EmailAddress: address }))
           })
           break
         }
