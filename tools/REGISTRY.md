@@ -132,6 +132,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
+| marcora | AI Content | ✓ | ✓ | - | - | [marcora.md](integrations/marcora.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
@@ -544,6 +545,7 @@ AI-powered content generation and optimization platforms.
 |------|----------|-------|
 | **airops** | AI content workflows, SEO content | Flow-based automation |
 | **admakeai** | Meta and TikTok ad images, UGC-style video ads, Meta Ad Library lookups | API + MCP; credit-based; publishes to Meta as paused drafts |
+| **marcora** | Shared positioning, brand voice, product facts | Read-only REST API + hosted MCP |
 
 **Agent recommendation**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
