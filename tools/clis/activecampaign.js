@@ -49,6 +49,14 @@ async function api(method, path, body) {
   }
 }
 
+function centsArg(raw) {
+  const value = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw.trim()) || !Number.isSafeInteger(value)) {
+    throw new Error('--value must be a non-negative integer amount in cents (e.g. 45678 for $456.78)')
+  }
+  return value
+}
+
 function parseArgs(args) {
   const result = { _: [] }
   for (let i = 0; i < args.length; i++) {
@@ -261,7 +269,7 @@ async function main() {
           const title = args.title
           if (!title) { result = { error: '--title required' }; break }
           const deal = { title }
-          if (args.value) deal.value = Number(args.value)
+          if (args.value !== undefined) deal.value = centsArg(args.value)
           if (args.currency) deal.currency = args.currency
           if (args.pipeline) deal.group = args.pipeline
           if (args.stage) deal.stage = args.stage
@@ -275,7 +283,7 @@ async function main() {
           if (!id) { result = { error: '--id required' }; break }
           const deal = {}
           if (args.title) deal.title = args.title
-          if (args.value) deal.value = Number(args.value)
+          if (args.value !== undefined) deal.value = centsArg(args.value)
           if (args.stage) deal.stage = args.stage
           if (args.owner) deal.owner = args.owner
           if (args.status) deal.status = Number(args.status)
