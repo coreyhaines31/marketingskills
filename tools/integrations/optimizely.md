@@ -70,12 +70,14 @@ POST https://api.optimizely.com/v2/experiments
 ### Update Experiment
 
 ```bash
-PATCH https://api.optimizely.com/v2/experiments/{experiment_id}
+PATCH https://api.optimizely.com/v2/experiments/{experiment_id}?action=start
 
 {
-  "status": "running"
+  "name": "Homepage CTA Test v2"
 }
 ```
+
+State changes use the `action` query parameter (`publish`, `start`, `pause`, `resume`, `unarchive`); `status` is read-only on the experiment.
 
 ### List Campaigns
 
