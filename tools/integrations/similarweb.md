@@ -82,7 +82,7 @@ GET https://api.similarweb.com/v1/website/example.com/category-rank/category-ran
 ### Traffic by Country
 
 ```bash
-GET https://api.similarweb.com/v1/website/example.com/geo/traffic-by-country?api_key={key}&start_date=2024-01&end_date=2024-03
+GET https://api.similarweb.com/v4/website/example.com/geo/traffic-by-country?api_key={key}&start_date=2024-01&end_date=2024-03
 ```
 
 ## Key Metrics
