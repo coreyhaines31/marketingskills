@@ -51,7 +51,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.3 | 2026-11-09 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.5 | 2026-11-09 |
+| seo-audit | 2.2.6 | 2026-11-12 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.3 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.13 (2026-11-12)
+
+- **seo-audit** (2.2.5 → 2.2.6): the schema detection note lists Firecrawl next to the options already there, and Tools Referenced links its integration guide (contributed by Juan Pablo Hernandez of Firecrawl).
 
 ### 2.14.12 (2026-11-11)
 

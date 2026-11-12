@@ -2,7 +2,7 @@
 name: seo-audit
 description: "When the user wants to audit or diagnose SEO, or asks why traffic dropped, a page won't rank, or whether a setup like canonicals, hreflang, or redirects is right: technical SEO, indexing, Google updates, on-page and titles, Core Web Vitals, local SEO. Start here when someone just says their SEO is bad. For pages at scale, see programmatic-seo. For structured data, see schema. For AI search, see ai-seo."
 metadata:
-  version: 2.2.5
+  version: 2.2.6
 ---
 
 # SEO Audit
@@ -466,10 +466,11 @@ Same format as above
 - Mobile-Friendly Test
 - Schema Validator
 
-> **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, or Screaming Frog instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
+> **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, Screaming Frog, or Firecrawl instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
 
 **Paid Tools** (if available)
 - Screaming Frog
+- [Firecrawl](../../tools/integrations/firecrawl.md) (scrape with the `rawHtml` format to see JS-injected JSON-LD; the keyless hosted MCP covers scrape and search within daily limits, while crawl and map need an API key or account sign-in)
 - Ahrefs / Semrush
 - Sitebulb
 - ContentKing
