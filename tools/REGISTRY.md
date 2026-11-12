@@ -54,6 +54,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | semrush | SEO | ✓ | ✓ | [✓](clis/semrush.js) | - | [semrush.md](integrations/semrush.md) |
 | ahrefs | SEO | ✓ | ✓ | [✓](clis/ahrefs.js) | - | [ahrefs.md](integrations/ahrefs.md) |
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
+| goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
 | omnia | AEO | ✓ | ✓ | - | - | [omnia.md](integrations/omnia.md) |
@@ -182,6 +183,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **semrush** | Competitive analysis, keyword research | MCP available |
 | **ahrefs** | Backlink analysis, content research | MCP available |
 | **dataforseo** | SERP tracking, backlinks, on-page audits | Comprehensive API |
+| **goanyapi** | SERP + keyword + backlink + Google Ads transparency from one key | Credit-based, MCP available |
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
 
