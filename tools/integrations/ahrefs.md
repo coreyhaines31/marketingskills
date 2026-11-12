@@ -70,7 +70,7 @@ Authorization: Bearer {api_token}
 ### Keyword overview
 
 ```bash
-GET https://api.ahrefs.com/v3/keywords-explorer/overview?keywords=keyword1,keyword2&country=us
+GET https://api.ahrefs.com/v3/keywords-explorer/overview?keywords=keyword1,keyword2&country=us&select=keyword,volume,difficulty,cpc
 
 Authorization: Bearer {api_token}
 ```
@@ -78,7 +78,7 @@ Authorization: Bearer {api_token}
 ### Keyword suggestions
 
 ```bash
-GET https://api.ahrefs.com/v3/keywords-explorer/matching-terms?keyword=seed+keyword&country=us&limit=100
+GET https://api.ahrefs.com/v3/keywords-explorer/matching-terms?keywords=seed+keyword&country=us&limit=100&select=keyword,volume,difficulty
 
 Authorization: Bearer {api_token}
 ```
@@ -86,7 +86,7 @@ Authorization: Bearer {api_token}
 ### SERP overview
 
 ```bash
-GET https://api.ahrefs.com/v3/keywords-explorer/serp-overview?keyword=target+keyword&country=us
+GET https://api.ahrefs.com/v3/serp-overview/serp-overview?keyword=target+keyword&country=us&select=position,url,title,type
 
 Authorization: Bearer {api_token}
 ```
