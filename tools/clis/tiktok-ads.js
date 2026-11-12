@@ -124,7 +124,7 @@ async function main() {
           result = await api('POST', '/campaign/status/update/', {
             advertiser_id: advId,
             campaign_ids: args.ids.split(','),
-            opt_status: args.status,
+            operation_status: args.status,
           })
           break
         }
