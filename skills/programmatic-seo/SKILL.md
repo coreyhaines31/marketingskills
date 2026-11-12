@@ -1,8 +1,8 @@
 ---
 name: programmatic-seo
-description: When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions "programmatic SEO," "template pages," "pages at scale," "directory pages," "location pages," "[keyword] + [city] pages," "comparison pages," "integration pages," "building many pages for SEO," "pSEO," "generate 100 pages," "data-driven pages," "templated landing pages," or "which CMS for pSEO." Use this whenever someone wants to create many similar pages targeting different keywords or locations. For auditing existing SEO issues, see seo-audit. For content strategy planning, see content-strategy.
+description: "When the user wants SEO pages at scale from templates and data, or asks whether a page set will rank or look thin: location, integration, comparison, directory, and '[X] for [Y]' pages, each useful rather than thin. For SEO audits, see seo-audit. For content planning, see content-strategy."
 metadata:
-  version: 2.1.1
+  version: 2.1.3
 ---
 
 # Programmatic SEO

@@ -285,6 +285,156 @@ Deliberately low-polish — handwritten note, sticky note, or plain-text-on-a-ph
 - **SaaS example**: A "note to self: cancel the other tool" scrawl before the switch
 - **Source it from**: The offer itself; the plain way a customer would remind a friend
 
+### More templates from live ad libraries
+
+Templates 23-32 come from a review of long-running statics in public ad libraries (November 2026), not from the Denney ranking. Their tiers are **provisional**: a starting guess from the format family each belongs to. Your own account's results override them. "Seen running" notes what was observed, which shows a brand kept paying for it, not that it was profitable.
+
+### 23. Apology Letter ("We're So Sorry")
+
+A mock apology that turns out to be good news: "We want to apologize to everyone who bought..." then the reason (it sold out, a price drop, a new flavor), then the offer.
+
+- **Tier**: B (provisional) — **Role**: supporting cast and a sales-period specialist, from the founder's-letter family. The apology headline stops the scroll because brands rarely say sorry in ads; the twist carries the offer.
+- **Structure**: Big "We're sorry" headline, 3-5 short lines of letter-style body, the offer in bold, product small or absent
+- **Copy slot**: A real reason to "apologize" (stock ran out, the old price was too high, customers were missing out) and a real offer. The apology must be playful, not a fake recall or safety notice
+- **DTC example**: "We're so sorry. We forgot to tell you each pouch has as much fiber as 12 cups of broccoli. Here's 40% off to make it right."
+- **SaaS example**: "Sorry to everyone who paid for the annual plan last month. We just cut the price. Your difference is credited."
+- **Seen running**: a tea brand's apology-plus-BOGO ad ran 56 days during a sale; a gummy brand's ran 50 days
+- **Source it from**: The offer, plus a true story behind it (a sellout, a price change, a feature customers missed)
+
+### 24. Important Update
+
+An announcement card: "IMPORTANT UPDATE:" over plain text that states a real change (price, availability, a new market, a new plan).
+
+- **Tier**: B (provisional) — **Role**: supporting cast; strongest when the update is genuine news to people already aware of the category. Reads like a notice, not an ad.
+- **Structure**: Solid background, "Important update" label, 3-4 short lines, one highlighted number or name, logo at the bottom
+- **Copy slot**: One real change with its specifics (the new price, the date, who qualifies)
+- **DTC example**: "Important update: [product] now ships to Canada. Starting at $24."
+- **SaaS example**: "Important update: SSO is now on every plan, including Starter."
+- **Compliance note**: Never style it as a message from a platform, regulator, or the buyer's bank or employer
+- **Source it from**: Real product, pricing, or availability changes, from the changelog or launch calendar
+
+### 25. Reassurance List ("Stop Thinking Something Is Wrong With You")
+
+Tells the reader to stop blaming themselves, then lists the specific experiences that are normal, then the product as the way to handle them.
+
+- **Tier**: B (provisional) — **Role**: supporting cast for problem-aware buyers who feel alone with the problem. Relief is the hook; the list proves you understand the experience.
+- **Structure**: Bold "Stop thinking..." headline, 3-4 bullets of specific experiences, one line naming the product
+- **Copy slot**: The experiences in the customer's exact words, each one specific enough to feel seen
+- **DTC example**: "Stop thinking you're bad with money. Missing a bill when you have 14 due dates a month isn't a character flaw..."
+- **SaaS example**: "Stop thinking you're bad at email. Losing threads at 200 messages a day isn't a skills problem..."
+- **Compliance note**: In health, don't diagnose, don't tell people to ignore symptoms, and keep Meta's rule against implying negative self-perception in mind
+- **Source it from**: Reviews and forum posts where customers describe what they thought was wrong with them
+
+### 26. Simple Guarantee
+
+The guarantee is the headline: "If you don't love it in 60 days, we'll buy your bottle back."
+
+- **Tier**: B (provisional) — **Role**: mid-funnel supporting cast for skeptical, risk-averse buyers; one of the longest-running formats observed. The risk reversal does the persuading.
+- **Structure**: Guarantee as the headline, one line on why it's safe to try, product shot, a trust marker
+- **Copy slot**: The real guarantee terms in plain words: the timeframe, the condition, what they get back
+- **DTC example**: "Sleep better in 30 nights, or it's free. No awkward questions."
+- **SaaS example**: "Cut your close by 3 days in your first month, or we refund the year."
+- **Seen running**: a supplement brand's guarantee ad ran 481 days
+- **Compliance note**: State the conditions that apply; a guarantee in an ad is a promise the business must honor
+- **Source it from**: The actual refund or guarantee policy. Pair with **offers** to design one if you don't have it
+
+### 27. With / Without
+
+Two side-by-side states of the same person or task: with the old way and with you. Unlike Before / After, nothing has to change over time.
+
+- **Tier**: B (provisional) — **Role**: mid-funnel supporting cast, in the Us vs. Them family. Easier to substantiate than a transformation because it compares two approaches, not one person's results.
+- **Structure**: Split frame, contrasting color per side, "With [old way]" vs. "With [you]", 2-3 outcome lines under each
+- **Copy slot**: The same outcome measured both ways (applications sent, hours spent, steps taken)
+- **DTC example**: "With a regular scale: one number. With [product]: muscle, fat, and water trends."
+- **SaaS example**: "With spreadsheets: 6 hours a week. With [product]: 10 minutes."
+- **Seen running**: a job-tools app reused this layout 26 times
+- **Compliance note**: If you name a competitor, follow the Competitor Callout rules
+- **Source it from**: Switching stories in reviews; your own measured benchmarks
+
+### 28. Venn Diagram
+
+Two or three circles for the things the buyer wants, with the product in the overlap.
+
+- **Tier**: C (provisional) — **Role**: situational supporting cast. Works when the product's case really is "the only one that does all of these"; falls flat when the circles are generic.
+- **Structure**: A one-line problem headline, 2-3 labeled circles, logo in the overlap, plain background
+- **Copy slot**: Benefits buyers usually have to trade off against each other
+- **DTC example**: "Tastes good" / "Actually healthy" / "Under $2 a serving", with the product in the middle
+- **SaaS example**: "Fast to set up" / "Powerful reporting" / "Priced per company, not per seat"
+- **Source it from**: Reviews that say "the only one that..."; the trade-offs buyers mention in comparison posts
+
+### 29. Stages (Progression Comic)
+
+A 3-4 panel sequence showing how the buyer's situation progresses, ending with the product. The progression format as a static.
+
+- **Tier**: B — **Role**: mid-funnel supporting cast (Progression is B-tier in the format map). Each panel advances the story, so it holds attention longer than a single frame.
+- **Structure**: "The 4 stages of [problem]" headline, numbered panels with one line each, a final panel or banner with the product
+- **Copy slot**: Stages the buyer recognizes from their own experience, in their words
+- **DTC example**: "The 4 stages of meal prep: plan it, shop for it, cook it, give up by Wednesday"
+- **SaaS example**: "The 4 stages of reporting: spreadsheets, more spreadsheets, a BI tool nobody opens, [product]"
+- **Compliance note**: Don't promise medical outcomes in panel copy; panels are claims too
+- **Source it from**: The order customers describe trying things in reviews ("first I tried X, then Y...")
+
+### 30. Character Story ("This Is Mike")
+
+A simple character (stick figure or plain illustration) with a three-line story: who they are, the problem, what they did. Ends with "Be like Mike."
+
+- **Tier**: C (provisional) — **Role**: situational supporting cast; borrows a familiar meme structure. Best for audiences that respond to humor and for problems that are awkward to show on a real person.
+- **Structure**: "This is [name]." headline, short story in 3 lines, a simple drawing, "Be like [name]." closer
+- **Copy slot**: A persona the buyer recognizes, with a specific age, routine, and problem
+- **DTC example**: "This is Sam. Sam runs 3 times a week. Sam's knees hurt. Sam switched shoes. Be like Sam."
+- **SaaS example**: "This is Priya. Priya spent Fridays building reports. Priya automated them. Be like Priya."
+- **Source it from**: Your ICP's most common profile and their most common fix
+
+### 31. Signs Checklist
+
+"7 signs your running shoes are worn out" or "Homeowners: notice these?" A self-diagnosis list the reader checks against themselves.
+
+- **Tier**: C (provisional) — **Role**: situational supporting cast, a cousin of the decayed Numbered List. It holds up better because the reader checks themselves against the list rather than reading reasons to buy.
+- **Structure**: "[N] signs..." headline, 4-9 short items (checkboxes or bullets), a supporting image, product or CTA last
+- **Copy slot**: Signs in the buyer's words that are true for the problem, not a list built to make everyone qualify
+- **DTC example**: "5 signs your dog's food isn't agreeing with them"
+- **SaaS example**: "6 signs your CRM data is costing you deals"
+- **Compliance note**: In health, symptom lists can't imply a diagnosis or push people to self-treat; Meta restricts ads that assert personal health conditions ("Are you depressed?")
+- **Source it from**: Reviews and support tickets describing what people noticed before buying
+
+### 32. Exaggerated Visual
+
+A striking, exaggerated image (a screaming knee, a giant product, a surreal scene) with a short, direct headline and a body of proof.
+
+- **Tier**: B (provisional) — **Role**: supporting cast with cold reach when the image is strange enough to stop the scroll. The image does the hook; the copy has to be plain so the ad doesn't feel like a trick.
+- **Structure**: One exaggerated image covering most of the frame, a 3-6 word headline, 1-2 proof lines, small product
+- **Copy slot**: The pain or result the image exaggerates, stated literally
+- **DTC example**: An illustrated sofa sinking into the floor: "Still sitting on your college couch?"
+- **SaaS example**: An inbox drawn as a collapsing tower: "500 unread by Tuesday?"
+- **Compliance note**: Bodies and body parts trigger Meta's personal-health rules: no shaming, and no before/after body images for weight loss
+- **Source it from**: The strongest pain metaphor customers use in reviews ("my knees scream," "my inbox is drowning me")
+
+## Visual Styles (apply to any template)
+
+A style changes how a template looks, not what it argues. Pair any template above with one of these to get a new-looking ad without a new angle; test the style and the template separately so you know which one moved results.
+
+| Style | What it looks like | Pairs well with |
+|---|---|---|
+| **Dark mode text** | White text on black, phone-note feel, no imagery | Founder Message, Reassurance List |
+| **Retro computer screen** | Blue terminal or old monitor, monospace type | Reassurance List, Headline Statement |
+| **Billboard** | The message on a roadside billboard in a photo | Headline Statement, Us vs. Them (a two-panel billboard) |
+| **Notice board / flyer** | A taped-up poster or flyer on a wall | Signs Checklist, Headline Statement |
+| **Presentation slide** | The message on a conference screen with a speaker and audience | Challenging Your Beliefs, Headline Statement |
+| **Whiteboard** | Handwritten marker on a whiteboard | Us vs. Them, With / Without |
+| **Handwritten sign** | A real person holding a hand-lettered sign | Review Card, Origin Story |
+| **Mirror writing** | Text written on a bathroom mirror | Problem / Solution, Reassurance List |
+| **Magazine or news card** | A "News" label and editorial headline layout | Educational Infographic, Important Update |
+| **Newspaper** | A newspaper front page with the offer as the headline | Ugly / Post-it sales, Important Update |
+| **Vintage print ad** | 1950s-60s illustrated ad with period type | Exaggerated Visual, Headline Statement |
+| **Illustration** | Hand-drawn or children's-book style art | Character Story, Educational Infographic |
+| **Meme** | A known meme template with the two states labeled | With / Without, Before / After |
+| **Paint / retro app frame** | The design shown inside an old paint program or retro phone screen | Ugly / Post-it, Founder Message |
+
+**Rules for styles that borrow a real look:**
+- **News and magazine styles** must not copy a real outlet's name, masthead, or logo, and must not make an ad look like independent reporting (the Press Mention rights problem, plus deceptive-format rules). A "News" label is fine only when the content is real news about you.
+- **Retro app frames** are a visual style. **Fake system dialogs are not**: an ad that looks like an operating-system alert, a notification, a "sensitive content" screen, or a working button shows features that don't exist, which Meta rejects. Keep the frame obviously decorative and the CTA in the ad's real button.
+- **Vintage and tabloid styles** invite tabloid claims ("doctors stunned," "amazingly, it worked"). Keep the claims to what you can substantiate; the style is the joke, not the claim.
+
 ---
 
 ## Per-Concept Output Format
@@ -305,4 +455,4 @@ Record each concept's **tier** alongside its template so the reviewer sees the f
 
 ## Batch Distribution
 
-For a standard 50-concept batch: spread variations across the template set, but let tier and funnel goal shape the weighting rather than distributing evenly. For a cold-reach batch, over-index on the S/A tiers (Founder Message, Origin Story, Grid Static); for a warm/retargeting batch, lean on the B-tier supporting cast (Callout, FAQ Card, Before/After, Competitor Callout). Skip the D–F decayed formats (Press Mention, Testimonial statics, Numbered List) unless you have a specific reason. If performance data shows certain templates consistently winning for this brand, shift to 60% proven templates / 40% full-cycle coverage — but never drop coverage to zero. Fatigue is why you're generating daily; the template that's tired next month is the one you're scaling today.
+For a standard 50-concept batch: spread variations across the template set, but let tier and funnel goal shape the weighting rather than distributing evenly. For a cold-reach batch, over-index on the S/A tiers (Founder Message, Origin Story, Grid Static); for a warm/retargeting batch, lean on the B-tier supporting cast (Callout, FAQ Card, Before/After, Competitor Callout, Simple Guarantee, With / Without); for a sale, add Apology Letter, Important Update, and Ugly / Post-it. Treat the provisional tiers on templates 23-32 as guesses until your account has results. Skip the D–F decayed formats (Press Mention, Testimonial statics, Numbered List) unless you have a specific reason. If performance data shows certain templates consistently winning for this brand, shift to 60% proven templates / 40% full-cycle coverage — but never drop coverage to zero. Fatigue is why you're generating daily; the template that's tired next month is the one you're scaling today.

@@ -1,8 +1,8 @@
 ---
 name: public-relations
-description: "When the user wants help with public relations, earned media, press coverage, journalist outreach, or media strategy (not pull requests). Also use when the user mentions 'PR,' 'press,' 'press release,' 'media outreach,' 'pitch a journalist,' 'get featured,' 'media list,' 'media kit,' 'press kit,' 'newsjacking,' 'news hijack,' 'HARO,' 'Qwoted,' 'Featured,' 'reporter request,' 'tech press,' 'TechCrunch,' 'thought leadership placement,' 'op-ed,' 'guest article,' 'press contacts,' 'podcast prep,' 'podcast guest,' 'prep me for this podcast,' 'how do I get press,' 'PR crisis,' 'crisis communications,' 'respond to backlash,' 'we got hacked,' 'data breach statement,' or 'holding statement.' Also covers crisis response when something goes wrong. For startup/SaaS/AI directory submissions, see directory-submissions. For product launches, see launch. For social-media engagement, see social. For cold-email outreach to prospects, see cold-email."
+description: "When the user wants press and media coverage, or asks what to say to a reporter, whether a story is newsworthy, or how to handle a crisis: pitches, press releases, media lists, HARO, op-eds, podcast guest prep, newsjacking (public relations, not pull requests). For directories, see directory-submissions. For launches, see launch. For cold outreach to prospects, see cold-email."
 metadata:
-  version: 1.2.1
+  version: 1.2.4
 ---
 
 # Public Relations & Earned Media
