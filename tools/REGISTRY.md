@@ -134,6 +134,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
+| adeli | Social | ✓ | ✓ | - | ✓ | [adeli.md](integrations/adeli.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -273,6 +274,7 @@ Paid advertising platforms and campaign management.
 | **meta-ads** | Demand gen, visual products, B2C | ✓ |
 | **linkedin-ads** | B2B, job title targeting | - |
 | **tiktok-ads** | Younger demographics, video | - |
+| **adeli** | Running Meta, TikTok, and LinkedIn Ads for several clients through one API | ✓ |
 
 **Agent recommendation**: Google Ads for search intent. Meta for demand generation. LinkedIn for B2B.
 
@@ -336,6 +338,7 @@ Social media scheduling, management, and analytics.
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
 | **post-bridge** | Scheduling one video to many accounts and platforms, per-post analytics | Short-form video focus; daily view snapshots |
+| **adeli** | Publishing, comments, DMs, and ads for many brands from one key | Per-client profiles; also Meta, TikTok, and LinkedIn Ads |
 
 **Agent recommendation**: Use the scheduler the user already has. Both schedule across platforms through an API and MCP.
 
@@ -634,6 +637,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **zoominfo** - B2B contacts and intent data
 - **clay** - Data enrichment and outbound automation
 - **supermetrics** - Cross-platform marketing data
+- **adeli** - Social publishing, comments, DMs, and ads across client accounts
 - **coupler** - Marketing data pipelines
 - **outreach** - Sales engagement sequences
 - **crossbeam** - Partner ecosystem data
