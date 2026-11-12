@@ -1,0 +1,34 @@
+name: Check Hidden Content
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main]
+    paths:
+      - "skills/**"
+      - "tools/**"
+      - "scripts/check-hidden-content.mjs"
+      - "scripts/hidden-content-allowlist.json"
+      - ".github/workflows/check-hidden-content.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-hidden-content-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    if: github.event.pull_request.draft != true && github.actor != 'dependabot[bot]'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      # Warn-only while the rules settle (#931). Drop --warn to fail the build.
+      - name: Check skills and tools for hidden content
+        run: node scripts/check-hidden-content.mjs --warn
