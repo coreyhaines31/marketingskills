@@ -59,7 +59,7 @@ Then look for:
 
 ## Job Posts as Strategy Documents
 
-Read the full text of current and past job posts, not just titles. Past posts are on Wayback (`web.archive.org/web/*/target.com/careers*`) and on job boards.
+Read the full text of current and past job posts, not just titles. Start with `teardown.mjs jobs <domain> --out teardowns/<target>/jobs.csv`, which finds a public Greenhouse, Lever, or Ashby board and summarizes it: roles by function, marketing channels being hired for, tools named, languages required, and "first marketing hire" wording. Past posts are on Wayback (`web.archive.org/web/*/target.com/careers*`) and on job boards. Saving `jobs.csv` each month lets Watch mode spot new roles by id.
 
 What to pull from each post:
 - **The mandate:** "own our PLG motion", "scale programmatic SEO to 10,000 pages", "launch our partner program", "build our first outbound team". This is the plan, written down.

@@ -4,66 +4,136 @@ Current versions of all skills. Agents can compare against local versions to che
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
-| ab-testing | 2.0.4 | 2026-10-29 |
-| ad-creative | 2.12.2 | 2026-10-26 |
-| ai-seo | 2.12.0 | 2026-10-29 |
-| analytics | 2.2.2 | 2026-10-27 |
-| aso | 2.0.3 | 2026-10-27 |
-| attribution | 1.1.6 | 2026-10-19 |
-| churn-prevention | 2.0.3 | 2026-10-12 |
-| co-marketing | 2.0.3 | 2026-10-12 |
-| cold-email | 2.2.2 | 2026-11-02 |
-| community-marketing | 2.0.2 | 2026-10-27 |
-| competitor-profiling | 2.1.5 | 2026-10-30 |
-| competitors | 2.3.0 | 2026-10-01 |
-| content-strategy | 2.1.5 | 2026-10-27 |
-| conversion-tracking | 1.0.1 | 2026-10-19 |
-| copy-editing | 2.2.1 | 2026-10-27 |
-| copywriting | 2.3.2 | 2026-10-27 |
-| cro | 2.0.3 | 2026-10-08 |
-| customer-research | 2.0.5 | 2026-10-27 |
-| directory-submissions | 2.1.4 | 2026-10-27 |
-| emails | 2.1.4 | 2026-10-15 |
-| events | 1.0.0 | 2026-08-23 |
-| free-tools | 2.0.3 | 2026-10-15 |
-| image | 2.0.3 | 2026-10-27 |
-| influencer-marketing | 1.4.0 | 2026-10-15 |
-| launch | 2.2.0 | 2026-10-07 |
-| lead-magnets | 2.1.1 | 2026-10-27 |
-| link-building | 1.0.1 | 2026-10-19 |
-| marketing-council | 1.0.0 | 2026-07-06 |
-| marketing-ideas | 2.0.2 | 2026-10-30 |
-| marketing-loops | 1.7.0 | 2026-10-30 |
-| marketing-plan | 1.2.2 | 2026-10-12 |
-| marketing-psychology | 2.0.0 | 2026-05-05 |
-| offers | 1.0.3 | 2026-10-27 |
-| onboarding | 2.0.2 | 2026-10-12 |
-| ads | 2.7.0 | 2026-10-26 |
-| paywalls | 2.1.1 | 2026-10-27 |
-| popups | 2.0.1 | 2026-10-27 |
-| pricing | 2.1.4 | 2026-10-12 |
-| product-marketing | 2.2.0 | 2026-10-15 |
-| programmatic-seo | 2.1.1 | 2026-10-27 |
-| prospecting | 1.5.1 | 2026-11-02 |
-| public-relations | 1.2.1 | 2026-10-15 |
-| referrals | 2.2.1 | 2026-10-12 |
-| reverse-engineer-marketing | 1.0.0 | 2026-10-30 |
-| revops | 2.2.2 | 2026-10-27 |
-| sales-enablement | 2.4.0 | 2026-10-07 |
-| schema | 2.0.2 | 2026-10-08 |
-| seo-audit | 2.2.2 | 2026-10-15 |
-| signup | 2.0.1 | 2026-10-08 |
-| site-architecture | 2.1.0 | 2026-10-06 |
-| sms | 1.1.0 | 2026-10-02 |
-| social | 2.4.1 | 2026-10-30 |
-| video | 2.4.0 | 2026-10-29 |
+| ab-testing | 2.0.7 | 2026-11-09 |
+| ad-creative | 2.13.0 | 2026-11-10 |
+| ai-seo | 2.12.3 | 2026-11-09 |
+| analytics | 2.2.5 | 2026-11-09 |
+| aso | 2.0.6 | 2026-11-09 |
+| attribution | 1.1.9 | 2026-11-09 |
+| churn-prevention | 2.0.6 | 2026-11-09 |
+| co-marketing | 2.0.6 | 2026-11-09 |
+| cold-email | 2.2.5 | 2026-11-13 |
+| community-marketing | 2.0.5 | 2026-11-09 |
+| competitor-profiling | 2.1.8 | 2026-11-09 |
+| competitors | 2.3.3 | 2026-11-09 |
+| content-strategy | 2.1.8 | 2026-11-09 |
+| conversion-tracking | 1.0.6 | 2026-11-09 |
+| copy-editing | 2.2.4 | 2026-11-09 |
+| copywriting | 2.3.5 | 2026-11-09 |
+| cro | 2.0.6 | 2026-11-09 |
+| customer-research | 2.0.8 | 2026-11-09 |
+| directory-submissions | 2.2.0 | 2026-11-11 |
+| emails | 2.1.7 | 2026-11-09 |
+| events | 1.0.3 | 2026-11-09 |
+| free-tools | 2.0.6 | 2026-11-09 |
+| image | 2.0.6 | 2026-11-09 |
+| influencer-marketing | 1.4.3 | 2026-11-09 |
+| launch | 2.2.3 | 2026-11-09 |
+| lead-magnets | 2.1.5 | 2026-11-11 |
+| link-building | 1.0.4 | 2026-11-09 |
+| marketing-council | 1.0.3 | 2026-11-09 |
+| marketing-ideas | 2.0.5 | 2026-11-09 |
+| marketing-loops | 1.8.4 | 2026-11-09 |
+| marketing-plan | 1.2.5 | 2026-11-09 |
+| marketing-psychology | 2.0.3 | 2026-11-09 |
+| offers | 1.0.6 | 2026-11-09 |
+| onboarding | 2.0.5 | 2026-11-09 |
+| ads | 2.7.5 | 2026-11-11 |
+| paywalls | 2.1.4 | 2026-11-09 |
+| popups | 2.0.4 | 2026-11-09 |
+| pricing | 2.1.7 | 2026-11-09 |
+| product-marketing | 2.2.3 | 2026-11-09 |
+| programmatic-seo | 2.1.3 | 2026-11-09 |
+| prospecting | 1.5.4 | 2026-11-13 |
+| public-relations | 1.2.4 | 2026-11-09 |
+| referrals | 2.2.4 | 2026-11-09 |
+| reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
+| revops | 2.2.4 | 2026-11-09 |
+| sales-enablement | 2.4.3 | 2026-11-09 |
+| schema | 2.0.5 | 2026-11-09 |
+| seo-audit | 2.2.5 | 2026-11-09 |
+| signup | 2.0.3 | 2026-11-09 |
+| site-architecture | 2.1.3 | 2026-11-09 |
+| sms | 1.1.3 | 2026-11-09 |
+| social | 2.5.2 | 2026-11-09 |
+| video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
 
-### 2.14.2 (2026-11-02)
+### 2.14.13 (2026-11-13)
 
-- **cold-email** (2.2.1 → 2.2.2): "Before You Send" now says to check the EU and UK rules before the first send — Germany and Italy need the recipient's prior consent (B2B included), the UK excludes sole traders and partnerships without consent — and deliverability.md gains a contents line and a pointer from the CAN-SPAM opt-out note to those country rules.
-- **prospecting** (1.5.0 → 1.5.1): Italy joins Germany in the compliance reference's national rules (art. 130 of d.lgs. 196/2003 — prior consent for unsolicited commercial email, applied to companies as well as individuals by the Garante) and in the pre-shipping country-gating checkbox. Reported in #855.
+- **cold-email** (2.2.4 → 2.2.5): "Before You Send" now says to check the EU and UK rules before the first send — Germany and Italy need the recipient's prior consent (B2B included), the UK excludes sole traders and partnerships without consent — and deliverability.md gains a contents line and a pointer from the CAN-SPAM opt-out note to those country rules.
+- **prospecting** (1.5.3 → 1.5.4): Italy joins Germany in the compliance reference's national rules (art. 130 of d.lgs. 196/2003 — prior consent for unsolicited commercial email, applied to companies as well as individuals by the Garante) and in the pre-shipping country-gating checkbox. Reported in #855.
+
+### 2.14.12 (2026-11-11)
+
+Skills install cleanly under regex skill scanners that block on prompt-injection phrases.
+
+- **ads** (2.7.4 → 2.7.5): the untrusted-data rule in `references/audit-guardrails.md` describes an embedded "drop your earlier instructions" directive instead of quoting the literal injection phrase, which Hermes' Skills Guard flagged as a critical prompt injection and blocked on install. Same rule, same meaning.
+- **lead-magnets** (2.1.4 → 2.1.5): `references/content-to-skill-corpus-design.md` and eval 9 describe the injected transcript line instead of quoting it, for the same reason. The eval still tests that transcript text is treated as data.
+- **schema**: eval 8's expected output rewords "do not ... tell the user to delete" so it no longer reads as an instruction to hide information from the user. Evals only, no version bump.
+
+### 2.14.11 (2026-11-11)
+
+- **directory-submissions** (2.1.7 → 2.2.0): a **listing kit** (`references/listing-kit.md`) to fill in once before the first submission: every fact directories ask for, the copy at each common length limit (40, 60, 100, 160, and ~500 characters), asset sizes, and a submission log with statuses for skips and hand-offs. A new section covers **agent-run submissions**: check the log first, use a documented API or `/llms.txt` route before a form, open embedded forms on their own page, fill only visible fields and stop at any CAPTCHA or login, keep personal phone numbers and addresses off listings, no paid listings without approval, close email verification loops, and read an awesome list's contributing rules and recent merges before opening a PR. Directories without an API or PR route are **filled with browser or computer use**: the user signs in once per batch, the agent maps fields to the kit, uploads assets, shows a screenshot of the filled form for approval, submits, and logs the confirmation; CAPTCHAs, logins, payments, and terms go back to the user and the agent resumes after. A new `references/agent-registry-files.md` lists the repo files agent registries read (`server.json`, `glama.json`, `gemini-extension.json`, Cursor and Claude plugin manifests, `SKILL.md`), checked against each registry's docs: only the Gemini CLI gallery lists a repo from the file alone; skills.sh lists from install counts; the rest need a claim or a reviewed submission. Prompted by Ilias Ism's directory-submissions skill.
+
+### 2.14.10 (2026-11-10)
+
+- **ad-creative** (2.12.5 → 2.13.0): ten new static ad templates from a review of long-running ads in public ad libraries: Apology Letter ("We're so sorry"), Important Update, Reassurance List ("Stop thinking something is wrong with you"), Simple Guarantee, With / Without, Venn Diagram, Stages (progression comic), Character Story ("This is Mike"), Signs Checklist, and Exaggerated Visual. Their tiers are marked provisional. A new **visual styles** table (dark mode, retro screen, billboard, notice board, presentation slide, whiteboard, handwritten sign, mirror writing, news card, newspaper, vintage, illustration, meme, retro app frame) restyles any template, with rules for styles that borrow a real look: no copied mastheads, no fake system dialogs or "sensitive content" screens, no tabloid claims. Health templates note Meta's personal-attributes and personal-health rules. The format map clarifies that the F-tier fake-native rating covers ads posing as a real interface, not decorative retro frames.
+
+### 2.14.9 (2026-11-09)
+
+Skills load for judgement calls too, even with many other skills installed.
+
+- **50 skills** (patch bump each): the "or asks" part of each description now covers the usual judgement calls in its area: choosing between two options ("which promise to lead with", "screen recording or AI avatar"), whether something is okay or fair ("is it fair to say a rival lacks offline mode", "is this markup allowed"), and whether it's enough ("are six directory listings enough"). Lower-value list items were cut to pay for it, so the pack stays at 18,662 characters and all 53 skills keep their descriptions with 90 other skills installed. On judgement-style prompts nobody read while writing the change, the right skill was picked for about 90% (92.5% twice, 89.6% for the shipped wording, from 66.5%) with 90 other skills installed and 95.3% (from 85.8%) with the pack alone, with no false triggers. programmatic-seo, revops, and signup are unchanged.
+- **Trigger eval**: a fourth held-out set (`heldout4.json`, judgement-style), used unread to judge this change.
+
+### 2.14.8 (2026-11-09)
+
+Skills now load for advice and judgement questions, not just requests to make something.
+
+- **Every skill** (patch bump each): each description now names the questions the skill answers ("or asks whether a result is real, when to stop a test, or which version won") next to what it makes. Descriptions that only said "write", "plan", or "create" lost questions like "should we say they lack SSO?" or "where would you look for buyers?": the model answered from general knowledge instead of loading the skill. Total 18,676 characters (from 19,259), so all 53 skills keep their descriptions even with 90 other skills installed (2 dropped before). On a judgement-style test set nobody read while writing the change, the right skill was picked for 87.7% of prompts (from 73.6%) with the pack alone and 73.6% (from about 60%) with 90 other skills installed. Advice-style prompts with other skills installed went from about 84% to 94%, and the original set reaches 100% alone.
+- **Trigger eval**: two more held-out sets (`heldout2.json` advice-style, `heldout3.json` judgement-style), seven `heldout.json` prompts now include the material they mention, and missed rows record the model's reply. The README covers run-to-run noise (about plus or minus 4 points on crowded runs) and when to use `--repeat`.
+
+### 2.14.7 (2026-11-09)
+
+- **social** (2.4.3 → 2.5.0): new `references/ship-post.md` for build-in-public posts that start from the commit log (closes #833, by @thiguillaumat-art). It reads the git log and diff since a ref, asks the developer one question (what was annoying or impossible before, and what's different now), picks the one user-visible change, leads with the user's pain rather than the implementation, and drafts one X post and one subreddit post. Hard rules: no number that isn't in the commits, the diff or the developer's answer; no claims about user behaviour nobody reported; flag a user sentence the code doesn't support; drafts only; say so when the week was only chores. SKILL.md links it next to the No AI Tells section, and the description gains a build-in-public trigger. New evals (ids 11–14).
+
+### 2.14.6 (2026-11-09)
+
+The ads operating check now defines "normal variance" as the trailing 6-8 period range, so a single period-over-period swing no longer triggers a change.
+
+- **ads** (2.7.1 → 2.7.2): the operating check pulls the trailing 6-8 periods, calls HOLD when a metric sits inside that range, and treats three or more periods moving the same way as a real movement. Spend, tracking, and broken-page problems, and target-based stop thresholds such as cost per qualified lead above 1.5× TCPL, skip the range gate.
+- **marketing-loops** (1.8.1 → 1.8.2): the loop catalog applies the same trailing-range baseline to its performance loops.
+
+### 2.14.5 (2026-11-09)
+
+- **conversion-tracking** (1.0.3 → 1.0.4): the Formidable Forms detector no longer records a conversion after a failed AJAX submit when the visitor later navigates to another same-origin page. A submit whose default was prevented never navigated natively, so its `pagehide` hand-off is skipped, and the sessionStorage marker's TTL now runs from the submit instead of the page exit. Snippet and GTM recipe kept in sync; contract tests added under `tests/assets/`. Reported in #924.
+
+### 2.14.4 (2026-11-09)
+
+- **conversion-tracking** (1.0.2 → 1.0.3): two detector fixes. `generic-ajax-form.js` no longer skips a form whose own handler called `preventDefault()`, which every AJAX form does to send its request with fetch or XHR, so an inline success message after the submit now pushes `form_submitted` (#912). `thank-you-page.js` no longer counts a refresh or a back/forward return to the confirmation page as another conversion when `COUNT_EVERY_VIEW` is false; it reads the browser's navigation type, so a new arrival on the path still counts and single-page-app route changes keep the in-memory guard (#913). Both GTM detect recipes regenerated, and `tests/assets/` gains a regression test per snippet.
+
+### 2.14.3 (2026-11-09)
+
+Shorter skill descriptions, so Claude Code shows all of them.
+
+- **Every skill** (patch bump each): descriptions rewritten to 491 characters or fewer, 19,259 in total (down from 42,105). Claude Code caps the skill listing it sends the model at about 30,000 characters, and past the cap a skill appears as a bare name: before this release, 26 of 53 skills had no description in the listing even with the pack installed alone; now none do. Each description says what the skill does, the distinct situations it covers, its operative rule, and the neighbouring skill to use instead, starting with "When the user wants to". On the new trigger eval (Sonnet), the right skill was picked for 98.7% of prompts (from 96.2%) with the pack alone, 96.9% (from 94.3%) with 90 other skills installed, and 89.6% (from 81.1%) on held-out prompts written without reading the descriptions, with other skills installed.
+- **Trigger eval** (`scripts/trigger-eval.mjs`, `evals/triggers/`): runs prompts through headless Claude Code with the pack as a plugin and scores the first skill invoked. Includes 171 prompts across all skills, a 114-prompt held-out set, an option to install other skills alongside, and contract tests.
+- **Description budget**: `scripts/check-versions.mjs` now fails a PR if a description passes 500 characters or the pack passes 24,000. AGENTS.md and CONTRIBUTING.md explain the limit and how to test description changes.
+
+### 2.14.2 (2026-10-30)
+
+Organic short-form growth for apps and products: earn posting volume with views, and pick formats by what they produce.
+
+- **social** (2.4.1 → 2.4.2): the short-form guide replaces the flat "2-4 posts a day to grow" table with a staged cadence (warm up, 1 thoughtful post a day until posts clear a view floor, up to 3 a day spaced 3-4 hours apart, then another warmed account rather than more posts per account, and a pause rule for stalled accounts). Adds a new-account warm-up checklist with compliance guardrails (brand-affiliated accounts, no bought or automated accounts, disclosed paid creators), a winning-format search that logs tests and calls winners on signups or installs rather than views, how to measure what views produce, and post-once-publish-everywhere.
+- **reverse-engineer-marketing** (1.1.0 → 1.1.1): the mobile apps pack adds account networks as a signal (unbranded niche accounts that share the app's link, with first post dates, cadence, and the format repeated across them) and a play for remaking their winning format.
+- **marketing-loops** (1.7.0 → 1.8.0): new format-finding loop that reads posts at 48 hours, applies the staged cadence per account, names the winning format by signups, and sends cadence increases and new accounts to a human. The catalog now has 60 loops.
+- **Tools**: new [Post Bridge](tools/integrations/post-bridge.md) integration guide (REST API, official MCP and CLI, multi-account posting, per-post daily view analytics), listed alongside Buffer; the Social Media recommendation in the registry is now neutral.
+
+### 2.14.1 (2026-10-30)
+
+- **reverse-engineer-marketing** (1.0.0 → 1.1.0): competitive intelligence additions. **Landscape mode** (`references/landscape.md`): `compare` profiles three to five competitors from outside (homepage scripts, marketing email platforms and ad-account verifications from DNS, sitemap page families, marketing roles on public job boards) and sorts the signals into table stakes, single-company bets, and the user's gaps (`--you`), with a CSV matrix. **Where they're weak** (`references/weak-spots.md`, a new section in stage 8): complaint themes from 1-2 star reviews, switching posts, price rises, abandoned search families, and markets left, each routed to a play (alternative pages, switching offers, positioning, battle cards), with rules for truthful comparative claims and trademarks. New script commands: `jobs` (Greenhouse, Lever, and Ashby boards: roles by function, marketing channels being hired for, tools named in posts, languages, first-marketing-hire wording), `reviews` (App Store reviews by month and the terms that skew to low ratings, or any exported review CSV with `--from`, reviewer names dropped), and `adoption` (monthly npm and PyPI downloads and GitHub star history as a free growth curve for developer tools). Watch mode adds a launch radar for clustered signals. Contract tests for every new parser and calculation; four new evals.
 
 ### 2.14.0 (2026-10-30)
 

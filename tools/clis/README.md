@@ -50,6 +50,7 @@ Every CLI reads credentials from environment variables:
 | `calendly` | `CALENDLY_API_KEY` |
 | `clay` | `CLAY_API_KEY` |
 | `clearbit` | `CLEARBIT_API_KEY` |
+| `cloro` | `CLORO_API_KEY` |
 | `close` | `CLOSE_API_KEY` |
 | `coupler` | `COUPLER_API_KEY` |
 | `crossbeam` | `CROSSBEAM_API_KEY` |
@@ -163,6 +164,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `calendly.js` | Scheduling | [Calendly](https://calendly.com) |
 | `clay.js` | Data Enrichment | [Clay](https://clay.com) |
 | `clearbit.js` | Data Enrichment | [Clearbit](https://clearbit.com) |
+| `cloro.js` | AEO | [cloro](https://cloro.dev) |
 | `close.js` | CRM | [Close](https://close.com) |
 | `coupler.js` | Data Aggregation | [Coupler](https://www.coupler.io) |
 | `crossbeam.js` | Partner Ecosystem | [Crossbeam](https://www.crossbeam.com) |
@@ -220,7 +222,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 
 ## HTTP request deadlines
 
-HTTP calls in 65 of the CLIs use a 120-second per-request deadline, long enough for slow endpoints such as Firecrawl scrapes (60-second default on Firecrawl's side) and large analytics exports. The Truelist CLI is not covered. Lower or raise it with `--timeout-ms <1-600000>`, for example:
+HTTP calls in 66 of the CLIs use a 120-second per-request deadline, long enough for slow endpoints such as Firecrawl scrapes (60-second default on Firecrawl's side) and large analytics exports. The Truelist CLI is not covered. Lower or raise it with `--timeout-ms <1-600000>`, for example:
 
 ```bash
 node tools/clis/exa.js search --query 'Recent market research' --timeout-ms 30000

@@ -89,7 +89,7 @@ Explicitly de-prioritized. These aren't just weak — they cost real time/rights
 
 - **Press ads** — a rights/permissions nightmare now (Vogue et al. will come after you). Was a champion format years ago; the ground shifted.
 - **Podcast ads** — a waste unless a **founder is on an actually well-known show**. Renting a studio or AI-generating a fake podcast clip doesn't pay off.
-- **Notes-app / UX fake-native ads** — everywhere on guru reels, but **they do not convert**. The familiar UI makes *everyone* stop, so they fail to qualify the right people and **confuse the algorithm**. Skip regardless of how tempting the "native" look is.
+- **Notes-app / UX fake-native ads** — everywhere on guru reels, but **they do not convert**. The familiar UI makes *everyone* stop, so they fail to qualify the right people and **confuse the algorithm**. Skip regardless of how tempting the "native" look is. This is about ads that pose as a real interface (an iPhone note, a system alert, a notification). Using an old app or phone screen as an obvious decorative frame is a visual style; see Visual Styles in [static-ad-templates.md](static-ad-templates.md).
 
 ---
 

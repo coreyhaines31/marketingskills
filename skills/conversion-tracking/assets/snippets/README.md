@@ -87,7 +87,7 @@ Not every snippet fires on a confirmed success. Some tools expose no success sig
 | `ws-form.js` | Native success event | jQuery `wsf-submit-success` on a `form.wsf-form` with a numeric form ID; repeats for the same form and instance within 2s count once |
 | `phone-click.js` | Submit/click-based best effort | click on an `a[href^="tel:"]` (call intent, not a completed call) |
 | `file-download.js` | Submit/click-based best effort | click on a link to a downloadable file extension |
-| `thank-you-page.js` | DOM-inferred after submit | page path starts with a configured confirmation path |
+| `thank-you-page.js` | DOM-inferred after submit | page path starts with a configured confirmation path; a refresh or a back/forward return to it isn't counted again unless `COUNT_EVERY_VIEW` is true |
 | `generic-ajax-form.js` | DOM-inferred after submit | a success message appears within 7s of submit with no visible validation error |
 
 **Acuity note.** Acuity Scheduling needs both of its files, because half the code goes inside Acuity. Acuity tells the page nothing about a booking. What it offers is a Custom Conversion Tracking field, and it runs whatever is pasted there after each booking, inside a sandbox frame on `conversion-tracking-sandbox.acuityinnovation.com`.
