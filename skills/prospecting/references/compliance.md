@@ -52,6 +52,7 @@ You have three credible options:
 - **Commercial interest counts.** The CJEU's KNLTB ruling (October 2024) confirmed that a purely commercial interest can be a legitimate interest. You still need the balancing test in writing (a legitimate interests assessment).
 - **Tell people where you got their data.** When the data didn't come from the person directly (Article 14), say so within a month, and at the latest in the first message. One line works: "I found your email on [source]; reply 'remove' and I'll delete it."
 - **Germany is different.** Germany's unfair competition law (UWG §7) requires prior consent for advertising email, B2B included, and competitors enforce it through lawsuits. Exclude German contacts from cold email; use LinkedIn or phone (B2B calls need presumed consent, meaning a concrete reason to believe they'd welcome the call).
+- **Italy requires prior consent too.** Article 130 of Italy's privacy code (d.lgs. 196/2003) requires the recipient's prior consent for unsolicited commercial email, and the Garante (the Italian data protection authority) applies it to companies as well as individuals, with fines rather than competitor lawsuits as the enforcement route. Treat Italian contacts like German ones: no cold email without prior consent; use LinkedIn or consented phone instead.
 - **National rules sit on top of GDPR.** Several countries apply stricter ePrivacy rules to email. When a campaign targets one EU country heavily, check that country's rules.
 
 ### What disqualifies a list
@@ -151,7 +152,7 @@ Before shipping a list to the user (or downstream to cold-email):
 - [ ] Every contact has a source URL + collection date
 - [ ] No contacts sourced from scraped LinkedIn data
 - [ ] No bulk Maps content (reviews, ratings, listing copies) retained beyond Google's terms
-- [ ] Country gating applied: Germany excluded from cold email, UK sole traders and partnerships excluded without consent, CASL and Spam Act requirements met for Canada and Australia
+- [ ] Country gating applied: Germany and Italy excluded from cold email, UK sole traders and partnerships excluded without consent, CASL and Spam Act requirements met for Canada and Australia
 - [ ] Phone numbers scrubbed against DNC; no AI-voice calls to mobiles without consent
 - [ ] Lawful basis documented (legitimate interest test for B2B, or relevant alternative)
 - [ ] Email addresses validated (deliverability check before outreach)

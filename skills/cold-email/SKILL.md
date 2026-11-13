@@ -2,7 +2,7 @@
 name: cold-email
 description: "When the user wants to write or run B2B cold outbound, or asks whether an opener, reason to reach out, or email works or why nobody replies: cold emails, follow-ups, sending domains, deliverability, LinkedIn, cadences. Send from secondary domains, verify lists first, turn off open tracking, stop every channel when a prospect replies. No AI tells like 'it's not X, it's Y'. For the list, see prospecting. For lifecycle email, see emails. For call scripts, see sales-enablement."
 metadata:
-  version: 2.2.4
+  version: 2.2.5
 ---
 
 # Cold Email Writing
@@ -117,6 +117,7 @@ Copy only matters if it reaches the inbox. Before the first send:
 - **Verify every list** right before upload and keep bounces under 2%.
 - **Turn off open and click tracking.** Measure replies.
 - Include a plain-text **opt-out line and your postal address** in every email.
+- **Check the EU and UK rules first.** Germany and Italy require the recipient's prior consent for a cold email, B2B included; the UK allows B2B email under legitimate interest but not to sole traders or partnerships without consent. The country-by-country rules and the exclusion checklist are in the prospecting skill's compliance reference.
 
 Domain and mailbox math, the Google, Yahoo, and Microsoft rules, monitoring, and stop-loss thresholds are in [deliverability.md](references/deliverability.md).
 

@@ -12,7 +12,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | attribution | 1.1.9 | 2026-11-09 |
 | churn-prevention | 2.0.6 | 2026-11-09 |
 | co-marketing | 2.0.6 | 2026-11-09 |
-| cold-email | 2.2.4 | 2026-11-09 |
+| cold-email | 2.2.5 | 2026-11-13 |
 | community-marketing | 2.0.5 | 2026-11-09 |
 | competitor-profiling | 2.1.8 | 2026-11-09 |
 | competitors | 2.3.3 | 2026-11-09 |
@@ -44,7 +44,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.5.3 | 2026-11-09 |
+| prospecting | 1.5.4 | 2026-11-13 |
 | public-relations | 1.2.4 | 2026-11-09 |
 | referrals | 2.2.4 | 2026-11-09 |
 | reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
@@ -59,6 +59,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.13 (2026-11-13)
+
+- **cold-email** (2.2.4 → 2.2.5): "Before You Send" now says to check the EU and UK rules before the first send — Germany and Italy need the recipient's prior consent (B2B included), the UK excludes sole traders and partnerships without consent — and deliverability.md gains a contents line and a pointer from the CAN-SPAM opt-out note to those country rules.
+- **prospecting** (1.5.3 → 1.5.4): Italy joins Germany in the compliance reference's national rules (art. 130 of d.lgs. 196/2003 — prior consent for unsolicited commercial email, applied to companies as well as individuals by the Garante) and in the pre-shipping country-gating checkbox. Reported in #855.
 
 ### 2.14.12 (2026-11-11)
 
