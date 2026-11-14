@@ -14,6 +14,7 @@ Run into a problem or have a question? [Open an issue](https://github.com/coreyh
 
 ## Partners
 
+
 The library is free and MIT-licensed. [Verified Partners](tools/REGISTRY.md#verified-partners) fund the work — vetted, disclosed tool integrations, listed alongside the neutral options and never influencing what the core skills recommend. The full rules and boundaries are in [tools/PARTNERS.md](tools/PARTNERS.md). [Become a partner →](https://marketing-skills.com/sponsorship)
 
 <!-- PARTNERS:START -->
