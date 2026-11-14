@@ -124,6 +124,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | pendo | Product Analytics | ✓ | - | [✓](clis/pendo.js) | - | [pendo.md](integrations/pendo.md) |
 | similarweb | Competitive Intelligence | ✓ | ✓ | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
+| scrapewhale | Competitive Intelligence | ✓ | ✓ | - | - | [scrapewhale.md](integrations/scrapewhale.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
@@ -479,6 +480,7 @@ Traffic analytics, competitor benchmarking, and market research.
 |------|----------|-------|
 | **similarweb** | Website traffic, competitor analysis | Traffic sources, keywords |
 | **scrapecreators** | Public social posts and ad libraries (TikTok, Instagram, YouTube, X, Reddit; Meta, Google, TikTok ads) | API + MCP; credit-based; not for LinkedIn or people data |
+| **scrapewhale** | Traffic estimates, SEO metrics, Meta and Google ad libraries, social profiles, Google results and AI Overviews for a brand from one key | API + MCP; credit-based; not for LinkedIn, Maps or people data |
 
 **Agent recommendation**: Similarweb for competitor traffic analysis and market benchmarking.
 
