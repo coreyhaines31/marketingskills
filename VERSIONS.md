@@ -47,7 +47,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | prospecting | 1.5.3 | 2026-11-09 |
 | public-relations | 1.2.4 | 2026-11-09 |
 | referrals | 2.2.4 | 2026-11-09 |
-| reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
+| reverse-engineer-marketing | 1.2.0 | 2026-11-15 |
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.3 | 2026-11-09 |
 | schema | 2.0.5 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.13 (2026-11-15)
+
+- **reverse-engineer-marketing** (1.1.4 → 1.2.0): Stage 2 now requires a page-family table and a strongest-links check, the playbook gains Scorecard, Page Families, Strongest Links, and What Won't Transfer sections, Stage 9 lists what won't transfer before the plays, and Before Starting quotes what a run costs before paid calls.
 
 ### 2.14.12 (2026-11-11)
 
