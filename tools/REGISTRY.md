@@ -100,6 +100,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
 | truelist | Email Verification | ✓ | ✓ | [✓](clis/truelist.js) | ✓ | [truelist.md](integrations/truelist.md) |
 | precleared | Email Compliance | ✓ | ✓ | - | - | [precleared.md](integrations/precleared.md) |
+| hyper-elements | Email Testing | - | - | ✓ | ✓ | [hyper-elements.md](integrations/hyper-elements.md) |
 | github | Developer Intent | ✓ | - | [✓](clis/github-prospects.js) | ✓ | [github.md](integrations/github.md) |
 | firecrawl | Site Scraping & AI Search | ✓ | ✓ | [✓](clis/firecrawl.js) | ✓ | [firecrawl.md](integrations/firecrawl.md) |
 | browserbase | Site Scraping | ✓ | ✓ | - | ✓ | [browserbase.md](integrations/browserbase.md) |
@@ -386,6 +387,16 @@ Whether a cold or marketing email to a given recipient is allowed in their count
 | **precleared** | Per-address permission check before the first cold email (UK, US, CA, DE, FR, AU, IE, NL) | Verdict, the rule quoted with its source, footer requirements, a signed receipt. Free daily allowance, API + MCP |
 
 **Agent recommendation**: Before the first cold email to anyone in the UK, Canada, Australia or Europe, settle whether consent is needed, either with a check like this or by hand against the official guidance linked in the guide. UK sole traders and German business addresses are the common traps. Deliverability verification (Truelist) answers a different question; do both.
+
+### Email Testing
+
+How an email looks in the clients it's read in (classic Outlook, Gmail, Apple Mail and others), before it's sent.
+
+| Tool | Best For | Notes |
+|------|----------|-------|
+| **hyper-elements** | Previewing and checking any HTML email in Outlook, Gmail, Apple Mail, Yahoo Mail and AOL Mail, light and dark | What each client removes or changes, by line, with a fix; accessibility checks. Local CLI and Node SDK, free, no account |
+
+**Agent recommendation**: Check every new or changed template in the clients its list reads in before it goes live, with a check like this or with test sends to accounts in those clients. A layout that looks right in the ESP's editor can come apart in classic Outlook, which lays email out with Word, or in Gmail, which removes parts of its CSS.
 
 ### Developer Intent / GitHub
 
@@ -717,6 +728,7 @@ Use Glasser for occasional lookups across several paid vendors when no accounts 
 ### Setting up email automation
 1. Read [customer-io.md](integrations/customer-io.md) for behavior-based automation
 2. Read [resend.md](integrations/resend.md) for transactional email
+3. Read [hyper-elements.md](integrations/hyper-elements.md) to check each template in email clients before it sends
 
 ### Running sales outbound (list → signals → enrich → verify → send → LinkedIn → CRM)
 
