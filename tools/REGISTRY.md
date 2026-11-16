@@ -134,6 +134,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
+| postonce | Social | ✓ | ✓ | - | - | [postonce.md](integrations/postonce.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -336,8 +337,9 @@ Social media scheduling, management, and analytics.
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
 | **post-bridge** | Scheduling one video to many accounts and platforms, per-post analytics | Short-form video focus; daily view snapshots |
+| **postonce** | Posting one video or post to many platforms, automatic crossposting from one account to others, per-post analytics | Workflows repost each new post from a source account |
 
-**Agent recommendation**: Use the scheduler the user already has. Both schedule across platforms through an API and MCP.
+**Agent recommendation**: Use the scheduler the user already has. All three schedule across platforms through an API and MCP.
 
 ### Video
 
