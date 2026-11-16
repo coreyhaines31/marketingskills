@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "validate-skills.sh"
+      - "validate-skills-official.sh"
       - "tests/**"
       - "tools/clis/**"
       - "skills/ad-creative/assets/creative-review-template.html"
@@ -13,6 +14,7 @@ on:
     branches: [main]
     paths:
       - "validate-skills.sh"
+      - "validate-skills-official.sh"
       - "tests/**"
       - "tools/clis/**"
       - "skills/ad-creative/assets/creative-review-template.html"
@@ -31,6 +33,9 @@ jobs:
 
       - name: Run validate-skills.sh regression tests
         run: bash tests/run-regression.sh
+
+      - name: Run validate-skills-official.sh regression test
+        run: bash tests/run-official-validator-regression.sh
 
   cli-contract-tests:
     runs-on: ubuntu-latest
