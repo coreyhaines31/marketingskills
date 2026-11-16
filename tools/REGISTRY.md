@@ -126,6 +126,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
+| calven | Competitive Intelligence | - | ✓ | - | - | [calven.md](integrations/calven.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
 | theirstack | Hiring & Tech Signals | ✓ | ✓ | - | - | [theirstack.md](integrations/theirstack.md) |
@@ -479,6 +480,7 @@ Traffic analytics, competitor benchmarking, and market research.
 |------|----------|-------|
 | **similarweb** | Website traffic, competitor analysis | Traffic sources, keywords |
 | **scrapecreators** | Public social posts and ad libraries (TikTok, Instagram, YouTube, X, Reddit; Meta, Google, TikTok ads) | API + MCP; credit-based; not for LinkedIn or people data |
+| **calven** | A company's approved positioning, messaging, ICP, personas, battlecards and win/loss | MCP only (OAuth); reads the workspace, no web search |
 
 **Agent recommendation**: Similarweb for competitor traffic analysis and market benchmarking.
 
@@ -657,6 +659,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **theirstack** - Hiring and technographic signals
 - **apify** - Ready-made scrapers (Actors)
 - **scrapecreators** - Public social posts and ad libraries
+- **calven** - Approved positioning, messaging, personas, battlecards and win/loss
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
