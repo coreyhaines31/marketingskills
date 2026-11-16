@@ -49,6 +49,7 @@ Domains verified live on 2026-10-02. Re-check before submitting (see the safety 
 | **Tinyshelf** | tinyshelf.co | ~73 | ~0 | Google login, reviewed listings. Not `tinyshelf.com` |
 | **Launch Llama** | tools.launchllama.co | ~73 | — | Free listing in the directory of a newsletter (claims ~55k readers) |
 | **ScrollLaunch** | scrolllaunch.com | ~71 | — | Free, dofollow only while their badge stays up; $19/$39 premium |
+| **TheSaaSDir** | thesaasdir.com | ~71 | ~0.3k/mo | Free, dofollow only while their badge stays up; $19 featured without a badge. Submission terms and agent instructions at `/llms.txt` |
 | **Acid Tools** | acidtools.com | ~68 | ~0 | Login required; terms unverified |
 | **Better Launch** | betterlaunch.co | ~63 | ~0 | Free listing; sells $149–$199 submission packages |
 | **LaunchPanda** | launchpanda.dev | ~61 | — | Free, dofollow with their badge. **Never `launchpanda.com` (for sale)** |
