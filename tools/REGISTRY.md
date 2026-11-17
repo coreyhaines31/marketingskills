@@ -125,6 +125,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | similarweb | Competitive Intelligence | ✓ | ✓ | [✓](clis/similarweb.js) | - | [similarweb.md](integrations/similarweb.md) |
 | scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
+| specstream | AI Search | ✓ | ✓ | - | - | [specstream.md](integrations/specstream.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
@@ -554,8 +555,11 @@ AI-powered web search APIs built for LLMs and agents. Return structured results 
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **exa** | Neural/semantic web search, content research, competitor discovery | Search + findSimilar + Contents; MCP and SDKs available |
+| **specstream** | Search API, Extract API, drop-in provider compatibility | Search + Extract; MCP available |
 
 **Agent recommendation**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
+
+**Agent recommendation**: SpecStream for a high-performance Search API and Extract API, or to replace existing search providers (Tavily, Exa, Brave, Serper, SearXNG) with a drop-in API.
 
 ### Partner Ecosystem
 
