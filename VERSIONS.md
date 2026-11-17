@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.0 | 2026-11-10 |
-| ai-seo | 2.12.3 | 2026-11-09 |
+| ai-seo | 2.12.4 | 2026-11-17 |
 | analytics | 2.2.5 | 2026-11-09 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.9 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.3 | 2026-11-09 |
 
 ## Recent Changes
+
+### 2.14.13 (2026-11-17)
+
+- **ai-seo** (2.12.3 → 2.12.4): the agent-readiness reference gains a short commerce section. On a store, the high-intent action is the purchase: offer data on the product page, `/cart` and `/checkout` answering an agent user agent (CDN/WAF rules can differ by path), structured returns and shipping, and a reachable commerce protocol. Check options listed from DIY `curl` to tools, maker disclosed.
 
 ### 2.14.12 (2026-11-11)
 
