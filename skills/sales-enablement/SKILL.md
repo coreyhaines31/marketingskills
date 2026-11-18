@@ -428,3 +428,7 @@ For partner sales enablement, see the [tools registry](https://github.com/coreyh
 - **revops**: For lead lifecycle, scoring, routing, and pipeline management
 - **pricing**: For pricing decisions and packaging
 - **product-marketing**: For foundational positioning and messaging
+
+**If the [designskills](https://github.com/zstvns/design-skills) library is installed**, hand off the visual work:
+
+- **collateral-design**: For laying out the deck or one-pager from the finished outline and copy

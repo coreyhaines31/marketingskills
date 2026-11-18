@@ -341,3 +341,9 @@ Generate OG images programmatically for pages with dynamic content (blog posts, 
 - **seo-audit**: For image SEO (alt text, file names, lazy loading)
 - **aso**: For app store screenshot specs and optimization
 - **directory-submissions**: For Product Hunt gallery images and directory listing visuals
+
+**If the [designskills](https://github.com/zstvns/design-skills) library is installed**, hand off the visual work:
+
+- **collateral-design**: For OG images, thumbnails, and social graphics built from the brand's visual system
+- **art-direction**: For defining the photo, illustration, and icon style before generating images
+- **logo-design**: For designing or critiquing a logo

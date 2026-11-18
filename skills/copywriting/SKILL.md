@@ -337,3 +337,7 @@ For headlines and CTAs, provide 2-3 options:
 - **emails**: For email copywriting
 - **popups**: For popup and modal copy
 - **ab-testing**: To test copy variations
+
+**If the [designskills](https://github.com/zstvns/design-skills) library is installed**, hand off the visual work:
+
+- **web-design**: For designing and building the page from the finished copy

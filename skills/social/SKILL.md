@@ -460,3 +460,7 @@ Tools: CapCut (free), Descript, Captions.ai, Premiere Pro
 - **reverse-engineer-marketing**: For reading a company's content patterns, house style, and formulas across every channel
 - **emails**: For nurturing social audience via email
 - **marketing-psychology**: For understanding what drives engagement
+
+**If the [designskills](https://github.com/zstvns/design-skills) library is installed**, hand off the visual work:
+
+- **collateral-design**: For designing carousel slides and social graphics from the finished copy
