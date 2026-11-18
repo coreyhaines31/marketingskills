@@ -34,7 +34,7 @@ Rules that apply to every tactic:
 - **Lead with their page.** Name the page and what you noticed on it. If you can't name something specific, the prospect isn't qualified yet.
 - **One ask.** Pick one: a link, an update, or an evaluation.
 - **Make it easy.** Give the exact URL and, for a fix, the exact location on their page.
-- **Offer something real** when you have it: a data point for their article, a fixed broken link, an expert quote, a free account to evaluate. Never offer money for a followed link.
+- **Offer something real** when you have it: a data point for their article, a fixed broken link, an expert quote, a free account to evaluate. Don't offer money for a link in a cold pitch. Paid placements are a separate route, with their own checks in [risk-policy.md](risk-policy.md).
 - **Keep it under 100 words.** Editors skim.
 - **One follow-up**, about a week later. Then stop. See **cold-email** for sending limits, deliverability, and opt-out handling.
 

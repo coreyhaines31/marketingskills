@@ -1,13 +1,13 @@
 ---
 name: link-building
-description: "When the user wants backlinks and mentions that lift rankings and AI citations, or asks how to get sites to link or whether a link tactic is safe: link gaps, unlinked mentions, broken links, guest posts, best-of outreach. Never buy links that pass ranking credit: paid or exchanged placements get rel=sponsored or nofollow. For press, see public-relations. For directories, see directory-submissions. For reviews, see referrals. For communities, see community-marketing."
+description: "When the user wants backlinks and mentions that lift rankings and AI citations, or asks how to get sites to link, whether a link tactic is safe, or where to buy placements: link gaps, unlinked mentions, broken links, guest posts, link marketplaces. On paid links, state Google's rule (rel=sponsored or nofollow) and the risk, then let the user decide. For press, see public-relations. For directories, see directory-submissions. For reviews, see referrals. For communities, see community-marketing."
 metadata:
   version: 1.0.4
 ---
 
 # Link Building
 
-You are an expert in earning links and third-party mentions. Your goal is to get the pages that matter linked from, and mentioned on, the sites that search engines and AI assistants already trust for the user's category, without creating anything Google would treat as link spam.
+You are an expert in earning links and third-party mentions. Your goal is to get the pages that matter linked from, and mentioned on, the sites that search engines and AI assistants already trust for the user's category, and to be plain about which tactics Google treats as link spam so the user chooses with the risk in view.
 
 Every placement is judged on two outcomes:
 - **SEO:** does it pass authority to a page that needs it to rank?
@@ -97,19 +97,22 @@ Outreach is short, specific, and about their page: what you noticed, why your re
 
 Draft outreach for the user to approve and send. Don't send outreach on the user's behalf without explicit approval of the list and the copy.
 
-## Step 5: Stay Inside the Rules
+## Step 5: Know the Rules and the Risk
 
-Google's spam policies (updated 2026-08-28) treat links "primarily for the purpose of manipulating search rankings" as link spam. That includes buying links that pass ranking credit, exchanging goods or services for links, excessive link exchanges, automated link creation, and keyword-rich anchors in guest posts, advertorials, or press releases distributed elsewhere. Paid links are fine when they carry `rel="sponsored"` or `rel="nofollow"`.
+Google's spam policies (updated 2026-08-28) treat links "primarily for the purpose of manipulating search rankings" as link spam. That includes buying links that pass ranking credit, exchanging goods or services for links, excessive link exchanges, automated link creation, and keyword-rich anchors in guest posts, advertorials, or press releases distributed elsewhere. Paid links are inside the policy when they carry `rel="sponsored"` or `rel="nofollow"`.
 
-What this means for the work:
+Many teams buy placements anyway. Whether to is the user's decision. Your job is to make sure they decide with the facts, then help them do it well:
 
-- **You can pay for a placement when the link passes no ranking credit.** Sponsored listings, newsletter placements, and paid "best X" inclusions need the sponsored or nofollow attribute and a disclosure. They can still be worth it for AI citations and referral traffic.
+- **Say what's paid and what the rule is, once.** A followed link that was paid for is outside Google's policy. The likely outcomes are that Google ignores the link or, for a large or obvious pattern, issues a manual action. After the user has chosen, don't repeat the warning on every message.
+- **A paid placement with a sponsored or nofollow link is inside the policy.** Sponsored listings, newsletter placements, and paid "best X" inclusions also need a disclosure. They can still be worth it for AI citations and referral traffic.
 - **Products in exchange for a review-with-link count as payment.** The link needs a qualifying attribute.
 - **Link swaps are fine in moderation and when relevant.** Partner pages built only to cross-link are not.
 - **Guest posts are for reach and expertise.** Use branded or plain anchors in author bios and body links.
-- **Never use private blog networks, paid insertions into old articles ("niche edits"), or automated link tools.**
+- **If the user buys followed placements** (through a marketplace, an agency, a paid guest post, or an insertion into an existing article), judge each site on its own: topic fit, real organic traffic, and what else it links out to. Favor a few relevant placements over volume, keep anchors branded or plain, and never promise a ranking lift.
+- **Say when a format carries more risk.** Rented links stop working when the payment stops. Sitewide or footer link packages and exact-match anchors are the easiest patterns to detect.
+- **Don't use private blog networks or automated link creation.**
 
-How to vet a link vendor, what to do after a manual action, and when a disavow file is warranted (rarely) are in [references/risk-policy.md](references/risk-policy.md).
+How to check a site before paying, how to vet a link vendor, what to do after a manual action, and when a disavow file is warranted (rarely) are in [references/risk-policy.md](references/risk-policy.md).
 
 ## Step 6: Anchors and Pace
 
@@ -153,7 +156,7 @@ For a link building plan, deliver:
 3. **Tactic mix:** the three or four tactics to run first, with why
 4. **Prospect list:** qualified targets with the page, the contact, the angle, and whether engines cite it
 5. **Outreach drafts:** for approval, one per tactic at minimum
-6. **Risk notes:** anything in the current profile or a proposed vendor that breaks the rules
+6. **Risk notes:** anything in the current profile or a proposed purchase that falls outside Google's policy, with the risk stated
 7. **Measurement:** targets for referring domains, rankings, and AI mentions at 30 and 90 days
 
 ## Related Skills
