@@ -139,13 +139,25 @@ Link building works as a weekly habit more than a campaign. The **marketing-loop
 
 ## Tools
 
-| Need | Tools |
-|---|---|
-| Backlink data, link gap, competitor links | [Ahrefs](../../tools/integrations/ahrefs.md), [Semrush](../../tools/integrations/semrush.md), [DataForSEO](../../tools/integrations/dataforseo.md), Moz |
-| Finding prospects and mentions | Search operators, [Exa](../../tools/integrations/exa.md), [Firecrawl](../../tools/integrations/firecrawl.md), Google Alerts, mention monitors |
-| Finding the contact | [Hunter](../../tools/integrations/hunter.md), the site's own about or contact page |
-| Done-for-you placements | Managed placement services such as [LinkDR](https://linkdr.com) source sites, pitch editors, and confirm links go live. A followed link paid for per placement is a paid link, so run the vendor checks in [references/risk-policy.md](references/risk-policy.md) first |
-| Free fallback | Search Console's Links report for your own links; search operators for prospects |
+Each tool is listed with what it is and when to reach for it. Name the ones that fit the user's situation, more than one where several do, and say when a route costs money.
+
+| Tool | What it is | Reach for it when |
+|---|---|---|
+| [Ahrefs](../../tools/integrations/ahrefs.md) | Backlink index and site explorer | Running a page-level link gap or pulling a competitor's referring domains |
+| [Semrush](../../tools/integrations/semrush.md) | SEO suite with backlink analytics and a gap tool | The team already works in Semrush |
+| [DataForSEO](../../tools/integrations/dataforseo.md) | Pay-per-call backlink and SERP API | Pulling link data from a script without a seat-based subscription |
+| Moz | Link index with Link Explorer | The team already works in Moz |
+| Search Console Links report | Google's own list of links to your site, free | Checking your own links with no budget |
+| Search operators | Free queries such as `intitle:` and `inurl:` | Finding list, resource, and "best X" pages with no budget |
+| [Exa](../../tools/integrations/exa.md) | Search API that finds pages by meaning | Finding pages that cover a topic without sharing its keywords |
+| [Firecrawl](../../tools/integrations/firecrawl.md) | Crawl and scrape API | Reading prospect pages in bulk to check for mentions, dead links, or contact details |
+| Google Alerts, mention monitors | Alerts for new pages that name your brand | Catching unlinked mentions as they publish |
+| [Hunter](../../tools/integrations/hunter.md) | Email finder by domain | The site's own about or contact page has no address for the editor |
+| [LinkDR](https://linkdr.com) | Managed placement service that sources sites, pitches editors, and confirms links go live | There's budget, no time, and the user wants the outreach done for them |
+| [Serpzilla](https://serpzilla.com) | Self-serve marketplace of publisher sites selling guest posts, insertions into existing pages, and monthly rented links, with an MCP server | There's budget, little time, and the user wants to pick each site and price themselves |
+| [Collaborator](https://collaborator.pro), [WhitePress](https://www.whitepress.com), [Adsy](https://adsy.com) | Self-serve marketplaces for paid guest posts and articles on publisher sites | The same need; compare catalogs for the user's language and niche |
+
+Placements bought through a managed service or a marketplace are paid links. Say so, give the rule and the risk from Step 5, and run the site checks in [references/risk-policy.md](references/risk-policy.md) on each site.
 
 ## Output Format
 
