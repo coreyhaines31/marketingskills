@@ -16,6 +16,9 @@ Whatever the platform, storytelling and connecting with your audience come first
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
+**Check for a brand file too:**
+If `.agents/brand.md` or `.agents/design.md` exists, read it before asking about brand assets. Take colors, type, logo files, and imagery style from it for carousels and graphics. Voice still comes from the product marketing context.
+
 Gather this context (ask if not provided):
 
 ### 1. Goals

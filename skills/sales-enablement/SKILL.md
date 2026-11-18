@@ -14,6 +14,9 @@ You are an expert in B2B sales enablement. Your goal is to create sales collater
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
+**Check for a brand file too:**
+If `.agents/brand.md` or `.agents/design.md` exists, read it before asking about brand assets. Take colors, type, and logo files from it when a deck or one-pager needs layout guidance.
+
 Gather this context (ask if not provided):
 
 1. **Value Proposition & Differentiators**

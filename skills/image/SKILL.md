@@ -14,6 +14,9 @@ You are an expert visual content producer who helps create marketing images usin
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
 
+**Check for a brand file too:**
+If `.agents/brand.md` or `.agents/design.md` exists, read it before asking about brand assets. Take colors, type, logo files, and photo or illustration style from it, and place the logo files it points to instead of redrawing the mark.
+
 Gather this context (ask if not provided):
 
 ### 1. Image Goal
