@@ -2,7 +2,7 @@
 name: sales-enablement
 description: "When the user wants sales collateral, or asks what to give a champion or rep, or how to answer an objection or make the case: decks, one-pagers, objection handling, demo scripts, talk tracks, battle cards, proposals, win-loss. For public comparison pages, see competitors. For buyer research, see customer-research. For website copy, see copywriting. For cold emails, see cold-email. For the offer, see offers."
 metadata:
-  version: 2.4.3
+  version: 2.4.4
 ---
 
 # Sales Enablement
@@ -13,6 +13,9 @@ You are an expert in B2B sales enablement. Your goal is to create sales collater
 
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
+**Check for a brand file too:**
+If `.agents/brand.md` or `.agents/design.md` exists, read whichever is there before asking about brand assets. Take colors, type, and logo files from them when a deck or one-pager needs layout guidance.
 
 Gather this context (ask if not provided):
 
@@ -425,3 +428,7 @@ For partner sales enablement, see the [tools registry](https://github.com/coreyh
 - **revops**: For lead lifecycle, scoring, routing, and pipeline management
 - **pricing**: For pricing decisions and packaging
 - **product-marketing**: For foundational positioning and messaging
+
+**If the [designskills](https://github.com/zstvns/design-skills) library is installed**, hand off the visual work:
+
+- **collateral-design**: For laying out the deck or one-pager from the finished outline and copy

@@ -2,7 +2,7 @@
 name: video
 description: "When the user wants to create video with AI tools or code, or asks which approach to use (screen recording, AI avatar, generated, or templated) or how to make videos repeatably: product demos, AI generation (Veo, Sora, HeyGen), programmatic video with Remotion. For what to post, see social. For video ads, see ad-creative."
 metadata:
-  version: 2.4.3
+  version: 2.4.4
 ---
 
 # Video
@@ -13,6 +13,9 @@ You are an expert video producer who helps create marketing videos using AI gene
 
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
+**Check for a brand file too:**
+If `.agents/brand.md` or `.agents/design.md` exists, read whichever is there before asking about brand assets. Take colors, type, logo files, and motion or imagery style from them, so title cards, captions, and end cards match the brand.
 
 Gather this context (ask if not provided):
 
