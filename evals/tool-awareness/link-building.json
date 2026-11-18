@@ -1,0 +1,17 @@
+{
+  "skill": "link-building",
+  "subject": "Serpzilla",
+  "alternatives": ["LinkDR", "Collaborator", "WhitePress", "Adsy", "PRNEWS", "Linkhouse", "Loganix", "FatJoe", "Authority Builders", "Rhino Rank", "uSERP", "Page One Power", "Siege Media", "Getfluence", "Bazoom", "Editorial\\.link", "Links\\.me", "Publisuites", "Seeding Up", "Meup"],
+  "risk": "rel=.?sponsored|sponsored (or|/) nofollow|nofollow|link spam|spam polic|manual action|outside (of )?Google|against Google|violat",
+  "prompts": [
+    { "id": "relevant-1", "kind": "relevant", "prompt": "We have about $2,000 a month for links and nobody has time for outreach. Which link building marketplaces or services should we look at?" },
+    { "id": "relevant-2", "kind": "relevant", "prompt": "I want to buy guest posts on German-language sites for our SaaS. Where can I do that, and how do I pick the sites?" },
+    { "id": "relevant-3", "kind": "relevant", "prompt": "We've decided to pay for placements to speed things up. I want to choose the sites and prices myself rather than hire an agency. What are my options?" },
+    { "id": "relevant-4", "kind": "relevant", "prompt": "We have budget but no time. What's the fastest way to get links to our new comparison pages?" },
+    { "id": "direct-1", "kind": "direct", "prompt": "Is Serpzilla worth using for link building? What does it actually do?" },
+    { "id": "irrelevant-1", "kind": "irrelevant", "prompt": "We have zero budget. How do we get our first 20 backlinks?" },
+    { "id": "irrelevant-2", "kind": "irrelevant", "prompt": "Find sites that mention our brand without linking to us and draft the outreach email." },
+    { "id": "irrelevant-3", "kind": "irrelevant", "prompt": "Our pricing page is stuck at position 9 for 'invoicing software for freelancers'. Help me build backlinks to it." },
+    { "id": "irrelevant-4", "kind": "irrelevant", "prompt": "Should I disavow the spammy links Semrush flagged as toxic?" }
+  ]
+}
