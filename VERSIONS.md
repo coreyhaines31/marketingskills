@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.13.0 | 2026-11-10 |
+| ad-creative | 2.13.1 | 2026-11-17 |
 | ai-seo | 2.12.3 | 2026-11-09 |
 | analytics | 2.2.5 | 2026-11-09 |
 | aso | 2.0.6 | 2026-11-09 |
@@ -19,14 +19,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | content-strategy | 2.1.8 | 2026-11-09 |
 | conversion-tracking | 1.0.6 | 2026-11-09 |
 | copy-editing | 2.2.4 | 2026-11-09 |
-| copywriting | 2.3.5 | 2026-11-09 |
+| copywriting | 2.3.6 | 2026-11-17 |
 | cro | 2.0.6 | 2026-11-09 |
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.0 | 2026-11-11 |
 | emails | 2.1.7 | 2026-11-09 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
-| image | 2.0.6 | 2026-11-09 |
+| image | 2.0.7 | 2026-11-17 |
 | influencer-marketing | 1.4.3 | 2026-11-09 |
 | launch | 2.2.3 | 2026-11-09 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
@@ -49,16 +49,24 @@ Current versions of all skills. Agents can compare against local versions to che
 | referrals | 2.2.4 | 2026-11-09 |
 | reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
 | revops | 2.2.4 | 2026-11-09 |
-| sales-enablement | 2.4.3 | 2026-11-09 |
+| sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
 | seo-audit | 2.2.5 | 2026-11-09 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.3 | 2026-11-09 |
-| social | 2.5.2 | 2026-11-09 |
-| video | 2.4.3 | 2026-11-09 |
+| social | 2.5.3 | 2026-11-17 |
+| video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.13 (2026-11-17)
+
+Skills that produce visuals read an existing brand file, and point to Zach Stevens' [design-skills](https://github.com/zstvns/design-skills) for the design work (#990).
+
+- **image** (2.0.6 → 2.0.7), **ad-creative** (2.13.0 → 2.13.1), **video** (2.4.3 → 2.4.4), **social** (2.5.2 → 2.5.3), **sales-enablement** (2.4.3 → 2.4.4): if `.agents/brand.md` or `.agents/design.md` exists, the skill reads it for colors, type, logo files, and imagery style before asking about brand assets. Both files come from design-skills, but any file at those paths works.
+- **sales-enablement**, **copywriting** (2.3.5 → 2.3.6), **social**, **image**, **ad-creative**: a note after Related Skills names the design-skills skill that takes over where this one stops (`collateral-design` for decks, one-pagers, carousels, OG images, and static ads; `web-design` for pages; `art-direction` for imagery style; `logo-design` for logos). It applies only if that library is installed. Descriptions are unchanged.
+- **README**: a Related Libraries section links design-skills.
 
 ### 2.14.12 (2026-11-11)
 
