@@ -30,7 +30,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | influencer-marketing | 1.4.3 | 2026-11-09 |
 | launch | 2.2.3 | 2026-11-09 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
-| link-building | 1.0.4 | 2026-11-09 |
+| link-building | 1.1.0 | 2026-11-18 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
 | marketing-loops | 1.8.4 | 2026-11-09 |
@@ -59,6 +59,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.14 (2026-11-18)
+
+- **link-building** (1.0.4 → 1.1.0): two changes (#992). **Paid links are handled by disclosure instead of refusal.** The skill still quotes Google's spam policy: a paid link that passes ranking credit is link spam, and paid links are inside the policy with `rel="sponsored"` or `rel="nofollow"`. It now states that rule and the likely outcomes once (Google ignores the link, or issues a manual action for a large or obvious pattern), leaves the decision to the user, and gives seven per-site checks for buying carefully in `references/risk-policy.md`. Rented links, sitewide packages, and exact-match anchors are flagged as higher risk. Private blog networks and automated link creation stay off-limits. **The tools table gives every tool one clause on what it is and one on when to reach for it**, the same shape for paid and free tools, and adds self-serve placement marketplaces (Serpzilla, Collaborator, WhitePress, Adsy) next to the managed service. The description gains "where to buy placements" and "link marketplaces", and its operative rule changes to match. Eval 2 updated; eval 6 added.
+- **Tool awareness eval**: `scripts/tool-awareness-eval.mjs` and `evals/tool-awareness/` test how a skill's wording about a tool changes answers: whether the tool is named when it fits, how many alternatives sit beside it, whether the risk is stated, and whether it is pushed when it doesn't fit. On link-building, one clause per tool took a marketplace from never named to named in 12 of 12 relevant replies, with 3.75 alternatives beside it on average. A vendor-written paragraph was named as often but came first in 92% of replies with 1.67 alternatives. Neither was named on prompts where it didn't fit.
 
 ### 2.14.13 (2026-11-17)
 
