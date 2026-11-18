@@ -17,7 +17,7 @@ If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or 
 Check its **Learnings** section before drafting: angles, offers, and formats already tested there shouldn't be re-proposed as new ideas, and active lessons apply unless the user says otherwise.
 
 **Check for a brand file too:**
-If `.agents/brand.md` or `.agents/design.md` exists, read it before asking about brand assets. Take colors, type, logo files, and imagery style from it, so visuals match the brand without the user restating them.
+If `.agents/brand.md` or `.agents/design.md` exists, read whichever is there before asking about brand assets. Take colors, type, logo files, and imagery style from them, so visuals match the brand without the user restating them.
 
 Gather this context (ask if not provided):
 
