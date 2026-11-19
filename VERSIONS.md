@@ -33,7 +33,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | link-building | 1.1.0 | 2026-11-18 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
-| marketing-loops | 1.8.4 | 2026-11-09 |
+| marketing-loops | 1.9.0 | 2026-11-19 |
 | marketing-plan | 1.2.5 | 2026-11-09 |
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.17 (2026-11-19)
+
+- **marketing-loops** (1.8.4 → 1.9.0): a new **reply-fed expansion loop** in the Outbound group, 61 loops in all (#997). Monthly, once about 30 positive replies have built up, it enriches the repliers, sets each trait's share of positive replies against its share of sends, groups the over-represented traits into two to four micro-segments, sources lookalike accounts for each, and stages the new segments for approval. It stops when there are too few replies or no trait stands out, never re-adds anyone who opted out or got a breakup email, and tags expansion segments so the sequence-retro loop reports them separately. The outbound operator's schedule lists it. Eval 10 added. Adapted from Julien Lieben's autoresearch loop playbook (ColdIQ).
 
 ### 2.14.16 (2026-11-19)
 
