@@ -37,6 +37,7 @@ A partner integration is the *same* neutral integration guide as any other tool,
 - Exclusivity over what agents recommend. Category exclusivity is a *sponsorship-slot* exclusivity, never a recommendation exclusivity — a skill may still name a competitor when it's the right answer.
 - Removal or demotion of any other tool. Partner entries are additive.
 - A claim of "best in category." The badge means "paid, disclosed, vetted for fit."
+- A longer description inside a skill. Every tool a skill names, partner or not, gets the same two short clauses: what it is and when to reach for it. Proposed wording is checked with the [tool awareness eval](../evals/tool-awareness/README.md) before it ships.
 
 ## Tiers (summary)
 
