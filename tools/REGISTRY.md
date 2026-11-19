@@ -149,6 +149,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | contentful | Headless CMS | ✓ | - | ✓ | ✓ | [contentful.md](integrations/contentful.md) |
 | strapi | Headless CMS | ✓ | - | ✓ | ✓ | [strapi.md](integrations/strapi.md) |
 | composio | Integration Layer | ✓ | ✓ | ✓ | ✓ | [composio.md](integrations/composio.md) |
+| magister (house tool) | Integration Layer / Marketing Platform | ✓ | ✓ | - | - | [magister.md](integrations/magister.md) |
 | cogny | Integration Layer | - | ✓ | - | - | [cogny.md](integrations/cogny.md) |
 | glasser | Integration Layer | ✓ | ✓ | ✓ | - | [glasser.md](integrations/glasser.md) |
 
@@ -532,6 +533,7 @@ Answer engine optimization tools for AI visibility monitoring, competitor benchm
 | Tool | Best For | Notes |
 |------|----------|-------|
 | **[omnia](integrations/omnia.md)** | AI visibility monitoring, prompt discovery, competitor benchmarking, citation analysis, and agent-assisted content optimization and outreach | REST API + OAuth MCP for data access; built-in agent for execution |
+| **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | AI visibility checks and an AEO audit as an API or MCP call | REST API (async jobs) + OAuth MCP; credit-based |
 | **[cloro](integrations/cloro.md)** | Raw answers and cited sources from ChatGPT, Google AI Mode, Bing AI Mode, and Gemini, and Google results with the AI Overview, per country | API (sync and async batch), hosted MCP, CLI; credit-based; no dashboard |
 
 **Agent note**: Omnia and cloro have integration guides here. Omnia is a monitoring platform with history and reports; cloro returns the raw answers and sources, and the agent does the counting. The ai-seo skill's monitoring tools table lists the alternatives (Otterly AI, Peec AI, ZipTie, LLMrefs, Profound, Ahrefs Brand Radar, Semrush) and a DIY method; choose on coverage and fit. With Omnia, use MCP for interactive analysis or the API for recurring reports; the built-in Omnia Agent handles content updates, publishing, and outreach with user approval.
@@ -589,6 +591,7 @@ Marketing data pipeline tools that connect multiple platforms for unified report
 |------|----------|-------|
 | **supermetrics** | Cross-platform data pulling | 200+ connectors |
 | **coupler** | Automated data flows to sheets/BI | Scheduled pipelines |
+| **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | Ad platform, GA4, and Search Console data read by an agent over MCP | No export to sheets or BI tools; credit-based |
 
 **Agent recommendation**: Supermetrics for pulling data from multiple marketing platforms into unified reports. Coupler.io for automated data flows to spreadsheets and BI tools.
 
@@ -661,6 +664,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
 - **admakeai** - Ad images, UGC video ads and Meta Ad Library lookups
+- **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
@@ -691,6 +695,16 @@ Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP se
 - **Pricing**: Solo plan starts at $9/mo (7-day trial)
 
 Use Cogny when you only need marketing channels and want to avoid running your own OAuth proxy. Prefer native APIs when you need deep, custom control of a single tool.
+
+### Magister Integration
+
+[Magister](integrations/magister.md) is a marketing platform with one MCP server in front of a brand's connected accounts: ad platforms, GA4, Search Console, CMS, email, social, and CRM. A separate API runs AI visibility checks, site audits, and keyword research. **House tool: Magister is built by this repository's maintainer.** It is listed next to the other options here, not ahead of them; say who builds it if you name it.
+
+- **Setup**: `claude mcp add --transport http --scope user magister https://mcp.magistermarketing.com/mcp`, then sign in with OAuth
+- **Guardrails**: ad campaigns are created paused and can't be activated over MCP; publishing and sending ask for confirmation
+- **Pricing**: 300 free credits once; plans from $29 a month with metered credits (checked 2026-11-19)
+
+Use Magister when one connection to several marketing accounts, with marketing jobs built in, suits the work. Prefer Composio or Cogny for connectors alone, Supermetrics or Coupler for pipelines into sheets and BI tools, and a platform's own API or MCP server for deep control of one tool.
 
 ### Glasser Integration
 
