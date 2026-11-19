@@ -13,7 +13,7 @@ Reference for using AI image generators, video generators, and code-based video 
 | Short video ads (6-30 sec) | Video generation | Veo, Kling, Runway, Seedance |
 | Video ads with voiceover | Video gen + voice | Veo (native), or Runway + ElevenLabs |
 | Voiceover tracks for ads | Voice generation | ElevenLabs, OpenAI TTS, Cartesia |
-| Multi-language ad versions | Voice generation | ElevenLabs, PlayHT |
+| Multi-language ad versions | Voice generation | ElevenLabs, Cartesia |
 | Brand voice cloning | Voice generation | ElevenLabs, Resemble AI |
 | Product mockups and variations | Image generation + references | Flux (multi-image reference) |
 | Templated video ads at scale | Code-based video | Remotion, Hyperframes |
@@ -120,96 +120,94 @@ Image models focused on typography and text rendering within images.
 
 ## Video Generation
 
+Models, limits, and prices here were checked on 2026-11-19. They change every few months, so follow the links before planning around a clip length or quoting a price. Where a vendor's own docs did not load, the row says which listing the fact came from.
+
 ### Google Veo
 
-Google DeepMind's video generation model, available through the Gemini API and Vertex AI.
+Google's video generation models.
 
-**Best for:** High-quality video ads with native audio, vertical video for social
-**API:** Gemini API, Vertex AI
-**Pricing:** ~$0.15/sec (Veo 3.1 Fast), ~$0.40/sec (Veo 3.1 Standard)
+**Fits:** Short video clips with generated sound, in vertical or landscape
+**API:** Google Cloud (Vertex AI). Third parties such as Runway's API also host it
+**Pricing:** Per second, by model. See [Google Cloud pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing)
 
-**Capabilities:**
-- Up to 60 seconds at 1080p
-- Native audio generation (dialogue, sound effects, ambient)
-- Vertical 9:16 output for Stories/Reels/Shorts
-- Upscale to 4K
-- Text-to-video and image-to-video
+**What the docs describe:**
+- Veo 3.1 and Veo 3.1 Fast are generally available on Google Cloud (`veo-3.1-generate-001`, `veo-3.1-fast-generate-001`)
+- Clips of 4, 6, or 8 seconds, so longer ads are assembled from several clips
+- 9:16 and 16:9; 720p and 1080p, plus 4K on the standard model
+- Sound generation, text-to-video, image-to-video, first-and-last-frame, extension, and reference images
+- The Veo 3.1 preview models in the Gemini API were shut down on 22 Oct 2026. Google's Gemini API docs now point to Gemini Omni Flash, which makes 3 to 15 second clips with audio
 
 **Ad creative use cases:**
-- Generate short video ads (15-30 sec) from text descriptions
+- Generate short clips and assemble 15-30 second ads from them
 - Create vertical video ads for TikTok, Reels, Shorts
-- Produce product demos with voiceover
-- Generate multiple video variations from the same prompt with different styles
+- Produce product clips with generated sound
+- Generate several variations of the same prompt in different styles
 
-**Docs:** [Veo on Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/video/overview)
+**Docs:** [Veo on Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/video/overview), [Gemini API video](https://ai.google.dev/gemini-api/docs/video)
 
 ---
 
 ### Kling (Kuaishou)
 
-Video generation with simultaneous audio-visual generation and camera controls.
+Video generation with audio and reference inputs.
 
-**Best for:** Cinematic video ads, longer-form content, audio-synced video
-**API:** Kling API, PiAPI, fal.ai
-**Pricing:** ~$0.09/sec (via fal.ai third-party)
+**Fits:** Longer single clips, image-to-video, clips with sound
+**API:** Kling's developer platform. Third parties such as Runway and fal.ai also host it
+**Pricing:** Per second, by model and resolution. Check the provider you call it through
 
-**Capabilities:**
-- Up to 3 minutes at 1080p/30-48fps
-- Simultaneous audio-visual generation (Kling 2.6)
-- Text-to-video and image-to-video
-- Motion and camera controls
+**What could be checked** (from Runway's listing of the models; Kling's own developer docs did not load):
+- Kling 4.0 makes 3 to 30 second clips at 720p or 1080p, with audio included
+- Kling 3.0 makes 3 to 15 second clips, up to 4K
+- Text, frames, and image or video references as inputs
 
 **Ad creative use cases:**
-- Longer product explainer videos
-- Cinematic brand videos with synchronized audio
+- Longer single-take product clips
+- Brand videos with synchronized audio
 - Animate product images into video ads
 
-**Docs:** [Kling AI Developer](https://klingai.com/global/dev/model/video)
+**Docs:** [Kling AI Developer](https://kling.ai/dev/model/video)
 
 ---
 
 ### Runway
 
-Video generation and editing platform with strong controllability.
+Video generation and editing, with an API that also hosts other labs' models.
 
-**Best for:** Controlled video generation, style-consistent content, editing existing footage
-**API:** Runway Developer Portal
+**Fits:** Text and image to video, editing existing footage, comparing several models through one API
+**API:** Runway API
+**Pricing:** Credits at $0.01 each, charged per second by model. See [API pricing](https://docs.dev.runwayml.com/guides/pricing/)
 
-**Capabilities:**
-- Gen-4: Character/scene consistency across shots
-- Motion brush and camera controls
-- Image-to-video with reference images
-- Video-to-video style transfer
+**What the docs describe:**
+- Gen-4.5 for text and image to video, Gen-4 Turbo for image to video, and Aleph for video-to-video editing
+- Other labs' models through the same API, including Veo, Kling, and Seedance
+- Duration, resolution, and control features differ by model; check the model page before planning a shot
 
 **Ad creative use cases:**
-- Generate video ads with consistent characters/products across scenes
-- Style-transfer existing footage to match brand aesthetics
-- Extend or remix existing video content
+- Generate video ads from a reference frame
+- Restyle or edit existing footage to match brand aesthetics
+- Run the same brief through several models with one key
 
 **Docs:** [Runway API](https://docs.dev.runwayml.com/)
 
 ---
 
-### Seedance 2.0 (ByteDance)
+### Seedance (ByteDance)
 
-ByteDance's video generation model with simultaneous audio-visual generation and multimodal inputs.
+ByteDance's video models, which generate audio and video together and take several kinds of reference.
 
-**Best for:** Fast, affordable video ads with native audio, multimodal reference inputs
-**API:** BytePlus (official), Replicate, WaveSpeedAI, fal.ai (third-party); OpenAI-compatible API format
-**Pricing:** ~$0.10-0.80/min depending on resolution
+**Fits:** Clips with sound generated in one pass, generation guided by image, video, and audio references
+**API:** BytePlus ModelArk (official). Third parties such as Runway, Replicate, and fal.ai also host it
+**Pricing:** Per second, by model and resolution. Check the provider you call it through
 
-**Capabilities:**
-- Up to 20 seconds at up to 2K resolution
-- Simultaneous audio-visual generation (Dual-Branch Diffusion Transformer)
-- Text-to-video and image-to-video
-- Up to 12 reference files for multimodal input
-- OpenAI-compatible API structure
+**What could be checked:**
+- ByteDance describes Seedance 2.0 as joint audio-video generation that accepts text, image, audio, and video inputs and references
+- Seedance 2.5 is listed next to 2.0 on BytePlus. Runway's listing gives it up to 30 seconds per clip and resolutions up to 4K
+- Lower-cost Fast and Mini tiers exist for 2.0
 
 **Ad creative use cases:**
-- High-volume short video ad production at low cost
 - Video ads with synchronized voiceover and sound effects in one pass
-- Multi-reference generation (feed product images, brand assets, style references)
-- Rapid iteration on video ad concepts
+- Multi-reference generation (product images, brand assets, style references)
+- Fast iteration on video ad concepts with the lower-cost tiers
 
 **Docs:** [Seedance](https://seed.bytedance.com/en/seedance2_0)
 
@@ -217,34 +215,33 @@ ByteDance's video generation model with simultaneous audio-visual generation and
 
 ### Higgsfield
 
-Full-stack video creation platform with cinematic camera controls.
+A video creation app built around camera-move control.
 
-**Best for:** Social video ads, cinematic style, mobile-first content
-**Platform:** [higgsfield.ai](https://higgsfield.ai/)
+**Fits:** Social video ads where the camera move is the idea
+**Platform:** [higgsfield.ai](https://higgsfield.ai/), web and mobile. No public API is stated; its site lists an MCP connector for Claude
 
-**Capabilities:**
-- 50+ professional camera movements (zooms, pans, FPV drone shots)
-- Image-to-video animation
-- Built-in editing, transitions, and keyframing
-- All-in-one workflow: image gen, animation, editing
+**What the site describes:**
+- Camera moves chosen as tags (static, handheld, zoom, pan)
+- An editing room that changes the angle, light, and camera of an existing video
+- Cinema Studio: up to one minute per generation, in 4K
+- Other labs' models available inside the app
 
 **Ad creative use cases:**
-- Social media video ads with cinematic feel
+- Social media video ads with a deliberate camera move
 - Animate product images into dynamic video
-- Create multiple video variations with different camera styles
-- Quick-turn video content for social campaigns
+- Several variations of one shot with different camera styles
 
 ---
 
 ### Video Tool Comparison
 
-| Tool | Max Length | Audio | Resolution | API | Best For |
-|------|-----------|-------|------------|-----|----------|
-| **Veo 3.1** | 60 sec | Native | 1080p/4K | Gemini | Vertical social video |
-| **Kling 2.6** | 3 min | Native | 1080p | Third-party | Longer cinematic |
-| **Runway Gen-4** | 10 sec | No | 1080p | Official | Controlled, consistent |
-| **Seedance 2.0** | 20 sec | Native | 2K | Official + third-party | Affordable high-volume |
-| **Higgsfield** | Varies | Yes | 1080p | Web-based | Social, mobile-first |
+| Tool | Clip length | Audio | API | Fits |
+|------|-------------|-------|-----|------|
+| **Veo 3.1** | 4, 6, or 8 sec | Generated | Google Cloud; third parties | Short clips with sound, vertical or landscape |
+| **Kling 4.0** | 3-30 sec (Runway's listing) | Included | Kling; third parties | Longer single clips |
+| **Runway Gen-4.5** | See docs | See docs | Official | Reference-frame generation, video-to-video editing |
+| **Seedance 2.5** | Up to 30 sec (Runway's listing) | Generated with the video | BytePlus; third parties | Multi-reference generation |
+| **Higgsfield** | Up to 1 min (Cinema Studio) | See site | None stated | Camera-move control |
 
 ---
 
@@ -268,16 +265,15 @@ Many video generators (Veo, Kling, Seedance) now include native audio. Use stand
 
 Voice generation and voice cloning platform.
 
-**Best for:** Most natural-sounding voiceovers, brand voice cloning, multilingual
+**Fits:** Voiceovers, brand voice cloning, multilingual versions
 **API:** REST API with streaming support
-**Pricing:** ~$0.12-0.30 per 1,000 characters depending on plan; starts at $5/month
+**Pricing:** Plans with monthly credits; text to speech costs about 1 credit per character. See [pricing](https://elevenlabs.io/pricing)
 
-**Capabilities:**
-- 29+ languages with natural accent and intonation
-- Voice cloning from short audio clips (instant) or longer recordings (professional)
-- Emotion and style control
+**What the docs describe:**
+- 90+ languages on the v4 models; 29 on Multilingual v2
+- Voice cloning from a short clip (instant) or longer recordings (professional)
 - Streaming for real-time generation
-- Voice library with hundreds of pre-built voices
+- A voice library of pre-built voices
 
 **Ad creative use cases:**
 - Generate voiceover tracks for video ads
@@ -297,29 +293,30 @@ curl -X POST "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}" \
   }' --output voiceover.mp3
 ```
 
-**Docs:** [ElevenLabs API](https://elevenlabs.io/docs/api-reference/text-to-speech)
+`eleven_multilingual_v2` is the API's default model. The vendor's [models page](https://elevenlabs.io/docs/models) lists the newer `eleven_v4` for quality and `eleven_v4_turbo` for low latency.
+
+**Docs:** [ElevenLabs API](https://elevenlabs.io/docs/api-reference/text-to-speech/convert)
 
 ---
 
 ### OpenAI TTS
 
-Simple, affordable text-to-speech built into the OpenAI API.
+Text-to-speech in the OpenAI API.
 
-**Best for:** Quick voiceovers, cost-effective at scale, simple integration
+**Fits:** Quick voiceovers and drafts when you already use the OpenAI API
 **API:** OpenAI API (same SDK as the GPT models)
-**Pricing:** $15/million chars (standard), $30/million chars (HD); ~$0.015/min with gpt-4o-mini-tts
+**Pricing:** See [OpenAI pricing](https://platform.openai.com/docs/pricing)
 
-**Capabilities:**
-- 13 built-in voices (no custom cloning)
-- Multiple languages
+**What the docs describe:**
+- Built-in voices (the guide lists 13)
+- Custom voices created from a speaker's consent recording and a matching sample
 - Real-time streaming
-- HD quality option
-- Simple API — same SDK you already use for GPT
+- **A shutdown date:** `tts-1`, `tts-1-hd`, and `gpt-4o-mini-tts` shut down on 6 Jan 2027. Check the guide for the replacement before building on them
 
 **Ad creative use cases:**
-- Fast, cheap voiceover for draft/test ad versions
-- High-volume narration at low cost
-- Prototype ad audio before investing in premium voice
+- Fast voiceover for draft and test ad versions
+- High-volume narration
+- Prototype ad audio before investing in a cloned voice
 
 **Docs:** [OpenAI TTS](https://platform.openai.com/docs/guides/text-to-speech)
 
@@ -327,23 +324,23 @@ Simple, affordable text-to-speech built into the OpenAI API.
 
 ### Cartesia Sonic
 
-Ultra-low latency voice generation built for real-time applications.
+Voice generation built for real-time applications.
 
-**Best for:** Real-time voice, lowest latency, emotional expressiveness
+**Fits:** Real-time and interactive voice, streaming
 **API:** REST + WebSocket streaming
-**Pricing:** Starts at $5/month; pay-as-you-go from $0.03/min
+**Pricing:** A free tier and paid plans, billed in credits at about 1 per character. See [pricing](https://cartesia.ai/pricing)
 
-**Capabilities:**
-- 40ms time-to-first-audio (fastest in class)
-- 15+ languages
-- Nonverbal expressiveness: laughter, breathing, emotional inflections
-- Sonic Turbo for even lower latency
+**What the docs describe:**
+- `sonic-3.6` is the current model
+- 44 languages
+- Instant and professional voice cloning
+- Pacing and intonation that follow the emotional context of the text, without markup tags
 - Streaming API for real-time generation
 
 **Ad creative use cases:**
 - Real-time ad preview during creative iteration
 - Interactive demo videos with dynamic narration
-- Ads requiring natural laughter, sighs, or emotional reactions
+- Voiceovers in a cloned brand voice
 
 **Docs:** [Cartesia Sonic](https://docs.cartesia.ai/build-with-cartesia/tts-models/latest)
 
@@ -351,35 +348,35 @@ Ultra-low latency voice generation built for real-time applications.
 
 ### Voicebox (Open Source)
 
-Free, local-first voice synthesis studio powered by Qwen3-TTS. The open-source alternative to ElevenLabs.
+A free voice synthesis studio that runs on your own machine, with several open TTS engines behind it.
 
-**Best for:** Free voice cloning, local/private generation, zero-cost batch production
-**API:** Local REST API at `http://localhost:8000`
+**Fits:** Voice cloning at no per-character cost, private or pre-launch material that shouldn't leave the machine
+**API:** Local REST API at `http://127.0.0.1:17493`
 **Pricing:** Free (MIT license). Runs entirely on your machine.
 **Stack:** Tauri (Rust) + React + FastAPI (Python)
 
-**Capabilities:**
-- Voice cloning from short audio samples via Qwen3-TTS
-- Multi-language support (English, Chinese, more planned)
+**What the project describes:**
+- Eight TTS engines, including Qwen3-TTS, Chatterbox, and Kokoro
+- 23 languages across the engines; some engines are English only
+- Voice cloning from short audio samples
 - Multi-track timeline editor for composing conversations
-- 4-5x faster inference on Apple Silicon via MLX Metal acceleration
-- Local REST API for programmatic generation
-- No cloud dependency — all processing on-device
+- GPU acceleration on Apple Silicon, NVIDIA, and AMD
+- No cloud dependency: all processing on-device
 
 **Ad creative use cases:**
-- Free voice cloning for brand spokesperson across all ad variations
-- Batch generate voiceovers without per-character costs
-- Private/local generation when ad content is sensitive or pre-launch
+- Voice cloning for a brand spokesperson across all ad variations
+- Batch-generate voiceovers without per-character costs
+- Private, local generation when ad content is sensitive or pre-launch
 - Prototype voice variations before committing to a paid service
 
 **API example:**
 ```bash
-curl -X POST http://localhost:8000/generate \
+curl -X POST http://127.0.0.1:17493/generate \
   -H "Content-Type: application/json" \
   -d '{"text": "Stop wasting hours on manual reporting.", "profile_id": "abc123", "language": "en"}'
 ```
 
-**Install:** Desktop apps for macOS and Windows at [voicebox.sh](https://voicebox.sh), or build from source:
+**Install:** Desktop apps for macOS and Windows at [voicebox.sh](https://voicebox.sh); Linux builds from source:
 ```bash
 git clone https://github.com/jamiepine/voicebox.git
 cd voicebox && make setup && make dev
@@ -391,29 +388,29 @@ cd voicebox && make setup && make dev
 
 ### Other Voice Tools
 
-| Tool | Best For | Differentiator | API |
-|------|----------|---------------|-----|
-| **PlayHT** | Large voice library, low latency | 900+ voices, <300ms latency, ultra-realistic | [play.ht](https://play.ht/) |
-| **Resemble AI** | Enterprise voice cloning | On-premise deployment, real-time speech-to-speech | [resemble.ai](https://www.resemble.ai/) |
-| **WellSaid Labs** | Ethical, commercial-safe voices | Voices from compensated actors, safe for commercial use | [wellsaid.io](https://www.wellsaid.io/) |
-| **Fish Audio** | Budget-friendly, emotion control | ~50-70% cheaper than ElevenLabs, emotion tags | [fish.audio](https://fish.audio/) |
-| **Murf AI** | Non-technical teams | Browser-based studio, 200+ voices | [murf.ai](https://murf.ai/) |
-| **Google Cloud TTS** | Google ecosystem, scale | 220+ voices, 40+ languages, enterprise SLAs | [Google TTS](https://cloud.google.com/text-to-speech) |
-| **Amazon Polly** | AWS ecosystem, cost | Neural voices, SSML control, cheap at volume | [Amazon Polly](https://aws.amazon.com/polly/) |
+| Tool | Fits | What the vendor states | Site |
+|------|------|------------------------|------|
+| **Resemble AI** | Enterprise voice work that must stay in-house | On-premise, containerized deployment | [resemble.ai](https://www.resemble.ai/) |
+| **WellSaid Labs** | Licensed voices for commercial use | Voices recorded by consenting, paid voice actors; 55+ languages and accents | [wellsaid.io](https://www.wellsaid.io/) |
+| **Fish Audio** | Voice cloning with emotion control | Cloning from a short sample, emotion tags, 30+ languages | [fish.audio](https://fish.audio/) |
+| **Murf AI** | Non-technical teams | Browser-based studio, 200+ voices, 35+ languages | [murf.ai](https://murf.ai/) |
+| **Google Cloud TTS** | Teams on Google Cloud | Part of Google Cloud; check its voice list | [Google TTS](https://cloud.google.com/text-to-speech) |
+| **Amazon Polly** | Teams on AWS | SSML control; 100+ voices in 40+ languages and variants | [Amazon Polly](https://aws.amazon.com/polly/) |
 
 ---
 
 ### Voice Tool Comparison
 
-| Tool | Quality | Cloning | Languages | Latency | Price/1K chars |
-|------|---------|---------|-----------|---------|----------------|
-| **ElevenLabs** | Best | Yes (instant + pro) | 29+ | ~200ms | $0.12-0.30 |
-| **OpenAI TTS** | Good | No | 13+ | ~300ms | $0.015-0.030 |
-| **Cartesia Sonic** | Very good | No | 15+ | ~40ms | ~$0.03/min |
-| **PlayHT** | Very good | Yes | 140+ | <300ms | ~$0.10-0.20 |
-| **Fish Audio** | Good | Yes | 13+ | ~200ms | ~$0.05-0.10 |
-| **WellSaid** | Very good | No (actor voices) | English | ~300ms | Custom pricing |
-| **Voicebox** | Good | Yes (local) | 2+ | Local | Free (open source) |
+Vendor-stated facts, checked 2026-11-19. Quality is a matter of ear: test a short script in two or three.
+
+| Tool | Voice cloning | Languages | Runs |
+|------|---------------|-----------|------|
+| **ElevenLabs** | Instant and professional | 90+ on v4 models | Cloud API |
+| **OpenAI TTS** | Custom voices from a consent recording | See the guide | Cloud API |
+| **Cartesia Sonic** | Instant and professional | 44 | Cloud API |
+| **Fish Audio** | From a short sample | 30+ | Cloud API |
+| **WellSaid** | Licensed actor voices | 55+ languages and accents | Cloud API |
+| **Voicebox** | Yes, local | 23 across engines | Your machine (open source) |
 
 ### Voice Tool Options by Need
 
@@ -421,10 +418,10 @@ These are options to evaluate, not rankings. Test a short script in two or three
 
 ```
 Need voiceover for ads?
-├── Clone a specific brand voice → options include ElevenLabs, Resemble AI (enterprise/on-premise), Fish Audio, PlayHT
-├── Multilingual (same ad, many languages) → options include PlayHT, ElevenLabs
+├── Clone a specific brand voice → options include ElevenLabs, Cartesia, Fish Audio, Resemble AI (on-premise)
+├── Multilingual (same ad, many languages) → options include ElevenLabs, Cartesia, WellSaid Labs
 ├── Free / open source / local → options include Voicebox
-├── Cheap and fast → options include OpenAI TTS
+├── Already on the OpenAI API → options include OpenAI TTS (check the model shutdown date)
 ├── Actor-compensated voice licensing → options include WellSaid Labs
 └── Real-time / interactive → options include Cartesia Sonic
 ```
@@ -448,7 +445,7 @@ Need voiceover for ads?
 
 For templated, data-driven video ads, render video from code instead of prompts. Unlike AI video generators that produce unique video each time, code-based frameworks render deterministic, brand-exact video from templates and data. Two common options are **Remotion** (React components) and **Hyperframes** (HTML files). For how they differ and how to pick, see the `video` skill; for licensing and current features, check each project's docs ([remotion.dev](https://www.remotion.dev/docs), [hyperframes.heygen.com](https://hyperframes.heygen.com/introduction)).
 
-**Best for:** Templated ad variations, personalized video, brand-consistent production
+**Fits:** Templated ad variations, personalized video, brand-consistent production
 
 ### Why Code-Based Video for Ads
 
@@ -543,9 +540,9 @@ Need video ads?
 │   └── Code-based video (Remotion, Hyperframes; see the video skill)
 ├── Unique creative from prompts (exploratory)
 │   ├── Dialogue/voiceover in the clip → options include Veo, Kling, Seedance
-│   ├── Consistency across scenes → options include Runway
+│   ├── Consistency across scenes → options include models that take reference images (Veo, Seedance, Kling)
 │   ├── Native vertical (9:16) output → options include Veo
-│   ├── High volume at low cost → options include Seedance
+│   ├── High volume at low cost → options include the Fast, Lite, or Mini tiers of Veo, Kling, and Seedance
 │   └── Cinematic camera work → options include Higgsfield, Kling
 └── Both → AI generation for hero creative, code-based video for variations
 
@@ -564,7 +561,7 @@ Rough order-of-magnitude estimates to compare approaches, not quotes. Prices cha
 | Approach | Tool | Approximate Cost |
 |----------|------|-----------------|
 | 100 static images | An image API | ~$3-25, at the $0.03-0.25 per image published by the vendors checked on 2026-11-19 |
-| 100 × 15-sec videos | Veo 3.1 Fast | ~$225 |
+| 100 × 15-sec videos | Veo 3.1 Fast through Runway's API ($0.15 per second with audio, checked 2026-11-19) | ~$225 |
 | 100 × 15-sec videos | Code-based video (templated) | Render compute only (self-hosted); check license terms |
 | 10 hero videos + 90 templated | Veo + code-based video | ~$22 + render time |
 

@@ -95,36 +95,35 @@ Use these terms — video models understand them:
 
 ## Model-Specific Tips
 
+Version-specific limits change often; the video skill's model comparison carries the checked figures.
+
 ### Veo (Google)
 
-- Excels at photorealism and complex scenes
-- Supports audio generation synced to video
-- Best with detailed, descriptive prompts
-- Specify "high resolution" or "1080p" for best quality
-- Can handle multiple subjects and scene transitions
+- Generates sound with the video; describe the audio you want in the prompt
+- Clips are 4, 6, or 8 seconds, so write one shot per prompt
+- Works with detailed, descriptive prompts
+- State the aspect ratio (9:16 or 16:9)
+- Accepts a first frame, a first and last frame, or reference images
 
-### Runway Gen-4
+### Runway
 
-- Strong motion control — specify camera movements precisely
-- Best temporal consistency (subjects stay consistent across frames)
-- Use motion brush for specific area animation
-- Image-to-video works well — provide a reference frame
-- Keep prompts under 100 words for best results
+- Specify camera movement precisely
+- Image-to-video works from a reference frame; provide one
+- Use the video-to-video model to restyle or edit existing footage
+- Keep prompts short and specific
 
 ### Kling
 
-- Can generate up to 2 minutes (much longer than others)
-- Good for longer narrative sequences
-- More affordable for bulk generation
-- Quality drops slightly at longer durations
-- Best with simpler scenes and fewer subjects
+- Longer single clips than most (up to 30 seconds on Kling 4.0, per Runway's listing)
+- Suits a longer continuous take
+- Audio is generated with the clip
+- Simpler scenes with fewer subjects hold together better over a long clip
 
 ### Pika
 
-- Fastest generation time (under 2 minutes)
-- Good for quick iterations and experimentation
-- Effects mode adds motion to still images
-- Best for short clips (5-15 seconds)
+- An app for quick iterations and experimentation
+- Adds motion to still images
+- Suits short clips
 - Less control over camera movement
 
 ---
