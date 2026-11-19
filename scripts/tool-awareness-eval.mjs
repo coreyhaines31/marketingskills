@@ -108,6 +108,8 @@ function runOne(prompt, opts, cwd) {
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const config = JSON.parse(readFileSync(path.resolve(ROOT, opts.prompts), 'utf8'));
+  // `skill` is one skill name or a regex alternation of several ("ads|analytics").
+  const skillPattern = new RegExp(`(^|:)(${config.skill})$`);
   const jobs = [];
   for (let r = 0; r < opts.repeat; r++) for (const item of config.prompts) jobs.push({ item, run: r + 1 });
 
@@ -121,7 +123,7 @@ async function main() {
       const res = await runOne(item.prompt, opts, cwd);
       cost += res.cost;
       const s = res.error ? {} : scoreReply(res.reply, config);
-      rows.push({ id: item.id, run, kind: item.kind, skillLoaded: res.skills.some(k => k.endsWith(`:${config.skill}`) || k === config.skill), ...s, error: res.error, reply: res.reply });
+      rows.push({ id: item.id, run, kind: item.kind, skillLoaded: res.skills.some(k => skillPattern.test(k)), ...s, error: res.error, reply: res.reply });
       process.stderr.write(`[${rows.length}/${jobs.length}] ${item.id} ${res.error ? `error: ${res.error}` : `subject=${s.subject} alts=${s.alternatives} risk=${s.risk}`}\n`);
     }
   };

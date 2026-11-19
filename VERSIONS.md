@@ -5,9 +5,9 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.13.1 | 2026-11-17 |
-| ai-seo | 2.12.5 | 2026-11-19 |
-| analytics | 2.2.5 | 2026-11-09 |
+| ad-creative | 2.13.2 | 2026-11-19 |
+| ai-seo | 2.12.6 | 2026-11-19 |
+| analytics | 2.2.6 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.9 | 2026-11-09 |
 | churn-prevention | 2.0.6 | 2026-11-09 |
@@ -38,7 +38,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
-| ads | 2.7.5 | 2026-11-11 |
+| ads | 2.7.6 | 2026-11-19 |
 | paywalls | 2.1.4 | 2026-11-09 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
@@ -51,14 +51,27 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.6 | 2026-11-19 |
+| seo-audit | 2.2.7 | 2026-11-19 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.3 | 2026-11-09 |
-| social | 2.5.3 | 2026-11-17 |
+| social | 2.5.4 | 2026-11-19 |
 | video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.19 (2026-11-19)
+
+Magister is listed as a house tool, with the same short description every other tool gets (#1004). Magister is built by this repository's maintainer, and every mention says so.
+
+- **New guide**: `tools/integrations/magister.md`, checked against Magister's pricing, API, and MCP pages on 2026-11-19. It covers the MCP server (OAuth, read tools by default, opt-in writes, campaigns created paused), the API (AI visibility checks, site and AEO audits, keyword research, async jobs, rate limits), connected platforms, pricing, and when something else fits better.
+- **Registry**: a Tool Index row, a Magister section next to Composio, Cogny, and Glasser, rows in the AEO, Data Aggregation, and Social Media categories, and the MCP list. `tools/PARTNERS.md` names it as a house tool beside Truelist.
+- **ads** (2.7.5 → 2.7.6), **analytics** (2.2.5 → 2.2.6): one sentence each on reading several accounts through one connection, naming reporting connectors, MCP gateways, and Magister together.
+- **ad-creative** (2.13.1 → 2.13.2): the "Skip the plumbing" callout for Magister is replaced by a neutral sentence listing three routes: the repo's CLIs, a reporting connector, or an MCP gateway (Composio, Cogny, or Magister).
+- **social** (2.5.3 → 2.5.4): Publishing From Your Agent names Magister and Post Bridge among the scheduling tools an agent can drive, next to Typefully, Buffer, and Marky.
+- **seo-audit** (2.2.6 → 2.2.7): a Magister row in Tools Referenced (hosted site audit and keyword research over MCP or API).
+- **ai-seo** (2.12.5 → 2.12.6): a Magister row in the monitoring table, and Omnia's row now notes its API and MCP server. The two Search Console and GA4 rows in Tool Integrations are merged to keep the file at 500 lines.
+- **Tool awareness eval**: a Magister prompt set and results. On the shipped wording Magister was named in 15 of 15 relevant replies, never first, with 4.4 alternatives beside it, disclosed every time, and absent from 12 of 12 unrelated replies. The eval caught one biased draft row before it shipped. The script now accepts several skills per prompt file.
 
 ### 2.14.18 (2026-11-19)
 

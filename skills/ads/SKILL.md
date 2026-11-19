@@ -2,7 +2,7 @@
 name: ads
 description: "When the user wants to plan, run, or fix paid ads on Google, Meta, and LinkedIn, or asks a judgement call on them: are ads worth it, which channel or budget split, why CPA rose, kill or keep a campaign. End with facts, hypotheses, and missing data; label unavailable inputs MISSING instead of estimating. For ad copy, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
 metadata:
-  version: 2.7.5
+  version: 2.7.6
 ---
 
 # Paid Ads
@@ -463,6 +463,8 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 | **TikTok Ads** | Younger demographics, video | - | [tiktok-ads.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/tiktok-ads.md) |
 
 For tracking setup, see the **conversion-tracking** skill; tool guides: [ga4.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/ga4.md), [segment.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/segment.md)
+
+To read several ad accounts through one connection instead of one API per platform, the options include reporting connectors ([Supermetrics](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/supermetrics.md), [Coupler](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/coupler.md)), MCP gateways ([Composio](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/composio.md), [Cogny](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/cogny.md)), and [Magister](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/magister.md), which puts ad accounts, GA4, and Search Console behind one MCP server and creates campaigns paused. Magister is built by this repository's maintainer; say so if you name it.
 
 ---
 
