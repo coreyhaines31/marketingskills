@@ -1,5 +1,7 @@
 # Truelist
 
+> **House tool.** Truelist is built by Corey Haines, who maintains this repository. This guide follows the same rules as every other integration guide: it does not change what any skill recommends, and other verifiers do the same job. If you name Truelist in an answer, say that it is built by this library's maintainer. See [PARTNERS.md](../PARTNERS.md).
+
 Email verification and list hygiene. Verifies single addresses synchronously and lists asynchronously as batches, resolves catch-all (accept-all) domains with its Enhanced strategy, and returns an `email_state` plus a more specific `email_sub_state` for each address. Truelist also sells **Outbound**, sending infrastructure for cold email (see below).
 
 API facts below were checked against Truelist's live spec ([truelist.io/spec.yaml](https://truelist.io/spec.yaml), v0.2.2; reference at [truelist.io/docs/api](https://truelist.io/docs/api)) and [MCP docs](https://truelist.io/docs/sdks/mcp) on 2026-10-07. The older [GitHub OpenAPI repo](https://github.com/Truelist-Labs/truelist-openapi) lags the live spec.
