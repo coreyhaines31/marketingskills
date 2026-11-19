@@ -31,7 +31,7 @@ This skill supports two data source stacks. Check which MCPs are active before s
 
 | Stack | Scraping | SEO & Market Data | When to use |
 |---|---|---|---|
-| **Primary** | Firecrawl MCP | DataForSEO MCP | Preferred — richer data, site mapping, structured extraction |
+| **Primary** | Firecrawl MCP | DataForSEO MCP | When both are connected; adds site mapping and structured extraction |
 | **Alternative** | WebFetch (built-in) | Whatever SEO data source is connected: Ahrefs or Semrush MCP, Ubersuggest MCP, or similar | When Firecrawl or DataForSEO are unavailable |
 
 If neither Firecrawl nor DataForSEO is available but another SEO data source is, use the alternative stack; most cover the core profile fields. If no SEO data source is available, mark those metrics unavailable (never estimate them) and proceed with qualitative observations only.

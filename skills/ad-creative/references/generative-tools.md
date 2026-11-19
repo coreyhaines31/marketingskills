@@ -8,8 +8,8 @@ Reference for using AI image generators, video generators, and code-based video 
 
 | Need | Tool Category | Best Fit |
 |------|---------------|----------|
-| Static ad images (banners, social) | Image generation | ChatGPT Images 2.0, Nano Banana Pro, Flux, Ideogram |
-| Ad images with text overlays | Image generation (text-capable) | Ideogram, Nano Banana Pro |
+| Static ad images (banners, social) | Image generation | GPT Image, Gemini image, Flux, Ideogram |
+| Ad images with text overlays | Image generation (text-capable) | Ideogram, Gemini image, Recraft |
 | Short video ads (6-30 sec) | Video generation | Veo, Kling, Runway, Seedance |
 | Video ads with voiceover | Video gen + voice | Veo (native), or Runway + ElevenLabs |
 | Voiceover tracks for ads | Voice generation | ElevenLabs, OpenAI TTS, Cartesia |
@@ -18,25 +18,27 @@ Reference for using AI image generators, video generators, and code-based video 
 | Product mockups and variations | Image generation + references | Flux (multi-image reference) |
 | Templated video ads at scale | Code-based video | Remotion, Hyperframes |
 | Personalized video (name, data) | Code-based video | Remotion, Hyperframes |
-| Brand-consistent variations | Image gen + style refs | Flux, Ideogram, Nano Banana Pro |
+| Brand-consistent variations | Image gen + style refs | Flux, Ideogram, Gemini image |
 
 ---
 
 ## Image Generation
 
-### Nano Banana Pro (Gemini)
+Models, versions, and prices here were checked against the vendors' docs on 2026-11-19. They change every few months, so follow the links before pinning a model ID or quoting a price.
 
-Google DeepMind's image generation model, available through the Gemini API.
+### Gemini Image ("Nano Banana", Google)
 
-**Best for:** High-quality ad images, product visuals, text rendering
+Google's image generation models, available through the Gemini API.
+
+**Fits:** Ad images, product visuals, images with short text, edits to existing images
 **API:** Gemini API (Google AI Studio, Vertex AI)
-**Pricing:** ~$0.04/image (Gemini 2.5 Flash Image), ~$0.24/4K image (Nano Banana Pro)
+**Pricing:** Per image, by model tier and resolution. See [pricing](https://ai.google.dev/gemini-api/docs/pricing)
 
-**Strengths:**
-- Strong text rendering in images (logos, headlines)
-- Native image editing (modify existing images with prompts)
-- Available through the same Gemini API used for text generation
-- Supports both generation and editing in one model
+**What the docs describe:**
+- Text rendering in images (logos, headlines)
+- Image editing: modify an existing image with a prompt
+- Up to 14 reference images in one request
+- Several tiers, from a low-cost Lite model to Pro
 
 **Ad creative use cases:**
 - Generate social media ad images from text descriptions
@@ -44,17 +46,7 @@ Google DeepMind's image generation model, available through the Gemini API.
 - Edit existing ad images (swap backgrounds, change colors)
 - Generate images with headline text baked in
 
-**API example:**
-```bash
-# Using the Gemini API for image generation
-curl -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent" \
-  -H "Content-Type: application/json" \
-  -H "x-goog-api-key: $GEMINI_API_KEY" \
-  -d '{
-    "contents": [{"parts": [{"text": "Create a clean, modern social media ad image for a project management tool. Show a laptop with a kanban board interface. Bright, professional, 16:9 ratio."}]}],
-    "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]}
-  }'
-```
+**Calling it:** Google's docs now show the Interactions API (`POST /v1beta/interactions`) for image generation and mark `gemini-2.5-flash-image` as a legacy model. Copy the current request and model ID from the docs instead of an example pinned here.
 
 **Docs:** [Gemini Image Generation](https://ai.google.dev/gemini-api/docs/image-generation)
 
@@ -62,25 +54,24 @@ curl -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5
 
 ### Flux (Black Forest Labs)
 
-Open-weight image generation models with API access through Replicate and BFL's native API.
+Image models with API access through BFL's own API, Replicate, and fal.ai.
 
-**Best for:** Photorealistic images, brand-consistent variations, multi-reference generation
-**API:** Replicate, BFL API, fal.ai
-**Pricing:** ~$0.01-0.06/image depending on model and resolution
+**Fits:** Photorealistic images, brand-consistent variations, multi-reference generation
+**API:** BFL API, Replicate, fal.ai
+**Pricing:** FLUX 3 Image is priced per image by resolution; FLUX.2 by megapixel. See [pricing](https://docs.bfl.ai/quick_start/pricing)
 
-**Model variants:**
-| Model | Speed | Quality | Cost | Best For |
-|-------|-------|---------|------|----------|
-| Flux 2 Pro | ~6 sec | Highest | $0.015/MP | Final production assets |
-| Flux 2 Flex | ~22 sec | High + editing | $0.06/MP | Iterative editing |
-| Flux 2 Dev | ~2.5 sec | Good | $0.012/MP | Rapid prototyping |
-| Flux 2 Klein | Fastest | Good | Lowest | High-volume batch generation |
+**Model lineup:**
+| Model | What it is |
+|-------|------------|
+| FLUX 3 Image | The current family; takes up to ten reference images |
+| FLUX 3 Image Klein | The lower-cost tier of the current family |
+| FLUX.2 [pro], [max], [flex], [klein] | The previous family, still supported |
+| FLUX.2 [dev] | Open weights for local, non-commercial use; no hosted API |
 
-**Strengths:**
-- Multi-image reference (up to 8 images) for consistent identity across ads
-- Product consistency — same product in different contexts
+**What the docs describe:**
+- Multi-image reference for consistent identity across ads
+- Product consistency: the same product in different contexts
 - Style transfer from reference images
-- Open-weight Dev model for self-hosting
 
 **Ad creative use cases:**
 - Generate 50+ ad variations with consistent product/person identity
@@ -88,23 +79,23 @@ Open-weight image generation models with API access through Replicate and BFL's 
 - Style-match to existing brand assets using reference images
 - Rapid A/B test image variations
 
-**Docs:** [Replicate Flux](https://replicate.com/black-forest-labs/flux-2-pro), [BFL API](https://docs.bfl.ml/)
+**Docs:** [BFL API](https://docs.bfl.ai/), [Replicate Flux](https://replicate.com/black-forest-labs)
 
 ---
 
 ### Ideogram
 
-Specialized in typography and text rendering within images.
+Image models focused on typography and text rendering within images.
 
-**Best for:** Ad banners with text, branded graphics, social ad images with headlines
+**Fits:** Ad banners with text, branded graphics, social ad images with headlines
 **API:** Ideogram API, Runware
-**Pricing:** ~$0.06/image (API), ~$0.009/image (subscription)
+**Pricing:** Per image, by model and quality tier. See [pricing](https://ideogram.ai/pricing/?pricing_tab=api)
 
-**Strengths:**
-- Best-in-class text rendering (~90% accuracy vs ~30% for most tools)
-- Style reference system (upload up to 3 reference images)
-- 4.3 billion style presets for consistent brand aesthetics
-- Strong at logos and branded typography
+**What the docs describe:**
+- Text and typography in the image as the stated focus
+- Style references (up to 10 images through the API), style presets, and color palettes
+- Magic Prompt, which rewrites the prompt automatically unless turned off
+- The 4.x models are current; 3.0 is still available
 
 **Ad creative use cases:**
 - Generate ad banners with headline text directly in the image
@@ -118,11 +109,12 @@ Specialized in typography and text rendering within images.
 
 ### Other Image Tools
 
-| Tool | Best For | API Status | Notes |
-|------|----------|------------|-------|
-| **DALL-E 3** (OpenAI) | General image generation | Official API | Integrated with ChatGPT, good text rendering |
-| **Midjourney** | Artistic, high-aesthetic images | No official public API | Discord-based; unofficial APIs exist but risk bans |
-| **Stable Diffusion** | Self-hosted, customizable | Open source | Best for teams with GPU infrastructure |
+| Tool | Fits | API Status | Notes |
+|------|------|------------|-------|
+| **GPT Image** (OpenAI) | General image generation and editing | Official API | DALL-E 2 and 3 were shut down in May 2026. Take the current model ID from [OpenAI's docs](https://platform.openai.com/docs/guides/image-generation) |
+| **Recraft** | Vector (SVG) output and illustration | Official API | V4.1 is the default model |
+| **Midjourney** | Stylised, art-directed images | No official public API | Discord and web; unofficial APIs exist but risk bans |
+| **Stable Diffusion** | Self-hosted, customizable | Open weights | Fits teams with GPU infrastructure |
 
 ---
 
@@ -314,7 +306,7 @@ curl -X POST "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}" \
 Simple, affordable text-to-speech built into the OpenAI API.
 
 **Best for:** Quick voiceovers, cost-effective at scale, simple integration
-**API:** OpenAI API (same SDK as GPT/DALL-E)
+**API:** OpenAI API (same SDK as the GPT models)
 **Pricing:** $15/million chars (standard), $30/million chars (HD); ~$0.015/min with gpt-4o-mini-tts
 
 **Capabilities:**
@@ -558,11 +550,11 @@ Need video ads?
 └── Both → AI generation for hero creative, code-based video for variations
 
 Need image ads?
-├── Text/headlines in the image → options include Ideogram, Nano Banana Pro
-├── Product consistency across variations → options include Flux (multi-reference)
-├── Quick iterations on existing images → options include Nano Banana Pro
-├── Polished final assets → options include Flux Pro, Midjourney
-└── High volume at low cost → options include Flux Klein, Nano Banana
+├── Text/headlines in the image → options include Ideogram, Gemini image, Recraft
+├── Product consistency across variations → options include Flux and Gemini image (multi-reference)
+├── Quick iterations on existing images → options include Gemini image, GPT Image
+├── Polished final assets → options include Flux, Midjourney
+└── High volume at low cost → options include Flux's Klein tier, Gemini's Lite image model
 ```
 
 ### Cost Comparison for 100 Ad Variations
@@ -571,9 +563,7 @@ Rough order-of-magnitude estimates to compare approaches, not quotes. Prices cha
 
 | Approach | Tool | Approximate Cost |
 |----------|------|-----------------|
-| 100 static images | Nano Banana Pro | ~$4-24 |
-| 100 static images | Flux Dev | ~$1-2 |
-| 100 static images | Ideogram API | ~$6 |
+| 100 static images | An image API | ~$3-25, at the $0.03-0.25 per image published by the vendors checked on 2026-11-19 |
 | 100 × 15-sec videos | Veo 3.1 Fast | ~$225 |
 | 100 × 15-sec videos | Code-based video (templated) | Render compute only (self-hosted); check license terms |
 | 10 hero videos + 90 templated | Veo + code-based video | ~$22 + render time |
