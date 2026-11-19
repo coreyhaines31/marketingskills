@@ -2,7 +2,7 @@
 name: analytics
 description: "When the user wants to set up or audit analytics, or asks whether a metric or number is calculated right, what to track, or how to name events: tracking plans, GA4, GTM, Mixpanel, PostHog, UTMs. Rate metrics divide matching closed windows, never full-period spend by partial-period results. For conversions in ad platforms, see conversion-tracking. For attribution or platforms that over-claim, see attribution. For tests, see ab-testing."
 metadata:
-  version: 2.2.6
+  version: 2.2.7
 ---
 
 # Analytics Tracking

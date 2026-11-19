@@ -7,12 +7,12 @@ Current versions of all skills. Agents can compare against local versions to che
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.2 | 2026-11-19 |
 | ai-seo | 2.12.6 | 2026-11-19 |
-| analytics | 2.2.6 | 2026-11-19 |
+| analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
-| attribution | 1.1.9 | 2026-11-09 |
-| churn-prevention | 2.0.6 | 2026-11-09 |
-| co-marketing | 2.0.6 | 2026-11-09 |
-| cold-email | 2.2.4 | 2026-11-09 |
+| attribution | 1.1.10 | 2026-11-19 |
+| churn-prevention | 2.0.7 | 2026-11-19 |
+| co-marketing | 2.0.7 | 2026-11-19 |
+| cold-email | 2.2.5 | 2026-11-19 |
 | community-marketing | 2.0.5 | 2026-11-09 |
 | competitor-profiling | 2.1.8 | 2026-11-09 |
 | competitors | 2.3.3 | 2026-11-09 |
@@ -23,11 +23,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | cro | 2.0.6 | 2026-11-09 |
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.0 | 2026-11-11 |
-| emails | 2.1.7 | 2026-11-09 |
+| emails | 2.1.8 | 2026-11-19 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.7 | 2026-11-17 |
-| influencer-marketing | 1.4.3 | 2026-11-09 |
+| influencer-marketing | 1.4.4 | 2026-11-19 |
 | launch | 2.2.3 | 2026-11-09 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
 | link-building | 1.1.0 | 2026-11-18 |
@@ -38,15 +38,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
-| ads | 2.7.6 | 2026-11-19 |
+| ads | 2.7.7 | 2026-11-19 |
 | paywalls | 2.1.4 | 2026-11-09 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.6.0 | 2026-11-19 |
+| prospecting | 1.6.1 | 2026-11-19 |
 | public-relations | 1.2.4 | 2026-11-09 |
-| referrals | 2.2.4 | 2026-11-09 |
+| referrals | 2.2.5 | 2026-11-19 |
 | reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
@@ -54,11 +54,20 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 2.2.7 | 2026-11-19 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
-| sms | 1.1.3 | 2026-11-09 |
+| sms | 1.1.4 | 2026-11-19 |
 | social | 2.5.4 | 2026-11-19 |
-| video | 2.4.4 | 2026-11-17 |
+| video | 2.4.5 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.20 (2026-11-19)
+
+Second batch of tool-table cleanup (#994): twelve skills, patch bump each. The tool tables in these skills already gave each tool a short clause, so this pass fixes what was wrong in them.
+
+- **MCP columns corrected against the registry's tool index.** **analytics**: Mixpanel, Amplitude, and PostHog have MCP servers. **attribution**: PostHog and Salesforce do; Dub does not. **emails**: Customer.io and Kit do. **sms**: Attentive, Twilio, and Customer.io do, in both tables. **video**: HeyGen's cell uses the same mark as the other tables.
+- **"Best For" column headers are now "Fits"** in the tool tables of **ads**, **analytics**, **attribution**, **emails**, **prospecting**, **sms**, **referrals**, **co-marketing**, **influencer-marketing**, and **churn-prevention**, so the column states fit and doesn't read as a ranking. sms's "Quick picks" is "By situation".
+- **churn-prevention**: an unsourced "34% avg save rate" for one vendor is removed.
+- **cold-email**, **prospecting**: Truelist is marked as built by this repository's maintainer where the skill lists it as a tool.
 
 ### 2.14.19 (2026-11-19)
 

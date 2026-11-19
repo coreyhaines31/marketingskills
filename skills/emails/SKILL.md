@@ -2,7 +2,7 @@
 name: emails
 description: "When the user wants to create or improve automated email sequences, or asks what to send, when, or whether an email or flow is working: welcome, onboarding, nurture, and win-back flows. No AI tells like 'it's not X, it's Y', 'no X, no Y, no Z' lists, or fake 'Re:' subject lines. For cold outreach, see cold-email. For in-app onboarding, see onboarding. For texts, see sms."
 metadata:
-  version: 2.1.7
+  version: 2.1.8
 ---
 
 # Email Sequence Design
