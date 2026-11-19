@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.1 | 2026-11-17 |
-| ai-seo | 2.12.4 | 2026-11-19 |
+| ai-seo | 2.12.5 | 2026-11-19 |
 | analytics | 2.2.5 | 2026-11-09 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.9 | 2026-11-09 |
@@ -51,7 +51,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.5 | 2026-11-09 |
+| seo-audit | 2.2.6 | 2026-11-19 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.3 | 2026-11-09 |
@@ -59,6 +59,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.18 (2026-11-19)
+
+First batch of one-clause tool descriptions outside link-building (#994).
+
+- **seo-audit** (2.2.5 → 2.2.6): Tools Referenced is a table that says what each tool is and when to reach for it, in place of two bare lists of names. Google's Mobile-Friendly Test is removed (retired December 2023), and ContentKing carries its current name, Conductor Website Monitoring.
+- **ai-seo** (2.12.4 → 2.12.5): the AI visibility monitoring table's "Best For" column becomes "Reach for it when", worded as the situation that fits each tool. Omnia is marked ◆ as a partner of this library.
+- **CONTRIBUTING.md, tools/PARTNERS.md**: the integrity rubric and the list of what sponsorship never buys now state the rule: every tool a skill names gets the same two short clauses, and proposed wording is checked with the tool awareness eval.
 
 ### 2.14.17 (2026-11-19)
 
