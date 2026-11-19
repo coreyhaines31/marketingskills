@@ -186,6 +186,20 @@
         "Opener is an observation plus a question, not an accusation"
       ],
       "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "The VP of Customer Success at one of our target accounts just left for another company, and they haven't announced a replacement. We sell a customer health scoring tool. Is that worth acting on, and how?",
+      "expected_output": "Should treat the departure as an org-shape signal: decisions wait during the gap, then a new owner reviews the tools. Should confirm the account still fits the ICP and record what was checked and when (the profile showing a new employer, the team page). Should say to write to whoever is covering the function (the departed leader's manager or the most senior person left on the team), about the situation the team is in. Should say not to name the person who left, guess why they went, or contact them for information about their former employer. Should give a time window: act from the departure until a replacement starts, then switch to the first-90-days play for the new leader. Should suggest an opening angle about what teams keep running during the gap or what is cheap to fix before a new leader arrives, and should not promise the signal means they will buy.",
+      "assertions": [
+        "Treats the departure as a timing signal, not proof of intent",
+        "Checks ICP fit and records the evidence with a date",
+        "Targets the person covering the function",
+        "Does not name or speculate about the person who left",
+        "Gives the window and the switch to the first-90-days play",
+        "Offers a situation-based opening angle"
+      ],
+      "files": []
     }
   ]
 }
