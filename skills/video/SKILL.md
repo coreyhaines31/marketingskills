@@ -41,10 +41,10 @@ Gather this context (ask if not provided):
 
 Pick the right tool for the job:
 
-| Approach | Best For | Tools | When to Use |
+| Approach | Fits | Tools | When to Use |
 |----------|----------|-------|-------------|
 | **Programmatic** | Templated, data-driven, batch video | Remotion, Hyperframes | Product updates, personalized videos, recurring content |
-| **AI Generation** | Original footage from text/image prompts | Veo 3, Runway, Kling, Seedance | B-roll, hero shots, creative visuals you can't film |
+| **AI Generation** | Original footage from text/image prompts | Veo, Runway, Kling, Seedance | B-roll, hero shots, creative visuals you can't film |
 | **AI Avatars** | Talking-head presenter without filming | HeyGen, Synthesia | Explainers, tutorials, multilingual content |
 | **Editing/Repurposing** | Cutting long-form into short clips | Descript, Opus Clip, CapCut | Podcast/webinar → social clips |
 
@@ -52,7 +52,7 @@ Pick the right tool for the job:
 
 ## Programmatic Video
 
-Build videos with code. Best for repeatable, templated, or data-driven video at scale.
+Build videos with code. Fits repeatable, templated, or data-driven video at scale.
 
 ### Hyperframes (HTML)
 
@@ -66,7 +66,7 @@ npx hyperframes render -o output.mp4  # render index.html
 
 **Key concept:** A composition is one HTML file. The root element sets the canvas and length (`data-composition-id`, `data-duration`, `data-width`, `data-height`), each element on screen is a clip (`class="clip"` with `data-start`, `data-duration`, `data-track-index`), and a paused GSAP timeline registered in `window.__timelines` drives the animation. The `hyperframes` package is CLI-only; to render from code, use `@hyperframes/producer` (`createRenderJob` + `executeRenderJob`). Full syntax and a working example: [Hyperframes integration guide](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/hyperframes.md).
 
-**Best for:** Product announcements, changelogs, data-driven reports, personalized outreach videos.
+**Fits:** Product announcements, changelogs, data-driven reports, personalized outreach videos.
 
 ### Remotion (React)
 
@@ -96,7 +96,7 @@ export const ProductDemo: React.FC<{ title: string; features: string[] }> = ({
 };
 ```
 
-**Best for:** Teams that already write React and want to reuse their components.
+**Fits:** Teams that already write React and want to reuse their components.
 
 ### When to Pick Which
 
@@ -117,23 +117,28 @@ Generate original footage from text or image prompts. Use for B-roll, hero visua
 
 ### Model Comparison
 
-| Model | Resolution | Max Duration | Best For | Cost |
-|-------|-----------|-------------|----------|------|
-| **Veo 3** (Google) | Up to 1080p (4K varies) | Variable | Top overall quality, synced audio | API-based |
-| **Runway Gen-4** | Up to 4K | ~10 sec/gen | Motion control, temporal consistency, edit-style workflows | $12-76/mo |
-| **Kling 2.5/3.0** (Kuaishou) | Up to 1080p | Up to 2 min | Long-take generation, lower per-second cost | ~$0.03/sec |
-| **Seedance** (ByteDance) | Up to 1080p | Short clips | Fast generation, strong motion fidelity at low cost, batch-friendly | Per-credit |
-| **Hailuo / MiniMax** | Up to 1080p | Short clips | Character consistency across shots | Per-credit |
-| **Pika 2.x** | 1080p | Short clips | Quick effects, image-to-video, lower bar to entry | Per-credit |
-| **Hunyuan Video / Wan 2** | 720p–1080p | Variable | Open-source self-hosted; full control, no API fees | Free (GPU) |
+Models, clip lengths, and prices change every few months. This table was checked on 2026-11-19; follow each vendor's docs before planning around a limit. For per-model detail, see the ad-creative skill's generative tools reference.
 
-**Quick picks**:
-- **Highest quality + audio**: Veo 3
-- **Batch / volume / cost**: Kling, Seedance
-- **Character consistency across multiple shots**: Hailuo
-- **Self-hosted, brand-controlled**: Hunyuan Video or Wan 2 (open weights)
+| Model | Clip length | Stated strengths | Access |
+|-------|-------------|------------------|--------|
+| **Veo 3.1** (Google) | 4, 6, or 8 seconds | Generated sound, 9:16 and 16:9, up to 4K | Google Cloud; third-party APIs |
+| **Runway Gen-4.5** | See docs | Text and image to video; Aleph for editing existing video | Runway app and API |
+| **Kling 4.0** (Kuaishou) | 3-30 seconds (per Runway's listing) | Audio included, image and video references | Kling; third-party APIs |
+| **Seedance 2.5** (ByteDance) | Up to 30 seconds (per Runway's listing) | Audio generated with the video; image, video, and audio references | BytePlus; third-party APIs |
+| **Hailuo / MiniMax H3** | Up to 15 seconds | 2K by default, reference inputs | Hailuo app; MiniMax |
+| **Pika 2.5** | Short clips | An app priced in credits, with its own and other labs' models | Pika app |
+| **Wan 2.2 / HunyuanVideo** | Varies | Open weights for self-hosting. Wan is Apache-2.0; HunyuanVideo has its own community licence, which excludes the EU, UK, and South Korea | Self-hosted |
+
+**By need** (options to compare, not rankings):
+- **Sound generated with the clip**: Veo, Kling, Seedance
+- **Volume at lower cost**: the Fast, Lite, or Mini tiers of those models
+- **Consistency from reference images**: Veo, Seedance, Kling, Hailuo
+- **Self-hosted, brand-controlled**: Wan 2.2 or HunyuanVideo (read the licence first)
 - **Storyboard → video workflow**: Runway, LTX Studio
 - **Image-to-video from a still you already have**: Kling, Pika, Runway
+- **Comparing several models with one key**: Runway's API hosts Veo, Kling, and Seedance next to its own
+
+Clips are short. Plan a 30-second video as several shots and assemble them.
 
 ### Prompting for Video Models
 
@@ -172,27 +177,30 @@ Create talking-head videos without filming. An AI avatar delivers your script wi
 
 ### HeyGen (has MCP server)
 
-Best lip-sync and micro-expressions. 230+ avatars, 140+ languages.
+Stock and custom avatars with lip-sync. The vendor lists 700+ stock avatars and 175+ languages and dialects on paid plans.
 
-**Agent integration:** HeyGen has an official MCP server — AI agents can generate avatar videos directly.
+**Agent integration:** HeyGen has an official MCP server (`https://mcp.heygen.com/mcp/v1/`, OAuth sign-in), so an agent can generate avatar videos directly.
 
-| Plan | Videos | Duration |
-|------|--------|----------|
-| Free | 3/mo | 3 min max |
-| Creator | Unlimited | 5 min |
-| Business | Unlimited | 20 min |
+| Plan | Monthly allowance | Max video length |
+|------|-------------------|------------------|
+| Free | 3 videos, watermarked | 1 minute |
+| Creator | 600 credits | 30 minutes |
+| Pro | 1,000 credits | 30 minutes |
+| Business | 1,500 credits | 60 minutes |
+
+Checked 2026-11-19. Paid plans are metered in credits, and credit use varies by avatar model and video length.
 
 Check [heygen.com/pricing](https://www.heygen.com/pricing) for current prices.
 
-**Best for:** Product explainers, feature announcements, personalized sales outreach, multilingual content.
+**Fits:** Product explainers, feature announcements, personalized sales outreach, multilingual content.
 
-**Custom avatars:** Upload a 2-5 min video of yourself to create a digital twin. Looks and sounds like you, generates videos from text scripts.
+**Custom avatars:** Record yourself talking to camera (15 seconds to 10 minutes; the vendor recommends about 2 minutes), plus a short consent clip, to create a digital twin that generates videos from text scripts.
 
 ### Synthesia
 
-Full-body avatars with expressive body language. Built-in script generation from URLs/docs.
+Avatar videos generated from a document, a slide deck, or a link, with an API for generating them from code.
 
-**Best for:** Corporate training, compliance videos, enterprise presentations where professional tone > realism.
+**Fits:** Corporate training, compliance videos, enterprise presentations.
 
 ### When to Use Avatars vs. Other Approaches
 
@@ -211,7 +219,7 @@ Full-body avatars with expressive body language. Built-in script generation from
 
 Turn existing content into multiple video formats.
 
-| Tool | What It Does | Best For |
+| Tool | What It Does | Fits |
 |------|-------------|----------|
 | **Descript** | Transcript-based editing — edit video by editing text | Cleaning up interviews, podcasts, webinars |
 | **Opus Clip** | Auto-clips long videos, scores virality potential | Long-form → short-form at scale |
@@ -317,7 +325,7 @@ Output: Ready-to-publish video
 
 1. **Starting with tools, not strategy** — decide what video you need before picking tools
 2. **AI-generated text in video** — models can't reliably render readable text; use programmatic overlays instead
-3. **Uncanny valley avatars** — if avatar quality matters, invest in HeyGen Creator+ tier
+3. **Uncanny valley avatars** — if avatar quality matters, test the vendor's higher-quality avatar models on a short script before committing
 4. **No captions** — 85% of social video is watched without sound
 5. **Wrong aspect ratio** — 9:16 for social, 16:9 for YouTube/website, 1:1 for feeds
 6. **Over-producing** — authentic often outperforms polished, especially on TikTok
