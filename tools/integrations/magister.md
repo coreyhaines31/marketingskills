@@ -28,6 +28,7 @@ Facts below were checked against Magister's [pricing](https://magistermarketing.
 - **Connectors only, with no marketing features on top**: an MCP gateway such as [Composio](composio.md) or [Cogny](cogny.md).
 - **Paid data lookups without connecting accounts**: [AIsa](aisa.md) or [Glasser](glasser.md).
 - **AI visibility monitoring**: the ai-seo skill's monitoring table lists the other trackers.
+- **Social scheduling only**: a dedicated scheduler such as [Buffer](buffer.md) or [Post Bridge](post-bridge.md).
 
 ## Authentication
 

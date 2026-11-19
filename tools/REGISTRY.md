@@ -337,6 +337,7 @@ Social media scheduling, management, and analytics.
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
 | **post-bridge** | Scheduling one video to many accounts and platforms, per-post analytics | Short-form video focus; daily view snapshots |
+| **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | Drafting and scheduling posts to connected social accounts over MCP | Posts are drafted or scheduled, not published on create |
 
 **Agent recommendation**: Use the scheduler the user already has. Both schedule across platforms through an API and MCP.
 

@@ -2,7 +2,7 @@
 name: social
 description: "When the user wants organic social content for LinkedIn, X, Instagram, TikTok, or Facebook, or asks what to post, which format to favor, or from which account: posts, threads, carousels, short-form video scripts, calendars, build-in-public posts from commits, listening. No AI tells like 'it's not X, it's Y' or broetry. For content strategy, see content-strategy. For paid ads, see ad-creative. For press, see public-relations."
 metadata:
-  version: 2.5.3
+  version: 2.5.4
 ---
 
 # Social Content
@@ -333,9 +333,10 @@ or API, you can execute the plan directly instead of handing them copy-paste
 work:
 
 1. **Check what's connected.** Ask the user what they schedule with. Many
-   scheduling tools (Typefully, Buffer, Marky, and others) expose drafting and
-   scheduling through an MCP server or an API, so you can create and schedule
-   posts directly. Check the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md) for guides.
+   scheduling tools (Typefully, Buffer, Post Bridge, Marky, Magister, and others)
+   expose drafting and scheduling through an MCP server or an API, so you can
+   create and schedule posts directly. Magister is built by this repository's
+   maintainer; say so if you name it. Check the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md) for guides.
 2. **Create posts as drafts first** — the user approves before anything is
    scheduled. Never auto-publish without an explicit go-ahead.
 3. **Schedule per the calendar you built** (spacing and platform rules from
