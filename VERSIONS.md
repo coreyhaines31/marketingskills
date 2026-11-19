@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.13.3 | 2026-11-19 |
+| ad-creative | 2.13.4 | 2026-11-19 |
 | ai-seo | 2.12.6 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
@@ -56,9 +56,17 @@ Current versions of all skills. Agents can compare against local versions to che
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.4 | 2026-11-19 |
 | social | 2.5.4 | 2026-11-19 |
-| video | 2.4.5 | 2026-11-19 |
+| video | 2.4.6 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.22 (2026-11-19)
+
+AI video and voice model facts refreshed against vendor pages, checked 2026-11-19 (#994). Same treatment as the image models in 2.14.21: each tool is described by what its vendor states and where to check, with no ratings.
+
+- **video** (2.4.5 → 2.4.6): the model comparison table and "Quick picks" are rewritten. Veo 3.1 makes 4, 6, or 8 second clips, not "variable" length, so the skill now says to plan a video as several shots. Kling is 4.0 (3 to 30 seconds), Seedance is 2.5, Hailuo runs MiniMax H3, Pika is 2.5, and the open-weight option is Wan 2.2, with HunyuanVideo's licence limits noted. Runway's row covers Gen-4.5 and its API, which also hosts Veo, Kling, and Seedance. HeyGen's plan table matched no current plan and is replaced (credits per month, 1 to 60 minute videos); its avatar and language counts and custom-avatar footage rules are updated, and its MCP endpoint is given. Synthesia's line now says what its site states. `references/ai-video-prompting.md` drops "up to 2 minutes" for Kling and other dated tips.
+- **ad-creative** (2.13.3 → 2.13.4): the video and voice sections of `references/generative-tools.md`. Removed or corrected: Veo "up to 60 seconds" and its Gemini API preview models (shut down 22 Oct 2026); Kling "up to 3 minutes"; Seedance "12 reference files" and "OpenAI-compatible" (not found in its docs); Higgsfield "50+ camera movements"; per-second prices that could not be traced to a vendor. Voice: OpenAI's TTS models shut down on 6 Jan 2027 and OpenAI does offer custom voices; Cartesia's current model is `sonic-3.6` with 44 languages and voice cloning, and no "40ms" figure is published; ElevenLabs states 90+ languages on v4 and meters in credits; Voicebox's local port, engines, and languages are corrected; PlayHT is removed because its site no longer resolves. The "Best / Good" quality column in the voice comparison is gone.
+- Limits: Kling's own developer docs and BytePlus's Seedance pages did not load, so their clip lengths come from Runway's listing of those models and are labelled that way. Google's Veo prices and OpenAI's TTS prices were not readable, so none are quoted; the one remaining video cost estimate names its source.
 
 ### 2.14.21 (2026-11-19)
 
