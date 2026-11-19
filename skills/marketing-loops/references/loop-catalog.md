@@ -508,6 +508,25 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 - **Stop / bail-out**: Too few sends to judge → report volumes only. Never judge on open rates.
 - **Output**: A one-screen retro with 3 recommendations.
 
+### The reply-fed expansion loop
+- **Check cadence**: Monthly
+- **Acts when**: Roughly 30 or more positive replies and booked meetings have built up since the last run, enough to see a pattern.
+- **Purpose**: Let the people who actually reply correct who gets targeted next, and source new accounts that look like them.
+- **Skills used**: `prospecting`, `cold-email`, `revops`
+- **Loop body**:
+  1. Pull positive replies and booked meetings from the reply-triage log since the last run, each with its sequence, segment, and signal.
+  2. Enrich each replier: role, seniority, company size, industry, stack, and the signal that was live when they replied.
+  3. Compare the repliers with everyone who was sent to. For each trait, set its share of positive replies against its share of sends.
+  4. Group the over-represented traits into two to four micro-segments, each sharing one trait and one pain. Drop any group built on fewer than about 8 repliers.
+  5. Source lookalike accounts for each micro-segment (see the prospecting skill's sourcing reference). Remove customers, open deals, accounts already in a sequence, and everyone on the suppression list.
+  6. Propose each as a named segment with its size, the evidence behind it, and a draft angle built on what its repliers said. Stage it for approval.
+- **Self-check**: Is the trait over-represented among repliers, or just common on the list? Were the replies positive, or only polite? Did one campaign, one sender, or one week produce most of them? Does the micro-segment still pass the ICP's disqualifiers?
+- **State / idempotency**: Tag each expansion segment with the run date and the repliers behind it. Never source the same lookalike set twice. Record which segments were approved, so the sequence-retro loop reports them separately from the base list.
+- **Stop / bail-out**: Too few positive replies → log "not enough replies yet" and exit. No trait over-represented → report "repliers match the ICP" and change nothing. Never enroll an expansion segment without human approval, and never re-add anyone who opted out or received a breakup email. Retire an expansion segment that trails the base list after about 300 sends.
+- **Output**: One table: micro-segment, defining trait, repliers behind it, share of sends against share of positive replies, lookalike count, and draft angle. Add one line if the evidence says the ICP itself should change.
+
+*Adapted from Julien Lieben's autoresearch loop playbook (ColdIQ, November 2026).*
+
 ## Activation
 
 ### The onboarding drop-off loop

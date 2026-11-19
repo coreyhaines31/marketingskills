@@ -128,6 +128,21 @@
         "Advises proving a sequence manually before automating"
       ],
       "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Our outbound has been running for three months and we've had 41 positive replies. I want the agent to use those replies to find more accounts like the people who responded. Design that loop.",
+      "expected_output": "Should use or adapt the reply-fed expansion loop. Should run monthly and act only once enough positive replies have built up. Should enrich the repliers and compare each trait's share of positive replies with its share of sends, so a trait that is merely common on the list is not mistaken for a pattern. Should group over-represented traits into a few micro-segments, with a minimum number of repliers behind each. Should source lookalike accounts per micro-segment and remove customers, open deals, active sequences, and the suppression list. Should stage each new segment for human approval with its evidence and a draft angle. Should include state (tag segments with run date and source repliers, never re-source the same set), stop conditions (too few replies, no over-represented trait, never re-add opt-outs or breakup recipients), and a way to judge the expansion later through the sequence-retro loop.",
+      "assertions": [
+        "Compares share of positive replies with share of sends",
+        "Sets a minimum number of replies before drawing conclusions",
+        "Builds a small number of micro-segments with a floor on repliers per segment",
+        "Removes customers, active sequences, and suppressed contacts from lookalikes",
+        "Requires human approval before enrolling a new segment",
+        "Includes state and stop conditions",
+        "Says how the expansion will be judged afterwards"
+      ],
+      "files": []
     }
   ]
 }
