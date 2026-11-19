@@ -422,7 +422,8 @@ Not all content is equally citable — and the format mix is **volatile**. The l
 | **ZipTie** | Google AI Overviews, ChatGPT, Perplexity | Brand mentions and their sentiment are the question |
 | **LLMrefs** | ChatGPT, Perplexity, AI Overviews, Gemini | You want existing SEO keywords mapped to AI visibility |
 | **Profound, Ahrefs Brand Radar, Semrush** | Major assistants and Google AI surfaces | A larger program needs cited sources, answer text, and prompt demand (Profound's studies are cited in the references as vendor research) |
-| **Omnia** ◆ (a partner of this library) | Google AI Mode, Google AI Overviews, ChatGPT, Perplexity, Gemini, Claude, Copilot | You want prompt discovery and competitor benchmarking next to monitoring |
+| **Magister** (built by this repository's maintainer; say so if you name it) | 11 engines, including ChatGPT, Claude, Gemini, Perplexity, Google AI Overviews, and AI Mode | You want checks run on demand and paid per check, from an agent over its API or MCP server |
+| **Omnia** ◆ (a partner of this library) | Google AI Mode, Google AI Overviews, ChatGPT, Perplexity, Gemini, Claude, Copilot | You want prompt discovery and competitor benchmarking next to monitoring, with an API and MCP server for the data |
 
 ### DIY Monitoring (No Tools)
 
@@ -484,8 +485,7 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 |------|---------|
 | `semrush` | AI Overview tracking, keyword research, content gap analysis |
 | `ahrefs` | Backlink analysis, content explorer, AI Overview data |
-| `gsc` | Search Console performance data, query tracking |
-| `ga4` | Referral traffic from AI sources |
+| `gsc`, `ga4` | Search Console performance and query data; referral traffic from AI sources |
 
 ---
 

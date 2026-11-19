@@ -464,6 +464,8 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 
 For tracking setup, see the **conversion-tracking** skill; tool guides: [ga4.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/ga4.md), [segment.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/segment.md)
 
+To read several ad accounts through one connection instead of one API per platform, the options include reporting connectors ([Supermetrics](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/supermetrics.md), [Coupler](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/coupler.md)), MCP gateways ([Composio](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/composio.md), [Cogny](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/cogny.md)), and [Magister](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/magister.md), which puts ad accounts, GA4, and Search Console behind one MCP server and creates campaigns paused. Magister is built by this repository's maintainer; say so if you name it.
+
 ---
 
 ## Related Skills

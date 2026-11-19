@@ -358,6 +358,8 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 | **PostHog** | Open-source analytics, session replay | - | [posthog.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/posthog.md) |
 | **Segment** | Customer data platform, routing | - | [segment.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/segment.md) |
 
+To see GA4, Search Console, and ad platform numbers in one place, the options include pipelines into sheets and BI tools ([Supermetrics](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/supermetrics.md), [Coupler](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/coupler.md)), a dashboard tool such as Looker Studio, and [Magister](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/magister.md), where an agent reads the connected accounts over MCP. Magister is built by this repository's maintainer; say so if you name it.
+
 ---
 
 ## Related Skills
