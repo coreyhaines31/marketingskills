@@ -2,7 +2,7 @@
 name: competitor-profiling
 description: "When the user wants to research competitors into dated profiles, or asks what a rival charges, claims, or is doing, or whether a conclusion about them is fair: positioning, pricing, features, reviews, SEO, observed facts kept apart from inference. For comparison pages, see competitors. For battle cards, see sales-enablement. For accounts you sell to, see prospecting. For how a competitor grew, see reverse-engineer-marketing."
 metadata:
-  version: 2.1.8
+  version: 2.1.9
 ---
 
 # Competitor Profiling
@@ -31,7 +31,7 @@ This skill supports two data source stacks. Check which MCPs are active before s
 
 | Stack | Scraping | SEO & Market Data | When to use |
 |---|---|---|---|
-| **Primary** | Firecrawl MCP | DataForSEO MCP | Preferred — richer data, site mapping, structured extraction |
+| **Primary** | Firecrawl MCP | DataForSEO MCP | When both are connected; adds site mapping and structured extraction |
 | **Alternative** | WebFetch (built-in) | Whatever SEO data source is connected: Ahrefs or Semrush MCP, Ubersuggest MCP, or similar | When Firecrawl or DataForSEO are unavailable |
 
 If neither Firecrawl nor DataForSEO is available but another SEO data source is, use the alternative stack; most cover the core profile fields. If no SEO data source is available, mark those metrics unavailable (never estimate them) and proceed with qualitative observations only.

@@ -5,7 +5,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.13.2 | 2026-11-19 |
+| ad-creative | 2.13.3 | 2026-11-19 |
 | ai-seo | 2.12.6 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
@@ -14,7 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.7 | 2026-11-19 |
 | cold-email | 2.2.5 | 2026-11-19 |
 | community-marketing | 2.0.5 | 2026-11-09 |
-| competitor-profiling | 2.1.8 | 2026-11-09 |
+| competitor-profiling | 2.1.9 | 2026-11-19 |
 | competitors | 2.3.3 | 2026-11-09 |
 | content-strategy | 2.1.8 | 2026-11-09 |
 | conversion-tracking | 1.0.6 | 2026-11-09 |
@@ -26,7 +26,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | emails | 2.1.8 | 2026-11-19 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
-| image | 2.0.7 | 2026-11-17 |
+| image | 2.0.8 | 2026-11-19 |
 | influencer-marketing | 1.4.4 | 2026-11-19 |
 | launch | 2.2.3 | 2026-11-09 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
@@ -59,6 +59,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.5 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.21 (2026-11-19)
+
+AI image model facts refreshed against vendor docs, checked 2026-11-19 (#1009).
+
+- **image** (2.0.7 → 2.0.8): the model comparison table now names each family, what its vendor says it is for, and where to check, in place of "Best / Good / Limited" ratings and pinned versions. Corrections: Google's current models are the Nano Banana 2.x family, with up to 14 reference images, and `gemini-2.5-flash-image` is marked legacy; FLUX 3 Image takes up to ten references and FLUX.2 [dev] is local-only and non-commercial; Ideogram's 4.x models are current and take up to 10 style references; OpenAI points new integrations to `gpt-image-2.6-sunburst` or `gpt-image-2.6-flare`, `gpt-image-1` is already shut down, and `gpt-image-2` shuts down on 10 Feb 2027; Recraft's default is V4.1; SDXL is a legacy model. Midjourney's version is no longer pinned, because its docs could not be read and other sources disagree. The decision tree lists options to compare instead of a "best" per need. `references/ai-image-prompting.md` carries the same corrections.
+- **ad-creative** (2.13.2 → 2.13.3): the image section of `references/generative-tools.md` gets the same treatment. Removed: the Flux speed and price-per-megapixel table (no speeds are published, and one row priced a model with no hosted API), Ideogram's "~90% vs ~30%" accuracy claim and "4.3 billion style presets" (the vendor states neither), the DALL-E 3 row, and a Gemini curl example that no longer matches Google's docs. The cost table's three image rows are one hedged range. The video and voice sections are unchanged and still need the same check.
+- **competitor-profiling** (2.1.8 → 2.1.9): the tool stack table says what the Firecrawl and DataForSEO stack adds, in place of "Preferred — richer data".
 
 ### 2.14.20 (2026-11-19)
 

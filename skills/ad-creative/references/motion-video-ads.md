@@ -37,7 +37,7 @@ video do the storytelling — this is animated poster design, not filmmaking.
 
 | Stage | One-key Gemini path | Alternatives |
 |---|---|---|
-| Stills | Nano Banana Pro (`gemini-3-pro-image-preview`) — excellent label typography | GPT-Image, Flux, Ideogram |
+| Stills | Nano Banana Pro (`gemini-3-pro-image`), used here for label typography | GPT-Image, Flux, Ideogram |
 | Motion | Veo 3.1 fast image-to-video (note: 1080p requires 8s clips) | Seedance 2.0 via fal.ai, Kling, Runway |
 | VO | Gemini TTS (calm voices: Charon/Kore) | ElevenLabs, OpenAI TTS |
 | Captions | whisper word timings + PIL/ASS burn-in | CapCut, platform auto-captions |
