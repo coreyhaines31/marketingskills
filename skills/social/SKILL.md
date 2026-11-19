@@ -2,7 +2,7 @@
 name: social
 description: "When the user wants organic social content for LinkedIn, X, Instagram, TikTok, or Facebook, or asks what to post, which format to favor, or from which account: posts, threads, carousels, short-form video scripts, calendars, build-in-public posts from commits, listening. No AI tells like 'it's not X, it's Y' or broetry. For content strategy, see content-strategy. For paid ads, see ad-creative. For press, see public-relations."
 metadata:
-  version: 2.5.2
+  version: 2.5.3
 ---
 
 # Social Content
@@ -15,6 +15,9 @@ Whatever the platform, storytelling and connecting with your audience come first
 
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
+**Check for a brand file too:**
+If `.agents/brand.md` or `.agents/design.md` exists, read whichever is there before asking about brand assets. Take colors, type, logo files, and imagery style from them for carousels and graphics. Voice still comes from the product marketing context.
 
 Gather this context (ask if not provided):
 
@@ -457,3 +460,7 @@ Tools: CapCut (free), Descript, Captions.ai, Premiere Pro
 - **reverse-engineer-marketing**: For reading a company's content patterns, house style, and formulas across every channel
 - **emails**: For nurturing social audience via email
 - **marketing-psychology**: For understanding what drives engagement
+
+**If the [designskills](https://github.com/zstvns/design-skills) library is installed**, hand off the visual work:
+
+- **collateral-design**: For designing carousel slides and social graphics from the finished copy
