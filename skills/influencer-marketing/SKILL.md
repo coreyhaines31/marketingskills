@@ -189,7 +189,7 @@ For the community-led, unpaid advocate end of this (badges, recognition, communi
 
 For implementation, see the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md).
 
-| Tool | Best for | Guide |
+| Tool | Fits | Guide |
 |------|----------|-------|
 | **SparkToro** | Audience intelligence — where your ICP actually pays attention, and vetting a creator's real audience | [sparktoro.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/sparktoro.md) |
 

@@ -455,7 +455,7 @@ Before auditing a live account, grading account health, quoting benchmarks, or r
 
 For implementation, see the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md). Key advertising platforms:
 
-| Platform | Best For | MCP | Guide |
+| Platform | Fits | MCP | Guide |
 |----------|----------|:---:|-------|
 | **Google Ads** | Search intent, high-intent traffic | ✓ | [google-ads.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/google-ads.md) |
 | **Meta Ads** | Demand gen, visual products, B2C | ✓ (official, start read-only) | [meta-ads.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/meta-ads.md) |

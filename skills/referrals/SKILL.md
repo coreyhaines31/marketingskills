@@ -263,7 +263,7 @@ Reviews are the other half of customer advocacy. For review-request programs, re
 
 For implementation, see the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md). Key tools for referral programs:
 
-| Tool | Best For | Guide |
+| Tool | Fits | Guide |
 |------|----------|-------|
 | **Rewardful** | Stripe-native affiliate programs | [rewardful.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/rewardful.md) |
 | **Tolt** | SaaS affiliate programs | [tolt.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/tolt.md) |
