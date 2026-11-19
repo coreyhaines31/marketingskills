@@ -138,7 +138,7 @@ Models, clip lengths, and prices change every few months. This table was checked
 - **Image-to-video from a still you already have**: Kling, Pika, Runway
 - **Comparing several models with one key**: Runway's API hosts Veo, Kling, and Seedance next to its own
 
-Clips are short. Plan a 30-second video as several shots and assemble them.
+Most clips are short. Plan a 30-second video as several shots and assemble them, unless the model you chose makes that length in one pass.
 
 ### Prompting for Video Models
 
