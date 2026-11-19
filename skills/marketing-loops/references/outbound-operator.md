@@ -44,6 +44,8 @@ If the CRM already holds suppression and stages, use it as the source of truth a
 | | Re-verify contacts due to send in the next 7 days | Suppression list sync check across tools |
 | | | Weekly report |
 
+Monthly, once about 30 positive replies have built up: the reply-fed expansion loop, which proposes new segments from the people who replied. A human approves every new segment.
+
 ## Approval rules (defaults)
 
 | Action | Default |

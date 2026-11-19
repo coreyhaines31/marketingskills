@@ -2,7 +2,7 @@
 name: marketing-loops
 description: "When the user wants a recurring marketing job an AI agent runs on a cadence or trigger, or asks what a weekly or daily automated check should do, remember, and when it should stop: SEO and ads checks, churn watches, outbound triage. For one-off ideas, see marketing-ideas. For the test loop, see ab-testing."
 metadata:
-  version: 1.8.4
+  version: 1.9.0
 ---
 
 # Marketing Loops
@@ -81,7 +81,7 @@ Default to time-of-day cron for review-style loops (weekly review, ranking watch
 
 ## The Catalog
 
-`references/loop-catalog.md` holds the full library — 60 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Outbound, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
+`references/loop-catalog.md` holds the full library — 61 marketing loops with thorough funnel coverage: SEO & Content, Paid, Earned/Social/Partnerships, Outbound, Activation, Retention, Revenue, Referral & Advocacy, and Ongoing Ops. Each is a complete, adaptable spec. Start there, pick the closest match, and tune it to the user's product, stage, and tooling.
 
 ## Running a whole channel: the SEO operator
 
