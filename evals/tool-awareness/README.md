@@ -24,7 +24,7 @@ A variant is a copy of `skills/` and `.claude-plugin/` with the skill edited. Ea
 
 | Field | Meaning |
 |---|---|
-| `skill` | The skill under test |
+| `skill` | The skill under test, or several as a regex alternation (`ads\|analytics`) |
 | `subject` | The tool whose wording is changing |
 | `alternatives` | Regex sources for other tools that do the same job, including ones the skill doesn't name |
 | `risk` | A regex for the caveat the skill says to state |
@@ -63,3 +63,19 @@ What it showed:
 - **The old policy worked against the table.** With the tool named but paid followed links declined, a quarter of relevant replies told the user to avoid what the marketplace sells.
 
 Limits: 12 relevant replies per variant, one model, one skill. Differences of one or two replies are noise.
+
+## Result: Magister as a house tool (2026-11-19)
+
+Magister is built by this repository's maintainer, so the bar is stricter: it has to be named where it fits, never first by default, always with alternatives, and always with the disclosure. Prompt file: `magister.json`, 10 prompts, 3 repeats, Sonnet.
+
+| Check on the proposed wording | Result |
+|---|---|
+| Named when relevant | 15 of 15 replies |
+| Named first | 0 of 15 |
+| Alternatives named beside it | 4.4 on average |
+| Disclosed as built by the maintainer, when named | 15 of 15 |
+| Named when irrelevant | 0 of 12 |
+
+What it caught before shipping: the first draft of the ai-seo row said Magister could be called "as an API or MCP call from your own agent" and said nothing similar about any other tracker. Replies then led with it as the only agent-callable option. Another listed tracker also has an API and MCP server, so the row for that tool now says so and the Magister row was reworded.
+
+Two limits. The first run used natural prompts and most replies never loaded a skill, so it couldn't judge the wording; the relevant prompts now name the skill. And when a user asks about Magister by name, no skill loads and the model doesn't know the product, so the disclosure can't appear there.
