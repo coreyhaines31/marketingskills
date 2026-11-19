@@ -312,9 +312,7 @@ Livestorm follows the JSON:API specification:
 
 ## Relevant Skills
 
-- webinar-marketing
-- event-marketing
-- lead-generation
+- events
+- emails
+- co-marketing
 - content-strategy
-- lifecycle-marketing
-- customer-engagement
