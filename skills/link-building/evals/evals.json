@@ -19,13 +19,15 @@
     {
       "id": 2,
       "prompt": "An agency offered us 20 do-follow guest post links on DR 60+ sites for $3,000. Good deal?",
-      "expected_output": "Should identify this as buying links that pass ranking credit, which Google's spam policies name as link spam, and advise declining. Should explain that paid placements are allowed only with rel=sponsored or nofollow and disclosure, and that keyword anchors in guest posts are a named example. Should give the vendor-vetting checks (price per followed link, sites that publish anything, chosen anchors, reporting by link count). Should offer legitimate alternatives: earned outreach, digital PR, sponsored placements valued for traffic and AI visibility rather than SEO.",
+      "expected_output": "Should identify this as buying links that pass ranking credit, which Google's spam policies name as link spam, and state the risk once: Google may ignore the links, and a large or obvious pattern can bring a manual action. Should leave the decision to the user rather than refusing. Should explain that paid placements are inside the policy only with rel=sponsored or nofollow and disclosure, and that keyword anchors in guest posts are a named example. Should give the vendor-vetting checks (price per followed link, sites that publish anything, chosen anchors, reporting by link count) and the per-site checks to run if the user goes ahead (topic fit, real traffic, outbound links, anchors, pace). Should not treat DR 60+ as proof of quality or promise a ranking lift. Should name alternatives: earned outreach, digital PR, sponsored placements valued for traffic and AI visibility.",
       "assertions": [
-        "Advises declining the paid do-follow links",
+        "States that paid followed links are outside Google's policy and names the risk",
+        "Leaves the decision to the user instead of refusing",
         "Cites Google's link spam policy and the sponsored or nofollow requirement",
         "Does not treat domain rating as a reason to buy",
         "Gives vendor-vetting signals",
-        "Offers legitimate alternatives"
+        "Gives per-site checks for going ahead",
+        "Offers alternatives"
       ],
       "files": []
     },
@@ -64,6 +66,20 @@
         "Asks whether a genuine partnership exists",
         "Offers a compliant alternative outreach draft",
         "Keeps the draft short with one ask"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "We have about $2,000 a month for links and nobody has time for outreach. Which marketplaces or services should we look at?",
+      "expected_output": "Should name more than one option and separate the two routes: a managed placement service that does the outreach, and self-serve marketplaces where the user picks each site and price. Should describe what each named tool is in a clause, without calling any of them the best or recommending one over the rest. Should say plainly that placements bought this way are paid links, give Google's rule (sponsored or nofollow) and the risk once, and leave the decision to the user. Should give the per-site checks (topic fit, real traffic, outbound links, anchors, pace) and say they apply to each site, not to the marketplace. Should not promise a ranking lift.",
+      "assertions": [
+        "Names more than one tool or service",
+        "Separates managed services from self-serve marketplaces",
+        "Does not endorse one tool as best",
+        "States that these are paid links, with Google's rule and the risk",
+        "Gives per-site checks",
+        "Does not promise a ranking lift"
       ],
       "files": []
     }
