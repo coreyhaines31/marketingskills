@@ -118,19 +118,27 @@ Keep campaigns small. Several vendor and agency datasets show reply rates fallin
 
 ## Tools for detecting signals
 
-| Signal type | Options | Agent access |
-|-------------|---------|--------------|
-| Job postings and hiring | TheirStack, PredictLeads, LinkedIn Jobs (manual) | TheirStack has an MCP; PredictLeads has an API |
-| Job changes | UserGems, Clay job-change tracking, manual checks of past champions | Clay MCP |
-| Website visitors | RB2B (US, person-level), Warmly, Vector, Koala | Mostly webhooks into your CRM or a Zap |
-| Social and community engagement | Trigify, Common Room | Both have APIs and MCPs |
-| Funding and news | Crunchbase, news search, Exa | Exa MCP; Crunchbase API on paid plans |
-| Public posts and announcements | X search (Grok searches X directly), LinkedIn posts (manual), news search | Grok via the xAI API; Exa MCP |
-| Ad activity | Meta Ad Library, Google Ads Transparency Center, LinkedIn Ad Library | Meta Ad Library API (political and EU ads only; check its current scope); otherwise browser research |
-| Tech stack | BuiltWith, Wappalyzer, tech mentions in job posts | APIs |
-| Product usage | Your own analytics and billing events | Webhooks into your CRM |
+Each tool is listed with what it is and when to reach for it. Name the ones that fit the user's signals, more than one where several do.
 
-See the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md) for setup. A scheduled sweep of these sources is the signal-sweep loop in the marketing-loops skill.
+| Tool | What it is | Reach for it when |
+|------|------------|-------------------|
+| [TheirStack](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/theirstack.md) | Job-posting and tech-stack database, with an MCP server | Finding companies hiring for the function you serve |
+| [PredictLeads](https://predictleads.com) | Company-event data API: job openings, news events, technology detections | You want hiring, news, and tech changes from one feed |
+| LinkedIn Jobs | Public job posts, checked by hand | A short account list and no budget |
+| [UserGems](https://www.usergems.com) | Job-change tracking for past customers and champions | Past users move often enough to run a reunion play |
+| [Clay](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/clay.md) | Enrichment workspace with job-change tracking, and an MCP server | The list is already enriched in Clay |
+| [RB2B](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/rb2b.md) | Website visitor identification at the person level, US only | You want to know which people viewed pricing or comparison pages |
+| [Warmly](https://www.warmly.ai), [Vector](https://www.vector.co) | Website visitor identification | The same need; compare coverage for your traffic |
+| [Trigify](https://www.trigify.io) | Tracking of who engages with chosen social posts and profiles | The play starts from engagement with you or a competitor |
+| [Common Room](https://www.commonroom.io) | Signal aggregation across community, social, and product data | Signals arrive from several places and need one account view |
+| [Crunchbase](https://www.crunchbase.com) | Company and funding database | Funding rounds and launches are the trigger |
+| [Exa](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/exa.md) | Search API that finds pages by meaning, with an MCP server | Finding news, announcements, and posts about target accounts |
+| X search | Public posts and announcements; Grok searches X directly through the xAI API | The signal is something a founder or team said in public |
+| Meta Ad Library, Google Ads Transparency Center, LinkedIn Ad Library | Public archives of running ads | Checking whether and how a company advertises, by hand in the browser |
+| [BuiltWith](https://builtwith.com), [Wappalyzer](https://www.wappalyzer.com) | Lookups of the technology a website runs | A tool next to yours being added or dropped is the trigger |
+| Your own analytics and billing events | Product usage, sent to the CRM by webhook | The signal is a signup, a limit hit, or a team invite |
+
+Setup guides for TheirStack, Clay, RB2B, and Exa are in the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md). For the others, use the vendor's own docs, and check what each one offers an agent before planning around it. A scheduled sweep of these sources is the signal-sweep loop in the marketing-loops skill.
 
 ## Common mistakes
 
