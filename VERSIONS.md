@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.1 | 2026-11-17 |
-| ai-seo | 2.12.3 | 2026-11-09 |
+| ai-seo | 2.12.4 | 2026-11-19 |
 | analytics | 2.2.5 | 2026-11-09 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.9 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.15 (2026-11-19)
+
+- **ai-seo** (2.12.3 → 2.12.4): the AI Search Landscape table gains a "Check you're in" column naming the search index behind each engine and where to verify it (Search Console for Google's, Bing Webmaster Tools for Bing's, search.brave.com for Brave's, which Claude's web search draws on), and the skill now says to check the index before any content work (#999). The facts were already in `references/platform-ranking-factors.md`; an agent that never opened the reference didn't raise them.
 
 ### 2.14.14 (2026-11-18)
 

@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to get cited and recommended in AI answers (ChatGPT, Perplexity, AI Overviews), or asks why AI cites a competitor, which content gets cited, or whether llms.txt or a page format is worth it: AEO, GEO, AI visibility, agent-readable sites. For technical and on-page SEO, see seo-audit. For structured data, see schema."
 metadata:
-  version: 2.12.3
+  version: 2.12.4
 ---
 
 # AI SEO
@@ -67,16 +67,16 @@ Gather this context (ask if not provided):
 
 ### The AI Search Landscape
 
-| Platform | How It Works | Source Selection |
-|----------|-------------|----------------|
-| **Google AI Overviews** | Summarizes top-ranking pages | Strong correlation with traditional rankings |
-| **ChatGPT (with search)** | Searches web, cites sources | Draws from wider range, not just top-ranked |
-| **Perplexity** | Always cites sources with links | Favors authoritative, recent, well-structured content |
-| **Gemini** | Google's AI assistant | Pulls from Google index + Knowledge Graph |
-| **Copilot** | Bing-powered AI search | Bing index + authoritative sources |
-| **Claude** | Brave Search (when enabled) | Training data + Brave search results |
+| Platform | How It Works | Source Selection | Check you're in |
+|----------|-------------|----------------|-----------------|
+| **Google AI Overviews** | Summarizes top-ranking pages | Strong correlation with traditional rankings | Google's index (Search Console) |
+| **ChatGPT (with search)** | Searches web, cites sources | Draws from wider range, not just top-ranked | A Bing-based index (Bing Webmaster Tools) |
+| **Perplexity** | Always cites sources with links | Favors authoritative, recent, well-structured content | Its own index plus Google's |
+| **Gemini** | Google's AI assistant | Pulls from Google index + Knowledge Graph | Google's index (Search Console) |
+| **Copilot** | Bing-powered AI search | Bing index + authoritative sources | Bing's index (Bing Webmaster Tools) |
+| **Claude** | Brave Search (when enabled) | Training data + Brave search results | Brave's index (search at search.brave.com; request a crawl at search.brave.com/submit-url) |
 
-For a deep dive on how each platform selects sources and what to optimize per platform, see [references/platform-ranking-factors.md](references/platform-ranking-factors.md).
+**Check the index first.** An engine can't cite a page its search index doesn't hold, so before any content work, confirm the priority pages appear in the index behind each engine the user cares about. Sites that only ever submitted to Google are often missing from Bing and Brave. For how each platform selects sources and what to optimize per platform, see [references/platform-ranking-factors.md](references/platform-ranking-factors.md).
 
 ### Key Difference from Traditional SEO
 
