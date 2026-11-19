@@ -2,7 +2,7 @@
 name: churn-prevention
 description: "When the user wants to reduce churn, or asks why customers cancel, whether to offer a discount or pause: cancellation flows, exit surveys, save offers, dunning and failed-payment recovery. For win-back emails, see emails. For in-app upgrade screens, see paywalls."
 metadata:
-  version: 2.0.6
+  version: 2.0.7
 ---
 
 # Churn Prevention
@@ -395,9 +395,9 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 
 ### Retention Platforms
 
-| Tool | Best For | Key Feature |
+| Tool | Fits | Key Feature |
 |------|----------|-------------|
-| **Churnkey** | Full cancel flow + dunning | AI-powered adaptive offers, 34% avg save rate |
+| **Churnkey** | Full cancel flow + dunning | AI-powered adaptive offers |
 | **ProsperStack** | Cancel flows with analytics | Advanced rules engine, Stripe/Chargebee integration |
 | **Raaft** | Simple cancel flow builder | Easy setup, good for early-stage |
 | **Chargebee Retention** | Chargebee customers | Native integration, was Brightback |

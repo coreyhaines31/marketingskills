@@ -2,7 +2,7 @@
 name: ads
 description: "When the user wants to plan, run, or fix paid ads on Google, Meta, and LinkedIn, or asks a judgement call on them: are ads worth it, which channel or budget split, why CPA rose, kill or keep a campaign. End with facts, hypotheses, and missing data; label unavailable inputs MISSING instead of estimating. For ad copy, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
 metadata:
-  version: 2.7.6
+  version: 2.7.7
 ---
 
 # Paid Ads
@@ -455,7 +455,7 @@ Before auditing a live account, grading account health, quoting benchmarks, or r
 
 For implementation, see the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md). Key advertising platforms:
 
-| Platform | Best For | MCP | Guide |
+| Platform | Fits | MCP | Guide |
 |----------|----------|:---:|-------|
 | **Google Ads** | Search intent, high-intent traffic | ✓ | [google-ads.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/google-ads.md) |
 | **Meta Ads** | Demand gen, visual products, B2C | ✓ (official, start read-only) | [meta-ads.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/meta-ads.md) |
