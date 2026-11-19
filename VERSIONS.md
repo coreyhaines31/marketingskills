@@ -44,7 +44,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.5.3 | 2026-11-09 |
+| prospecting | 1.6.0 | 2026-11-19 |
 | public-relations | 1.2.4 | 2026-11-09 |
 | referrals | 2.2.4 | 2026-11-09 |
 | reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.4 | 2026-11-17 |
 
 ## Recent Changes
+
+### 2.14.16 (2026-11-19)
+
+- **prospecting** (1.5.3 → 1.6.0): two changes to `references/signal-plays.md`. **Org-shape signals** (#998): a departed leader with no replacement, a role nobody holds, a team growing with no job posts, a switch of a system of record, and an unusual title, each with how to detect it from public data, a time window, an opening angle, and who to write to. Rules cover the weak points: absence is a guess until a second signal backs it, growth needs two dated measurements, and the person who left is never named or contacted. Eval 13 added. Signals adapted from Julien Lieben's GTM playbooks (ColdIQ). **The signal tools table gives every tool one clause on what it is and one on when to reach for it** (#996). The file pointed to the tools registry for nine tools it doesn't list; tools with a guide now link to it and the rest link to the vendor. Koala is removed: the product shut down in September 2025. Unverified notes on which vendors offer APIs or MCP servers are gone.
 
 ### 2.14.15 (2026-11-19)
 
