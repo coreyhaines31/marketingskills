@@ -2,7 +2,7 @@
 name: seo-audit
 description: "When the user wants to audit or diagnose SEO, or asks why traffic dropped, a page won't rank, or whether a setup like canonicals, hreflang, or redirects is right: technical SEO, indexing, Google updates, on-page and titles, Core Web Vitals, local SEO. Start here when someone just says their SEO is bad. For pages at scale, see programmatic-seo. For structured data, see schema. For AI search, see ai-seo."
 metadata:
-  version: 2.2.5
+  version: 2.2.6
 ---
 
 # SEO Audit
@@ -458,21 +458,19 @@ Same format as above
 
 ## Tools Referenced
 
-**Free Tools**
-- Google Search Console (essential)
-- Google PageSpeed Insights
-- Bing Webmaster Tools
-- Rich Results Test (**use this for schema validation — it renders JavaScript**)
-- Mobile-Friendly Test
-- Schema Validator
+| Tool | What it is | Reach for it when |
+|------|------------|-------------------|
+| Google Search Console | Google's own index, query, and crawl reports, free | Every audit. Start here |
+| Google PageSpeed Insights | Free Core Web Vitals and Lighthouse report for one URL | Checking page speed with field data |
+| Bing Webmaster Tools | Bing's index and crawl reports, free | Checking Bing, whose index ChatGPT and Copilot also draw on |
+| Rich Results Test | Google's schema checker, which renders JavaScript | Validating schema, including markup injected by JavaScript |
+| Schema Markup Validator | schema.org's syntax validator | Checking types Google doesn't show as rich results |
+| Screaming Frog | Desktop site crawler, free up to 500 URLs | A full crawl for broken links, redirects, and metadata |
+| Sitebulb | Site crawler that ranks and explains the issues it finds | The same crawl when the output goes to a non-specialist |
+| Ahrefs, Semrush | SEO suites with site audit, backlink, and keyword data | Backlink and keyword questions, or a scheduled cloud crawl |
+| ContentKing (Conductor Website Monitoring) | Continuous monitoring of on-page changes | Catching SEO changes as they ship, between audits |
 
 > **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, or Screaming Frog instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
-
-**Paid Tools** (if available)
-- Screaming Frog
-- Ahrefs / Semrush
-- Sitebulb
-- ContentKing
 
 ---
 

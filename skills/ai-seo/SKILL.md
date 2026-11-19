@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to get cited and recommended in AI answers (ChatGPT, Perplexity, AI Overviews), or asks why AI cites a competitor, which content gets cited, or whether llms.txt or a page format is worth it: AEO, GEO, AI visibility, agent-readable sites. For technical and on-page SEO, see seo-audit. For structured data, see schema."
 metadata:
-  version: 2.12.4
+  version: 2.12.5
 ---
 
 # AI SEO
@@ -415,14 +415,14 @@ Not all content is equally citable — and the format mix is **volatile**. The l
 
 ### AI Visibility Monitoring Tools
 
-| Tool | Coverage | Best For |
-|------|----------|----------|
-| **Otterly AI** | ChatGPT, Perplexity, Google AI Overviews | Share of AI voice tracking |
-| **Peec AI** | ChatGPT, Gemini, Perplexity, Claude, Copilot+ | Multi-platform monitoring at scale |
-| **ZipTie** | Google AI Overviews, ChatGPT, Perplexity | Brand mention + sentiment tracking |
-| **LLMrefs** | ChatGPT, Perplexity, AI Overviews, Gemini | SEO keyword → AI visibility mapping |
-| **Profound, Ahrefs Brand Radar, Semrush** | Major assistants and Google AI surfaces | Larger programs: cited sources, answer text, prompt demand (Profound's studies are cited in the references as vendor research) |
-| **Omnia** | Google AI Mode, Google AI Overviews, ChatGPT, Perplexity, Gemini, Claude, Copilot | AI visibility monitoring |
+| Tool | Coverage | Reach for it when |
+|------|----------|-------------------|
+| **Otterly AI** | ChatGPT, Perplexity, Google AI Overviews | You want share of AI voice tracked over time |
+| **Peec AI** | ChatGPT, Gemini, Perplexity, Claude, Copilot+ | You monitor many prompts across the most engines |
+| **ZipTie** | Google AI Overviews, ChatGPT, Perplexity | Brand mentions and their sentiment are the question |
+| **LLMrefs** | ChatGPT, Perplexity, AI Overviews, Gemini | You want existing SEO keywords mapped to AI visibility |
+| **Profound, Ahrefs Brand Radar, Semrush** | Major assistants and Google AI surfaces | A larger program needs cited sources, answer text, and prompt demand (Profound's studies are cited in the references as vendor research) |
+| **Omnia** ◆ (a partner of this library) | Google AI Mode, Google AI Overviews, ChatGPT, Perplexity, Gemini, Claude, Copilot | You want prompt discovery and competitor benchmarking next to monitoring |
 
 ### DIY Monitoring (No Tools)
 
