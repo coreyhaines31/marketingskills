@@ -92,6 +92,36 @@ The strongest services and tooling plays pair two things: a signal that the comp
 
 Searching for these by hand is slow, which is why the plays used to be rare. Agents with web, ad-library, and X search access (Grok, for example, searches X directly) can build the list. A human still reviews the evidence for Tier 1 and a sample for Tier 2. Once a play gets replies, run it on a schedule with the signal-sweep loop in the marketing-loops skill.
 
+## Org-shape signals: what the team's structure tells you
+
+Funding and job posts are events, and every vendor sees them. These signals come from the shape of the team: who is there, who just left, and what doesn't match other companies of the same size. Fewer senders act on them.
+
+| Signal | What it suggests | How to detect it from public data | Act within |
+|--------|------------------|-----------------------------------|------------|
+| **A leader in the buying function left**, with no replacement announced | Decisions wait, then a new owner reviews every tool | Their profile shows a new employer; the company's team or leadership page no longer lists them | From the departure until a replacement starts, then switch to the first-90-days play |
+| **A role companies of this size usually have, and nobody holds** | The work is undone, or split across people who own something else | A people search for the title and its variants returns no one; the team page shows no owner; no open post for it | While it's true. Re-check before every touch |
+| **A team's headcount is growing with no open job posts** | Hiring through referrals or agencies; the team is scaling quietly | The function's headcount on two dates you recorded, against the careers page | 60 days from the growth you measured |
+| **A switch of a system of record** (applicant tracking, CRM, help desk) | A team is changing how it works, with budget and attention on process | The domain behind the careers page's apply links changes vendor; tech-stack lookups; the vendor's customer page | 30 days, like any tech change |
+| **An unusual title in the buying function** | The company organises the work differently from your ICP assumption | Titles on profiles and the team page, compared with the usual titles in your segment | No window. It changes who you write to, not when |
+
+**Rules for org-shape signals:**
+
+1. **Absence is weak evidence.** "Nobody holds the role" can mean a different title, a contractor, or an agency doing the work. Treat a missing role as a guess until a second signal backs it (adjacent hiring, funding, a gap you verified), and ask who owns the work instead of stating that no one does.
+2. **Record what you checked and when**: the search, the page, and the date, the same as for gap plays.
+3. **Never write about the person who left.** Don't name them, guess why they went, or ask them about their former employer. Write to whoever is covering the function about the situation the team is in.
+4. **Growth needs two dated measurements.** One headcount number isn't a trend, and profile-based headcounts lag and are self-reported.
+5. **Get profile data by hand or from a licensed provider**, as everywhere else in this skill. Don't scrape it.
+
+| Signal | Opening angle | Write to |
+|--------|---------------|----------|
+| Leader left | What teams usually keep running during the gap, and what is cheap to fix before the new leader arrives | The person covering the function: their manager, or the most senior person left on the team |
+| Missing role | Ask who owns the work today, then offer what gets it done without the hire | The executive the role would report to |
+| Quiet growth | The thing that breaks when a team that size doubles, with proof | The team's leader |
+| System switch | What teams usually revisit in the same quarter as that migration | The owner of the system being replaced |
+| Unusual title | Their own name for the function, and the problem as that role would describe it | The person holding the title |
+
+*Signals adapted from Julien Lieben's GTM playbooks (ColdIQ, November 2026).*
+
 ## Two worked examples
 
 **A services agency selling to B2B SaaS (for example, a CRO and landing page agency)**
