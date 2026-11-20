@@ -92,6 +92,8 @@ async function main() {
         result = { error: `--strategy must be one of: ${INLINE_STRATEGIES.join(', ')}` }; break
       }
       const emails = String(args.email).split(',').map(e => e.trim()).filter(Boolean)
+      if (emails.length === 0) { result = { error: '--email required (one address, or several comma-separated)' }; break }
+      if (emails.length > 3) { result = { error: 'verify accepts at most 3 addresses per request; use batch create for larger lists' }; break }
       result = await api('POST', `/api/v1/verify_inline${query({ email: emails.join(' '), validation_strategy: args.strategy })}`)
       break
     }
