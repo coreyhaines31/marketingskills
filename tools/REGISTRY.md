@@ -408,11 +408,11 @@ Whether a cold or marketing email to a given recipient is allowed in their count
 
 How an email looks in the clients it's read in (classic Outlook, Gmail, Apple Mail and others), before it's sent.
 
-| Tool | Best For | Notes |
+| Tool | Fits | Notes |
 |------|----------|-------|
 | **hyper-elements** | Previewing and checking any HTML email in Outlook, Gmail, Apple Mail, Yahoo Mail and AOL Mail, light and dark | What each client removes or changes, by line, with a fix; accessibility checks. Local CLI and Node SDK, free, no account |
 
-**Agent recommendation**: Check every new or changed template in the clients its list reads in before it goes live, with a check like this or with test sends to accounts in those clients. A layout that looks right in the ESP's editor can come apart in classic Outlook, which lays email out with Word, or in Gmail, which removes parts of its CSS.
+**Choosing**: Check every new or changed template in the clients its list reads in before it goes live, with a check like this or with test sends to accounts in those clients. A layout that looks right in the ESP's editor can come apart in classic Outlook, which lays email out with Word, or in Gmail, which removes parts of its CSS.
 
 ### Developer Intent / GitHub
 
@@ -782,7 +782,6 @@ Use Glasser for occasional lookups across several paid vendors when no accounts 
 ### Setting up email automation
 1. Read [customer-io.md](integrations/customer-io.md) for behavior-based automation
 2. Read [resend.md](integrations/resend.md) for transactional email
-3. Read [hyper-elements.md](integrations/hyper-elements.md) to check each template in email clients before it sends
 
 ### Running sales outbound (list → signals → enrich → verify → send → LinkedIn → CRM)
 

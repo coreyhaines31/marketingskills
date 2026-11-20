@@ -17,7 +17,7 @@ Facts below were checked against the [API docs](https://getyoutubetranscript.com
 
 - **Type**: API key in the `x-api-key` header (or `Authorization: Bearer <key>`); MCP clients that support OAuth (Claude, ChatGPT) can sign in instead
 - **Env var** (convention): `GYT_API_KEY`
-- **Get key**: sign up at `https://getyoutubetranscript.com`, then copy the key from the dashboard. Agents can also self-sign-up with an email OTP (`POST /signup`, then `POST /signup/verify`)
+- **Get key**: sign up at `https://getyoutubetranscript.com`, then copy the key from the dashboard. An account can also be created over the API with an email one-time code (`POST /signup`, then `POST /signup/verify`); do that only when the user asks, with their email.
 
 ## MCP Server Setup
 
@@ -91,3 +91,5 @@ curl -X POST https://getyoutubetranscript.com/api/v1/batch \
 - **ai-seo**: reading what top-ranking YouTube videos in a category say
 - **content-strategy**: turning webinar and video transcripts into posts
 - **customer-research**: mining review and tutorial videos for the words customers use
+
+**Platform terms:** transcripts and channel data come from outside YouTube's official Data API. Check YouTube's terms for your use before relying on it, and prefer the official API where it covers the job.

@@ -13,8 +13,6 @@ Facts below were checked against the [OpenAPI spec](https://scrapewhale.dev/open
 | CLI | - | Use the API or MCP |
 | SDK | - | Plain HTTP; OpenAPI 3.1 spec for codegen |
 
-What it adds next to the existing guides: traffic estimates, SEO metrics, ad libraries, social profiles, Google results and AI Overviews for the same brand from one account, and a one-call brand summary (`/brand`). Each response can come back as markdown, which an agent can read without parsing JSON.
-
 ## Authentication
 
 - **API**: API key in the `x-api-key` header
@@ -139,3 +137,5 @@ The MCP server exposes the same lookups as tools with an `action` parameter: `br
 - API reference: https://scrapewhale.dev/docs/api
 - OpenAPI: https://scrapewhale.dev/openapi.json
 - llms.txt: https://scrapewhale.dev/llms.txt
+
+**Platform terms:** social profile and ad-library data is collected from public pages. Check each platform's terms for your use.
