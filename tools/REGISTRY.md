@@ -133,6 +133,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
 | airops | AI Content | ✓ | - | [✓](clis/airops.js) | - | [airops.md](integrations/airops.md) |
 | admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
+| hermoso | AI Content | ✓ | ✓ | ✓ | - | [hermoso.md](integrations/hermoso.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
@@ -340,9 +341,10 @@ Social media scheduling, management, and analytics.
 |------|----------|-------|
 | **buffer** | Social scheduling, analytics | Multi-platform |
 | **post-bridge** | Scheduling one video to many accounts and platforms, per-post analytics | Short-form video focus; daily view snapshots |
+| **hermoso** | Publishing and scheduling posts, including carousels, to a brand's connected accounts | API + MCP + CLI; channel limits checked when the post is created |
 | **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | Drafting and scheduling posts to connected social accounts over MCP | Posts are drafted or scheduled, not published on create |
 
-**Choosing**: Use the scheduler the user already has. All three schedule across platforms through an API or an MCP server.
+**Choosing**: Use the scheduler the user already has. Each one schedules across platforms through an API or an MCP server.
 
 ### Video
 
@@ -550,6 +552,7 @@ AI-powered content generation and optimization platforms.
 |------|----------|-------|
 | **airops** | AI content workflows, SEO content | Flow-based automation |
 | **admakeai** | Meta and TikTok ad images, UGC-style video ads, Meta Ad Library lookups | API + MCP; credit-based; publishes to Meta as paused drafts |
+| **hermoso** | Image and video ads from a brand's saved product photos, Meta, Google and LinkedIn ad library lookups, posting to connected accounts | API + MCP + CLI; credit-based; renders are async jobs |
 
 **Choosing**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
@@ -682,6 +685,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
 - **admakeai** - Ad images, UGC video ads and Meta Ad Library lookups
+- **hermoso** - Image and video ads, ad library lookups, and posting to connected social accounts
 - **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 - **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 
