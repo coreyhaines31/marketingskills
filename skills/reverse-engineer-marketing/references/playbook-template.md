@@ -17,6 +17,19 @@ Labels: Observed (linked evidence), Inferred (reasoned from evidence), Not found
 - **Biggest gap for you:** [one line]
 - **Start this week:** [play #1 in one line]
 
+## Scorecard
+
+| Metric | Value | Source and date |
+|---|---|---|
+| Monthly visits (same vendor as the curve) | | |
+| Brand share of search traffic | | |
+| Top page family's share of non-brand traffic | | |
+| AI citations or share of voice | | |
+| Referring domains (and change, if the tool has it) | | |
+| Data cost so far | | |
+
+Write `unavailable` when the tool wasn't connected. Don't invent the number.
+
 ## The Curve and the Moves
 
 [Chart or month-by-month table of the curve with each move pinned to its month]
@@ -34,6 +47,22 @@ Labels: Observed (linked evidence), Inferred (reasoned from evidence), Not found
 | Referral | [badges, shared outputs, invites, affiliate program] | |
 | Retention signals | [lifecycle tools, changelog cadence] | |
 | Hiring | [channels being scaled] | |
+
+## Page Families
+
+| Family | How the pages are made | Share | Top URL | Pre- or post-inflection |
+|---|---|---|---|---|
+| [e.g. /templates/*] | [written one by one, or one template filled from a dataset] | [share of non-brand traffic or ranking keywords] | | [before or after the inflection] |
+
+Open the top page of the three families that carry the most non-brand traffic and say how each is built. If no SEO tool is connected, list the families from `site` and mark shares unavailable.
+
+## Strongest Links
+
+| Page type | What it is | Referring domains | Example URLs |
+|---|---|---|---|
+| [tool, report, template family, or single cited page] | | [how many of the strongest referring domains point at it] | |
+
+List only non-homepage types that keep attracting strong links. If no backlink source is connected, mark this section unavailable and do not invent counts.
 
 ## Inside the Product
 
@@ -75,6 +104,14 @@ Labels: Observed (linked evidence), Inferred (reasoned from evidence), Not found
 |---|---|---|---|
 
 [Note whether the comparison is estimate vs estimate or uses your own data.]
+
+## What Won't Transfer
+
+- **Brand search:** [share of traffic or of the top keywords, source, date]. Not a play.
+- **Accumulated links or age:** [referring domains, and any age or trend the tool provides]. Not a play.
+- **Other advantages you don't have:** [audience, funding, founder fame, exclusive distribution].
+
+These stay out of the plays list. Specific plays that still fail for other reasons go under Plays to Skip.
 
 ## Plays
 
