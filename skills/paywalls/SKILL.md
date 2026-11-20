@@ -90,7 +90,7 @@ After X days of free use:
 
 6. **CTA** - Specific and value-oriented: "Start Getting [Benefit]"
 
-7. **Escape Hatch** - Clear "Not now" or "Continue with Free"
+7. **Escape Hatch** - Clear "Not now", or "Continue with Free" when a free plan exists (paid-only products still need a visible way back)
 
 ---
 

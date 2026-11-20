@@ -191,7 +191,7 @@ Meta's Andromeda algorithm (2025) made creative volume and variety the main leve
 - Before/after comparisons
 - Stats and numbers as focal point
 - Human faces (real, not stock)
-- Bold, readable text overlay (keep under 20%)
+- Bold, readable text overlay (Meta dropped its 20% text rule in 2020; keep text short enough to read at a glance)
 
 ### Video Ads Structure (15-30 sec)
 1. Hook (0-3 sec): Pattern interrupt, question, or bold statement
@@ -200,7 +200,7 @@ Meta's Andromeda algorithm (2025) made creative volume and variety the main leve
 4. CTA (20-30 sec): Clear next step
 
 **Production tips:**
-- Captions always (85% watch without sound)
+- Captions always (feed video usually autoplays muted)
 - Vertical for Stories/Reels, square for feed
 - Native feel outperforms polished
 - First 3 seconds determine if they watch

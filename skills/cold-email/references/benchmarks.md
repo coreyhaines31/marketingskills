@@ -72,7 +72,7 @@ Reply rates fell from 7–8% (2020–2022) to roughly 3.5–5.8% (2024–2025 da
 | Length       | Shorter, blunt  | Longer, insight-led      | Detail-oriented      | Concise but substantive |
 | Social proof | Outcome numbers | Research-led credibility | Technical precision  | Shared values           |
 
-North America: 4.1% response. Europe: 3.1%. Asia-Pacific: 2.8%. Shorter, more direct sequences work better in US. UK needs more insight/personality. GDPR affects European tone.
+North America: 4.1% response. Europe: 3.1%. Asia-Pacific: 2.8%. Shorter, more direct sequences work better in US. UK needs more insight/personality. GDPR affects European tone. Legality comes before tone: Germany and Austria require prior consent for advertising email, B2B included (see the compliance reference in the **prospecting** skill).
 
 ## Expert Quick Reference
 

@@ -98,12 +98,10 @@ Complete setup checklists for major ad platforms.
 - [ ] Event Match Quality score > 6
 - [ ] Test events in Events Manager
 
-### Domain & Aggregated Events
+### Domain
 
-- [ ] Domain verified in Business Manager
-- [ ] Aggregated Event Measurement configured
-- [ ] Top 8 events prioritized in order of importance
-- [ ] Web events prioritized for iOS 14+ tracking
+- [ ] Domain verified in Business Manager (controls who can edit link previews; no longer required for conversion events)
+- [ ] No Aggregated Event Measurement setup needed: the 8-event cap and event prioritization were dropped in 2023, and the AEM tab left Events Manager in 2025 (see **conversion-tracking**)
 
 ### Audience Setup
 

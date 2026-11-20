@@ -161,17 +161,17 @@ Use for "Best [X]", "Top [X]", "[Number] ways to [X]" queries.
 
 ## Generative Engine Optimization (GEO) Patterns
 
-These patterns optimize content for citation by AI assistants like ChatGPT, Claude, Perplexity, and Gemini.
+These patterns optimize content for citation by AI assistants like ChatGPT, Claude, Perplexity, and Gemini. The examples show the shape only: their numbers, quotes, and sources are illustrative, not citable facts. Replace them with real, dated sources.
 
 ### Statistic Citation Block
 
-Statistics increase AI citation rates by 15-30%. Always include sources.
+Adding statistics raised visibility about 31% in the Princeton GEO study (KDD 2024). Always include sources.
 
 ```markdown
 [Claim statement]. According to [Source/Organization], [specific statistic with number and timeframe]. [Context for why this matters].
 ```
 
-**Example:**
+**Example (illustrative, not real data):**
 ```markdown
 Mobile optimization is no longer optional for SEO success. According to Google's 2024 Core Web Vitals report, 70% of web traffic now comes from mobile devices, and pages failing mobile usability standards see 24% higher bounce rates. This makes mobile-first indexing a critical ranking factor.
 ```
@@ -184,7 +184,7 @@ Named expert attribution adds credibility and increases citation likelihood.
 "[Direct quote from expert]," says [Expert Name], [Title/Role] at [Organization]. [1 sentence of context or interpretation].
 ```
 
-**Example:**
+**Example (illustrative, not real data):**
 ```markdown
 "The shift from keyword-driven search to intent-driven discovery represents the most significant change in SEO since mobile-first indexing," says Rand Fishkin, Co-founder of SparkToro. This perspective highlights why content strategies must evolve beyond traditional keyword optimization.
 ```
@@ -210,7 +210,7 @@ Create quotable, standalone statements that AI can extract directly.
 **[Topic/Question]**: [Complete, self-contained answer that makes sense without additional context. Include specific details, numbers, or examples in 2-3 sentences.]
 ```
 
-**Example:**
+**Example (illustrative, not real data):**
 ```markdown
 **Ideal blog post length for SEO**: The optimal length for SEO blog posts is 1,500-2,500 words for competitive topics. This range allows comprehensive topic coverage while maintaining reader engagement. HubSpot research shows long-form content earns 77% more backlinks than short articles, directly impacting search rankings.
 ```
