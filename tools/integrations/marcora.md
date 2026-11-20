@@ -19,7 +19,7 @@ Facts below were checked against the [API docs](https://marcora.ai/docs/api) and
   - **Env var** (convention): `MARCORA_API_KEY`
   - **Get key**: Integrations → API Keys (`https://app.marcora.ai/integration-settings?tab=api-keys`). It's shown once and expires after the period you choose, up to one year.
   - It works only on `/v1`, and the MCP server refuses it.
-- **MCP**: OAuth with dynamic client registration, so there's no app to set up. Non-interactive clients can instead send an MCP API key from Integrations Settings (`https://app.marcora.ai/integration-settings`) as the bearer.
+- **MCP**: OAuth with dynamic client registration, so there's no app to set up. Non-interactive clients can instead authenticate with an MCP API key, created under Integrations Settings in the app, as the bearer token.
 
 ## MCP Server Setup
 

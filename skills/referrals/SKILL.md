@@ -2,7 +2,7 @@
 name: referrals
 description: "When the user wants referral and affiliate programs or word of mouth, or asks what to reward, how much to pay, or which loop to start with: refer-a-friend incentives, commissions and payouts, partner programs, 'made with' badges, review campaigns. For launch virality, see launch. For creator deals, see influencer-marketing."
 metadata:
-  version: 2.2.6
+  version: 2.2.7
 ---
 
 # Referral & Affiliate Programs

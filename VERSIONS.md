@@ -6,13 +6,13 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.5 | 2026-11-19 |
-| ai-seo | 2.12.6 | 2026-11-19 |
+| ai-seo | 2.12.7 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
-| cold-email | 2.2.6 | 2026-11-19 |
+| cold-email | 2.2.7 | 2026-11-19 |
 | community-marketing | 2.0.5 | 2026-11-09 |
 | competitor-profiling | 2.1.9 | 2026-11-19 |
 | competitors | 2.3.3 | 2026-11-09 |
@@ -23,7 +23,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cro | 2.0.6 | 2026-11-09 |
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
-| emails | 2.1.8 | 2026-11-19 |
+| emails | 2.1.9 | 2026-11-19 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.8 | 2026-11-19 |
@@ -38,27 +38,37 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
-| ads | 2.7.8 | 2026-11-19 |
-| paywalls | 2.1.4 | 2026-11-09 |
+| ads | 2.7.9 | 2026-11-19 |
+| paywalls | 2.1.5 | 2026-11-19 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.6.2 | 2026-11-19 |
-| public-relations | 1.3.0 | 2026-11-19 |
-| referrals | 2.2.6 | 2026-11-19 |
+| prospecting | 1.6.3 | 2026-11-19 |
+| public-relations | 1.3.1 | 2026-11-19 |
+| referrals | 2.2.7 | 2026-11-19 |
 | reverse-engineer-marketing | 1.2.0 | 2026-11-19 |
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.8 | 2026-11-19 |
+| seo-audit | 2.2.9 | 2026-11-19 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.4 | 2026-11-19 |
-| social | 2.5.4 | 2026-11-19 |
+| social | 2.6.0 | 2026-11-19 |
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.25 (2026-11-19)
+
+Community batch: fourteen new tool guides, three guide updates, and three skill contributions.
+
+- **New integration guides**, each reviewed against the usefulness and neutrality rules in `tools/PARTNERS.md`: Hermoso (#1014), Calven (#980), PostOnce (#979), GetYouTubeTranscript (#975), Hyper Elements (#974), ScrapeWhale (#972), Adspy (#965), Adeli (#964), SignalShelf (#959), GoAnyAPI with a CLI and tests (#946), Parallel with a CLI and tests (#943), Marcora (#939), Adlicio (#898), and SocialToAI (#917). Updated guides: Precleared (#957) and Coupler (#904). Edits made on the way in: tracking links, in-guide disclosure lines, pointers to vendors' own skill packs, comparison framing, and price pitches were removed; Adlicio no longer documents Google Maps or logged-in Facebook group scraping; GetYouTubeTranscript and ScrapeWhale carry a platform-terms note.
+- **social** (2.5.4 → 2.6.0): a new `references/chinese-platforms.md` on Xiaohongshu, Douyin, Weibo, Bilibili, and WeChat (how search works, what the metrics mean, creator and ad marketplaces, disclosure rules, data limits), and a Social Data & Listening category in the registry (#917 by the SocialToAI team; the reference names no tool).
+- **Outdated facts corrected** (#892 by @canermoral5-sys), after a check against primary sources. **ai-seo** (2.12.6 → 2.12.7): the GEO study table now carries the figures derived from the paper's Table 1 (quotations +41%, statistics +31%, fluency +28%, citing sources +27%, keyword stuffing -8%), with the rank effect (citing sources helped a fifth-ranked site and hurt the top one); Search Console's Generative AI performance report replaces "no AI-specific reporting"; Claude's use of Brave is described as reported, not documented. **ads** (2.7.8 → 2.7.9): Meta's 20% text limit is gone since September 2020, and the event-prioritization checklist items are replaced. **seo-audit** (2.2.8 → 2.2.9): a caveat on Search Console impressions between May 13, 2025 and April 27, 2026. **prospecting** (1.6.2 → 1.6.3), **cold-email** (2.2.6 → 2.2.7): Austria joins Germany and Italy in requiring prior consent for cold email. **emails** (2.1.8 → 2.1.9): open rate is a trend within one list, not a benchmark. **paywalls** (2.1.4 → 2.1.5): the escape hatch wording covers paid-only products. One of the PR's corrections, on ChatGPT's search providers, was not confirmed and is not included.
+- **ai-seo**: the agent-readiness reference gains checks for stores: machine-readable price and availability, whether cart and checkout answer an agent's user agent, and structured returns and shipping terms (#859 by @vlloic).
+- **public-relations** (1.3.0 → 1.3.1), **referrals** (2.2.6 → 2.2.7): two tool mentions that makers added to skill files in 2.14.24 are removed, under the rule that a maker's PR does not add its own tool to a skill. Both tools keep their guides and registry rows.
 
 ### 2.14.24 (2026-11-19)
 
