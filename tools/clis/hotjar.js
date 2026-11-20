@@ -32,7 +32,7 @@ async function getToken() {
     body: `grant_type=client_credentials&client_id=${encodeURIComponent(CLIENT_ID)}&client_secret=${encodeURIComponent(CLIENT_SECRET)}`,
   })
   const data = await res.json()
-  if (!data.access_token) {
+  if (res.status >= 400 || !data.access_token) {
     throw new Error(data.error_description || data.error || 'Failed to obtain access token')
   }
   cachedToken = data.access_token
@@ -52,6 +52,7 @@ async function api(method, path) {
       'Accept': 'application/json',
     },
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)

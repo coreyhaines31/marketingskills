@@ -36,6 +36,7 @@ async function api(method, path, body) {
     headers,
     body: body ? new URLSearchParams(body).toString() : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -57,6 +58,7 @@ async function apiJson(method, path, body) {
     },
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -192,6 +194,7 @@ async function main() {
             },
             body: formBody.toString(),
           })
+          if (res.status >= 400) process.exitCode = 1
           const resText = await res.text()
           try { result = JSON.parse(resText) } catch { result = { status: res.status, body: resText } }
           break
@@ -238,6 +241,7 @@ async function main() {
             },
             body: formBody.toString(),
           })
+          if (res.status >= 400) process.exitCode = 1
           const resText = await res.text()
           try { result = JSON.parse(resText) } catch { result = { status: res.status, body: resText } }
           break

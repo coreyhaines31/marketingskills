@@ -39,6 +39,7 @@ async function api(method, path, body, extraHeaders = {}) {
     headers,
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   if (!text) return { status: res.status }
   try {

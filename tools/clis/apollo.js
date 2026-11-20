@@ -32,6 +32,7 @@ async function api(method, path, body) {
     },
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -107,9 +108,10 @@ async function main() {
           break
         }
         case 'bulk-enrich': {
-          const emails = args.emails?.split(',')
-          if (!emails) { result = { error: '--emails required (comma-separated)' }; break }
-          const details = emails.map(email => ({ email: email.trim() }))
+          const emails = typeof args.emails === 'string' ? args.emails.split(',').map(email => email.trim()).filter(Boolean) : []
+          if (emails.length === 0) { result = { error: '--emails required (comma-separated)' }; break }
+          if (emails.length > 10) { result = { error: '--emails accepts at most 10 addresses per request (Apollo bulk enrichment limit)' }; break }
+          const details = emails.map(email => ({ email }))
           result = await api('POST', '/people/bulk_match', { details })
           break
         }

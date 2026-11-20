@@ -21,7 +21,7 @@ Pay-per-click advertising platform for search, display, and video campaigns.
 
 ### Repository CLI credentials
 
-The repository's [Google Ads CLI](../clis/google-ads.js) uses `GOOGLE_ADS_TOKEN` (OAuth access token) and `GOOGLE_ADS_CUSTOMER_ID` (target customer ID without hyphens). Set `GOOGLE_ADS_LOGIN_CUSTOMER_ID` when access goes through a manager; it is normalized to digits. Existing setups can still supply `GOOGLE_ADS_DEVELOPER_TOKEN`, but new setups do not need it. The CLI consumes an access token; it does not exchange or refresh OAuth tokens for you. OAuth scopes, user access to the target account, and the Cloud project's API access level remain required.
+The repository's [Google Ads CLI](../clis/google-ads.js) uses `GOOGLE_ADS_TOKEN` (OAuth access token) and `GOOGLE_ADS_CUSTOMER_ID` (target customer ID; the `123-456-7890` form shown in the Ads UI is normalized to digits). Set `GOOGLE_ADS_LOGIN_CUSTOMER_ID` when access goes through a manager; it is normalized the same way. Existing setups can still supply `GOOGLE_ADS_DEVELOPER_TOKEN`, but new setups do not need it. The CLI consumes an access token; it does not exchange or refresh OAuth tokens for you. OAuth scopes, user access to the target account, and the Cloud project's API access level remain required.
 
 Use a read-only first call after selecting the intended account:
 

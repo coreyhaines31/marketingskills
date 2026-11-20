@@ -34,6 +34,7 @@ async function api(method, path, body) {
     headers,
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -252,14 +253,14 @@ async function main() {
         }
         case 'create': {
           const url = args.url
-          if (!url) { result = { error: '--url required' }; break }
-          const eventName = args.event || 'attendance'
+          if (!url || url === true) { result = { error: '--url required' }; break }
+          if (!args.event || args.event === true) { result = { error: '--event required (e.g. people.registered, people.attended, session.ended)' }; break }
           result = await api('POST', '/webhooks', {
             data: {
               type: 'webhooks',
               attributes: {
-                target_url: url,
-                event_name: eventName,
+                url,
+                event: args.event,
               },
             },
           })

@@ -34,6 +34,7 @@ async function api(method, path, body) {
     },
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -199,7 +200,10 @@ async function main() {
         case 'list': {
           const params = new URLSearchParams()
           if (args['lead-id']) params.set('lead_id', args['lead-id'])
-          if (args.type) params.set('_type__type', args.type)
+          if (args.type) {
+            if (!args['lead-id']) { result = { error: '--type requires --lead-id (Close filters activity type only for a single lead)' }; break }
+            params.set('_type', args.type)
+          }
           addPagination(params)
           const qs = params.toString()
           result = await api('GET', `/activity/${qs ? '?' + qs : ''}`)

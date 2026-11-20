@@ -35,6 +35,9 @@ async function getAccessToken() {
     body: 'grant_type=client_credentials',
   })
   const data = await res.json()
+  if (res.status >= 400) {
+    throw new Error(data.error_description || data.error || 'Failed to obtain access token')
+  }
   if (data.access_token) {
     accessToken = data.access_token
     return accessToken
@@ -72,6 +75,7 @@ async function api(method, path, body, auth = 'apikey', baseUrl = BASE_URL) {
     headers,
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
@@ -114,7 +118,12 @@ async function main() {
         case 'search': {
           const query = args.query
           if (!query) { result = { error: '--query required' }; break }
-          result = await api('GET', `/business-units/search?query=${encodeURIComponent(query)}&limit=${limit}`)
+          if (args.page !== undefined && !/^[1-9]\d*$/.test(String(args.page))) { result = { error: '--page must be a positive integer' }; break }
+          if (!Number.isSafeInteger(limit) || limit < 1) { result = { error: '--limit must be a positive integer' }; break }
+          const params = new URLSearchParams({ query, perpage: String(limit) })
+          if (args.page !== undefined) params.set('page', args.page)
+          if (args.country) params.set('country', args.country)
+          result = await api('GET', `/business-units/search?${params}`)
           break
         }
         case 'get': {
@@ -275,7 +284,7 @@ async function main() {
       result = {
         error: 'Unknown command',
         usage: {
-          business: 'business [search --query <q> | get | profile | categories | web-links]',
+          business: 'business [search --query <q> [--limit <n>] [--page <n>] [--country <cc>] | get | profile | categories | web-links]',
           reviews: 'reviews [list | get --id <id> | private | latest | reply --id <id> --message <msg> | delete-reply --id <id>]',
           invitations: 'invitations [create --email <e> --name <n> | link --email <e> --name <n> | templates]',
           tags: 'tags [get --id <id> | add --id <id> --group <g> --value <v> | remove --id <id> --group <g> --value <v>]',

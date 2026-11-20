@@ -140,7 +140,10 @@ async function main() {
             description: args.description || 'Price',
             unit_price: { amount, currency_code: currency },
           }
-          if (args.interval && args.frequency) {
+          if (args.interval !== undefined || args.frequency !== undefined) {
+            if (typeof args.interval !== 'string' || !args.interval || typeof args.frequency !== 'string' || !args.frequency) {
+              result = { error: '--interval and --frequency must be supplied together with values' }; break
+            }
             body.billing_cycle = {
               interval: args.interval,
               frequency: Number(args.frequency),

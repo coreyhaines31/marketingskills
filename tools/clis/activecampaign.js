@@ -49,6 +49,14 @@ async function api(method, path, body) {
   }
 }
 
+function centsArg(raw) {
+  const value = Number(raw)
+  if (typeof raw !== 'string' || !/^\d+$/.test(raw.trim()) || !Number.isSafeInteger(value)) {
+    throw new Error('--value must be a non-negative integer amount in cents (e.g. 45678 for $456.78)')
+  }
+  return value
+}
+
 function parseArgs(args) {
   const result = { _: [] }
   for (let i = 0; i < args.length; i++) {
@@ -245,7 +253,8 @@ async function main() {
           const params = new URLSearchParams()
           params.set('limit', String(limit))
           params.set('offset', String(offset))
-          if (args.search) params.set('search', args.search)
+          if (args.search) params.set('filters[search]', args.search)
+          if (args['search-field']) params.set('filters[search_field]', args['search-field'])
           if (args.stage) params.set('filters[stage]', args.stage)
           if (args.owner) params.set('filters[owner]', args.owner)
           result = await api('GET', `/deals?${params.toString()}`)
@@ -261,7 +270,7 @@ async function main() {
           const title = args.title
           if (!title) { result = { error: '--title required' }; break }
           const deal = { title }
-          if (args.value) deal.value = Number(args.value)
+          if (args.value !== undefined) deal.value = centsArg(args.value)
           if (args.currency) deal.currency = args.currency
           if (args.pipeline) deal.group = args.pipeline
           if (args.stage) deal.stage = args.stage
@@ -275,7 +284,7 @@ async function main() {
           if (!id) { result = { error: '--id required' }; break }
           const deal = {}
           if (args.title) deal.title = args.title
-          if (args.value) deal.value = Number(args.value)
+          if (args.value !== undefined) deal.value = centsArg(args.value)
           if (args.stage) deal.stage = args.stage
           if (args.owner) deal.owner = args.owner
           if (args.status) deal.status = Number(args.status)
@@ -453,7 +462,7 @@ async function main() {
           fields: 'fields list [--search <title>] [--limit <n>] [--offset <n>]',
           lists: 'lists [list | get --id <id> | create --name <name> | delete --id <id> | subscribe --list-id <lid> --contact-id <cid> | unsubscribe --list-id <lid> --contact-id <cid>]',
           campaigns: 'campaigns [list | get --id <id>]',
-          deals: 'deals [list | get --id <id> | create --title <title> | update --id <id> | delete --id <id>]',
+          deals: 'deals [list [--search <text>] [--search-field <field>] | get --id <id> | create --title <title> | update --id <id> | delete --id <id>]',
           automations: 'automations [list | get --id <id> | add-contact --id <aid> --email <email>]',
           tags: 'tags [list | get --id <id> | create --name <name> | delete --id <id> | add-to-contact --tag-id <tid> --contact-id <cid>]',
           pipelines: 'pipelines [list | get --id <id>]',

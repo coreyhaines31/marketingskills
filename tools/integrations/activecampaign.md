@@ -342,6 +342,7 @@ ActiveCampaign uses REST with resource wrapping (e.g., `{ "contact": {...} }`). 
 - `offset` - Skip N results
 - `search` - Text search
 - `email` - Filter contacts by email
+- `filters[search]` - Search deals (with optional `filters[search_field]`)
 - `filters[stage]` - Filter deals by stage
 - `filters[owner]` - Filter deals by owner
 
