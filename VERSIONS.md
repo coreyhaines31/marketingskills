@@ -60,6 +60,15 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.14.23 (2026-11-19)
+
+Community batch: 22 CLI fixes and three CI checks. No skill content changes.
+
+- **CLI fixes** (by @rudycelekli, each with a contract test): **ahrefs** sends the required Keywords Explorer and SERP Overview parameters (#864); **google-ads** strips hyphens from the customer ID (#877); **similarweb** requests geography from the v4 endpoint (#876); **dataforseo** enforces per-task keyword limits (#873); **mixpanel** requires the funnel date range (#871); **supermetrics** rejects row limits that would be truncated (#879); **tiktok-ads** sends `operation_status` for campaign status updates (#872); **resend** pages audience, contact, and webhook lists with cursors (#874); **postmark** enforces batch and suppression limits (#867); **activecampaign** sends deal search as `filters[search]` and requires whole-cent deal values (#861, #862); **close** filters activities with `_type` (#860); **apollo** enforces the ten-person bulk enrichment limit (#868); **hunter** reads and pauses sequences through documented routes (#869); **lemlist** requests campaign stats from the v2 route (#870); **truelist** enforces the three-address inline limit (#863); **optimizely** changes experiment state with the documented action parameter (#866); **livestorm** creates webhooks with the documented attributes (#865); **trustpilot** pages business search with `perpage` (#875); **wistia** honors an explicit false public flag (#878); **paddle** rejects incomplete recurring price options (#858). The remaining CLIs now exit non-zero on HTTP 4xx and 5xx responses (#852).
+- **Hidden-content check** (#956 by @TanmayShah29, closes #931): a new CI job and `scripts/check-hidden-content.mjs` flag content a reviewer would not see in rendered markdown: HTML comments, invisible Unicode, long blank runs, piped-to-shell downloads, and webhook or secret-exfiltration patterns. Legitimate hits go in an allowlist.
+- **Validator fix** (#977 by @divya0795): `validate-skills-official.sh` reported every skill as valid, because it matched "valid" inside "Validation failed". It now fails on a rejected skill, with a regression test.
+- **Trigger eval** (#978 by @divya0795): a run that ends in an error result (not logged in, API or rate-limit error) is scored as an error, not as an answer.
+
 ### 2.14.22 (2026-11-19)
 
 AI video and voice model facts refreshed against vendor pages, checked 2026-11-19 (#994). Same treatment as the image models in 2.14.21: each tool is described by what its vendor states and where to check, with no ratings.
