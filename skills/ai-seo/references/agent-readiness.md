@@ -90,7 +90,7 @@ On an e-commerce site the high-intent action is the purchase, and it can fail at
 - **Returns and shipping terms are structured** (`MerchantReturnPolicy`, `OfferShippingDetails`), so the agent can answer "can I send it back, and when does it arrive?" without leaving the conversation.
 - **If you've adopted a commerce protocol, it's reachable**: UCP, for example, publishes a manifest at `/.well-known/ucp`.
 
-Ways to check, from free to tooled: `curl -s -o /dev/null -w "%{http_code}" -A "<agent user agent>" https://yourstore.com/checkout` plus a look at the product page's JSON-LD; Is Agentic, whose commerce checks activate when it detects a store; UCP validators such as [UCPChecker](https://ucpchecker.com), which test the manifest and catalog; and [AgentReady.market](https://www.agentready.market) (a separate product, unaffiliated with the AgentReady.org standard above; line contributed by its operator), which scores stores on any platform for this transaction layer (agent access including CDN/WAF blocks, offer data, cart/checkout reachability, policies) and re-scans them over time.
+Ways to check, from free to tooled: `curl -s -o /dev/null -w "%{http_code}" -A "<agent user agent>" https://yourstore.com/checkout` plus a look at the product page's JSON-LD; Is Agentic, whose commerce checks activate when it detects a store; and UCP validators such as [UCPChecker](https://ucpchecker.com), which test the manifest and catalog.
 
 ### Ship a skill file for your product
 

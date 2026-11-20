@@ -227,7 +227,7 @@ For detailed templates for each block type, see [references/content-patterns.md]
 
 AI systems prefer sources they can trust. Build citation-worthiness.
 
-**The Princeton GEO research** (KDD 2024; GEO-bench, Table 1, position-adjusted word count vs. the unoptimized baseline) ranked 9 optimization methods:
+**The Princeton GEO research** (KDD 2024; GEO-bench; percentages derived from Table 1's position-adjusted word count scores against the unoptimized baseline) ranked 9 optimization methods:
 
 | Method | Visibility Boost | How to Apply |
 |--------|:---------------:|--------------|
@@ -436,7 +436,7 @@ AI answers are **non-deterministic** — one run is an anecdote, not a measureme
 
 ### Search Console expectations
 
-Google's guide now points to the **Generative AI performance report** in Search Console (rolled out to all sites by August 31, 2026). It shows **impressions only** for AI Overviews and AI Mode, by page, country, device, and date; no clicks, CTR, position, or queries, and Discover has a separate report. A site must be included in Search generative AI features (a Search Console setting) to be eligible. These features still run on core Search ranking, so the standard reports remain the base. The third-party tools above are the only way to see cross-platform AI citation behavior.
+Google's guide now points to the **Generative AI performance report** in Search Console (rolled out to all sites by August 31, 2026). It shows **impressions only** for AI Overviews and AI Mode, by page, country, device, and date. Google's launch post lists no clicks, CTR, or position, and Discover has a separate report. A site must be included in Search generative AI features (a Search Console setting) to be eligible. These features still run on core Search ranking, so the standard reports remain the base. The third-party tools above are the only way to see cross-platform AI citation behavior.
 
 ---
 

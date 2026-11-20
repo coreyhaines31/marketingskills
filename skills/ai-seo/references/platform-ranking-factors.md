@@ -42,7 +42,7 @@ Google AI Overviews pull from Google's own index and lean heavily on E-E-A-T sig
 
 ## ChatGPT
 
-ChatGPT search combines OpenAI's own crawler (`OAI-SearchBot`) with third-party search providers that OpenAI's help center does not name (an earlier version named Microsoft Bing). It combines this with its training knowledge to generate answers, then cites the web sources it relied on.
+ChatGPT's web search draws from a Bing-based index, and OpenAI runs its own search crawler (`OAI-SearchBot`). It combines this with its training knowledge to generate answers, then cites the web sources it relied on.
 
 **What makes ChatGPT different:** Link authority correlates strongly with citation. SE Ranking's study of 129,000 domains (Nov 2025) found referring domains were the single strongest predictor: sites with up to 2,500 referring domains averaged 1.6–1.8 citations, sites with more than 350,000 averaged 8.4, and citations nearly doubled past about 32,000. It's a correlation, and big brands have both links and everything else.
 
@@ -102,7 +102,7 @@ Copilot is embedded across Microsoft's ecosystem — Edge, Windows, Microsoft 36
 
 ## Claude
 
-Anthropic added Brave Search to its subprocessor list for web search in March 2025, and independent tests matched Claude's citations to Brave's results. Anthropic does not document Brave as the only source, and it runs its own search crawler (`Claude-SearchBot`), so treat Brave visibility as a strong signal to check, not the whole picture.
+Brave Search was reported added to Anthropic's subprocessor list for web search in March 2025 (TechCrunch, Simon Willison), and independent tests matched Claude's citations to Brave's results. Anthropic does not document Brave as the only source, and it runs its own search crawler (`Claude-SearchBot`), so treat Brave visibility as a strong signal to check, not the whole picture.
 
 **What makes Claude different:** Claude is extremely selective about what it cites. While it processes enormous amounts of content, its citation rate is very low — it's looking for the most factually accurate, well-sourced content on a given topic. Data-rich content with specific numbers and clear attribution performs significantly better than general-purpose content.
 

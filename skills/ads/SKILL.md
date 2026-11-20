@@ -191,7 +191,7 @@ Meta's Andromeda algorithm (2025) made creative volume and variety the main leve
 - Before/after comparisons
 - Stats and numbers as focal point
 - Human faces (real, not stock)
-- Bold, readable text overlay (Meta dropped its 20% text rule in 2020; keep text short enough to read at a glance)
+- Bold, readable text overlay (Meta removed its 20% text limit in September 2020; keep text short enough to read at a glance)
 
 ### Video Ads Structure (15-30 sec)
 1. Hook (0-3 sec): Pattern interrupt, question, or bold statement
