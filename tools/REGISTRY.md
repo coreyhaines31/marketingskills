@@ -76,6 +76,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | agentaos | Payments | ✓ | ✓ | ✓ | ✓ | [agentaos.md](integrations/agentaos.md) |
 | rewardful | Referral | ✓ | - | [✓](clis/rewardful.js) | - | [rewardful.md](integrations/rewardful.md) |
 | tolt | Referral | ✓ | ✓ | [✓](clis/tolt.js) | - | [tolt.md](integrations/tolt.md) |
+| linkjolt | Referral | ✓ | ✓ | - | - | [linkjolt.md](integrations/linkjolt.md) |
 | dub-co | Links | ✓ | - | [✓](clis/dub.js) | ✓ | [dub-co.md](integrations/dub-co.md) |
 | mention-me | Referral | ✓ | - | [✓](clis/mention-me.js) | - | [mention-me.md](integrations/mention-me.md) |
 | partnerstack | Affiliate | ✓ | ✓ | [✓](clis/partnerstack.js) | - | [partnerstack.md](integrations/partnerstack.md) |
@@ -221,6 +222,7 @@ Tools for referral programs, affiliate tracking, and partner management.
 |------|----------|:------------------:|
 | **rewardful** | Stripe-native affiliate programs | ✓ |
 | **tolt** | SaaS affiliate programs | ✓ |
+| **linkjolt** | SaaS affiliate programs on Stripe, Paddle, Polar or Creem; hosted MCP | ✓ |
 | **mention-me** | Enterprise referral programs | ✓ |
 | **dub-co** | Link tracking, attribution | - |
 | **partnerstack** | Enterprise partner programs | ✓ |
