@@ -64,6 +64,8 @@ function parseArgs(args) {
 const args = parseArgs(rawArgs)
 const [cmd, sub, ...rest] = args._
 
+const EXPERIMENT_ACTIONS = ['publish', 'start', 'pause', 'resume', 'unarchive']
+
 async function main() {
   let result
   const projectId = args['project-id']
@@ -127,11 +129,13 @@ async function main() {
         case 'update': {
           const id = args.id
           if (!id) { result = { error: '--id required' }; break }
+          if (args.status !== undefined) { result = { error: `--status is read-only on update; change state with --action ${EXPERIMENT_ACTIONS.join('|')}` }; break }
+          if (args.action !== undefined && !EXPERIMENT_ACTIONS.includes(args.action)) { result = { error: `--action must be one of: ${EXPERIMENT_ACTIONS.join(', ')}` }; break }
           const body = {}
           if (args.name) body.name = args.name
-          if (args.status) body.status = args.status
           if (args['traffic-allocation']) body.traffic_allocation = Number(args['traffic-allocation'])
-          result = await api('PATCH', `/experiments/${id}`, body)
+          const qs = args.action ? `?${new URLSearchParams({ action: args.action })}` : ''
+          result = await api('PATCH', `/experiments/${id}${qs}`, body)
           break
         }
         case 'results': {
@@ -226,7 +230,7 @@ async function main() {
         error: 'Unknown command',
         usage: {
           projects: 'projects [list | get --id <id> | create --name <name>]',
-          experiments: 'experiments [list --project-id <id> | get --id <id> | create --project-id <id> --name <name> | update --id <id> --status <status> | results --id <id> | archive --id <id>]',
+          experiments: 'experiments [list --project-id <id> | get --id <id> | create --project-id <id> --name <name> | update --id <id> [--name <name>] [--traffic-allocation <n>] [--action publish|start|pause|resume|unarchive] | results --id <id> | archive --id <id>]',
           campaigns: 'campaigns [list --project-id <id> | get --id <id> | results --id <id>]',
           audiences: 'audiences [list --project-id <id> | get --id <id>]',
           events: 'events list --project-id <id>',
