@@ -60,6 +60,7 @@ Domains verified live on 2026-10-02. Re-check before submitting (see the safety 
 | **ConfettiSaaS** | confettisaas.com | ~47 | — | Appears free; email approval |
 | **IndieTool** | indietool.io | ~46 | — | Submit flow unverified |
 | **DiscoverLaunches** | discoverlaunches.com | ~27 | — | Free weekly launch after upvoting 3 launches and one comment; dofollow while their badge stays up, or $9 one-time |
+| **Launchator** | launchator.com | — | — | Free listing with a dofollow link, kept as long as your homepage links back to launchator.com (a site-wide footer link works). Agents can submit through its remote MCP server (`launchator.com/api/mcp`) instead of a web form. Launched 2026-10 |
 
 ---
 
@@ -205,6 +206,7 @@ Source: [modelcontextprotocol/registry](https://github.com/modelcontextprotocol/
 | **AllMCPs** | allmcps.com | ~36 | Low value. Not `allmcp.com` (unrelated business) |
 | **MCP Repository** | mcprepository.com | ~21 | Free form, low value |
 | **AI Indigo** | aiindigo.com | ~12 | Has an MCP section, low value |
+| **Launchator** | launchator.com/mcp-servers | — | Lists MCP servers and agent skills with install commands for each client. Same terms as its Tier 1B entry; agents can submit through its MCP server. Launched 2026-10 |
 
 ### Tier 4C — Agent directories
 
