@@ -271,11 +271,12 @@ To replicate the *style* of a video edit you admire — the cut rhythm, caption 
 
 ### Batch Social Clips
 
-1. **Create master template** in Hyperframes/Remotion
+1. **Create master template** in Hyperframes/Remotion, one layout per aspect ratio
 2. **Feed data** — product features, testimonials, stats
-3. **Render batch** — one template, many variations
-4. **Add platform-specific captions** via CapCut or Captions.ai
-5. **Schedule** across platforms
+3. **Render batch** — the same data rows through each layout
+4. **Check frames** — look at the peak-zoom frame of each size for a cropped product, logo, or text
+5. **Add platform-specific captions** via CapCut or Captions.ai
+6. **Schedule** across platforms
 
 ### Personalized Video per Account
 
@@ -329,6 +330,7 @@ Output: Ready-to-publish video
 4. **No captions** — 85% of social video is watched without sound
 5. **Wrong aspect ratio** — 9:16 for social, 16:9 for YouTube/website, 1:1 for feeds
 6. **Over-producing** — authentic often outperforms polished, especially on TikTok
+7. **Cropping the product** — a full-canvas photo plus a push-in cuts off product edges and logos; fit the photo inside a margin and keep zoom small (see the [Hyperframes guide](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/hyperframes.md#product-photos))
 
 ---
 
