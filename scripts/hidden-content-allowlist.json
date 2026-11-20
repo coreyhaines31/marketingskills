@@ -1,0 +1,62 @@
+[
+  {
+    "path": "skills/conversion-tracking/references/browser-side.md",
+    "rule": "html-comment",
+    "line": "<!-- Google tag (gtag.js). Skip if GA4 already loads on this site -->",
+    "reason": "Inside an html code block; the comment is part of the snippet users paste and is visible."
+  },
+  {
+    "path": "skills/conversion-tracking/references/browser-side.md",
+    "rule": "html-comment",
+    "line": "<!-- Listener. Sends generate_lead when the detection event is pushed -->",
+    "reason": "Inside an html code block; the comment is part of the snippet users paste and is visible."
+  },
+  {
+    "path": "skills/conversion-tracking/references/google-ads.md",
+    "rule": "html-comment",
+    "line": "<!-- Google tag (gtag.js) -->",
+    "reason": "Inside an html code block; the comment is part of the snippet users paste and is visible."
+  },
+  {
+    "path": "skills/conversion-tracking/references/google-ads.md",
+    "rule": "html-comment",
+    "line": "<!-- Conversion listener. Fires when the detection event is pushed -->",
+    "reason": "Inside an html code block; the comment is part of the snippet users paste and is visible."
+  },
+  {
+    "path": "skills/conversion-tracking/references/meta.md",
+    "rule": "html-comment",
+    "line": "<!-- Meta Pixel base code -->",
+    "reason": "Inside an html code block; the comment is part of the snippet users paste and is visible."
+  },
+  {
+    "path": "tools/REGISTRY.md",
+    "rule": "html-comment",
+    "line": "<!-- PARTNERS:START -->",
+    "reason": "Marker that scripts/sync-partners.mjs rewrites the partner table between."
+  },
+  {
+    "path": "tools/REGISTRY.md",
+    "rule": "html-comment",
+    "line": "<!-- PARTNERS:END -->",
+    "reason": "Marker that scripts/sync-partners.mjs rewrites the partner table between."
+  },
+  {
+    "path": "tools/REGISTRY.md",
+    "rule": "html-comment",
+    "line": "<!-- The table above is generated from partners.json \u2014 run `node scripts/sync-partners.mjs`. -->",
+    "reason": "Maintainer note pointing at scripts/sync-partners.mjs; no instructions for the agent."
+  },
+  {
+    "path": "tools/integrations/nitrosend.md",
+    "rule": "exfil-secret",
+    "line": "\"Send a password reset email to user@example.com with a reset link valid for 1 hour.\"",
+    "reason": "Example user prompt for a transactional email; the password is the subject of the email, not data being sent."
+  },
+  {
+    "path": "tools/integrations/ploy.md",
+    "rule": "pipe-to-shell",
+    "line": "curl -fsSL https://ploy.ai/install.sh | sh",
+    "reason": "The partner's documented CLI installer, shown in the setup steps. Keep only while the guide needs it."
+  }
+]
