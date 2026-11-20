@@ -8,7 +8,6 @@ Data integration platform that connects marketing, sales, analytics, and e-comme
 |-------------|-----------|-------|
 | API | ✓ | Importers, Runs, Sources, Destinations |
 | MCP | ✓ | Hosted server at `https://mcp.coupler.io/mcp`, [Claude connector](https://claude.com/connectors/coupler-io) |
-| Agent skill | ✓ | [coupler-io/skills](https://github.com/coupler-io/skills) |
 | CLI | ✓ | [coupler.js](../clis/coupler.js) |
 | SDK | - | REST API only |
 
@@ -45,11 +44,6 @@ Claude.ai, ChatGPT, Gemini CLI, Cursor and other clients are covered in the [MCP
 | `get-dataflow` | Get a data flow's state, sources and destinations |
 | `run-dataflow` | Run a data flow to refresh its data |
 | `list-templates` | List prebuilt data flow templates |
-| `list-skills` / `get-skill` | Find and load Coupler.io analysis workflows |
-
-## Agent Skills
-
-[coupler-io/skills](https://github.com/coupler-io/skills) is a set of analysis skills that run on Coupler.io data through the MCP server: marketing and PPC, sales, finance and e-commerce.
 
 ## Common Agent Operations
 

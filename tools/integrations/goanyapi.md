@@ -2,16 +2,16 @@
 
 SEO, keyword, backlink, traffic, and Google Ads data through a GET-only HTTP API and a hosted MCP server, billed against a prepaid credit balance.
 
-Facts below were checked against the [MCP catalog](https://api.goanyapi.com/api/v1/mcp/catalog) (49 endpoints, including each endpoint's input schema) and the [published docs](https://goanyapi.com/llms.txt) on 2026-11-11. Response field paths were not re-verified against a live key in this revision.
+Facts below were checked against the [MCP catalog](https://api.goanyapi.com/api/v1/mcp/catalog) (including each endpoint's input schema) and the [published docs](https://goanyapi.com/llms.txt) on 2026-11-11. Response field paths were not re-verified against a live key in this revision.
 
-## What an agent can do here that the other data guides do not cover
+## What It Covers
 
-Two surfaces are the reason to reach for this rather than a SERP or social scraper:
+Two surfaces in particular:
 
 - **Google Ads Transparency lookups** — go from a keyword to the advertisers bidding on it, from a domain to its advertisers, or from creative IDs back to the domains running them, then pull weekly per-advertiser and per-domain ad statistics. `scrapecreators.md` covers the Meta/Google/TikTok/LinkedIn ad *libraries* at the creative level; this returns Google's Transparency Center advertiser objects and weekly aggregates instead.
-- **Reverse AdSense** — a domain returns the publisher IDs monetizing it, and a `pub-…` ID returns the domains in that publisher's network. Useful for spotting site networks and shared monetization; no other guide in this registry covers it.
+- **Reverse AdSense** — a domain returns the publisher IDs monetizing it, and a `pub-…` ID returns the domains in that publisher's network. Useful for spotting site networks and shared monetization.
 
-The same key also returns Google/Bing SERP, keyword volumes and difficulty, Domain Rating, backlinks, and estimated traffic, so a single workflow does not have to stitch two vendors together. Coverage stops at those datasets — there is no social-platform content, no transcripts, no comment scraping, and no ad-library creative for Meta/TikTok/LinkedIn (`scrapecreators.md` and `apify.md` remain the right tools there).
+The same key also returns Google/Bing SERP, keyword volumes and difficulty, Domain Rating, backlinks, and estimated traffic. Coverage stops at those datasets: there is no social-platform content, no transcripts, no comment scraping, and no ad-library creative for Meta, TikTok, or LinkedIn (see `scrapecreators.md` and `apify.md` for those).
 
 ## Capabilities
 

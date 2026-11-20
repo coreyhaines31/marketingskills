@@ -121,9 +121,8 @@ Run `learn_marcora_tools` for the full tool guide.
 
 This repo's `product-marketing` skill writes a team's positioning, ICP, competitors, customer language, and brand voice to `.agents/product-marketing.md` (formerly `product-marketing-context.md`), and the other marketing skills read it first. Marcora holds the same kind of context outside the repo.
 
-- **Use the file** when one person or one repo's agents need the context and it fits in a document an agent reads whole. It's free and needs no account.
-- **Use Marcora** when the same context has to reach several people or AI tools (Claude, ChatGPT, Cursor, other MCP clients) and stay current in one place, or when the material is more than one file holds, such as product docs, personas, competitive analysis, and call notes, and the agent should pull only the passages that fit the task.
-- **If a team uses both,** update positioning in Marcora and refresh the file from it (product overview and brand voice from `GET /v1/brand-foundation`), so the repo's other skills read the same version.
+- **The file fits** when one person or one repo's agents need the context and it fits in a document an agent reads whole. It's free and needs no account.
+- **Marcora fits** when the same context has to reach several people or AI tools (Claude, ChatGPT, Cursor, other MCP clients) and stay current in one place, or when the material is more than one file holds, such as product docs, personas, competitive analysis, and call notes, and the agent should pull only the passages that fit the task.
 
 ## When to Use
 

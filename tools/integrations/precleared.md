@@ -6,8 +6,6 @@ Facts below were checked against the live API, [precleared.dev/openapi.json](htt
 
 **Data sent:** each check sends the recipient's email address (and, for UK recipients, the company lookup) to Precleared's servers. Clear that with your privacy policy before running checks on a contact list.
 
-**Source tag:** the commands and examples below use URLs ending in `src=guide-marketingskills`. The tag tells Precleared a call came from this guide, so use of the guide can be counted in totals. It carries nothing about you or the recipient, and everything works the same without it.
-
 ## Capabilities
 
 | Integration | Available | Notes |
@@ -20,21 +18,21 @@ Facts below were checked against the live API, [precleared.dev/openapi.json](htt
 ## Authentication
 
 - **Without a key:** nothing to set up. The free allowance is 100 checks a day per network address over MCP and 10 a day over the REST API.
-- **With a key:** `Authorization: Bearer $PRECLEARED_API_KEY`. A free key from [precleared.dev/get-key](https://precleared.dev/get-key?ref=marketingskills) starts with 14 days at 100 checks a day, counted from its first check, then gives 25 checks a day over the REST API (and its own 100 over MCP). Paid options: packs that never expire (£9 for 300 checks as a first purchase, £39 for 2,000) or a monthly plan (£15 for 100 checks a day, £49 for 500). Keep the key in an env var or a secret manager, never in the repo.
+- **With a key:** `Authorization: Bearer $PRECLEARED_API_KEY`. A free key from [precleared.dev/get-key](https://precleared.dev/get-key) starts with 14 days at 100 checks a day, counted from its first check, then gives 25 checks a day over the REST API (and its own 100 over MCP). Paid options: packs that never expire (£9 for 300 checks as a first purchase, £39 for 2,000) or a monthly plan (£15 for 100 checks a day, £49 for 500). Keep the key in an env var or a secret manager, never in the repo.
 - **Rate limit:** 60 checks a minute per key. Over that, the API answers `429` with `retry_after` in seconds.
 - **Base URL:** `https://precleared.dev`
 
 ```bash
 # Claude Code
-claude mcp add --transport http precleared "https://precleared.dev/mcp?src=guide-marketingskills"
+claude mcp add --transport http precleared "https://precleared.dev/mcp"
 # Codex
-codex mcp add precleared --url "https://precleared.dev/mcp?src=guide-marketingskills"
+codex mcp add precleared --url "https://precleared.dev/mcp"
 ```
 
 Cursor, Windsurf and other clients take the same URL in their MCP settings:
 
 ```json
-{ "mcpServers": { "precleared": { "url": "https://precleared.dev/mcp?src=guide-marketingskills" } } }
+{ "mcpServers": { "precleared": { "url": "https://precleared.dev/mcp" } } }
 ```
 
 ## Common Agent Operations
@@ -42,7 +40,7 @@ Cursor, Windsurf and other clients take the same URL in their MCP settings:
 ### Check one address before the first email
 
 ```bash
-curl -s "https://precleared.dev/api/v1/check?src=guide-marketingskills" \
+curl -s "https://precleared.dev/api/v1/check" \
   -H "Content-Type: application/json" \
   -d '{
     "recipient_email": "jane@acme.co.uk",
@@ -134,9 +132,9 @@ The same questions can be answered by hand against the official guidance. A tool
 
 - **Fourteen countries.** Recipients elsewhere in the EU get a cautious default (consent needed) rather than a country-specific rule, and the rest of the world is not covered.
 - **`unknown` happens.** When a UK company cannot be matched, or a `.com` domain shows no country, the check says so rather than guessing. Passing `recipient_country` and `company_number` removes most of these.
-- **One more call per lead,** usually a few seconds each (UK checks that look a company up take longest), and a small cost at volume (£39 buys 2,000 checks, about 2p each).
+- **One more call per lead,** usually a few seconds each (UK checks that look a company up take longest), and a small cost at volume (see Precleared's pricing page).
 - **Not legal advice.** The rule and its source are quoted so a human can read them; the decision stays with you. For edge cases, a lawyer.
-- **Opt-outs need a key.** A key has its own opt-out list (`suppress_contact` over MCP, `POST /api/v1/suppressions` over REST), and later checks on a listed address answer `blocked`. Without a key nothing is stored, so keep your own list and pass `suppressed: true`.
+- **Opt-outs need a key.** A key has its own opt-out list (`suppress_contact` over MCP), and later checks on a listed address answer `blocked`. Without a key nothing is stored, so keep your own list and pass `suppressed: true`.
 
 ## How it fits the skills
 

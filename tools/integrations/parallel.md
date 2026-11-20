@@ -42,4 +42,3 @@ Anonymous limits and server tool schemas can change. Supplying an account key ma
 - [Search API](https://docs.parallel.ai/api-reference/search-beta/search)
 - [Parallel platform](https://platform.parallel.ai)
 
-Contributor disclosure: George Pickett works at Parallel.

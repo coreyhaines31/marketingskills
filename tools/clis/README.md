@@ -34,7 +34,7 @@ export PATH="$PATH:/path/to/marketingskills/tools/clis"
 
 For step-by-step account setup and private credential loading, see [guided tool connections](../SETUP.md).
 
-CLIs read credentials from environment variables. Parallel also supports anonymous access when its key is unset:
+Every CLI reads credentials from environment variables:
 
 | CLI | Environment Variable |
 |-----|---------------------|
@@ -235,4 +235,3 @@ The deadline covers obtaining headers and consuming the response body, including
 
 Implemented using [Node's AbortSignal.timeout](https://nodejs.org/api/globals.html#static-method-abortsignaltimeoutdelay), available on the supported Node 18+ runtime, preserving zero-dependency standalone scripts. Native loopback tests cover stalled headers, stalled bodies, OAuth, successful responses and malformed timeout values without live accounts.
 
-The optional [Parallel CLI](../integrations/parallel.md) uses a total command deadline across its MCP requests, rather than a fresh deadline per request. Try `node tools/clis/parallel.js search --query 'B2B SaaS onboarding examples'`. Help and `--dry-run` use no network; `--offline` or `PARALLEL_DISABLED=1` blocks live calls.

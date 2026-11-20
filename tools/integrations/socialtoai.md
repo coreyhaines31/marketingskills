@@ -2,7 +2,7 @@
 
 Hosted MCP server and REST API that reads publicly visible social media content (posts, comments, profiles, and trending lists) on 18 platforms: Reddit, X, TikTok, Instagram, YouTube, Facebook, LinkedIn, Threads, Telegram, Pinterest, and the Chinese platforms Xiaohongshu (RedNote), Douyin, Weibo, Bilibili, Zhihu, Kuaishou, WeChat Articles, and WeChat Channels. Billed per call from prepaid credits; failed calls are free.
 
-> **Disclosure:** this guide was contributed by the SocialToAI team. SocialToAI is a young product (the current version went live in October 2026), so confirm coverage, prices, and each platform's terms before relying on it. Facts below were checked against [socialtoai.com/llms.txt](https://socialtoai.com/llms.txt), the [API docs](https://socialtoai.com/docs.md), and the [MCP tool list](https://socialtoai.com/docs/mcp/tools.md) on 2026-10-29.
+SocialToAI's current version went live in October 2026, so confirm coverage, prices, and each platform's terms before relying on it. Facts below were checked against [socialtoai.com/llms.txt](https://socialtoai.com/llms.txt), the [API docs](https://socialtoai.com/docs.md), and the [MCP tool list](https://socialtoai.com/docs/mcp/tools.md) on 2026-10-29.
 
 ## Capabilities
 
@@ -17,7 +17,7 @@ Hosted MCP server and REST API that reads publicly visible social media content 
 ## Authentication
 
 - **Interactive MCP:** OAuth. ChatGPT, Claude (web, desktop, mobile), Claude Code, Codex, and Cursor add the MCP URL, then sign in (Google or an emailed code) and press Allow; no key is copied. Signing in creates the account; the connection shows up in the console like a key and can be capped or revoked.
-- **Scripts, CI, and clients that only take a header:** an API key from the [console](https://socialtoai.com/console/keys/?utm_source=marketingskills&utm_medium=directory), kept in an env var (`SOCIALTOAI_KEY` by convention) and sent as `Authorization: Bearer $SOCIALTOAI_KEY` or `X-API-Key`. Keys start with `stai_live_` and are shown once. Keep them in a secret manager, never in the repo, client-side code, or a URL: a request with a key in the address is refused.
+- **Scripts, CI, and clients that only take a header:** an API key from the [console](https://socialtoai.com/console/keys/), kept in an env var (`SOCIALTOAI_KEY` by convention) and sent as `Authorization: Bearer $SOCIALTOAI_KEY` or `X-API-Key`. Keys start with `stai_live_` and are shown once. Keep them in a secret manager, never in the repo, client-side code, or a URL: a request with a key in the address is refused.
 - **No key needed** for `capabilities`, `find`, and the OpenAPI document (60 requests a minute per IP).
 
 ## When to Use SocialToAI vs. Other Options

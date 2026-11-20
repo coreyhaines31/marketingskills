@@ -101,7 +101,6 @@ Anyone — including tool makers and partners — may contribute content that na
 | hunter | Email Outreach | ✓ | ✓ | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | snov | Email Outreach | ✓ | - | [✓](clis/snov.js) | - | [snov.md](integrations/snov.md) |
 | truelist (house tool) | Email Verification | ✓ | ✓ | [✓](clis/truelist.js) | ✓ | [truelist.md](integrations/truelist.md) |
-| precleared | Email Compliance | ✓ | ✓ | - | - | [precleared.md](integrations/precleared.md) |
 | hyper-elements | Email Testing | - | - | ✓ | ✓ | [hyper-elements.md](integrations/hyper-elements.md) |
 | precleared | Email Compliance | ✓ | ✓ | - | ✓ | [precleared.md](integrations/precleared.md) |
 | github | Developer Intent | ✓ | - | [✓](clis/github-prospects.js) | ✓ | [github.md](integrations/github.md) |
