@@ -158,7 +158,7 @@ Everything above optimizes *conversion inside an audience Meta already reaches y
 3. **Deal structure basics:** get **whitelisting / branded-content-partner access** (run ads *from the creator's handle*, not just reposts — this is what unlocks the seed audience) with **usage rights** for a defined window (typically 3–6 months, renewable) plus **spend/paid-amplification rights**. Pay a flat content fee; add per-deliverable pricing for extra cuts. Avoid pure revenue-share on cold creators — you can't attribute cleanly yet.
 4. **Companion tactic — commission low-fi statics per creator.** When you contract a creator for the partnership video, *also* commission a few quick, low-fi statics (screenshot-style, "how they'd post it to their own story"). Each creator then becomes a **mini-funnel**: the partnership video punctures cold net-new reach, the low-fi statics support mid-funnel conversion under the same trusted face. Cheap to add, and it multiplies the return on the creator relationship.
 
-Format-level guidance on *which* creator-fronted formats to run (founder content, yapper, authority, amateur-investigation, creator low-fi statics, etc.) lives in the ad-creative format taxonomy: [meta-creative-formats.md](../../ad-creative/references/meta-creative-formats.md) *(sibling addition — forward link)*.
+Format-level guidance on *which* creator-fronted formats to run (founder content, yapper, authority, amateur-investigation, creator low-fi statics, etc.) lives in the ad-creative format taxonomy: [meta-creative-formats.md](../../ad-creative/references/meta-creative-formats.md).
 
 ## Rolling reach as a health signal
 

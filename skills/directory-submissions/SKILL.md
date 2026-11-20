@@ -2,7 +2,7 @@
 name: directory-submissions
 description: "When the user wants to list a product in startup, SaaS, AI, MCP, and review directories, or asks which directories are worth it or whether listings are working: Product Hunt, G2, Capterra, AlternativeTo, MCP registries, awesome lists, and a submission tracker. For the broader launch, see launch. For other link building, see link-building."
 metadata:
-  version: 2.2.0
+  version: 2.2.1
 ---
 
 # Directory Submissions
@@ -150,6 +150,7 @@ The safety gate above still applies to every step. On top of it:
 - **Contact hygiene.** Directories get scraped and resold. Use the brand name, a role email on the product domain, and the contact page URL. Leave phone and street address blank unless the directory requires them, and never use a home address or a personal phone number.
 - **No spending.** Use free tiers only. If the only path is paid, log `skipped_paid_only` and move on unless the user has approved that specific paid listing.
 - **Close verification loops.** Many listings stay unpublished until an email link or code is confirmed. Tell the user which inbox to check, or check it if you have access, the same day.
+- **Read the status, not only the response code.** A submission API can answer with success while the listing is still pending review. Report it as pending, don't resubmit a pending proposal, and record a listing as published only after you have seen the public page. A `/llms.txt` file alone doesn't prove a submission API exists, and an endpoint is never inferred from a site's other APIs.
 - **Awesome-list PRs.** Before opening one, read the list's `CONTRIBUTING.md`, PR template, CI checks, and the last few merged PRs. Respect lists that don't accept AI-written PRs or commercial products. Edit the real source file (some lists generate the README from data files), match the ordering and punctuation, strip `?ref=` and UTM parameters, and submit one PR per list, with the user's approval.
 
 ### Filling Web Forms with Browser or Computer Use

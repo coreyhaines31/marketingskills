@@ -2,7 +2,7 @@
 name: reverse-engineer-marketing
 description: "When the user wants to know how another company grew and what to copy, or asks what a competitor did and when: a dated log of their moves against their traffic from public data, archives, job posts, reviews, and their funnel, compared with the user's data, ending in plays routed to other skills. Also finds where competitors are weak. For a snapshot profile, see competitor-profiling. For comparison pages, see competitors."
 metadata:
-  version: 1.1.4
+  version: 1.2.0
 ---
 
 # Reverse Engineer Marketing
@@ -24,6 +24,8 @@ Gather this context (ask for anything missing before the first paid call):
 4. **The user's company.** Domain, category, stage (pre-launch, early revenue, scaling), and the channels they have capacity to run. Plays are filtered by fit.
 5. **The user's data.** Which of their own sources are connected: Search Console, GA4 or another analytics tool, ad accounts, social accounts. These power the gap step.
 6. **Data tools and budget.** Which paid sources they have (see [references/data-sources.md](references/data-sources.md)) and a cap for paid calls (default $5).
+
+   **What a run costs.** Quick mode can stay at $0 if it uses only the bundled script and manual checks. A full teardown's paid calls (traffic history, keywords by URL, backlinks, ad and social pulls) should be quoted as a range before the first paid call, then tracked against the cap (default $5). Tell the user the expected paid-call count and a dollar range for this target before Stage 2. If the range would exceed the cap, switch to Quick or ask to raise it. The typical range is left blank until it is filled in from a measured run on a named site, one Quick with free collectors only and one Teardown with a connected SEO tool, with the actual vendor cost recorded. Do not guess a figure.
 7. **Country.** For traffic and keyword estimates. Default: US.
 
 ### Modes
@@ -123,7 +125,7 @@ Walk the target's funnel one stage at a time. Each finding goes in the write-up,
 
 | Channel | What to collect |
 |---|---|
-| **Search** | Ranked keywords by URL, from the user's SEO tool (DataForSEO, Semrush, Ahrefs, or Similarweb; without one, only page families from `site` are available). Map them to the page families from `site`. Report brand vs non-brand share and which families carry non-brand traffic. Check which families existed before the inflection (Wayback) and which came after. |
+| **Search** | Ranked keywords by URL, from the user's SEO tool (DataForSEO, Semrush, Ahrefs, or Similarweb; without one, only page families from `site` are available). Map them to the page families from `site`. Report brand vs non-brand share and which families carry non-brand traffic. Check which families existed before the inflection (Wayback) and which came after. When an SEO tool is connected, add a page-family table: family, how the pages are made (written one by one, or one template filled from a dataset), share of non-brand traffic or ranking keywords, top URL, and whether the family existed before the inflection. Open the top page of the three families that carry the most non-brand traffic and say how each is built. If the tool can be scoped to a path or subdomain, measure each family's share that way, so the table isn't only the first twenty rows. If no SEO tool is connected, list the families from `site` and mark shares unavailable. |
 | **AI answers** | The same prompt set for the target and the user in a connected prompt tracker (share of voice and citations over time), or by hand in ChatGPT, Perplexity, Gemini, and Google AI Overviews: the order brands are named and which pages are cited. Options in [references/data-sources.md](references/data-sources.md); method in **ai-seo**. |
 | **Paid** | Per network, from `sc-ads` (ScrapeCreators) or the ad library links: active ads, the longest-running ad (45+ days suggests it's worth testing, though performance is unknown), the hook, the offer, and the landing page. No ads found → Observed "no ads found in [library, filter, date]", which is not proof they don't advertise. Read creative in depth with **ad-creative**. |
 | **Social and creators** | The founders' and brand's best posts, the most-viewed creator videos and threads about the company, and every contest, giveaway, launch-week, or invite drop. Label each item team, creator (paid if disclosed), user, or press. |
@@ -139,7 +141,7 @@ Plans, prices, what's free, and how the trial ends (days, credits, or usage). Th
 
 ### Referral
 
-Every place a non-user meets the product: shared outputs, public pages, embeds, invites, and "made with" or "powered by" badges. Confirm loops with backlink anchor data: one anchor text on thousands of domains is a loop, and its first-seen date dates it. Note any affiliate or referral program (the `stack` command catches Rewardful, PartnerStack, Tolt, FirstPromoter, and Dub) and its reward.
+Every place a non-user meets the product: shared outputs, public pages, embeds, invites, and "made with" or "powered by" badges. Confirm loops with backlink anchor data: one anchor text on thousands of domains is a loop, and its first-seen date dates it. Note any affiliate or referral program (the `stack` command catches Rewardful, PartnerStack, Tolt, FirstPromoter, and Dub) and its reward. When backlink data is available, group the strongest referring domains by the page type they point at (homepage vs a tool, a report, a template family, or a single cited page). List the non-homepage types that keep attracting strong links, with two or three example URLs. Route a play to **link-building** or **free-tools** only when that page type is something the user can actually ship. If no backlink source is connected, mark the section unavailable and do not invent counts.
 
 ### Retention and Expansion Signals
 
@@ -239,6 +241,8 @@ Each play includes:
 - Effort (a day, a week, a quarter), time to first result, the metric to watch, and cost to try
 - **A paste-ready prompt** that invokes that skill with the specifics filled in: the pages to build, the posts to write using the formula from stage 6, the events to track
 
+Before the plays, list **what won't transfer**: advantages that aren't a play you can run, such as brand searches, years of accumulated links, or an audience and funding the user doesn't have. If most of the target's search traffic is its brand name, say so here, and don't treat total traffic as the model.
+
 Also list **plays to skip**: ones that look good but the evidence doesn't support, or that worked because of something the user doesn't have (a big round, an existing audience, a famous founder). End with **the one play to start this week**. The output template is in [references/playbook-template.md](references/playbook-template.md).
 
 ---
@@ -263,7 +267,7 @@ To schedule it, run it as the growth-move watch loop in **marketing-loops**, kee
 
 In `teardowns/<target>/`:
 
-1. **`playbook.md`** (`content.md` in Content mode, `watch-<month>.md` in Watch mode, `teardowns/landscape/landscape.md` in Landscape mode): summary, curve and inflection, timeline, funnel findings, inside-the-product storyboard, team claims, hidden signals, content patterns, gap table, where they're weak, plays with prompts, plays to skip, method notes
+1. **`playbook.md`** (`content.md` in Content mode, `watch-<month>.md` in Watch mode, `teardowns/landscape/landscape.md` in Landscape mode): summary, scorecard, curve and inflection, timeline, funnel findings, inside-the-product storyboard, team claims, hidden signals, content patterns, gap table, where they're weak, plays with prompts, plays to skip, method notes
 2. **Data**: `traffic.csv`, `moves.csv`, `moves-vs-growth.csv`, `urls.csv`, `voices.csv`, `jobs.csv`, `reviews.csv`, `inside/emails.csv`, posts per channel
 3. **Screenshots**: `inside/screens/`, numbered in flow order
 4. **Contact sheets**: top vs bottom thumbnails per channel

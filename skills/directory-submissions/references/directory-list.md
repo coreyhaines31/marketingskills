@@ -49,6 +49,7 @@ Domains verified live on 2026-10-02. Re-check before submitting (see the safety 
 | **Tinyshelf** | tinyshelf.co | ~73 | ~0 | Google login, reviewed listings. Not `tinyshelf.com` |
 | **Launch Llama** | tools.launchllama.co | ~73 | — | Free listing in the directory of a newsletter (claims ~55k readers) |
 | **ScrollLaunch** | scrolllaunch.com | ~71 | — | Free, dofollow only while their badge stays up; $19/$39 premium |
+| **TheSaaSDir** | thesaasdir.com | ~71 | ~6k/mo all sources, ~0.3k/mo from search | Free, dofollow only while their badge stays up; $19 featured without a badge. Submission terms and agent instructions at `/llms.txt` |
 | **Acid Tools** | acidtools.com | ~68 | ~0 | Login required; terms unverified |
 | **Better Launch** | betterlaunch.co | ~63 | ~0 | Free listing; sells $149–$199 submission packages |
 | **LaunchPanda** | launchpanda.dev | ~61 | — | Free, dofollow with their badge. **Never `launchpanda.com` (for sale)** |
@@ -58,6 +59,8 @@ Domains verified live on 2026-10-02. Re-check before submitting (see the safety 
 | **Launch Streak** | launchstreak.dev | ~51 | — | Free account, dofollow claimed. **Never `launchstreak.com` (for sale)** |
 | **ConfettiSaaS** | confettisaas.com | ~47 | — | Appears free; email approval |
 | **IndieTool** | indietool.io | ~46 | — | Submit flow unverified |
+| **DiscoverLaunches** | discoverlaunches.com | ~27 | — | Free weekly launch after upvoting 3 launches and one comment; dofollow while their badge stays up, or $9 one-time |
+| **Launchator** | launchator.com | — | — | Free listing with a dofollow link, kept as long as your homepage links back to launchator.com (a site-wide footer link works). Agents can submit through its remote MCP server (`launchator.com/api/mcp`) instead of a web form. Launched 2026-10 |
 
 ---
 
@@ -203,6 +206,7 @@ Source: [modelcontextprotocol/registry](https://github.com/modelcontextprotocol/
 | **AllMCPs** | allmcps.com | ~36 | Low value. Not `allmcp.com` (unrelated business) |
 | **MCP Repository** | mcprepository.com | ~21 | Free form, low value |
 | **AI Indigo** | aiindigo.com | ~12 | Has an MCP section, low value |
+| **Launchator** | launchator.com/mcp-servers | — | Lists MCP servers and agent skills with install commands for each client. Same terms as its Tier 1B entry; agents can submit through its MCP server. Launched 2026-10 |
 
 ### Tier 4C — Agent directories
 

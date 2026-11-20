@@ -2,7 +2,7 @@
 name: marketing-plan
 description: "When the user wants a full marketing or go-to-market plan for a client, an advised company, or their own product, or asks how to sequence or prioritize several initiatives with a fixed team and budget: channels, budget, team, goals across AARRR, market sizing. For positioning first, see product-marketing. For ideas only, see marketing-ideas."
 metadata:
-  version: 1.2.5
+  version: 1.2.6
 ---
 
 # Marketing Plan
@@ -62,7 +62,7 @@ Save each confirmed section to the progress file as you go. The skill is resumab
 
 Compile all 13 sections into `final_plan.md`. Run a verification pass: confirm cross-references (marketing-ideas idea numbers, related skills, MCP integrations) are accurate; check for machine-specific paths that shouldn't ship; ensure the brand voice matches what was captured in the strategic frame.
 
-Optionally offer to publish to a shared GitHub repo (e.g., `{client-org}/{client-context}/marketing/plan.md`) if the user wants to share it with the team.
+Optionally offer to publish to a **private GitHub repo** (e.g., `{client-org}/{client-context}/marketing/plan.md`), only with explicit client authorization to share this plan with that repo's members. Plans contain confidential budgets, metrics, and funding details. Before cloning, copying, committing, or pushing, verify private visibility and confirm client authorization; if either is missing or cannot be verified, keep the plan local and explain the blocker.
 
 ## The 13-section plan structure
 

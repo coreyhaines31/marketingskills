@@ -2,6 +2,8 @@
 
 Where each stage's evidence comes from. The skill is tool-agnostic for search and traffic data: use whatever the user has, but keep one vendor per curve. Social posts come from ScrapeCreators or Apify. Free sources go first. Quote a paid call's cost before making it, and keep a running total against the cap.
 
+**What a run costs.** Quick mode can stay at $0 if it uses only the bundled script and manual checks. A full teardown's paid calls (traffic history, keywords by URL, backlinks, ad and social pulls) should be quoted as a range before the first paid call, then tracked against the cap (default $5). Tell the user the expected paid-call count and a dollar range for this target before Stage 2. If the range would exceed the cap, switch to Quick or ask to raise it. The typical range is left blank until it is filled in from a measured run on a named site, with the actual vendor cost recorded. Do not guess a figure.
+
 ## Contents
 - The bundled script
 - Free sources

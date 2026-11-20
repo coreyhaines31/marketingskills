@@ -5,14 +5,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.13.4 | 2026-11-19 |
+| ad-creative | 2.13.5 | 2026-11-19 |
 | ai-seo | 2.12.6 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
-| cold-email | 2.2.5 | 2026-11-19 |
+| cold-email | 2.2.6 | 2026-11-19 |
 | community-marketing | 2.0.5 | 2026-11-09 |
 | competitor-profiling | 2.1.9 | 2026-11-19 |
 | competitors | 2.3.3 | 2026-11-09 |
@@ -22,43 +22,55 @@ Current versions of all skills. Agents can compare against local versions to che
 | copywriting | 2.3.6 | 2026-11-17 |
 | cro | 2.0.6 | 2026-11-09 |
 | customer-research | 2.0.8 | 2026-11-09 |
-| directory-submissions | 2.2.0 | 2026-11-11 |
+| directory-submissions | 2.2.1 | 2026-11-19 |
 | emails | 2.1.8 | 2026-11-19 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.8 | 2026-11-19 |
 | influencer-marketing | 1.4.4 | 2026-11-19 |
-| launch | 2.2.3 | 2026-11-09 |
+| launch | 2.2.4 | 2026-11-19 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
 | link-building | 1.1.0 | 2026-11-18 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
 | marketing-loops | 1.9.0 | 2026-11-19 |
-| marketing-plan | 1.2.5 | 2026-11-09 |
+| marketing-plan | 1.2.6 | 2026-11-19 |
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
-| ads | 2.7.7 | 2026-11-19 |
+| ads | 2.7.8 | 2026-11-19 |
 | paywalls | 2.1.4 | 2026-11-09 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.6.1 | 2026-11-19 |
-| public-relations | 1.2.4 | 2026-11-09 |
-| referrals | 2.2.5 | 2026-11-19 |
-| reverse-engineer-marketing | 1.1.4 | 2026-11-09 |
+| prospecting | 1.6.2 | 2026-11-19 |
+| public-relations | 1.3.0 | 2026-11-19 |
+| referrals | 2.2.6 | 2026-11-19 |
+| reverse-engineer-marketing | 1.2.0 | 2026-11-19 |
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.7 | 2026-11-19 |
+| seo-audit | 2.2.8 | 2026-11-19 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.4 | 2026-11-19 |
 | social | 2.5.4 | 2026-11-19 |
-| video | 2.4.6 | 2026-11-19 |
+| video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.24 (2026-11-19)
+
+Community batch: thirteen skill contributions, rebased onto this week's changes.
+
+- **public-relations** (1.2.4 → 1.3.0): a new `references/press-releases.md` on when a release is worth it, how to structure and write one, and distribution options from your own newsroom page to the paid wires, with what wire distribution does and doesn't get you (#885 by @dylancaponi, who discloses building one of the listed options). Adds a Press Release Distribution category to the registry and an eval.
+- **reverse-engineer-marketing** (1.1.4 → 1.2.0): a scorecard, a page-family table, a strongest-links table, a "what won't transfer" section for advantages that aren't plays, and a cost range quoted before the first paid data call (#973 by @nilesh271080-hash; closes #966, #967, #968, #969, #970).
+- **prospecting** (1.6.1 → 1.6.2), **cold-email** (2.2.5 → 2.2.6): Italy joins Germany in requiring prior consent for cold email, B2B included, and cold-email now points EU and UK sends to the country rules first (#928 by @rahul05ranjan; closes #855). The cold-email framework examples use bracketed proof slots in place of invented customers and results (#911 by @true-souljah).
+- **ads** (2.7.7 → 2.7.8), **launch** (2.2.3 → 2.2.4), **marketing-plan** (1.2.5 → 1.2.6), **referrals** (2.2.5 → 2.2.6): broken links, wrong idea numbers, and a self-contradicting launch gate are fixed (#963 by @dajiaohuang; closes #948). marketing-plan now publishes a plan only to a verified private repository with explicit client authorization, with four evals (#889 by @monsterlag). referrals lists LinkJolt, with a guide contributed by its maker (#888 by @Efesop).
+- **video** (2.4.6 → 2.4.7), **ad-creative** (2.13.4 → 2.13.5): one layout per aspect ratio for code-rendered video, and a frame check for cropped products, logos, and text, with product-photo guidance in the Hyperframes guide (#915 by @alexandrosmimilidis).
+- **seo-audit** (2.2.7 → 2.2.8): Firecrawl is listed as a JavaScript-rendering option for schema detection (#923 by @JuampiHernandez).
+- **directory-submissions** (2.2.0 → 2.2.1): three launch sites added (TheSaaSDir, DiscoverLaunches, Launchator; #981, #910, #890), and agent-run submissions now read the application status and treat pending review as pending (#929 by @hboon).
 
 ### 2.14.23 (2026-11-19)
 
