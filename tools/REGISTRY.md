@@ -128,6 +128,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | scrapecreators | Competitive Intelligence | ✓ | ✓ | ✓ | - | [scrapecreators.md](integrations/scrapecreators.md) |
 | adspy | Competitive Intelligence | ✓ | ✓ | - | - | [adspy.md](integrations/adspy.md) |
 | getyoutubetranscript | Competitive Intelligence | ✓ | ✓ | ✓ | - | [getyoutubetranscript.md](integrations/getyoutubetranscript.md) |
+| scrapewhale | Competitive Intelligence | ✓ | ✓ | - | - | [scrapewhale.md](integrations/scrapewhale.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | calven | Competitive Intelligence | - | ✓ | - | - | [calven.md](integrations/calven.md) |
@@ -505,6 +506,7 @@ Traffic analytics, competitor benchmarking, and market research.
 | **calven** | A company's approved positioning, messaging, ICP, personas, battlecards and win/loss | MCP only (OAuth); reads the workspace, no web search |
 | **adspy** | Public Meta and Google ads with stored creative analysis; brands' organic TikTok, YouTube and Instagram posts | MCP (REST API on Enterprise); credit-based reports; no spend or ROAS data |
 | **getyoutubetranscript** | YouTube transcripts, video and channel search, a channel's or playlist's full video list | API + MCP + CLI; credit-based; YouTube only, captions not speech-to-text |
+| **scrapewhale** | Traffic estimates, SEO metrics, Meta and Google ad libraries, social profiles, Google results and AI Overviews for a brand from one key | API + MCP; credit-based; not for LinkedIn, Maps or people data |
 
 **Choosing**: Similarweb for competitor traffic analysis and market benchmarking.
 
