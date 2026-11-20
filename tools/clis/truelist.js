@@ -30,6 +30,7 @@ async function api(method, path, { form } = {}) {
     return { _dry_run: true, method, url, headers: { ...headers, Authorization: 'Bearer ***' }, body: form || undefined }
   }
   const res = await fetch(url, { method, headers: { ...headers, Authorization: `Bearer ${API_KEY}` }, body })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)

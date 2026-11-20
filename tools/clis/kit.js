@@ -64,6 +64,7 @@ async function api(method, path, body, useSecret = true) {
     return { _dry_run: true, method, url: dryRunUrl, headers: dryRunHeaders, body: dryRunBody }
   }
   const res = await fetch(url.toString(), { ...opts, signal: requestSignal() })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)

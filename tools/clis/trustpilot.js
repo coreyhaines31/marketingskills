@@ -35,6 +35,9 @@ async function getAccessToken() {
     body: 'grant_type=client_credentials',
   })
   const data = await res.json()
+  if (res.status >= 400) {
+    throw new Error(data.error_description || data.error || 'Failed to obtain access token')
+  }
   if (data.access_token) {
     accessToken = data.access_token
     return accessToken
@@ -72,6 +75,7 @@ async function api(method, path, body, auth = 'apikey', baseUrl = BASE_URL) {
     headers,
     body: body ? JSON.stringify(body) : undefined,
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)

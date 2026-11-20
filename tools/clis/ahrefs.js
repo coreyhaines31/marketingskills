@@ -31,6 +31,7 @@ async function api(method, path) {
       'Content-Type': 'application/json',
     },
   })
+  if (res.status >= 400) process.exitCode = 1
   const text = await res.text()
   try {
     return JSON.parse(text)
