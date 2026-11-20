@@ -4,7 +4,6 @@ Pay-per-call **API + MCP server** that drafts a press release from a product pag
 
 - **Site**: [agentpresswire.dev](https://agentpresswire.dev) (agent summary at `/llms.txt`, spec at `/openapi.json`)
 - **MCP server**: [`agent-press-wire-mcp`](https://www.npmjs.com/package/agent-press-wire-mcp) on npm, source at [github.com/dylancaponi/agent-press-wire-mcp](https://github.com/dylancaponi/agent-press-wire-mcp)
-- Disclosure: this guide was contributed by the person who built Agent Press Wire. It is not a Verified Partner. For the other distribution options (own newsroom, PRLog, EIN Presswire, PR Newswire, Business Wire) see the public-relations skill's [press-releases.md](https://github.com/coreyhaines31/marketingskills/blob/main/skills/public-relations/references/press-releases.md).
 
 ## Capabilities
 

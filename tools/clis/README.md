@@ -65,6 +65,7 @@ Every CLI reads credentials from environment variables:
 | `google-ads` | `GOOGLE_ADS_TOKEN`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` |
 | `google-search-console` | `GSC_ACCESS_TOKEN` |
 | `github-prospects` | `GITHUB_TOKEN` |
+| `goanyapi` | `GOANYAPI_API_KEY` |
 | `hotjar` | `HOTJAR_CLIENT_ID`, `HOTJAR_CLIENT_SECRET` |
 | `intercom` | `INTERCOM_API_KEY` |
 | `keywords-everywhere` | `KEYWORDS_EVERYWHERE_API_KEY` |
@@ -79,6 +80,7 @@ Every CLI reads credentials from environment variables:
 | `onesignal` | `ONESIGNAL_REST_API_KEY`, `ONESIGNAL_APP_ID` |
 | `optimizely` | `OPTIMIZELY_API_KEY` |
 | `outreach` | `OUTREACH_ACCESS_TOKEN` |
+| `parallel` | `PARALLEL_API_KEY` (optional); `PARALLEL_DISABLED=1` blocks network |
 | `paddle` | `PADDLE_API_KEY`, `PADDLE_SANDBOX` (optional) |
 | `partnerstack` | `PARTNERSTACK_PUBLIC_KEY`, `PARTNERSTACK_SECRET_KEY` |
 | `pendo` | `PENDO_INTEGRATION_KEY` |
@@ -196,6 +198,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `onesignal.js` | Push | [OneSignal](https://onesignal.com) |
 | `optimizely.js` | A/B Testing | [Optimizely](https://optimizely.com) |
 | `outreach.js` | Sales Engagement | [Outreach](https://outreach.io) |
+| `parallel.js` | AI Search | [Parallel](../integrations/parallel.md) |
 | `paddle.js` | Payments | [Paddle](https://paddle.com) |
 | `partnerstack.js` | Affiliate | [PartnerStack](https://partnerstack.com) |
 | `pendo.js` | Product Analytics | [Pendo](https://pendo.io) |
@@ -231,3 +234,4 @@ node tools/clis/exa.js search --query 'Recent market research' --timeout-ms 3000
 The deadline covers obtaining headers and consuming the response body, including OAuth requests. Each subsequent HTTP call gets its own deadline; this is not a total command deadline or a bound on external credential commands. An aborted call exits as a failure. Aborting a local request does not cancel work already accepted by a provider: check provider status before manually retrying a mutation. The CLI does not add automatic retries. Dry runs issue no HTTP request.
 
 Implemented using [Node's AbortSignal.timeout](https://nodejs.org/api/globals.html#static-method-abortsignaltimeoutdelay), available on the supported Node 18+ runtime, preserving zero-dependency standalone scripts. Native loopback tests cover stalled headers, stalled bodies, OAuth, successful responses and malformed timeout values without live accounts.
+

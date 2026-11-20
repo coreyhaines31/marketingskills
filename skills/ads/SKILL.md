@@ -2,7 +2,7 @@
 name: ads
 description: "When the user wants to plan, run, or fix paid ads on Google, Meta, and LinkedIn, or asks a judgement call on them: are ads worth it, which channel or budget split, why CPA rose, kill or keep a campaign. End with facts, hypotheses, and missing data; label unavailable inputs MISSING instead of estimating. For ad copy, see ad-creative. For pixels and CAPI, see conversion-tracking. For landing pages, see cro."
 metadata:
-  version: 2.7.8
+  version: 2.7.9
 ---
 
 # Paid Ads
@@ -191,7 +191,7 @@ Meta's Andromeda algorithm (2025) made creative volume and variety the main leve
 - Before/after comparisons
 - Stats and numbers as focal point
 - Human faces (real, not stock)
-- Bold, readable text overlay (keep under 20%)
+- Bold, readable text overlay (Meta removed its 20% text limit in September 2020; keep text short enough to read at a glance)
 
 ### Video Ads Structure (15-30 sec)
 1. Hook (0-3 sec): Pattern interrupt, question, or bold statement
@@ -200,7 +200,7 @@ Meta's Andromeda algorithm (2025) made creative volume and variety the main leve
 4. CTA (20-30 sec): Clear next step
 
 **Production tips:**
-- Captions always (85% watch without sound)
+- Captions always (feed video usually autoplays muted)
 - Vertical for Stories/Reels, square for feed
 - Native feel outperforms polished
 - First 3 seconds determine if they watch

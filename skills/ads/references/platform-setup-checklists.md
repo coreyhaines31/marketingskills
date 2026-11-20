@@ -4,7 +4,7 @@ Complete setup checklists for major ad platforms.
 
 ## Contents
 - Google Ads Setup (Account Foundation, Conversion Tracking, Analytics Integration, Audience Setup, Campaign Readiness, Ad Extensions, Brand Protection)
-- Meta Ads Setup (Business Manager Foundation, Pixel & Tracking, Domain & Aggregated Events, Audience Setup, Catalog, Creative Assets, Compliance)
+- Meta Ads Setup (Business Manager Foundation, Pixel & Tracking, Domain, Audience Setup, Catalog, Creative Assets, Compliance)
 - LinkedIn Ads Setup (Campaign Manager Foundation, Insight Tag & Tracking, Audience Setup, Lead Gen Forms, Document Ads, Creative Assets, Budget Considerations)
 - Twitter/X Ads Setup (Account Foundation, Tracking, Audience Setup, Creative)
 - TikTok Ads Setup (Account Foundation, Pixel & Tracking, Audience Setup, Creative)
@@ -98,12 +98,10 @@ Complete setup checklists for major ad platforms.
 - [ ] Event Match Quality score > 6
 - [ ] Test events in Events Manager
 
-### Domain & Aggregated Events
+### Domain
 
-- [ ] Domain verified in Business Manager
-- [ ] Aggregated Event Measurement configured
-- [ ] Top 8 events prioritized in order of importance
-- [ ] Web events prioritized for iOS 14+ tracking
+- [ ] Domain verified in Business Manager (controls who can edit link previews; Meta said in 2023 it would no longer be required for event configuration, and still recommends it)
+- [ ] No event prioritization to set up: Meta announced in 2023 that the 8-event limit and prioritization would no longer be needed. Confirm in Events Manager, which has changed since (see **conversion-tracking**)
 
 ### Audience Setup
 

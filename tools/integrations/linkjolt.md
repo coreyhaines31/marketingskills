@@ -2,8 +2,6 @@
 
 Affiliate and referral tracking for SaaS on Stripe, Paddle, Polar, Creem, Lemon Squeezy, Gumroad, WooCommerce and Apple in-app purchases.
 
-> Contributed by LinkJolt (the tool's maker).
-
 ## Capabilities
 
 | Integration | Available | Notes |

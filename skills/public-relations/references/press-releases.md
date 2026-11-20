@@ -85,11 +85,8 @@ Prices checked 2026-10-20. PR Newswire and Business Wire don't publish rate card
 | **[EIN Presswire](https://www.einpresswire.com/pricing)** | $149 for 1 release, $499 for 5, $999 for 15 | Syndication to news sites, Google News, and (per their page) an AP News placement | 700-word limit on the single release; placements are syndicated copies, not articles |
 | **[PR Newswire](https://www.prnewswire.com)** | No public prices. Estimates: about $800+ for a 400-word US national release, plus a $195 annual membership | The largest newsroom and journalist reach; used for public company disclosure | Cost grows fast with length, images, and add-ons; pricing requires a sales call |
 | **[Business Wire](https://www.businesswire.com)** | No public prices. Estimates: about $475 local to $760-$940 national for 400 words | Similar reach to PR Newswire; also disclosure-grade | Same as PR Newswire |
-| **[Agent Press Wire](https://agentpresswire.dev)** (API + MCP) | $1 hosted release; $99 wire; $299 premium wire | $1 drafts or takes your copy and publishes it on its newsroom page. $99 sends it to 500+ news sites and 100+ TV and radio sites. $299 adds AP News, USA Today, Barchart, and StreetInsider. An agent can call it with no account | Pays only in USDC on Base via x402, so it needs a funded crypto wallet, no card. New and small. Refuses token sales, gambling, cannabis, and (on wire tiers) market-moving claims |
 
 Other mid-priced wires (PRWeb, GlobeNewswire, Accesswire) work like EIN Presswire or the big two. Compare on their current pricing pages.
-
-Disclosure: the Agent Press Wire row was contributed by the person who built it.
 
 ---
 
@@ -102,7 +99,7 @@ Post every release on your own newsroom page first. Then add distribution based 
 | A dated public record, nothing more | Own newsroom page, optionally PRLog |
 | Search presence and syndicated copies for a launch, small budget | EIN Presswire, or another low-cost wire |
 | Earnings, M&A, or other material news at a public company | PR Newswire or Business Wire, with legal review |
-| An agent running the launch end to end with no human checkout | A pay-per-call API like Agent Press Wire, or a human buys a wire package and the agent writes the copy |
+| An agent running the launch end to end with no human checkout | A pay-per-call wire API (see the registry's Press Release Distribution category), or a human buys a wire package and the agent writes the copy |
 | Actual articles written by reporters | None of the above alone. Pitch (see [journalist-pitching.md](journalist-pitching.md)) |
 
 ---

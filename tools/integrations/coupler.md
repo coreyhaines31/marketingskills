@@ -7,7 +7,7 @@ Data integration platform that connects marketing, sales, analytics, and e-comme
 | Integration | Available | Notes |
 |-------------|-----------|-------|
 | API | ✓ | Importers, Runs, Sources, Destinations |
-| MCP | ✓ | [Claude connector](https://claude.com/connectors/coupler-io) |
+| MCP | ✓ | Hosted server at `https://mcp.coupler.io/mcp`, [Claude connector](https://claude.com/connectors/coupler-io) |
 | CLI | ✓ | [coupler.js](../clis/coupler.js) |
 | SDK | - | REST API only |
 
@@ -16,6 +16,34 @@ Data integration platform that connects marketing, sales, analytics, and e-comme
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
 - **Get key**: Settings > API at https://app.coupler.io
+
+## MCP Setup
+
+The MCP server reads data from Coupler.io data flows. Only data flows whose destination is set to the connected AI tool (for example, Claude) are visible to it, so create and run one in Coupler.io first.
+
+### Claude Code
+
+```bash
+claude mcp add coupler-io --transport http https://mcp.coupler.io/mcp
+```
+
+Then go to `/mcp` → coupler-io → Authenticate and complete OAuth in the browser.
+
+### Other clients
+
+Claude.ai, ChatGPT, Gemini CLI, Cursor and other clients are covered in the [MCP server README](https://github.com/coupler-io/coupler-io-mcp-server). The account-specific connection URL is shown at https://app.coupler.io/app/mcp. Step-by-step setup guides are in the [Coupler.io docs](https://docs.coupler.io/functionality/ai-agent-and-integrations/ai-integrations).
+
+## MCP Tools
+
+| Tool | Purpose |
+|------|---------|
+| `list-datasets` | List datasets across data flows |
+| `search-datasets` | Search datasets by name, source or text |
+| `get-schema` | Get a dataset's column schema |
+| `get-data` | Query a dataset with read-only SQL |
+| `get-dataflow` | Get a data flow's state, sources and destinations |
+| `run-dataflow` | Run a data flow to refresh its data |
+| `list-templates` | List prebuilt data flow templates |
 
 ## Common Agent Operations
 

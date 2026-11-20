@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to get cited and recommended in AI answers (ChatGPT, Perplexity, AI Overviews), or asks why AI cites a competitor, which content gets cited, or whether llms.txt or a page format is worth it: AEO, GEO, AI visibility, agent-readable sites. For technical and on-page SEO, see seo-audit. For structured data, see schema."
 metadata:
-  version: 2.12.6
+  version: 2.12.7
 ---
 
 # AI SEO
@@ -100,7 +100,7 @@ Google explicitly says:
 - **Don't chunk content for AI** — write for people, organize with normal headings and paragraphs
 - **Don't write separate content for AI** — that risks "scaled content abuse" spam policy
 - **Helpful, reliable, people-first content** wins — same E-E-A-T standards as regular Search
-- **No AI-specific Search Console reporting** — use standard SEO metrics
+- **Measure in Search Console's Generative AI performance report** — impressions in AI Overviews and AI Mode
 
 **Other AI engines (ChatGPT, Claude, Perplexity, Copilot) behave differently:**
 - They actively reward extractable structure — passages, FAQs, comparison tables, definition blocks
@@ -217,7 +217,7 @@ For detailed templates for each block type, see [references/content-patterns.md]
 
 **Structural rules:**
 - Lead every section with a direct answer (don't bury it)
-- Keep key answer passages to 40-60 words (optimal for snippet extraction)
+- Keep key answer passages short (40-60 words is a common heuristic; no study has measured an optimum)
 - Use H2/H3 headings that match how people phrase queries
 - Tables beat prose for comparison content
 - Numbered lists beat paragraphs for process content
@@ -227,29 +227,29 @@ For detailed templates for each block type, see [references/content-patterns.md]
 
 AI systems prefer sources they can trust. Build citation-worthiness.
 
-**The Princeton GEO research** (KDD 2024, studied across Perplexity.ai) ranked 9 optimization methods:
+**The Princeton GEO research** (KDD 2024; GEO-bench; percentages derived from Table 1's position-adjusted word count scores against the unoptimized baseline) ranked 9 optimization methods:
 
 | Method | Visibility Boost | How to Apply |
 |--------|:---------------:|--------------|
-| **Cite sources** | +40% | Add authoritative references with links |
-| **Add statistics** | +37% | Include specific numbers with sources |
-| **Add quotations** | +30% | Expert quotes with name and title |
-| **Authoritative tone** | +25% | Write with demonstrated expertise |
-| **Improve clarity** | +20% | Simplify complex concepts |
+| **Add quotations** | +41% | Expert quotes with name and title |
+| **Add statistics** | +31% | Include specific numbers with sources |
+| **Fluency optimization** | +28% | Improve readability and flow |
+| **Cite sources** | +27% | Add authoritative references with links |
 | **Technical terms** | +18% | Use domain-specific terminology |
-| **Unique vocabulary** | +15% | Increase word diversity |
-| **Fluency optimization** | +15-30% | Improve readability and flow |
-| ~~Keyword stuffing~~ | **-10%** | **Actively hurts AI visibility** |
+| **Easy-to-understand** | +14% | Simplify complex concepts |
+| **Authoritative tone** | +10% | Write with demonstrated expertise |
+| **Unique vocabulary** | +6% | Increase word diversity |
+| ~~Keyword stuffing~~ | **-8%** | **Actively hurts AI visibility** |
 
-**Best combination:** Fluency + Statistics = maximum boost. Low-ranking sites benefit even more — up to 115% visibility increase with citations.
+**Best combination:** Fluency + Statistics = maximum boost. Rank matters: citing sources lifted a 5th-ranked site's visibility 115% but cut top-ranked sites' visibility 30%.
 
-**Statistics and data** (+37-40% citation boost)
+**Statistics and data** (+31% in the study)
 - Include specific numbers with sources
 - Cite original research, not summaries of research
 - Add dates to all statistics
 - Original data beats aggregated data
 
-**Expert attribution** (+25-30% citation boost)
+**Expert attribution** (quotations: +41% in the study)
 - Named authors with credentials
 - Expert quotes with titles and organizations
 - "According to [Source]" framing for claims
@@ -436,7 +436,7 @@ AI answers are **non-deterministic** — one run is an anecdote, not a measureme
 
 ### Search Console expectations
 
-Google's guide is explicit: **there is no AI-specific Search Console reporting**. AI Overviews and AI Mode use core Search ranking, so the standard Search Console reports (Performance, Coverage, Core Web Vitals) are still what you measure with for Google. The third-party tools above are the only way to see cross-platform AI citation behavior.
+Google's guide now points to the **Generative AI performance report** in Search Console (rolled out to all sites by August 31, 2026). It shows **impressions only** for AI Overviews and AI Mode, by page, country, device, and date. Google's launch post lists no clicks, CTR, or position, and Discover has a separate report. A site must be included in Search generative AI features (a Search Console setting) to be eligible. These features still run on core Search ranking, so the standard reports remain the base. The third-party tools above are the only way to see cross-platform AI citation behavior.
 
 ---
 
@@ -469,7 +469,7 @@ For tactical guidance on SaaS product pages, blog content, comparison/alternativ
 - **Gating all content** — AI can't access gated content. Keep your most authoritative content open
 - **Ignoring third-party presence** — Shortlist recommendations lean on what reviews, forums, and press say about you, even where your own site earns most citations
 - **No structured data** — Schema markup gives AI systems structured context about your content
-- **Keyword stuffing** — Unlike traditional SEO where it's just ineffective, keyword stuffing actively reduces AI visibility by 10% (Princeton GEO study)
+- **Keyword stuffing** — Unlike traditional SEO where it's just ineffective, keyword stuffing actively reduces AI visibility by about 8% (Princeton GEO study)
 - **Hiding pricing behind "contact sales" or JS-rendered pages** — AI agents evaluating your product on behalf of buyers can't parse what they can't read. Add a `/pricing.md` file
 - **Blocking discovery crawlers without checking their purpose** — Restricting `OAI-SearchBot`, `PerplexityBot`, or `Claude-SearchBot` may reduce search visibility; training controls are separate
 - **Generic content without data** — "We're the best" won't get cited. "Our customers see 3x improvement in [metric]" will

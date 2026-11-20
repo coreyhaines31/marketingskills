@@ -81,6 +81,17 @@ Practical today: make sure your highest-intent actions (signup, pricing, demo bo
 
 Whichever path, test that each tool rejects bad input, that submissions land where the normal form's do (CRM, inbox, conversion tracking), and that nothing bypasses consent or rate limits.
 
+### For stores: can an agent reach the cart and read the offer?
+
+On an e-commerce site the high-intent action is the purchase, and it can fail at steps the reading checks above never request:
+
+- **Price and availability are machine-readable on the product page.** A `Product` with a nested `Offer` (`price`, `priceCurrency`, `availability`) in the initial HTML, per variant when variants differ in price or stock (see the `schema` skill).
+- **`/cart` and `/checkout` answer an agent user agent.** CDN/WAF bot rules can differ by path, so a store can pass on the home page and still turn the agent away at checkout. Request those paths with a user-directed agent's user agent (`ChatGPT-User`, `Claude-User`, `Perplexity-User`) and look for a `200`, not a `403` or a challenge page. A `robots.txt` that disallows these paths for crawlers is normal and a separate question.
+- **Returns and shipping terms are structured** (`MerchantReturnPolicy`, `OfferShippingDetails`), so the agent can answer "can I send it back, and when does it arrive?" without leaving the conversation.
+- **If you've adopted a commerce protocol, it's reachable**: UCP, for example, publishes a manifest at `/.well-known/ucp`.
+
+Ways to check, from free to tooled: `curl -s -o /dev/null -w "%{http_code}" -A "<agent user agent>" https://yourstore.com/checkout` plus a look at the product page's JSON-LD; Is Agentic, whose commerce checks activate when it detects a store; and UCP validators such as [UCPChecker](https://ucpchecker.com), which test the manifest and catalog.
+
 ### Ship a skill file for your product
 
 A lighter act surface than MCP or WebMCP: a public `SKILL.md` (linked from llms.txt and your docs) that a user loads into their own Claude Code or Cursor session. `llms.txt` tells an agent what you are; a skill file tells it how to buy or set up your product for this user, and it runs where the user's context already is.

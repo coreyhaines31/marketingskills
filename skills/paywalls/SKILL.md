@@ -2,7 +2,7 @@
 name: paywalls
 description: "When the user wants to create or improve in-app paywalls and upgrade moments, or asks when or how hard to ask free users to pay (after they've seen value): upgrade screens, upsell modals, feature gates, limit-reached and trial-expired screens, mobile subscription paywalls. For public pricing pages, see cro. For pricing decisions, see pricing."
 metadata:
-  version: 2.1.4
+  version: 2.1.5
 ---
 
 # Paywall and Upgrade Screen CRO
@@ -90,7 +90,7 @@ After X days of free use:
 
 6. **CTA** - Specific and value-oriented: "Start Getting [Benefit]"
 
-7. **Escape Hatch** - Clear "Not now" or "Continue with Free"
+7. **Escape Hatch** - Clear "Not now", or "Continue with Free" when a free plan exists (paid-only products still need a visible way back)
 
 ---
 
