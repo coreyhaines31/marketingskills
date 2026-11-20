@@ -2,6 +2,8 @@
 
 The best cold email does nothing if it lands in spam. Deliverability is set up before the first send and watched every week after. This reference covers the sending setup, the mailbox providers' rules, volume limits, warmup, monitoring, and when to stop.
 
+Contents: [the provider rules](#the-rules-from-google-yahoo-and-microsoft) · [sending setup](#sending-setup) · [warmup](#warmup) · [the email itself](#the-email-itself) · [verify before you send](#verify-before-you-send) · [monitoring](#monitoring) · [stop-loss rules](#stop-loss-rules) · [common mistakes](#common-mistakes) · [tools](#tools)
+
 Numbers here come mostly from sending-infrastructure vendors and mailbox providers' own guidelines. Mailbox providers change enforcement without notice, so treat the volume figures as starting points and let your own placement tests decide.
 
 ## The rules from Google, Yahoo, and Microsoft
@@ -55,7 +57,7 @@ Warmup networks still help new mailboxes, but a mailbox whose only engagement is
 - **Turn off click tracking** unless you need it, and then only with a custom tracking domain.
 - **Under about 80 words** for the first email.
 - **Vary the copy.** Identical bodies across thousands of sends look like bulk mail. Segment-specific copy and real personalization fix this naturally. Keep spintax as a last resort.
-- **Opt-out line.** A plain-text line ("If this isn't relevant, reply 'no' and I won't follow up") plus your postal address in the signature. CAN-SPAM requires both; see the prospecting skill's compliance reference.
+- **Opt-out line.** A plain-text line ("If this isn't relevant, reply 'no' and I won't follow up") plus your postal address in the signature. CAN-SPAM requires both; in the EU, Germany and Italy additionally require the recipient's prior consent for the send itself. See the prospecting skill's compliance reference.
 
 ## Verify before you send
 

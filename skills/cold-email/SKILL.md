@@ -117,6 +117,7 @@ Copy only matters if it reaches the inbox. Before the first send:
 - **Verify every list** right before upload and keep bounces under 2%.
 - **Turn off open and click tracking.** Measure replies.
 - Include a plain-text **opt-out line and your postal address** in every email.
+- **Check the EU and UK rules first.** Germany and Italy require the recipient's prior consent for a cold email, B2B included; the UK allows B2B email under legitimate interest but not to sole traders or partnerships without consent. The country-by-country rules and the exclusion checklist are in the prospecting skill's compliance reference.
 
 Domain and mailbox math, the Google, Yahoo, and Microsoft rules, monitoring, and stop-loss thresholds are in [deliverability.md](references/deliverability.md).
 
