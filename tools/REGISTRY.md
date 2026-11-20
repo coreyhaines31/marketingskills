@@ -137,6 +137,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | calven | Competitive Intelligence | - | ✓ | - | - | [calven.md](integrations/calven.md) |
 | sparktoro | Audience Research | - | - | - | - | [sparktoro.md](integrations/sparktoro.md) |
+| adlicio | Audience Research | ✓ | ✓ | ✓ | - | [adlicio.md](integrations/adlicio.md) |
 | rb2b | Visitor Identification | ✓ | - | - | - | [rb2b.md](integrations/rb2b.md) |
 | theirstack | Hiring & Tech Signals | ✓ | ✓ | - | - | [theirstack.md](integrations/theirstack.md) |
 | gong | Revenue Intelligence | ✓ | - | - | - | [gong.md](integrations/gong.md) |
@@ -543,6 +544,7 @@ Audience intelligence and behavioral research tools.
 | Tool | Fits | Notes |
 |------|----------|-------|
 | **sparktoro** | Audience affinities, behavioral data | Clickstream + social data |
+| **adlicio** | Customer language from public comments and reviews | Reddit, Amazon, YouTube, TikTok, review sites; MCP + CLI |
 
 **Choosing**: SparkToro fits discovering where your ICP spends time: what they read, watch, listen to, follow, and search for. That feeds customer research, content strategy, and media buying.
 
