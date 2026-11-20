@@ -97,7 +97,13 @@ async function main() {
         body.end_date = 'yesterday'
       }
       if (args.filter) body.filter = args.filter
-      if (args['max-rows']) body.max_rows = parseInt(args['max-rows'], 10)
+      if (args['max-rows'] !== undefined) {
+        const maxRows = Number(args['max-rows'])
+        if (typeof args['max-rows'] !== 'string' || !/^\d+$/.test(args['max-rows']) || maxRows > 2147483647) {
+          result = { error: '--max-rows must be an integer from 0 to 2147483647' }; break
+        }
+        body.max_rows = maxRows
+      }
       if (args['start-date']) body.start_date = args['start-date']
       if (args['end-date']) body.end_date = args['end-date']
       result = await api('POST', '/query/data/json', body)
