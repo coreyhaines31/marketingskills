@@ -68,7 +68,7 @@ If the product is on the natural end, consider **product-embedded viral mechanis
 
 ### Affiliate Programs
 
-For partner recruitment/activation, cohort economics, executable terms, reconciliation, and measured incremental growth, load [the operating playbook](references/affiliate-operations.md). This expands the existing affiliate branch instead of creating an overlapping skill.
+For partner recruitment/activation, cohort economics, executable terms, reconciliation, and measured incremental growth, load [the operating playbook](references/affiliate-operations.md).
 
 **Best for:**
 - Reaching audiences you don't have access to
