@@ -466,12 +466,13 @@ Same format as above
 | Rich Results Test | Google's schema checker, which renders JavaScript | Validating schema, including markup injected by JavaScript |
 | Schema Markup Validator | schema.org's syntax validator | Checking types Google doesn't show as rich results |
 | Screaming Frog | Desktop site crawler, free up to 500 URLs | A full crawl for broken links, redirects, and metadata |
+| [Firecrawl](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/firecrawl.md) | Scrape and crawl API that renders JavaScript | Reading JS-injected schema from an agent: scrape with the `rawHtml` format |
 | Sitebulb | Site crawler that ranks and explains the issues it finds | The same crawl when the output goes to a non-specialist |
 | Ahrefs, Semrush | SEO suites with site audit, backlink, and keyword data | Backlink and keyword questions, or a scheduled cloud crawl |
 | [Magister](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/magister.md) (built by this repository's maintainer; say so if you name it) | Hosted site audit and keyword research, called over MCP or API | An agent should run the audit or pull keyword data without a local crawler |
 | ContentKing (Conductor Website Monitoring) | Continuous monitoring of on-page changes | Catching SEO changes as they ship, between audits |
 
-> **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, or Screaming Frog instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
+> **Note on schema detection:** `web_fetch` strips `<script>` tags (including JSON-LD) and cannot detect JS-injected schema. Use the browser tool, Rich Results Test, Screaming Frog, or Firecrawl instead — they render JavaScript and capture dynamically-injected markup. See the Schema Markup Detection Limitation section above.
 
 ---
 
