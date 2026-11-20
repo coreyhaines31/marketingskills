@@ -142,6 +142,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | postonce | Social | ✓ | ✓ | - | - | [postonce.md](integrations/postonce.md) |
+| adeli | Social | ✓ | ✓ | - | ✓ | [adeli.md](integrations/adeli.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -284,6 +285,7 @@ Paid advertising platforms and campaign management.
 | **meta-ads** | Demand gen, visual products, B2C | ✓ |
 | **linkedin-ads** | B2B, job title targeting | - |
 | **tiktok-ads** | Younger demographics, video | - |
+| **adeli** | Running Meta, TikTok, and LinkedIn Ads for several clients through one API | ✓ |
 
 **Choosing**: Google Ads for search intent. Meta for demand generation. LinkedIn for B2B.
 
@@ -349,6 +351,7 @@ Social media scheduling, management, and analytics.
 | **post-bridge** | Scheduling one video to many accounts and platforms, per-post analytics | Short-form video focus; daily view snapshots |
 | **hermoso** | Publishing and scheduling posts, including carousels, to a brand's connected accounts | API + MCP + CLI; channel limits checked when the post is created |
 | **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | Drafting and scheduling posts to connected social accounts over MCP | Posts are drafted or scheduled, not published on create |
+| **adeli** | Publishing, comments, DMs, and ads for many brands from one key | Per-client profiles; also Meta, TikTok, and LinkedIn Ads |
 
 **Choosing**: Use the scheduler the user already has. Each one schedules across platforms through an API or an MCP server.
 | **postonce** | Posting one video or post to many platforms, automatic crossposting from one account to others, per-post analytics | Workflows repost each new post from a source account |
@@ -679,6 +682,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **zoominfo** - B2B contacts and intent data
 - **clay** - Data enrichment and outbound automation
 - **supermetrics** - Cross-platform marketing data
+- **adeli** - Social publishing, comments, DMs, and ads across client accounts
 - **coupler** - Marketing data pipelines
 - **outreach** - Sales engagement sequences
 - **crossbeam** - Partner ecosystem data
