@@ -25,7 +25,7 @@ Business review management platform for collecting, managing, and showcasing cus
 ### Search for a business unit
 
 ```bash
-GET https://api.trustpilot.com/v1/business-units/search?query=example.com&limit=10
+GET https://api.trustpilot.com/v1/business-units/search?query=example.com&perpage=10
 
 Headers:
   apikey: {API_KEY}
