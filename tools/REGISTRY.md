@@ -129,6 +129,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | adspy | Competitive Intelligence | ✓ | ✓ | - | - | [adspy.md](integrations/adspy.md) |
 | getyoutubetranscript | Competitive Intelligence | ✓ | ✓ | ✓ | - | [getyoutubetranscript.md](integrations/getyoutubetranscript.md) |
 | scrapewhale | Competitive Intelligence | ✓ | ✓ | - | - | [scrapewhale.md](integrations/scrapewhale.md) |
+| signalshelf | Competitive Intelligence | ✓ | ✓ | - | - | [signalshelf.md](integrations/signalshelf.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | calven | Competitive Intelligence | - | ✓ | - | - | [calven.md](integrations/calven.md) |
@@ -524,6 +525,7 @@ Traffic analytics, competitor benchmarking, and market research.
 | **adspy** | Public Meta and Google ads with stored creative analysis; brands' organic TikTok, YouTube and Instagram posts | MCP (REST API on Enterprise); credit-based reports; no spend or ROAS data |
 | **getyoutubetranscript** | YouTube transcripts, video and channel search, a channel's or playlist's full video list | API + MCP + CLI; credit-based; YouTube only, captions not speech-to-text |
 | **scrapewhale** | Traffic estimates, SEO metrics, Meta and Google ad libraries, social profiles, Google results and AI Overviews for a brand from one key | API + MCP; credit-based; not for LinkedIn, Maps or people data |
+| **signalshelf** | Public reviews and news about a product or competitor (App Store, Google Play, Trustpilot, Amazon ratings, Google News) | API + MCP; credit-based; Trustpilot review text only for companies with review widgets; not for LinkedIn, Google Maps, or people data |
 
 **Choosing**: Similarweb for competitor traffic analysis and market benchmarking.
 
@@ -723,6 +725,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **calven** - Approved positioning, messaging, personas, battlecards and win/loss
 - **adspy** - Meta and Google ad research and organic social posts
 - **getyoutubetranscript** - YouTube transcripts, search and channel video lists
+- **signalshelf** - Public app store, Trustpilot, and news data
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
