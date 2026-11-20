@@ -267,7 +267,6 @@ For implementation, see the [tools registry](https://github.com/coreyhaines31/ma
 |------|----------|-------|
 | **Rewardful** | Stripe-native affiliate programs | [rewardful.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/rewardful.md) |
 | **Tolt** | SaaS affiliate programs | [tolt.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/tolt.md) |
-| **LinkJolt** | SaaS affiliate programs on Stripe, Paddle, Polar or Creem, with a hosted MCP server | [linkjolt.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/linkjolt.md) |
 | **Mention Me** | Enterprise referral programs | [mention-me.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/mention-me.md) |
 | **Dub.co** | Link tracking and attribution | [dub-co.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/dub-co.md) |
 | **Stripe** | Payment processing (for commission tracking) | [stripe.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/stripe.md) |
