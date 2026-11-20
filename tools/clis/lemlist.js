@@ -98,7 +98,11 @@ async function main() {
         }
         case 'stats': {
           if (!args.id) { result = { error: '--id required' }; break }
-          result = await api('GET', `/campaigns/${args.id}/stats`)
+          if (typeof args['start-date'] !== 'string' || typeof args['end-date'] !== 'string') {
+            result = { error: '--start-date and --end-date required (ISO 8601, e.g. 2026-01-01T00:00:00.000Z)' }; break
+          }
+          const params = new URLSearchParams({ startDate: args['start-date'], endDate: args['end-date'] })
+          result = await api('GET', `/v2/campaigns/${encodeURIComponent(args.id)}/stats?${params}`)
           break
         }
         case 'export': {
@@ -214,7 +218,7 @@ async function main() {
         error: 'Unknown command',
         usage: {
           team: 'team info',
-          campaigns: 'campaigns [list | get --id <id> | stats --id <id> | export --id <id>] [--offset 0] [--limit 100]',
+          campaigns: 'campaigns [list | get --id <id> | stats --id <id> --start-date <iso> --end-date <iso> | export --id <id>] [--offset 0] [--limit 100]',
           leads: 'leads [list | get --email <email> | add --email <email> | delete --email <email>] --campaign-id <id> [--first-name <name>] [--last-name <name>] [--company <name>]',
           unsubscribes: 'unsubscribes [list | add --email <email> | delete --email <email>] [--offset 0] [--limit 100]',
           activities: 'activities list [--campaign-id <id>] [--type emailsSent|emailsOpened|emailsClicked|emailsReplied|emailsBounced] [--offset 0] [--limit 100]',
