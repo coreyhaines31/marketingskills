@@ -37,10 +37,14 @@ export function parseArgs(argv) {
 }
 
 // Reads Claude Code's stream-json output and returns every skill the model invoked, in order.
+// `failure` is set when the run ended in an error result (not logged in, API or rate-limit
+// error). Those still emit a result event, with is_error set. A Skill call cut off by
+// --max-turns 1 also has is_error set, with subtype error_max_turns: that is a normal run here.
 export function skillsInvoked(streamText) {
   const out = [];
   let cost = 0;
   let finished = false;
+  let failure = null;
   let text = '';
   for (const line of streamText.split('\n')) {
     let event;
@@ -54,9 +58,10 @@ export function skillsInvoked(streamText) {
     if (event.type === 'result') {
       finished = true;
       cost = event.total_cost_usd || 0;
+      if (event.is_error && event.subtype !== 'error_max_turns') failure = String(event.result || event.subtype || 'error result').slice(0, 200);
     }
   }
-  return { skills: out, cost, finished, text };
+  return { skills: out, cost, finished, failure, text };
 }
 
 // Scores the first skill invoked. A skill from outside this pack (built in or another plugin) is "other-skill".
@@ -160,10 +165,11 @@ function runOne(item, opts, cwd) {
     const timer = setTimeout(() => child.kill('SIGKILL'), 120000);
     child.on('close', (code, signal) => {
       clearTimeout(timer);
-      const { skills, cost, finished, text } = skillsInvoked(stdout);
+      const { skills, cost, finished, failure, text } = skillsInvoked(stdout);
       let error = null;
       if (signal) error = `killed by ${signal} (timeout)`;
       else if (!finished) error = stderr.trim().split('\n').pop() || `exit ${code} with no result`;
+      else if (failure) error = failure;
       resolve({ skills, cost, error, text });
     });
   });

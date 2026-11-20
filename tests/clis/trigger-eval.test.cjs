@@ -13,7 +13,7 @@ test('skillsInvoked reads Skill tool calls and cost from stream-json', async () 
     'not json',
     JSON.stringify({ type: 'result', total_cost_usd: 0.05 }),
   ].join('\n');
-  assert.deepEqual(skillsInvoked(stream), { skills: ['marketing-skills:cro'], cost: 0.05, finished: true, text: 'hi' });
+  assert.deepEqual(skillsInvoked(stream), { skills: ['marketing-skills:cro'], cost: 0.05, finished: true, failure: null, text: 'hi' });
   assert.equal(skillsInvoked('').finished, false);
 });
 
@@ -70,5 +70,57 @@ test('every trigger prompt expects real skills', async () => {
       for (const s of p.expect) assert.ok(skills.has(s), `${file}: ${p.id} expects unknown skill ${s}`);
     }
     for (const s of skills) assert.ok(prompts.some(p => p.expect.includes(s)), `${file}: no trigger prompt for ${s}`);
+  }
+});
+
+test('runs that end in an error result are scored as errors, not as answers', () => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const { spawnSync } = require('node:child_process');
+  const root = path.join(__dirname, '..', '..');
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'trigger-eval-test-'));
+  try {
+    // Stub `claude -p` that replays the stream-json result shapes Claude Code emits:
+    // a Skill call cut off by --max-turns 1 (error_max_turns), a plain answer, and a
+    // failed run (not logged in / API error: is_error with subtype "success").
+    const bin = path.join(tmp, 'bin');
+    fs.mkdirSync(bin);
+    fs.writeFileSync(path.join(bin, 'claude'), `#!${process.execPath}
+const prompt = process.argv[process.argv.indexOf('-p') + 1];
+const out = e => process.stdout.write(JSON.stringify(e) + '\\n');
+out({ type: 'system', subtype: 'init' });
+if (prompt.startsWith('trigger')) {
+  out({ type: 'assistant', message: { content: [{ type: 'tool_use', name: 'Skill', input: { skill: 'marketing-skills:cro' } }] } });
+  out({ type: 'result', subtype: 'error_max_turns', is_error: true, total_cost_usd: 0.01 });
+  process.exit(1);
+} else if (prompt.startsWith('answer')) {
+  out({ type: 'assistant', message: { content: [{ type: 'text', text: '4' }] } });
+  out({ type: 'result', subtype: 'success', is_error: false, result: '4', total_cost_usd: 0.01 });
+} else {
+  out({ type: 'assistant', message: { content: [{ type: 'text', text: 'Not logged in · Please run /login' }] } });
+  out({ type: 'result', subtype: 'success', is_error: true, result: 'Not logged in · Please run /login', total_cost_usd: 0 });
+  process.exit(1);
+}
+`, { mode: 0o755 });
+    const prompts = path.join(tmp, 'prompts.json');
+    fs.writeFileSync(prompts, JSON.stringify({ prompts: [
+      { id: 'a-trigger', kind: 'direct', prompt: 'trigger: why is my page not converting', expect: ['cro'] },
+      { id: 'b-answer', kind: 'none', prompt: 'answer: what is 2+2', expect: [] },
+      { id: 'c-failed-positive', kind: 'direct', prompt: 'failed: why is my page not converting', expect: ['cro'] },
+      { id: 'd-failed-negative', kind: 'none', prompt: 'failed: what is 2+2', expect: [] },
+    ] }));
+    const out = path.join(tmp, 'report.json');
+    const r = spawnSync(process.execPath, [path.join(root, 'scripts', 'trigger-eval.mjs'), '--prompts', prompts, '--out', out, '--concurrency', '1'], {
+      encoding: 'utf8',
+      env: { ...process.env, PATH: `${bin}${path.delimiter}${process.env.PATH}` },
+    });
+    assert.equal(r.status, 0, r.stderr);
+    const report = JSON.parse(fs.readFileSync(out, 'utf8'));
+    const outcome = Object.fromEntries(report.rows.map(row => [row.id, row.outcome]));
+    assert.deepEqual(outcome, { 'a-trigger': 'pass', 'b-answer': 'pass', 'c-failed-positive': 'error', 'd-failed-negative': 'error' });
+    assert.equal(report.summary.errors, 2);
+    assert.match(report.rows.find(row => row.id === 'c-failed-positive').error, /Not logged in/);
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
   }
 });
