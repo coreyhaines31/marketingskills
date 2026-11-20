@@ -132,6 +132,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | getyoutubetranscript | Competitive Intelligence | ✓ | ✓ | ✓ | - | [getyoutubetranscript.md](integrations/getyoutubetranscript.md) |
 | scrapewhale | Competitive Intelligence | ✓ | ✓ | - | - | [scrapewhale.md](integrations/scrapewhale.md) |
 | signalshelf | Competitive Intelligence | ✓ | ✓ | - | - | [signalshelf.md](integrations/signalshelf.md) |
+| parallel | AI Search | ✓ | ✓ | [✓](clis/parallel.js) | ✓ | [parallel.md](integrations/parallel.md) |
 | exa | AI Search | ✓ | ✓ | [✓](clis/exa.js) | ✓ | [exa.md](integrations/exa.md) |
 | firehose | Competitive Intelligence | ✓ | - | - | - | [firehose.md](integrations/firehose.md) |
 | calven | Competitive Intelligence | - | ✓ | - | - | [calven.md](integrations/calven.md) |
@@ -605,6 +606,7 @@ AI-powered web search APIs built for LLMs and agents. Return structured results 
 
 | Tool | Fits | Notes |
 |------|----------|-------|
+| **parallel** | Web search with source passages and URL extraction | Anonymous Unified MCP access; optional account key; native CLI |
 | **exa** | Neural/semantic web search, content research, competitor discovery | Search + findSimilar + Contents; MCP and SDKs available |
 
 **Choosing**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
