@@ -138,6 +138,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | hermoso | AI Content | ✓ | ✓ | ✓ | - | [hermoso.md](integrations/hermoso.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
+| postonce | Social | ✓ | ✓ | - | - | [postonce.md](integrations/postonce.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
 | heygen | Video | ✓ | ✓ | - | ✓ | [heygen.md](integrations/heygen.md) |
 | hyperframes | Video | - | - | ✓ | ✓ | [hyperframes.md](integrations/hyperframes.md) |
@@ -347,6 +348,7 @@ Social media scheduling, management, and analytics.
 | **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | Drafting and scheduling posts to connected social accounts over MCP | Posts are drafted or scheduled, not published on create |
 
 **Choosing**: Use the scheduler the user already has. Each one schedules across platforms through an API or an MCP server.
+| **postonce** | Posting one video or post to many platforms, automatic crossposting from one account to others, per-post analytics | Workflows repost each new post from a source account |
 
 ### Video
 
