@@ -144,6 +144,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
 | hermoso | AI Content | ✓ | ✓ | ✓ | - | [hermoso.md](integrations/hermoso.md) |
 | marcora | AI Content | ✓ | ✓ | - | - | [marcora.md](integrations/marcora.md) |
+| wavegrain | AI Content | ✓ | ✓ | - | - | [wavegrain.md](integrations/wavegrain.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | postonce | Social | ✓ | ✓ | - | - | [postonce.md](integrations/postonce.md) |
@@ -600,6 +601,7 @@ AI-powered content generation and optimization platforms.
 | **admakeai** | Meta and TikTok ad images, UGC-style video ads, Meta Ad Library lookups | API + MCP; credit-based; publishes to Meta as paused drafts |
 | **hermoso** | Image and video ads from a brand's saved product photos, Meta, Google and LinkedIn ad library lookups, posting to connected accounts | API + MCP + CLI; credit-based; renders are async jobs |
 | **marcora** | Shared positioning, brand voice, product facts | Read-only REST API + hosted MCP |
+| **wavegrain** | TikTok photo slideshows and Instagram carousels in a brand's style, a content calendar, posting with user confirmation | MCP + REST API; credit-based; each paid call takes a credit ceiling |
 
 **Choosing**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
 
