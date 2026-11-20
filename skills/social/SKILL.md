@@ -59,6 +59,8 @@ Gather this context (ask if not provided):
 
 **For X (Twitter) ranking mechanics** — the For You feed signals from xAI's open-sourced algorithm, and the 10 posting rules they imply: See [references/x-algorithm.md](references/x-algorithm.md). Use it whenever the task involves posting on X.
 
+**For Chinese platforms** (Xiaohongshu, Douyin, Weibo, Bilibili, WeChat) — how search works, what the engagement numbers mean, the platforms' own creator and ad marketplaces, ad-disclosure rules, and data limits: See [references/chinese-platforms.md](references/chinese-platforms.md). Use it whenever the audience, competitors, or creators are in China.
+
 ---
 
 ## Content Pillars Framework
