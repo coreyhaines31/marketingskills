@@ -59,6 +59,8 @@ Four modes. Most teams over-index on one. Run at least three.
 
 **For inbound press-request platforms (HARO, Qwoted, etc.)** — see [references/press-platforms.md](references/press-platforms.md)
 
+**For writing a press release and choosing where to distribute it** (own newsroom, free sites, paid wires, an agent-callable API), see [references/press-releases.md](references/press-releases.md). A release is a record, not a pitch. It rarely earns coverage by itself.
+
 **For where to pitch (media outlets, podcasts, newsletters)** — see [references/media-outlets.md](references/media-outlets.md). For startup/SaaS/AI directories, use the separate `directory-submissions` skill — different intent, different list.
 
 **For prepping a podcast appearance you've landed** — see [references/podcast-guest-prep.md](references/podcast-guest-prep.md). Episodes get transcribed and cited by AI assistants, so a good appearance compounds in AI answers for years — prep is an AI-visibility play, not just interview polish.
@@ -143,6 +145,9 @@ Combine: recent product milestones + active news cycles + any data you've collec
 
 ### "What's my story angle?" / "How do I get press with no news?"
 Go to [story-angles.md](references/story-angles.md). Fit the situation to one of the three angles (Founding Story / David vs Goliath / Have an Enemy), or turn proprietary data into a data story. Remember: a milestone alone isn't a story — milestone *with narrative* is.
+
+### "Write a press release for our launch"
+Go to [press-releases.md](references/press-releases.md). Check the release is worth it, draft it in the standard structure, post it on the newsroom page, then pick distribution by goal and budget. Pitch journalists separately.
 
 ### "Respond to this HARO query"
 Go to [press-platforms.md](references/press-platforms.md), use the response template, keep it under 200 words.
