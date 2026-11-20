@@ -65,6 +65,7 @@ Every CLI reads credentials from environment variables:
 | `google-ads` | `GOOGLE_ADS_TOKEN`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` |
 | `google-search-console` | `GSC_ACCESS_TOKEN` |
 | `github-prospects` | `GITHUB_TOKEN` |
+| `goanyapi` | `GOANYAPI_API_KEY` |
 | `hotjar` | `HOTJAR_CLIENT_ID`, `HOTJAR_CLIENT_SECRET` |
 | `intercom` | `INTERCOM_API_KEY` |
 | `keywords-everywhere` | `KEYWORDS_EVERYWHERE_API_KEY` |
