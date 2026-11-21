@@ -90,6 +90,7 @@ Every CLI reads credentials from environment variables:
 | `resend` | `RESEND_API_KEY` |
 | `rewardful` | `REWARDFUL_API_KEY` |
 | `savvycal` | `SAVVYCAL_API_KEY` |
+| `searchapi` | `SEARCHAPI_API_KEY` |
 | `segment` | `SEGMENT_WRITE_KEY` (tracking), `SEGMENT_ACCESS_TOKEN` (profile) |
 | `semrush` | `SEMRUSH_API_KEY` |
 | `sendgrid` | `SENDGRID_API_KEY` |
@@ -208,6 +209,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `resend.js` | Email | [Resend](https://resend.com) |
 | `rewardful.js` | Referral | [Rewardful](https://www.getrewardful.com) |
 | `savvycal.js` | Scheduling | [SavvyCal](https://savvycal.com) |
+| `searchapi.js` | SEO | [SearchApi](https://www.searchapi.io) |
 | `segment.js` | Analytics | [Segment](https://segment.com) |
 | `semrush.js` | SEO | [SEMrush](https://semrush.com) |
 | `sendgrid.js` | Email | [SendGrid](https://sendgrid.com) |
@@ -225,7 +227,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 
 ## HTTP request deadlines
 
-HTTP calls in 66 of the CLIs use a 120-second per-request deadline, long enough for slow endpoints such as Firecrawl scrapes (60-second default on Firecrawl's side) and large analytics exports. The Truelist CLI is not covered. Lower or raise it with `--timeout-ms <1-600000>`, for example:
+HTTP calls in 69 of the CLIs use a 120-second per-request deadline, long enough for slow endpoints such as Firecrawl scrapes (60-second default on Firecrawl's side) and large analytics exports. The Truelist CLI is not covered. Lower or raise it with `--timeout-ms <1-600000>`, for example:
 
 ```bash
 node tools/clis/exa.js search --query 'Recent market research' --timeout-ms 30000

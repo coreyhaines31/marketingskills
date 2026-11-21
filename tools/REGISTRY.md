@@ -57,6 +57,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
+| searchapi | SEO | ✓ | ✓ | [✓](clis/searchapi.js) | - | [searchapi.md](integrations/searchapi.md) |
 | omnia | AEO | ✓ | ✓ | - | - | [omnia.md](integrations/omnia.md) |
 | cloro | AEO | ✓ | ✓ | [✓](clis/cloro.js) | - | [cloro.md](integrations/cloro.md) |
 | clearbit | Data Enrichment (legacy) | ✓ | - | [✓](clis/clearbit.js) | ✓ | [clearbit.md](integrations/clearbit.md) |
@@ -202,8 +203,9 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **goanyapi** | SERP + keyword + backlink + Google Ads transparency from one key | Credit-based, MCP available |
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
+| **searchapi** | The live Google SERP (web, News, Shopping, Trends and more) as JSON, by country, language, city and device | API + hosted MCP + CLI; per-search billing; also Bing, YouTube, Amazon and 100+ engines |
 
-**Choosing**: Google Search Console is free and is the only source of Google's own data for your site. Semrush and Ahrefs fit competitive research. DataForSEO fits programmatic SERP data. Keywords Everywhere fits quick keyword lookups. RankParse fits agent workflows where per-call cost matters (backlinks, domain authority, tech stack).
+**Choosing**: Google Search Console is free and is the only source of Google's own data for your site. Semrush and Ahrefs fit competitive research. DataForSEO fits programmatic SERP data. Keywords Everywhere fits quick keyword lookups. RankParse fits agent workflows where per-call cost matters (backlinks, domain authority, tech stack). SearchApi fits pulling the live result page itself (positions, snippets, SERP features) for a query and locale, with no keyword volumes or backlinks.
 
 ### CRM
 
@@ -611,8 +613,9 @@ AI-powered web search APIs built for LLMs and agents. Return structured results 
 |------|----------|-------|
 | **parallel** | Web search with source passages and URL extraction | Anonymous Unified MCP access; optional account key; native CLI |
 | **exa** | Neural/semantic web search, content research, competitor discovery | Search + findSimilar + Contents; MCP and SDKs available |
+| **searchapi** | What Google, Bing, YouTube or Amazon actually show for a query, as JSON | One GET per results page; hosted MCP with one tool per engine; no page contents or summaries |
 
-**Choosing**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills.
+**Choosing**: Exa for neural search over the open web — content research, competitor/similar-page discovery, link prospecting, news monitoring, and audience research. Pairs well with seo-audit, content-strategy, and competitor-profiling skills. SearchApi fits when the agent needs the engine's own result page (rank, snippets, news with timestamps, shopping prices) rather than a neural index.
 
 ### Press Release Distribution
 
@@ -714,6 +717,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **omnia** - AI visibility, competitor mentions, and citation data (OAuth)
 - **cloro** - AI answers with cited sources, and Google results with the AI Overview
 - **exa** - AI-powered web search for LLMs and agents
+- **searchapi** - Google, Bing, YouTube and Amazon result pages as structured JSON (OAuth or token)
 - **apollo** - B2B prospecting, enrichment, and sequences
 - **hubspot** - CRM read and write
 - **attio** - CRM read and write (writes need confirmation)
