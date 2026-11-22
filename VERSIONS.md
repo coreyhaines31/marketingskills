@@ -17,7 +17,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | competitor-profiling | 2.1.9 | 2026-11-19 |
 | competitors | 2.3.3 | 2026-11-09 |
 | content-strategy | 2.1.8 | 2026-11-09 |
-| conversion-tracking | 1.0.6 | 2026-11-09 |
+| conversion-tracking | 1.1.0 | 2026-11-22 |
 | copy-editing | 2.2.4 | 2026-11-09 |
 | copywriting | 2.3.6 | 2026-11-17 |
 | cro | 2.0.6 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-22)
+
+- **conversion-tracking** (1.0.6 -> 1.1.0): added a setup-from-zero path for Google Ads call conversions in `references/google-ads.md` (covering Calls from ads, Website call conversions number swap via GTM and gtag, choosing among `tel:` clicks, Google forwarding numbers, third-party call trackers, and offline CRM/call-log imports, plus `#google-wcc-debug` verification and the `phone-click.js` intent-vs-answered rule), expanded Part B Category H into a full phone-call diagnostic section, linked the path in `SKILL.md`, and added an eval case (#985).
 
 ### 2.14.25 (2026-11-19)
 

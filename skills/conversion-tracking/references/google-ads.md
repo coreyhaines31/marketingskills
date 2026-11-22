@@ -149,6 +149,99 @@ Observable checks only, in order:
 
 For anything that goes wrong after setup (statuses stuck on Unverified, Tag inactive dates, double counting, consent mode killing conversions, gclid stripping), work through the failure catalog in Part B below.
 
+## Call conversions: setup from zero
+
+Guided setup for phone-led businesses running Google Ads. This covers picking the right call-conversion type and wiring Google's two native call paths (**Calls from ads** and **Website call conversions**). Form and booking setup lives in Part A above; offline CRM and call-log uploads live in Part B Category G and `server-side.md`.
+
+### Choose the right call-conversion path
+
+Phone-led businesses have five distinct options. Pick on what you actually want Google Ads to optimize toward, and be explicit about what each one measures:
+
+| Option | What it counts | Cost & scope | When to use it |
+|---|---|---|---|
+| **`tel:` click (`phone_click`)** | Taps or clicks on `tel:` links on the site | Free, browser-side, works in every country | Baseline when forwarding numbers or call trackers are not available, or as a **Secondary** intent signal. **Not answered-call tracking** |
+| **Calls from ads** (Google forwarding number on ad assets) | Calls placed directly from call assets, location assets, or call ads that meet a minimum call length | Free in Google Ads (eligible countries only); Google Ads traffic only | Always enable when running call or location assets so SERP calls are measured alongside site calls |
+| **Website call conversions** (Google number swap) | Calls to a dynamically swapped Google forwarding number after a Google ad click that meet a minimum call length | Free in Google Ads (eligible countries only); Google Ads traffic only; plain-text numbers only | Default free answered-call path for Google-Ads-only local businesses on an eligible site |
+| **Third-party call tracker** (CallRail, CallTrackingMetrics, Invoca, WhatConverts) | Answered calls, recordings, call duration, and qualification across Google Ads, Meta, organic, and direct via dynamic number insertion (DNI) | Paid monthly plan plus number/minute usage | When attribution across non-Google channels, call recordings, IVR/whisper, or regions without Google forwarding numbers matter |
+| **Offline import of answered or booked calls** | Qualified calls, booked jobs, or closed deals pushed back from a CRM or call log | $0 via Google Data Manager API (or paid sync tools in `server-side.md`); needs `gclid` or normalized lead phone/email capture | When bidding should optimize on booked/qualified calls rather than every 60-second ring, or when pairing with a third-party tracker |
+
+**Rules for `../assets/snippets/phone-click.js` (the `tel:` click detector):**
+- `phone-click.js` measures **call intent** (someone tapped or clicked a `tel:` link), not an answered call. On desktop especially, many clicks never dial; on mobile, visitors can tap and cancel.
+- Use `phone-click.js` via `../assets/gtm-recipes/README.md` (`build_recipe.py --tool phone-click --send google-ads`) or Part A's Path A/B flow when no forwarding-number or call-tracker path is available, and state clearly to the user that it counts intent rather than answered calls. (Note the PII rule in `../assets/snippets/README.md`: drop `phone_number` and `link_text` from the push if the page shows visitor-specific rep numbers.)
+- **Replace or demote it when real call tracking goes live.** As soon as Website call conversions, a third-party tracker, or offline call imports are active for the same phone number, remove the `tel:` click action or demote it to **Secondary** so Smart Bidding does not count one caller twice (once for the tap and once for the call).
+- **Layer Calls from ads with Website call conversions.** They cover different surfaces (dialing from the ad vs. dialing on the website) and do not overlap.
+
+### Before you start (call conversions)
+
+Do a duplicate and conflict pre-check before touching tags:
+1. Check the page source and GTM container for existing `AW-` tags, `phone_conversion_number` snippets, GTM "Google Ads Calls from Website Conversion" tags, and any third-party DNI script (CallRail, CallTrackingMetrics, Invoca, WhatConverts, etc.). Never run two number-swap scripts on the same displayed phone number.
+2. Check **Goals > Conversions > Summary** for existing Phone calls actions or a Primary `tel:` click action so you do not create a duplicate Primary goal.
+3. Confirm the business is in a country where Google forwarding numbers are available, and collect the exact phone number text as displayed on the site (header, footer, hero, and contact page).
+
+### Path 1: Calls from ads (ad-level call and location assets)
+
+End state: account-level Call reporting is on, and a single Primary "Calls from ads" action filters out short wrong-number hangups. No website code is needed.
+
+**Step 1 - Enable account-level Call reporting**
+- **Goal.** Let Google Ads assign Google forwarding numbers to call assets, location assets, and call ads so it can measure call duration.
+- **Do this.** Ask the user to sign in to Google Ads, click the **Admin** icon, open **Account settings**, expand **Call reporting**, set it to **On**, and click **Save**. Have them confirm that **Call reporting** stays **On** and note their business country.
+- **Expect to see.** Call reporting shows as **On** in Account settings.
+- **On error.** If Call reporting is unavailable or Google forwarding numbers are not supported in the target country, Google cannot track call duration from ads. Use `phone-click.js` for site `tel:` intent, a third-party call tracker, or offline call imports instead.
+
+**Step 2 - Create or verify the Calls from ads conversion action**
+- **Goal.** Have one enabled conversion action measuring calls from ads with an appropriate minimum duration.
+- **Do this.** Ask the user to open **Goals** > **Conversions** > **Summary**. First check whether an active "Calls from ads" action already exists. If not, click **+ Create conversion action** (or **+ New conversion action**), select **Phone calls**, and choose **Calls from ads using call assets or call-only ads** (labeled **Calls from ads** in the UI). Set category to **Phone call lead** (or **Contact**), name it clearly (for example `Calls from ads (60s+)`), set **Count** to **One**, set **Call length** to the minimum seconds that qualify a real inquiry (default **60** seconds; shorten to 30s only if quick bookings finish faster, or raise to 90-120s for noisy categories), set **Primary** if bidding should optimize on calls, and save. Have the user report back the action's **Status**, **Primary/Secondary** setting, and **Call length**.
+- **Expect to see.** The action appears in Summary as Enabled (no website tag setup step is shown for Calls from ads).
+- **On error.** If a default Calls from ads action already exists, edit its settings rather than creating a second one. Confirm campaigns with call or location assets include this conversion goal (not a custom goal excluding it).
+
+### Path 2: Website call conversions (number swap on the site)
+
+End state: visitors arriving from a Google Ad see a dynamically swapped Google forwarding number on the site, and calls meeting the minimum duration record in Google Ads. The user does Step 1 in Google Ads and reports 3 values back (Conversion ID, Conversion Label, exact displayed phone number); the agent or user does Step 2 and Step 3.
+
+**Step 1 - Create the Website call conversion action in Google Ads**
+- **Goal.** Create the conversion action and collect the Conversion ID, Conversion Label, and exact displayed phone number.
+- **Do this.** Confirm **Call reporting** is **On** (Path 1, Step 1). Then ask the user to go to **Goals** > **Conversions** > **Summary**, click **+ Create conversion action**, select **Phone calls**, and choose **Calls to a phone number on your website**. Set category (**Phone call lead** or **Contact**), name (for example `Website calls (60s+)`), **Count** to **One**, **Call length** (default **60** seconds), and enter the **Phone number** and **Destination number** matching the business number on the site. Save, scroll to **Tag setup**, open **Use Google Tag Manager** (or **Install the tag yourself**), and report back:
+  1. **Conversion ID** (digits after `AW-`)
+  2. **Conversion Label**
+  3. Exact **displayed phone number string** on the site (formatting, spaces, parentheses, hyphens)
+- **Expect to see.** The new action sits in Summary with status **Unverified** until the tag runs on the site.
+- **On error.** If **Calls to a phone number on your website** cannot use a forwarding number, check that Call reporting is On and the country is supported. If the site displays different numbers per branch or location, create one conversion action per number or match by CSS class (`phone_conversion_css_class`).
+
+**Step 2 - Install the website number-swap tag**
+
+Pick GTM if the site already runs a `GTM-` container, or `gtag.js` if it does not. Never install both. Make sure auto-tagging is **On** (Step 9 in Part A above) in either path, because Google only swaps the number when it detects an ad click (`gclid` / `_gcl_aw`).
+
+*Option A, with Google Tag Manager:*
+- **Goal.** Fire Google's number-swap tag alongside Conversion Linker without pasting raw scripts into the site.
+- **Do this.** In GTM, create a **Google Ads Calls from Website Conversion** tag. Fill **Displayed Phone Number to Replace** with the exact string visible on the page (character-for-character, including spaces, brackets, or hyphens, or use the CSS selector option if formatting varies across locations), **Conversion ID**, and **Conversion Label**. Set the trigger to **All Pages** (or every page displaying the number). Confirm a **Conversion Linker** tag is present and firing on **All Pages**. Preview in Tag Assistant, then **Submit** and **Publish**.
+- **Expect to see.** Tag Assistant shows both **Conversion Linker** and **Google Ads Calls from Website Conversion** firing on page load.
+
+*Option B, without Google Tag Manager (`gtag.js`):*
+- **Goal.** Load the Google tag once and attach the `phone_conversion_number` config in `<head>`.
+- **Do this.** Ensure the base Google tag (`gtag.js` for `AW-XXXXXXXXX`) is present in `<head>` once (if Part A Path B already installed it, do not paste a second base script), then add the phone config snippet right after `gtag('config', 'AW-XXXXXXXXX');`:
+
+```html
+<script>
+  gtag('config', 'AW-XXXXXXXXX/YYYYYYYYYYY', {
+    'phone_conversion_number': '1-650-555-5555'
+  });
+</script>
+```
+
+Replace `AW-XXXXXXXXX` with `AW-` plus the Conversion ID, `YYYYYYYYYYY` with the Conversion Label, and `'1-650-555-5555'` with the exact phone string displayed in the page HTML (or supply `'phone_conversion_css_class'` if multiple formats share a class).
+- **Expect to see.** The phone number in the page HTML is plain continuous text (wrapping it in `<a href="tel:...">` is fine; Google swaps both the visible text and the `tel:` target) and matches `'phone_conversion_number'` exactly.
+- **On error.** Do not combine this tag with a third-party DNI script (CallRail, CallTrackingMetrics, Invoca, WhatConverts) on the same phone number. Pick one swap owner; if a third-party tracker owns the swap, use offline call imports instead (Category G and `server-side.md`).
+
+**Step 3 - Verify the swap and conversion arrival**
+- **Goal.** Prove the swap works in the browser without wasting ad spend, then confirm live arrival in Google Ads.
+- **Do this.**
+  1. **Run the `#google-wcc-debug` Force test.** Open the live page with `#google-wcc-debug` appended to the URL (for example `https://example.com/contact#google-wcc-debug`) in an incognito window with ad blockers off. A small Google debug box appears in the bottom-left corner; click **Force** and verify that every instance of the phone number on the page (header, footer, body, mobile sticky bar) swaps to a Google test placeholder (such as `(999) 999-9999` or `999-999-9999`).
+  2. **Check Tag Assistant.** Connect `tagassistant.google.com` and confirm the Website Call Conversion tag / `gtag('config', 'AW-.../...')` and Conversion Linker both executed.
+  3. **Verify live account status and lag.** Real Google forwarding numbers only appear on genuine ad-click visits (not direct visits), and conversions only record when calls pass the minimum call length. In **Goals > Conversions > Summary**, expect **Unverified** to move to **No recent conversions** or **Recording conversions** within 48 hours of tagged ad traffic, and apply the 3-day reporting lag rule before judging totals.
+  4. **Confirm no double counting.** Verify any `tel:` click action (`phone_click`) for the same number is removed or set to **Secondary**.
+- **Expect to see.** Clicking **Force** in `#google-wcc-debug` updates the displayed number and its `tel:` link cleanly across the page.
+- **On error.** If **Force** leaves the number unchanged, check Category H below (image/SVG numbers, split HTML tags, format mismatches, caching/CSP, or a third-party call tracker overwriting the DOM).
+
 ## Part B: diagnostic reference
 
 Compiled August 2026 from Google Ads Help documentation, practitioner blogs (Analytics Mania, Adalysis, Adnan Agic, PPC Land, Cometly, TagFly, Elevar, ConversionTracking.io), and community threads.
@@ -291,7 +384,13 @@ Chain test: visit `landingpage?gclid=TEST123` → confirm survives redirects →
 - **G5. Lead form assets (Google-hosted)**: conversions counted natively; leads sit in Ads 30 days unless webhook/CRM integration delivers them. Website tags irrelevant to these.
 
 ### Category H - Phone-call conversions
-Google forwarding number or website call conversions (number swap). Failures: number hardcoded as image/formatted differently so swap fails; call trackers (CallRail) replacing after Google's snippet; minimum call length filters.
+- **H1. Phone number not swapped: format mismatch, split markup, or image/SVG** (VERY COMMON): Google's website call script scans the DOM for an exact text match to `phone_conversion_number`. It fails silently when the number is an image or SVG, formatted inconsistently across header/footer/mobile bar (for example `(650) 555-5555` on the page vs `1-650-555-5555` in the tag), or split across nested HTML tags (`<span>(650)</span> <span>555-5555</span>`). Test by opening the URL with `#google-wcc-debug` and clicking **Force**. Fix: render continuous plain text matching the tag string character-for-character (keeping `<a href="tel:...">` around the text is fine) or target a shared CSS class via `phone_conversion_css_class`.
+- **H2. Third-party call tracker conflict (competing number swaps)** (COMMON): a third-party dynamic number insertion (DNI) script (CallRail, CallTrackingMetrics, Invoca, WhatConverts) swaps the page number before Google's script runs so Google cannot find the original number, or overwrites Google's forwarding number afterward. Google Ads stays Unverified or shows zero website calls while the tracker logs calls. Fix: keep one swap owner per phone number. Either import qualified calls from the tracker / CRM into Google Ads (Category G) and remove Google's website call tag, or disable third-party DNI on Google Ads traffic if using Google forwarding numbers.
+- **H3. Minimum call length filter mismatched to real inquiries** (COMMON): the default is 60 seconds. Businesses where receptionists book or dispatch in 30 to 45 seconds lose valid conversions to the threshold; conversely, a 5 to 15 second threshold counts wrong numbers, hang-ups, and IVR drop-offs as leads. Check call duration distributions in Google Ads or the call tracker and tune the minimum call length to actual qualified-call durations.
+- **H4. Auto-tagging off, Conversion Linker missing, or gclid stripped** (COMMON): Google only swaps the website phone number when the visit carries Google Ads click attribution (`gclid` / `_gcl_aw`). Direct visitors and ad clicks whose `gclid` was stripped by redirects (C2) or dropped because Conversion Linker is missing (C3) see the static number and never register a website call. Run the `?gclid=TEST123` + `_gcl_aw` check before assuming the call snippet is broken.
+- **H5. `tel:` click tracking mistaken for answered calls or double-counted** (VERY COMMON): `phone-click.js` (or a GTM `tel:` click trigger) counts intent (the tap), including desktop clicks with no dialer and unanswered dials. If both a `tel:` click action and a Website call conversion (or call-tracker import) are set to **Primary**, one phone call records two conversions. Fix: remove the `tel:` click action or demote it to **Secondary** once answered-call tracking is active.
+- **H6. Account Call reporting off, ineligible country, or ad asset mismatch** (OCCASIONAL): **Calls from ads** stays at zero when **Call reporting** is off in `Admin > Account settings`, when the business country does not support Google forwarding numbers, or when call/location assets are disapproved or excluded by campaign conversion goals (E4). Check Call reporting, country eligibility, asset approval, and campaign goals.
+- **H7. Consent Mode denial, ad blockers, or SPA route timing** (COMMON): when Consent Mode keeps `ad_storage` denied or a blocker prevents `gtag.js`/`gtm.js` from loading, the swap script never runs and visitors dial the static number. In single-page apps (React, Next.js), a phone number rendered on a later client-side route or lazy component after initial page load can miss a Pageview-only tag; re-fire the website call tag on History Change or after the component mounts.
 
 ### Part B.4: Ranked prevalence
 1. Tag/trigger never fires for the real form flow (B1/B2/B4)

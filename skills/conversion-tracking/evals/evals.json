@@ -259,6 +259,20 @@
         "Doesn't pitch a lead-gen-focused tool for purchases"
       ],
       "files": []
+    },
+    {
+      "id": 22,
+      "prompt": "We're a local dental clinic running Google Ads. Almost all our leads come from phone calls, both people calling directly from our search ads and calling the number on our website. Should we just put a tel: click tag on the site or set up Google call conversions?",
+      "expected_output": "Should state clearly that a tel: click tag (phone-click.js) counts call intent (the tap), not an answered call, and should be replaced or demoted to Secondary once real call tracking is live so callers are not double-counted. Should lay out the five options with tradeoffs: tel: clicks (intent baseline), Calls from ads (Google forwarding number on call/location assets), Website call conversions (Google number swap on the site), third-party call trackers (for multi-channel attribution or call recording, presented as multiple neutral options rather than one recommendation), and offline import of answered/booked calls from the CRM or call log. Should walk through the setup steps for both Calls from ads (Account settings > Call reporting On, Goals > Conversions > Summary > Phone calls > Calls from ads, minimum call length) and Website call conversions (Calls to a phone number on your website, GTM Google Ads Calls from Website Conversion tag + Conversion Linker OR gtag phone_conversion_number, auto-tagging On, and #google-wcc-debug Force verification).",
+      "assertions": [
+        "States clearly that phone-click.js / tel: clicks measure call intent, not answered calls",
+        "Advises removing or demoting tel: click tracking to Secondary once answered-call tracking is active",
+        "Compares the options: tel: clicks, Calls from ads, Website call conversions, third-party call trackers, and offline CRM/call-log imports",
+        "Walks through account and tag setup for both Calls from ads and Website call conversions",
+        "Includes #google-wcc-debug Force verification and minimum call length guidance",
+        "Does not pitch a single third-party call tracker as the default recommendation"
+      ],
+      "files": []
     }
   ]
 }
