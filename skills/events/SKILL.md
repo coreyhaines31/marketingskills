@@ -2,7 +2,7 @@
 name: events
 description: "When the user wants to plan, run, sponsor, or speak at events, or asks whether an event or booth is worth the money: webinars, conferences, booths, meetups, show-up rates, and follow-up into pipeline. For launches, see launch. For joint webinars, see co-marketing. For community programs, see community-marketing. For podcasts, see public-relations. For event emails, see emails."
 metadata:
-  version: 1.0.3
+  version: 1.0.4
 ---
 
 # Event Marketing
@@ -75,6 +75,8 @@ Two hosting rules that outrank format choice:
 
 - **The topic is the targeting.** "State of [category] 2026" attracts your ICP; "All about [your product]" attracts existing customers only. Pick topics your buyer would attend even if they'd never buy.
 - **Recurring beats one-off.** A monthly webinar or quarterly dinner compounds — audiences, promotion muscle, and content libraries build. A single big event evaporates.
+
+**Speakers, attendees, and sponsors as promoters.** Each one can announce the event to a network you can't buy. Make it a two-minute job: a card with their photo and the event's details plus a suggested post, sent when they confirm or register. A design template (Canva, Figma) and an email cover a handful of speakers for free. For many sharers, results per person, or photos taken at the event itself, compare the tools in the registry's [Event Promotion](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md#event-promotion) category, and say which cost money.
 
 ## Attending (No Booth, No Stage)
 
