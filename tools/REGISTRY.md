@@ -57,6 +57,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
+| wecookflow | SEO | - | ✓ | - | - | [wecookflow.md](integrations/wecookflow.md) |
 | omnia | AEO | ✓ | ✓ | - | - | [omnia.md](integrations/omnia.md) |
 | cloro | AEO | ✓ | ✓ | [✓](clis/cloro.js) | - | [cloro.md](integrations/cloro.md) |
 | clearbit | Data Enrichment (legacy) | ✓ | - | [✓](clis/clearbit.js) | ✓ | [clearbit.md](integrations/clearbit.md) |
@@ -202,6 +203,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **goanyapi** | SERP + keyword + backlink + Google Ads transparency from one key | Credit-based, MCP available |
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
+| **wecookflow** | Guest post prices for the same sites across link marketplaces, site search by DR, traffic and price | Hosted MCP, free tier, OAuth optional |
 
 **Choosing**: Google Search Console is free and is the only source of Google's own data for your site. Semrush and Ahrefs fit competitive research. DataForSEO fits programmatic SERP data. Keywords Everywhere fits quick keyword lookups. RankParse fits agent workflows where per-call cost matters (backlinks, domain authority, tech stack).
 
@@ -742,6 +744,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 - **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 - **socialtoai** - Public posts, comments, profiles, and trending lists on 18 social platforms (OAuth or API key)
+- **wecookflow** - Guest post prices across link marketplaces and guest post site search (OAuth optional)
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
