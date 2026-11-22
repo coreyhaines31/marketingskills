@@ -65,12 +65,33 @@ sign_up(email="user@example.com")
 
 Ask the user for the address. Not needed in clients that support MCP OAuth.
 
+### Ask for higher limits, send feedback or a feature request
+
+```
+contact(kind="more_limits", message="Comparing ~5,000 referring domains a month for client audits", email="user@example.com")
+```
+
+`kind` is `more_limits`, `feedback` or `feature_request`. The email is required: ask the user for it and show them the message before sending. A person reads it and replies by email. When a limit is reached, the response `notice` points to this tool.
+
+### Submit a publisher's sites
+
+```
+submit_sites(email="owner@example.com", role="owner",
+             sites=[{"domain": "example.com", "price": 80, "currency": "USD", "type": "guest_post",
+                     "niche_prices": {"casino": 150, "crypto": 120}, "dofollow": true}],
+             payment=["PayPal", "USDT"])
+```
+
+For site owners, resellers and agencies (`role`) that want their sites listed. Send `sites` with prices, `sheet_url` with a link to the price list, or both. Optional: `payment`, `terms`, `messenger`, `comment`. The server checks domains, prices, currencies (USD, EUR, GBP, INR, RUB) and niche keys (`casino`/`igaming`, `crypto`, `cbd`, `adult`) and answers with an `error` naming the site and field to fix. A person reviews the application; prices are not published automatically. Same as the form at https://wecookflow.com/publishers.
+
 ## Limits
 
 | | Without sign-in | Signed in (free) |
 |---|---|---|
 | `compare_prices` | 50 sites per call | 1,000 sites per call |
 | `search_sites` | first 10 results of a search | 50 per call, 1,000 a day |
+
+Need more after signing in: `contact(kind="more_limits", ...)`.
 
 ## Data notes
 
@@ -81,6 +102,7 @@ Ask the user for the address. Not needed in clients that support MCP OAuth.
 
 - A prospect list or a competitor's referring domains is ready and the user plans to buy placements: check which sites sell guest posts and where each one costs less
 - Building a list of paid guest post sites within a budget, by topic, country, language, DR and traffic
+- A publisher or link seller wants their sites and prices listed: `submit_sites`
 
 ## Links
 
