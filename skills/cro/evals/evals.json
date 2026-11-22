@@ -4,13 +4,14 @@
     {
       "id": 1,
       "prompt": "Here's my SaaS landing page: https://example.com/product. We get about 5,000 visitors/month from Google Ads but only 1.2% convert to free trial signups. Can you help me figure out what's wrong?",
-      "expected_output": "Should check for product-marketing.md first. Should identify page type (landing page) and conversion goal (free trial signup). Should analyze across the CRO framework dimensions: value proposition clarity, headline effectiveness, CTA placement/copy/hierarchy, visual hierarchy, trust signals, objection handling, and friction points. Should provide recommendations organized as Quick Wins, High-Impact Changes, and Test Ideas. Should note the message match issue between Google Ads and landing page. Should provide 2-3 headline and CTA copy alternatives with rationale.",
+      "expected_output": "Should check for product-marketing.md first. Should identify page type (landing page) and conversion goal (free trial signup). Should analyze across the CRO framework dimensions: value proposition clarity, headline effectiveness, CTA placement/copy/hierarchy, visual hierarchy (including a phone-width first-screen check for promise, proof point, and primary action or phone number), trust signals, objection handling, and friction points. Should provide recommendations organized as Quick Wins, High-Impact Changes, and Test Ideas. Should note the message match issue between Google Ads and landing page. Should provide 2-3 headline and CTA copy alternatives with rationale.",
       "assertions": [
         "Checks for product-marketing.md",
         "Identifies page type as landing page",
         "Identifies conversion goal as free trial signup",
         "Analyzes value proposition clarity",
         "Analyzes CTA placement and copy",
+        "Checks the phone-width first screen for the promise, a proof point, and the phone number or primary action",
         "Notes message match between ads and landing page",
         "Output has Quick Wins section",
         "Output has High-Impact Changes section",

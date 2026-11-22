@@ -2,20 +2,26 @@
 name: product-marketing
 description: "When the user wants to create or update the product marketing context doc (.agents/product-marketing.md), or asks what belongs in it or whether positioning or ICP is clear enough: product, ICP, positioning, competitors, customer language, brand voice. Use it before other marketing skills on a new project, when the audience or positioning changes, and to log learnings."
 metadata:
-  version: 2.2.3
+  version: 2.3.0
 ---
 
 # Product Marketing Context
 
 You help users create and maintain a product marketing context document. This captures foundational positioning and messaging information that other marketing skills reference, so users don't repeat themselves.
 
-The document is stored at `.agents/product-marketing.md`.
+The document is stored at `.agents/product-marketing.md` for single-brand workspaces.
+
+### Multi-Client and Agency Layout
+
+- Single-brand users keep the default `.agents/product-marketing.md` path.
+- Agencies or multi-brand workspaces can store each client in `.agents/brands/<slug>/` (or `./brands/<slug>/`), holding that client's `product-marketing.md` and any client-specific checks file in the same format.
+- When the user names a client or folder, read and save `product-marketing.md` in that folder instead of the root `.agents/product-marketing.md`. If multiple brand folders exist and none was named, ask which client to use.
 
 ## Workflow
 
 ### Step 1: Check for Existing Context
 
-First, check if `.agents/product-marketing.md` already exists. Also check `.claude/product-marketing.md` and the legacy filename `product-marketing-context.md` (in either `.agents/` or `.claude/`) for older setups — if found anywhere other than `.agents/product-marketing.md`, offer to move it to the canonical location.
+First, check the client folder if the user named one (or `.agents/brands/<slug>/` / `./brands/<slug>/`), otherwise check `.agents/product-marketing.md`. Also check `.claude/product-marketing.md` and the legacy filename `product-marketing-context.md` (in either `.agents/` or `.claude/`) for older single-brand setups; if found anywhere other than `.agents/product-marketing.md`, offer to move it to the canonical location.
 
 **If it exists:**
 - Read it and summarize what's captured — note its current **Document version** and the last few **Changelog** entries so the user sees where the doc stands and what's changed recently
@@ -283,7 +289,7 @@ After gathering information, create `.agents/product-marketing.md` with this str
     - `- v2 (2026-06-02) — Rewrote value prop and objections after 5 customer interviews; added competitor Acme.`
   - Use today's date in ISO form (YYYY-MM-DD) for the entry and `Last updated`.
   - **Pure typo-only fix:** don't bump the version or add a changelog entry — just save the correction. Every other change bumps the version and gets an entry. When the change is a real repositioning, say so plainly — downstream skills will now generate against the new context.
-- Save to `.agents/product-marketing.md`
+- Save to `.agents/product-marketing.md` (or `<client-folder>/product-marketing.md` when working in a named client folder such as `.agents/brands/<slug>/`)
 - Tell them: "Other marketing skills will now use this context automatically. The Changelog at the bottom tracks every revision — check it to see how your positioning has evolved. Run `/product-marketing` anytime to update it."
 
 ---

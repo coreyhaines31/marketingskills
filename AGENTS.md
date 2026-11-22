@@ -120,6 +120,7 @@ skills/skill-name/
 - Use H2 (`##`) for main sections, H3 (`###`) for subsections
 - Use bullet points and numbered lists liberally
 - Short paragraphs (2-4 sentences max)
+- Lead with the finished deliverable and close with a short **Sources and assumptions** note in skill outputs (see `CONTRIBUTING.md`)
 
 ### Tone
 
