@@ -2,7 +2,7 @@
 name: cro
 description: "When the user wants more conversions from a page or form, or asks why a page isn't converting, what to change first, or whether to add or remove a field or element: landing and pricing pages, lead forms, or a URL shared for feedback. For signup flows, see signup. For activation, see onboarding. For popups, see popups. For running the test, see ab-testing."
 metadata:
-  version: 2.0.6
+  version: 2.1.0
 ---
 
 # Conversion Rate Optimization (CRO)
@@ -79,6 +79,7 @@ Analyze the page across these dimensions, in order of impact:
 - Are the most important elements visually prominent?
 - Is there enough white space?
 - Do images support or distract from the message?
+- **Phone-first first screen:** At phone width before scrolling, are the promise, at least one proof point, and the phone number or primary action all visible?
 
 ### 5. Trust Signals and Social Proof
 
@@ -89,7 +90,7 @@ Analyze the page across these dimensions, in order of impact:
 - Review scores and counts
 - Security badges (where relevant)
 
-**Placement:** Near CTAs and after benefit claims
+**Placement:** Near CTAs, after benefit claims, and with at least one proof point visible on the first phone screen
 
 ### 6. Objection Handling
 
@@ -137,11 +138,13 @@ For key elements (headlines, CTAs), provide 2-3 alternatives with rationale.
 - Clear positioning for cold visitors
 - Quick path to most common conversion
 - Handle both "ready to buy" and "still researching"
+- Phone-width first-screen check: promise, proof point, and phone number or primary CTA visible without scrolling
 
 ### Landing Page CRO
 - Message match with traffic source
 - Single CTA (remove navigation if possible)
 - Complete argument on one page
+- Phone-width first-screen check: promise, proof point, and phone number or primary action visible without scrolling
 
 ### Pricing Page CRO
 - Clear plan comparison

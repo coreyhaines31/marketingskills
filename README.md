@@ -270,6 +270,10 @@ mv .claude/product-marketing-context.md .agents/product-marketing.md 2>/dev/null
 
 Skills will still check `.claude/` and the legacy `product-marketing-context.md` filename as fallbacks, so nothing breaks if you don't migrate.
 
+### Per-client folders for agencies
+
+Single-brand workspaces keep the default `.agents/product-marketing.md` file. Agencies running multiple clients can place each client's `product-marketing.md` (using the same format, along with any client-specific checks file) in `.agents/brands/<slug>/` or `./brands/<slug>/`, and name the client folder when running a skill.
+
 ### Full rename map
 
 | Old | New |

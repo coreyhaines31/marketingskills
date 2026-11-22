@@ -93,6 +93,17 @@
         "Preserves prior changelog entries unchanged"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "We're an agency setting up product marketing context for our client Acme Logistics in ./brands/acme-logistics/. Can we draft their doc without overwriting our default .agents/product-marketing.md?",
+      "expected_output": "Should recognize the multi-client / agency layout and use the client folder the user named (./brands/acme-logistics/product-marketing.md) rather than overwriting the single-brand .agents/product-marketing.md path. Should keep the exact same product-marketing.md format and note that client-specific sibling files live in that same folder.",
+      "assertions": [
+        "Uses the named client folder (./brands/acme-logistics/product-marketing.md)",
+        "Does not overwrite the single-brand .agents/product-marketing.md path",
+        "Uses the standard product-marketing.md format without inventing a new format"
+      ],
+      "files": []
     }
   ]
 }

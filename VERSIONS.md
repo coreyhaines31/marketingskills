@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.5 | 2026-11-19 |
-| ai-seo | 2.12.7 | 2026-11-19 |
+| ai-seo | 2.13.0 | 2026-11-22 |
 | analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.10 | 2026-11-19 |
@@ -20,7 +20,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | conversion-tracking | 1.0.6 | 2026-11-09 |
 | copy-editing | 2.2.4 | 2026-11-09 |
 | copywriting | 2.3.6 | 2026-11-17 |
-| cro | 2.0.6 | 2026-11-09 |
+| cro | 2.1.0 | 2026-11-22 |
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
 | emails | 2.1.9 | 2026-11-19 |
@@ -42,7 +42,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | paywalls | 2.1.5 | 2026-11-19 |
 | popups | 2.0.4 | 2026-11-09 |
 | pricing | 2.1.7 | 2026-11-09 |
-| product-marketing | 2.2.3 | 2026-11-09 |
+| product-marketing | 2.3.0 | 2026-11-22 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
 | prospecting | 1.6.3 | 2026-11-19 |
 | public-relations | 1.3.1 | 2026-11-19 |
@@ -59,6 +59,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-22)
+
+Four small operational additions across CRO, AI SEO, product marketing context, and contributing guidelines (#987):
+
+- **cro** (2.0.6 -> 2.1.0): adds a phone-width first-screen check across Visual Hierarchy, Trust Signals, Homepage CRO, and Landing Page CRO (promise, at least one proof point, and phone number or primary action visible without scrolling), plus an updated eval assertion.
+- **ai-seo** (2.12.7 -> 2.13.0): adds `skills/ai-seo/scripts/check-ai-crawlers.mjs` to check `robots.txt` rules across Step 4's AI user agents and optionally probe a sample URL for CDN or WAF blocks, linked from Step 4, with contract tests in `tests/clis/ai-seo-crawlers.test.cjs`.
+- **product-marketing** (2.2.3 -> 2.3.0) and **README.md**: documents the per-client agency folder convention (`.agents/brands/<slug>/` or `./brands/<slug>/`, or the folder the user names) while keeping `.agents/product-marketing.md` as the single-brand default, plus eval 8.
+- **CONTRIBUTING.md** and **AGENTS.md**: documents the output-order convention to lead with the finished deliverable and close with a short **Sources and assumptions** note.
 
 ### 2.14.25 (2026-11-19)
 

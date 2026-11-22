@@ -58,6 +58,10 @@ skills/your-skill-name/
 - Add examples of inputs and outputs
 - Cover common edge cases
 
+### 6. Output order: deliverable first, sources and assumptions last
+
+When a skill produces an audit, draft, plan, or analysis, lead with the finished deliverable rather than setup preamble or disclaimers. Close with a short **Sources and assumptions** note listing what the output relied on (checked files, fetched pages, or tool data with dates) and any assumptions or unverified gaps. Existing skills can adopt this convention as they are updated; do not retrofit every skill in one change.
+
 ## Improving Existing Skills
 
 1. Read the existing skill thoroughly

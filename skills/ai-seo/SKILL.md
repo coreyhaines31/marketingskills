@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to get cited and recommended in AI answers (ChatGPT, Perplexity, AI Overviews), or asks why AI cites a competitor, which content gets cited, or whether llms.txt or a page format is worth it: AEO, GEO, AI visibility, agent-readable sites. For technical and on-page SEO, see seo-audit. For structured data, see schema."
 metadata:
-  version: 2.12.7
+  version: 2.13.0
 ---
 
 # AI SEO
@@ -182,12 +182,14 @@ For each priority page, verify:
 
 Audit AI user agents by purpose. Search-discovery, user-triggered retrieval, model-training, and product-control tokens are not interchangeable:
 
-- **Search discovery:** `OAI-SearchBot` (ChatGPT), `PerplexityBot`, `Claude-SearchBot`, `meta-webindexer` (Meta AI), and the conventional search crawlers that feed an answer product
+- **Search discovery:** `OAI-SearchBot` (ChatGPT), `PerplexityBot`, `Claude-SearchBot`, `meta-webindexer` (Meta AI), and the conventional search crawlers (`Googlebot`, `Bingbot`) that feed an answer product
 - **User-triggered retrieval:** `ChatGPT-User`, `Claude-User`, `Perplexity-User`, and `meta-externalfetcher`; vendor handling can differ from automatic crawlers, so verify the current documentation
 - **Potential model training:** `GPTBot`, `ClaudeBot`, and `meta-externalagent`
 - **Google product control:** `Google-Extended` controls certain Gemini training and grounding uses of content Google already crawls; it does not affect Google Search inclusion or ranking
 
 Default to one wildcard (`User-agent: *`) rule that allows agents, and add named groups only for deliberate exceptions such as a training opt-out; an allowlist of named crawlers silently excludes agent search APIs that run their own crawlers, and a named group replaces the `*` rules for that bot. Check each relevant user-agent group and any WAF or CDN rules separately. A publisher can allow search discovery while disallowing model-development crawlers; do not infer that blocking a training crawler necessarily blocks citations. See [references/platform-ranking-factors.md](references/platform-ranking-factors.md) for the full robots.txt configuration.
+
+Run `node <skill-dir>/scripts/check-ai-crawlers.mjs https://example.com --probe` to inspect `robots.txt` rules per Step 4 user agent and catch CDN or WAF blocks on a sample URL (treat any failed fetch or block as a finding, never bypass it).
 
 ---
 
@@ -457,8 +459,6 @@ Google's guide calls these out explicitly — they hurt across both traditional 
 ## AI SEO by Content Type
 
 For tactical guidance on SaaS product pages, blog content, comparison/alternative pages, documentation, and local/ecom (Google's emphasis on Merchant Center + Business Profile), see [references/content-types.md](references/content-types.md).
-
----
 
 ## Common Mistakes
 
