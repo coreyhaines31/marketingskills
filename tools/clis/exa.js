@@ -62,19 +62,36 @@ function parseArgs(args) {
   return result
 }
 
+// A content flag is a bare flag or `true` (request it) or `false` (don't). Any other
+// value is an error: "false" is a non-empty string, so a plain truthiness check
+// would request the paid content the user turned off.
+function contentFlag(name) {
+  const value = args[name]
+  if (value === undefined) return undefined
+  if (value === true || value === 'true') return true
+  if (value === 'false') return false
+  throw new Error(`--${name} must be true or false (or a bare flag for true)`)
+}
+
 function buildContents(args) {
   const contents = {}
-  if (args.text) {
+  const text = contentFlag('text')
+  const highlights = contentFlag('highlights')
+  const summary = contentFlag('summary')
+  // Exa accepts `false` for text and highlights ("disables text return"); summary is object-only.
+  if (text === false) contents.text = false
+  else if (text) {
     contents.text = args['max-chars']
       ? { maxCharacters: Number(args['max-chars']) }
       : true
   }
-  if (args.highlights) {
+  if (highlights === false) contents.highlights = false
+  else if (highlights) {
     contents.highlights = args['highlight-query']
       ? { query: args['highlight-query'] }
       : true
   }
-  if (args.summary) {
+  if (summary) {
     contents.summary = args['summary-query']
       ? { query: args['summary-query'] }
       : {}
@@ -200,9 +217,9 @@ async function main() {
         error: 'Unknown command',
         usage: {
           answer: 'answer [question | --query <q>] [--model <model>] [--system-prompt <instructions>] [--text true|false] [--output-schema <JSON object>]',
-          search: 'search --query <q> [--type neural|fast|auto|deep-lite|deep|deep-reasoning|instant] [--num <n>] [--category company|research paper|news|personal site|financial report|people] [--include-domains <d1,d2>] [--exclude-domains <d1,d2>] [--include-text <phrases>] [--exclude-text <phrases>] [--start-published <ISO>] [--end-published <ISO>] [--user-location <CC>] [--text] [--highlights] [--summary] [--max-chars <n>] [--highlight-query <q>] [--summary-query <q>] [--output-schema <JSON>] [--objective <text>] [--system-prompt <text>] [--additional-queries <JSON-array>]',
-          'find-similar': 'find-similar --url <url> [--num <n>] [--include-domains <d1,d2>] [--exclude-domains <d1,d2>] [--start-published <ISO>] [--end-published <ISO>] [--text] [--highlights] [--summary]',
-          contents: 'contents --urls <url1,url2> [--text] [--highlights] [--summary] [--max-chars <n>] [--highlight-query <q>] [--summary-query <q>]',
+          search: 'search --query <q> [--type neural|fast|auto|deep-lite|deep|deep-reasoning|instant] [--num <n>] [--category company|research paper|news|personal site|financial report|people] [--include-domains <d1,d2>] [--exclude-domains <d1,d2>] [--include-text <phrases>] [--exclude-text <phrases>] [--start-published <ISO>] [--end-published <ISO>] [--user-location <CC>] [--text [true|false]] [--highlights [true|false]] [--summary [true|false]] [--max-chars <n>] [--highlight-query <q>] [--summary-query <q>] [--output-schema <JSON>] [--objective <text>] [--system-prompt <text>] [--additional-queries <JSON-array>]',
+          'find-similar': 'find-similar --url <url> [--num <n>] [--include-domains <d1,d2>] [--exclude-domains <d1,d2>] [--start-published <ISO>] [--end-published <ISO>] [--text [true|false]] [--highlights [true|false]] [--summary [true|false]]',
+          contents: 'contents --urls <url1,url2> [--text [true|false]] [--highlights [true|false]] [--summary [true|false]] [--max-chars <n>] [--highlight-query <q>] [--summary-query <q>]',
           options: '--dry-run (preview request without sending)',
         }
       }
