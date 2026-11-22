@@ -24,7 +24,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
 | emails | 2.1.9 | 2026-11-19 |
-| events | 1.0.3 | 2026-11-09 |
+| events | 1.0.4 | 2026-11-22 |
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.8 | 2026-11-19 |
 | influencer-marketing | 1.4.4 | 2026-11-19 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-22)
+
+- **events** (1.0.3 → 1.0.4): Hosting gains a short paragraph on getting speakers, attendees, and sponsors to announce the event from their own accounts, with the free design-template path and a pointer to the registry's Event Promotion category. Names no tool. Contributed by Attendir's maker (disclosed in the PR).
 
 ### 2.14.25 (2026-11-19)
 
