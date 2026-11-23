@@ -39,6 +39,19 @@ Each follow-up must stand alone while building toward the goal. Never just "bump
 
 Add only **one new value proposition per email** (SalesBread). This naturally forces different angles.
 
+### When You Have More Steps Than Proof
+
+Don't repeat a proof point within a sequence. A reader who meets the same case study in emails 1 and 4 learns you have nothing else.
+
+With three proof points and five steps, the other steps carry a different kind of value:
+
+- How it works, in one sentence
+- A question about their current setup that they can answer in a line
+- A resource that is useful whether or not they reply
+- The breakup
+
+This holds for every sequence you write, including each segment's sequence when you are writing several.
+
 ## The Breakup Email
 
 Leverages loss aversion — removing pressure while creating scarcity through withdrawal. Close.com reports **10–15% response rates** from breakup emails with cold prospects.

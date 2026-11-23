@@ -132,6 +132,22 @@
         "Logs the reply in the CRM with channel and sequence step"
       ],
       "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "We sell payroll software. I have a list split into three segments: CFOs at 500+ employee companies, HR managers at 50-200 employee companies, and founders under 50 employees. Proof points: Northwind cut payroll corrections 70%, Halden closed their audit with zero payroll findings, and setup takes one afternoon. Write a 4-email sequence for each segment that I can load into Instantly.",
+      "expected_output": "Should write three distinct sequences. Each segment opens on a problem that segment would name (audit exposure for CFOs, correction workload for HR managers, time for founders), leads with the proof point closest to it, and sizes the ask to the reader. Applying the swap test, an email from one segment should read wrong under another segment's name. Within each sequence no proof point is repeated; with three proof points and four steps, one step carries a different kind of value (how it works, a question, a resource) and the last is a breakup. Shared elements are limited to product facts, sender, offer, and the opt-out line. Should not invent proof or segment facts.",
+      "assertions": [
+        "Writes a separate sequence for each of the three segments",
+        "Each segment opens on a different problem specific to that segment",
+        "Each segment leads with a different proof point",
+        "The ask differs by seniority of the reader",
+        "No proof point is repeated within a sequence",
+        "A step without a proof point carries a different kind of value, not a repeat",
+        "Does not reuse one body with the segment name swapped",
+        "Invents no proof points or segment facts"
+      ],
+      "files": []
     }
   ]
 }
