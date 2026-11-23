@@ -185,6 +185,20 @@
         "Explains grounding queries are Bing's interpretation, not the user's exact words, and lists the report's limits"
       ],
       "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "Our pricing page says 14-day trial but I'm pretty sure the FAQ and our help center chatbot say something else. Before we start tracking what ChatGPT says about us, how do we check our own stuff is consistent?",
+      "expected_output": "Should load references/fact-consistency.md. Should pick a short list of buying-decision facts (trial, price and billing unit, plans, integrations, security, contract terms), list every surface that states them (pricing, FAQ, help center, terms, old blog posts, structured data and llms.txt, the site chatbot, profiles), and record exact quotes with URL and date rather than paraphrases, including 'not stated'. Should classify mismatches (conflict, stale, scope drift, omission, absolute vs. qualified, unsupported, machine vs. human), name a source of truth and owner per fact (billing config for the trial, not the marketing page), and keep a claims ledger. Should ask the chatbot both list and yes/no questions and ask for qualifiers, several runs each. Should fix from the source outward and send price, contract, and compliance wording to its owner before it ships.",
+      "assertions": [
+        "Loads the fact-consistency reference",
+        "Records exact quotes with URL and capture date, not paraphrases",
+        "Includes the site chatbot and machine-readable copies as surfaces",
+        "Names a source of truth per fact other than the marketing page",
+        "Asks the chatbot both list and yes/no questions",
+        "Sends price, contract, or compliance wording to its owner before publishing"
+      ],
+      "files": []
     }
   ]
 }

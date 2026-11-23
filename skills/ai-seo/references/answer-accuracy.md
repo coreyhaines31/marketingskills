@@ -59,7 +59,7 @@ Weight severity by exposure too: a medium error that appears in every run of you
 The answer is downstream of what the model retrieved or learned. Rewriting your homepage copy rarely fixes a claim that comes from a stale third-party review.
 
 1. **Trace it.** Search the claim's wording, check which sources the engine cited for that answer, and look for the page where the wrong fact lives.
-2. **Fix your own sources.** State the correct fact plainly on the page that should own it, with a date: pricing page, docs, changelog, comparison page, help center. Remove or redirect the outdated page. Update feeds and structured data that carry the same fact.
+2. **Fix your own sources.** State the correct fact plainly on the page that should own it, with a date: pricing page, docs, changelog, comparison page, help center. Remove or redirect the outdated page. Update feeds and structured data that carry the same fact. If your own pages disagree with each other, settle that first with the check in [fact-consistency.md](fact-consistency.md).
 3. **Fix your profiles.** G2, Capterra, app marketplaces, Crunchbase, LinkedIn, and partner directories often hold the stale version.
 4. **Ask third parties for factual corrections only.** Send the publisher the correct fact and a source. Don't ask them to remove legitimate criticism.
 5. **Retest** the same prompts after a set observation window (4–8 weeks is a reasonable starting point), with a few controlled variants. Report movement over time; one clean run proves nothing.
