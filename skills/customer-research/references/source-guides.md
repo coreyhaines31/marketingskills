@@ -263,6 +263,27 @@ High-signal for consumer products with visual/lifestyle appeal.
 - "I switched from X" comments = switching triggers
 - Complaints about price, missing features, or broken promises
 
+### Sorting a Comment Thread
+
+Comments under a video or post are short, unprompted, and mixed. Sort them before clustering, so a joke and a buying question don't land in the same theme:
+
+| Bucket | Looks like | Feeds |
+|--------|-----------|-------|
+| Questions | "Does this work with…?" | FAQ, unclear positioning |
+| Objections | "Too expensive for what it does" | Objection handling, pricing page |
+| Complaints | "Mine stopped working after a month" | Pain language, product feedback |
+| Confusion | "Wait, is this an app or a service?" | Messaging clarity |
+| Requests | "Wish it did X" | Feature and content ideas |
+| Buying intent | "Where can I get this?" | Demand signals, offer |
+| Debate | Two sides arguing in replies | Angles, where the market disagrees |
+| Praise | "This saved me hours" | Proof language |
+
+Jokes and memes tell you the culture, not the need; note them and move on. Then apply the theme scoring in the main skill (frequency and intensity, with the exact wording kept).
+
+Two cautions. The most-liked comments are the most agreeable or the funniest, not the most representative, so read past the top. And commenters are an audience, not a customer list: use what they say in aggregate, and don't collect who said it.
+
+For pulling comments at volume, see the [ScrapeCreators guide](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/scrapecreators.md).
+
 ### YouTube Comments (Consumer)
 
 Same approach as B2B but different video types:
