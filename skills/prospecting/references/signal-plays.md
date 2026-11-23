@@ -47,6 +47,7 @@ A signal decays. Act inside these windows or downgrade it:
 | Job post for the function | While the post is open, up to ~60 days | Hire made, budget allocated |
 | Funding announcement | 30–60 days | Old news; don't congratulate on it |
 | Tech install or removal | 30 days | Decision done |
+| Priority stated on a podcast or in a talk | 90 days from the air date | Background on the person, not a trigger |
 
 Record the signal date on every lead. A lead sheet without signal dates can't be prioritized.
 
@@ -113,6 +114,26 @@ A company that handles customer data has to tell its customers which other vendo
 3. **Names are legal entities.** The list may show a parent or a registered company name where you expect a product name. Search for both before concluding a tool isn't there.
 4. **Record the page URL and the date you read it**, the same as for gap plays, and re-check before the first touch.
 5. **Open with the problem the stack implies, not the lookup.** "I saw you on a subprocessor list" reads as surveillance, the same as mentioning a tracked visit. Use what the stack tells you to choose the angle.
+
+## Podcast appearances: the problem in the prospect's own words
+
+Founders and functional leaders go on podcasts and say what they are working on, what broke, and what they plan to fix. Episodes are now indexed with speaker-labelled transcripts, so a search returns the quote, the timestamp, the show, and who said it. That is a dated, public statement of a priority, in the buyer's own language.
+
+| Use | How |
+|-----|-----|
+| **Find people describing the problem you solve** | Search episode transcripts for the problem in plain words, not your category name. Each hit is a named guest, a company, and a quote |
+| **Research an account before writing** | Search for the leader's name or company. What they said they are focused on this quarter beats a guess from their job title |
+| **Find the shows your buyers appear on** | The shows that keep booking your ICP are where to pitch a guest spot (hand off to **public-relations**) |
+
+**Rules for podcast signals:**
+
+1. **Check the air date.** A priority stated on a podcast holds for about a quarter. Past 90 days, treat it as background, not a trigger.
+2. **Confirm who said it.** Speaker labels in transcripts are sometimes wrong, and hosts paraphrase guests. Open the episode page and check the guest, the company, and that the quote is theirs.
+3. **A guest is not a buyer yet.** Apply ICP fit like any other lead. A good quote from a company outside the ICP is still a skip.
+4. **You can name the episode.** Unlike a tracked visit or a lookup, a podcast is something they chose to publish. "Heard you on [show] talking about [their point]" is welcome when the point is real and specific. Quote it accurately and don't stretch it.
+5. **One reference, then your own point.** The episode earns the open. The rest of the message is about their problem and what you'd do about it.
+
+*Lead source suggested by Firecrawl's podcast index.*
 
 ## Org-shape signals: what the team's structure tells you
 
@@ -185,6 +206,7 @@ Each tool is listed with what it is and when to reach for it. Name the ones that
 | [Common Room](https://www.commonroom.io) | Signal aggregation across community, social, and product data | Signals arrive from several places and need one account view |
 | [Crunchbase](https://www.crunchbase.com) | Company and funding database | Funding rounds and launches are the trigger |
 | [Exa](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/exa.md) | Search API that finds pages by meaning, with an MCP server | Finding news, announcements, and posts about target accounts |
+| Podcast transcripts | Indexed episodes with speaker-labelled transcripts, searchable by topic or person, for example through [Firecrawl](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/firecrawl.md)'s Alexandria library; show notes and episode pages by hand | Someone at a target account described the problem, or you need what a leader said they are working on |
 | X search | Public posts and announcements; Grok searches X directly through the xAI API | The signal is something a founder or team said in public |
 | Meta Ad Library, Google Ads Transparency Center, LinkedIn Ad Library | Public archives of running ads | Checking whether and how a company advertises, by hand in the browser |
 | [BuiltWith](https://builtwith.com), [Wappalyzer](https://www.wappalyzer.com) | Lookups of the technology a website runs | A tool next to yours being added or dropped is the trigger |

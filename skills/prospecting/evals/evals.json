@@ -215,6 +215,20 @@
         "Applies ICP fit to the hits"
       ],
       "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "A VP of Support at one of our target accounts was a guest on a podcast last month and spent ten minutes on how their team can't keep up with ticket volume. We sell support automation. How should I use that?",
+      "expected_output": "Should treat the appearance as a dated, public signal of a priority in the buyer's own words. Should say to open the episode page and confirm the guest, the company, the air date, and that the quote is theirs, since transcripts mislabel speakers and hosts paraphrase. Should check the account still fits the ICP. Should note the signal is fresh (about a quarter from the air date). Should say the episode can be named in the opener because it is something they published, unlike a tracked visit, and that the quote must be accurate and not stretched. Should give one reference to the episode and then move to their problem and a specific point of view. Should not invent what was said.",
+      "assertions": [
+        "Treats the appearance as a timing signal with a freshness window",
+        "Says to verify the speaker, company, date, and quote on the episode page",
+        "Checks ICP fit",
+        "Says the episode can be referenced openly, with an accurate quote",
+        "Keeps the reference to one line and moves to the prospect's problem",
+        "Does not fabricate the quote"
+      ],
+      "files": []
     }
   ]
 }
