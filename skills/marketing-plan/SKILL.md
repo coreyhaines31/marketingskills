@@ -2,7 +2,7 @@
 name: marketing-plan
 description: "When the user wants a full marketing or go-to-market plan for a client, an advised company, or their own product, or asks how to sequence or prioritize several initiatives with a fixed team and budget: channels, budget, team, goals across AARRR, market sizing. For positioning first, see product-marketing. For ideas only, see marketing-ideas."
 metadata:
-  version: 1.2.6
+  version: 1.2.7
 ---
 
 # Marketing Plan
@@ -100,6 +100,18 @@ When the plan defines stage metrics, every rate divides matching closed
 windows: an activation rate counts only cohorts whose observation window has
 ended (a trial still inside its window is pending, not failed — keep it out of
 the denominator and label it pending).
+
+When the request fixes the shape of an allocation (exactly three channels, a
+stated total), the allocation is exactly those lines summing to exactly that
+total. Carve the experimental layer inside a channel's line and name it in
+the rationale ("$800 of the $5,000 paid-social line is held for creative
+tests"). A separate reserve row makes the channels sum to less than the total.
+
+When the request supplies a positioning line, quote it once in full and reuse
+its own words in each channel's message. A paraphrase that drops its terms
+reads as a different positioning; an angle that departs from it on purpose is
+labeled as the challenger. Every roadmap phase, the last included, names what
+ships and what it depends on.
 
 ## Marketing as investing — the north-star framing
 
