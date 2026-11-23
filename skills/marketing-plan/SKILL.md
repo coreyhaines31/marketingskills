@@ -106,6 +106,8 @@ stated total), the allocation is exactly those lines summing to exactly that
 total. Carve the experimental layer inside a channel's line and name it in
 the rationale ("$800 of the $5,000 paid-social line is held for creative
 tests"). A separate reserve row makes the channels sum to less than the total.
+This takes precedence over adding an experimental budget "on top" (below),
+which applies when the total is yours to set.
 
 When the request supplies a positioning line, quote it once in full and reuse
 its own words in each channel's message. A paraphrase that drops its terms
