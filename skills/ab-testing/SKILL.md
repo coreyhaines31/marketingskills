@@ -2,7 +2,7 @@
 name: ab-testing
 description: "When the user wants to plan, run, or read A/B tests, or asks a judgement call on one: is the result real, can we stop, which version won, is this worth testing at all: sample size, duration, significance, hypotheses, and experiment backlogs. For tracking setup, see analytics. For page-level conversion fixes, see cro."
 metadata:
-  version: 2.0.7
+  version: 2.0.8
 ---
 
 # A/B Test Setup
@@ -137,6 +137,7 @@ When a change only reaches visitors who interact with it (a hero video, a calcul
 - Single, meaningful change
 - Bold enough to make a difference
 - True to the hypothesis
+- In a factorial design (two headlines × two images), cells that share a level are identical on it. Write the shared element once and reuse it word for word. A cell that also changes structure, staging, or adds a claim confounds the factor it was meant to isolate
 
 ---
 
