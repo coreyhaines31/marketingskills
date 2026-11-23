@@ -16,7 +16,7 @@ The closer the signal is to your product and your past customers, the better it 
 | 4 | **Engagement with you or a competitor**: comments on your posts or a competitor's, community questions | Public interest in the problem | Trigify, Common Room, social listening |
 | 5 | **Hiring in the function you serve**, or a new leader in it | New budget and a mandate to change things | Job boards (TheirStack, PredictLeads), LinkedIn |
 | 6 | **Funding, launches, expansion** | Budget, plus pressure to grow fast | Crunchbase, news, press releases |
-| 7 | **Tech stack changes**: adding or dropping a tool next to yours | A related decision is in motion | BuiltWith, Wappalyzer, job-post tech mentions |
+| 7 | **Tech stack changes**: adding or dropping a tool next to yours | A related decision is in motion | BuiltWith, Wappalyzer, job-post tech mentions, subprocessor lists |
 | 8 | **Generic third-party intent** | Weakest, and noisy | Bombora-style intent feeds, review-site intent |
 
 Stack signals before acting on the weaker ones. Hiring a lifecycle marketer **plus** an ESP in the stack **plus** a fit score above your threshold is worth a sequence. Any one of those alone usually isn't.
@@ -92,6 +92,28 @@ The strongest services and tooling plays pair two things: a signal that the comp
 
 Searching for these by hand is slow, which is why the plays used to be rare. Agents with web, ad-library, and X search access (Grok, for example, searches X directly) can build the list. A human still reviews the evidence for Tier 1 and a sample for Tier 2. Once a play gets replies, run it on a schedule with the signal-sweep loop in the marketing-loops skill.
 
+## Subprocessor lists: a stack the company publishes itself
+
+A company that handles customer data has to tell its customers which other vendors process that data. Most publish the list on a subprocessors page, linked from the DPA (data processing agreement), the privacy policy, or a trust center. It is a first-party record of part of the stack, with each vendor's name, what it is used for, and often where the data sits. No tag-sniffing or guessing from job posts is involved.
+
+**Three ways to use it:**
+
+| Use | How |
+|-----|-----|
+| **Find accounts by a tool they use** | Search for pages that name the vendor as a subprocessor: `"subprocessors" "<vendor>"` or `intitle:subprocessors "<vendor>"`. Every hit is a company that says, in a legal document, that it uses that vendor |
+| **Qualify an account you already have** | Open its subprocessors page before writing. It shows whether a tool in your category is already in place, and which neighbouring tools yours would have to work with |
+| **Catch a change** | A vendor added or dropped is a dated tech-stack signal. Many pages show a "last updated" date or let anyone subscribe to change notices by email, which turns the page into an alert. Compare against a saved copy or a web archive snapshot when there is no date |
+
+**Where to look:** `/subprocessors`, `/legal/subprocessors`, `/dpa`, `/trust`, a `trust.` subdomain, or the privacy policy's section on third parties. Larger companies list them per product.
+
+**Rules for subprocessor lists:**
+
+1. **It is a partial stack.** The list covers vendors that process the company's *customers'* personal data: hosting, email delivery, support desks, product analytics, AI model providers, payments. Tools the company uses on its own behalf, such as its CRM or ad platforms, are usually absent. It suits offers that sit in or next to the product, and is weak evidence for sales and marketing tools.
+2. **Absence proves nothing.** A vendor missing from the list may be used in a way that touches no customer data, or the page may be out of date.
+3. **Names are legal entities.** The list may show a parent or a registered company name where you expect a product name. Search for both before concluding a tool isn't there.
+4. **Record the page URL and the date you read it**, the same as for gap plays, and re-check before the first touch.
+5. **Open with the problem the stack implies, not the lookup.** "I saw you on a subprocessor list" reads as surveillance, the same as mentioning a tracked visit. Use what the stack tells you to choose the angle.
+
 ## Org-shape signals: what the team's structure tells you
 
 Funding and job posts are events, and every vendor sees them. These signals come from the shape of the team: who is there, who just left, and what doesn't match other companies of the same size. Fewer senders act on them.
@@ -166,6 +188,7 @@ Each tool is listed with what it is and when to reach for it. Name the ones that
 | X search | Public posts and announcements; Grok searches X directly through the xAI API | The signal is something a founder or team said in public |
 | Meta Ad Library, Google Ads Transparency Center, LinkedIn Ad Library | Public archives of running ads | Checking whether and how a company advertises, by hand in the browser |
 | [BuiltWith](https://builtwith.com), [Wappalyzer](https://www.wappalyzer.com) | Lookups of the technology a website runs | A tool next to yours being added or dropped is the trigger |
+| Subprocessor and DPA pages | A company's own published list of the vendors that process its customers' data | Confirming an account uses a named vendor, or catching one being added or dropped. Free, by search |
 | Your own analytics and billing events | Product usage, sent to the CRM by webhook | The signal is a signup, a limit hit, or a team invite |
 
 Setup guides for TheirStack, Clay, RB2B, and Exa are in the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md). For the others, use the vendor's own docs, and check what each one offers an agent before planning around it. A scheduled sweep of these sources is the signal-sweep loop in the marketing-loops skill.
