@@ -118,7 +118,7 @@ Most outbound is loaded into a sending tool as one sequence per segment, with me
 
 - **The problem they would name.** A CFO feels the audit exposure; a payroll manager feels the Friday corrections. Open on theirs, in their words
 - **The proof closest to them.** Same industry, size, or role first. With only a few proof points, give each segment a different one to lead with
-- **The ask, sized to the reader.** An executive gets a one-line question. An operator may take a walkthrough
+- **The ask, sized to the reader.** An executive gets a one-line question. An operator can be offered something more concrete, such as a short walkthrough, in a later step. The first touch stays low-friction for everyone
 
 **The swap test:** read one segment's email under another segment's name. If it still fits, you wrote one email. Rewrite until each would be wrong for the other.
 

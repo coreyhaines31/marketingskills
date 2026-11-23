@@ -70,7 +70,7 @@ Before creating a sequence, understand:
 
 When one flow runs for several segments, each segment's version differs in substance: the situation it opens on, the example or proof it uses, and the next step it asks for. A version that changes only the greeting or one noun is the same email sent twice. Test it by reading one segment's email under another segment's name. If it still fits, rewrite it.
 
-Within a sequence, each email brings something the one before didn't. Don't reuse a proof point or example in a later email.
+Within a sequence, each email brings something the one before didn't. A proof point or example that already appeared comes back only when the later email adds to it.
 
 ### 4. Clear Path Forward
 - Every email moves them somewhere
