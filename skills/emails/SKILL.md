@@ -2,7 +2,7 @@
 name: emails
 description: "When the user wants to create or improve automated email sequences, or asks what to send, when, or whether an email or flow is working: welcome, onboarding, nurture, and win-back flows. No AI tells like 'it's not X, it's Y', 'no X, no Y, no Z' lists, or fake 'Re:' subject lines. For cold outreach, see cold-email. For in-app onboarding, see onboarding. For texts, see sms."
 metadata:
-  version: 2.1.10
+  version: 2.1.11
 ---
 
 # Email Sequence Design
@@ -67,6 +67,10 @@ Before creating a sequence, understand:
 - Fewer, better emails win
 - Segment for relevance
 - Quality > frequency
+
+When one flow runs for several segments, each segment's version differs in substance: the situation it opens on, the example or proof it uses, and the next step it asks for. A version that changes only the greeting or one noun is the same email sent twice. Test it by reading one segment's email under another segment's name. If it still fits, rewrite it.
+
+Within a sequence, each email brings something the one before didn't. A proof point or example that already appeared comes back only when the later email adds to it.
 
 ### 4. Clear Path Forward
 - Every email moves them somewhere

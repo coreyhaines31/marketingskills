@@ -12,6 +12,8 @@ First name, company name, job title. Table stakes, no longer differentiating. ~5
 
 Industry-specific pain points, trends, regulatory challenges. Scalable via micro-segmentation.
 
+At this level the segment is the personalization, so the whole email is written for it: the problem it opens on, the proof it uses, and the ask. Changing only the industry name in a shared body is Level 1 with a longer merge tag. See "Writing for a List" in the skill.
+
 > Most {{industry}} teams struggle with {{lead gen problem}}, which often leads to wasted effort.
 
 ### Level 3 — Role-level
@@ -48,7 +50,7 @@ From "30 Minutes to President's Club":
 
 **Step 3:** Create 5 "trigger templates" — pre-written personalization paragraphs for each trigger, with a smooth segue into the problem.
 
-The personalization must logically connect to the problem. This creates 5 reusable triggers with the rest of the email constant. A top SDR writes a personalized email in **under 3 minutes**.
+The personalization must logically connect to the problem. This creates 5 reusable triggers with the rest of the email constant within one segment. Across segments, the problem and proof change too. A top SDR writes a personalized email in **under 3 minutes**.
 
 ## The Four -Graphic Principles (Becc Holland)
 

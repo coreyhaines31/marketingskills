@@ -2,7 +2,7 @@
 name: cold-email
 description: "When the user wants to write or run B2B cold outbound, or asks whether an opener, reason to reach out, or email works or why nobody replies: cold emails, follow-ups, sending domains, deliverability, LinkedIn, cadences. Send from secondary domains, verify lists first, turn off open tracking, stop every channel when a prospect replies. No AI tells like 'it's not X, it's Y'. For the list, see prospecting. For lifecycle email, see emails. For call scripts, see sales-enablement."
 metadata:
-  version: 2.2.7
+  version: 2.3.0
 ---
 
 # Cold Email Writing
@@ -107,6 +107,26 @@ Each follow-up should add something new — a different angle, fresh proof, a us
 - The breakup email is your last touch — honor it
 
 See [follow-up-sequences.md](references/follow-up-sequences.md) for cadence, angle rotation, and breakup email templates.
+
+---
+
+## Writing for a List
+
+Most outbound is loaded into a sending tool as one sequence per segment, with merge fields. Write each segment's sequence for that segment. One sequence copied across segments with a noun changed is the "template with fields swapped in" this skill exists to prevent, at a larger scale.
+
+**Decide three things for each segment before writing:**
+
+- **The problem they would name.** A CFO feels the audit exposure; a payroll manager feels the Friday corrections. Open on theirs, in their words
+- **The proof closest to them.** Same industry, size, or role first. With only a few proof points, give each segment a different one to lead with
+- **The ask, sized to the reader.** An executive gets a one-line question. An operator can be offered something more concrete, such as a short walkthrough, in a later step. The first touch stays low-friction for everyone
+
+**The swap test:** read one segment's email under another segment's name. If it still fits, you wrote one email. Rewrite until each would be wrong for the other.
+
+**What can stay the same:** the product facts, the sender, the offer, the opt-out line and address. What can't: the opening problem, the angle, and how the ask is put.
+
+Follow-ups hold to the same standard inside each sequence: every step brings something the last one didn't, and no proof point appears twice. If you have fewer proof points than steps, see [follow-up-sequences.md](references/follow-up-sequences.md#when-you-have-more-steps-than-proof).
+
+If the facts give you no distinct problem or proof for a segment, say so in your notes. Don't manufacture a difference.
 
 ---
 
