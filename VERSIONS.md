@@ -4,10 +4,10 @@ Current versions of all skills. Agents can compare against local versions to che
 
 | Skill | Version | Last Updated |
 |-------|---------|--------------|
-| ab-testing | 2.0.7 | 2026-11-09 |
-| ad-creative | 2.13.5 | 2026-11-19 |
+| ab-testing | 2.0.8 | 2026-11-23 |
+| ad-creative | 2.13.6 | 2026-11-23 |
 | ai-seo | 2.12.7 | 2026-11-19 |
-| analytics | 2.2.7 | 2026-11-19 |
+| analytics | 2.2.8 | 2026-11-23 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
@@ -19,11 +19,11 @@ Current versions of all skills. Agents can compare against local versions to che
 | content-strategy | 2.1.8 | 2026-11-09 |
 | conversion-tracking | 1.0.6 | 2026-11-09 |
 | copy-editing | 2.2.4 | 2026-11-09 |
-| copywriting | 2.3.6 | 2026-11-17 |
+| copywriting | 2.3.7 | 2026-11-23 |
 | cro | 2.0.6 | 2026-11-09 |
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
-| emails | 2.1.9 | 2026-11-19 |
+| emails | 2.1.10 | 2026-11-23 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.8 | 2026-11-19 |
@@ -34,7 +34,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
 | marketing-loops | 1.9.0 | 2026-11-19 |
-| marketing-plan | 1.2.6 | 2026-11-19 |
+| marketing-plan | 1.2.7 | 2026-11-23 |
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
 | onboarding | 2.0.5 | 2026-11-09 |
@@ -54,11 +54,23 @@ Current versions of all skills. Agents can compare against local versions to che
 | seo-audit | 2.2.9 | 2026-11-19 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
-| sms | 1.1.4 | 2026-11-19 |
+| sms | 1.1.5 | 2026-11-23 |
 | social | 2.6.0 | 2026-11-19 |
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-23)
+
+Rules written on Magister's fork of this pack, ported back so every install gets them (#1041).
+
+- **emails** (2.1.9 → 2.1.10): a new "Correcting an Existing Sequence" section (change what the facts contradict, keep what they support); when the request fixes the output, deliver only that; a subject line is a claim read on its own.
+- **copywriting** (2.3.6 → 2.3.7): four ways an unsupported claim gets back into copy (a dropped condition, an implication stated as fact, a softer version of a declined claim, an unsupplied credential); the deliverable takes the form requested; on a built page the primary CTA works.
+- **ab-testing** (2.0.7 → 2.0.8): in a factorial design, cells that share a level are identical on it.
+- **sms** (1.1.4 → 1.1.5): every message states its one action in words.
+- **analytics** (2.2.7 → 2.2.8): findings are observed, causes are hypotheses, and "clean" means every documented standard.
+- **ad-creative** (2.13.5 → 2.13.6): visual direction and audience insight are claims; an approved CTA is used verbatim.
+- **marketing-plan** (1.2.6 → 1.2.7): a fixed allocation shape is honored exactly; a supplied positioning line is reused in its own words.
 
 ### 2.14.25 (2026-11-19)
 

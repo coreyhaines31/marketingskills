@@ -2,7 +2,7 @@
 name: analytics
 description: "When the user wants to set up or audit analytics, or asks whether a metric or number is calculated right, what to track, or how to name events: tracking plans, GA4, GTM, Mixpanel, PostHog, UTMs. Rate metrics divide matching closed windows, never full-period spend by partial-period results. For conversions in ad platforms, see conversion-tracking. For attribution or platforms that over-claim, see attribution. For tests, see ab-testing."
 metadata:
-  version: 2.2.7
+  version: 2.2.8
 ---
 
 # Analytics Tracking
@@ -70,6 +70,21 @@ Before implementing tracking, understand:
   from the goal the brief states — the launch target, audience, revenue, or
   positioning objective — not only from what is operationally easiest.
   Name which stated goal each option serves and what it trades away.
+
+### 8. Findings Are Observed, Causes Are Hypotheses
+- A finding is something you can point at: the link, tag, trigger, setting,
+  or row that breaks a documented standard. Report it with its location and
+  the standard it breaks.
+- The symptom a defect would explain (a dip, a gap between two tools, a
+  count that looks wrong) is a hypothesis until the data shows the
+  mechanism. Write "consistent with" or "would explain," and name what would
+  confirm it: a date range to compare, a tag to fire in debug mode, a report
+  to pull.
+- Something is clean only when it meets every documented standard,
+  including each list of allowed values. A `utm_source` that is well-formed
+  but not on the permitted list fails. Check item by standard as a matrix, with a script
+  when there are more than a handful of items, and move anything that is
+  "fine, with a note" to the findings.
 
 ---
 

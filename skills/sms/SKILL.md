@@ -2,7 +2,7 @@
 name: sms
 description: "When the user wants SMS, MMS, or WhatsApp marketing, or asks whether texting is worth it or a message is allowed: abandoned cart, win-back, and promo texts, WhatsApp templates and windows, TCPA and A2P 10DLC compliance, SMS vs email. For email, see emails. For phone capture popups, see popups."
 metadata:
-  version: 1.1.4
+  version: 1.1.5
 ---
 
 # SMS Marketing
@@ -139,6 +139,8 @@ The recipient gave you their phone number. Every send should pass: "would I be g
 
 ### 5. One CTA, one link
 Short links are mandatory (`klvy.co`, `txt.attn.tv`, branded short domain). Track UTM params on every link.
+
+Every marketing message states its one action in words, such as "Reply YES" or "Claim it:" before the link. The sender line, the price, and the compliance text ("Reply STOP to opt out") are not the ask, and a message that carries only those has no CTA. Transactional messages (a shipping update, a login code) are exempt. When the text is one placement in a campaign, it carries the same single ask as the email and the ad.
 
 ### 6. Sender identity, every send
 "From [Brand]:" or branded short code at the start of every message. Even on automated flows. Recipients can't see "from" address — they need it inline.

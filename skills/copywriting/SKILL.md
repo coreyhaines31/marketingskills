@@ -2,7 +2,7 @@
 name: copywriting
 description: "When the user wants to write or rewrite page copy (homepage, landing, pricing, feature), or asks which headline, promise, or message to lead with. Diagnoses the input first (blank brief, real voice, or point edit) and changes only what it calls for. Claims must be supportable; a declined claim names the evidence that would unlock it. No AI tells like 'it's not X, it's Y' or 'no X, no Y, no Z'. For editing, see copy-editing. For emails, see emails. For the offer, see offers."
 metadata:
-  version: 2.3.6
+  version: 2.3.7
 ---
 
 # Copywriting
@@ -106,6 +106,15 @@ exactly what evidence would unlock the original — a customer-review export,
 a written guarantee policy, a certification, a citable study or dataset.
 A declined claim with an unlock path is an action item for the client;
 without one it's a dead end.
+
+Four ways an unsupported claim gets back into the copy:
+
+- **A condition dropped from a fact.** "Up to 40% off annual plans" can't become "Up to 40% off" in the headline with the condition in a footnote. The headline is read alone. Cutting hedges ("almost," "very") never means cutting a fact's own condition.
+- **An implication stated as a fact.** "Syncs every hour" doesn't supply "always up to date." "SOC 2 Type II" doesn't supply "bank-grade security." Write what the source states. The same goes for absolutes ("every," "always," "zero"), which need a source that states them.
+- **A softer version of a declined claim.** A review count you can't cite doesn't return as "trusted by many," or a guarantee as "usually there fast." If a line only works because the reader infers the declined claim, it is the declined claim.
+- **A credential nobody supplied.** "Licensed," "certified," "expert," and "trained" are claims about the people. With no credential in the source, describe what the service does and leave out who does it.
+
+A rationale or annotation is held to the same standard as the copy it explains.
 
 ---
 
@@ -250,6 +259,18 @@ Examples:
 - "Get the Complete Checklist"
 - "See Pricing for My Team"
 
+### On a Page You Build, the CTA Works
+
+When the deliverable is a built page (HTML, a component, a template), the primary CTA is a control a visitor can use: a link to the destination the brief or brand supplies (a URL, or `tel:` / `mailto:` when that is what the brief gives), or a form's own submit button. A placeholder (`#`, `example.com`, "TBD") is not a destination.
+
+With no destination supplied:
+
+- Link the CTA to a section the page already has, such as its closing "next step" section, and repeat the CTA there
+- Keep a form's fields, submit button, and `method="post"`, and don't script a fake success state
+- Tell the owner which link or form `action` to swap, in a code comment or the hand-off note, where the visitor won't read it
+
+Never ship the CTA disabled, or beside copy saying the action is unavailable, because you lack a URL. A limit the brief states (a date, a region, a waitlist) is a fact and stays next to the CTA. A missing URL is a note for the owner, and never a reason to invent one.
+
 ---
 
 ## Page-Specific Guidance
@@ -305,6 +326,8 @@ Maintain consistency, but adjust intensity:
 ## Output Format
 
 For a point edit (Situation C), return only the changed lines with a one-line reason each. Skip the annotations and alternatives below unless asked.
+
+When the request fixes the form of the deliverable (only a complete HTML document, exactly these sections, a table with this many rows), deliver that form and nothing else. An HTML document starts at `<!DOCTYPE html>` and ends at `</html>`, with no code fence, preamble, or commentary around it. Anything else you need to say goes inside the deliverable or in a separate message.
 
 When writing page copy, provide:
 
