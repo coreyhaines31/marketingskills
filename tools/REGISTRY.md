@@ -54,6 +54,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | semrush | SEO | ✓ | ✓ | [✓](clis/semrush.js) | - | [semrush.md](integrations/semrush.md) |
 | ahrefs | SEO | ✓ | ✓ | [✓](clis/ahrefs.js) | - | [ahrefs.md](integrations/ahrefs.md) |
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
+| dataxapi | Social Data | ✓ | ✓ | ✓ | ✓ | [dataxapi.md](integrations/dataxapi.md) |
 | goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
@@ -371,6 +372,7 @@ Reading public posts, comments, profiles, and trending lists on accounts you don
 |------|--------------|-------|
 | **◆ aisa** | Social data for X, Instagram, Reddit, Pinterest, and YouTube, beside SEO and search APIs | One account, per-call pricing; quotes before running |
 | **apify** | Store Actors for individual sites, including scrapers for some social platforms | Per-Actor pricing; check each Actor's and the platform's terms |
+| **dataxapi** | Posts, comments, accounts, hot lists, keyword indexes, creator marketplaces and ad libraries on 21 platforms, including Douyin, Xiaohongshu, WeChat, Weibo, Bilibili, TikTok, YouTube, X and Reddit | REST + hosted MCP + CLI; per call in dollars from a prepaid balance, failed calls not charged; read-only |
 | **glasser** | Social scraping providers inside a pay-per-call broker of 20+ data vendors, with one provider for Chinese platforms | CLI + MCP; raw provider payloads |
 | **socialtoai** | Posts, comments, profiles, and trending lists on 18 platforms, including Reddit, X, TikTok, Instagram, YouTube, LinkedIn, Xiaohongshu, Douyin, Weibo, Bilibili, and WeChat | Hosted MCP (OAuth or API key) + REST; per call from prepaid credits, failed calls free; read-only |
 
@@ -742,6 +744,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 - **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 - **socialtoai** - Public posts, comments, profiles, and trending lists on 18 social platforms (OAuth or API key)
+- **dataxapi** - Public market data on 21 platforms: posts, comments, hot lists, keyword indexes, creator marketplaces (API key or OAuth)
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
