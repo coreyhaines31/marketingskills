@@ -2,7 +2,7 @@
 name: emails
 description: "When the user wants to create or improve automated email sequences, or asks what to send, when, or whether an email or flow is working: welcome, onboarding, nurture, and win-back flows. No AI tells like 'it's not X, it's Y', 'no X, no Y, no Z' lists, or fake 'Re:' subject lines. For cold outreach, see cold-email. For in-app onboarding, see onboarding. For texts, see sms."
 metadata:
-  version: 2.1.9
+  version: 2.1.10
 ---
 
 # Email Sequence Design
@@ -105,6 +105,7 @@ Consider:
 - Benefit or curiosity-driven
 - 40-60 characters ideal
 - Test emoji (they're polarizing)
+- A subject line is a claim read on its own. Keep a fact's condition in it ("Up to 40% off annual plans," not "Up to 40% off" with the condition in the body), and put nothing in it the source material doesn't support
 
 **Patterns that work:**
 - Question: "Still struggling with X?"
@@ -278,7 +279,21 @@ For the full blacklist, use the **copywriting** skill's AI-tells reference.
 
 ---
 
+## Correcting an Existing Sequence
+
+When the job is to repair or correct a draft, change what is wrong and keep what is right.
+
+- Rewrite or remove only the lines the facts contradict or can't support, plus what the request names (a typo, the tone, the length)
+- Keep everything the facts support: what the product does and for whom, its specifics, the terms of the offer, the structure and timing
+- Add no claim, section, or email the request didn't ask for
+
+A corrected sequence that is accurate but has lost the draft's accurate specifics is a rewrite. The reader lost content nobody asked to remove.
+
+---
+
 ## Output Format
+
+When the request fixes the output ("only the corrected sequence," "return the four emails"), deliver those emails and nothing else: no change log, no list of what you removed, no notes after the last email. Anything else goes in a separate message.
 
 ### Sequence Overview
 ```
