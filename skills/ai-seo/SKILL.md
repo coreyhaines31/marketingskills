@@ -2,7 +2,7 @@
 name: ai-seo
 description: "When the user wants to get cited and recommended in AI answers (ChatGPT, Perplexity, AI Overviews), or asks why AI cites a competitor, which content gets cited, or whether llms.txt or a page format is worth it: AEO, GEO, AI visibility, agent-readable sites. For technical and on-page SEO, see seo-audit. For structured data, see schema."
 metadata:
-  version: 2.12.7
+  version: 2.13.0
 ---
 
 # AI SEO
@@ -17,7 +17,7 @@ Start with this skill's core workflow. Open a reference when the user's question
 |---|---|
 | Why can an agent not read our site? Are bot access, discovery files, or HTML blocking it? Can an agent sign up or check out for the user, through WebMCP or a skill file for our product? | [Agent readiness](references/agent-readiness.md) |
 | AI barely shows up in referrals. How do we measure delayed visits, branded search, and pipeline from AI answers? | [AI attribution](references/ai-attribution.md) |
-| Is AI saying something wrong about our price, features, or limits? How do we find and fix the source? | [Answer accuracy](references/answer-accuracy.md) |
+| Is AI saying something wrong about our price, features, or limits? How do we find and fix the source? Do our pages, docs, and site chat state the same facts? | [Answer accuracy](references/answer-accuracy.md), [Fact consistency](references/fact-consistency.md) |
 | Which vendor does Claude Code or Cursor pick when a user says "deploy this"? How do we become the tool an agent installs mid-task? | [Agent defaults](references/agent-defaults.md) |
 | Why are we cited but absent from the shortlist? Can our own buyer's guide help competitors? How should we measure recommendations? | [Citations vs. recommendations](references/citations-vs-recommendations.md) |
 | How should we structure a definition, comparison, or FAQ? What makes an answer block useful on its own? | [Content patterns](references/content-patterns.md) |

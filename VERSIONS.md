@@ -6,7 +6,7 @@ Current versions of all skills. Agents can compare against local versions to che
 |-------|---------|--------------|
 | ab-testing | 2.0.7 | 2026-11-09 |
 | ad-creative | 2.13.5 | 2026-11-19 |
-| ai-seo | 2.12.7 | 2026-11-19 |
+| ai-seo | 2.13.0 | 2026-11-23 |
 | analytics | 2.2.7 | 2026-11-19 |
 | aso | 2.0.6 | 2026-11-09 |
 | attribution | 1.1.10 | 2026-11-19 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-23)
+
+- **ai-seo** (2.12.7 → 2.13.0): a new `references/fact-consistency.md` for checking that your own pages, docs, terms, structured data, and site chat state buying facts (price, trial, plans, integrations, security, contract terms) the same way, before an answer-accuracy audit. It covers quoting each fact with its URL and date, seven mismatch types, a source of truth and owner per fact, asking your own AI surfaces list and yes/no questions, and a fix order. Linked from the routing table and from `answer-accuracy.md`, with one eval.
 
 ### 2.14.25 (2026-11-19)
 
