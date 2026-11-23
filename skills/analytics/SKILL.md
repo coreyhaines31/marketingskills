@@ -80,9 +80,9 @@ Before implementing tracking, understand:
   mechanism. Write "consistent with" or "would explain," and name what would
   confirm it: a date range to compare, a tag to fire in debug mode, a report
   to pull.
-- Something is clean only when it meets every documented standard, allowed-
-  value lists included. A `utm_source` that is well-formed but not on the
-  permitted list fails. Check item by standard as a matrix, with a script
+- Something is clean only when it meets every documented standard,
+  including each list of allowed values. A `utm_source` that is well-formed
+  but not on the permitted list fails. Check item by standard as a matrix, with a script
   when there are more than a handful of items, and move anything that is
   "fine, with a note" to the findings.
 

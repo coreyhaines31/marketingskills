@@ -140,7 +140,7 @@ The recipient gave you their phone number. Every send should pass: "would I be g
 ### 5. One CTA, one link
 Short links are mandatory (`klvy.co`, `txt.attn.tv`, branded short domain). Track UTM params on every link.
 
-Every message states its one action in words ("Reply YES," "Book here:," "Claim it:"). The sender line, the price, and the compliance text ("Reply STOP to opt out") are not the ask, and a message that carries only those has no CTA. When the text is one placement in a campaign, it carries the same single ask as the email and the ad.
+Every marketing message states its one action in words, such as "Reply YES" or "Claim it:" before the link. The sender line, the price, and the compliance text ("Reply STOP to opt out") are not the ask, and a message that carries only those has no CTA. Transactional messages (a shipping update, a login code) are exempt. When the text is one placement in a campaign, it carries the same single ask as the email and the ad.
 
 ### 6. Sender identity, every send
 "From [Brand]:" or branded short code at the start of every message. Even on automated flows. Recipients can't see "from" address — they need it inline.
