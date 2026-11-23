@@ -10,7 +10,7 @@ Tool selection guide for prospecting across all three branches.
 |------|--------------|-------|
 | **Build initial firmographic list (B2B / SaaS)** | Apollo, ZoomInfo, Clay | Apollo for breadth, ZoomInfo for enterprise + intent, Clay for custom workflows |
 | **Decision-maker mapping** | LinkedIn Sales Navigator (manual), Apollo, ZoomInfo | Sales Nav is the gold standard. Never bulk scrape it. |
-| **Tech stack qualification (SaaS)** | BuiltWith, Wappalyzer | BuiltWith has wider coverage + paid plans for bulk; Wappalyzer is lighter + free for small use |
+| **Tech stack qualification (SaaS)** | BuiltWith, Wappalyzer, the account's own subprocessors page | BuiltWith has wider coverage + paid plans for bulk; Wappalyzer is lighter + free for small use; a subprocessors page is free and first-party but covers only vendors that touch customer data (see signal-plays.md) |
 | **Funding signals (SaaS)** | Crunchbase, Pitchbook | Crunchbase free tier sufficient for early signals; Pitchbook for deeper investor data |
 | **Email pattern discovery** | Hunter, Snov, Apollo | Pattern guessing — followed by verification |
 | **Email deliverability verification** | Truelist, Hunter, NeverBounce, ZeroBounce | Always verify before adding to outreach lists |
@@ -276,6 +276,7 @@ When the user has no paid tools, lean on:
 - **LinkedIn** (manual, no scraping) — company pages, employee lookups
 - **Crunchbase free tier** — funding events
 - **Wappalyzer browser extension** — tech stack at a glance
+- **Subprocessor and DPA pages** — the vendors a company says process its customers' data; search `"subprocessors" "<vendor>"` to find users of a tool
 - **Hunter.io free tier** — 25 lookups/month
 - **Google Maps** — for Local SMB discovery
 - **Business websites + About pages** — primary source for any claim
