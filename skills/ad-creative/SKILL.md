@@ -2,7 +2,7 @@
 name: ad-creative
 description: "When the user wants to write or judge ad creative, or asks which ad, hook, or angle to run or kill: headlines, primary text, and variations for Google, Meta, LinkedIn, and TikTok, fresh angles when creative fatigues. Test hypotheses name the metric, comparison, and expected direction. No AI tells like 'it's not X, it's Y'. For campaign strategy, see ads. For landing pages, see copywriting."
 metadata:
-  version: 2.13.5
+  version: 2.13.6
 ---
 
 # Ad Creative
@@ -96,6 +96,8 @@ outputs/         Dated batch folders (outputs/YYYY-MM-DD/)
 **Grounding rules:**
 - Every concept cites its source (which review, winning ad, or comment it traces to)
 - No invented claims, stats, or testimonials — ever
+- The visual direction, audience insight, and test hypothesis are claims too. A physical attribute, an included item, a dimension, or an audience preference ("the most common objection is price") comes from the product facts, reviews, or comments, or it is written as a hypothesis to test. Stage the product with what the sources say it has
+- When the brief or brand supplies an approved CTA, every concept uses it character for character. Vary the message, visual, and audience. Vary the CTA only when the request asks for CTA variants
 - If `inputs/winning-ads/` or `inputs/reviews/` is empty, stop and ask the user to populate it before generating. Do not generate ungrounded concepts as a fallback.
 - Inputs decay: refresh `inputs/winning-ads/` as new ads scale; refresh `inputs/reviews/` and `inputs/comments/` monthly
 
