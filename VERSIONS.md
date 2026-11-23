@@ -12,7 +12,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
-| cold-email | 2.2.7 | 2026-11-19 |
+| cold-email | 2.3.0 | 2026-11-23 |
 | community-marketing | 2.0.5 | 2026-11-09 |
 | competitor-profiling | 2.1.9 | 2026-11-19 |
 | competitors | 2.3.3 | 2026-11-09 |
@@ -23,7 +23,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | cro | 2.0.6 | 2026-11-09 |
 | customer-research | 2.0.8 | 2026-11-09 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
-| emails | 2.1.10 | 2026-11-23 |
+| emails | 2.1.11 | 2026-11-23 |
 | events | 1.0.3 | 2026-11-09 |
 | free-tools | 2.0.6 | 2026-11-09 |
 | image | 2.0.8 | 2026-11-19 |
@@ -59,6 +59,13 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.27 (2026-11-23)
+
+Sequences written for several segments at once (#1042).
+
+- **cold-email** (2.2.7 → 2.3.0): a new "Writing for a List" section. Each segment's sequence opens on that segment's problem, leads with the proof closest to it, and sizes the ask to the reader, with a swap test for telling a segment email from a template. `follow-up-sequences.md` gains "When You Have More Steps Than Proof" (no proof point twice in a sequence), and `personalization.md` now says what stays constant within a segment and what changes across segments.
+- **emails** (2.1.10 → 2.1.11): the same rule for lifecycle flows that run for several segments.
 
 ### 2.14.26 (2026-11-23)
 
