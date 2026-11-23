@@ -8,7 +8,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | ad-creative | 2.13.5 | 2026-11-19 |
 | ai-seo | 2.12.7 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
-| aso | 2.0.6 | 2026-11-09 |
+| aso | 2.1.0 | 2026-11-23 |
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
@@ -51,7 +51,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.9 | 2026-11-19 |
+| seo-audit | 2.2.10 | 2026-11-23 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.4 | 2026-11-19 |
@@ -59,6 +59,15 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.27 (2026-11-23)
+
+New tool access for app store, SEO audit, comment, and podcast data (#1048).
+
+- **aso** (2.0.6 → 2.1.0): a new section, With App Store Connect Access. For the user's own Apple app, an agent with the open-source App Store Connect CLI reads reviews by rating and country, the rating breakdown, Apple's review summaries, week-over-week numbers, and the exact listing text, always in read-only mode, in place of asking for an export. Review responses and metadata changes are drafted and sent only on approval. New guide: `tools/integrations/app-store-connect-cli.md`, plus an App Store category in the registry.
+- **seo-audit** (2.2.9 → 2.2.10): SEOmator joins Tools Referenced, an open-source audit CLI and local MCP server an agent or CI job can run free. Checks it couldn't run stay "not measured" in the report. New guide: `tools/integrations/seomator.md`. Its repository ships a skill also named `seo-audit`; the guide covers the CLI and MCP server only.
+- **ScrapeCreators guide**: comment and transcript endpoints, for mining what an audience asks and objects to. The wording is kept; lists of commenters are not.
+- **Firecrawl guide**: podcast transcripts through Alexandria (speaker-labelled, quotes with timestamps), with the documented request, credit costs, and the third-party terms step that needs the user.
 
 ### 2.14.26 (2026-11-23)
 
