@@ -104,6 +104,29 @@ POST https://api.firecrawl.dev/v2/search
 
 Web search useful for cross-source verification (find a business's official site when you only have a name + location). v2 groups results by source under `data.web` / `data.news` / `data.images`; add `scrapeOptions` to also pull page content for each result (billed separately).
 
+### Podcast transcripts (Alexandria)
+
+Firecrawl's Alexandria library adds third-party data providers behind the same API. Its podcast provider, Particle, indexes podcast episodes with speaker-labelled transcripts, so a search returns quotes with timestamps, the show and episode, and the people who appear. Firecrawl states 4,000,000+ episodes with about 150,000 added a week (checked 2026-11-23).
+
+```bash
+POST https://api.firecrawl.dev/v2/scrape
+
+{
+  "alexandria": {
+    "provider": "particle",
+    "capability": "podcasts/episodes/search",
+    "options": { "semantic_search": "AI agents", "limit": 2 }
+  }
+}
+```
+
+- The API key's team needs Alexandria enabled. Keyless access doesn't include it.
+- Credits per call, as published: episode search 15, show search 5, episode transcript 15, episode segment 5.
+- Firecrawl's own examples use `semantic_search` in one place and `keyword_search` in another. Check the provider's page for the current option names.
+- Some providers need an organization admin to accept third-party data terms first. If a call returns `THIRD_PARTY_DATA_TERMS_REQUIRED`, stop and ask the user; don't accept terms on their behalf.
+
+Uses: what is being said about a topic, a competitor, or the user's brand; finding shows and guests for podcast outreach; and people who describe a problem in their own words (see the prospecting skill's signal plays).
+
 ## MCP Tools (when used via MCP server)
 
 | Tool | Purpose |

@@ -51,6 +51,18 @@ GET https://api.scrapecreators.com/v1/reddit/search?query=notion&sort=top&timefr
 # Next page: &after=<from previous response>
 ```
 
+### Comments and transcripts
+
+```bash
+# Comments on a YouTube video; newest or top
+GET https://api.scrapecreators.com/v1/youtube/video/comments?url=<video url>&order=top
+# Next page: &continuationToken=<from previous response>
+```
+
+Comment endpoints also exist for TikTok (`/v1/tiktok/video/comments`), Instagram (`/v2/instagram/post/comments`), and Reddit (`/v1/reddit/post/comments`), and transcript endpoints for YouTube, TikTok, and Instagram video (`/v1/youtube/video/transcript`, `/v1/tiktok/video/transcript`, `/v2/instagram/media/transcript`). Parameter and cursor names differ per endpoint, so read the endpoint's doc page before calling it. The YouTube comments call was checked on 2026-11-23.
+
+Use comments for what an audience asks, objects to, and wants, in aggregate. Keep the wording; don't keep or build lists of the people who wrote them.
+
 ### Ad libraries
 
 ```bash

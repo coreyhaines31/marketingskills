@@ -54,6 +54,8 @@ Anyone — including tool makers and partners — may contribute content that na
 | semrush | SEO | ✓ | ✓ | [✓](clis/semrush.js) | - | [semrush.md](integrations/semrush.md) |
 | ahrefs | SEO | ✓ | ✓ | [✓](clis/ahrefs.js) | - | [ahrefs.md](integrations/ahrefs.md) |
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
+| seomator | SEO | - | ✓ | ✓ | ✓ | [seomator.md](integrations/seomator.md) |
+| app-store-connect-cli | App Store | - | - | ✓ | - | [app-store-connect-cli.md](integrations/app-store-connect-cli.md) |
 | goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
@@ -202,6 +204,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **goanyapi** | SERP + keyword + backlink + Google Ads transparency from one key | Credit-based, MCP available |
 | **keywords-everywhere** | Quick keyword research, traffic estimates | Credit-based |
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
+| **[seomator](integrations/seomator.md)** | A local, repeatable technical audit an agent or CI job can run | Open source, free, CLI + local MCP; no search-traffic data |
 
 **Choosing**: Google Search Console is free and is the only source of Google's own data for your site. Semrush and Ahrefs fit competitive research. DataForSEO fits programmatic SERP data. Keywords Everywhere fits quick keyword lookups. RankParse fits agent workflows where per-call cost matters (backlinks, domain authority, tech stack).
 
@@ -455,6 +458,16 @@ Programmatic page extraction for **individual public business sites** — not fo
 | **apify** | Ready-made scrapers for public directories, marketplaces, job boards, and site crawls | API + hosted MCP; per-Actor pricing; never LinkedIn or Google Maps scrapers |
 
 **Choosing**: Firecrawl fits static-ish pages and structured extraction. Browserbase fits sites that require JS rendering, form interaction, cookie consent, or auth, and jobs where session recordings help with debugging. **For both: discovery happens on platforms (manual browser); extraction happens on the prospect's own website URL.** Don't point either tool at LinkedIn, Google Maps, Yelp, or similar.
+
+### App Store
+
+Reading and managing an app's own App Store presence.
+
+| Tool | Fits | Notes |
+|------|------|-------|
+| **[app-store-connect-cli](integrations/app-store-connect-cli.md)** | The user's own iOS or macOS app: reviews by rating and country, ratings, review summaries, weekly numbers, listing metadata | Open source CLI over Apple's API; `--read-only` mode; Apple only, no competitor data |
+
+**Choosing**: For the user's own Apple app, read App Store Connect through the CLI or the web console. For public reviews of any app, including competitors and Google Play, see signalshelf under Competitive Intelligence. Google Play's own data comes from Google Play Console.
 
 ### Reviews
 
@@ -739,6 +752,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **calendly** - Availability and booking links
 - **admakeai** - Ad images, UGC video ads and Meta Ad Library lookups
 - **hermoso** - Image and video ads, ad library lookups, and posting to connected social accounts
+- **seomator** - Local SEO audit engine over stdio (open source)
 - **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 - **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 - **socialtoai** - Public posts, comments, profiles, and trending lists on 18 social platforms (OAuth or API key)
