@@ -8,7 +8,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | ad-creative | 2.13.5 | 2026-11-19 |
 | ai-seo | 2.12.7 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
-| aso | 2.0.6 | 2026-11-09 |
+| aso | 2.0.7 | 2026-11-23 |
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
@@ -30,7 +30,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | influencer-marketing | 1.4.4 | 2026-11-19 |
 | launch | 2.2.4 | 2026-11-19 |
 | lead-magnets | 2.1.5 | 2026-11-11 |
-| link-building | 1.1.0 | 2026-11-18 |
+| link-building | 1.1.1 | 2026-11-23 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
 | marketing-loops | 1.9.0 | 2026-11-19 |
@@ -59,6 +59,14 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-23)
+
+Description fixes for two skills. No body changes.
+
+- **aso** (2.0.6 → 2.0.7): the description names its neighbours, as the other skills' descriptions do: app ad creative goes to ad-creative, and the web pages that drive installs go to cro. It was the one skill `validate-skills.sh` warned about.
+- **link-building** (1.1.0 → 1.1.1): the four "For X, see Y" routes are one sentence with the same mapping (press, directories, reviews, communities to public-relations, directory-submissions, referrals, community-marketing). The description drops from 498 to 470 characters, so it is no longer two characters under the 500-character cap.
+- **Web descriptions**: the claude-web hashes for both skills are renewed. The short web descriptions still match, since neither skill's triggers changed.
 
 ### 2.14.25 (2026-11-19)
 

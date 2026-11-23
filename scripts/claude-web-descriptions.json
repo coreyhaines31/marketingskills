@@ -20,7 +20,7 @@
     "description": "Set up or audit GA4, conversion events, UTMs, partner link patterns, and tracking plans. Computes metrics from row-level data and compares rates only over matching closed windows."
   },
   "aso": {
-    "source_description_sha256": "87ad66bdf2020122c0124d4c24971ae55b1dda031ee365a51e514befbf8922a8",
+    "source_description_sha256": "5212b6d4aba84400bfd78ea4ef01685cecc66468cc55542a0cdcc864bdd80953",
     "description": "Audit and optimize App Store or Google Play listings, app keywords, visibility, rankings, and listing conversion."
   },
   "attribution": {
@@ -108,7 +108,7 @@
     "description": "Plan lead magnets and content offers: ebooks, checklists, templates, gating, landing pages, and packaging a course or content library as an installable agent skill."
   },
   "link-building": {
-    "source_description_sha256": "db041981ba69badd4d3f53e6b2ff741acca4ad41d196b762dbaad9334dcc4979",
+    "source_description_sha256": "aa9b08ddc8161f696daa4d92f63ed1b612e34b16abacb6516396ed9c9357d862",
     "description": "Earn backlinks and third-party mentions on pages search engines and AI assistants trust, including paid placements with the rules and risk stated."
   },
   "marketing-council": {

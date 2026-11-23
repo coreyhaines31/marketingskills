@@ -1,8 +1,8 @@
 ---
 name: link-building
-description: "When the user wants backlinks and mentions that lift rankings and AI citations, or asks how to get sites to link, whether a link tactic is safe, or where to buy placements: link gaps, unlinked mentions, broken links, guest posts, link marketplaces. On paid links, state Google's rule (rel=sponsored or nofollow) and the risk, then let the user decide. For press, see public-relations. For directories, see directory-submissions. For reviews, see referrals. For communities, see community-marketing."
+description: "When the user wants backlinks and mentions that lift rankings and AI citations, or asks how to get sites to link, whether a link tactic is safe, or where to buy placements: link gaps, unlinked mentions, broken links, guest posts, link marketplaces. On paid links, state Google's rule (rel=sponsored or nofollow) and the risk, then let the user decide. Press, directories, reviews, communities: see public-relations, directory-submissions, referrals, community-marketing."
 metadata:
-  version: 1.1.0
+  version: 1.1.1
 ---
 
 # Link Building
