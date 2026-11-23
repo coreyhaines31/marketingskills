@@ -144,6 +144,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | admakeai | AI Content | ✓ | ✓ | - | - | [admakeai.md](integrations/admakeai.md) |
 | hermoso | AI Content | ✓ | ✓ | ✓ | - | [hermoso.md](integrations/hermoso.md) |
 | marcora | AI Content | ✓ | ✓ | - | - | [marcora.md](integrations/marcora.md) |
+| cardcrafter | AI Content | ✓ | ✓ | - | - | [cardcrafter.md](integrations/cardcrafter.md) |
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | postonce | Social | ✓ | ✓ | - | - | [postonce.md](integrations/postonce.md) |
@@ -600,8 +601,9 @@ AI-powered content generation and optimization platforms.
 | **admakeai** | Meta and TikTok ad images, UGC-style video ads, Meta Ad Library lookups | API + MCP; credit-based; publishes to Meta as paused drafts |
 | **hermoso** | Image and video ads from a brand's saved product photos, Meta, Google and LinkedIn ad library lookups, posting to connected accounts | API + MCP + CLI; credit-based; renders are async jobs |
 | **marcora** | Shared positioning, brand voice, product facts | Read-only REST API + hosted MCP |
+| **cardcrafter** | Multi-page Xiaohongshu (RedNote) posts, WeChat article covers, knowledge cards — Chinese social image formats | API + hosted MCP; energy-based; Chinese-market product, docs in Chinese |
 
-**Choosing**: AirOps for building AI content workflows that generate SEO-optimized content at scale.
+**Choosing**: AirOps for building AI content workflows that generate SEO-optimized content at scale. CardCrafter for Chinese-platform social image formats (Xiaohongshu/RedNote posts, WeChat covers).
 
 ### AI Search
 
@@ -739,6 +741,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **calendly** - Availability and booking links
 - **admakeai** - Ad images, UGC video ads and Meta Ad Library lookups
 - **hermoso** - Image and video ads, ad library lookups, and posting to connected social accounts
+- **cardcrafter** - Chinese social image generation (Xiaohongshu posts, WeChat covers, knowledge cards)
 - **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 - **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 - **socialtoai** - Public posts, comments, profiles, and trending lists on 18 social platforms (OAuth or API key)
