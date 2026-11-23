@@ -157,6 +157,12 @@ The CLI detects which agents you have installed and asks where to install. For C
 > npx skills add coreyhaines31/marketingskills -a claude-code
 > ```
 
+Or install them with the [GitHub CLI](https://cli.github.com/manual/gh_skill):
+
+```bash
+gh skill install coreyhaines31/marketingskills
+```
+
 ### Option 2: Claude Code Plugin
 
 Install via Claude Code's built-in plugin system:
