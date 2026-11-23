@@ -44,7 +44,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.6.3 | 2026-11-19 |
+| prospecting | 1.7.0 | 2026-11-23 |
 | public-relations | 1.3.1 | 2026-11-19 |
 | referrals | 2.2.7 | 2026-11-19 |
 | reverse-engineer-marketing | 1.2.0 | 2026-11-19 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.26 (2026-11-23)
+
+- **prospecting** (1.6.3 → 1.7.0): subprocessor and DPA pages as a prospecting source (#1046). Companies publish the vendors that process their customers' data, so the page is a free, first-party record of part of the stack. `references/signal-plays.md` gains a section on three uses: finding accounts that name a given vendor (`"subprocessors" "<vendor>"`), qualifying an account before writing, and catching a vendor being added or dropped. It says where the pages live, and gives rules for the weak points: the list covers only vendors that touch customer data, absence proves nothing, names may be legal entities, and the lookup is never the opening line. The tools table, the tech-stack signal row, and `references/data-sources.md` list it. Eval 14 added.
 
 ### 2.14.25 (2026-11-19)
 
