@@ -72,7 +72,7 @@ nitrosend connect hubspot
 
 # Call any MCP tool from the terminal
 nitrosend mcp tools list
-nitrosend mcp tools call nitro_get_status --args '{"include":["account"]}'
+nitrosend mcp tools call nitro_get_status
 ```
 
 `migrate` and `connect` need CLI 0.3.13 or later. Add `--json` to any command for machine-readable output.
