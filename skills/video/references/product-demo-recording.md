@@ -76,6 +76,16 @@ Guidelines:
 - **Reset backend state at the top** if the demo uses a fixed account (see gotchas)
 - **Use explicit waits** (`waitForURL`, `getByRole(...).waitFor()`) rather than fixed sleeps
 
+Before adding the cursor or narration, wait for visible evidence that the action completed. A settings demo can show the new option while the saved value is still old. Check the result after the Save action.
+
+```js
+await page.getByRole('combobox', { name: 'Digest schedule' }).selectOption('Weekly');
+await page.getByRole('button', { name: 'Save changes' }).click();
+await page.getByRole('status').filter({ hasText: /^Saved schedule: Weekly$/ }).waitFor({ state: 'visible' });
+```
+
+For a persistent setting, reload and check the saved value again. In the final MP4, play the passage after the click and confirm that the result is readable at the delivery size. The [localhost example from Valmera's public documentation](https://github.com/ABO3SKRALMASAOODI/valmera-mcp/blob/63becfd40dbab2f03feb9b8be8fb59ef1bc69ca3/docs/RECORD-A-LOCALHOST-PRODUCT-DEMO.md) includes the same dropdown selection with and without the save.
+
 ### 5. Make the cursor visible
 
 Playwright fires DOM events with no visible pointer, so viewers can't see what got clicked. Inject a fake cursor element and wrap clicks and fills in helpers:
@@ -169,6 +179,7 @@ Narration reuses the subtitle captions as the script.
 - [ ] Session persists across navigations (cookie check)
 - [ ] Each step uses the right mode
 - [ ] Cursor visible on every click and fill
+- [ ] Each consequential action’s result is readable in the delivered MP4
 - [ ] Subtitles readable and never covering the active element
 - [ ] Fake URL bar shows the public domain
 - [ ] Title card works as a thumbnail
