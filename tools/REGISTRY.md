@@ -88,7 +88,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | sendgrid | Email | ✓ | - | [✓](clis/sendgrid.js) | ✓ | [sendgrid.md](integrations/sendgrid.md) |
 | resend | Email | ✓ | ✓ | [✓](clis/resend.js) | ✓ | [resend.md](integrations/resend.md) |
 | sequenzy | Email | ✓ | ✓ | ✓ | - | [sequenzy.md](integrations/sequenzy.md) |
-| nitrosend | Email | ✓ | ✓ | - | - | [nitrosend.md](integrations/nitrosend.md) |
+| nitrosend | Email | ✓ | ✓ | ✓ | ✓ | [nitrosend.md](integrations/nitrosend.md) |
 | kit | Email | ✓ | ✓ | [✓](clis/kit.js) | ✓ | [kit.md](integrations/kit.md) |
 | beehiiv | Newsletter | ✓ | ✓ | [✓](clis/beehiiv.js) | - | [beehiiv.md](integrations/beehiiv.md) |
 | klaviyo | Email/SMS | ✓ | ✓ | [✓](clis/klaviyo.js) | ✓ | [klaviyo.md](integrations/klaviyo.md) |
@@ -265,6 +265,7 @@ Email marketing, transactional email, and automation platforms.
 | **postmark** | Deliverability-focused transactional | - |
 | **brevo** | Email + SMS, popular in EU | ✓ |
 | **activecampaign** | Email automation + CRM | ✓ |
+| **nitrosend** | Agent-run email marketing + transactional | ✓ |
 
 **Choosing**: Resend for transactional (dev-friendly). Sequenzy for lifecycle email, sequences, and agent-driven email marketing. Postmark for deliverability. Customer.io for advanced automation. Kit for creators. Beehiiv for newsletters. Klaviyo for e-commerce email/SMS. ActiveCampaign for email + CRM combo.
 
