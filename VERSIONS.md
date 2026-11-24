@@ -44,7 +44,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.8.0 | 2026-11-23 |
+| prospecting | 1.9.0 | 2026-11-24 |
 | public-relations | 1.3.1 | 2026-11-19 |
 | referrals | 2.2.7 | 2026-11-19 |
 | reverse-engineer-marketing | 1.2.0 | 2026-11-19 |
@@ -59,6 +59,16 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.29 (2026-11-24)
+
+Prospecting for outbound run as experiments (#1055, #1056, #1057).
+
+- **prospecting** (1.8.0 → 1.9.0): three additions from running outbound as experiments.
+  - **Signal testing** (#1055): new `references/signal-testing.md`. A signal is a hypothesis, tested with a signal vs control split (one pool, 50/50 at random, same offer and inboxes, only the signal line differs), with the readout date and detectable lift written down first. At 19 leads per arm, only about 5 replies against 0 is distinguishable from chance. Required variables for every signal lead (project, source tool, signal name, persona, wave, signal detail, signal date, signal URL kept out of copy, validation status), a signal source matrix filled only from real runs, and phrase search for posts and podcast transcripts with word-for-word quote checks. Phase 4 adds: a signal raises a score only if it ties to the pain the offer solves.
+  - **Catch-all policy and validation cost** (#1056): a default replaces "set a policy". Keep safest-bet results only, run the deeper pass on accept-all results only, and drop what stays accept-all unless the user opts in. In one founder and agency list, 36 of 54 came back accept-all and the deeper pass resolved 26 to valid; the policy held bounces to 0.29% across about 3,700 sends. Adds a credit estimate, role addresses skipped unless approved, a dedupe order (workspace, do-not-contact list, prior campaigns, sister brands) with one contact per company per campaign, unsubscribes fed into the do-not-contact list, and the trap where a sending tool's own verification leaves validated leads pending. Four Quality Checks added.
+  - **List sizing and refill** (#1057): new `references/list-sizing-and-refill.md`. Segment first (a narrow segment got about 3× the replies of a broad one), cohorts of about 80 leads (100 for local), lists under about 25 merged or held for the next wave, cut before validating, a weekly gated refill with persona tagging, a hold file and a `wave` variable, the ungated auto top-up paused first when bounces rise, and a persona signal pack template. Lead sheets for experiment-run outbound add persona, wave, source tool, signal, and signal date.
+  - Evals 16–18 added.
 
 ### 2.14.28 (2026-11-23)
 

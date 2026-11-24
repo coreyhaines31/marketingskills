@@ -2,7 +2,7 @@
 name: prospecting
 description: "When the user wants to find and qualify prospects for outbound, or asks who to target first, which signal to prioritize, or where to spot buyers with the problem: buying signals, enrichment, verification, account research. Verify emails before a sequence, never scrape LinkedIn: define audiences in Sales Navigator and pull contacts from licensed data. For outreach, see cold-email. For competitor research, see competitor-profiling."
 metadata:
-  version: 1.8.0
+  version: 1.9.0
 ---
 
 # Prospecting
@@ -53,6 +53,8 @@ Output the ICP as a one-paragraph statement plus a checklist of pass/fail criter
 
 ### Phase 2 — Build the candidate list (discovery)
 
+**Segment first, then source.** Write the segment's pain in one line before pulling a single lead, and build one list per segment or signal. A narrow segment beat a broad one by about 3× in human replies per contacted lead in one project. For outbound run as experiments, default to cohorts of about 80 leads (about 100 for Local SMB); a list under about 25 can't be read on its own, so merge it or wait for the next wave. Cut obvious non-fits and duplicates before you validate, since validation costs credits. For cohort sizing, the weekly refill, and gated vs ungated top-ups, see [references/list-sizing-and-refill.md](references/list-sizing-and-refill.md).
+
 Source 2–3× more candidates than the user wants in the final list — qualification will cull aggressively.
 
 - **SaaS / B2B**: combine 2–3 sources for cross-verification. Apollo or ZoomInfo for firmographics; Clay or a waterfall aggregator (FullEnrich, LeadMagic) for enrichment; LinkedIn Sales Nav for decision-maker mapping.
@@ -60,7 +62,7 @@ Source 2–3× more candidates than the user wants in the final list — qualifi
 
 If the user's list quality bar is high, smaller is better. 25 verified leads beats 250 mostly-junk ones.
 
-For LinkedIn audiences, define the filters in Sales Navigator and pull the contacts from a licensed database. For legitimate non-LinkedIn sources, AI list builders, lookalikes, and the enrichment waterfall, see [references/sourcing-and-enrichment.md](references/sourcing-and-enrichment.md). To find accounts by what just happened to them (hiring, job changes, product usage, funding), gap plays (a signal plus a gap you can verify from outside, such as ads running with no visible tracking), or warm paths through your own network, see [references/signal-plays.md](references/signal-plays.md).
+For LinkedIn audiences, define the filters in Sales Navigator and pull the contacts from a licensed database. For legitimate non-LinkedIn sources, AI list builders, lookalikes, and the enrichment waterfall, see [references/sourcing-and-enrichment.md](references/sourcing-and-enrichment.md). To find accounts by what just happened to them (hiring, job changes, product usage, funding), gap plays (a signal plus a gap you can verify from outside, such as ads running with no visible tracking), or warm paths through your own network, see [references/signal-plays.md](references/signal-plays.md). A signal is a hypothesis: to test it against a control arm, set the variables every signal lead carries (signal name, detail, date, URL, persona, wave), or compare sourcing costs, see [references/signal-testing.md](references/signal-testing.md).
 
 ### Phase 3 — Qualify each candidate
 
@@ -71,7 +73,7 @@ Score every candidate against the ICP checklist. Add **evidence** (a source URL 
 - **Medium**: one credible source plus consistent search evidence
 - **Low**: incomplete or ambiguous evidence — flag what remains uncertain
 
-For email contacts (B2B / SaaS branches), **always verify deliverability before adding to the final list**, and again within 7 days of sending if the list sat. Catch-all domains need a set policy. See [references/sourcing-and-enrichment.md](references/sourcing-and-enrichment.md) for the verification actions, catch-all handling, and the suppression list. Don't ship leads with invalid or risky emails.
+For email contacts (B2B / SaaS branches), **always verify deliverability right before upload**, and again within 7 days of sending if the list sat. Default catch-all policy: keep safest-bet results only (valid, plus accept-all addresses a deeper pass resolves to valid), run the deeper pass on the accept-all results only, and drop what is still accept-all unless the user opts in. Skip role addresses unless approved for a specific campaign. Dedupe against the workspace, the blocklist and do-not-contact list, prior campaigns, and sister brands, with one contact per company per campaign. Upload with the sending tool's own verification off and check a sample afterwards, because a validated list can stall as pending. See [references/sourcing-and-enrichment.md](references/sourcing-and-enrichment.md) for the verification actions, credit estimates, and the suppression list. Don't ship leads with invalid or risky emails.
 
 ### Phase 4 — Score and prioritize
 
@@ -83,6 +85,8 @@ Apply this rubric for the **SaaS, B2B, and Local SMB** branches. The **Demand-si
 | **Warm** | ICP fit + softer or older signal + contact verifiable |
 | **Cold** | Loose ICP fit OR no clear signal OR contact unverified |
 | **Skip** | Disqualifier hit (out of ICP, closed business, duplicate, irrelevant, low confidence) |
+
+A signal raises a score only if it ties to the pain the offer solves. A signal with no link to the problem is just a nicer first line.
 
 Branch-specific signals refine the scoring — see each reference file. Default ratio target: ~20% Hot, ~30% Warm, rest Cold/Skip.
 
@@ -98,6 +102,8 @@ After the table, always add **"Top outreach targets"** — the top 3–5 hot lea
 
 Columns vary by branch (see reference files), but every lead sheet includes:
 - score, business/company name, contact (where applicable), why-it's-a-prospect, source(s), confidence, last verified date
+
+For outbound run as experiments or refilled in waves, also include persona, wave, source tool, signal, and signal date, so each segment and refill can be read on its own.
 
 ---
 
@@ -188,6 +194,8 @@ SaaS / B2B columns:
 score,company,domain,industry,size_band,country,signal,contact_name,contact_title,contact_email,email_status,linkedin,source_urls,why_prospect,confidence,verified_date,notes
 ```
 
+For experiment-run outbound, add: `persona,wave,source_tool,signal_date,signal_url` (`signal_url` is an audit trail, never used in copy).
+
 Local SMB columns:
 
 ```csv
@@ -207,6 +215,10 @@ score,business,category,area,distance_km,website_status,website_url,social_urls,
 - [ ] Remove duplicates (by domain for SaaS/B2B, by business + address for Local SMB)
 - [ ] Every "Hot" lead has a verified contact + at least one source URL
 - [ ] No lead has an email that failed Truelist (or your validator) verification — move to a separate "invalid" bucket and flag for the user
+- [ ] Validated within 7 days of upload; unresolved accept-all addresses dropped unless the user opted in
+- [ ] Role addresses excluded unless approved for this campaign (Local SMB: a role address the business publishes as its main contact is fine)
+- [ ] Deduped against the workspace, do-not-contact list, prior campaigns, and sister brands; one contact per company per campaign
+- [ ] After upload, a sample checked in the sending tool (active, not stuck pending)
 - [ ] No lead labeled "Hot" lacks a clear buying signal
 - [ ] Confidence levels honest — "High" requires 2 independent sources, not just two of your own searches
 - [ ] No leads sourced from prohibited scraping (LinkedIn at scale, Google Maps bulk extract, etc.)
