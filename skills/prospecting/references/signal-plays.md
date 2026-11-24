@@ -49,7 +49,7 @@ A signal decays. Act inside these windows or downgrade it:
 | Tech install or removal | 30 days | Decision done |
 | Priority stated on a podcast or in a talk | 90 days from the air date | Background on the person, not a trigger |
 
-Record the signal date on every lead. A lead sheet without signal dates can't be prioritized.
+Record the signal date on every lead, as a field rather than a note. A lead sheet without signal dates can't be prioritized. For the full set of variables a signal lead carries, and how to test a signal against a control arm, see [signal-testing.md](signal-testing.md).
 
 ## From signal to play
 

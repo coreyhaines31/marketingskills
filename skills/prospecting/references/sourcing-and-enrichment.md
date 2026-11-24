@@ -52,8 +52,10 @@ Verify every address before it reaches a sequence. This is the single cheapest p
 
 **When to verify**
 - When you enrich the contact.
-- Again within 7 days of sending, for any list built earlier. B2B data decays steadily (vendor estimates run around 2% a month and 20–30% a year).
+- Right before upload, on every list. Re-validate within 7 days of sending if the list sat. B2B data decays steadily (vendor estimates run around 2% a month and 20–30% a year).
 - Re-verify CRM contacts every quarter, and anything older than 30–60 days before using it.
+
+Cut competitors, wrong personas, do-not-contact entries, and duplicates **before** you validate, so you don't pay credits for leads you'll drop (see [list-sizing-and-refill.md](list-sizing-and-refill.md)).
 
 **What to do with each result**
 
@@ -61,16 +63,37 @@ Verify every address before it reaches a sequence. This is the single cheapest p
 |--------|--------|
 | Valid | Send |
 | Invalid, disposable, or spam trap | Suppress permanently |
-| Role address (info@, sales@) | Exclude from personal sequences. Fine only for local businesses that publish it as their main contact |
-| **Catch-all (accept-all)** | See below |
+| Role address (info@, hello@, sales@) | Skip by default in personal sequences. Include only on an explicit yes for a specific campaign. Local businesses that publish one as their main contact are the usual exception |
+| **Catch-all (accept-all)** | Deeper pass, then the default policy below |
 | Unknown | Retry once later; don't send if it's still unknown |
 
-**Catch-all domains** accept mail for any address, so basic verification can't tell whether the person exists. They make up a large share of B2B domains (vendor estimates run 15–28%). Handle them with a policy, not a guess:
-1. **Resolve them** with a verifier that goes beyond the SMTP check (BounceBan, Scrubby, Truelist, and others combine extra signals). Some verifiers only mark catch-alls "risky."
-2. **Send resolved-valid catch-alls from separate, lower-volume inboxes**, so a bad batch can't damage your main sending.
-3. **Send unresolved catch-alls only for Tier 1 accounts**, where the account is worth the risk, and watch bounces on that inbox closely.
+**Catch-all domains** accept mail for any address, so basic verification can't tell whether the person exists. They make up a large share of B2B domains (vendor estimates run 15–28%), and far more for founder and agency audiences, which are heavy on Google Workspace. In one 54-address list of that kind, 36 came back accept-all on the standard pass. The catch-all decision can change list size more than anything else.
+
+**Default catch-all policy** (use it unless the user opts into something riskier):
+1. **Keep the safest-bet results only**: valid, plus accept-all addresses that a deeper pass resolves to valid.
+2. **Run the deeper pass on the accept-all results only**, not the whole list. A deeper pass uses a verifier that goes beyond the SMTP check (BounceBan, Scrubby, Truelist's Enhanced strategy, and others combine extra signals). Some verifiers only mark catch-alls "risky." In the 54-address list above, the deeper pass resolved 26 of the 36 to valid, 7 to invalid, and left 3 still accept-all. Without it, two thirds of the list would have been dropped or sent blind.
+3. **Drop what is still accept-all** after the deeper pass. Send it only if the user opts in, and then only for Tier 1 accounts, from separate, lower-volume inboxes, with bounces watched closely.
+
+With this policy, one set of campaigns across three brands had 11 bounces on about 3,700 sends (0.29%).
+
+**Estimating validation credits.** The deeper pass costs more than a standard check (3 credits per address in one setup; check your verifier's pricing). Estimate before you run it:
+
+```text
+credits = list size × 1 (standard pass) + accept-all count × deeper-pass cost
+credits per sendable lead = credits ÷ (valid + resolved-valid)
+```
+
+For the 54-address list, at 1 credit per standard check: 54 + 36 × 3 = 162 credits, of which 108 went to the deeper pass and bought 26 sendable leads, about 4 credits each. The share of accept-all results drives the cost, so estimate it from a small sample of the audience before validating a whole list. If the deeper pass costs more per resolved lead than sourcing a new one, source more instead.
 
 **Hard limits:** keep bounces under 2% per campaign (under 1% is best in class) and pause automatically above that. See the cold-email skill's deliverability reference.
+
+### After upload: the stuck-verification trap
+
+A validated list can still stall in the sending tool. Uploading 70 validated leads to a sending tool with its own verification switched on put them into a pending state that never cleared, and nothing was sent.
+
+- **Upload with the sending tool's own verification off** when the list has already been validated.
+- **Check a sample in the sending tool after upload**: open a handful of leads and confirm their status is active (not pending or verifying) and that they are scheduled in the campaign.
+- If leads are stuck pending, remove and re-upload them with the tool's verification off rather than waiting.
 
 ## Suppression list
 
@@ -83,6 +106,16 @@ Keep one suppression list, synced to every tool that sends (email tool, LinkedIn
 - Do-not-contact requests and data deletion requests
 
 Key it on email, LinkedIn URL, and phone number so a person removed in one channel is removed in all of them.
+
+**Do-not-contact list.** Competitors, agencies, and anyone who said no go on a do-not-contact list that is checked before every upload, not only before sends. Export unsubscribes from the sending tool into it on a schedule (at least before each upload), so an opt-out in one campaign or brand reaches the next list.
+
+**Dedupe before every upload**, in this order:
+1. The sending workspace (everyone already in any campaign there)
+2. The blocklist and do-not-contact list
+3. Prior campaigns, including finished ones
+4. Any sister brand sharing the workspace or the same audience
+
+Then keep **one contact per company per campaign**, so two people at one company don't get the same sequence on the same days.
 
 ## Provenance
 

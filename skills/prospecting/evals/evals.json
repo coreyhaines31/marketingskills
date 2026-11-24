@@ -229,6 +229,54 @@
         "Does not fabricate the quote"
       ],
       "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "We think leads who just posted a Head of Growth job reply better to our growth-agency offer. I have about 40 of them. How do I find out if the hiring signal actually helps?",
+      "expected_output": "Should treat the signal as a hypothesis and propose a signal vs control split: one pool, randomly split 50/50 (about 20 per arm), same offer, body, inboxes, and daily limits, with only the first line differing (the signal tied to the problem vs no signal line). Should say to write down before launch the metric (human replies per contacted lead), the readout date, the leads per arm, and the smallest difference that size can detect, and say plainly that ~20 per arm only detects a large effect (roughly 5 replies vs 0), so a null result means no large difference. Should check the signal ties to the pain the offer solves. Should require each lead to carry signal name, detail, date, URL (audit only, not in copy), persona, wave, and validation status. Should reference references/signal-testing.md.",
+      "assertions": [
+        "Proposes a randomized 50/50 signal vs control split from one pool",
+        "Keeps offer, inboxes, and limits identical; only the signal line differs",
+        "Says to record metric, readout date, and detectable lift before launch",
+        "States that ~20 per arm only detects a large effect",
+        "Checks the signal ties to the pain the offer solves",
+        "Lists required lead variables including signal date and signal URL",
+        "Keeps the signal URL out of copy",
+        "References signal-testing.md"
+      ],
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "I'm validating 600 founder and agency emails before a cold campaign. A third came back accept-all. Should I send to them or drop them?",
+      "expected_output": "Should give the default policy rather than 'set a policy': keep safest-bet results only, run a deeper catch-all pass (e.g. an enhanced verification strategy) on the accept-all results only, not the whole list, and drop what is still accept-all unless the user opts in (then Tier 1 only, from separate lower-volume inboxes). Should note founder/agency audiences on Google Workspace are accept-all heavy and the deeper pass often resolves most of them to valid. Should estimate credits: list size at the standard cost plus about 200 accept-all × the deeper-pass cost (for example 3 credits each), and suggest comparing cost per resolved lead to sourcing new ones. Should cut non-fits and duplicates before validating, skip role addresses unless approved, dedupe against workspace, do-not-contact list, prior campaigns, and sister brands with one contact per company. Should warn to upload with the sending tool's own verification off and check a sample after upload for leads stuck pending. If naming Truelist, should say it's built by the repository's maintainer.",
+      "assertions": [
+        "Gives a default catch-all policy: safest-bet only, deeper pass on accept-all only, drop the remainder unless opted in",
+        "Runs the deeper pass only on accept-all results",
+        "Estimates validation credits for the deeper pass",
+        "Cuts non-fits and duplicates before validating",
+        "Skips role addresses unless approved",
+        "Gives the dedupe order and one contact per company per campaign",
+        "Warns about the sending tool's own verification leaving leads pending and says to check a sample after upload",
+        "Discloses Truelist is built by the maintainer if named"
+      ],
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "We run outbound as experiments. I have lists of 12, 19, 45, and 90 leads across four signals, plus the sending tool's auto lead-finder is topping up campaigns. How should I size these and keep the campaigns stocked?",
+      "expected_output": "Should say segment first: one list per segment or signal, with the segment's pain written in one line. Should give the default cohort of about 80 leads (about 100 for local business) and say lists under about 25 (the 12 and 19) can't be read alone, so merge them with a list sharing the same pain and offer (keeping signal_name) or wait for the next wave. Should lay out the weekly gated refill: pull, dedupe, tag by persona with persona signal packs, validate, route to the persona's campaign, hold file for unmatched personas, wave variable on every lead. Should call the ungated auto top-up a volume backup whose leads skip the validator, and say to pause it first if bounces rise. Should add persona, wave, source tool, signal, and signal date columns to the lead sheet. Should reference references/list-sizing-and-refill.md.",
+      "assertions": [
+        "Says to segment before sourcing, one list per segment or signal",
+        "Gives default cohort size of about 80 (100 for local)",
+        "Says lists under about 25 should be merged or wait for the next wave",
+        "Gives the weekly gated refill recipe with persona tagging, validation, routing, and a hold file",
+        "Uses a wave variable to keep refills separable",
+        "Treats the ungated top-up as a backup that skips validation and pauses it first when bounces rise",
+        "Adds persona, wave, source tool, signal, and signal date columns",
+        "References list-sizing-and-refill.md"
+      ],
+      "files": []
     }
   ]
 }
