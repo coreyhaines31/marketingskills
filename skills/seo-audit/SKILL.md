@@ -2,7 +2,7 @@
 name: seo-audit
 description: "When the user wants to audit or diagnose SEO, or asks why traffic dropped, a page won't rank, or whether a setup like canonicals, hreflang, or redirects is right: technical SEO, indexing, Google updates, on-page and titles, Core Web Vitals, local SEO. Start here when someone just says their SEO is bad. For pages at scale, see programmatic-seo. For structured data, see schema. For AI search, see ai-seo."
 metadata:
-  version: 2.2.9
+  version: 2.2.10
 ---
 
 # SEO Audit
@@ -467,6 +467,7 @@ Same format as above
 | Schema Markup Validator | schema.org's syntax validator | Checking types Google doesn't show as rich results |
 | Screaming Frog | Desktop site crawler, free up to 500 URLs | A full crawl for broken links, redirects, and metadata |
 | [Firecrawl](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/firecrawl.md) | Scrape and crawl API that renders JavaScript | Reading JS-injected schema from an agent: scrape with the `rawHtml` format |
+| [SEOmator](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/seomator.md) | Open-source audit CLI and local MCP server, a few hundred rules, JSON and LLM-readable output | A repeatable audit an agent or CI job can run free. It marks a check it couldn't run as not measured: keep it that way in the report, never as a pass |
 | Sitebulb | Site crawler that ranks and explains the issues it finds | The same crawl when the output goes to a non-specialist |
 | Ahrefs, Semrush | SEO suites with site audit, backlink, and keyword data | Backlink and keyword questions, or a scheduled cloud crawl |
 | [Magister](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/magister.md) (built by this repository's maintainer; say so if you name it) | Hosted site audit and keyword research, called over MCP or API | An agent should run the audit or pull keyword data without a local crawler |

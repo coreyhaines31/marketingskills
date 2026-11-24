@@ -162,11 +162,11 @@ Loops are grouped by function. Naming follows the "The X loop" convention.
 
 ### The niche-outlier loop
 - **Check cadence**: Weekly
-- **Acts when**: A post in your niche performs far above its author's usual reach (for example 100K+ views, or 10× their median).
+- **Acts when**: A post in your niche reaches 2× or more its author's median for that platform and format (5× or more is the strongest signal).
 - **Purpose**: Adapt formats that already proved themselves with your audience, instead of guessing at new ones.
 - **Skills used**: `social` (see its `references/reverse-engineering.md`), `content-strategy`, `ad-creative`
 - **Loop body**:
-  1. Search the niche on X (Grok works well here), LinkedIn, TikTok, or YouTube for outliers since the last run.
+  1. Search the niche on X (Grok works well here), LinkedIn, TikTok, or YouTube for outliers since the last run. Score each against its author's own median, from at least 10 recent posts (method in the social skill's listening reference).
   2. For each, name what carried it: the hook, the format, the topic, the timing.
   3. Draft your own version in another format or channel, with your own idea and evidence in the proven structure.
 - **Self-check**: Is the draft your own take in a proven format, or a rewrite of their post? Never copy wording, footage, or images.

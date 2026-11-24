@@ -8,7 +8,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | ad-creative | 2.13.5 | 2026-11-19 |
 | ai-seo | 2.12.7 | 2026-11-19 |
 | analytics | 2.2.7 | 2026-11-19 |
-| aso | 2.0.6 | 2026-11-09 |
+| aso | 2.1.0 | 2026-11-23 |
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
@@ -21,7 +21,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | copy-editing | 2.2.4 | 2026-11-09 |
 | copywriting | 2.3.6 | 2026-11-17 |
 | cro | 2.0.6 | 2026-11-09 |
-| customer-research | 2.0.8 | 2026-11-09 |
+| customer-research | 2.0.9 | 2026-11-23 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
 | emails | 2.1.9 | 2026-11-19 |
 | events | 1.0.3 | 2026-11-09 |
@@ -33,7 +33,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | link-building | 1.1.0 | 2026-11-18 |
 | marketing-council | 1.0.3 | 2026-11-09 |
 | marketing-ideas | 2.0.5 | 2026-11-09 |
-| marketing-loops | 1.9.0 | 2026-11-19 |
+| marketing-loops | 1.9.1 | 2026-11-23 |
 | marketing-plan | 1.2.6 | 2026-11-19 |
 | marketing-psychology | 2.0.3 | 2026-11-09 |
 | offers | 1.0.6 | 2026-11-09 |
@@ -44,21 +44,42 @@ Current versions of all skills. Agents can compare against local versions to che
 | pricing | 2.1.7 | 2026-11-09 |
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
-| prospecting | 1.6.3 | 2026-11-19 |
+| prospecting | 1.8.0 | 2026-11-23 |
 | public-relations | 1.3.1 | 2026-11-19 |
 | referrals | 2.2.7 | 2026-11-19 |
 | reverse-engineer-marketing | 1.2.0 | 2026-11-19 |
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.9 | 2026-11-19 |
+| seo-audit | 2.2.10 | 2026-11-23 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.4 | 2026-11-19 |
-| social | 2.6.0 | 2026-11-19 |
+| social | 2.6.1 | 2026-11-23 |
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.28 (2026-11-23)
+
+Three methods added to existing skills (#1048).
+
+- **prospecting** (1.7.0 → 1.8.0): podcast appearances as a lead source. Episodes are indexed with speaker-labelled transcripts, so a search finds a named guest describing the problem you solve, in their own words. `references/signal-plays.md` covers three uses (find people describing the problem, research an account's leader, find the shows your buyers appear on) and five rules: check the air date, confirm who said it on the episode page, apply ICP fit, name the episode openly because they published it, and keep the reference to one line. A 90-day freshness window and a tools row are added. Eval 15 added.
+- **social** (2.6.0 → 2.6.1), **marketing-loops** (1.9.0 → 1.9.1): outlier posts are scored against the account's own median, split by platform and format, as a multiple of the baseline (1.5–2× mild, 2–5× strong, 5× or more huge), from at least 20 posts, with low confidence under 10. This replaces "for example 100K+ views" in the listening reference and the niche-outlier loop. Method adapted from ScrapeCreators' outlier-post-finder skill (MIT).
+- **customer-research** (2.0.8 → 2.0.9): a table for sorting a comment thread into questions, objections, complaints, confusion, requests, buying intent, debate, and praise before clustering, with two cautions: the top comments are not the representative ones, and commenters are an audience, not a list.
+
+### 2.14.27 (2026-11-23)
+
+New tool access for app store, SEO audit, comment, and podcast data (#1048).
+
+- **aso** (2.0.6 → 2.1.0): a new section, With App Store Connect Access. For the user's own Apple app, an agent with the open-source App Store Connect CLI reads reviews by rating and country, the rating breakdown, Apple's review summaries, week-over-week numbers, and the exact listing text, always in read-only mode, in place of asking for an export. Review responses and metadata changes are drafted and sent only on approval. New guide: `tools/integrations/app-store-connect-cli.md`, plus an App Store category in the registry.
+- **seo-audit** (2.2.9 → 2.2.10): SEOmator joins Tools Referenced, an open-source audit CLI and local MCP server an agent or CI job can run free. Checks it couldn't run stay "not measured" in the report. New guide: `tools/integrations/seomator.md`. Its repository ships a skill also named `seo-audit`; the guide covers the CLI and MCP server only.
+- **ScrapeCreators guide**: comment and transcript endpoints, for mining what an audience asks and objects to. The wording is kept; lists of commenters are not.
+- **Firecrawl guide**: podcast transcripts through Alexandria (speaker-labelled, quotes with timestamps), with the documented request, credit costs, and the third-party terms step that needs the user.
+
+### 2.14.26 (2026-11-23)
+
+- **prospecting** (1.6.3 → 1.7.0): subprocessor and DPA pages as a prospecting source (#1046). Companies publish the vendors that process their customers' data, so the page is a free, first-party record of part of the stack. `references/signal-plays.md` gains a section on three uses: finding accounts that name a given vendor (`"subprocessors" "<vendor>"`), qualifying an account before writing, and catching a vendor being added or dropped. It says where the pages live, and gives rules for the weak points: the list covers only vendors that touch customer data, absence proves nothing, names may be legal entities, and the lookup is never the opening line. The tools table, the tech-stack signal row, and `references/data-sources.md` list it. Eval 14 added.
 
 ### 2.14.25 (2026-11-19)
 

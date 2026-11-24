@@ -2,7 +2,7 @@
 name: prospecting
 description: "When the user wants to find and qualify prospects for outbound, or asks who to target first, which signal to prioritize, or where to spot buyers with the problem: buying signals, enrichment, verification, account research. Verify emails before a sequence, never scrape LinkedIn: define audiences in Sales Navigator and pull contacts from licensed data. For outreach, see cold-email. For competitor research, see competitor-profiling."
 metadata:
-  version: 1.6.3
+  version: 1.8.0
 ---
 
 # Prospecting
@@ -44,7 +44,7 @@ Every prospecting engagement follows the same five phases. Tools and qualificati
 Pull from `product-marketing.md` if available. Otherwise, gather:
 
 1. **Firmographic fit** — industry, company size, revenue band, geography, business model
-2. **Technographic fit** (SaaS branch) — what tools they already use, what they're missing
+2. **Technographic fit** (SaaS branch) — what tools they already use, what they're missing (tag lookups, job posts, and the company's own subprocessors page; see [references/signal-plays.md](references/signal-plays.md))
 3. **Buying signal** — why now? (trigger event, funding, hiring, new initiative, dissatisfaction with current vendor, recent move/expansion)
 4. **Decision-maker profile** — role, seniority, what they care about
 5. **Disqualifiers** — what makes a prospect a clear "skip"

@@ -16,7 +16,7 @@ The closer the signal is to your product and your past customers, the better it 
 | 4 | **Engagement with you or a competitor**: comments on your posts or a competitor's, community questions | Public interest in the problem | Trigify, Common Room, social listening |
 | 5 | **Hiring in the function you serve**, or a new leader in it | New budget and a mandate to change things | Job boards (TheirStack, PredictLeads), LinkedIn |
 | 6 | **Funding, launches, expansion** | Budget, plus pressure to grow fast | Crunchbase, news, press releases |
-| 7 | **Tech stack changes**: adding or dropping a tool next to yours | A related decision is in motion | BuiltWith, Wappalyzer, job-post tech mentions |
+| 7 | **Tech stack changes**: adding or dropping a tool next to yours | A related decision is in motion | BuiltWith, Wappalyzer, job-post tech mentions, subprocessor lists |
 | 8 | **Generic third-party intent** | Weakest, and noisy | Bombora-style intent feeds, review-site intent |
 
 Stack signals before acting on the weaker ones. Hiring a lifecycle marketer **plus** an ESP in the stack **plus** a fit score above your threshold is worth a sequence. Any one of those alone usually isn't.
@@ -47,6 +47,7 @@ A signal decays. Act inside these windows or downgrade it:
 | Job post for the function | While the post is open, up to ~60 days | Hire made, budget allocated |
 | Funding announcement | 30–60 days | Old news; don't congratulate on it |
 | Tech install or removal | 30 days | Decision done |
+| Priority stated on a podcast or in a talk | 90 days from the air date | Background on the person, not a trigger |
 
 Record the signal date on every lead. A lead sheet without signal dates can't be prioritized.
 
@@ -91,6 +92,48 @@ The strongest services and tooling plays pair two things: a signal that the comp
 5. **Lead with the observation and a question, not a verdict.** "Your Meta ads for the spring launch point to the homepage. Is that on purpose?" gets replies. "Your landing pages are wasting your ad spend" gets deleted. Offer the evidence, and the teardown, only after they say yes (see the cold-email skill's outbound plays reference).
 
 Searching for these by hand is slow, which is why the plays used to be rare. Agents with web, ad-library, and X search access (Grok, for example, searches X directly) can build the list. A human still reviews the evidence for Tier 1 and a sample for Tier 2. Once a play gets replies, run it on a schedule with the signal-sweep loop in the marketing-loops skill.
+
+## Subprocessor lists: a stack the company publishes itself
+
+A company that handles customer data has to tell its customers which other vendors process that data. Most publish the list on a subprocessors page, linked from the DPA (data processing agreement), the privacy policy, or a trust center. It is a first-party record of part of the stack, with each vendor's name, what it is used for, and often where the data sits. No tag-sniffing or guessing from job posts is involved.
+
+**Three ways to use it:**
+
+| Use | How |
+|-----|-----|
+| **Find accounts by a tool they use** | Search for pages that name the vendor as a subprocessor: `"subprocessors" "<vendor>"` or `intitle:subprocessors "<vendor>"`. Every hit is a company that says, in a legal document, that it uses that vendor |
+| **Qualify an account you already have** | Open its subprocessors page before writing. It shows whether a tool in your category is already in place, and which neighbouring tools yours would have to work with |
+| **Catch a change** | A vendor added or dropped is a dated tech-stack signal. Many pages show a "last updated" date or let anyone subscribe to change notices by email, which turns the page into an alert. Compare against a saved copy or a web archive snapshot when there is no date |
+
+**Where to look:** `/subprocessors`, `/legal/subprocessors`, `/dpa`, `/trust`, a `trust.` subdomain, or the privacy policy's section on third parties. Larger companies list them per product.
+
+**Rules for subprocessor lists:**
+
+1. **It is a partial stack.** The list covers vendors that process the company's *customers'* personal data: hosting, email delivery, support desks, product analytics, AI model providers, payments. Tools the company uses on its own behalf, such as its CRM or ad platforms, are usually absent. It suits offers that sit in or next to the product, and is weak evidence for sales and marketing tools.
+2. **Absence proves nothing.** A vendor missing from the list may be used in a way that touches no customer data, or the page may be out of date.
+3. **Names are legal entities.** The list may show a parent or a registered company name where you expect a product name. Search for both before concluding a tool isn't there.
+4. **Record the page URL and the date you read it**, the same as for gap plays, and re-check before the first touch.
+5. **Open with the problem the stack implies, not the lookup.** "I saw you on a subprocessor list" reads as surveillance, the same as mentioning a tracked visit. Use what the stack tells you to choose the angle.
+
+## Podcast appearances: the problem in the prospect's own words
+
+Founders and functional leaders go on podcasts and say what they are working on, what broke, and what they plan to fix. Episodes are now indexed with speaker-labelled transcripts, so a search returns the quote, the timestamp, the show, and who said it. That is a dated, public statement of a priority, in the buyer's own language.
+
+| Use | How |
+|-----|-----|
+| **Find people describing the problem you solve** | Search episode transcripts for the problem in plain words, not your category name. Each hit is a named guest, a company, and a quote |
+| **Research an account before writing** | Search for the leader's name or company. What they said they are focused on this quarter beats a guess from their job title |
+| **Find the shows your buyers appear on** | The shows that keep booking your ICP are where to pitch a guest spot (hand off to **public-relations**) |
+
+**Rules for podcast signals:**
+
+1. **Check the air date.** A priority stated on a podcast holds for about a quarter. Past 90 days, treat it as background, not a trigger.
+2. **Confirm who said it.** Speaker labels in transcripts are sometimes wrong, and hosts paraphrase guests. Open the episode page and check the guest, the company, and that the quote is theirs.
+3. **A guest is not a buyer yet.** Apply ICP fit like any other lead. A good quote from a company outside the ICP is still a skip.
+4. **You can name the episode.** Unlike a tracked visit or a lookup, a podcast is something they chose to publish. "Heard you on [show] talking about [their point]" is welcome when the point is real and specific. Quote it accurately and don't stretch it.
+5. **One reference, then your own point.** The episode earns the open. The rest of the message is about their problem and what you'd do about it.
+
+*Lead source suggested by Firecrawl's podcast index.*
 
 ## Org-shape signals: what the team's structure tells you
 
@@ -163,9 +206,11 @@ Each tool is listed with what it is and when to reach for it. Name the ones that
 | [Common Room](https://www.commonroom.io) | Signal aggregation across community, social, and product data | Signals arrive from several places and need one account view |
 | [Crunchbase](https://www.crunchbase.com) | Company and funding database | Funding rounds and launches are the trigger |
 | [Exa](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/exa.md) | Search API that finds pages by meaning, with an MCP server | Finding news, announcements, and posts about target accounts |
+| Podcast transcripts | Indexed episodes with speaker-labelled transcripts, searchable by topic or person, for example through [Firecrawl](https://github.com/coreyhaines31/marketingskills/blob/main/tools/integrations/firecrawl.md)'s Alexandria library; show notes and episode pages by hand | Someone at a target account described the problem, or you need what a leader said they are working on |
 | X search | Public posts and announcements; Grok searches X directly through the xAI API | The signal is something a founder or team said in public |
 | Meta Ad Library, Google Ads Transparency Center, LinkedIn Ad Library | Public archives of running ads | Checking whether and how a company advertises, by hand in the browser |
 | [BuiltWith](https://builtwith.com), [Wappalyzer](https://www.wappalyzer.com) | Lookups of the technology a website runs | A tool next to yours being added or dropped is the trigger |
+| Subprocessor and DPA pages | A company's own published list of the vendors that process its customers' data | Confirming an account uses a named vendor, or catching one being added or dropped. Free, by search |
 | Your own analytics and billing events | Product usage, sent to the CRM by webhook | The signal is a signup, a limit hit, or a team invite |
 
 Setup guides for TheirStack, Clay, RB2B, and Exa are in the [tools registry](https://github.com/coreyhaines31/marketingskills/blob/main/tools/REGISTRY.md). For the others, use the vendor's own docs, and check what each one offers an agent before planning around it. A scheduled sweep of these sources is the signal-sweep loop in the marketing-loops skill.

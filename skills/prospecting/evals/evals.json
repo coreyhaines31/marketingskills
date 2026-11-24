@@ -200,6 +200,35 @@
         "Offers a situation-based opening angle"
       ],
       "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "We sell an alternative to a well-known customer support desk. I want a list of SaaS companies that currently use that support desk. We have no budget for a technographics tool. How do I find them?",
+      "expected_output": "Should suggest subprocessor and DPA pages as a free, first-party source: companies publish the vendors that process their customers' data, and a support desk is usually on that list. Should give a search such as \"subprocessors\" plus the vendor's name, and where the pages live (subprocessors page, DPA, trust center). Should say to search for the vendor's legal entity or parent name as well as the product name. Should say the list is partial and that absence proves nothing. Should say to record the page URL and date and re-check before outreach. Should say not to open with the lookup itself, and to lead with the problem the stack implies. May add other free sources such as job posts, a tag-lookup browser extension, or the vendor's own customer pages. Should still apply ICP fit before treating a hit as a lead.",
+      "assertions": [
+        "Names subprocessor or DPA pages as a source",
+        "Gives a concrete search and where the pages are found",
+        "Mentions legal-entity or parent names",
+        "States that the list is partial and absence proves nothing",
+        "Says to record the URL and date and re-check",
+        "Says not to open the message with the lookup",
+        "Applies ICP fit to the hits"
+      ],
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "A VP of Support at one of our target accounts was a guest on a podcast last month and spent ten minutes on how their team can't keep up with ticket volume. We sell support automation. How should I use that?",
+      "expected_output": "Should treat the appearance as a dated, public signal of a priority in the buyer's own words. Should say to open the episode page and confirm the guest, the company, the air date, and that the quote is theirs, since transcripts mislabel speakers and hosts paraphrase. Should check the account still fits the ICP. Should note the signal is fresh (about a quarter from the air date). Should say the episode can be named in the opener because it is something they published, unlike a tracked visit, and that the quote must be accurate and not stretched. Should give one reference to the episode and then move to their problem and a specific point of view. Should not invent what was said.",
+      "assertions": [
+        "Treats the appearance as a timing signal with a freshness window",
+        "Says to verify the speaker, company, date, and quote on the episode page",
+        "Checks ICP fit",
+        "Says the episode can be referenced openly, with an accurate quote",
+        "Keeps the reference to one line and moves to the prospect's problem",
+        "Does not fabricate the quote"
+      ],
+      "files": []
     }
   ]
 }
