@@ -132,6 +132,21 @@
         "Logs the reply in the CRM with channel and sequence step"
       ],
       "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "We ran our first cold campaign: 80 leads from one directory, four step-1 variants of 20 each, and step 1 has gone out to everyone. So far 4 replies, all on V2: two 'no thanks', one unsubscribe, and one 'what does this cost?'. The tool wants to auto-pick V2 as the winner. Should we switch everything to V2 and scale it up?",
+      "expected_output": "Should load the readout and experiment design references. Should say not to pick a winner: step 2 hasn't gone out, and follow-ups carry many replies. Should classify the replies and count only one positive (the pricing question), noting that raw replies are mostly no and an opt-out line inflates them. Should work out that 20 leads per slot expects well under one positive, so one campaign can't compare variants; slots are compared only pooled across campaigns, and lifts under about 3x are noise. Should turn off the tool's auto-optimize on step 1, mark the variant result inconclusive, and apply the source rule after step 2: 1 positive means extend with another cohort of about 80 from the same source. Should answer the pricing question quickly and move it to a call with two proposed times.",
+      "assertions": [
+        "Does not declare V2 the winner or switch all leads to it",
+        "Says to wait until at least step 2 has gone out before reading the campaign",
+        "Counts one positive, not four replies, and explains why raw replies mislead",
+        "Explains that 20 leads per slot is far too small to compare variants and that slots pool across campaigns",
+        "Recommends turning off the sending tool's auto-optimize or winner selection on step 1",
+        "Applies the extend rule (one more cohort of the same size) or marks it inconclusive",
+        "Answers the pricing reply fast and proposes two call times"
+      ],
+      "files": []
     }
   ]
 }

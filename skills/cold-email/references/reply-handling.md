@@ -18,9 +18,23 @@ The sequence's job ends when someone replies. What happens in the next hour deci
 
 Every reply of any type stops all other channels for that person. See [multichannel-cadence.md](multichannel-cadence.md).
 
+A numbered menu reply ("1") counts as the option it picks. Treat "1" to "1: interested, let's talk" exactly like a written positive.
+
+## Count positives, not replies
+
+A **positive** is a reply that:
+- Says they're interested
+- Asks about price or details
+- Accepts an offer (the sample, the teardown, the trial)
+- Asks for a call
+
+Everything else is not a positive: no, unsubscribe, wrong person, not now, out of office, and hostile replies. Information requests usually qualify (they ask about price or details); objections and referrals don't until they turn into one of the four above.
+
+An opt-out line that asks for a reply ("reply 'no' and I won't follow up") inflates the reply rate. In one quarter, about 15 of 22 human replies were no, unsubscribe, or wrong person. Keep the opt-out line, since the law and the inbox reward it, but report positives and booked calls, not replies. How those feed campaign decisions is in [readout-and-sample-size.md](readout-and-sample-size.md).
+
 ## Speed
 
-Answer positive replies within minutes during business hours. The research behind the famous speed-to-lead multipliers is old (2007–2011), but the direction holds. Interest fades fast, and a prospect who replied to you has often replied to others too. Route positive replies to a person instantly (a Slack or phone notification), and keep someone responsible for them every working hour.
+Answer positive replies within minutes during business hours, and move them to a call in that first answer, with two proposed times (see Booking). The research behind the famous speed-to-lead multipliers is old (2007–2011), but the direction holds. Interest fades fast, and a prospect who replied to you has often replied to others too. Route positive replies to a person instantly (a Slack or phone notification), and keep someone responsible for them every working hour.
 
 ## Booking
 
@@ -62,4 +76,4 @@ Before an agent sends anything on its own, check that every claim in the draft m
 
 ## Log it
 
-Record on the CRM contact: reply type, date, the sequence and step that produced it, the signal and channel, and the outcome. That's what makes a weekly sequence review possible (the sequence-retro loop in the marketing-loops skill), and it's the outbound stage model in the revops skill.
+Record on the CRM contact: reply type, whether it's a positive, date, the campaign, variant slot, and step that produced it, the signal and channel, and the outcome. Roll positives and calls up into the campaign ledger (see [experiment-design.md](experiment-design.md)). That's what makes a weekly sequence review possible (the sequence-retro loop in the marketing-loops skill), and it's the outbound stage model in the revops skill.

@@ -4,6 +4,8 @@ The best cold email does nothing if it lands in spam. Deliverability is set up b
 
 Contents: [the provider rules](#the-rules-from-google-yahoo-and-microsoft) · [sending setup](#sending-setup) · [warmup](#warmup) · [the email itself](#the-email-itself) · [verify before you send](#verify-before-you-send) · [monitoring](#monitoring) · [stop-loss rules](#stop-loss-rules) · [common mistakes](#common-mistakes) · [tools](#tools)
 
+Running campaigns day to day (inbox admission, daily caps, capacity against lead counts, stuck leads, refills, and the daily plumbing check) is in [sending-ops.md](sending-ops.md).
+
 Numbers here come mostly from sending-infrastructure vendors and mailbox providers' own guidelines. Mailbox providers change enforcement without notice, so treat the volume figures as starting points and let your own placement tests decide.
 
 ## The rules from Google, Yahoo, and Microsoft
@@ -37,6 +39,8 @@ Google's bulk-sender rules apply to mail sent to personal Gmail accounts, not to
 | Daily volume | Mailboxes × sends per mailbox |
 
 Example: 500 sends a day ≈ 20 mailboxes at 25 each ≈ 7–10 domains. Follow-ups count toward the daily volume.
+
+For small programs, the tighter defaults in [sending-ops.md](sending-ops.md) apply: start at 5–10 cold sends per mailbox, cap at 20, and keep the total across campaigns at or under mailboxes × 10.
 
 Plan for spares. Keep 10–20% extra domains warmed and idle, so a burned domain can be swapped out without stopping the program.
 
@@ -88,7 +92,8 @@ Decide these before launch and enforce them automatically where your tool allows
 | Inbox placement below ~70% on a mailbox or domain | Pull it from rotation, return it to warmup, investigate |
 | Spam complaints approaching 0.1% | Pause, cut volume, review targeting and copy |
 | Domain appears on a major blocklist | Stop sending from it; delist or retire it |
-| Reply rate under ~1% after 300+ sends | Stop the campaign; the targeting or offer is wrong, and more volume makes it worse |
+| Human reply rate under ~1% after 300+ sends, or no positives once a cohort has finished step 2 | Stop the campaign; the targeting or offer is wrong, and more volume makes it worse. See [readout-and-sample-size.md](readout-and-sample-size.md) for the keep, extend, and kill rules |
+| Warmup score under 90 on a mailbox | Pull it from campaigns and return it to warmup |
 
 ## Common mistakes
 

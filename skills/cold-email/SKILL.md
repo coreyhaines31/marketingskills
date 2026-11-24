@@ -48,7 +48,7 @@ The reader should see their own situation reflected back. "You/your" should domi
 
 ### One ask, low friction
 
-Interest-based CTAs ("Worth exploring?" / "Would this be useful?") beat meeting requests. One CTA per email. Make it easy to say yes with a one-line reply.
+One CTA per email. Make it easy to say yes with a one-line reply. Which ask to use is a choice to test, not a matter of taste; see "Which ask goes where" below.
 
 ---
 
@@ -84,6 +84,27 @@ There's no single right structure. Choose a framework that fits the situation, o
 
 For the full catalog of frameworks with examples, see [frameworks.md](references/frameworks.md).
 
+### Which ask goes where
+
+| Ask | Looks like | Use it when |
+|-----|------------|-------------|
+| **Interest CTA** | "Worth a look?" | The default. Low friction, but interest replies often go nowhere |
+| **Soft done-for-you offer** | "Want me to send over a sample for your site?" | You can deliver a small piece of the work without a call |
+| **Call ask** | One true proof point, then "Open to 15 minutes Tuesday at 10 or Thursday at 2?" | You have proof from a similar customer. If no step asks for a call, don't expect calls |
+| **Numbered menu** | "Reply 1, 2, or 3" | Short emails and breakups. A one-character reply is the lowest effort there is |
+
+**Test, don't choose.** Put a proof-plus-call variant and a numbered-menu variant in every first wave next to the default. In three projects with about 3,700 sends and no calls booked, no live step-1 email had asked for a call. The slots and how to run them are in [experiment-design.md](references/experiment-design.md).
+
+**Numbered menu template:**
+
+> [One line on the problem or the offer.] Easiest to just reply with a number:
+>
+> 1. Yes, send me two times for a quick call
+> 2. Send the sample, I'll look
+> 3. Not for us right now
+
+**A free self-serve offer may not be enough on its own.** Free credits drew 0 takers from 1,102 contacted, including both people who replied positively; a free audit drew 0 replies from 32. Small samples, not proof, but test a done-for-you sample and a call ask next to any free offer.
+
 ---
 
 ## Subject Lines
@@ -104,7 +125,8 @@ Each follow-up should add something new — a different angle, fresh proof, a us
 
 - 3-5 total emails, increasing gaps between them
 - Each email should stand alone (they may not have read the previous ones)
-- The breakup email is your last touch — honor it
+- The breakup email is your last touch — honor it. A 1/2/3 numbered breakup makes replying almost effortless
+- Follow-ups carry many of the replies, so don't judge a campaign before step 2 has gone out
 
 See [follow-up-sequences.md](references/follow-up-sequences.md) for cadence, angle rotation, and breakup email templates.
 
@@ -116,10 +138,11 @@ Copy only matters if it reaches the inbox. Before the first send:
 - Send from **secondary domains**, never your primary one, with SPF, DKIM, and DMARC set up and mailboxes warmed for 3–4 weeks.
 - **Verify every list** right before upload and keep bounces under 2%.
 - **Turn off open and click tracking.** Measure replies.
-- Include a plain-text **opt-out line and your postal address** in every email.
+- Include a plain-text **opt-out line and your postal address** in every email. Take the address from the brand's own published privacy policy or terms, never a personal or home address.
+- **Keep sister brands apart.** When brands share a workspace or a founder, one brand's copy never mentions the other (subjects, variables, signatures included), and each brand signs as its own owner, not as whoever runs the outreach.
 - **Check the EU and UK rules first.** Germany and Italy require the recipient's prior consent for a cold email, B2B included; the UK allows B2B email under legitimate interest but not to sole traders or partnerships without consent. The country-by-country rules and the exclusion checklist are in the prospecting skill's compliance reference.
 
-Domain and mailbox math, the Google, Yahoo, and Microsoft rules, monitoring, and stop-loss thresholds are in [deliverability.md](references/deliverability.md).
+Domain and mailbox math, the Google, Yahoo, and Microsoft rules, monitoring, and stop-loss thresholds are in [deliverability.md](references/deliverability.md). Running campaigns day to day (inbox admission, daily caps, capacity against lead counts, leads that never send, refills, and the daily plumbing check) is in [sending-ops.md](references/sending-ops.md).
 
 ---
 
@@ -132,7 +155,29 @@ Most outbound that works in 2026 runs on more than one channel:
 
 ## When They Reply
 
-Classify every reply (positive, information request, objection, not now, referral, out of office, unsubscribe), answer positive replies within minutes, and book with two proposed times plus a link. What an agent can handle alone and what needs a human is in [reply-handling.md](references/reply-handling.md).
+Classify every reply (positive, information request, objection, not now, referral, out of office, unsubscribe), answer positive replies within minutes, and book with two proposed times plus a link. A **positive** is a reply that is interested, asks about price or details, accepts an offer, or asks for a call; nothing else counts. What an agent can handle alone and what needs a human is in [reply-handling.md](references/reply-handling.md).
+
+---
+
+## Run It as Experiments
+
+Structure outbound so results can be compared:
+- **One campaign per source or signal.** Split a list that mixes signals.
+- **Four standard step-1 slots** that mean the same thing in every campaign: V1 problem plus default offer (control), V2 signal opener plus a soft done-for-you offer, V3 one true proof point plus a short call ask, V4 two lines plus a numbered menu. Results then pool across campaigns and brands.
+- **Turn off the sending tool's auto-optimize** on step 1; the sample is far too small.
+- **One shared ledger**, one row per campaign per variant, with metrics defined up front.
+- **Booked calls are the goal, positives the leading indicator.** Never raw reply rate: most replies are "no," and an opt-out line that asks for a reply invites them.
+
+Naming, the ledger columns, metric definitions, and a new-project checklist are in [experiment-design.md](references/experiment-design.md).
+
+## Reading Results
+
+- **Work out expected positives first.** At 0.4 positives per 100 contacted, an 80-lead campaign expects 0.3. One campaign can't compare variants; it can only screen a source.
+- **Don't read before step 2 has sent**, and report counts next to every rate.
+- **Default rules:** keep a source at 2+ positives or 1 call per ~80 leads, extend at 1, kill at 0 after step 2; promote a slot at 3+ positives and 2 more than every other slot, pooled.
+- **Write "inconclusive"** and move on rather than change copy on fewer than about 3 positives.
+
+Sample-size math, the decision table with its caveats, readout cadence, and a weekly readout template are in [readout-and-sample-size.md](references/readout-and-sample-size.md).
 
 ---
 
@@ -163,7 +208,7 @@ Before presenting, gut-check:
 - HTML, images, or multiple links
 - Fake "Re:" or "Fwd:" subject lines
 - Identical templates with only {{FirstName}} swapped
-- Asking for 30-minute calls in first touch
+- Asking for a 30-minute call in the first touch. A short call ask with two proposed times and a real proof point is a variant to test, not something to avoid
 - "Just checking in" follow-ups
 
 ---
@@ -174,10 +219,13 @@ The references contain performance data if you need to make informed choices:
 
 - [benchmarks.md](references/benchmarks.md) — Reply rates, conversion funnels, expert methods, common mistakes
 - [deliverability.md](references/deliverability.md) — Sending domains, mailboxes, mailbox-provider rules, warmup, monitoring, stop-loss rules
+- [sending-ops.md](references/sending-ops.md) — Inbox admission, daily caps, capacity math, stuck leads, refills, brand separation, daily plumbing check
+- [experiment-design.md](references/experiment-design.md) — One campaign per source, standard variant slots, naming, ledger, metric definitions, new-project checklist
+- [readout-and-sample-size.md](references/readout-and-sample-size.md) — Expected positives, detectable lift, keep/extend/kill rules, readout cadence, weekly readout
 - [linkedin-outreach.md](references/linkedin-outreach.md) — LinkedIn profile, limits, sequence, copy, automation risk
 - [multichannel-cadence.md](references/multichannel-cadence.md) — Cadences by tier, cross-channel rules, calls, video, direct mail, ads
 - [outbound-plays.md](references/outbound-plays.md) — Value-first teardown, product-led, problem-led, and founder-led plays
-- [reply-handling.md](references/reply-handling.md) — Reply types, speed, booking, early objections, agent permissions
+- [reply-handling.md](references/reply-handling.md) — Reply types, positive-reply definition, speed, booking, early objections, agent permissions
 - [personalization.md](references/personalization.md) — 4-level personalization system, research signals
 - [subject-lines.md](references/subject-lines.md) — Subject line data and optimization
 - [follow-up-sequences.md](references/follow-up-sequences.md) — Cadence, angles, breakup emails
