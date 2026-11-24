@@ -12,7 +12,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | attribution | 1.1.10 | 2026-11-19 |
 | churn-prevention | 2.0.7 | 2026-11-19 |
 | co-marketing | 2.0.7 | 2026-11-19 |
-| cold-email | 2.2.7 | 2026-11-19 |
+| cold-email | 2.3.0 | 2026-11-24 |
 | community-marketing | 2.0.5 | 2026-11-09 |
 | competitor-profiling | 2.1.9 | 2026-11-19 |
 | competitors | 2.3.3 | 2026-11-09 |
@@ -59,6 +59,16 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.29 (2026-11-24)
+
+Running cold outbound as a set of experiments (#1051, #1052, #1053, #1054).
+
+- **cold-email** (2.2.7 → 2.3.0): three new references and two new SKILL.md sections, Run It as Experiments and Reading Results.
+  - `references/experiment-design.md` (#1051): one campaign per source or signal, four standard step-1 slots (V1 problem plus default offer, V2 signal opener plus a soft done-for-you offer, V3 one true proof point plus a call ask, V4 two lines plus a numbered menu) that pool across campaigns, a naming scheme where replaced copy takes a letter (V2b), auto-optimize off on step 1, a shared ledger with metric definitions, and a new-project checklist. Booked calls are the goal metric, positives the leading indicator, never raw reply rate.
+  - `references/readout-and-sample-size.md` (#1052): expected positives for a list size and base rate, the lift a test can detect (about 7 expected control positives for 3×, about 20 for 2×), no read before step 2, keep/extend/kill/promote defaults with what the kill rule misses, about 80 leads per cohort, an inconclusive status, readout cadence, and a weekly readout template.
+  - `references/sending-ops.md` (#1053): inbox admission (warmup 98+, 3–4 weeks), daily caps (5–10 rising to 20, inboxes × 10 across campaigns, an explicit new-leads cap), capacity math with a worked example, troubleshooting leads that never send, gated and ungated refills, brand separation, a daily plumbing check, and stop-loss. `deliverability.md` links to it and gains a warmup-under-90 trigger.
+  - Which ask goes where (#1054): interest CTA, soft done-for-you offer, call ask, and numbered menu, tested side by side instead of chosen by taste, with a menu template and a caution on free self-serve offers. `reply-handling.md` defines a positive reply, says an opt-out line that asks for a reply inflates reply rate, and moves positives to a call with two times in the first answer. Footer address and sister-brand rules join Before You Send. Eval 10 added.
 
 ### 2.14.28 (2026-11-23)
 
