@@ -2,7 +2,7 @@
 name: public-relations
 description: "When the user wants press and media coverage, or asks what to say to a reporter, whether a story is newsworthy, or how to handle a crisis: pitches, press releases, media lists, HARO, op-eds, podcast guest prep, newsjacking (public relations, not pull requests). For directories, see directory-submissions. For launches, see launch. For cold outreach to prospects, see cold-email."
 metadata:
-  version: 1.3.1
+  version: 1.3.2
 ---
 
 # Public Relations & Earned Media
@@ -59,7 +59,7 @@ Four modes. Most teams over-index on one. Run at least three.
 
 **For inbound press-request platforms (HARO, Qwoted, etc.)** — see [references/press-platforms.md](references/press-platforms.md)
 
-**For writing a press release and choosing where to distribute it** (own newsroom, free sites, paid wires, an agent-callable API), see [references/press-releases.md](references/press-releases.md). A release is a record, not a pitch. It rarely earns coverage by itself.
+**For writing a press release and choosing where to distribute it** (own newsroom, free sites, paid wires, an agent-callable API), and for getting a release past a wire's editorial review, see [references/press-releases.md](references/press-releases.md). A release is a record, not a pitch. It rarely earns coverage by itself.
 
 **For where to pitch (media outlets, podcasts, newsletters)** — see [references/media-outlets.md](references/media-outlets.md). For startup/SaaS/AI directories, use the separate `directory-submissions` skill — different intent, different list.
 

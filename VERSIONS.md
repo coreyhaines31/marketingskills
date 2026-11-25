@@ -45,7 +45,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | product-marketing | 2.2.3 | 2026-11-09 |
 | programmatic-seo | 2.1.3 | 2026-11-09 |
 | prospecting | 1.8.0 | 2026-11-23 |
-| public-relations | 1.3.1 | 2026-11-19 |
+| public-relations | 1.3.2 | 2026-11-25 |
 | referrals | 2.2.7 | 2026-11-19 |
 | reverse-engineer-marketing | 1.2.0 | 2026-11-19 |
 | revops | 2.2.4 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.29 (2026-11-25)
+
+- **public-relations** (1.3.1 → 1.3.2): `references/press-releases.md` gains "Passing Wire Editorial Review", from a 15-release EIN Presswire campaign in which the wire held three releases for reading like ads. It covers the patterns that get a release held, with before and after examples: question or "How to" headlines, "you" and "we" outside quotes, advertorial bodies, imperative calls to action, and how-to steps with sample prompts. It also covers the rules that pass, where to put question-shaped keywords instead (on pages you control, not the wire headline), how to fix a held or already scheduled release, and what EIN checks before it approves a new account. The checklist gains two items. Eval 4 added.
 
 ### 2.14.28 (2026-11-23)
 
