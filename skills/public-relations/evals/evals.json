@@ -46,6 +46,22 @@
         "Suggests pitching journalists in addition to the release"
       ],
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "EIN Presswire put our press release on hold and said it reads like an ad. The headline is 'How to Track Your Brand in ChatGPT: Acme Launches AI Visibility Tracking' and the release ends with 'Try it free at acme.com, no credit card required.' Can you fix it so it gets approved?",
+      "expected_output": "Should route to references/press-releases.md, section Passing Wire Editorial Review. Should rewrite the headline as a neutral announcement that names the company and the event (for example 'Acme Launches AI Visibility Tracking for ChatGPT...'), with no question, 'How to' or 'your', under 120 characters and ideally near 80. Should rewrite the closing call to action as a description of availability ('is available at acme.com'), in the third person. Should open the lead with the company and the event ('Acme today announced...'). Should check the rest of the release for 'you' or 'we' outside quotes, imperative calls to action, and how-to steps or sample prompts, and suggest moving question-style keyword phrasing to the company's own site. Should mention re-answering the wire's issues and resubmitting, and that editing reworded anchor phrases can break the wire's anchor links. Should not promise approval.",
+      "assertions": [
+        "Routes to references/press-releases.md (Passing Wire Editorial Review)",
+        "Rewrites the headline as a neutral announcement with no question, 'How to' or 'your'",
+        "Keeps the headline under 120 characters",
+        "Turns 'Try it free' into a third-person availability statement",
+        "Opens the lead with the company and the event",
+        "Checks the whole release for second or first person outside quotes and other calls to action",
+        "Suggests putting question-style keyword phrasing on owned pages instead of the wire headline",
+        "Does not promise that the release will be approved"
+      ],
+      "files": []
     }
   ]
 }

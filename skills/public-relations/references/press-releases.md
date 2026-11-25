@@ -9,6 +9,7 @@ How to write a press release and where to send it. A release is a dated, public 
 - Distribution options
 - Picking an option
 - What wire distribution actually gets you
+- Passing wire editorial review
 - Timing
 - Checklist
 
@@ -116,6 +117,51 @@ Set expectations before anyone pays:
 
 ---
 
+## Passing Wire Editorial Review
+
+Paid wires have editors who read every release before it goes out. A release that reads like an ad gets held with "Action Required", and the scheduled date slips until it's fixed. These are the patterns that got releases held on EIN Presswire in November 2026. Other wires apply similar guidelines.
+
+### What gets a release held
+
+| Flag | Example that was held | Rewrite that passed |
+|------|-----------------------|---------------------|
+| **Question or "How to" headline** | "Can AI Manage LinkedIn Ads, X Ads and Reddit Ads? Acme Brings B2B Ad Platforms into Claude" | "Acme Adds LinkedIn Ads, X Ads and Reddit Ads Support for AI Assistants" |
+| **Second or first person outside a quote** | "...shows whether ChatGPT recommends your business" | "...measures whether ChatGPT recommends a business" |
+| **Advertorial body** (mainly selling, no news) | "Enter a website and get a scored audit. No credit card required." | "Acme today launched a free audit that scores a website's..." |
+| **Imperative calls to action** | "Run it at example.com/audit." | "The audit is available at example.com/audit." |
+| **How-to steps and sample prompts** | "1. Add the connector. 2. Sign in. 3. Ask for the work." | "Teams add the connector, sign in, and connect their accounts." |
+
+A release can pass review once and still have these patterns. Editors aren't consistent, so fix all of them before you submit, not only the ones that were flagged.
+
+### Rules that pass
+
+- **The headline is a neutral announcement:** "[Company] Launches / Adds / Announces [thing]". EIN caps it at 120 characters and recommends 80.
+- **Open the lead with the company and the event:** "[Company] today announced...". Don't open with a reader's question ("Marketers asking 'Can AI...?' can now...").
+- **Third person everywhere except inside a quote.** "You" and "we" are allowed in a quote attributed to a named person, but a quote addressed to the reader ("your buyers") still reads as an ad. Keep quotes about the company's reasoning.
+- **Describe availability instead of telling the reader to act:** "is available at", "pricing starts at", not "Try it", "Sign up" or "Get started".
+- **Put setup steps and example prompts on your own site,** and link to that page.
+- **Add one sentence of context** that makes it news: a shift in the market or a problem the launch responds to. Without it, a product description reads as an advertorial.
+
+### Question-shaped keywords
+
+Question headlines ("How to track brand mentions in ChatGPT") are tempting when the goal is to be cited by AI assistants for that question. Wires reject them. Put the question phrasing on pages you control (an FAQ, a guide, the newsroom copy) and keep the wire headline neutral, while still naming the product category and the platforms.
+
+### Fixing a held or scheduled release
+
+- **A held release:** edit the copy, then answer each issue on the wire's resolve page and resubmit. On EIN that's Resolve Issues, Save Your Answers, then Submit for Review.
+- **An approved, scheduled release** can usually be reverted to a draft, edited and resubmitted. It goes back into the review queue, so leave a few business days before its date.
+- **Check anchored links after an edit.** EIN's anchor-text links match an exact phrase in the body. If you reword that phrase, update the link's anchor text too, or the link silently disappears.
+- **Once a release is distributed it can't be edited.** Get the copy right before the first one goes out, because the first releases set the template for the rest.
+
+### Account verification
+
+New EIN accounts are checked before any release can be submitted. Two things held up one account:
+
+- **The profile has to match a real person and company:** the legal company name, and the account holder's personal LinkedIn rather than the company page.
+- **The website has to show a physical business address,** in the footer or on the contact page. A registered-agent address was accepted. A site with only an email address is held until one is added.
+
+---
+
 ## Timing
 
 - The usual advice is Tuesday to Thursday, morning US Eastern. Avoid Friday afternoon unless you want it buried.
@@ -128,7 +174,8 @@ Set expectations before anyone pays:
 ## Checklist
 
 - [ ] Is there a concrete event, with a date?
-- [ ] Does the headline name the company and the event?
+- [ ] Does the headline name the company and the event, with no question or "How to"?
+- [ ] Is it in the third person, with no "you" or "we" outside a quote and no "Try it" or "Sign up" calls to action?
 - [ ] Does the lead paragraph work alone?
 - [ ] Is every number specific and sourced?
 - [ ] Does the quote give a reason or an opinion?
