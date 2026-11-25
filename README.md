@@ -150,6 +150,8 @@ npx skills add coreyhaines31/marketingskills --list
 
 The CLI detects which agents you have installed and asks where to install. For Claude Code it installs into `.claude/skills/`; universal agents share `.agents/skills/`.
 
+When `competitor-profiling` needs to find a public review URL and your agent has no search tool, it can use the bundled [Parallel search helper](tools/integrations/parallel.md) with Node 18+ and permitted network access. The helper sends a public product query to Parallel without a search key. Choose another search provider in your request or set `PARALLEL_DISABLED=1` to disable the bundled fallback.
+
 > [!TIP]
 > If you run the command from **inside** an agent session (e.g., asking Claude Code to install the skills for you), the CLI runs non-interactively and may only install to the universal `.agents/skills/` directory, which Claude Code does not read. Pass the agent explicitly:
 >

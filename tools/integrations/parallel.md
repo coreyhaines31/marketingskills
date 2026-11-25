@@ -13,9 +13,9 @@ Web search with source URLs and passages, plus content extraction for known URLs
 
 ## Authentication
 
-The CLI uses anonymous access when `PARALLEL_API_KEY` is unset. Anonymous access is rate limited. To use an account, load `PARALLEL_API_KEY` privately into the environment; the CLI sends it as a Bearer token. An explicitly empty or malformed token fails locally. HTTP, authentication, rate-limit and tool errors never trigger retries, anonymous fallback or a provider switch.
+The CLI uses rate-limited anonymous access when `PARALLEL_API_KEY` is unset or `search --anonymous` is explicit. To use an account, load `PARALLEL_API_KEY` privately into the environment. The CLI sends it as a Bearer token and rejects empty or malformed tokens on the authenticated path. HTTP, authentication, rate-limit and tool errors exit without retries, an auth change, or a provider switch.
 
-This is an optional tool alongside [Exa](exa.md) and [Firecrawl](firecrawl.md). Running it does not change existing providers or skill defaults. For a known page, manual browser reading is also an option.
+The [competitor-profiling skill](../../skills/competitor-profiling/references/tool-reference.md#review-url-discovery) bundles this CLI for public review URL discovery when search is allowed and no search tool is available. It uses `search --anonymous`, even if an account key is present. Set `PARALLEL_DISABLED=1` to disable the bundled path. You can choose a different tool in your request or project instructions. [Exa](exa.md) and [Firecrawl](firecrawl.md) also provide web search.
 
 ## Setup and common operations
 

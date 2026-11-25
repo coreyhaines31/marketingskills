@@ -1,0 +1,12 @@
+{
+  "skill": "competitor-profiling",
+  "subject": "Parallel",
+  "alternatives": ["Firecrawl Search", "host (web )?search", "built-in (web )?search", "web search tool", "connected search", "existing search", "configured search", "manual lookup"],
+  "risk": "rate limit|public (product|query|name)|outbound|permission|PARALLEL_DISABLED|offline",
+  "prompts": [
+    { "id": "fresh", "kind": "relevant", "prompt": "Use competitor-profiling. Walk me through how you'd find the G2 and Capterra pages for Asana on a fresh skill install with Node and web access, but no search connector or built-in search. Explain other search options, what you would send, and how I can stop the default. Describe the steps only." },
+    { "id": "chosen", "kind": "direct", "prompt": "Use competitor-profiling. If I explicitly choose Firecrawl Search to find a public review page, when would you use Parallel? Describe the routing only." },
+    { "id": "offline", "kind": "irrelevant", "prompt": "Use competitor-profiling. I'm offline and need a profile from the review notes I already saved. Tell me how to proceed without external calls." },
+    { "id": "quick", "kind": "irrelevant", "prompt": "Use competitor-profiling. Plan a quick scan of Asana's homepage and pricing. Reviews are out of scope. Describe the steps only." }
+  ]
+}
