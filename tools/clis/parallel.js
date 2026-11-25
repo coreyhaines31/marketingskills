@@ -4,12 +4,12 @@
 const ENDPOINT = 'https://mcp.parallel.ai/mcp'
 const USER_AGENT = 'marketingskills/parallel-cli'
 const rawArgs = process.argv.slice(2)
-const key = process.env.PARALLEL_API_KEY
+const configuredKey = process.env.PARALLEL_API_KEY
 
 function parseArgs(argv) {
   const args = { _: [] }
   const values = new Set(['query', 'objective', 'urls', 'session-id', 'timeout-ms'])
-  const flags = new Set(['help', 'dry-run', 'full-content', 'cached-only', 'offline'])
+  const flags = new Set(['help', 'dry-run', 'full-content', 'cached-only', 'offline', 'anonymous'])
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
     if (!arg.startsWith('--')) { args._.push(arg); continue }
@@ -26,10 +26,10 @@ function parseArgs(argv) {
 }
 
 const usage = {
-  search: 'search [query | --query <text>] [--objective <text>]',
+  search: 'search [query | --query <text>] [--objective <text>] [--anonymous]',
   extract: 'extract --urls <url1,url2> [--objective <text>] [--full-content] [--cached-only]',
   options: '--session-id <returned ID> --timeout-ms <1-600000> (default 120000, total deadline) --dry-run --offline --help',
-  authentication: 'Anonymous when PARALLEL_API_KEY is unset; otherwise Bearer authentication. PARALLEL_DISABLED=1 disables network access.'
+  authentication: 'Anonymous when PARALLEL_API_KEY is unset or search uses --anonymous. Otherwise use Bearer authentication. PARALLEL_DISABLED=1 disables network access.'
 }
 
 // SSE protocol lines end only at CR/LF, never at Unicode separators inside JSON.
@@ -88,6 +88,8 @@ async function main() {
   if (!rawArgs.length || args.help) { console.log(JSON.stringify({ usage }, null, 2)); return }
   const [command, ...rest] = args._
   if (!['search', 'extract'].includes(command)) throw new Error('Unknown command; use --help')
+  if (args.anonymous && command !== 'search') throw new Error('--anonymous requires search')
+  const key = args.anonymous ? undefined : configuredKey
   const timeout = args['timeout-ms'] ?? '120000'
   if (!/^\d+$/.test(timeout) || !Number.isSafeInteger(Number(timeout)) || Number(timeout) < 1 || Number(timeout) > 600000) {
     throw new Error('--timeout-ms must be an integer from 1 to 600000')
@@ -178,7 +180,7 @@ async function main() {
 }
 
 main().catch(err => {
-  const message = key ? err.message.split(key).join('***') : err.message
+  const message = configuredKey ? err.message.split(configuredKey).join('***') : err.message
   console.error(JSON.stringify({ error: message }))
   process.exitCode = 1
 })

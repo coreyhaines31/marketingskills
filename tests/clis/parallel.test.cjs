@@ -1,14 +1,16 @@
 const { test } = require('node:test')
 const assert = require('node:assert/strict')
 const { spawnSync, spawn } = require('node:child_process')
+const { readFileSync } = require('node:fs')
 const http = require('node:http')
 const path = require('node:path')
 const cli = path.resolve(__dirname, '../../tools/clis/parallel.js')
+const bundledCli = path.resolve(__dirname, '../../skills/competitor-profiling/scripts/parallel.js')
 const env = { PATH: process.env.PATH }
 const search = ['search', '--query', 'SaaS onboarding examples']
 const schema = { type: 'object', properties: { objective: {}, search_queries: {}, urls: {}, full_content: {}, allow_live_fetch: {}, session_id: {} } }
 // Synthetic responses, not retained provider captures.
-function run(args, extra = {}, mode = 'ok') {
+function run(args, extra = {}, mode = 'ok', scriptPath = cli) {
   const script = `let calls=[];global.fetch=async(url,options)=>{
     const b=options.body&&JSON.parse(options.body);calls.push({url,...options,signal:undefined,body:b});
     if(${JSON.stringify(mode)}==='none') throw new Error('Unexpected network');
@@ -19,10 +21,33 @@ function run(args, extra = {}, mode = 'ok') {
       {content:[{type:'text',text:'Synthetic passage'}],calls};
     if(${JSON.stringify(mode)}==='tool-error' && b.method==='tools/call') result={isError:true,content:[{type:'text',text:'Synthetic tool failure'}]};
     return new Response(JSON.stringify({jsonrpc:'2.0',id:b.id,result}),{headers:{'Content-Type':'Application/JSON; charset=utf-8','Mcp-Session-Id':'synthetic-session'}});
-  };process.argv=['node',${JSON.stringify(cli)},...${JSON.stringify(args)}];require(${JSON.stringify(cli)})`
+  };process.argv=['node',${JSON.stringify(scriptPath)},...${JSON.stringify(args)}];require(${JSON.stringify(scriptPath)})`
   return spawnSync(process.execPath, ['-e', script], { env: { ...env, ...extra }, encoding: 'utf8', timeout: 5000 })
 }
 function output(r) { assert.equal(r.status, 0, r.stderr); return JSON.parse(r.stdout) }
+test('the standalone and bundled CLI copies match', () => {
+  assert.deepEqual(readFileSync(bundledCli), readFileSync(cli))
+})
+test('bundled anonymous search ignores an ambient key and honors network opt-outs', () => {
+  const args = ['search', '--anonymous', '--query', 'Asana reviews site:g2.com']
+  const env = { PARALLEL_API_KEY: 'synthetic-key' }
+  const r = output(run(args, env, 'ok', bundledCli))
+  for (const c of r.calls) assert.equal(c.headers.Authorization, undefined)
+  assert.deepEqual(r.calls[3].body.params, {
+    name: 'web_search',
+    arguments: { objective: 'Asana reviews site:g2.com', search_queries: ['Asana reviews site:g2.com'] }
+  })
+  for (const result of [
+    run(args, { ...env, PARALLEL_DISABLED: '1' }, 'none', bundledCli),
+    run([...args, '--offline'], env, 'none', bundledCli)
+  ]) {
+    assert.equal(result.status, 1)
+    assert.match(result.stderr, /network access disabled/)
+  }
+  const extract = run(['extract', '--urls', 'https://example.org', '--anonymous'], env, 'none')
+  assert.equal(extract.status, 1)
+  assert.match(extract.stderr, /--anonymous requires search/)
+})
 test('help and dry runs do not touch the network or require credentials', () => {
   assert.ok(output(run([], {}, 'none')).usage)
   assert.ok(output(run(['--help'], { PARALLEL_API_KEY: '' }, 'none')).usage)

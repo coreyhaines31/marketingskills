@@ -14,7 +14,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | co-marketing | 2.0.7 | 2026-11-19 |
 | cold-email | 2.2.7 | 2026-11-19 |
 | community-marketing | 2.0.5 | 2026-11-09 |
-| competitor-profiling | 2.1.9 | 2026-11-19 |
+| competitor-profiling | 2.2.0 | 2026-11-24 |
 | competitors | 2.3.3 | 2026-11-09 |
 | content-strategy | 2.1.8 | 2026-11-09 |
 | conversion-tracking | 1.0.6 | 2026-11-09 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.29 (2026-11-24)
+
+- **competitor-profiling** (2.1.9 → 2.2.0): bundle anonymous Parallel MCP search for missing public review URLs when search is allowed and the agent has no existing search tool.
 
 ### 2.14.28 (2026-11-23)
 

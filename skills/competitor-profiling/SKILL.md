@@ -2,7 +2,7 @@
 name: competitor-profiling
 description: "When the user wants to research competitors into dated profiles, or asks what a rival charges, claims, or is doing, or whether a conclusion about them is fair: positioning, pricing, features, reviews, SEO, observed facts kept apart from inference. For comparison pages, see competitors. For battle cards, see sales-enablement. For accounts you sell to, see prospecting. For how a competitor grew, see reverse-engineer-marketing."
 metadata:
-  version: 2.1.9
+  version: 2.2.0
 ---
 
 # Competitor Profiling
@@ -28,6 +28,8 @@ If the user provides URLs and context is available, proceed without asking.
 ## Tool Stack Selection
 
 This skill supports two data source stacks. Check which MCPs are active before starting and select accordingly.
+
+For an offline request, work from supplied or local evidence and mark any gaps.
 
 | Stack | Scraping | SEO & Market Data | When to use |
 |---|---|---|---|
@@ -103,7 +105,7 @@ The synthesized profile (`<competitor-slug>.md`) should reference the raw data f
 
 For each competitor URL, scrape key pages to extract positioning, features, pricing, and messaging.
 
-**If Firecrawl is unavailable**, use WebFetch in place of all Firecrawl calls. Skip the site-mapping step and instead probe common page paths manually (see [references/tool-reference.md](references/tool-reference.md) — Alternative Stack section). Fetch the homepage first; its navigation links usually reveal the actual paths for pricing, features, and about pages.
+**If Firecrawl is unavailable**, use WebFetch for page reads. Skip site mapping and probe common page paths manually (see the [alternative stack](references/tool-reference.md#alternative-stack-another-seo-data-source--webfetch)). Fetch the homepage first to find the actual pricing, features, and about links.
 
 #### Step 1: Map the site
 
@@ -145,13 +147,15 @@ Extract from each page:
 | **Integrations** | Integration count, key integrations, categories |
 | **Changelog** | Release velocity, recent focus areas, product direction signals |
 
-#### Step 3: Scrape competitor reviews (optional but high-value)
+#### Step 3: Find and read competitor reviews (optional)
 
-Use **Firecrawl Scrape** or **Firecrawl Search** to find:
+Use [Review URL Discovery](references/tool-reference.md#review-url-discovery) for missing links to:
 - G2 reviews page for the competitor
 - Capterra reviews page
 - Product Hunt launch page
 - TrustRadius profile
+
+Read known and newly found review URLs with Firecrawl Scrape or WebFetch, subject to the user's access settings.
 
 Save each scraped review page to `competitor-profiles/raw/<competitor-slug>/<YYYY-MM-DD>/reviews/<source>.md`. Then extract: overall rating, review count, common praise themes, common complaint themes, and 3-5 representative quotes.
 
