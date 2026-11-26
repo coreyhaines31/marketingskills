@@ -159,6 +159,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | onesignal | Push | ✓ | - | [✓](clis/onesignal.js) | ✓ | [onesignal.md](integrations/onesignal.md) |
 | demio | Webinar | ✓ | - | [✓](clis/demio.js) | - | [demio.md](integrations/demio.md) |
 | ◆ livestorm | Webinar | ✓ | ✓ | [✓](clis/livestorm.js) | - | [livestorm.md](integrations/livestorm.md) |
+| attendir | Event Promotion | ✓ | ✓ | - | - | [attendir.md](integrations/attendir.md) |
 | agent-press-wire | Press Release Distribution | ✓ | ✓ | - | - | [agent-press-wire.md](integrations/agent-press-wire.md) |
 | shopify | Commerce | ✓ | - | ✓ | ✓ | [shopify.md](integrations/shopify.md) |
 | wordpress | CMS | ✓ | - | ✓ | ✓ | [wordpress.md](integrations/wordpress.md) |
@@ -501,6 +502,20 @@ Webinar and virtual event platforms.
 
 **Choosing**: Demio for marketing-focused webinars. Livestorm for full event engagement.
 
+### Event Promotion
+
+Getting speakers, attendees, and sponsors to announce an event from their own social accounts, usually with a branded card that carries their photo. Only Attendir has an integration guide here; the rest are listed so an agent can compare.
+
+| Tool | Fits | Notes |
+|------|----------|-------|
+| **[attendir](integrations/attendir.md)** | LinkedIn share campaigns for B2B events, with a tracked link per person and auto-invites for Eventbrite and Luma registrants | MCP (OAuth) + widget API; $490/mo or $4,900/yr and up (checked 2026-11-22). Added by its maker |
+| **Go Spread** | "Meet me at" graphics people post to LinkedIn or download, with no account | From €79 one-time per event, up to 250 attendees; free tier to test (checked 2026-11-22) |
+| **Im-Attending** | "Meet me at" and speaker graphics people download and post themselves, with no account | From €79 one-time per event, up to 250 attendees (checked 2026-11-22) |
+| **Snapbar** | Branded photos guests take at the event (AI portraits, headshots, trading cards) and post | Priced per experience; covers the event itself, not the weeks before |
+| **Design template** | A Canva or Figma card with space for a photo, plus a suggested post | Free; no tracking; manual beyond a handful of people |
+
+**Choosing**: Decide by when people share (before the event or at it), how many will share, and whether you need to see results per person. One-time per-event tools cost less for a single small event; a subscription suits an organizer running several. In every option each person posts from their own account.
+
 ### Sales Engagement
 
 Sales engagement and outreach automation platforms.
@@ -756,6 +771,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **magister** - Connected marketing accounts, AI visibility checks, site audits, keyword research (house tool)
 - **agent-press-wire** - Press release publishing and newswire distribution (paid per call)
 - **socialtoai** - Public posts, comments, profiles, and trending lists on 18 social platforms (OAuth or API key)
+- **attendir** - Event share campaigns for B2B events: event, share card, campaign, and share link (OAuth)
 
 To use MCP tools, ensure the appropriate MCP server is configured in your environment. Most hosted servers sign in with per-user OAuth, which suits interactive sessions; for scheduled or unattended agent runs, use the tool's API key (with the CLI or API, or an MCP that accepts a key header). MCP status checked 2026-10-07.
 
