@@ -29,7 +29,7 @@ SocialToAI is one way to read public posts and comments. Follow the user's expli
 | A handful of Reddit, Hacker News, or Bluesky searches | The free public endpoints in the social skill's [listening reference](../../skills/social/references/listening.md); no account |
 | YouTube videos, comments, and channel stats within a daily quota | The YouTube Data API (free quota, Google Cloud key) |
 | X posts at volume with an X developer account | X's official API (paid per use) |
-| Posts, comments, profiles, or trending lists across several platforms from one agent, without platform accounts | SocialToAI; [◆ AIsa](aisa.md) (X, Instagram, Reddit, Pinterest, YouTube); [Glasser](glasser.md) (social providers in its broker catalog) |
+| Posts, comments, profiles, or trending lists across several platforms from one agent, without platform accounts | SocialToAI; [◆ AISA](aisa.md) (X, Instagram, Reddit, Pinterest, YouTube); [Glasser](glasser.md) (social providers in its broker catalog) |
 | Xiaohongshu, Douyin, Weibo, Bilibili, Zhihu, Kuaishou, or WeChat | SocialToAI; Glasser (through its Chinese-platforms provider); the platform's own creator marketplace for rates and audience data (see [chinese-platforms.md](../../skills/social/references/chinese-platforms.md)) |
 | A specific site, or a platform none of these cover | [Apify](apify.md) Store Actors (per-Actor pricing; check the Actor's and the platform's terms) |
 | Brand-mention summaries, comment topic analysis, or creator search done server-side in one request | SocialToAI's ready-made tools (`brand_buzz`, `comment_insights`, `find_creators`); or fetch raw posts with any option above and analyze them in the agent |

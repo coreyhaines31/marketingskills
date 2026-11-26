@@ -1,8 +1,8 @@
-# AIsa
+# AISA
 
-> **◆ Verified Partner integration.** AIsa sponsors Marketing Skills. This integration is disclosed and vetted for fit; it does **not** change what any skill recommends. It's listed here alongside the neutral options for the same job — use it when it's the right fit, not because it's a partner. See [Verified Partners](../REGISTRY.md#verified-partners).
+> **◆ Verified Partner integration.** AISA sponsors Marketing Skills. This integration is disclosed and vetted for fit; it does **not** change what any skill recommends. It's listed here alongside the neutral options for the same job — use it when it's the right fit, not because it's a partner. See [Verified Partners](../REGISTRY.md#verified-partners).
 
-One account and one key for third-party data APIs, billed per call. For marketing work, the relevant parts are SEO data (DataForSEO, Semrush, and Ahrefs endpoints), Similarweb market data, social data (X/Twitter, Instagram, Reddit, Pinterest, YouTube), web search and research (Tavily, Firecrawl, Exa, Perplexity), and people and company search. AIsa also offers model inference and finance data, which this guide doesn't cover.
+One account and one key for third-party data APIs, billed per call. For marketing work, the relevant parts are SEO data (DataForSEO, Semrush, and Ahrefs endpoints), Similarweb market data, social data (X/Twitter, Instagram, Reddit, Pinterest, YouTube), web search and research (Tavily, Firecrawl, Exa, Perplexity), and people and company search. AISA also offers model inference and finance data, which this guide doesn't cover.
 
 The MCP workflows, authentication, pricing guidance, and coverage below were reviewed against the [MCP guide](https://mcp.aisa.one/llms.txt), the [agent quickstart](https://aisa.one/docs/agent-quickstart), the [public catalogue](https://mcp.aisa.one/servers), and the linked authentication and billing docs on 2026-10-15. This review did not execute authenticated provider calls. Coverage and prices change; inspect the selected operation before use.
 
@@ -78,14 +78,14 @@ For a free connection check, inspect the client's `use` tool schema and invoke t
 
 ## Tradeoffs
 
-- **One more dependency.** Requests route and bill through AIsa, so an AIsa outage or balance problem stops every provider behind it. Billing goes through AIsa rather than each provider.
-- **Not every endpoint of every provider.** The SEO module is a curated set. If you need a report AIsa doesn't expose, go to the provider directly.
-- **Direct accounts can still win.** If you already pay for Semrush or Ahrefs and use one provider heavily, a direct account (see the semrush, ahrefs, and dataforseo guides) may cost less and expose more. AIsa fits when you need several providers occasionally and don't want an account and key for each.
+- **One more dependency.** Requests route and bill through AISA, so an AISA outage or balance problem stops every provider behind it. Billing goes through AISA rather than each provider.
+- **Not every endpoint of every provider.** The SEO module is a curated set. If you need a report AISA doesn't expose, go to the provider directly.
+- **Direct accounts can still win.** If you already pay for Semrush or Ahrefs and use one provider heavily, a direct account (see the semrush, ahrefs, and dataforseo guides) may cost less and expose more. AISA fits when you need several providers occasionally and don't want an account and key for each.
 - **Costs vary by call.** Metered pricing and batches need bounds on the whole request. Use the interface's supported admission controls and reconcile account usage; a price estimate alone does not bound final spend.
 
 ## How it fits the skills
 
-- AIsa is one way to get **data**; what to do with it still comes from the skills. Use `seo-audit` and `ai-seo` for SEO and AI-visibility work, `competitors` and `competitor-profiling` for market research, `content-strategy` and `programmatic-seo` for keyword data, `social` for social listening, and `prospecting` for people and company search.
+- AISA is one way to get **data**; what to do with it still comes from the skills. Use `seo-audit` and `ai-seo` for SEO and AI-visibility work, `competitors` and `competitor-profiling` for market research, `content-strategy` and `programmatic-seo` for keyword data, `social` for social listening, and `prospecting` for people and company search.
 - Alternatives for the same job: direct provider accounts ([dataforseo](dataforseo.md), [semrush](semrush.md), [ahrefs](ahrefs.md), [similarweb](similarweb.md)), [RankParse](rankparse.md) for cheap backlink and domain data, and [Composio](composio.md) when the need is connecting your own SaaS accounts rather than buying third-party data.
 - Apply the approval rule: paid calls need authorization for their scope and bounded cost; an estimate alone does not establish that bound.
 

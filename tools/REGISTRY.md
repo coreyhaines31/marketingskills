@@ -27,7 +27,7 @@ Anyone — including tool makers and partners — may contribute content that na
 |---------|----------|-------|
 | ◆ Converly | Conversion tracking / attribution | [converly.md](integrations/converly.md) |
 | ◆ Ploy | AI website & growth platform | [ploy.md](integrations/ploy.md) |
-| ◆ AIsa | SEO, search & social data | [aisa.md](integrations/aisa.md) |
+| ◆ AISA | SEO, search & social data | [aisa.md](integrations/aisa.md) |
 | ◆ Omnia | AI search visibility (AEO) | [omnia.md](integrations/omnia.md) |
 | ◆ Livestorm | Webinars & virtual events | [livestorm.md](integrations/livestorm.md) |
 <!-- PARTNERS:END -->
@@ -769,9 +769,9 @@ To use MCP tools, ensure the appropriate MCP server is configured in your enviro
 
 Use Composio when you need MCP access to OAuth-heavy tools. Prefer native MCP servers (GA4, Stripe, Mailchimp, etc.) when available — they have deeper coverage.
 
-### AIsa Data Access
+### AISA Data Access
 
-[◆ AIsa](integrations/aisa.md) offers access to supported SEO, search, social, and company-data providers through one account. Check operation coverage, account access, and pricing before choosing it alongside direct provider connections or manual exports. Its data access serves a different need from connecting existing SaaS accounts through Composio.
+[◆ AISA](integrations/aisa.md) offers access to supported SEO, search, social, and company-data providers through one account. Check operation coverage, account access, and pricing before choosing it alongside direct provider connections or manual exports. Its data access serves a different need from connecting existing SaaS accounts through Composio.
 
 - **Quick start**: [tools/aisa/README.md](aisa/README.md)
 - **Coverage and alternatives**: [tools/aisa/coverage-map.md](aisa/coverage-map.md)

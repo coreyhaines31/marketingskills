@@ -1,8 +1,8 @@
-# AIsa integration evals
+# AISA integration evals
 
-> **◆ Verified Partner integration.** AIsa sponsors Marketing Skills. These evals are contributed by the AIsa team and assess the integration, not a preferred provider. Sponsorship does not change what any skill recommends. See [Verified Partners](../../REGISTRY.md#verified-partners) and the [partner rules](../../PARTNERS.md).
+> **◆ Verified Partner integration.** AISA sponsors Marketing Skills. These evals are contributed by the AISA team and assess the integration, not a preferred provider. Sponsorship does not change what any skill recommends. See [Verified Partners](../../REGISTRY.md#verified-partners) and the [partner rules](../../PARTNERS.md).
 
-[evals.json](evals.json) contains 16 scenario specifications for the [AIsa integration](../README.md). They test provider selection, discovery, research quality, authentication, cost handling, and failure recovery. They do not modify or replace skill evals.
+[evals.json](evals.json) contains 16 scenario specifications for the [AISA integration](../README.md). They test provider selection, discovery, research quality, authentication, cost handling, and failure recovery. They do not modify or replace skill evals.
 
 ## What these files establish
 
@@ -24,9 +24,9 @@ These fixtures exercise decisions; they do not measure provider data accuracy or
 
 ## Optional live checks
 
-Live checks are separate, scoped integration checks. Do not replay the synthetic fixtures or their operation IDs against AIsa.
+Live checks are separate, scoped integration checks. Do not replay the synthetic fixtures or their operation IDs against AISA.
 
-- Record the client, model, date, and server URL. AIsa MCP at `https://mcp.aisa.one/mcp` uses `search`, `list_categories`, `get_details`, `use`, and `batch_use`.
+- Record the client, model, date, and server URL. AISA MCP at `https://mcp.aisa.one/mcp` uses `search`, `list_categories`, `get_details`, `use`, and `batch_use`.
 - Start with `search` and use `get_details` to inspect the full schema and pricing for each candidate operation. Verify authentication with a documented free protected operation; public metadata alone is not proof of an authenticated connection. Redact keys, tokens, and account identifiers from evidence.
 - Copy exact operation IDs and arguments from current discovery and schemas. Verify that requested filters, limits, dates, and pagination exist. If a capability is missing, record that outcome rather than inventing an endpoint.
 - Keep paid execution disabled unless the user has explicitly authorized the exact test scope and spend. A quote is neither authorization nor proof of a maximum final charge. Re-quote changed arguments and include pagination, batches, and any authorized retries in the total.
@@ -58,7 +58,7 @@ Suggested result record:
   "status": "not_run",
   "run_at": null,
   "agent": null,
-  "interface": "AIsa MCP",
+  "interface": "AISA MCP",
   "assertion_results": [],
   "evidence": [],
   "quoted_usd": null,

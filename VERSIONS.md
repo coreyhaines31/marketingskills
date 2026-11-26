@@ -340,10 +340,10 @@ Not incorporated: duplicating Shopping products to test images and landing pages
 
 ### 2.12.4 (2026-10-19)
 
-AIsa integration layer by first-time contributor @lhymmEU: tools/aisa/ coverage map + evals, SETUP.md/REGISTRY.md/tools/integrations/aisa.md updates.
+AISA integration layer by first-party contributor @lhymmEU: tools/aisa/ coverage map + evals, SETUP.md/REGISTRY.md/tools/integrations/aisa.md updates.
 
-- Added an AIsa integration quick start, task-level data coverage map, and evaluation scenarios under `tools/aisa/`. Listed AIsa as an optional connection in guided tool setup, with links from its existing guide and the registry.
-- Documented AIsa's MCP setup, free connection verification, and estimate-based price admission checks. Core skill files and per-skill versions are unchanged.
+- Added an AISA integration quick start, task-level data coverage map, and evaluation scenarios under `tools/aisa/`. Listed AISA as an optional connection in guided tool setup, with links from its existing guide and the registry.
+- Documented AISA's MCP setup, free connection verification, and estimate-based price admission checks. Core skill files and per-skill versions are unchanged.
 
 ### 2.12.3 (2026-10-19)
 
@@ -484,7 +484,7 @@ Skill fixes from @rudycelekli. A reviewer recomputed every calculation, and the 
 - **influencer-marketing** (1.1.2 → 1.2.0) and **social** (2.3.3 → 2.3.4): Telegram channel ads (#785 by @Courier-Britva). The new `references/telegram-channels.md` covers how placements are bought, a seven-check vetting routine based on views per subscriber, and pricing by CPM and deletion window. Contributed by the team behind TGScope, which is disclosed; its benchmarks come from TGScope's own studies and are labeled as directional.
 - **Tools:**
   - **rowbound** guide (#500, closes #498): an open-source, self-hosted alternative to Clay that runs enrichment waterfalls from a Google Sheet, with a CLI and MCP.
-  - **AIsa** joins as a ◆ Skill Partner in SEO tools (#783).
+  - **AISA** joins as a ◆ Skill Partner in SEO tools (#783).
   - Across the CLIs, rejected HTTP requests now exit 1 (#713), and invalid flags fail with structured errors before any request is sent (#732), both by @rudycelekli.
 
 ### 2.11.26 (2026-10-08)

@@ -1,8 +1,8 @@
-# AIsa Quick Start
+# AISA Quick Start
 
-> **◆ Verified Partner integration.** AIsa sponsors Marketing Skills. This guide adds an optional data connection and does not change what any skill recommends. Compare alternatives for the task. See [Verified Partners](../REGISTRY.md#verified-partners).
+> **◆ Verified Partner integration.** AISA sponsors Marketing Skills. This guide adds an optional data connection and does not change what any skill recommends. Compare alternatives for the task. See [Verified Partners](../REGISTRY.md#verified-partners).
 
-Use AIsa when a selected marketing workflow needs data from several supported providers through one account. An existing [direct provider connection](../REGISTRY.md), [Composio](../composio/README.md) for connected SaaS accounts, or a manual export may fit better. Check the [coverage map](coverage-map.md) before connecting anything.
+Use AISA when a selected marketing workflow needs data from several supported providers through one account. An existing [direct provider connection](../REGISTRY.md), [Composio](../composio/README.md) for connected SaaS accounts, or a manual export may fit better. Check the [coverage map](coverage-map.md) before connecting anything.
 
 ## MCP Connection
 
@@ -14,7 +14,7 @@ The [MCP guide](https://mcp.aisa.one/llms.txt) and [agent quickstart](https://ai
 
 ## Connect MCP
 
-Remote MCP needs a compatible client; it does not require installing the AIsa CLI or this repository's Node tools.
+Remote MCP needs a compatible client; it does not require installing the AISA CLI or this repository's Node tools.
 
 Use the command for your client, or add the URL through its connector settings:
 
@@ -26,7 +26,7 @@ claude mcp add --transport http aisa https://mcp.aisa.one/mcp
 codex mcp add aisa --url https://mcp.aisa.one/mcp
 ```
 
-Complete browser sign-in through that client's MCP controls. For an API-key connection, keep `AISA_API_KEY` in the client's environment or secret store and configure its Bearer-header support; see the [integration guide](../integrations/aisa.md#authentication). Never paste a key into chat or commit it. An existing authorized CLI connection can also be used; see [AIsa's CLI documentation](https://aisa.one/docs/get-started/cli).
+Complete browser sign-in through that client's MCP controls. For an API-key connection, keep `AISA_API_KEY` in the client's environment or secret store and configure its Bearer-header support; see the [integration guide](../integrations/aisa.md#authentication). Never paste a key into chat or commit it. An existing authorized CLI connection can also be used; see [AISA's CLI documentation](https://aisa.one/docs/get-started/cli).
 
 ## Verify Without Buying Data
 
@@ -38,7 +38,7 @@ Tool listings and OAuth metadata alone do not prove authenticated access. Setup 
 
 Example request:
 
-> Use my selected AIsa connection to research backlinks for example.com. Discover a suitable read operation and show the scope and cost before retrieving data.
+> Use my selected AISA connection to research backlinks for example.com. Discover a suitable read operation and show the scope and cost before retrieving data.
 
 1. Discover candidates for the task. Inspect the exact schema, provider, filters, result limits, and read/write behavior. Use the operation ID returned by `search`.
 2. Get a quote for the exact arguments and account using `get_details` with its quote options. Missing or incomplete pricing means the cost is unknown.

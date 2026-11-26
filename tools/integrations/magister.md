@@ -26,7 +26,7 @@ Facts below were checked against Magister's [pricing](https://magistermarketing.
 - **Deep control of one platform**: use that platform's own API or MCP server, or the CLIs in this repo (`tools/clis/`).
 - **Data into spreadsheets or a BI tool**: a pipeline such as [Supermetrics](supermetrics.md) or [Coupler](coupler.md).
 - **Connectors only, with no marketing features on top**: an MCP gateway such as [Composio](composio.md) or [Cogny](cogny.md).
-- **Paid data lookups without connecting accounts**: [AIsa](aisa.md) or [Glasser](glasser.md).
+- **Paid data lookups without connecting accounts**: [AISA](aisa.md) or [Glasser](glasser.md).
 - **AI visibility monitoring**: the ai-seo skill's monitoring table lists the other trackers.
 - **Social scheduling only**: a dedicated scheduler such as [Buffer](buffer.md) or [Post Bridge](post-bridge.md).
 
