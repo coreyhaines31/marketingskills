@@ -599,7 +599,7 @@ Answer engine optimization tools for AI visibility monitoring, competitor benchm
 |------|----------|-------|
 | **[omnia](integrations/omnia.md)** | AI visibility monitoring, prompt discovery, competitor benchmarking, citation analysis, and agent-assisted content optimization and outreach | REST API + OAuth MCP for data access; built-in agent for execution |
 | **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | AI visibility checks and an AEO audit as an API or MCP call | REST API (async jobs) + OAuth MCP; credit-based |
-| **[cloro](integrations/cloro.md)** | Raw answers and cited sources from ChatGPT, Google AI Mode, Bing AI Mode, and Gemini, and Google results with the AI Overview, per country | API (sync and async batch), hosted MCP, CLI; credit-based; no dashboard |
+| **[cloro](integrations/cloro.md)** | Raw answers and cited sources from ChatGPT, Google AI Mode, Bing AI Mode, and Gemini, and Google and Bing results with the AI Overview, per country | API (sync and async batch), hosted MCP, CLI; credit-based; no dashboard |
 
 **Agent note**: Omnia and cloro have integration guides here. Omnia is a monitoring platform with history and reports; cloro returns the raw answers and sources, and the agent does the counting. The ai-seo skill's monitoring tools table lists the alternatives (Otterly AI, Peec AI, ZipTie, LLMrefs, Profound, Ahrefs Brand Radar, Semrush) and a DIY method; choose on coverage and fit. With Omnia, use MCP for interactive analysis or the API for recurring reports; the built-in Omnia Agent handles content updates, publishing, and outreach with user approval.
 
@@ -725,7 +725,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **crossbeam** - Partner ecosystem data
 - **introw** - Partner relationship management
 - **omnia** - AI visibility, competitor mentions, and citation data (OAuth)
-- **cloro** - AI answers with cited sources, and Google results with the AI Overview
+- **cloro** - AI answers with cited sources, and Google and Bing results with the AI Overview
 - **exa** - AI-powered web search for LLMs and agents
 - **apollo** - B2B prospecting, enrichment, and sequences
 - **hubspot** - CRM read and write

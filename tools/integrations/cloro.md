@@ -1,8 +1,8 @@
 # cloro
 
-API that sends a prompt to ChatGPT, Google AI Mode, Bing AI Mode or Gemini, or a query to Google Search, from a chosen country, and returns the parsed answer: the text, the sources it cites, and for Google the organic results with the AI Overview. Billed in credits per request.
+API that sends a prompt to ChatGPT, Google AI Mode, Bing AI Mode or Gemini, or a query to Google Search or Bing Search, from a chosen country, and returns the parsed answer: the text, the sources it cites, and for Google and Bing the organic results with the AI Overview. Billed in credits per request.
 
-Facts below were checked against the [API reference](https://cloro.dev/docs/api-reference/introduction) and live responses on 2026-11-05. Bing AI Mode facts come from the [API reference](https://cloro.dev/docs/api-reference/endpoint/monitor-bing-aimode).
+Facts below were checked against the [API reference](https://cloro.dev/docs/api-reference/introduction) and live responses on 2026-11-05. Bing AI Mode facts come from the [API reference](https://cloro.dev/docs/api-reference/endpoint/monitor-bing-aimode). Bing Search facts come from the [API reference](https://cloro.dev/docs/api-reference/endpoint/monitor-bing).
 
 ## Capabilities
 
@@ -76,6 +76,21 @@ The `result` has `organicResults` (`position`, `title`, `link`, `displayedLink`,
 
 A result `link` can be empty or a `google.com/goto` URL. Skip those results, or resolve the `redirectLink` with `POST /v1/monitor/google/goto` (`{ "url": "<redirectLink>" }`, 1 credit).
 
+### Bing results with the AI Overview
+
+```bash
+POST https://api.cloro.dev/v1/monitor/bing
+Authorization: Bearer $CLORO_API_KEY
+
+{
+  "query": "best crm for small agencies",
+  "country": "US",
+  "include": { "aioverview": true }
+}
+```
+
+The `result` has `organicResults`, `ads` when the page has ads (no extra credits) and, when Bing shows one for that query, `aioverview`, in the same shapes as Google. `pages` (1 to 10, 2 credits for each page after the first) and `first` (the result to start at) select the results. The country sets the Bing market. Bing Search accepts all countries except CN, KR and RU, and has no `device` or `state` field. The query can have a maximum of 3,500 characters after URL encoding, and fewer for non-Latin scripts.
+
 ### Many prompts (async batch)
 
 ```bash
@@ -88,7 +103,7 @@ POST https://api.cloro.dev/v1/async/task/batch
 ]
 ```
 
-`taskType` is `CHATGPT`, `AIMODE`, `BING_AIMODE`, `GEMINI` or `GOOGLE`. The response lists one task `id` for each item. Poll each one:
+`taskType` is `CHATGPT`, `AIMODE`, `BING_AIMODE`, `GEMINI`, `GOOGLE` or `BING`. The response lists one task `id` for each item. Poll each one:
 
 ```bash
 GET https://api.cloro.dev/v1/async/task/{id}
@@ -114,7 +129,7 @@ claude mcp add --transport http cloro https://mcp.cloro.dev/mcp
 
 Then run `/mcp` in a session to sign in with OAuth. Clients that can set headers can send `Authorization: Bearer $CLORO_API_KEY` instead.
 
-This guide covers these tools: `scrape_chatgpt`, `scrape_google_ai_mode`, `scrape_bing_aimode`, `scrape_gemini`, `scrape_google` and `list_countries`. The server lists other tools as well; use only the ones named here. Each MCP call is a sync request at the sync price below.
+This guide covers these tools: `scrape_chatgpt`, `scrape_google_ai_mode`, `scrape_bing_aimode`, `scrape_gemini`, `scrape_google`, `scrape_bing` and `list_countries`. The server lists other tools as well; use only the ones named here. Each MCP call is a sync request at the sync price below.
 
 ## Credits and Limits
 
@@ -126,6 +141,8 @@ This guide covers these tools: `scrape_chatgpt`, `scrape_google_ai_mode`, `scrap
 | Gemini | 6 | 4 |
 | Google Search | 5 | 3 |
 | Google Search with AI Overview | 7 | 5 |
+| Bing Search | 5 | 3 |
+| Bing Search with AI Overview | 7 | 5 |
 
 - Sync responses carry `X-Credits-Charged` and `X-Request-ID` headers.
 - Concurrency is set per account (`X-Concurrency-Limit`). Over the limit, the API returns 429.
@@ -136,7 +153,7 @@ This guide covers these tools: `scrape_chatgpt`, `scrape_google_ai_mode`, `scrap
 ## When to Use
 
 - Check what ChatGPT, Google AI Mode, Bing AI Mode or Gemini answers for a buyer prompt in a given country, and which pages it cites.
-- Check if a Google query shows an AI Overview, and which sources it cites, next to the organic results.
+- Check if a Google or Bing query shows an AI Overview, and which sources it cites, next to the organic results.
 - Build your own share-of-voice count over a fixed prompt set with the async batch.
 
 cloro returns raw answers and sources. It has no dashboard, trend charts or alerts, so the agent (or a script) does the counting. For a hosted tracker with history and reports, see the monitoring tools in the ai-seo skill (Otterly AI, Peec AI, ZipTie, LLMrefs, Profound, Ahrefs Brand Radar, Semrush, Omnia), or the DIY method in that skill.
