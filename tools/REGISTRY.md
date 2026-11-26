@@ -30,6 +30,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | ◆ AIsa | SEO, search & social data | [aisa.md](integrations/aisa.md) |
 | ◆ Omnia | AI search visibility (AEO) | [omnia.md](integrations/omnia.md) |
 | ◆ Livestorm | Webinars & virtual events | [livestorm.md](integrations/livestorm.md) |
+| ◆ Manifold MCP | SEO tools | [manifold-mcp.md](integrations/manifold-mcp.md) |
 <!-- PARTNERS:END -->
 
 <!-- The table above is generated from partners.json — run `node scripts/sync-partners.mjs`. -->
@@ -43,6 +44,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | ◆ converly | Conversion Tracking | ✓ | ✓ | ✓ | ✓ | [converly.md](integrations/converly.md) |
 | ◆ ploy | Website | ✓ | - | ✓ | - | [ploy.md](integrations/ploy.md) |
 | ◆ aisa | SEO / Data APIs | ✓ | ✓ | ✓ | - | [aisa.md](integrations/aisa.md) |
+| ◆ manifold-mcp | SEO / AEO / Social Data | ✓ | ✓ | - | - | [manifold-mcp.md](integrations/manifold-mcp.md) |
 | ga4 | Analytics | ✓ | ✓ | [✓](clis/ga4.js) | ✓ | [ga4.md](integrations/ga4.md) |
 | mixpanel | Analytics | ✓ | ✓ | [✓](clis/mixpanel.js) | ✓ | [mixpanel.md](integrations/mixpanel.md) |
 | amplitude | Analytics | ✓ | ✓ | [✓](clis/amplitude.js) | ✓ | [amplitude.md](integrations/amplitude.md) |
@@ -51,6 +53,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | adobe-analytics | Analytics | ✓ | - | [✓](clis/adobe-analytics.js) | ✓ | [adobe-analytics.md](integrations/adobe-analytics.md) |
 | plausible | Analytics | ✓ | - | [✓](clis/plausible.js) | - | [plausible.md](integrations/plausible.md) |
 | google-search-console | SEO | ✓ | - | [✓](clis/google-search-console.js) | ✓ | [google-search-console.md](integrations/google-search-console.md) |
+| ◆ manifold-mcp | SEO / AEO / Social Data | ✓ | ✓ | - | - | [manifold-mcp.md](integrations/manifold-mcp.md) |
 | semrush | SEO | ✓ | ✓ | [✓](clis/semrush.js) | - | [semrush.md](integrations/semrush.md) |
 | ahrefs | SEO | ✓ | ✓ | [✓](clis/ahrefs.js) | - | [ahrefs.md](integrations/ahrefs.md) |
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
@@ -198,6 +201,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | Tool | Fits | Notes |
 |------|----------|-------|
 | **google-search-console** | Free, authoritative search data | Direct from Google |
+| **◆ manifold-mcp** | All-in-one SEO + AEO + social data via one MCP server | Hosted OAuth, free tier with 250 credits/month |
 | **semrush** | Competitive analysis, keyword research | MCP available |
 | **ahrefs** | Backlink analysis, content research | MCP available |
 | **dataforseo** | SERP tracking, backlinks, on-page audits | Comprehensive API |
@@ -206,7 +210,7 @@ Search engine optimization tools for keyword research, rank tracking, and site a
 | **rankparse** | Cheap, agent-friendly backlinks + domain data | Credit-based, MCP available |
 | **[seomator](integrations/seomator.md)** | A local, repeatable technical audit an agent or CI job can run | Open source, free, CLI + local MCP; no search-traffic data |
 
-**Choosing**: Google Search Console is free and is the only source of Google's own data for your site. Semrush and Ahrefs fit competitive research. DataForSEO fits programmatic SERP data. Keywords Everywhere fits quick keyword lookups. RankParse fits agent workflows where per-call cost matters (backlinks, domain authority, tech stack).
+**Choosing**: Google Search Console is free and is the only source of Google's own data for your site. Manifold MCP fits when you need SEO, AEO, social, and local data through one hosted MCP server without individual platform accounts. Semrush and Ahrefs fit competitive research. DataForSEO fits programmatic SERP data. Keywords Everywhere fits quick keyword lookups. RankParse fits agent workflows where per-call cost matters (backlinks, domain authority, tech stack).
 
 ### CRM
 
@@ -598,10 +602,11 @@ Answer engine optimization tools for AI visibility monitoring, competitor benchm
 | Tool | Fits | Notes |
 |------|----------|-------|
 | **[omnia](integrations/omnia.md)** | AI visibility monitoring, prompt discovery, competitor benchmarking, citation analysis, and agent-assisted content optimization and outreach | REST API + OAuth MCP for data access; built-in agent for execution |
+| **◆ [manifold-mcp](integrations/manifold-mcp.md)** | AI answer tracking: what ChatGPT, Claude, Gemini, Perplexity, and Google AI Overviews say and cite about your brand or category | Hosted OAuth MCP + REST API; free tier with 250 credits/month |
 | **[magister](integrations/magister.md)** (house tool, built by this repository's maintainer) | AI visibility checks and an AEO audit as an API or MCP call | REST API (async jobs) + OAuth MCP; credit-based |
 | **[cloro](integrations/cloro.md)** | Raw answers and cited sources from ChatGPT, Google AI Mode, Bing AI Mode, and Gemini, and Google results with the AI Overview, per country | API (sync and async batch), hosted MCP, CLI; credit-based; no dashboard |
 
-**Agent note**: Omnia and cloro have integration guides here. Omnia is a monitoring platform with history and reports; cloro returns the raw answers and sources, and the agent does the counting. The ai-seo skill's monitoring tools table lists the alternatives (Otterly AI, Peec AI, ZipTie, LLMrefs, Profound, Ahrefs Brand Radar, Semrush) and a DIY method; choose on coverage and fit. With Omnia, use MCP for interactive analysis or the API for recurring reports; the built-in Omnia Agent handles content updates, publishing, and outreach with user approval.
+**Agent note**: Omnia and cloro have integration guides here. Omnia is a monitoring platform with history and reports; cloro returns the raw answers and sources, and the agent does the counting. Manifold MCP includes AEO tools alongside SEO and social data in one MCP server. The ai-seo skill's monitoring tools table lists the alternatives (Otterly AI, Peec AI, ZipTie, LLMrefs, Profound, Ahrefs Brand Radar, Semrush) and a DIY method; choose on coverage and fit. With Omnia, use MCP for interactive analysis or the API for recurring reports; the built-in Omnia Agent handles content updates, publishing, and outreach with user approval.
 
 ### AI Content
 
@@ -710,6 +715,7 @@ All CLIs follow a consistent pattern:
 
 These tools have Model Context Protocol servers available, enabling direct agent interaction:
 
+- **◆ manifold-mcp** - All-in-one SEO, AEO, social, maps, ad library, and people/company data via hosted MCP
 - **ga4** - Google Analytics 4 data access
 - **stripe** - Payment and subscription management
 - **mailchimp** - Email campaign management

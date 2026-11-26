@@ -70,6 +70,20 @@
       "integration": "tools/integrations/livestorm.md",
       "active": true,
       "noRef": true
+    },
+    {
+      "id": "manifold-mcp",
+      "name": "Manifold MCP",
+      "url": "https://manifoldmcp.com",
+      "category": "SEO, AEO, social & marketing data",
+      "categoryShort": "SEO tools",
+      "tier": "skill-partner",
+      "tagline": "Free marketing data connector for AI agents",
+      "blurb": "One MCP server sign-in gives Claude, ChatGPT, or Cursor live data from Google search, AI answers, Search Console, Analytics, Google Maps, Reddit, TikTok, Instagram, YouTube, Facebook, LinkedIn, ad libraries, app stores, Amazon, Google Shopping, and company/people enrichment — without an account at each platform. Free plan includes 250 credits/month.",
+      "logoUrl": "https://manifoldmcp.com/favicon.ico",
+      "integration": "tools/integrations/manifold-mcp.md",
+      "active": true,
+      "noRef": true
     }
   ]
 }
