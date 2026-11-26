@@ -8,9 +8,9 @@ Use AIsa when a selected marketing workflow needs data from several supported pr
 
 Connect to `https://mcp.aisa.one/mcp`. Reuse the user's working connection when available.
 
-The workflow is `search` → `get_details` → `use` or `batch_use`; `list_categories` browses coverage. Discover the operation and inspect its schema before constructing a request.
+Use `search`, retrieve a missing schema through `batch_get_schema` or the exposed `get_details` alias, then call `batch_quote` and `batch_use`. Inspect the connected client's actual tools and reuse the `session_id` returned by discovery.
 
-The [MCP guide](https://mcp.aisa.one/llms.txt) and [agent quickstart](https://aisa.one/docs/agent-quickstart) document browser OAuth and Bearer-key setup for this endpoint.
+The [agent setup guide](https://aisa.one/llms.txt) and [agent quickstart](https://aisa.one/docs/agent-quickstart) document browser OAuth and Bearer-key setup for this endpoint.
 
 ## Connect MCP
 
@@ -30,7 +30,7 @@ Complete browser sign-in through that client's MCP controls. For an API-key conn
 
 ## Verify Without Buying Data
 
-Inspect the client's `use` tool schema, then invoke its documented free account read with `operation_id: "account"`, supplying any other required fields as that schema specifies. Confirm successful authentication and the intended account locally; report only connection status and redact returned identifiers or account details. With an already configured CLI, `aisa balance` is the alternative free check.
+Inspect the connected client's tool list and call its free `account` tool. If `account` is unavailable and the client exposes the legacy `use` interface, invoke the documented `account` operation with `operation_id: "account"` and any other required fields from that schema. Confirm successful authentication and the intended account locally. Report connection status and redact account details and identifiers. With an already authenticated CLI, `aisa balance` verifies that CLI session.
 
 Tool listings and OAuth metadata alone do not prove authenticated access. Setup does not authorize paid data retrieval.
 
@@ -40,13 +40,14 @@ Example request:
 
 > Use my selected AIsa connection to research backlinks for example.com. Discover a suitable read operation and show the scope and cost before retrieving data.
 
-1. Discover candidates for the task. Inspect the exact schema, provider, filters, result limits, and read/write behavior. Use the operation ID returned by `search`.
-2. Get a quote for the exact arguments and account using `get_details` with its quote options. Missing or incomplete pricing means the cost is unknown.
-3. Establish authorization for the scope and total budget, reusing approval already given for that request. Include pagination, additional providers, and retries in the budget. Re-quote if arguments change.
-4. Set `max_price_usd` to the authorized admission limit. **This checks an estimate; it does not cap the final metered charge.** A fixed budget also requires a documented maximum or a provable bound from the operation's limits. If that bound is unavailable, stop before execution.
-5. Execute only the authorized request. Return source/provider, collection date, reporting period, filters, result limits, and observed cost when available. Treat absent cost metadata as unknown. Inspect partial failures before deciding whether another call is needed.
+1. Use `search` to discover candidates. Keep the exact tool name and the returned `session_id` for subsequent calls that accept it. Inspect the provider, required inputs, result limits, and read/write behavior.
+2. If discovery omits the full input schema, retrieve it using the connected client's schema tool, such as `batch_get_schema` or its documented `get_details` alias. Construct arguments from that schema.
+3. Obtain a free `batch_quote` for the exact tools and arguments proposed for execution. A single lookup uses a one-item `calls` array. Treat missing or failed quotes as unknown costs.
+4. Establish authorization for the scope and total budget, reusing approval already covering the request. Include planned pages, additional providers, and any authorized retries. Honor an instruction to show the quote first or to wait before execution. For a fixed spending maximum, establish a documented maximum or a provable bound from supported request limits. Leave the paid request unrun until a supported bound fits the remaining budget.
+5. Pass the same quoted calls to `batch_use`, following its current input schema and reusing the `session_id`. Re-quote changes to tools, arguments, or scope. The current batch interface accepts up to 20 calls. Its supported controls are the request's actual limits and the task's authorization.
+6. Inspect every item result. Report source/provider, collection date, reporting period, filters, result limits, and observed cost when available. Mark missing cost metadata as unknown. Reconcile uncertain execution and charges before proposing a retry.
 
-The [billing guide](https://aisa.one/docs/guides/pricing) explains quotes, admission limits, and settled charges. A batch's estimate or a per-call limit is not proof that its combined final cost fits the task budget.
+The [billing guide](https://aisa.one/docs/guides/pricing) describes fixed and metered charges. Current `batch_use` has no `max_price_usd` field. Use each operation's supported limits when establishing a maximum cost for a fixed-budget task.
 
 ## Example Tasks
 
@@ -70,7 +71,7 @@ The [coverage map](coverage-map.md) records evidence and gaps. The existing mark
 
 ## Evidence and Evaluation
 
-Documentation and the public MCP catalogue were reviewed on **2026-10-15**. This is a documentation snapshot, not an authenticated execution or availability guarantee. Recheck contracts and account-specific pricing before use.
+MCP workflow and billing documentation were reviewed on **2026-11-25**. Provider coverage retains the dates recorded in the [coverage map](coverage-map.md). Authenticated provider execution remains unverified. Recheck current contracts and account-specific pricing before use.
 
 - [Full integration guide](../integrations/aisa.md): capabilities, authentication, and tradeoffs
 - [Coverage map](coverage-map.md): task-level data support and alternatives

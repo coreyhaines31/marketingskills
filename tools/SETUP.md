@@ -112,7 +112,7 @@ node --env-file=.env.marketing -e '
 '
 ```
 
-For AIsa MCP, inspect the client's `use` tool schema and invoke its documented free account read with `operation_id: "account"`, supplying other required fields according to that schema. An already configured AIsa CLI can use `aisa balance` instead. Report connection status without copying account details or identifiers into chat. Tool listings alone do not prove authenticated access, and setup must not trigger a paid lookup.
+For AIsa MCP, inspect the connected client's tool list and call its free `account` tool. If `account` is unavailable and the client exposes the legacy `use` interface, invoke the documented `account` operation with `operation_id: "account"` and any other required fields from that schema. Confirm successful authentication and the intended account locally. Report connection status and redact account details and identifiers. With an already authenticated CLI, `aisa balance` verifies that CLI session. Complete the free protected check before reporting that setup succeeded. Paid lookups require authorization for their scope and spend.
 
 Check both process status **and** provider response. Some older CLIs can exit zero with an error payload. Record account/property, environment, operation, and outcome without secrets or customer data. Empty results can be a valid connection; they do not prove a broken account or permission to write.
 

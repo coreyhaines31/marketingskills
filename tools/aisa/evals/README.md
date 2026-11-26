@@ -26,15 +26,17 @@ These fixtures exercise decisions; they do not measure provider data accuracy or
 
 Live checks are separate, scoped integration checks. Do not replay the synthetic fixtures or their operation IDs against AIsa.
 
-- Record the client, model, date, and server URL. AIsa MCP at `https://mcp.aisa.one/mcp` uses `search`, `list_categories`, `get_details`, `use`, and `batch_use`.
-- Start with `search` and use `get_details` to inspect the full schema and pricing for each candidate operation. Verify authentication with a documented free protected operation; public metadata alone is not proof of an authenticated connection. Redact keys, tokens, and account identifiers from evidence.
-- Copy exact operation IDs and arguments from current discovery and schemas. Verify that requested filters, limits, dates, and pagination exist. If a capability is missing, record that outcome rather than inventing an endpoint.
-- Keep paid execution disabled unless the user has explicitly authorized the exact test scope and spend. A quote is neither authorization nor proof of a maximum final charge. Re-quote changed arguments and include pagination, batches, and any authorized retries in the total.
-- `max_price_usd` checks a preflight estimate; it does **not** guarantee a final-charge ceiling for metered operations. Under a fixed budget, execute only when a documented maximum or a provable bound fits the remaining authorization. If no bound is available, stop and record the limitation.
-- Keep read-only research separate from posting, sending outreach, or changing accounts. A successful lookup does not authorize those actions.
-- Retain source links, retrieval dates, provider labels, relevant filters, pagination state, quoted costs, and actual charges when reported. Report missing evidence as missing.
+- Record the client, model, date, server URL, and tools exposed by the connection. Follow the [agent setup guide](https://aisa.one/llms.txt) and inspect current schemas.
+- Verify authentication with the free `account` tool when exposed. For a legacy connection, inspect `use` and invoke its documented account read. Redact keys, tokens, and account identifiers from evidence.
+- Use `search` to discover candidates. Retrieve a missing schema through `batch_get_schema` or the exposed `get_details` alias. Use exact tool names and supported arguments, and reuse the returned `session_id`.
+- Obtain a successful `batch_quote` for the exact calls proposed for execution. Re-quote changes to sources, arguments, or scope. Keep the quoted call list with the evidence.
+- Live evaluations require explicit authorization for their scope and spend. Honor a quote-only instruction or tighter budget even when a quote reports `auto_execute_eligible`.
+- The current `batch_use` schema has no `max_price_usd` field. For a fixed spending maximum, establish a documented maximum or a provable bound from supported request limits. Leave execution pending and record the limitation until a supported bound fits the remaining budget.
+- Execute the same quoted calls through `batch_use`. Inspect individual results and reported charges. Preserve completed results and reconcile uncertain execution or costs before proposing a retry.
+- Research authorization covers the agreed reads. Obtain authorization for posting, sending outreach, or changing accounts.
+- Retain source links, retrieval dates, provider labels, relevant filters, pagination state, quoted costs, and actual charges when reported. Mark unavailable evidence explicitly.
 
-Contract references checked on 2026-10-15: [MCP documentation](https://mcp.aisa.one/llms.txt), [MCP quickstart](https://aisa.one/docs/agent-quickstart), [billing and budget semantics](https://aisa.one/docs/guides/pricing), and [MCP catalogue](https://mcp.aisa.one/servers). Recheck these before a live run; provider availability and pricing can change.
+Contract and workflow references checked on 2026-11-25 using the [agent setup guide](https://aisa.one/llms.txt), [MCP quickstart](https://aisa.one/docs/agent-quickstart), [billing guide](https://aisa.one/docs/guides/pricing), and [public API catalog](https://aisa.one/catalog). Inspect the connected client's current tool list before a live run. Recorded fixture and live runs establish their own execution results.
 
 ## Score and report
 

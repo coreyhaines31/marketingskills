@@ -60,6 +60,11 @@ Current versions of all skills. Agents can compare against local versions to che
 
 ## Recent Changes
 
+### 2.14.29 (2026-11-25)
+
+- Updated the AIsa integration and quick start for schema discovery, free `batch_quote`, and execution through `batch_use`.
+- Aligned account verification and five evaluation scenarios with the current MCP interface. Repaired documentation links and clarified the referring-domain comparison.
+
 ### 2.14.28 (2026-11-23)
 
 Three methods added to existing skills (#1048).

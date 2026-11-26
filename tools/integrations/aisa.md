@@ -2,9 +2,9 @@
 
 > **◆ Verified Partner integration.** AIsa sponsors Marketing Skills. This integration is disclosed and vetted for fit; it does **not** change what any skill recommends. It's listed here alongside the neutral options for the same job — use it when it's the right fit, not because it's a partner. See [Verified Partners](../REGISTRY.md#verified-partners).
 
-One account and one key for third-party data APIs, billed per call. For marketing work, the relevant parts are SEO data (DataForSEO, Semrush, and Ahrefs endpoints), Similarweb market data, social data (X/Twitter, Instagram, Reddit, Pinterest, YouTube), web search and research (Tavily, Firecrawl, Exa, Perplexity), and people and company search. AIsa also offers model inference and finance data, which this guide doesn't cover.
+AIsa gives agents one connection to discover, access, and pay for premium data across supported providers. For marketing work, the relevant parts are SEO data (DataForSEO, Semrush, and Ahrefs endpoints), Similarweb market data, social data (X/Twitter, Instagram, Reddit, Pinterest, YouTube), web search and research (Tavily, Firecrawl, Exa, Perplexity), and people and company search. AIsa also offers model inference and finance data, which this guide doesn't cover.
 
-The MCP workflows, authentication, pricing guidance, and coverage below were reviewed against the [MCP guide](https://mcp.aisa.one/llms.txt), the [agent quickstart](https://aisa.one/docs/agent-quickstart), the [public catalogue](https://mcp.aisa.one/servers), and the linked authentication and billing docs on 2026-10-15. This review did not execute authenticated provider calls. Coverage and prices change; inspect the selected operation before use.
+The MCP workflow and billing guidance were reviewed on 2026-11-25 using the [agent setup guide](https://aisa.one/llms.txt), [agent quickstart](https://aisa.one/docs/agent-quickstart), and linked billing docs. Provider coverage retains its 2026-10-15 documentation snapshot. Consult the [public API catalog](https://aisa.one/catalog) and inspect the selected operation's current schema, account access, and quote before use. Authenticated provider execution remains unverified.
 
 See the [quick start](../aisa/README.md), [coverage map](../aisa/coverage-map.md), and [evaluation scenarios](../aisa/evals/README.md) for task-specific setup and validation.
 
@@ -19,24 +19,27 @@ See the [quick start](../aisa/README.md), [coverage map](../aisa/coverage-map.md
 
 ## How the MCP Server Works
 
-Connect to `https://mcp.aisa.one/mcp`. The endpoint lists five tools:
+Connect to `https://mcp.aisa.one/mcp` and inspect the tools exposed by the client. Names and compatibility interfaces can vary by connection.
 
 | Tool | What it does | Billed |
 |------|--------------|--------|
-| `search` | Describe the task in plain words; returns candidate operations with `operation_id`, input schema, and price | No |
-| `list_categories` | Categories to narrow a search | No |
-| `get_details` | Full contract for an operation: schemas, read-only flag, price for your account, `suggested_max_price_usd`, known pitfalls | No |
-| `use` | Runs one operation; `max_price_usd` rejects an execution estimate above the supplied limit | Per call; the documented `account` read is free |
-| `batch_use` | Up to 20 operations; inspect its current budget semantics and every item result | Per call |
+| `search` | Find candidate tools for a task and obtain exact names, available schemas, list prices, and a `session_id` | No |
+| `list_categories`, when exposed | Browse categories to narrow discovery | No |
+| `batch_get_schema`, or the documented `get_details` alias | Retrieve a missing schema, read/write behavior, side effects, and other contract details | No |
+| `batch_quote` | Quote the exact proposed tools and arguments without executing the data requests | No |
+| `batch_use` | Execute up to 20 quoted calls and inspect each result and reported charge | According to each operation |
+| `account`, when exposed | Verify authentication and inspect the selected account's balance and usage | No |
+| `use`, when exposed | Legacy single-call interface. Inspect its actual schema before use, including for the free `account` fallback | According to the operation. The account read is free |
 
-Use `list_categories` to browse capabilities and `search` to find relevant operations through the same connection.
+Reuse the `session_id` from `search` in subsequent calls that accept it. Take the tool names and arguments from discovery and schemas.
 
-A `402` can report insufficient balance, an exhausted key limit, missing subscription access, or a price admission rejection. Read the specific error; do not automatically top up, upgrade, or retry.
+A `402` can report insufficient balance, an exhausted key limit, or missing subscription access. On a route with an estimated-price admission check, it can also report a price rejection. Read the specific error. Obtain any missing authorization before changing funding or plan access. Resolve the reported cause and confirm that the scope and budget cover a retry before another paid attempt.
 
 ## Pricing
 
-- Data operations use fixed or metered pricing; rates and access can depend on the account or plan. Check [current plans](https://aisa.one/pricing), the [API catalogue](https://aisa.one/api), and an authenticated quote for the exact request.
-- Per the [billing guide](https://aisa.one/docs/guides/pricing), `max_price_usd` is an **estimate-based admission check, not a ceiling on the final metered charge**. Under a fixed budget, also establish a documented maximum or a provable bound from request limits before executing.
+- Data operations use fixed or metered pricing, and access can depend on the account or plan. Consult [current plans](https://aisa.one/pricing), the [public API catalog](https://aisa.one/catalog), and a quote for the exact request.
+- Use `batch_quote` followed by `batch_use` for the current MCP workflow. `batch_use` and CLI `aisa call` have no price-cap argument. Bound a fixed-budget request through documented charges and supported operation limits, including all calls in the task.
+- Direct HTTP routes that declare support accept `X-AISA-Max-Price-USD`. This checks the estimated cost before execution. Final metered charges depend on actual consumption. See the [billing guide](https://aisa.one/docs/guides/pricing) for the route's applicable controls.
 
 ## Authentication
 
@@ -67,20 +70,22 @@ If a CLI is needed, check its [current prerequisites](https://aisa.one/docs/get-
 
 ### Run a Lookup with a Budget
 
-1. `search` for the task ("referring domains for example.com").
-2. Inspect the candidate's schema and obtain a quote for the exact arguments using `get_details` and its quote options. A suggested limit is not spending authorization.
-3. Establish the scope, maximum possible cost, and sufficient user authorization. Reuse approval already given for that exact scope; if a metered maximum cannot be bounded within the budget, stop before execution.
-4. Call `use` with `max_price_usd` set to the approved admission limit. Account for pagination and additional requests, and reconcile observed charges before retries. Re-quote if arguments change.
+1. Use `search` to discover candidates. Keep the exact tool name and the returned `session_id` for subsequent calls that accept it. Inspect the provider, required inputs, result limits, and read/write behavior.
+2. If discovery omits the full input schema, retrieve it using the connected client's schema tool, such as `batch_get_schema` or its documented `get_details` alias. Construct arguments from that schema.
+3. Obtain a free `batch_quote` for the exact tools and arguments proposed for execution. A single lookup uses a one-item `calls` array. Treat missing or failed quotes as unknown costs.
+4. Establish authorization for the scope and total budget, reusing approval already covering the request. Include planned pages, additional providers, and any authorized retries. Honor an instruction to show the quote first or to wait before execution. For a fixed spending maximum, establish a documented maximum or a provable bound from supported request limits. Leave the paid request unrun until a supported bound fits the remaining budget.
+5. Pass the same quoted calls to `batch_use`, following its current input schema and reusing the `session_id`. Re-quote changes to tools, arguments, or scope. The current batch interface accepts up to 20 calls. Its supported controls are the request's actual limits and the task's authorization.
+6. Inspect every item result. Report source/provider, collection date, reporting period, filters, result limits, and observed cost when available. Mark missing cost metadata as unknown. Reconcile uncertain execution and charges before proposing a retry.
 
-For a free connection check, inspect the client's `use` tool schema and invoke the documented `account` read. Discovery metadata alone does not confirm authenticated access.
+Inspect the connected client's tool list and call its free `account` tool. If `account` is unavailable and the client exposes the legacy `use` interface, invoke the documented `account` operation with `operation_id: "account"` and any other required fields from that schema. Confirm successful authentication and the intended account locally. Report connection status and redact account details and identifiers. With an already authenticated CLI, `aisa balance` verifies that CLI session.
 
-**Cross-check a number across providers.** Domain authority and backlink counts come from more than one index (DataForSEO, Semrush, Ahrefs). When a decision depends on the figure, pull it from two and report both, labeled by source. They won't match, because each provider crawls differently.
+**Cross-check referring-domain counts.** Query supported Semrush and DataForSEO operations for the same target and matching filters. Report each count with its provider and retrieval date. The indexes can differ in coverage and update times. Treat proprietary authority scores as provider-specific metrics.
 
 ## Tradeoffs
 
 - **One more dependency.** Requests route and bill through AIsa, so an AIsa outage or balance problem stops every provider behind it. Billing goes through AIsa rather than each provider.
 - **Not every endpoint of every provider.** The SEO module is a curated set. If you need a report AIsa doesn't expose, go to the provider directly.
-- **Direct accounts can still win.** If you already pay for Semrush or Ahrefs and use one provider heavily, a direct account (see the semrush, ahrefs, and dataforseo guides) may cost less and expose more. AIsa fits when you need several providers occasionally and don't want an account and key for each.
+- **Direct accounts can still win.** If you already pay for Semrush or Ahrefs and use one provider heavily, a direct account (see the semrush, ahrefs, and dataforseo guides) may cost less and expose more. AIsa supports one-off and recurring research across several providers through one connection and usage-based billing.
 - **Costs vary by call.** Metered pricing and batches need bounds on the whole request. Use the interface's supported admission controls and reconcile account usage; a price estimate alone does not bound final spend.
 
 ## How it fits the skills
@@ -93,7 +98,7 @@ For a free connection check, inspect the client's `use` tool schema and invoke t
 
 - Site: https://aisa.one
 - Docs: https://aisa.one/docs (index at https://aisa.one/docs/llms.txt)
-- MCP server guide: https://mcp.aisa.one/llms.txt
-- Live MCP catalogue: https://mcp.aisa.one/servers
+- [Agent setup guide](https://aisa.one/llms.txt)
+- [Public API catalog](https://aisa.one/catalog). Inspect the connected client's tool list for its MCP interface.
 - Pricing: https://aisa.one/pricing
 - Console: https://console.aisa.one
