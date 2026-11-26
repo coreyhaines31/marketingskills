@@ -181,6 +181,7 @@ DOMAINS=$(rewardful affiliates list | jq -r '.data[].email')
 | `google-ads.js` | Ads | [Google Ads](https://ads.google.com) |
 | `google-search-console.js` | SEO | [Google Search Console](https://search.google.com/search-console) |
 | `github-prospects.js` | Developer Intent / GitHub | [GitHub](https://github.com) |
+| `goanyapi.js` | SEO | [GoAnyAPI](https://goanyapi.com) |
 | `hotjar.js` | CRO | [Hotjar](https://hotjar.com) |
 | `hunter.js` | Email Outreach | [Hunter.io](https://hunter.io) |
 | `instantly.js` | Email Outreach | [Instantly.ai](https://instantly.ai) |
