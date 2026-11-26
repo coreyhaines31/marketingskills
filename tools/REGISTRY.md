@@ -149,6 +149,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | buffer | Social | ✓ | ✓ | [✓](clis/buffer.js) | - | [buffer.md](integrations/buffer.md) |
 | post-bridge | Social | ✓ | ✓ | ✓ | - | [post-bridge.md](integrations/post-bridge.md) |
 | postonce | Social | ✓ | ✓ | - | - | [postonce.md](integrations/postonce.md) |
+| publora | Social | ✓ | ✓ | - | - | [publora.md](integrations/publora.md) |
 | adeli | Social | ✓ | ✓ | - | ✓ | [adeli.md](integrations/adeli.md) |
 | socialtoai | Social Data | ✓ | ✓ | - | - | [socialtoai.md](integrations/socialtoai.md) |
 | wistia | Video | ✓ | - | [✓](clis/wistia.js) | - | [wistia.md](integrations/wistia.md) |
@@ -365,6 +366,7 @@ Social media scheduling, management, and analytics for accounts you own.
 
 **Choosing**: Use the scheduler the user already has. Each one schedules across platforms through an API or an MCP server.
 | **postonce** | Posting one video or post to many platforms, automatic crossposting from one account to others, per-post analytics | Workflows repost each new post from a source account |
+| **publora** | Drafting, scheduling, and publishing posts to 10 networks, including Bluesky, Mastodon, and Telegram, with first comments and agency client workspaces | API + MCP; long X and Threads text becomes a thread |
 
 ### Social Data & Listening
 
