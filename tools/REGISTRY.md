@@ -121,6 +121,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | calendly | Scheduling | ✓ | ✓ | [✓](clis/calendly.js) | - | [calendly.md](integrations/calendly.md) |
 | savvycal | Scheduling | ✓ | ✓ | [✓](clis/savvycal.js) | - | [savvycal.md](integrations/savvycal.md) |
 | typeform | Forms | ✓ | ✓ | [✓](clis/typeform.js) | ✓ | [typeform.md](integrations/typeform.md) |
+| questionpunk | Forms | ✓ | ✓ | - | - | [questionpunk.md](integrations/questionpunk.md) |
 | intercom | Messaging | ✓ | - | [✓](clis/intercom.js) | ✓ | [intercom.md](integrations/intercom.md) |
 | outreach | Sales Engagement | ✓ | ✓ | [✓](clis/outreach.js) | - | [outreach.md](integrations/outreach.md) |
 | heyreach | LinkedIn Outreach | ✓ | ✓ | ✓ | - | [heyreach.md](integrations/heyreach.md) |
@@ -338,6 +339,7 @@ Form builders and survey platforms.
 | Tool | Fits | Notes |
 |------|----------|-------|
 | **typeform** | Interactive forms, surveys | MCP available |
+| **questionpunk** | Surveys and AI-moderated interviews with follow-up questions | REST API and hosted MCP |
 
 **Choosing**: Typeform for engaging forms and surveys.
 
@@ -750,6 +752,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **firecrawl** - Page scraping and crawling
 - **browserbase** - Cloud browser automation
 - **calendly** - Availability and booking links
+- **questionpunk** - Draft and publish surveys and AI-moderated interviews, then read responses and reports (OAuth)
 - **admakeai** - Ad images, UGC video ads and Meta Ad Library lookups
 - **hermoso** - Image and video ads, ad library lookups, and posting to connected social accounts
 - **seomator** - Local SEO audit engine over stdio (open source)
