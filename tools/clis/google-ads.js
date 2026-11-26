@@ -53,6 +53,13 @@ async function gaql(query) {
 
 const BOOLEAN_FLAGS = ['dry-run']
 
+// Exact dollars -> micros conversion. parseFloat would read "1,500" as 1 and "$50" as NaN.
+function dollarsToMicros(raw) {
+  const match = typeof raw === 'string' && raw.trim().match(/^(\d*)(?:\.(\d{0,6}))?$/)
+  if (!match || !/\d/.test(match[1] + (match[2] || ''))) return null
+  return String(BigInt(match[1] || '0') * 1000000n + BigInt((match[2] || '').padEnd(6, '0')))
+}
+
 function parseArgs(args) {
   const result = { _: [] }
   for (let i = 0; i < args.length; i++) {
@@ -179,7 +186,8 @@ async function main() {
       switch (sub) {
         case 'update': {
           if (!args.id || !args.amount) { result = { error: '--id and --amount required' }; break }
-          const amountMicros = String(Math.round(parseFloat(args.amount) * 1000000))
+          const amountMicros = dollarsToMicros(args.amount)
+          if (amountMicros === null) { result = { error: '--amount must be a plain decimal dollar amount with at most 6 decimal places, e.g. 1500 or 12.50' }; break }
           result = await api('POST', `/customers/${CUSTOMER_ID}/campaignBudgets:mutate`, {
             operations: [{
               update: {
