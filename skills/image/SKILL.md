@@ -45,6 +45,7 @@ Pick the right tool for the job:
 | **AI Generation** | Original images from text prompts | Gemini/Nano Banana, Flux, Ideogram | Blog heroes, social graphics, lifestyle scenes |
 | **AI Editing** | Modify existing images | Gemini image, Flux, GPT Image | Background removal, style changes, variations |
 | **Design Tools** | Templated, brand-consistent assets | Canva, Figma | Profile banners, social templates, presentations |
+| **Chinese Social Formats** | Multi-page Xiaohongshu (RedNote) posts, WeChat article covers, Chinese text-heavy graphics | CardCrafter, Canva, AI generation + text overlay | Marketing targeting Chinese platforms; Chinese typography at volume |
 | **Screenshot + Overlay** | Product UI showcases | Browser screenshot + code overlay | Product mockups, feature announcements |
 | **Stock Photography** | Generic business/lifestyle scenes | Unsplash, Pexels | When speed matters more than uniqueness |
 
@@ -75,6 +76,10 @@ Models, versions, and prices change every few months. This table names each fami
 These are options to compare, not rankings. Run the same brief through two or three and judge the output.
 
 ```
+Targeting Chinese social platforms (Xiaohongshu/RedNote, WeChat) or Chinese text at volume?
+├── Yes → options include CardCrafter (Chinese platform formats, API/MCP), Canva (Chinese templates), generate-then-overlay (most models render Chinese text unreliably)
+└── No ↓
+
 Need text/headlines in the image?
 ├── Yes → options include Ideogram, Gemini image, GPT Image, Recraft
 └── No ↓
