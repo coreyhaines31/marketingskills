@@ -26,6 +26,8 @@ The library is free and MIT-licensed. [Verified Partners](tools/REGISTRY.md#veri
 > ◆ **[Omnia](https://www.useomnia.com)** — *AI search visibility (AEO).* Omnia tracks how AI engines answer your customers' questions every day: visibility, citations, Share of Voice and sentiment for your brand and competitors. Connect the Omnia MCP to Claude and these skills run on real AI answers data instead of guesses. Or let your Omnia Agent turn it into prioritized work that you review and approve. → [Integration guide](tools/integrations/omnia.md)
 
 > ◆ **[Livestorm](https://livestorm.co)** — *Webinars & virtual events.* Browser-based platform for webinars, virtual events, and online meetings, with registration pages, live engagement, recordings, and analytics. A REST API, webhooks, and an official MCP server let agents create events, manage registrants, and pull attendance data. → [Integration guide](tools/integrations/livestorm.md)
+
+> ◆ **[Manifold MCP](https://manifoldmcp.com)** — *SEO tools.* One MCP server sign-in gives Claude, ChatGPT, or Cursor live data from Google search, AI answers, Search Console, Analytics, Google Maps, Reddit, TikTok, Instagram, YouTube, Facebook, LinkedIn, ad libraries, app stores, Amazon, Google Shopping, and company/people enrichment — without an account at each platform. Free plan includes 250 credits/month. → [Integration guide](tools/integrations/manifold-mcp.md)
 <!-- PARTNERS:END -->
 
 <!-- The Partners block above is generated from partners.json — run `node scripts/sync-partners.mjs` after editing it. -->
