@@ -20,7 +20,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | conversion-tracking | 1.0.6 | 2026-11-09 |
 | copy-editing | 2.2.4 | 2026-11-09 |
 | copywriting | 2.3.6 | 2026-11-17 |
-| cro | 2.0.6 | 2026-11-09 |
+| cro | 2.1.0 | 2026-11-27 |
 | customer-research | 2.0.9 | 2026-11-23 |
 | directory-submissions | 2.2.1 | 2026-11-19 |
 | emails | 2.1.9 | 2026-11-19 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.30 (2026-11-27)
+
+- **cro** (2.0.6 → 2.1.0): a screen simplification pass (#1015). `references/screen-simplification.md` adds a three answers test (from the screen alone: what is it, what do I get, where do I act; a missing answer is the first gap to fix) and before and after counts of words on screen, filled buttons, other exits, and steps before the result, reported in a table, with no word cap. `scripts/screen-counts.mjs` counts the words in a before and an after screen and flags jargon, self-praise, and weak button labels, exiting 1 when the rewrite still has one. Routing row and eval 8 added. Method and checker adapted from the 5dive team's caveman-marketing (MIT), via @atorn8's #893.
 
 ### 2.14.29 (2026-11-25)
 
