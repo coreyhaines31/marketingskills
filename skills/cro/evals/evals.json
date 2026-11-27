@@ -106,6 +106,21 @@
         "Cross-references ab-testing skill"
       ],
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Our landing page hero feels cluttered. Can you simplify it? Here's the copy: 'Welcome to Ledgerly, the world-class platform for modern finance teams. Seamless invoicing, powerful reporting, and robust integrations, all in one place. Learn more | Book a demo | Start free trial | Watch video'. The Start free trial button opens a 4-step signup before the first invoice can be sent.",
+      "expected_output": "Should load references/screen-simplification.md. Should run the three answers test on the original (what is it, what do I get, where do I act) and name the missing or vague answer. Should report before and after counts of words, filled buttons, other exits, and steps before the result in a table. Should replace world-class, platform, seamless, powerful, and robust with the facts they stand for, and replace 'Learn more' with a label that says what happens next. Should not impose a fixed word cap, and should keep any facts or prices. Should suggest running scripts/screen-counts.mjs on the before and after copy, or report the word counts it gives.",
+      "assertions": [
+        "Loads the screen-simplification reference",
+        "Applies the three answers test to the original",
+        "Reports before and after counts in a table",
+        "Counts steps before the result",
+        "Replaces flagged words with facts, not synonyms",
+        "Replaces the weak 'Learn more' label",
+        "Does not impose a fixed word cap"
+      ],
+      "files": []
     }
   ]
 }

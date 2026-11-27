@@ -2,7 +2,7 @@
 name: cro
 description: "When the user wants more conversions from a page or form, or asks why a page isn't converting, what to change first, or whether to add or remove a field or element: landing and pricing pages, lead forms, or a URL shared for feedback. For signup flows, see signup. For activation, see onboarding. For popups, see popups. For running the test, see ab-testing."
 metadata:
-  version: 2.0.6
+  version: 2.1.0
 ---
 
 # Conversion Rate Optimization (CRO)
@@ -17,6 +17,7 @@ Load the matching reference before recommending changes in these areas. Use the 
 |---|---|---|
 | Lead, contact, demo, or quote form abandonment; fields, validation, mobile forms | [form.md](references/form.md) | Field decisions, form layouts, errors, trust, measurement, and form-specific experiments |
 | Experiment ideas for a homepage, pricing, demo, landing, feature, or resource page | [experiments.md](references/experiments.md) | Hypotheses organized by page type and cross-page tests; use **ab-testing** for test design and measurement |
+| Simplifying an existing page, hero, or form; a busy or cluttered screen; showing what a rewrite cut | [screen-simplification.md](references/screen-simplification.md) | Three answers test, before and after counts of words, buttons, exits, and steps, and a script for the word counts |
 
 ## Initial Assessment
 
@@ -46,6 +47,8 @@ Analyze the page across these dimensions, in order of impact:
 - Feature-focused instead of benefit-focused
 - Too vague or too clever (sacrificing clarity)
 - Trying to say everything instead of the most important thing
+
+For a busy screen, run the three answers test in [screen-simplification.md](references/screen-simplification.md).
 
 ### 2. Headline Effectiveness
 
