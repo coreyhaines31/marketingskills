@@ -59,6 +59,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
+| saascity | SEO | ✓ | ✓ | ✓ | ✓ | [saascity.md](integrations/saascity.md) |
 | omnia | AEO | ✓ | ✓ | - | - | [omnia.md](integrations/omnia.md) |
 | cloro | AEO | ✓ | ✓ | [✓](clis/cloro.js) | - | [cloro.md](integrations/cloro.md) |
 | clearbit | Data Enrichment (legacy) | ✓ | - | [✓](clis/clearbit.js) | ✓ | [clearbit.md](integrations/clearbit.md) |
