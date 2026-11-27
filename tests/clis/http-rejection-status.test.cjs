@@ -9,7 +9,7 @@ const commands = [
   {"name": "activecampaign", "args": ["contacts", "list"]},
   {"name": "adobe-analytics", "args": ["reportsuites", "list"]},
   {"name": "calendly", "args": ["users", "me"]},
-  {"name": "clay", "args": ["tables", "list"]},
+  {"name": "clay", "args": ["me"]},
   {"name": "clearbit", "args": ["company", "find", "--domain", "example.com"]},
   {"name": "coupler", "args": ["importers", "list"]},
   {"name": "exa", "args": ["search", "--query", "fixture"]},

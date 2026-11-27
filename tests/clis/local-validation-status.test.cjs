@@ -13,7 +13,7 @@ const cases = [
   ["brevo", ["contacts", "get"]],
   ["buffer", ["profiles", "get"]],
   ["calendly", ["event-types", "list"]],
-  ["clay", ["tables", "get"]],
+  ["clay", ["routines", "results"]],
   ["clearbit", ["person", "find"]],
   ["close", ["leads", "get"]],
   ["coupler", ["importers", "get"]],
