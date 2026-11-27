@@ -56,6 +56,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | dataforseo | SEO | ✓ | - | [✓](clis/dataforseo.js) | ✓ | [dataforseo.md](integrations/dataforseo.md) |
 | seomator | SEO | - | ✓ | ✓ | ✓ | [seomator.md](integrations/seomator.md) |
 | app-store-connect-cli | App Store | - | - | ✓ | - | [app-store-connect-cli.md](integrations/app-store-connect-cli.md) |
+| asoscan | ASO | ✓ | ✓ | - | - | [asoscan.md](integrations/asoscan.md) |
 | goanyapi | SEO / Data APIs | ✓ | ✓ | [✓](clis/goanyapi.js) | - | [goanyapi.md](integrations/goanyapi.md) |
 | keywords-everywhere | SEO | ✓ | - | [✓](clis/keywords-everywhere.js) | - | [keywords-everywhere.md](integrations/keywords-everywhere.md) |
 | rankparse | SEO | ✓ | ✓ | [✓](clis/rankparse.js) | - | [rankparse.md](integrations/rankparse.md) |
