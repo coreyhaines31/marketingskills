@@ -115,6 +115,7 @@ Anyone — including tool makers and partners — may contribute content that na
 | meta-ads | Ads | ✓ | ✓ | [✓](clis/meta-ads.js) | ✓ | [meta-ads.md](integrations/meta-ads.md) |
 | linkedin-ads | Ads | ✓ | - | [✓](clis/linkedin-ads.js) | - | [linkedin-ads.md](integrations/linkedin-ads.md) |
 | tiktok-ads | Ads | ✓ | - | [✓](clis/tiktok-ads.js) | ✓ | [tiktok-ads.md](integrations/tiktok-ads.md) |
+| adkit | Ads | - | ✓ | ✓ | - | [adkit.md](integrations/adkit.md) |
 | zapier | Automation | ✓ | ✓ | [✓](clis/zapier.js) | ✓ | [zapier.md](integrations/zapier.md) |
 | hotjar | CRO | ✓ | - | [✓](clis/hotjar.js) | - | [hotjar.md](integrations/hotjar.md) |
 | optimizely | A/B Testing | ✓ | ✓ | [✓](clis/optimizely.js) | ✓ | [optimizely.md](integrations/optimizely.md) |
@@ -296,6 +297,7 @@ Paid advertising platforms and campaign management.
 | **linkedin-ads** | B2B, job title targeting | - |
 | **tiktok-ads** | Younger demographics, video | - |
 | **adeli** | Running Meta, TikTok, and LinkedIn Ads for several clients through one API | ✓ |
+| **adkit** | Managing and reporting on Meta, Google, TikTok, Reddit, and LinkedIn campaigns from one MCP server or CLI, with changes saved as drafts | ✓ |
 
 **Choosing**: Google Ads for search intent. Meta for demand generation. LinkedIn for B2B.
 
@@ -745,6 +747,7 @@ These tools have Model Context Protocol servers available, enabling direct agent
 - **scrapecreators** - Public social posts and ad libraries
 - **calven** - Approved positioning, messaging, personas, battlecards and win/loss
 - **adspy** - Meta and Google ad research and organic social posts
+- **adkit** - Ad campaign management and reporting across ad platforms, changes saved as drafts, and ad library search
 - **getyoutubetranscript** - YouTube transcripts, search and channel video lists
 - **signalshelf** - Public app store, Trustpilot, and news data
 - **firecrawl** - Page scraping and crawling
