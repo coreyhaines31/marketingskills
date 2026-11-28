@@ -45,7 +45,7 @@ Comprehensive list of A/B tests and experiments for user onboarding and activati
 | Checklist length | 3-5 items vs. 5-7 items |
 | Gamification | Badges, rewards, achievements |
 | Completion messaging | "X% complete" visibility |
-| Starting point | Begin at 20% vs. 0% |
+| Starting point | Compare a perceived head start with the same remaining work vs. starting at 0% |
 | Celebration moments | Acknowledge completions |
 
 ---
