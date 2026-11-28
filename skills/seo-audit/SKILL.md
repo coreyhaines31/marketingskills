@@ -2,7 +2,7 @@
 name: seo-audit
 description: "When the user wants to audit or diagnose SEO, or asks why traffic dropped, a page won't rank, or whether a setup like canonicals, hreflang, or redirects is right: technical SEO, indexing, Google updates, on-page and titles, Core Web Vitals, local SEO. Start here when someone just says their SEO is bad. For pages at scale, see programmatic-seo. For structured data, see schema. For AI search, see ai-seo."
 metadata:
-  version: 2.2.10
+  version: 2.3.0
 ---
 
 # SEO Audit
@@ -76,6 +76,7 @@ Once the foundations are sound, the fastest wins are usually pages already ranki
 - Contains only canonical, indexable URLs
 - Updated regularly
 - Proper formatting
+- Sample URLs in the sitemap from the site being audited. Fetch each sample URL and record its HTTP status. For redirects, report the submitted URL and final destination; for 4xx or 5xx responses, report the failing URL and status. Say how many URLs you checked.
 
 **Site Architecture**
 - Important pages within 3 clicks of homepage
@@ -131,6 +132,8 @@ Once the foundations are sound, the fastest wins are usually pages already ranki
 - WebPageTest
 - Chrome DevTools
 - Search Console Core Web Vitals report
+
+If PageSpeed Insights is unavailable or its quota is exhausted, run a local Lighthouse navigation audit in Chrome DevTools or with `npx lighthouse <url> --output=json --output-path=./lighthouse.json`. Use the default mobile preset and run again with `--preset=desktop` if you need a desktop comparison. Label these results as lab data. They cannot replace field Core Web Vitals; report unavailable field metrics as not measured.
 
 ### Mobile-Friendliness
 
