@@ -7,6 +7,7 @@ Detailed guidance for building and managing affiliate programs.
 - Cookie Duration
 - Affiliate Recruitment
 - Affiliate Enablement
+- Verify an Existing Partner Link
 - Tools & Platforms (Referral Program Tools, Affiliate Program Tools, Choosing a Tool)
 - Fraud Prevention (Common Referral Fraud, Prevention Measures)
 
@@ -89,6 +90,24 @@ Provide affiliates with:
 - [ ] Demo access or free account
 - [ ] FAQ and objection handling
 - [ ] Payment terms and schedule
+
+---
+
+## Verify an Existing Partner Link
+
+Use when a partner already shares a referral link and needs to know whether it still credits them (for example after the program sends a new link or changes its offer).
+
+1. Take both exact URLs: the one actually sent to customers (including any shortener) and the one the program now supplies. Trace each redirect chain separately from a clean session with a normal **GET**; `HEAD` can return a different status without exercising the customer path:
+
+   ```sh
+   set -o pipefail
+   curl -sS --location --max-redirs 8 --max-time 20 --dump-header - --output /dev/null -- "$url" \
+     | awk 'tolower($0) ~ /^(http\/|location:)/'
+   ```
+
+   Use a separate cookie jar per link if the flow needs cookies, and keep cookie values and per-click IDs out of shared notes. If tracking depends on the browser, use the network's documented click test; a header-only trace is not an end-to-end conversion test.
+2. Compare what decides attribution: the network's partner key, presence of a click ID, final HTTP result, market, and the visible offer or signup CTA. Each network has its own parameters; check its docs. For example, PartnerStack uses `ps_partner_key` with `ps_xid`, or `gspk` with `gsxid` (URL-decode the query, Base64-decode the key when encoded; see its [link-testing guide](https://support.partnerstack.com/hc/en-us/articles/360009184274-Sharing-your-link)). Match the key to the partner's known key or the exact link supplied for that account. A campaign name or UTM alone does not prove ownership.
+3. Reuse the program-issued share URL as supplied rather than a landing URL or a generated click ID. Two links can carry the same partner key and still lead to different offers: report an offer mismatch separately from attribution. A tracked redirect only proves the link-level result; for a commission question, check the referred signup and commission status in the partner dashboard.
 
 ---
 
