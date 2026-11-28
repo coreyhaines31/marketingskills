@@ -51,7 +51,7 @@ Current versions of all skills. Agents can compare against local versions to che
 | revops | 2.2.4 | 2026-11-09 |
 | sales-enablement | 2.4.4 | 2026-11-17 |
 | schema | 2.0.5 | 2026-11-09 |
-| seo-audit | 2.2.10 | 2026-11-23 |
+| seo-audit | 2.3.0 | 2026-11-28 |
 | signup | 2.0.3 | 2026-11-09 |
 | site-architecture | 2.1.3 | 2026-11-09 |
 | sms | 1.1.4 | 2026-11-19 |
@@ -59,6 +59,10 @@ Current versions of all skills. Agents can compare against local versions to che
 | video | 2.4.7 | 2026-11-19 |
 
 ## Recent Changes
+
+### 2.14.30 (2026-11-28)
+
+- **seo-audit** (2.2.10 → 2.3.0): fall back to local Lighthouse when PageSpeed Insights is unavailable, distinguish lab and field metrics, and sample sitemap URLs for redirects and HTTP errors.
 
 ### 2.14.29 (2026-11-25)
 
