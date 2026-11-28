@@ -157,7 +157,7 @@ Load a reference when the task reaches it. Nothing here is optional reading, it'
 | The audit's evidence procedure, scoring, and report template | `references/audit-playbook.md` |
 | Why the numbers never match, loss magnitudes, and the refund asymmetry | `references/discrepancies.md` |
 
-Assets: [`assets/snippets/`](assets/snippets/README.md) holds paste-in success detectors for 22 lead-gen tools, plus four universal patterns for the moments no form tool owns: phone call clicks (the most under-tracked conversion in local services), file downloads, thank-you page arrivals, and a generic AJAX success pattern. [`assets/gtm-recipes/`](assets/gtm-recipes/README.md) holds the importable GTM containers (detection and send, with event names in [`event-map.json`](assets/gtm-recipes/event-map.json)), and `scripts/build_recipe.py` merges them with the user's IDs into one import file.
+Assets: [`assets/snippets/README.md`](assets/snippets/README.md) holds paste-in success detectors for 22 lead-gen tools, plus four universal patterns for the moments no form tool owns: phone call clicks (the most under-tracked conversion in local services), file downloads, thank-you page arrivals, and a generic AJAX success pattern. [`assets/gtm-recipes/README.md`](assets/gtm-recipes/README.md) holds the importable GTM containers (detection and send, with event names in [`event-map.json`](assets/gtm-recipes/event-map.json)), and `scripts/build_recipe.py` merges them with the user's IDs into one import file.
 
 ## Boundaries
 
