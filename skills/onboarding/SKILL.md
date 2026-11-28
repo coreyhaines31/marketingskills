@@ -42,7 +42,7 @@ Show advancement. Celebrate completions. Make the path visible. (See onboarding 
 
 The principles that make progress mechanics, checklists, and prompts actually work:
 
-- **Endowed Progress Effect** — people finish faster when progress is already started for them. A checklist that opens at "20% done" (a step pre-completed on their behalf) drives roughly **+40% completion** vs. starting at 0%. Give users a head start, don't make them start from nothing.
+- **Endowed Progress Effect** — people persist more when progress already appears started, with the same remaining work. In Nunes & Drèze's car-wash study, cards with 2 of 10 stamps pre-filled were redeemed 34% of the time vs. 19% for blank 8-stamp cards (same 8 purchases needed). Treat a head start in your checklist as a hypothesis to test; the study doesn't measure a SaaS uplift.
 - **Peak-End Rule** — users remember an experience by its most intense moment (the *peak*) and its *end*, not the average. Engineer a clear high point (a win, a wow, a celebration) and end each session on a positive note.
 - **Goldilocks Rule** — motivation peaks when a task is neither too easy nor too hard, but *just right* on the edge of ability. Tune early steps so they're achievable but not trivial.
 - **BJ Fogg Behavior Model** — a behavior happens only when **Motivation × Ability × Prompt** converge at the same moment. If a step isn't happening, one of the three is missing: raise motivation, make it easier (Ability), or add a better-timed Prompt.
