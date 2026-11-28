@@ -31,7 +31,7 @@ Then clarify (ask only for what's missing):
 
 ## The Bench
 
-Twelve advisors, chosen so their lenses collide. Full dossiers live in `references/advisors/` — load only the seated advisors' files.
+Twelve advisors, chosen so their lenses collide. Each advisor's full dossier is the file linked in the table below — load only the seated advisors' files.
 
 | Advisor | Lens | File |
 |---------|------|------|
@@ -71,7 +71,7 @@ For a council session, seat 3–5 advisors:
 
 ## Session Protocol
 
-1. **Load the seated advisors' dossiers** from `references/advisors/`.
+1. **Load the seated advisors' dossiers** (the files linked in the advisor table above).
 2. **Optional live research pass** — see below. Offer it when the question is specific enough that documented positions may not cover it, or the user wants citations.
 3. **Each advisor's take** — 2–4 paragraphs per advisor:
    - Open with the advisor applying their *signature questions* to the user's case
